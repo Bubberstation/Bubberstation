@@ -174,16 +174,13 @@
 	if(prob(8) && programs.len)
 		var/datum/nanite_program/NP = pick(programs)
 		NP.software_error()
-// todo test this
 /datum/component/nanites/proc/add_design(datum/techweb/web, datum/design/design, custom = FALSE)
 	SIGNAL_HANDLER
-	if(istype(design, /datum/techweb_node/nanite_harmonic))
-		harmonic_regenerating = TRUE
+	harmonic_regenerating = !!web.researched_nodes[/datum/techweb_node/nanite_harmonic]
 
 /datum/component/nanites/proc/remove_design(datum/techweb/web, datum/design/design, custom = FALSE)
 	SIGNAL_HANDLER
-	if(istype(design, /datum/techweb_node/nanite_harmonic))
-		harmonic_regenerating = FALSE
+	harmonic_regenerating = !!web.researched_nodes[/datum/techweb_node/nanite_harmonic]
 
 /datum/component/nanites/proc/connect_techweb(datum/techweb/new_web)
 	if(!new_web || new_web == techweb)
