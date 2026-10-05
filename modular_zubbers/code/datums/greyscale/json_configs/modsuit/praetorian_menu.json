@@ -1,8 +1,8 @@
 {
-	"obj corpsman-control-sealed": [
+	"obj praetorian-control-sealed": [
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-control-sealed.plate",
+			"icon_state": "obj.praetorian-control-sealed.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -10,7 +10,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-control-sealed.under",
+			"icon_state": "obj.praetorian-control-sealed.blue",
 			"blend_mode": "overlay",
 			"color_ids": [
 				2
@@ -18,23 +18,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-control-sealed.red",
-			"blend_mode": "overlay",
-			"color_ids": [
-				4
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-control-sealed.lights",
-			"blend_mode": "overlay",
-			"color_ids": [
-				5
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-control-sealed.core",
+			"icon_state": "obj.praetorian-control-sealed.core",
 			"blend_mode": "overlay",
 			"color_ids": [
 				6
@@ -42,19 +26,19 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-control-sealed.add",
+			"icon_state": "obj.praetorian-control-sealed.add",
 			"blend_mode": "add"
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-control-sealed.sub",
+			"icon_state": "obj.praetorian-control-sealed.sub",
 			"blend_mode": "subtract"
 		}
 	],
-	"obj corpsman-control": [
+	"obj praetorian-control": [
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-control.plate",
+			"icon_state": "obj.praetorian-control.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -62,7 +46,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-control.under",
+			"icon_state": "obj.praetorian-control.blue",
 			"blend_mode": "overlay",
 			"color_ids": [
 				2
@@ -70,19 +54,19 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-control.add",
+			"icon_state": "obj.praetorian-control.add",
 			"blend_mode": "add"
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-control.sub",
+			"icon_state": "obj.praetorian-control.sub",
 			"blend_mode": "subtract"
 		}
 	],
-	"obj corpsman-helmet-sealed": [
+	"obj praetorian-helmet-sealed": [
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-helmet-sealed.plate",
+			"icon_state": "obj.praetorian-helmet-sealed.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -90,7 +74,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-helmet-sealed.under",
+			"icon_state": "obj.praetorian-helmet-sealed.blue",
 			"blend_mode": "overlay",
 			"color_ids": [
 				2
@@ -98,63 +82,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-helmet-sealed.add",
-			"blend_mode": "add"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-helmet-sealed.sub",
-			"blend_mode": "subtract"
-		}
-	],
-	"obj corpsman-helmet": [
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-helmet.plate",
-			"blend_mode": "overlay",
-			"color_ids": [
-				1
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-helmet.under",
-			"blend_mode": "overlay",
-			"color_ids": [
-				2
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-helmet.add",
-			"blend_mode": "add"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-helmet.sub",
-			"blend_mode": "subtract"
-		}
-	],
-	"obj corpsman-chestplate-sealed": [
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-chestplate-sealed.plate",
-			"blend_mode": "overlay",
-			"color_ids": [
-				1
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-chestplate-sealed.under",
-			"blend_mode": "overlay",
-			"color_ids": [
-				2
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-chestplate-sealed.red",
+			"icon_state": "obj.praetorian-helmet-sealed.visor",
 			"blend_mode": "overlay",
 			"color_ids": [
 				4
@@ -162,7 +90,247 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-chestplate-sealed.lights",
+			"icon_state": "obj.praetorian-helmet-sealed.add",
+			"blend_mode": "add"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-helmet-sealed.sub",
+			"blend_mode": "subtract"
+		}
+	],
+	"obj praetorian-helmet": [
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-helmet.base",
+			"blend_mode": "overlay",
+			"color_ids": [
+				1
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-helmet.blue",
+			"blend_mode": "overlay",
+			"color_ids": [
+				2
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-helmet.add",
+			"blend_mode": "add"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-helmet.sub",
+			"blend_mode": "subtract"
+		}
+	],
+	"obj praetorian-chestplate-sealed": [
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-chestplate-sealed.base",
+			"blend_mode": "overlay",
+			"color_ids": [
+				1
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-chestplate-sealed.blue",
+			"blend_mode": "overlay",
+			"color_ids": [
+				2
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-chestplate-sealed.core",
+			"blend_mode": "overlay",
+			"color_ids": [
+				6
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-chestplate-sealed.add",
+			"blend_mode": "add"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-chestplate-sealed.sub",
+			"blend_mode": "subtract"
+		}
+	],
+	"obj praetorian-chestplate": [
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-chestplate.base",
+			"blend_mode": "overlay",
+			"color_ids": [
+				1
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-chestplate.blue",
+			"blend_mode": "overlay",
+			"color_ids": [
+				2
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-chestplate.lights",
+			"blend_mode": "overlay",
+			"color_ids": [
+				3
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-chestplate.add",
+			"blend_mode": "add"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-chestplate.sub",
+			"blend_mode": "subtract"
+		}
+	],
+	"obj praetorian-gauntlets-sealed": [
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-gauntlets-sealed.base",
+			"blend_mode": "overlay",
+			"color_ids": [
+				1
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-gauntlets-sealed.blue",
+			"blend_mode": "overlay",
+			"color_ids": [
+				2
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-gauntlets-sealed.add",
+			"blend_mode": "add"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-gauntlets-sealed.sub",
+			"blend_mode": "subtract"
+		}
+	],
+	"obj praetorian-gauntlets": [
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-gauntlets.base",
+			"blend_mode": "overlay",
+			"color_ids": [
+				1
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-gauntlets.blue",
+			"blend_mode": "overlay",
+			"color_ids": [
+				2
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-gauntlets.add",
+			"blend_mode": "add"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-gauntlets.sub",
+			"blend_mode": "subtract"
+		}
+	],
+	"obj praetorian-boots-sealed": [
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-boots-sealed.base",
+			"blend_mode": "overlay",
+			"color_ids": [
+				1
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-boots-sealed.visor",
+			"blend_mode": "overlay",
+			"color_ids": [
+				4
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-boots-sealed.add",
+			"blend_mode": "add"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-boots-sealed.sub",
+			"blend_mode": "subtract"
+		}
+	],
+	"obj praetorian-boots": [
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-boots.base",
+			"blend_mode": "overlay",
+			"color_ids": [
+				1
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-boots.add",
+			"blend_mode": "add"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.praetorian-boots.sub",
+			"blend_mode": "subtract"
+		}
+	],
+	"worn praetorian-control-sealed": [
+		{
+			"type": "icon_state",
+			"icon_state": "worn.praetorian-control-sealed.base",
+			"blend_mode": "overlay",
+			"color_ids": [
+				1
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.praetorian-control-sealed.blue",
+			"blend_mode": "overlay",
+			"color_ids": [
+				2
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.praetorian-control-sealed.visor",
+			"blend_mode": "overlay",
+			"color_ids": [
+				4
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.praetorian-control-sealed.visorhl",
 			"blend_mode": "overlay",
 			"color_ids": [
 				5
@@ -170,19 +338,19 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-chestplate-sealed.add",
+			"icon_state": "worn.praetorian-control-sealed.add",
 			"blend_mode": "add"
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-chestplate-sealed.sub",
+			"icon_state": "worn.praetorian-control-sealed.sub",
 			"blend_mode": "subtract"
 		}
 	],
-	"obj corpsman-chestplate": [
+	"worn praetorian-control": [
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-chestplate.plate",
+			"icon_state": "worn.praetorian-control.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -190,7 +358,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-chestplate.under",
+			"icon_state": "worn.praetorian-control.blue",
 			"blend_mode": "overlay",
 			"color_ids": [
 				2
@@ -198,43 +366,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-chestplate.joints",
-			"blend_mode": "overlay",
-			"color_ids": [
-				3
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-chestplate.add",
-			"blend_mode": "add"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-chestplate.sub",
-			"blend_mode": "subtract"
-		}
-	],
-	"obj corpsman-gauntlets-sealed": [
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-gauntlets-sealed.plate",
-			"blend_mode": "overlay",
-			"color_ids": [
-				1
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-gauntlets-sealed.under",
-			"blend_mode": "overlay",
-			"color_ids": [
-				2
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-gauntlets-sealed.red",
+			"icon_state": "worn.praetorian-control.visor",
 			"blend_mode": "overlay",
 			"color_ids": [
 				4
@@ -242,7 +374,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-gauntlets-sealed.lights",
+			"icon_state": "worn.praetorian-control.visorhl",
 			"blend_mode": "overlay",
 			"color_ids": [
 				5
@@ -250,19 +382,19 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-gauntlets-sealed.add",
+			"icon_state": "worn.praetorian-control.add",
 			"blend_mode": "add"
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-gauntlets-sealed.sub",
+			"icon_state": "worn.praetorian-control.sub",
 			"blend_mode": "subtract"
 		}
 	],
-	"obj corpsman-gauntlets": [
+	"worn praetorian-helmet-sealed": [
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-gauntlets.plate",
+			"icon_state": "worn.praetorian-helmet-sealed.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -270,7 +402,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-gauntlets.under",
+			"icon_state": "worn.praetorian-helmet-sealed.blue",
 			"blend_mode": "overlay",
 			"color_ids": [
 				2
@@ -278,91 +410,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-gauntlets.joints",
-			"blend_mode": "overlay",
-			"color_ids": [
-				3
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-gauntlets.add",
-			"blend_mode": "add"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-gauntlets.sub",
-			"blend_mode": "subtract"
-		}
-	],
-	"obj corpsman-boots-sealed": [
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-boots-sealed.plate",
-			"blend_mode": "overlay",
-			"color_ids": [
-				1
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-boots-sealed.under",
-			"blend_mode": "overlay",
-			"color_ids": [
-				2
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-boots-sealed.add",
-			"blend_mode": "add"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-boots-sealed.sub",
-			"blend_mode": "subtract"
-		}
-	],
-	"obj corpsman-boots": [
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-boots.plate",
-			"blend_mode": "overlay",
-			"color_ids": [
-				1
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-boots.add",
-			"blend_mode": "add"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-boots.sub",
-			"blend_mode": "subtract"
-		}
-	],
-	"worn corpsman-control-sealed": [
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-control-sealed.plate",
-			"blend_mode": "overlay",
-			"color_ids": [
-				1
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-control-sealed.under",
-			"blend_mode": "overlay",
-			"color_ids": [
-				2
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-control-sealed.red",
+			"icon_state": "worn.praetorian-helmet-sealed.visor",
 			"blend_mode": "overlay",
 			"color_ids": [
 				4
@@ -370,7 +418,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-control-sealed.lights",
+			"icon_state": "worn.praetorian-helmet-sealed.visorhl",
 			"blend_mode": "overlay",
 			"color_ids": [
 				5
@@ -378,19 +426,19 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-control-sealed.add",
+			"icon_state": "worn.praetorian-helmet-sealed.add",
 			"blend_mode": "add"
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-control-sealed.sub",
+			"icon_state": "worn.praetorian-helmet-sealed.sub",
 			"blend_mode": "subtract"
 		}
 	],
-	"worn corpsman-control": [
+	"worn praetorian-helmet": [
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-control.plate",
+			"icon_state": "worn.praetorian-helmet.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -398,7 +446,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-control.under",
+			"icon_state": "worn.praetorian-helmet.blue",
 			"blend_mode": "overlay",
 			"color_ids": [
 				2
@@ -406,19 +454,19 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-control.add",
+			"icon_state": "worn.praetorian-helmet.add",
 			"blend_mode": "add"
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-control.sub",
+			"icon_state": "worn.praetorian-helmet.sub",
 			"blend_mode": "subtract"
 		}
 	],
-	"worn corpsman-helmet-sealed": [
+	"worn praetorian-chestplate-sealed": [
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet-sealed.plate",
+			"icon_state": "worn.praetorian-chestplate-sealed.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -426,7 +474,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet-sealed.under",
+			"icon_state": "worn.praetorian-chestplate-sealed.blue",
 			"blend_mode": "overlay",
 			"color_ids": [
 				2
@@ -434,19 +482,27 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet-sealed.add",
+			"icon_state": "worn.praetorian-chestplate-sealed.core",
+			"blend_mode": "overlay",
+			"color_ids": [
+				6
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.praetorian-chestplate-sealed.add",
 			"blend_mode": "add"
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet-sealed.sub",
+			"icon_state": "worn.praetorian-chestplate-sealed.sub",
 			"blend_mode": "subtract"
 		}
 	],
-	"worn corpsman-helmet": [
+	"worn praetorian-chestplate": [
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet.plate",
+			"icon_state": "worn.praetorian-chestplate.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -454,7 +510,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet.under",
+			"icon_state": "worn.praetorian-chestplate.blue",
 			"blend_mode": "overlay",
 			"color_ids": [
 				2
@@ -462,60 +518,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet.add",
-			"blend_mode": "add"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet.sub",
-			"blend_mode": "subtract"
-		}
-	],
-	"worn corpsman-helmet-visor": [
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet-visor.plate",
-			"blend_mode": "overlay",
-			"color_ids": [
-				1
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet-visor.fixed",
-			"blend_mode": "overlay"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet-visor.add",
-			"blend_mode": "add"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet-visor.sub",
-			"blend_mode": "subtract"
-		}
-	],
-	"worn corpsman-chestplate-sealed": [
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate-sealed.plate",
-			"blend_mode": "overlay",
-			"color_ids": [
-				1
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate-sealed.under",
-			"blend_mode": "overlay",
-			"color_ids": [
-				2
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate-sealed.joints",
+			"icon_state": "worn.praetorian-chestplate.lights",
 			"blend_mode": "overlay",
 			"color_ids": [
 				3
@@ -523,7 +526,35 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate-sealed.red",
+			"icon_state": "worn.praetorian-chestplate.add",
+			"blend_mode": "add"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.praetorian-chestplate.sub",
+			"blend_mode": "subtract"
+		}
+	],
+	"worn praetorian-gauntlets-sealed": [
+		{
+			"type": "icon_state",
+			"icon_state": "worn.praetorian-gauntlets-sealed.base",
+			"blend_mode": "overlay",
+			"color_ids": [
+				1
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.praetorian-gauntlets-sealed.blue",
+			"blend_mode": "overlay",
+			"color_ids": [
+				2
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.praetorian-gauntlets-sealed.visor",
 			"blend_mode": "overlay",
 			"color_ids": [
 				4
@@ -531,7 +562,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate-sealed.lights",
+			"icon_state": "worn.praetorian-gauntlets-sealed.visorhl",
 			"blend_mode": "overlay",
 			"color_ids": [
 				5
@@ -539,19 +570,19 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate-sealed.add",
+			"icon_state": "worn.praetorian-gauntlets-sealed.add",
 			"blend_mode": "add"
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate-sealed.sub",
+			"icon_state": "worn.praetorian-gauntlets-sealed.sub",
 			"blend_mode": "subtract"
 		}
 	],
-	"worn corpsman-chestplate": [
+	"worn praetorian-gauntlets": [
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate.plate",
+			"icon_state": "worn.praetorian-gauntlets.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -559,7 +590,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate.under",
+			"icon_state": "worn.praetorian-gauntlets.blue",
 			"blend_mode": "overlay",
 			"color_ids": [
 				2
@@ -567,27 +598,19 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate.joints",
-			"blend_mode": "overlay",
-			"color_ids": [
-				3
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate.add",
+			"icon_state": "worn.praetorian-gauntlets.add",
 			"blend_mode": "add"
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate.sub",
+			"icon_state": "worn.praetorian-gauntlets.sub",
 			"blend_mode": "subtract"
 		}
 	],
-	"worn corpsman-gauntlets-sealed": [
+	"worn praetorian-boots-sealed": [
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-gauntlets-sealed.plate",
+			"icon_state": "worn.praetorian-boots-sealed.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -595,15 +618,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-gauntlets-sealed.under",
-			"blend_mode": "overlay",
-			"color_ids": [
-				2
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-gauntlets-sealed.red",
+			"icon_state": "worn.praetorian-boots-sealed.visor",
 			"blend_mode": "overlay",
 			"color_ids": [
 				4
@@ -611,24 +626,19 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-gauntlets-sealed.fixed",
-			"blend_mode": "overlay"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-gauntlets-sealed.add",
+			"icon_state": "worn.praetorian-boots-sealed.add",
 			"blend_mode": "add"
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-gauntlets-sealed.sub",
+			"icon_state": "worn.praetorian-boots-sealed.sub",
 			"blend_mode": "subtract"
 		}
 	],
-	"worn corpsman-gauntlets": [
+	"worn praetorian-boots": [
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-gauntlets.plate",
+			"icon_state": "worn.praetorian-boots.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -636,76 +646,12 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-gauntlets.under",
-			"blend_mode": "overlay",
-			"color_ids": [
-				2
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-gauntlets.joints",
-			"blend_mode": "overlay",
-			"color_ids": [
-				3
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-gauntlets.add",
+			"icon_state": "worn.praetorian-boots.add",
 			"blend_mode": "add"
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-gauntlets.sub",
-			"blend_mode": "subtract"
-		}
-	],
-	"worn corpsman-boots-sealed": [
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-boots-sealed.plate",
-			"blend_mode": "overlay",
-			"color_ids": [
-				1
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-boots-sealed.under",
-			"blend_mode": "overlay",
-			"color_ids": [
-				2
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-boots-sealed.add",
-			"blend_mode": "add"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-boots-sealed.sub",
-			"blend_mode": "subtract"
-		}
-	],
-	"worn corpsman-boots": [
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-boots.plate",
-			"blend_mode": "overlay",
-			"color_ids": [
-				1
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-boots.add",
-			"blend_mode": "add"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-boots.sub",
+			"icon_state": "worn.praetorian-boots.sub",
 			"blend_mode": "subtract"
 		}
 	]

@@ -35,6 +35,22 @@ GLOBAL_LIST_INIT(mod_gags_skins, init_mod_gags_skins())
 	/// Module overlay states that have greyscale layers for this skin
 	var/list/module_states
 
+// MOD channels are not in the order species fallback sprites (Teshari) expect, so those sample the painted sprite instead.
+/obj/item/mod/control
+	sample_worn_colors_for_fallback = TRUE
+
+/obj/item/clothing/suit/mod
+	sample_worn_colors_for_fallback = TRUE
+
+/obj/item/clothing/head/mod
+	sample_worn_colors_for_fallback = TRUE
+
+/obj/item/clothing/gloves/mod
+	sample_worn_colors_for_fallback = TRUE
+
+/obj/item/clothing/shoes/mod
+	sample_worn_colors_for_fallback = TRUE
+
 /// Returns the GAGS config made from this icon file, or null if this skin has none for it
 /datum/mod_gags_skin/proc/config_for(icon_file)
 	if(isnull(icon_file))
@@ -77,6 +93,11 @@ GLOBAL_LIST_INIT(mod_gags_skins, init_mod_gags_skins())
 /// The GAGS entry for this suit's current skin, if it has one
 /obj/item/mod/control/proc/get_gags_skin()
 	return GLOB.mod_gags_skins[skin]
+
+/// The plain icon file for this suit's skin. After painting, icon points at a generated icon instead.
+/obj/item/mod/control/proc/get_source_icon()
+	var/list/used_skin = theme ? theme.variants[skin] : null
+	return LAZYACCESS(used_skin, MOD_ICON_OVERRIDE) || 'icons/obj/clothing/modsuit/mod_clothing.dmi'
 
 /// Recolors every part of the suit. Colors is a GAGS color string with one color per channel.
 /obj/item/mod/control/proc/set_gags_colors(colors)
@@ -155,4 +176,5 @@ GLOBAL_LIST_INIT(mod_gags_skins, init_mod_gags_skins())
 		mod.close_gags_menu()
 		return
 	if(mod.set_gags_colors(menu.split_colors.Join("")))
+		playsound(mod, 'sound/effects/spray.ogg', 25, TRUE, 5)
 		mod.balloon_alert(user, "suit painted")

@@ -83,6 +83,10 @@
 /**
  * Generate a fallback worn icon, if the species supports it. You must call it in an override of generate_custom_worn_icon()
  */
+/obj/item
+	/// If TRUE, species fallback sprites sample colors from the worn sprite even when the item uses GAGS.
+	var/sample_worn_colors_for_fallback = FALSE
+
 /datum/species/proc/generate_custom_worn_icon_fallback(item_slot, obj/item/item, mob/living/carbon/human/human_owner)
 	var/icon/human_icon = item.worn_icon || item.icon
 	var/human_icon_state = item.worn_icon_state || item.icon_state
@@ -106,7 +110,8 @@
 	var/fallback_greyscale_colors
 
 	// If this outfit is already GAGs, use the existing colors.
-	if(item.greyscale_colors)
+	// Items with sample_worn_colors_for_fallback are sampled from their worn sprite instead, because their color order does not match the fallback.
+	if(item.greyscale_colors && !item.sample_worn_colors_for_fallback)
 		// Just use the colors already given to us, but re-align to expected colors.
 		var/list/colors = SSgreyscale.ParseColorString(item.greyscale_colors)
 		var/default_color = (length(colors) >= 1) ? colors[1] : COLOR_DARK

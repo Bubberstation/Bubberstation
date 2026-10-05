@@ -716,6 +716,51 @@
 	icon_file = 'modular_zubbers/icons/mob/clothing/modsuit/gags/syndicate.dmi'
 	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/modsuit/syndicate_menu.json'
 
+/datum/greyscale_config/mod_gags_debug_worn
+	name = "MODsuit Bluespace (worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/modsuit/gags/debug.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/modsuit/debug_worn.json'
+
+/datum/greyscale_config/mod_gags_debug_obj
+	name = "MODsuit Bluespace (obj)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/modsuit/gags/debug.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/modsuit/debug_obj.json'
+
+/datum/greyscale_config/mod_gags_debug_digi
+	name = "MODsuit Bluespace (digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/modsuit/gags/debug.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/modsuit/debug_digi.json'
+
+/datum/greyscale_config/mod_gags_debug_vox
+	name = "MODsuit Bluespace (vox)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/modsuit/gags/debug.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/modsuit/debug_vox.json'
+
+/datum/greyscale_config/mod_gags_debug_menu
+	name = "MODsuit Bluespace (menu)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/modsuit/gags/debug.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/modsuit/debug_menu.json'
+
+/datum/greyscale_config/mod_gags_praetorian_obj
+	name = "MODsuit Praetorian (obj)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/modsuit/gags/praetorian.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/modsuit/praetorian_obj.json'
+
+/datum/greyscale_config/mod_gags_praetorian_worn
+	name = "MODsuit Praetorian (worn)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/modsuit/gags/praetorian.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/modsuit/praetorian_worn.json'
+
+/datum/greyscale_config/mod_gags_praetorian_digi
+	name = "MODsuit Praetorian (digi)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/modsuit/gags/praetorian.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/modsuit/praetorian_digi.json'
+
+/datum/greyscale_config/mod_gags_praetorian_menu
+	name = "MODsuit Praetorian (menu)"
+	icon_file = 'modular_zubbers/icons/mob/clothing/modsuit/gags/praetorian.dmi'
+	json_config = 'modular_zubbers/code/datums/greyscale/json_configs/modsuit/praetorian_menu.json'
+
 
 /datum/mod_gags_skin/security
 	skin = "security"
@@ -745,9 +790,9 @@
 
 /datum/mod_gags_skin/lustwish
 	skin = "lustwish"
-	stock_colors = "#ba70f0#474856#bac0cc#91f596#da92ff"
-	default_colors = "#ba70f0#474856#bac0cc#91f596#da92ff"
-	color_labels = list("1" = "Accent", "2" = "Undersuit", "3" = "Primary", "4" = "Lights", "5" = "Visor")
+	stock_colors = "#bac0cc#474955#8f50cf#ce8ad4#91f596#9050ce#ce8ad4"
+	default_colors = "#bac0cc#474955#8f50cf#ce8ad4#91f596#9050ce#ce8ad4"
+	color_labels = list("1" = "Primary", "2" = "Undersuit", "3" = "Accent", "4" = "Accent highlight", "5" = "Lights", "6" = "Visor", "7" = "Visor highlight")
 	menu_config = /datum/greyscale_config/mod_gags_lustwish_menu
 	file_configs = list(
 		"modular_zubbers/icons/obj/clothing/modsuit/mod_lustwish.dmi" = /datum/greyscale_config/mod_gags_lustwish_obj,
@@ -781,9 +826,9 @@
 
 /datum/mod_gags_skin/ninja
 	skin = "ninja"
-	stock_colors = "#54e543#53e939"
-	default_colors = "#54e543#53e939"
-	color_labels = list("1" = "Lights", "2" = "Core")
+	stock_colors = "#21a52e#045d3f#83db2b#53e939"
+	default_colors = "#21a52e#045d3f#83db2b#53e939"
+	color_labels = list("1" = "Lights", "2" = "Lights shade", "3" = "Lights highlight", "4" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_ninja_menu
 	file_configs = list(
 		"icons/mob/clothing/modsuit/mod_clothing.dmi" = /datum/greyscale_config/mod_gags_ninja_worn,
@@ -885,9 +930,9 @@
 
 /datum/mod_gags_skin/corpsman
 	skin = "corpsman"
-	stock_colors = "#fdc9d0#fff7f6#ff5f7d#fe0311"
-	default_colors = "#fdc9d0#fff7f6#ff5f7d#fe0311"
-	color_labels = list("1" = "Undersuit", "2" = "Primary", "3" = "Accent", "4" = "Core")
+	stock_colors = "#fff7f6#5a4243#e1dfe6#cd093d#ff0101#fe0311"
+	default_colors = "#fff7f6#5a4243#e1dfe6#cd093d#ff0101#fe0311"
+	color_labels = list("1" = "Primary", "2" = "Undersuit", "3" = "Frame", "4" = "Accent", "5" = "Lights", "6" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_corpsman_menu
 	file_configs = list(
 		"icons/mob/clothing/modsuit/mod_clothing.dmi" = /datum/greyscale_config/mod_gags_corpsman_worn,
@@ -898,9 +943,9 @@
 
 /datum/mod_gags_skin/enchanted
 	skin = "enchanted"
-	stock_colors = "#c7b6ce#9a42c8#34b6ff#ffd370#8bfff1"
-	default_colors = "#c7b6ce#9a42c8#34b6ff#ffd370#8bfff1"
-	color_labels = list("1" = "Primary", "2" = "Robe", "3" = "Accent", "4" = "Trim", "5" = "Core")
+	stock_colors = "#9939cb#5c4669#c7b6ce#34b6ff#ffd370#8bfff1"
+	default_colors = "#9939cb#5c4669#c7b6ce#34b6ff#ffd370#8bfff1"
+	color_labels = list("1" = "Robe", "2" = "Armor", "3" = "Metal", "4" = "Accent", "5" = "Trim", "6" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_enchanted_menu
 	file_configs = list(
 		"icons/mob/clothing/modsuit/mod_clothing.dmi" = /datum/greyscale_config/mod_gags_enchanted_worn,
@@ -1095,3 +1140,28 @@
 		"modular_skyrat/modules/better_vox/icons/clothing/mod_modules.dmi" = /datum/greyscale_config/mod_gags_syndicate_voxmodules,
 	)
 	module_states = list("module_armorbooster_off-syndicate", "module_armorbooster_off-syndicate_digi", "module_armorbooster_off-syndicate_head", "module_armorbooster_off-syndicate_head_muzzled", "module_armorbooster_on-syndicate", "module_armorbooster_on-syndicate_head", "module_armorbooster_on-syndicate_head_muzzled", "module_armorbooster_visor-syndicate")
+
+/datum/mod_gags_skin/debug
+	skin = "debug"
+	stock_colors = "#6a6c6e#0168ff#29b5ff#76fcff#836d1a#59f1ff"
+	default_colors = "#6a6c6e#0168ff#29b5ff#76fcff#836d1a#59f1ff"
+	color_labels = list("1" = "Primary", "2" = "Accent", "3" = "Lights", "4" = "Lights highlight", "5" = "Trim", "6" = "Core")
+	menu_config = /datum/greyscale_config/mod_gags_debug_menu
+	file_configs = list(
+		"icons/mob/clothing/modsuit/mod_clothing.dmi" = /datum/greyscale_config/mod_gags_debug_worn,
+		"icons/obj/clothing/modsuit/mod_clothing.dmi" = /datum/greyscale_config/mod_gags_debug_obj,
+		"modular_skyrat/master_files/icons/mob/mod.dmi" = /datum/greyscale_config/mod_gags_debug_digi,
+		"modular_skyrat/modules/better_vox/icons/clothing/mod.dmi" = /datum/greyscale_config/mod_gags_debug_vox,
+	)
+
+/datum/mod_gags_skin/praetorian
+	skin = "praetorian"
+	stock_colors = "#3b3b56#015dbb#0199cc#12c7ff#93fdff#35d3ff"
+	default_colors = "#3b3b56#015dbb#0199cc#12c7ff#93fdff#35d3ff"
+	color_labels = list("1" = "Primary", "2" = "Accent", "3" = "Lights", "4" = "Visor", "5" = "Visor highlight", "6" = "Core")
+	menu_config = /datum/greyscale_config/mod_gags_praetorian_menu
+	file_configs = list(
+		"modular_skyrat/modules/blueshield/icons/praetorian.dmi" = /datum/greyscale_config/mod_gags_praetorian_obj,
+		"modular_skyrat/modules/blueshield/icons/worn_praetorian.dmi" = /datum/greyscale_config/mod_gags_praetorian_worn,
+		"modular_skyrat/master_files/icons/mob/mod.dmi" = /datum/greyscale_config/mod_gags_praetorian_digi,
+	)

@@ -1,8 +1,8 @@
 {
-	"obj corpsman-control-sealed": [
+	"obj debug-control-sealed": [
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-control-sealed.plate",
+			"icon_state": "obj.debug-control-sealed.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -10,7 +10,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-control-sealed.under",
+			"icon_state": "obj.debug-control-sealed.blue",
 			"blend_mode": "overlay",
 			"color_ids": [
 				2
@@ -18,7 +18,15 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-control-sealed.red",
+			"icon_state": "obj.debug-control-sealed.glow",
+			"blend_mode": "overlay",
+			"color_ids": [
+				3
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-control-sealed.glowhl",
 			"blend_mode": "overlay",
 			"color_ids": [
 				4
@@ -26,15 +34,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-control-sealed.lights",
-			"blend_mode": "overlay",
-			"color_ids": [
-				5
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-control-sealed.core",
+			"icon_state": "obj.debug-control-sealed.core",
 			"blend_mode": "overlay",
 			"color_ids": [
 				6
@@ -42,19 +42,19 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-control-sealed.add",
+			"icon_state": "obj.debug-control-sealed.add",
 			"blend_mode": "add"
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-control-sealed.sub",
+			"icon_state": "obj.debug-control-sealed.sub",
 			"blend_mode": "subtract"
 		}
 	],
-	"obj corpsman-control": [
+	"obj debug-control": [
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-control.plate",
+			"icon_state": "obj.debug-control.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -62,7 +62,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-control.under",
+			"icon_state": "obj.debug-control.blue",
 			"blend_mode": "overlay",
 			"color_ids": [
 				2
@@ -70,135 +70,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-control.add",
-			"blend_mode": "add"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-control.sub",
-			"blend_mode": "subtract"
-		}
-	],
-	"obj corpsman-helmet-sealed": [
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-helmet-sealed.plate",
-			"blend_mode": "overlay",
-			"color_ids": [
-				1
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-helmet-sealed.under",
-			"blend_mode": "overlay",
-			"color_ids": [
-				2
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-helmet-sealed.add",
-			"blend_mode": "add"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-helmet-sealed.sub",
-			"blend_mode": "subtract"
-		}
-	],
-	"obj corpsman-helmet": [
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-helmet.plate",
-			"blend_mode": "overlay",
-			"color_ids": [
-				1
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-helmet.under",
-			"blend_mode": "overlay",
-			"color_ids": [
-				2
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-helmet.add",
-			"blend_mode": "add"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-helmet.sub",
-			"blend_mode": "subtract"
-		}
-	],
-	"obj corpsman-chestplate-sealed": [
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-chestplate-sealed.plate",
-			"blend_mode": "overlay",
-			"color_ids": [
-				1
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-chestplate-sealed.under",
-			"blend_mode": "overlay",
-			"color_ids": [
-				2
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-chestplate-sealed.red",
-			"blend_mode": "overlay",
-			"color_ids": [
-				4
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-chestplate-sealed.lights",
-			"blend_mode": "overlay",
-			"color_ids": [
-				5
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-chestplate-sealed.add",
-			"blend_mode": "add"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-chestplate-sealed.sub",
-			"blend_mode": "subtract"
-		}
-	],
-	"obj corpsman-chestplate": [
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-chestplate.plate",
-			"blend_mode": "overlay",
-			"color_ids": [
-				1
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-chestplate.under",
-			"blend_mode": "overlay",
-			"color_ids": [
-				2
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-chestplate.joints",
+			"icon_state": "obj.debug-control.glow",
 			"blend_mode": "overlay",
 			"color_ids": [
 				3
@@ -206,19 +78,19 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-chestplate.add",
+			"icon_state": "obj.debug-control.add",
 			"blend_mode": "add"
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-chestplate.sub",
+			"icon_state": "obj.debug-control.sub",
 			"blend_mode": "subtract"
 		}
 	],
-	"obj corpsman-gauntlets-sealed": [
+	"obj debug-helmet-sealed": [
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-gauntlets-sealed.plate",
+			"icon_state": "obj.debug-helmet-sealed.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -226,7 +98,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-gauntlets-sealed.under",
+			"icon_state": "obj.debug-helmet-sealed.blue",
 			"blend_mode": "overlay",
 			"color_ids": [
 				2
@@ -234,51 +106,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-gauntlets-sealed.red",
-			"blend_mode": "overlay",
-			"color_ids": [
-				4
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-gauntlets-sealed.lights",
-			"blend_mode": "overlay",
-			"color_ids": [
-				5
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-gauntlets-sealed.add",
-			"blend_mode": "add"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-gauntlets-sealed.sub",
-			"blend_mode": "subtract"
-		}
-	],
-	"obj corpsman-gauntlets": [
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-gauntlets.plate",
-			"blend_mode": "overlay",
-			"color_ids": [
-				1
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-gauntlets.under",
-			"blend_mode": "overlay",
-			"color_ids": [
-				2
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-gauntlets.joints",
+			"icon_state": "obj.debug-helmet-sealed.glow",
 			"blend_mode": "overlay",
 			"color_ids": [
 				3
@@ -286,83 +114,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "obj.corpsman-gauntlets.add",
-			"blend_mode": "add"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-gauntlets.sub",
-			"blend_mode": "subtract"
-		}
-	],
-	"obj corpsman-boots-sealed": [
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-boots-sealed.plate",
-			"blend_mode": "overlay",
-			"color_ids": [
-				1
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-boots-sealed.under",
-			"blend_mode": "overlay",
-			"color_ids": [
-				2
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-boots-sealed.add",
-			"blend_mode": "add"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-boots-sealed.sub",
-			"blend_mode": "subtract"
-		}
-	],
-	"obj corpsman-boots": [
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-boots.plate",
-			"blend_mode": "overlay",
-			"color_ids": [
-				1
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-boots.add",
-			"blend_mode": "add"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "obj.corpsman-boots.sub",
-			"blend_mode": "subtract"
-		}
-	],
-	"worn corpsman-control-sealed": [
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-control-sealed.plate",
-			"blend_mode": "overlay",
-			"color_ids": [
-				1
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-control-sealed.under",
-			"blend_mode": "overlay",
-			"color_ids": [
-				2
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-control-sealed.red",
+			"icon_state": "obj.debug-helmet-sealed.glowhl",
 			"blend_mode": "overlay",
 			"color_ids": [
 				4
@@ -370,7 +122,223 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-control-sealed.lights",
+			"icon_state": "obj.debug-helmet-sealed.add",
+			"blend_mode": "add"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-helmet-sealed.sub",
+			"blend_mode": "subtract"
+		}
+	],
+	"obj debug-helmet": [
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-helmet.base",
+			"blend_mode": "overlay",
+			"color_ids": [
+				1
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-helmet.blue",
+			"blend_mode": "overlay",
+			"color_ids": [
+				2
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-helmet.glow",
+			"blend_mode": "overlay",
+			"color_ids": [
+				3
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-helmet.add",
+			"blend_mode": "add"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-helmet.sub",
+			"blend_mode": "subtract"
+		}
+	],
+	"obj debug-chestplate-sealed": [
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-chestplate-sealed.base",
+			"blend_mode": "overlay",
+			"color_ids": [
+				1
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-chestplate-sealed.blue",
+			"blend_mode": "overlay",
+			"color_ids": [
+				2
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-chestplate-sealed.glow",
+			"blend_mode": "overlay",
+			"color_ids": [
+				3
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-chestplate-sealed.add",
+			"blend_mode": "add"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-chestplate-sealed.sub",
+			"blend_mode": "subtract"
+		}
+	],
+	"obj debug-chestplate": [
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-chestplate.base",
+			"blend_mode": "overlay",
+			"color_ids": [
+				1
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-chestplate.blue",
+			"blend_mode": "overlay",
+			"color_ids": [
+				2
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-chestplate.glow",
+			"blend_mode": "overlay",
+			"color_ids": [
+				3
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-chestplate.add",
+			"blend_mode": "add"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-chestplate.sub",
+			"blend_mode": "subtract"
+		}
+	],
+	"obj debug-gauntlets-sealed": [
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-gauntlets-sealed.base",
+			"blend_mode": "overlay",
+			"color_ids": [
+				1
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-gauntlets-sealed.blue",
+			"blend_mode": "overlay",
+			"color_ids": [
+				2
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-gauntlets-sealed.glow",
+			"blend_mode": "overlay",
+			"color_ids": [
+				3
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-gauntlets-sealed.add",
+			"blend_mode": "add"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-gauntlets-sealed.sub",
+			"blend_mode": "subtract"
+		}
+	],
+	"obj debug-gauntlets": [
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-gauntlets.base",
+			"blend_mode": "overlay",
+			"color_ids": [
+				1
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-gauntlets.blue",
+			"blend_mode": "overlay",
+			"color_ids": [
+				2
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-gauntlets.glow",
+			"blend_mode": "overlay",
+			"color_ids": [
+				3
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-gauntlets.add",
+			"blend_mode": "add"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-gauntlets.sub",
+			"blend_mode": "subtract"
+		}
+	],
+	"obj debug-boots-sealed": [
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-boots-sealed.base",
+			"blend_mode": "overlay",
+			"color_ids": [
+				1
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-boots-sealed.blue",
+			"blend_mode": "overlay",
+			"color_ids": [
+				2
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-boots-sealed.glow",
+			"blend_mode": "overlay",
+			"color_ids": [
+				3
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-boots-sealed.trim",
 			"blend_mode": "overlay",
 			"color_ids": [
 				5
@@ -378,19 +346,19 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-control-sealed.add",
+			"icon_state": "obj.debug-boots-sealed.add",
 			"blend_mode": "add"
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-control-sealed.sub",
+			"icon_state": "obj.debug-boots-sealed.sub",
 			"blend_mode": "subtract"
 		}
 	],
-	"worn corpsman-control": [
+	"obj debug-boots": [
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-control.plate",
+			"icon_state": "obj.debug-boots.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -398,7 +366,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-control.under",
+			"icon_state": "obj.debug-boots.blue",
 			"blend_mode": "overlay",
 			"color_ids": [
 				2
@@ -406,19 +374,35 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-control.add",
+			"icon_state": "obj.debug-boots.glow",
+			"blend_mode": "overlay",
+			"color_ids": [
+				3
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-boots.trim",
+			"blend_mode": "overlay",
+			"color_ids": [
+				5
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "obj.debug-boots.add",
 			"blend_mode": "add"
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-control.sub",
+			"icon_state": "obj.debug-boots.sub",
 			"blend_mode": "subtract"
 		}
 	],
-	"worn corpsman-helmet-sealed": [
+	"worn debug-control-sealed": [
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet-sealed.plate",
+			"icon_state": "worn.debug-control-sealed.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -426,7 +410,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet-sealed.under",
+			"icon_state": "worn.debug-control-sealed.blue",
 			"blend_mode": "overlay",
 			"color_ids": [
 				2
@@ -434,19 +418,43 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet-sealed.add",
+			"icon_state": "worn.debug-control-sealed.glow",
+			"blend_mode": "overlay",
+			"color_ids": [
+				3
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.debug-control-sealed.glowhl",
+			"blend_mode": "overlay",
+			"color_ids": [
+				4
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.debug-control-sealed.trim",
+			"blend_mode": "overlay",
+			"color_ids": [
+				5
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.debug-control-sealed.add",
 			"blend_mode": "add"
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet-sealed.sub",
+			"icon_state": "worn.debug-control-sealed.sub",
 			"blend_mode": "subtract"
 		}
 	],
-	"worn corpsman-helmet": [
+	"worn debug-control": [
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet.plate",
+			"icon_state": "worn.debug-control.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -454,7 +462,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet.under",
+			"icon_state": "worn.debug-control.blue",
 			"blend_mode": "overlay",
 			"color_ids": [
 				2
@@ -462,19 +470,35 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet.add",
+			"icon_state": "worn.debug-control.glow",
+			"blend_mode": "overlay",
+			"color_ids": [
+				3
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.debug-control.trim",
+			"blend_mode": "overlay",
+			"color_ids": [
+				5
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.debug-control.add",
 			"blend_mode": "add"
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet.sub",
+			"icon_state": "worn.debug-control.sub",
 			"blend_mode": "subtract"
 		}
 	],
-	"worn corpsman-helmet-visor": [
+	"worn debug-helmet-sealed": [
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet-visor.plate",
+			"icon_state": "worn.debug-helmet-sealed.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -482,24 +506,86 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet-visor.fixed",
+			"icon_state": "worn.debug-helmet-sealed.blue",
+			"blend_mode": "overlay",
+			"color_ids": [
+				2
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.debug-helmet-sealed.glow",
+			"blend_mode": "overlay",
+			"color_ids": [
+				3
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.debug-helmet-sealed.glowhl",
+			"blend_mode": "overlay",
+			"color_ids": [
+				4
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.debug-helmet-sealed.add",
+			"blend_mode": "add"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.debug-helmet-sealed.sub",
+			"blend_mode": "subtract"
+		}
+	],
+	"worn debug-helmet": [
+		{
+			"type": "icon_state",
+			"icon_state": "worn.debug-helmet.base",
+			"blend_mode": "overlay",
+			"color_ids": [
+				1
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.debug-helmet.blue",
+			"blend_mode": "overlay",
+			"color_ids": [
+				2
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.debug-helmet.glow",
+			"blend_mode": "overlay",
+			"color_ids": [
+				3
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.debug-helmet.add",
+			"blend_mode": "add"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.debug-helmet.sub",
+			"blend_mode": "subtract"
+		}
+	],
+	"worn debug-helmet-visor": [
+		{
+			"type": "icon_state",
+			"icon_state": "worn.debug-helmet-visor.fixed",
 			"blend_mode": "overlay"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet-visor.add",
-			"blend_mode": "add"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-helmet-visor.sub",
-			"blend_mode": "subtract"
 		}
 	],
-	"worn corpsman-chestplate-sealed": [
+	"worn debug-chestplate-sealed": [
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate-sealed.plate",
+			"icon_state": "worn.debug-chestplate-sealed.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -507,7 +593,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate-sealed.under",
+			"icon_state": "worn.debug-chestplate-sealed.blue",
 			"blend_mode": "overlay",
 			"color_ids": [
 				2
@@ -515,7 +601,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate-sealed.joints",
+			"icon_state": "worn.debug-chestplate-sealed.glow",
 			"blend_mode": "overlay",
 			"color_ids": [
 				3
@@ -523,35 +609,19 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate-sealed.red",
-			"blend_mode": "overlay",
-			"color_ids": [
-				4
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate-sealed.lights",
-			"blend_mode": "overlay",
-			"color_ids": [
-				5
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate-sealed.add",
+			"icon_state": "worn.debug-chestplate-sealed.add",
 			"blend_mode": "add"
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate-sealed.sub",
+			"icon_state": "worn.debug-chestplate-sealed.sub",
 			"blend_mode": "subtract"
 		}
 	],
-	"worn corpsman-chestplate": [
+	"worn debug-chestplate": [
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate.plate",
+			"icon_state": "worn.debug-chestplate.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -559,7 +629,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate.under",
+			"icon_state": "worn.debug-chestplate.blue",
 			"blend_mode": "overlay",
 			"color_ids": [
 				2
@@ -567,7 +637,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate.joints",
+			"icon_state": "worn.debug-chestplate.glow",
 			"blend_mode": "overlay",
 			"color_ids": [
 				3
@@ -575,19 +645,19 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate.add",
+			"icon_state": "worn.debug-chestplate.add",
 			"blend_mode": "add"
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-chestplate.sub",
+			"icon_state": "worn.debug-chestplate.sub",
 			"blend_mode": "subtract"
 		}
 	],
-	"worn corpsman-gauntlets-sealed": [
+	"worn debug-gauntlets-sealed": [
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-gauntlets-sealed.plate",
+			"icon_state": "worn.debug-gauntlets-sealed.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -595,7 +665,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-gauntlets-sealed.under",
+			"icon_state": "worn.debug-gauntlets-sealed.blue",
 			"blend_mode": "overlay",
 			"color_ids": [
 				2
@@ -603,32 +673,19 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-gauntlets-sealed.red",
-			"blend_mode": "overlay",
-			"color_ids": [
-				4
-			]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-gauntlets-sealed.fixed",
-			"blend_mode": "overlay"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-gauntlets-sealed.add",
+			"icon_state": "worn.debug-gauntlets-sealed.add",
 			"blend_mode": "add"
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-gauntlets-sealed.sub",
+			"icon_state": "worn.debug-gauntlets-sealed.sub",
 			"blend_mode": "subtract"
 		}
 	],
-	"worn corpsman-gauntlets": [
+	"worn debug-gauntlets": [
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-gauntlets.plate",
+			"icon_state": "worn.debug-gauntlets.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -636,7 +693,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-gauntlets.under",
+			"icon_state": "worn.debug-gauntlets.blue",
 			"blend_mode": "overlay",
 			"color_ids": [
 				2
@@ -644,7 +701,35 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-gauntlets.joints",
+			"icon_state": "worn.debug-gauntlets.add",
+			"blend_mode": "add"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.debug-gauntlets.sub",
+			"blend_mode": "subtract"
+		}
+	],
+	"worn debug-boots-sealed": [
+		{
+			"type": "icon_state",
+			"icon_state": "worn.debug-boots-sealed.base",
+			"blend_mode": "overlay",
+			"color_ids": [
+				1
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.debug-boots-sealed.blue",
+			"blend_mode": "overlay",
+			"color_ids": [
+				2
+			]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.debug-boots-sealed.glow",
 			"blend_mode": "overlay",
 			"color_ids": [
 				3
@@ -652,19 +737,19 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-gauntlets.add",
+			"icon_state": "worn.debug-boots-sealed.add",
 			"blend_mode": "add"
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-gauntlets.sub",
+			"icon_state": "worn.debug-boots-sealed.sub",
 			"blend_mode": "subtract"
 		}
 	],
-	"worn corpsman-boots-sealed": [
+	"worn debug-boots": [
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-boots-sealed.plate",
+			"icon_state": "worn.debug-boots.base",
 			"blend_mode": "overlay",
 			"color_ids": [
 				1
@@ -672,7 +757,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-boots-sealed.under",
+			"icon_state": "worn.debug-boots.blue",
 			"blend_mode": "overlay",
 			"color_ids": [
 				2
@@ -680,32 +765,20 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-boots-sealed.add",
-			"blend_mode": "add"
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-boots-sealed.sub",
-			"blend_mode": "subtract"
-		}
-	],
-	"worn corpsman-boots": [
-		{
-			"type": "icon_state",
-			"icon_state": "worn.corpsman-boots.plate",
+			"icon_state": "worn.debug-boots.glow",
 			"blend_mode": "overlay",
 			"color_ids": [
-				1
+				3
 			]
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-boots.add",
+			"icon_state": "worn.debug-boots.add",
 			"blend_mode": "add"
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.corpsman-boots.sub",
+			"icon_state": "worn.debug-boots.sub",
 			"blend_mode": "subtract"
 		}
 	]
