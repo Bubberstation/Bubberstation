@@ -25,6 +25,6 @@
 /datum/storyteller_data/tracks/npc_war
 	threshold_mundane = 1200
 	threshold_moderate = 1350
-	threshold_major = 2700
+	threshold_major = 2850
 	threshold_crewset = 2400
 	threshold_ghostset = 6000
