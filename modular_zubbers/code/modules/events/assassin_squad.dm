@@ -112,6 +112,7 @@
 	var/obj/structure/closet/supplypod/pod = new
 	pod.set_style(/datum/pod_style/syndicate)
 	pod.explosionSize = list(0,0,0,1)
+	pod.delays[POD_TRANSIT] = 3
 	return pod
 
 ///Puts entities in the pod
