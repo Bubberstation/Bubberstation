@@ -74,7 +74,7 @@
 			Incredibly high power cost, with exponentially scaling dependant on shield reactivity."
 	icon = 'modular_zubbers/icons/obj/clothing/modsuit/mod_modules.dmi'
 	icon_state = "armor_booster"
-	idle_power_cost = DEFAULT_CHARGE_DRAIN * 12.5
+	idle_power_cost = DEFAULT_CHARGE_DRAIN * (50/3) //I hate math
 	incompatible_modules = list(/obj/item/mod/module/powered_booster/armor)
 	boost_prompt = "Set shield strength."
 	boost_noun = "Shield strength"
@@ -107,7 +107,7 @@
 	if(mod.core.type == /obj/item/mod/core/protean)
 		var/obj/item/mod/core/protean/mod_core = mod.core
 		var/obj/item/organ/stomach/protean/stomach = mod_core.linked_species.owner.get_organ_slot(ORGAN_SLOT_STOMACH)
-		var/sum_hunger = (((idle_power_cost / 6.25 * seconds_per_tick) * 2**((boost/10)-1)) / PROTEAN_METABOLISM_RATE
+		var/sum_hunger = (((idle_power_cost / ((50/3)/2) * seconds_per_tick) * 2**((boost/10)-1)) / PROTEAN_METABOLISM_RATE
 		if(core_boosted)
 			sum_hunger = sum_hunger / 2
 		if(stomach.metal <= 0.5)
