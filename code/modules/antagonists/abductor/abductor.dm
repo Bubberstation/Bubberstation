@@ -22,6 +22,10 @@
 
 	scientist.set_species(/datum/species/abductor)
 	agent.set_species(/datum/species/abductor)
+	// BUBBER EDIT START: fix their colors, oops
+	scientist.dna.features[FEATURE_MUTANT_COLOR] = "#E3E3E3"
+	agent.dna.features[FEATURE_MUTANT_COLOR] = "#E3E3E3"
+	// BUBBER EDIT END
 
 	var/datum/universal_icon/scientist_icon = render_preview_outfit(/datum/outfit/abductor/scientist, scientist)
 	scientist_icon.shift(WEST, 8)
