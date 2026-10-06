@@ -99,6 +99,22 @@ GLOBAL_LIST_INIT(mod_gags_skins, init_mod_gags_skins())
 	var/list/used_skin = theme ? theme.variants[skin] : null
 	return LAZYACCESS(used_skin, MOD_ICON_OVERRIDE) || 'icons/obj/clothing/modsuit/mod_clothing.dmi'
 
+/obj/item/mod/control
+	/// Cache key for painted_icon_base64
+	var/painted_icon_key
+	/// The painted control unit as a base64 image, for UIs that cannot load generated icons
+	var/painted_icon_base64
+
+/// The painted control unit as a base64 image, or null when the suit is not painted. Cached, because UIs ask every update.
+/obj/item/mod/control/proc/get_painted_icon_base64()
+	if(!greyscale_colors || !get_gags_skin())
+		return null
+	var/key = "[skin]|[icon_state]|[greyscale_colors]"
+	if(key != painted_icon_key)
+		painted_icon_key = key
+		painted_icon_base64 = icon2base64(icon(icon, icon_state, SOUTH, 1))
+	return painted_icon_base64
+
 /// Recolors every part of the suit. Colors is a GAGS color string with one color per channel.
 /obj/item/mod/control/proc/set_gags_colors(colors)
 	if(!get_gags_skin())

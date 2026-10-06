@@ -16,6 +16,7 @@
 	// Painted suits have a generated icon, which the UI cannot load. Send the plain icon file.
 	data["icon"] = species_modsuit?.get_source_icon()
 	data["icon_state"] = species_modsuit?.icon_state
+	data["icon_base64"] = species_modsuit?.get_painted_icon_base64()
 	data["transform"] = species_modsuit?.wearer?.GetComponent(/datum/component/transformation)
 	data["assimilated"] = !isnull(species_modsuit?.stored_modsuit)
 	data["is_owner"] = user == owner
