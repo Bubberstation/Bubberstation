@@ -74,7 +74,7 @@
 			Incredibly high power cost, with exponentially scaling dependant on shield reactivity."
 	icon = 'modular_zubbers/icons/obj/clothing/modsuit/mod_modules.dmi'
 	icon_state = "armor_booster"
-	idle_power_cost = DEFAULT_CHARGE_DRAIN * 10
+	idle_power_cost = DEFAULT_CHARGE_DRAIN * 15
 	incompatible_modules = list(/obj/item/mod/module/powered_booster/armor)
 	boost_prompt = "Set shield strength."
 	boost_noun = "Shield strength"
@@ -90,7 +90,7 @@
 	bomb = 1
 	wound = 0.5
 
-/obj/item/mod/module/powered_booster/armor/on_process(seconds_per_tick)
+/obj/item/mod/module/powered_booster/armor/on_process(/obj/item/mod/control/mod, seconds_per_tick)
 	if(part_process && !part_activated)
 		return FALSE
 	if(active)
@@ -104,6 +104,19 @@
 			sum_drain = sum_drain / 2
 		drain_power(sum_drain)
 
+	if(mod.core.type == /obj/item/mod/core/protean)
+		var/obj/item/mod/core/protean/mod_core = mod.core
+		var/obj/item/organ/stomach/protean/stomach = mod_core.linked_species.owner.get_organ_slot(ORGAN_SLOT_STOMACH)
+		var/sum_hunger = (((idle_power_cost / 7.5) * seconds_per_tick) * 2**((boost/10)-1)) / PROTEAN_METABOLISM_RATE
+		if(core_boosted)
+			sum_hunger = sum_hunger / 2
+		if(stomach.metal <= 0.5)
+			mod.toggle_activate(force_deactivate = TRUE)
+			return FALSE
+		stomach.metal -= sum_hunger
+		if(stomach.metal < 0)
+			stomach.metal = 0
+
 /obj/item/mod/module/powered_booster/armor/on_part_activation()
 	var/datum/armor/to_add = get_armor_by_type(armor_mod)
 	for(var/obj/item/part as anything in mod.get_parts(all = TRUE))
@@ -113,38 +126,3 @@
 	var/datum/armor/to_remove = get_armor_by_type(armor_mod)
 	for(var/obj/item/part as anything in mod.get_parts(all = TRUE))
 		part.set_armor(part.get_armor().subtract_other_armor(to_remove.generate_new_with_multipliers(list(ARMOR_ALL = boost))))
-
-///Speed Booster
-/obj/item/mod/module/powered_booster/speed
-	name = "MOD passive stimboost module"
-	desc = "A simple combat-effectiveness module, passively boosting the user's effective speed while using the module. \
-			Very high power cost, with exponentially scaling dependant on stimulant strength."
-	icon_state = "speed_booster"
-	idle_power_cost = DEFAULT_CHARGE_DRAIN * 5
-	incompatible_modules = list(/obj/item/mod/module/powered_booster/speed)
-	boost = 0.1
-	min_boost = 0.1
-	max_boost = 0.3
-	boost_prompt = "Set stimulant potency."
-	boost_noun = "Stimulant potency"
-	hacked_boost_mod = 0.2
-
-/obj/item/mod/module/powered_booster/speed/on_process(seconds_per_tick)
-	if(part_process && !part_activated)
-		return FALSE
-	if(active)
-		if(!drain_power(active_power_cost * seconds_per_tick))
-			deactivate()
-			return FALSE
-		on_active_process(seconds_per_tick)
-	else
-		var/sum_drain = (idle_power_cost * seconds_per_tick) * 2**((boost*10)-1)
-		if(core_boosted)
-			sum_drain = sum_drain / 2
-		drain_power(sum_drain)
-
-/obj/item/mod/module/powered_booster/speed/on_part_activation()
-	mod.slowdown -= boost
-
-/obj/item/mod/module/powered_booster/speed/on_part_deactivation(deleting = FALSE)
-	mod.slowdown -= boost
