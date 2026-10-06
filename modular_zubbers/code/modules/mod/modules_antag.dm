@@ -71,7 +71,7 @@
 /obj/item/mod/module/powered_booster/armor
 	name = "MOD passive shield module"
 	desc = "A relatively simple combat-effectiveness module, deploying a passive energy shield across the the suit, increasing armor effectiveness. \
-			Incredibly high power cost, with exponentially scaling dependant on shield reactivity."
+			Incredibly power hungry, with exponential consumption based on shield amount and will automatically depower the suit if there's insufficient power to run it."
 	icon = 'modular_zubbers/icons/obj/clothing/modsuit/mod_modules.dmi'
 	icon_state = "armor_booster"
 	idle_power_cost = DEFAULT_CHARGE_DRAIN * (50/3) //I hate math
@@ -95,22 +95,22 @@
 		return FALSE
 	if(active)
 		if(!drain_power(active_power_cost * seconds_per_tick))
-			deactivate()
 			return FALSE
 		on_active_process(seconds_per_tick)
 	else
 		var/sum_drain = (idle_power_cost * seconds_per_tick) * 2**((boost/10)-1)
 		if(core_boosted)
 			sum_drain = sum_drain / 2
-		drain_power(sum_drain)
+		mod.subtract_charge(sum_drain)
 
 	if(mod.core.type == /obj/item/mod/core/protean)
 		var/obj/item/mod/core/protean/mod_core = mod.core
 		var/obj/item/organ/stomach/protean/stomach = mod_core.linked_species.owner.get_organ_slot(ORGAN_SLOT_STOMACH)
-		var/sum_hunger = (((idle_power_cost / ((50/3)/2) * seconds_per_tick) * 2**((boost/10)-1)) / PROTEAN_METABOLISM_RATE
+		var/sum_hunger = (((idle_power_cost / ((50/3)/2)) * seconds_per_tick) * 2**((boost/10)-1)) / PROTEAN_METABOLISM_RATE
 		if(core_boosted)
 			sum_hunger = sum_hunger / 2
 		if(stomach.metal <= 0.5)
+			balloon_alert(loc, "insufficient power; initiating shutdown")
 			mod.toggle_activate(force_deactivate = TRUE)
 			return FALSE
 		stomach.metal -= sum_hunger
