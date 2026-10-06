@@ -2,9 +2,9 @@
  * Statement
  * An object representing a single instruction run by an interpreter.
  */
-/datum/node/statement
+/datum/ntsl_node/statement
 
-/datum/node/statement/New(datum/token/token)
+/datum/ntsl_node/statement/New(datum/token/token)
 	. = ..()
 	src.token = token
 
@@ -12,10 +12,10 @@
  * FunctionDefinition
  * Defines a function.
  */
-/datum/node/statement/FunctionDefinition
+/datum/ntsl_node/statement/FunctionDefinition
 	var/func_name
 	var/list/parameters = new
-	var/datum/node/BlockDefinition/FunctionBlock/block
+	var/datum/ntsl_node/BlockDefinition/FunctionBlock/block
 
 /*
  * VariableAssignment
@@ -28,10 +28,10 @@
  * See Also:
  * - <VariableDeclaration>
  */
-/datum/node/statement/VariableAssignment
-	var/datum/node/identifier/object
-	var/datum/node/identifier/var_name
-	var/datum/node/expression/value
+/datum/ntsl_node/statement/VariableAssignment
+	var/datum/ntsl_node/identifier/object
+	var/datum/ntsl_node/identifier/var_name
+	var/datum/ntsl_node/expression/value
 
 /*
  * VariableDeclaration
@@ -40,56 +40,56 @@
  * See Also:
  * - <VariableAssignment>
  */
-/datum/node/statement/VariableDeclaration
-	var/datum/node/identifier/object
-	var/datum/node/identifier/var_name
+/datum/ntsl_node/statement/VariableDeclaration
+	var/datum/ntsl_node/identifier/object
+	var/datum/ntsl_node/identifier/var_name
 
 /**
  * IfStatement
  */
-/datum/node/statement/IfStatement
+/datum/ntsl_node/statement/IfStatement
 	var/skip = 0
-	var/datum/node/BlockDefinition/block
-	var/datum/node/BlockDefinition/else_block //can be null
-	var/datum/node/expression/cond
-	var/datum/node/statement/else_if
+	var/datum/ntsl_node/BlockDefinition/block
+	var/datum/ntsl_node/BlockDefinition/else_block //can be null
+	var/datum/ntsl_node/expression/cond
+	var/datum/ntsl_node/statement/else_if
 
-/datum/node/statement/IfStatement/ElseIf
+/datum/ntsl_node/statement/IfStatement/ElseIf
 
 
 /**
  * WhileLoop
  * Loops while a given condition is TRUE.
  */
-/datum/node/statement/WhileLoop
-	var/datum/node/BlockDefinition/block
-	var/datum/node/expression/cond
+/datum/ntsl_node/statement/WhileLoop
+	var/datum/ntsl_node/BlockDefinition/block
+	var/datum/ntsl_node/expression/cond
 
 /*
  * ForLoop
  * Loops while test is true, initializing a variable, increasing the variable
  */
-/datum/node/statement/ForLoop
-	var/datum/node/BlockDefinition/block
-	var/datum/node/expression/test
-	var/datum/node/expression/init
-	var/datum/node/expression/increment
+/datum/ntsl_node/statement/ForLoop
+	var/datum/ntsl_node/BlockDefinition/block
+	var/datum/ntsl_node/expression/test
+	var/datum/ntsl_node/expression/init
+	var/datum/ntsl_node/expression/increment
 
 /*
  * BreakStatement
  * Ends a loop.
  */
-/datum/node/statement/BreakStatement
+/datum/ntsl_node/statement/BreakStatement
 
 /*
  * ContinueStatement
  * Skips to the next iteration of a loop.
  */
-/datum/node/statement/ContinueStatement
+/datum/ntsl_node/statement/ContinueStatement
 
 /*
  * ReturnStatement
  * Ends the function and returns a value.
  */
-/datum/node/statement/ReturnStatement
-	var/datum/node/expression/value
+/datum/ntsl_node/statement/ReturnStatement
+	var/datum/ntsl_node/expression/value

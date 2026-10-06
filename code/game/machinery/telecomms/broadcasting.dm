@@ -96,7 +96,7 @@
 		"mods" = message_mods,
 	)
 	// levels = SSmapping.get_connected_levels(get_turf(source)) //BUBBER EDIT OLD
-	levels = lvls != null ? lvls : SSmapping.get_connected_levels(get_turf(source)) // BUBBER EDIT NEW
+	levels = ((lvls != null) ? lvls : SSmapping.get_connected_levels(get_turf(source))) // BUBBER EDIT NEW
 
 #undef COMPRESSION_VOCAL_SIGNAL_MIN
 #undef COMPRESSION_VOCAL_SIGNAL_MAX

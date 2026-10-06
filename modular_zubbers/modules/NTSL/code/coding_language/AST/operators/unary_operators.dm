@@ -5,7 +5,7 @@
  * Represents a Unary operator in the AST.
  * Unary operators take a single operand (referred to as 'x' below) and returns a value.
  */
-/datum/node/expression/expression_operator/unary
+/datum/ntsl_node/expression/expression_operator/unary
 	precedence = OOP_UNARY
 
 /**
@@ -14,7 +14,7 @@
  *
  * Ex: !TRUE = FALSE and !FALSE = TRUE
  */
-/datum/node/expression/expression_operator/unary/LogicalNot
+/datum/ntsl_node/expression/expression_operator/unary/LogicalNot
 	name = "logical not"
 
 /**
@@ -23,19 +23,19 @@
  *
  * Ex: ~10 (decimal 2) = 01 (decimal 1)
  */
-/datum/node/expression/expression_operator/unary/BitwiseNot
+/datum/ntsl_node/expression/expression_operator/unary/BitwiseNot
 	name = "bitwise not"
 
 /**
  * Minus
  * Returns -x
  */
-/datum/node/expression/expression_operator/unary/Minus
+/datum/ntsl_node/expression/expression_operator/unary/Minus
 	name = "minus"
 
 /**
  * Group
  * A special unary operator representing a value in parentheses.
  */
-/datum/node/expression/expression_operator/unary/group
+/datum/ntsl_node/expression/expression_operator/unary/group
 	precedence = OOP_GROUP

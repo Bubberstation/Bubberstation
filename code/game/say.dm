@@ -171,7 +171,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	//Radio freq/name display
 	var/freqpart = radio_freq ? "\[[get_radio_name(radio_freq, radio_freq_name)]\] " : ""
 	//Speaker name
-	var/realnamepart = "[speaker.get_voice(TRUE)][speaker.get_alt_name()]"
+	var/realnamepart = "[speaker.get_voice(TRUE)][speaker.get_alt_name()]" // BUBBER EDIT ADDITION
 	var/namepart = "[speaker.get_voice()][speaker.get_alt_name()]" // BUBBER EDIT
 	// var/namepart = message_mods[MODE_SPEAKER_NAME_OVERRIDE] || speaker.get_message_voice(visible_name) BUBBER EDIT ORIGINAL
 

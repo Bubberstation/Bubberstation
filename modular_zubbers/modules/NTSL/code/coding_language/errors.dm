@@ -128,7 +128,7 @@
 /datum/runtimeError/UnknownInstruction
 	name = "UnknownInstructionError"
 
-/datum/runtimeError/UnknownInstruction/New(datum/node/op)
+/datum/runtimeError/UnknownInstruction/New(datum/ntsl_node/op)
 	message = "Unknown instruction type '[op.type]'. This may be due to incompatible compiler and interpreter versions or a lack of implementation."
 
 /datum/runtimeError/UndefinedVariable

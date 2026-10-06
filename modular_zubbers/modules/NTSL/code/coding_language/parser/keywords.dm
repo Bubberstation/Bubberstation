@@ -47,10 +47,10 @@
 
 /datum/n_Keyword/nS_Keyword/kwReturn/Parse(datum/n_Parser/nS_Parser/parser)
 	. = KW_PASS
-	if(istype(parser.curBlock, /datum/node/BlockDefinition/GlobalBlock)) // Exit out of the program by setting the tokens list size to the same as index.
+	if(istype(parser.curBlock, /datum/ntsl_node/BlockDefinition/GlobalBlock)) // Exit out of the program by setting the tokens list size to the same as index.
 		parser.tokens.len = parser.index
 		return
-	var/datum/node/statement/ReturnStatement/stmt = new(parser.curToken)
+	var/datum/ntsl_node/statement/ReturnStatement/stmt = new(parser.curToken)
 	parser.NextToken() //skip 'return' token
 	stmt.value = parser.ParseExpression()
 	parser.curBlock.statements += stmt
@@ -59,7 +59,7 @@
 
 /datum/n_Keyword/nS_Keyword/kwIf/Parse(datum/n_Parser/nS_Parser/parser)
 	. = KW_PASS
-	var/datum/node/statement/IfStatement/stmt = new(parser.curToken)
+	var/datum/ntsl_node/statement/IfStatement/stmt = new(parser.curToken)
 	parser.NextToken() //skip 'if' token
 	stmt.cond = parser.ParseParenExpression()
 	if(!parser.CheckToken(")", /datum/token/symbol))
@@ -75,7 +75,7 @@
 /datum/n_Keyword/nS_Keyword/kwElseIf/Parse(datum/n_Parser/nS_Parser/parser)
 	. = KW_PASS
 	var/list/L = parser.curBlock.statements
-	var/datum/node/statement/IfStatement/ifstmt
+	var/datum/ntsl_node/statement/IfStatement/ifstmt
 
 	if(L && length(L))
 		ifstmt = L[length(L)] //Get the last statement in the current block
@@ -83,7 +83,7 @@
 		parser.errors += new /datum/scriptError/ExpectedToken("if statement", parser.curToken)
 		return KW_FAIL
 
-	var/datum/node/statement/IfStatement/ElseIf/stmt = new(parser.curToken)
+	var/datum/ntsl_node/statement/IfStatement/ElseIf/stmt = new(parser.curToken)
 	parser.NextToken() //skip 'if' token
 	stmt.cond = parser.ParseParenExpression()
 	if(!parser.CheckToken(")", /datum/token/symbol))
@@ -101,7 +101,7 @@
 /datum/n_Keyword/nS_Keyword/kwElse/Parse(datum/n_Parser/nS_Parser/parser)
 	. = KW_PASS
 	var/list/L = parser.curBlock.statements
-	var/datum/node/statement/IfStatement/stmt
+	var/datum/ntsl_node/statement/IfStatement/stmt
 	if(L && length(L)) stmt = L[length(L)] //Get the last statement in the current block
 	if(!stmt || !istype(stmt) || stmt.else_block) //Ensure that it is an if statement
 		parser.errors += new /datum/scriptError/ExpectedToken("if statement",parser.curToken)
@@ -116,7 +116,7 @@
 
 /datum/n_Keyword/nS_Keyword/kwWhile/Parse(datum/n_Parser/nS_Parser/parser)
 	. = KW_PASS
-	var/datum/node/statement/WhileLoop/stmt = new(parser.curToken)
+	var/datum/ntsl_node/statement/WhileLoop/stmt = new(parser.curToken)
 	parser.NextToken() //skip 'while' token
 	stmt.cond = parser.ParseParenExpression()
 	if(!parser.CheckToken(")", /datum/token/symbol))
@@ -131,7 +131,7 @@
 
 /datum/n_Keyword/nS_Keyword/kwFor/Parse(datum/n_Parser/nS_Parser/parser)
 	. = KW_PASS
-	var/datum/node/statement/ForLoop/stmt = new(parser.curToken)
+	var/datum/ntsl_node/statement/ForLoop/stmt = new(parser.curToken)
 	parser.NextToken()
 	if(!parser.CheckToken("(", /datum/token/symbol))
 		return KW_FAIL
@@ -154,10 +154,10 @@
 
 /datum/n_Keyword/nS_Keyword/kwBreak/Parse(datum/n_Parser/nS_Parser/parser)
 	. = KW_PASS
-	if(istype(parser.curBlock, /datum/node/BlockDefinition/GlobalBlock))
+	if(istype(parser.curBlock, /datum/ntsl_node/BlockDefinition/GlobalBlock))
 		parser.errors += new /datum/scriptError/BadToken(parser.curToken)
 		. = KW_WARN
-	var/datum/node/statement/BreakStatement/stmt = new(parser.curToken)
+	var/datum/ntsl_node/statement/BreakStatement/stmt = new(parser.curToken)
 	parser.NextToken() //skip 'break' token
 	parser.curBlock.statements += stmt
 
@@ -165,10 +165,10 @@
 
 /datum/n_Keyword/nS_Keyword/kwContinue/Parse(datum/n_Parser/nS_Parser/parser)
 	. = KW_PASS
-	if(istype(parser.curBlock, /datum/node/BlockDefinition/GlobalBlock))
+	if(istype(parser.curBlock, /datum/ntsl_node/BlockDefinition/GlobalBlock))
 		parser.errors += new /datum/scriptError/BadToken(parser.curToken)
 		. = KW_WARN
-	var/datum/node/statement/ContinueStatement/stmt = new(parser.curToken)
+	var/datum/ntsl_node/statement/ContinueStatement/stmt = new(parser.curToken)
 	parser.NextToken() //skip 'break' token
 	parser.curBlock.statements += stmt
 
@@ -176,7 +176,7 @@
 
 /datum/n_Keyword/nS_Keyword/kwDef/Parse(datum/n_Parser/nS_Parser/parser)
 	. = KW_PASS
-	var/datum/node/statement/FunctionDefinition/def = new(parser.curToken)
+	var/datum/ntsl_node/statement/FunctionDefinition/def = new(parser.curToken)
 	parser.NextToken() //skip 'def' token
 	if(!parser.options.IsValidID(parser.curToken.value))
 		parser.errors += new /datum/scriptError/InvalidID(parser.curToken)

@@ -1,5 +1,5 @@
 /datum/award/achievement/jobs/Poly_silent
-	name = "Silence Bird!"
+	name = "Silence, Bird!"
 	desc = "As a network admin create a script that mutes poly"
 	database_id = MEDAL_BAD_BIRD
 	icon_state = "bird_silent"

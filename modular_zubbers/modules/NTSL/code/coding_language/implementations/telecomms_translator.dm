@@ -77,7 +77,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	var/datum/n_Scanner/nS_Scanner/scanner = new(code, options)
 	var/list/datum/token/tokens = scanner.Scan()
 	var/datum/n_Parser/nS_Parser/parser = new(tokens, options)
-	var/datum/node/BlockDefinition/GlobalBlock/program = parser.Parse()
+	var/datum/ntsl_node/BlockDefinition/GlobalBlock/program = parser.Parse()
 
 	var/list/returnerrors = list()
 

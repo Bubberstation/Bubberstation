@@ -1,19 +1,19 @@
-/datum/n_Interpreter/proc/Eval(datum/node/expression/exp, datum/scope/scope)
-	if(istype(exp, /datum/node/expression/FunctionCall))
+/datum/n_Interpreter/proc/Eval(datum/ntsl_node/expression/exp, datum/scope/scope)
+	if(istype(exp, /datum/ntsl_node/expression/FunctionCall))
 		. = RunFunction(exp, scope)
-	else if(istype(exp, /datum/node/expression/expression_operator))
+	else if(istype(exp, /datum/ntsl_node/expression/expression_operator))
 		. = EvalOperator(exp, scope)
-	else if(istype(exp, /datum/node/expression/value/literal))
-		var/datum/node/expression/value/literal/lit = exp
+	else if(istype(exp, /datum/ntsl_node/expression/value/literal))
+		var/datum/ntsl_node/expression/value/literal/lit = exp
 		. = lit.value
-	else if(istype(exp, /datum/node/expression/value/reference))
-		var/datum/node/expression/value/reference/ref = exp
+	else if(istype(exp, /datum/ntsl_node/expression/value/reference))
+		var/datum/ntsl_node/expression/value/reference/ref = exp
 		. = ref.value
-	else if(istype(exp, /datum/node/expression/value/variable))
-		var/datum/node/expression/value/variable/v = exp
+	else if(istype(exp, /datum/ntsl_node/expression/value/variable))
+		var/datum/ntsl_node/expression/value/variable/v = exp
 		. = scope.get_var(v.id.id_name, src, v)
-	else if(istype(exp, /datum/node/expression/value/list_init))
-		var/datum/node/expression/value/list_init/list_exp = exp
+	else if(istype(exp, /datum/ntsl_node/expression/value/list_init))
+		var/datum/ntsl_node/expression/value/list_init/list_exp = exp
 		. = list()
 		for(var/key in list_exp.init_list)
 			var/key_eval = Eval(key, scope)
@@ -22,150 +22,150 @@
 				set_index(., key_eval, Eval(val, scope), scope, key)
 			else
 				. += list(key_eval)
-	else if(istype(exp, /datum/node/expression/member/dot))
-		var/datum/node/expression/member/dot/D = exp
+	else if(istype(exp, /datum/ntsl_node/expression/member/dot))
+		var/datum/ntsl_node/expression/member/dot/D = exp
 		var/object = D.temp_object || Eval(D.object, scope)
 		D.temp_object = null
 		. = get_property(object, D.id.id_name, scope)
-	else if(istype(exp, /datum/node/expression/member/brackets))
-		var/datum/node/expression/member/brackets/B = exp
+	else if(istype(exp, /datum/ntsl_node/expression/member/brackets))
+		var/datum/ntsl_node/expression/member/brackets/B = exp
 		var/object = B.temp_object || Eval(B.object, scope)
 		B.temp_object = null
 		var/index = B.temp_index || Eval(B.index, scope)
 		. = get_index(object, index, scope)
-	else if(istype(exp, /datum/node/expression))
+	else if(istype(exp, /datum/ntsl_node/expression))
 		RaiseError(new /datum/runtimeError/UnknownInstruction(exp), scope, exp)
 	else
 		. = exp
 
 	return Trim(.)
 
-/datum/n_Interpreter/proc/EvalOperator(datum/node/expression/expression_operator/exp, datum/scope/scope)
-	if(istype(exp, /datum/node/expression/expression_operator/binary/Assign))
-		var/datum/node/expression/expression_operator/binary/Assign/ass = exp
+/datum/n_Interpreter/proc/EvalOperator(datum/ntsl_node/expression/expression_operator/exp, datum/scope/scope)
+	if(istype(exp, /datum/ntsl_node/expression/expression_operator/binary/Assign))
+		var/datum/ntsl_node/expression/expression_operator/binary/Assign/ass = exp
 		var/member_obj
 		var/member_idx
-		if(istype(ass.exp, /datum/node/expression/value/variable))
-			var/datum/node/expression/value/variable/var_exp = ass.exp
+		if(istype(ass.exp, /datum/ntsl_node/expression/value/variable))
+			var/datum/ntsl_node/expression/value/variable/var_exp = ass.exp
 			if(!scope.get_scope(var_exp.id.id_name))
 				scope.init_var(var_exp.id.id_name, null, src, var_exp)
-		else if(istype(ass.exp, /datum/node/expression/member))
-			var/datum/node/expression/member/M = ass.exp
+		else if(istype(ass.exp, /datum/ntsl_node/expression/member))
+			var/datum/ntsl_node/expression/member/M = ass.exp
 			member_obj = Eval(M.object, scope)
-			if(istype(M, /datum/node/expression/member/brackets))
-				var/datum/node/expression/member/brackets/B = M
+			if(istype(M, /datum/ntsl_node/expression/member/brackets))
+				var/datum/ntsl_node/expression/member/brackets/B = M
 				member_idx = Eval(B.index, scope)
 		var/out_value
 		var/in_value
-		if(ass.type != /datum/node/expression/expression_operator/binary/Assign)
-			if(istype(ass.exp, /datum/node/expression/member))
-				var/datum/node/expression/member/M = ass.exp
+		if(ass.type != /datum/ntsl_node/expression/expression_operator/binary/Assign)
+			if(istype(ass.exp, /datum/ntsl_node/expression/member))
+				var/datum/ntsl_node/expression/member/M = ass.exp
 				M.temp_object = member_obj
-				if(istype(M, /datum/node/expression/member/brackets))
-					var/datum/node/expression/member/brackets/B = M
+				if(istype(M, /datum/ntsl_node/expression/member/brackets))
+					var/datum/ntsl_node/expression/member/brackets/B = M
 					B.temp_index = member_idx
 			in_value = Eval(ass.exp, scope)
 			if(islist(in_value))
 				out_value = in_value
 				switch(ass.type)
-					if(/datum/node/expression/expression_operator/binary/Assign/BitwiseAnd)
+					if(/datum/ntsl_node/expression/expression_operator/binary/Assign/BitwiseAnd)
 						in_value &= Eval(ass.exp2, scope)
-					if(/datum/node/expression/expression_operator/binary/Assign/BitwiseOr)
+					if(/datum/ntsl_node/expression/expression_operator/binary/Assign/BitwiseOr)
 						in_value |= Eval(ass.exp2, scope)
-					if(/datum/node/expression/expression_operator/binary/Assign/BitwiseXor)
+					if(/datum/ntsl_node/expression/expression_operator/binary/Assign/BitwiseXor)
 						in_value ^= Eval(ass.exp2, scope)
-					if(/datum/node/expression/expression_operator/binary/Assign/Add)
+					if(/datum/ntsl_node/expression/expression_operator/binary/Assign/Add)
 						in_value += Eval(ass.exp2, scope)
-					if(/datum/node/expression/expression_operator/binary/Assign/Subtract)
+					if(/datum/ntsl_node/expression/expression_operator/binary/Assign/Subtract)
 						in_value -= Eval(ass.exp2, scope)
 					else
 						out_value = null
 		if(!out_value)
 			switch(ass.type)
-				if(/datum/node/expression/expression_operator/binary/Assign)
+				if(/datum/ntsl_node/expression/expression_operator/binary/Assign)
 					out_value = Eval(ass.exp2, scope)
-				if(/datum/node/expression/expression_operator/binary/Assign/BitwiseAnd)
+				if(/datum/ntsl_node/expression/expression_operator/binary/Assign/BitwiseAnd)
 					out_value = BitwiseAnd(in_value, Eval(ass.exp2, scope), scope, ass)
-				if(/datum/node/expression/expression_operator/binary/Assign/BitwiseOr)
+				if(/datum/ntsl_node/expression/expression_operator/binary/Assign/BitwiseOr)
 					out_value = BitwiseOr(in_value, Eval(ass.exp2, scope), scope, ass)
-				if(/datum/node/expression/expression_operator/binary/Assign/BitwiseXor)
+				if(/datum/ntsl_node/expression/expression_operator/binary/Assign/BitwiseXor)
 					out_value = BitwiseXor(in_value, Eval(ass.exp2, scope), scope, ass)
-				if(/datum/node/expression/expression_operator/binary/Assign/Add)
+				if(/datum/ntsl_node/expression/expression_operator/binary/Assign/Add)
 					out_value = Add(in_value, Eval(ass.exp2, scope), scope, ass)
-				if(/datum/node/expression/expression_operator/binary/Assign/Subtract)
+				if(/datum/ntsl_node/expression/expression_operator/binary/Assign/Subtract)
 					out_value = Subtract(in_value, Eval(ass.exp2, scope), scope, ass)
-				if(/datum/node/expression/expression_operator/binary/Assign/Multiply)
+				if(/datum/ntsl_node/expression/expression_operator/binary/Assign/Multiply)
 					out_value = Multiply(in_value, Eval(ass.exp2, scope), scope, ass)
-				if(/datum/node/expression/expression_operator/binary/Assign/Divide)
+				if(/datum/ntsl_node/expression/expression_operator/binary/Assign/Divide)
 					out_value = Divide(in_value, Eval(ass.exp2, scope), scope, ass)
-				if(/datum/node/expression/expression_operator/binary/Assign/Power)
+				if(/datum/ntsl_node/expression/expression_operator/binary/Assign/Power)
 					out_value = Power(in_value, Eval(ass.exp2, scope), scope, ass)
-				if(/datum/node/expression/expression_operator/binary/Assign/Modulo)
+				if(/datum/ntsl_node/expression/expression_operator/binary/Assign/Modulo)
 					out_value = Modulo(in_value, Eval(ass.exp2, scope), scope, ass)
 				else
 					RaiseError(new /datum/runtimeError/UnknownInstruction(ass), scope, ass)
 			// write it to the var
-			if(istype(ass.exp, /datum/node/expression/value/variable))
-				var/datum/node/expression/value/variable/var_exp = ass.exp
+			if(istype(ass.exp, /datum/ntsl_node/expression/value/variable))
+				var/datum/ntsl_node/expression/value/variable/var_exp = ass.exp
 				scope.set_var(var_exp.id.id_name, out_value, src, var_exp)
-			else if(istype(ass.exp, /datum/node/expression/member/dot))
-				var/datum/node/expression/member/dot/dot_exp = ass.exp
+			else if(istype(ass.exp, /datum/ntsl_node/expression/member/dot))
+				var/datum/ntsl_node/expression/member/dot/dot_exp = ass.exp
 				set_property(member_obj, dot_exp.id.id_name, out_value, scope)
-			else if(istype(ass.exp, /datum/node/expression/member/brackets))
+			else if(istype(ass.exp, /datum/ntsl_node/expression/member/brackets))
 				set_index(member_obj, member_idx, out_value, scope)
 			else
 				RaiseError(new /datum/runtimeError/InvalidAssignment(), scope, ass)
 		return out_value
-	else if(istype(exp, /datum/node/expression/expression_operator/binary))
-		var/datum/node/expression/expression_operator/binary/bin = exp
+	else if(istype(exp, /datum/ntsl_node/expression/expression_operator/binary))
+		var/datum/ntsl_node/expression/expression_operator/binary/bin = exp
 		switch(bin.type)
-			if(/datum/node/expression/expression_operator/binary/Equal)
+			if(/datum/ntsl_node/expression/expression_operator/binary/Equal)
 				return Equal(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-			if(/datum/node/expression/expression_operator/binary/NotEqual)
+			if(/datum/ntsl_node/expression/expression_operator/binary/NotEqual)
 				return NotEqual(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-			if(/datum/node/expression/expression_operator/binary/Greater)
+			if(/datum/ntsl_node/expression/expression_operator/binary/Greater)
 				return Greater(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-			if(/datum/node/expression/expression_operator/binary/Less)
+			if(/datum/ntsl_node/expression/expression_operator/binary/Less)
 				return Less(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-			if(/datum/node/expression/expression_operator/binary/GreaterOrEqual)
+			if(/datum/ntsl_node/expression/expression_operator/binary/GreaterOrEqual)
 				return GreaterOrEqual(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-			if(/datum/node/expression/expression_operator/binary/LessOrEqual)
+			if(/datum/ntsl_node/expression/expression_operator/binary/LessOrEqual)
 				return LessOrEqual(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-			if(/datum/node/expression/expression_operator/binary/LogicalAnd)
+			if(/datum/ntsl_node/expression/expression_operator/binary/LogicalAnd)
 				return LogicalAnd(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-			if(/datum/node/expression/expression_operator/binary/LogicalOr)
+			if(/datum/ntsl_node/expression/expression_operator/binary/LogicalOr)
 				return LogicalOr(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-			if(/datum/node/expression/expression_operator/binary/LogicalXor)
+			if(/datum/ntsl_node/expression/expression_operator/binary/LogicalXor)
 				return LogicalXor(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-			if(/datum/node/expression/expression_operator/binary/BitwiseAnd)
+			if(/datum/ntsl_node/expression/expression_operator/binary/BitwiseAnd)
 				return BitwiseAnd(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-			if(/datum/node/expression/expression_operator/binary/BitwiseOr)
+			if(/datum/ntsl_node/expression/expression_operator/binary/BitwiseOr)
 				return BitwiseOr(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-			if(/datum/node/expression/expression_operator/binary/BitwiseXor)
+			if(/datum/ntsl_node/expression/expression_operator/binary/BitwiseXor)
 				return BitwiseXor(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-			if(/datum/node/expression/expression_operator/binary/Add)
+			if(/datum/ntsl_node/expression/expression_operator/binary/Add)
 				return Add(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-			if(/datum/node/expression/expression_operator/binary/Subtract)
+			if(/datum/ntsl_node/expression/expression_operator/binary/Subtract)
 				return Subtract(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-			if(/datum/node/expression/expression_operator/binary/Multiply)
+			if(/datum/ntsl_node/expression/expression_operator/binary/Multiply)
 				return Multiply(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-			if(/datum/node/expression/expression_operator/binary/Divide)
+			if(/datum/ntsl_node/expression/expression_operator/binary/Divide)
 				return Divide(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-			if(/datum/node/expression/expression_operator/binary/Power)
+			if(/datum/ntsl_node/expression/expression_operator/binary/Power)
 				return Power(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
-			if(/datum/node/expression/expression_operator/binary/Modulo)
+			if(/datum/ntsl_node/expression/expression_operator/binary/Modulo)
 				return Modulo(Eval(bin.exp, scope), Eval(bin.exp2, scope), scope, bin)
 			else
 				RaiseError(new /datum/runtimeError/UnknownInstruction(bin), scope, bin)
 	else
 		switch(exp.type)
-			if(/datum/node/expression/expression_operator/unary/Minus)
+			if(/datum/ntsl_node/expression/expression_operator/unary/Minus)
 				return Minus(Eval(exp.exp, scope), scope, exp)
-			if(/datum/node/expression/expression_operator/unary/LogicalNot)
+			if(/datum/ntsl_node/expression/expression_operator/unary/LogicalNot)
 				return LogicalNot(Eval(exp.exp, scope), scope, exp)
-			if(/datum/node/expression/expression_operator/unary/BitwiseNot)
+			if(/datum/ntsl_node/expression/expression_operator/unary/BitwiseNot)
 				return BitwiseNot(Eval(exp.exp, scope), scope, exp)
-			if(/datum/node/expression/expression_operator/unary/group)
+			if(/datum/ntsl_node/expression/expression_operator/unary/group)
 				return Eval(exp.exp, scope)
 			else
 				RaiseError(new /datum/runtimeError/UnknownInstruction(exp), scope, exp)

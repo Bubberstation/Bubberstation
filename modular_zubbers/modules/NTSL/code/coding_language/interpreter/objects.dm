@@ -109,9 +109,9 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 /datum/n_function/defined
 	var/datum/n_Interpreter/context
 	var/datum/scope/closure
-	var/datum/node/statement/FunctionDefinition/function_def
+	var/datum/ntsl_node/statement/FunctionDefinition/function_def
 
-/datum/n_function/defined/New(datum/node/statement/FunctionDefinition/function_def, datum/scope/closure, datum/n_Interpreter/context)
+/datum/n_function/defined/New(datum/ntsl_node/statement/FunctionDefinition/function_def, datum/scope/closure, datum/n_Interpreter/context)
 	src.function_def = function_def
 	src.closure = closure
 	src.context = context
@@ -122,7 +122,7 @@ GLOBAL_LIST_EMPTY(ntsl_methods)
 	context = null
 	return ..()
 
-/datum/n_function/defined/execute(this_obj, list/params, datum/scope/scope, datum/n_Interpreter/interp, datum/node/node)
+/datum/n_function/defined/execute(this_obj, list/params, datum/scope/scope, datum/n_Interpreter/interp, datum/ntsl_node/node)
 	if(scope.recursion >= 10)
 		interp.AlertAdmins()
 		interp.RaiseError(new /datum/runtimeError/RecursionLimitReached(), scope, node)

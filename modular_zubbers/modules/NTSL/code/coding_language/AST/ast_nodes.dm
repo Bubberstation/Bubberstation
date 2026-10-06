@@ -15,126 +15,126 @@
 /**
  * Node
  */
-/datum/node
+/datum/ntsl_node
 	///Returns line number information
 	var/datum/token/token
 
-/datum/node/proc/ToString()
+/datum/ntsl_node/proc/ToString()
 	return "[type]"
 
 /*
  * identifier
  */
-/datum/node/identifier
+/datum/ntsl_node/identifier
 	var/id_name
 
-/datum/node/identifier/New(id, token)
+/datum/ntsl_node/identifier/New(id, token)
 	. = ..()
 	src.id_name = id
 	src.token = token
 
-/datum/node/identifier/ToString()
+/datum/ntsl_node/identifier/ToString()
 	return id_name
 
 /*
  * expression
  */
-/datum/node/expression
+/datum/ntsl_node/expression
 /*
  * operator
  * See <Binary Operators> and <Unary Operators> for subtypes.
  */
-/datum/node/expression/expression_operator
-	var/datum/node/expression/exp
+/datum/ntsl_node/expression/expression_operator
+	var/datum/ntsl_node/expression/exp
 	var/tmp/name
 	var/tmp/precedence
 
-/datum/node/expression/expression_operator/New(token, exp)
+/datum/ntsl_node/expression/expression_operator/New(token, exp)
 	. = ..()
 	if(!name)
 		name = "[type]"
 	src.token = token
 	src.exp = exp
 
-/datum/node/expression/expression_operator/ToString()
+/datum/ntsl_node/expression/expression_operator/ToString()
 	return "operator: [name]"
 
-/datum/node/expression/member
-	var/datum/node/expression/object
+/datum/ntsl_node/expression/member
+	var/datum/ntsl_node/expression/object
 	var/tmp/temp_object // so you can pre-eval it, used for function calls and assignments
 
-/datum/node/expression/member/New(token)
+/datum/ntsl_node/expression/member/New(token)
 	src.token = token
 	return ..()
 
-/datum/node/expression/member/dot
-	var/datum/node/identifier/id
+/datum/ntsl_node/expression/member/dot
+	var/datum/ntsl_node/identifier/id
 
-/datum/node/expression/member/brackets
-	var/datum/node/expression/index
+/datum/ntsl_node/expression/member/brackets
+	var/datum/ntsl_node/expression/index
 	var/tmp/temp_index
 
 
 /*
  * FunctionCall
  */
-/datum/node/expression/FunctionCall
+/datum/ntsl_node/expression/FunctionCall
 	//Function calls can also be expressions or statements.
-	var/datum/node/expression/function
+	var/datum/ntsl_node/expression/function
 	var/list/parameters = list()
 
-/datum/node/expression/FunctionCall/New(token)
+/datum/ntsl_node/expression/FunctionCall/New(token)
 	. = ..()
 	src.token = token
 
 /*
  * literal
  */
-/datum/node/expression/value/literal
+/datum/ntsl_node/expression/value/literal
 	var/value
 
-/datum/node/expression/value/literal/New(value)
+/datum/ntsl_node/expression/value/literal/New(value)
 	. = ..()
 	src.value = value
 
-/datum/node/expression/value/literal/ToString()
+/datum/ntsl_node/expression/value/literal/ToString()
 	return value
 
 /*
  * Variable
  */
-/datum/node/expression/value/variable
+/datum/ntsl_node/expression/value/variable
 	///Either a node/identifier or another node/expression/value/variable which points to the object
-	var/datum/node/object
-	var/datum/node/identifier/id
+	var/datum/ntsl_node/object
+	var/datum/ntsl_node/identifier/id
 
-/datum/node/expression/value/variable/New(datum/node/identifier/ident, datum/token/token)
+/datum/ntsl_node/expression/value/variable/New(datum/ntsl_node/identifier/ident, datum/token/token)
 	. = ..()
 	src.token = token
 	src.id = ident
 	if(istext(id))
 		src.id = new(id)
 
-/datum/node/expression/value/variable/ToString()
+/datum/ntsl_node/expression/value/variable/ToString()
 	return id.ToString()
 
-/datum/node/expression/value/list_init
+/datum/ntsl_node/expression/value/list_init
 	var/list/init_list
 
-/datum/node/expression/value/list_init/New(datum/token/token)
+/datum/ntsl_node/expression/value/list_init/New(datum/token/token)
 	. = ..()
 	src.token = token
 
 /**
  * Reference
  */
-/datum/node/expression/value/reference
+/datum/ntsl_node/expression/value/reference
 	var/datum/value
 
-/datum/node/expression/value/reference/New(value, datum/token/token)
+/datum/ntsl_node/expression/value/reference/New(value, datum/token/token)
 	. = ..()
 	src.token = token
 	src.value = value
 
-/datum/node/expression/value/reference/ToString()
+/datum/ntsl_node/expression/value/reference/ToString()
 	return "ref: [value] ([value.type])"
