@@ -34,7 +34,9 @@
 			continue
 		candidates += player
 
-	return pick(candidates)
+	if(length(candidates) > 0)
+		return pick(candidates)
+	return null
 
 ///Spawns a cargo pod containing a random cargo supply pack on a random area of the station
 /datum/round_event/syndicate_assassination_attempt
