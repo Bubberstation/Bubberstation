@@ -17,6 +17,7 @@
 	)
 	mutanttongue = /obj/item/organ/tongue/abductor
 	mutantstomach = null
+	mutanteyes = /obj/item/organ/eyes/abductor // BUBBER EDIT: Moves abductor eyes to their own separate thing
 	mutantheart = null
 	mutantlungs = null
 	mutantbrain = /obj/item/organ/brain/abductor

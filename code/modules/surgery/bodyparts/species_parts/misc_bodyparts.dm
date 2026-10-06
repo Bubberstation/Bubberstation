@@ -50,7 +50,7 @@
 
 ///ABDUCTOR
 /obj/item/bodypart/head/abductor
-	icon_greyscale = 'icons/mob/human/bodyparts.dmi' //bubber edit: Lets abductors change their skin color
+	icon_greyscale = 'modular_zubbers/icons/mob/human/abductor_bodyparts.dmi' //bubber edit: Lets abductors change their skin color
 	limb_id = SPECIES_ABDUCTOR
 	is_dimorphic = FALSE
 	should_draw_greyscale = TRUE //bubber edit: Lets abductors change their skin color
@@ -58,7 +58,7 @@
 	teeth_count = 0
 
 /obj/item/bodypart/chest/abductor
-	icon_greyscale = 'icons/mob/human/bodyparts.dmi' //bubber edit: Lets abductors change their skin color
+	icon_greyscale = 'modular_zubbers/icons/mob/human/abductor_bodyparts.dmi' //bubber edit: Lets abductors change their skin color
 	limb_id = SPECIES_ABDUCTOR
 	is_dimorphic = FALSE
 	should_draw_greyscale = TRUE //bubber edit: Lets abductors change their skin color
@@ -69,24 +69,24 @@
 	return icon('icons/mob/butts.dmi', BUTT_SPRITE_GREY)
 
 /obj/item/bodypart/arm/left/abductor
-	icon_greyscale = 'icons/mob/human/bodyparts.dmi' //bubber edit: Lets abductors change their skin color
+	icon_greyscale = 'modular_zubbers/icons/mob/human/abductor_bodyparts.dmi' //bubber edit: Lets abductors change their skin color
 	limb_id = SPECIES_ABDUCTOR
 	should_draw_greyscale = TRUE //bubber edit: Lets abductors change their skin color
 	bodypart_traits = list(TRAIT_CHUNKYFINGERS)
 
 /obj/item/bodypart/arm/right/abductor
-	icon_greyscale = 'icons/mob/human/bodyparts.dmi' //bubber edit: Lets abductors change their skin color
+	icon_greyscale = 'modular_zubbers/icons/mob/human/abductor_bodyparts.dmi' //bubber edit: Lets abductors change their skin color
 	limb_id = SPECIES_ABDUCTOR
 	should_draw_greyscale = TRUE //bubber edit: Lets abductors change their skin color
 	bodypart_traits = list(TRAIT_CHUNKYFINGERS)
 
 /obj/item/bodypart/leg/left/abductor
-	icon_greyscale = 'icons/mob/human/bodyparts.dmi' //bubber edit: Lets abductors change their skin color
+	icon_greyscale = 'modular_zubbers/icons/mob/human/abductor_bodyparts.dmi' //bubber edit: Lets abductors change their skin color
 	limb_id = SPECIES_ABDUCTOR
 	should_draw_greyscale = TRUE //bubber edit: Lets abductors change their skin color
 
 /obj/item/bodypart/leg/right/abductor
-	icon_greyscale = 'icons/mob/human/bodyparts.dmi' //bubber edit: Lets abductors change their skin color
+	icon_greyscale = 'modular_zubbers/icons/mob/human/abductor_bodyparts.dmi' //bubber edit: Lets abductors change their skin color
 	limb_id = SPECIES_ABDUCTOR
 	should_draw_greyscale = TRUE //bubber edit: Lets abductors change their skin color
 
