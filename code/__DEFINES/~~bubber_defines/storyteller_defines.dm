@@ -21,6 +21,8 @@
 #define TAG_TEAM_ANTAG "team_antag"
 /// When one of the non-crewmember players becomes an antagonist
 #define TAG_OUTSIDER_ANTAG "away_antag"
+/// When the event creates antagonists/other crew-attacking entities that aren't player-controlled
+#define TAG_NPC_ANTAG "npc_antag"
 /// When the event is considered chaotic by a completely non-biased coder.
 #define TAG_CHAOTIC "chaotic"
 /// When the event impacts the overmap
