@@ -336,18 +336,18 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	interp_type = /datum/n_Interpreter/TCS_Interpreter
 
 /datum/n_function/default/signal/execute(this_obj, list/params)
-	var/datum/n_struct/signal/S = new
+	var/datum/n_struct/signal/executed_signal = new
 	if(length(params) >= 1)
-		S.properties["content"] = params[1]
+		executed_signal.properties["content"] = params[1]
 	if(length(params) >= 2)
-		S.properties["freq"] = params[2]
+		executed_signal.properties["freq"] = params[2]
 	if(length(params) >= 3)
-		S.properties["source"] = params[3]
+		executed_signal.properties["source"] = params[3]
 	if(length(params) >= 4)
-		S.properties["job"] = params[4]
+		executed_signal.properties["job"] = params[4]
 	if(length(params) >= 5)
-		S.properties["filters"] = params[5]
-	return S
+		executed_signal.properties["filters"] = params[5]
+	return executed_signal
 
 
 /* -- Actual language proc code -- */
