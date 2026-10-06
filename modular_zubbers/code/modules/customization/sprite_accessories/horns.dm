@@ -48,10 +48,6 @@
 	name = "High-rise Horns"
 	icon_state = "highrisehorns"
 
-/datum/sprite_accessory/horns/bubber/halo //Sprites from Aurora Station
-	name = "Halo"
-	icon_state = "halo"
-
 /datum/sprite_accessory/horns/bubber/big/antlers //sprites by Gavla
 	name = "Aged Antlers"
 	icon_state = "antlers_more"
