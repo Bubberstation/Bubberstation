@@ -62,18 +62,19 @@
 	if(!.)
 		return
 
-	var/obj/item/modular_computer/pda/mypda
+	var/obj/item/modular_computer/pda/synth/mypda
 	if(istype(target, /obj/item/organ/brain/synth))
-		var/obj/item/organ/brain/synth/synth_brain
+		var/obj/item/organ/brain/synth/synth_brain = target
 		mypda = synth_brain.internal_computer
 	else if(istype(target, /obj/item/organ/brain/cybernetic/cortical))
-		var/obj/item/organ/brain/cybernetic/cortical/cort_brain
+		var/obj/item/organ/brain/cybernetic/cortical/cort_brain = target
 		mypda = cort_brain.internal_computer
 	else if(istype(target, /obj/item/organ/brain/cybernetic/surplus))
-		var/obj/item/organ/brain/cybernetic/surplus/surp_brain
+		var/obj/item/organ/brain/cybernetic/surplus/surp_brain = target
 		mypda = surp_brain.internal_computer
 
 	if(!isnull(mypda))
+		var/obj/item/organ/brain/brain_loc = target
 		var/mob/living/carbon/owner = brain_loc?.bodypart_owner?.owner
 		mypda.interact(owner)
 		mypda.handle_id_slot(owner, owner.get_item_by_slot(ITEM_SLOT_ID))
