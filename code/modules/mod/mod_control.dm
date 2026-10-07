@@ -775,8 +775,7 @@
 /obj/item/mod/control/proc/set_mod_color(new_color, force = FALSE) // BUBBER EDIT CHANGE - MODsuit GAGS - Original: /obj/item/mod/control/proc/set_mod_color(new_color)
 	// BUBBER EDIT ADDITION START - MODsuit GAGS: suits with greyscale paint ignore tints like speed potions
 	if(!force && get_gags_skin())
-		for(var/obj/item/part as anything in get_parts(all = TRUE))
-			part.remove_atom_colour(FIXED_COLOUR_PRIORITY)
+		remove_mod_tints()
 		wearer?.regenerate_icons()
 		return
 	// BUBBER EDIT ADDITION END

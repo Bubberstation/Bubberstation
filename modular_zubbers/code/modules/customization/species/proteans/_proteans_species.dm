@@ -239,6 +239,7 @@
 			break
 		species_modsuit.stored_modsuit.atom_storage.attempt_insert(stuff, owner, TRUE, messages = FALSE)
 
+	species_modsuit.sync_stored_look()
 	species_modsuit.theme = species_modsuit.stored_theme
 	species_modsuit.stored_theme = null
 	species_modsuit.theme.set_up_parts(species_modsuit, species_modsuit.own_skin || species_modsuit.theme.default_skin)

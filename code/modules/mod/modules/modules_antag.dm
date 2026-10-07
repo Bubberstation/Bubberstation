@@ -359,6 +359,7 @@
 	mod.righthand_file = initial(mod.righthand_file)
 	mod.worn_icon_state = null
 	mod.inhand_icon_state = null
+	mod.restore_gags_after_disguise() // BUBBER EDIT ADDITION - MODsuit GAGS
 	update_clothing_slots()
 	current_disguise = null
 	UnregisterSignal(mod, COMSIG_MOD_ACTIVATE)

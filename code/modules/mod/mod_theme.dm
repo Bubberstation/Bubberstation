@@ -144,6 +144,8 @@
 	var/datum/mod_gags_skin/gags_entry = GLOB.mod_gags_skins[skin]
 	var/gags_colors = gags_entry ? get_gags_default_colors(gags_entry) : null
 	mod.close_gags_menu()
+	if(gags_entry)
+		mod.remove_mod_tints()
 	// BUBBER EDIT ADDITION END
 	var/list/used_skin = variants[skin]
 	var/list/parts = mod.get_parts()

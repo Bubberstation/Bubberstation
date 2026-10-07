@@ -80,13 +80,13 @@
 	set_custom_worn_icon(item_slot, item, species_worn_icon)
 	return species_worn_icon
 
-/**
- * Generate a fallback worn icon, if the species supports it. You must call it in an override of generate_custom_worn_icon()
- */
 /obj/item
 	/// If TRUE, species fallback sprites sample colors from the worn sprite even when the item uses GAGS.
 	var/sample_worn_colors_for_fallback = FALSE
 
+/**
+ * Generate a fallback worn icon, if the species supports it. You must call it in an override of generate_custom_worn_icon()
+ */
 /datum/species/proc/generate_custom_worn_icon_fallback(item_slot, obj/item/item, mob/living/carbon/human/human_owner)
 	var/icon/human_icon = item.worn_icon || item.icon
 	var/human_icon_state = item.worn_icon_state || item.icon_state

@@ -1,5 +1,6 @@
 // This file is generated from the MODsuit GAGS split tool. Every config here rebuilds its skin's
 // original sprites pixel for pixel at the stock colors. Edit the tool, not this file.
+// The tool: tools/modsuit_gags (see its README).
 
 /datum/greyscale_config/mod_gags_security_worn
 	name = "MODsuit Security (worn)"

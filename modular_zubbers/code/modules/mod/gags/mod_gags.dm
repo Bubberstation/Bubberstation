@@ -66,6 +66,7 @@ GLOBAL_LIST_INIT(mod_gags_skins, init_mod_gags_skins())
 	if(!entry || !colors)
 		clear_mod_gags()
 		return
+	reset_species_worn_icons() // drop the last skin's painted species icons
 	greyscale_config = entry.config_for(icon)
 	greyscale_config_worn = entry.config_for(worn_icon)
 	greyscale_config_worn_digi = entry.config_for(initial(worn_icon_digi))
@@ -85,10 +86,18 @@ GLOBAL_LIST_INIT(mod_gags_skins, init_mod_gags_skins())
 	greyscale_config_worn_vox = null
 	greyscale_config_worn_better_vox = null
 	greyscale_colors = null
+	reset_species_worn_icons()
+
+/obj/item/proc/reset_species_worn_icons()
 	worn_icon_digi = initial(worn_icon_digi)
 	worn_icon_muzzled = initial(worn_icon_muzzled)
 	worn_icon_vox = initial(worn_icon_vox)
 	worn_icon_better_vox = initial(worn_icon_better_vox)
+
+/// Removes color tints (old paint kit, speed potion). GAGS paint replaces them.
+/obj/item/mod/control/proc/remove_mod_tints()
+	for(var/obj/item/part as anything in get_parts(all = TRUE))
+		part.remove_atom_colour(FIXED_COLOUR_PRIORITY)
 
 /// The GAGS entry for this suit's current skin, if it has one
 /obj/item/mod/control/proc/get_gags_skin()
@@ -107,7 +116,7 @@ GLOBAL_LIST_INIT(mod_gags_skins, init_mod_gags_skins())
 
 /// The painted control unit as a base64 image, or null when the suit is not painted. Cached, because UIs ask every update.
 /obj/item/mod/control/proc/get_painted_icon_base64()
-	if(!greyscale_colors || !get_gags_skin())
+	if(!greyscale_colors || !get_gags_skin() || is_chameleon_disguised())
 		return null
 	var/key = "[skin]|[icon_state]|[greyscale_colors]"
 	if(key != painted_icon_key)
@@ -121,10 +130,27 @@ GLOBAL_LIST_INIT(mod_gags_skins, init_mod_gags_skins())
 		return FALSE
 	// set_skin() already gave every part its configs. Only the colors change here.
 	// Do not look the configs up again: after the first paint, icon and worn_icon point at generated icons, not the original files.
+	var/disguised = is_chameleon_disguised()
 	for(var/obj/item/part as anything in get_parts(all = TRUE))
+		// The disguise owns the control unit's icons until return_look()
+		if(part == src && disguised)
+			greyscale_colors = colors
+			continue
 		part.set_greyscale(colors)
 	wearer?.regenerate_icons()
 	return TRUE
+
+/// TRUE if a chameleon module is currently disguising the control unit
+/obj/item/mod/control/proc/is_chameleon_disguised()
+	var/obj/item/mod/module/chameleon/chameleon = locate() in modules
+	return !!chameleon?.current_disguise
+
+/// Puts the paint back on the control unit after a chameleon disguise drops, since return_look() restores the plain icon files
+/obj/item/mod/control/proc/restore_gags_after_disguise()
+	var/datum/mod_gags_skin/entry = get_gags_skin()
+	if(!entry || !greyscale_colors)
+		return
+	apply_mod_gags(entry, greyscale_colors)
 
 /**
  * Module overlays (like the syndicate faceplate) are drawn from their own icon files.
