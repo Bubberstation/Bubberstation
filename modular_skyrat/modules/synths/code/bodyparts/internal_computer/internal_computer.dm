@@ -61,17 +61,23 @@
 	. = ..()
 	if(!.)
 		return
-	var/obj/item/organ/brain/synth/synth_brain = target
-	if(istype(synth_brain))
-		synth_brain.internal_computer.interact(owner)
-		return
-	var/obj/item/organ/brain/cybernetic/cortical/cort_brain = target
-	if(istype(cort_brain))
-		cort_brain.internal_computer.interact(owner)
-		return
-	var/obj/item/organ/brain/cybernetic/surplus/surp_brain = target
-	if(istype(surp_brain))
-		surp_brain.internal_computer.interact(owner)
+
+	var/obj/item/modular_computer/pda/synth/mypda
+	if(istype(target, /obj/item/organ/brain/synth))
+		var/obj/item/organ/brain/synth/synth_brain = target
+		mypda = synth_brain.internal_computer
+	else if(istype(target, /obj/item/organ/brain/cybernetic/cortical))
+		var/obj/item/organ/brain/cybernetic/cortical/cort_brain = target
+		mypda = cort_brain.internal_computer
+	else if(istype(target, /obj/item/organ/brain/cybernetic/surplus))
+		var/obj/item/organ/brain/cybernetic/surplus/surp_brain = target
+		mypda = surp_brain.internal_computer
+
+	if(!isnull(mypda))
+		var/obj/item/organ/brain/brain_loc = target
+		var/mob/living/carbon/owner = brain_loc?.bodypart_owner?.owner
+		mypda.interact(owner)
+		mypda.handle_id_slot(owner, owner.get_item_by_slot(ITEM_SLOT_ID))
 
 /obj/item/modular_computer/pda/synth/ui_state(mob/user)
 	return GLOB.default_state
@@ -98,16 +104,16 @@
 		var/obj/item/organ/brain/synth/synth_brain = brain_loc
 		if(isnull(synth_brain.internal_computer))
 			return
-		synth_brain.internal_computer.handle_id_slot(synth_brain.owner, id_card)
+		synth_brain.internal_computer.handle_id_slot(synth_brain.owner, id_card, TRUE)
 		return
 	var/obj/item/organ/brain/cybernetic/cortical/cortical_brain = brain_loc
 	if(isnull(cortical_brain.internal_computer))
 		return
-	cortical_brain.internal_computer.handle_id_slot(cortical_brain.owner, id_card)
+	cortical_brain.internal_computer.handle_id_slot(cortical_brain.owner, id_card, TRUE)
 	var/obj/item/organ/brain/cybernetic/surplus/surplus_brain = brain_loc
 	if(isnull(surplus_brain.internal_computer))
 		return
-	surplus_brain.internal_computer.handle_id_slot(surplus_brain.owner, id_card)
+	surplus_brain.internal_computer.handle_id_slot(surplus_brain.owner, id_card, TRUE)
 
 
 /// Called when id slot item is unequipped from the id slot
@@ -155,29 +161,32 @@
 	if(contained_id_item)
 		UnregisterSignal(contained_id_item, list(COMSIG_MOVABLE_MOVED, COMSIG_ITEM_UNSTORED))
 
-/obj/item/modular_computer/pda/synth/proc/handle_id_slot(mob/living/carbon/human/synth, obj/item/id_item)
+/obj/item/modular_computer/pda/synth/proc/handle_id_slot(mob/living/carbon/human/synth, obj/item/id_item, show_message = TRUE)
 	if(!istype(synth))
 		return
 	if(isnull(id_item))
-		if(stored_id)
+		if(stored_id && show_message)
 			to_chat(synth, span_notice("Persocom RFID link disconnected."))
 		stored_id = null
 		return
 	if(istype(id_item, /obj/item/card/id))
 		stored_id = id_item
-		to_chat(synth, span_notice("Persocom establishing new RFID link with [id_item]."))
+		if(show_message)
+			to_chat(synth, span_notice("Persocom establishing new RFID link with [id_item]."))
 		RegisterSignal(id_item, COMSIG_ITEM_POST_UNEQUIP, PROC_REF(on_id_item_unequipped))
 	else if(istype(id_item, /obj/item/modular_computer))
 		var/obj/item/modular_computer/pda = id_item
 		stored_id = pda.stored_id
-		to_chat(synth, span_notice("Persocom establishing new RFID link with [pda]."))
+		if(show_message)
+			to_chat(synth, span_notice("Persocom establishing new RFID link with [pda]."))
 		RegisterSignal(pda, COMSIG_ITEM_POST_UNEQUIP, PROC_REF(on_id_item_unequipped))
 		RegisterSignal(pda, COMSIG_MODULAR_COMPUTER_INSERTED_ID, PROC_REF(on_id_item_stored))
 		RegisterSignal(pda.stored_id, COMSIG_MOVABLE_MOVED, PROC_REF(on_id_item_moved))
 	else if(istype(id_item, /obj/item/storage/wallet))
 		var/obj/item/storage/wallet/your_wallet = id_item
 		stored_id = your_wallet.GetID()
-		to_chat(synth, span_notice("Persocom establishing new RFID link with [your_wallet]."))
+		if(show_message)
+			to_chat(synth, span_notice("Persocom establishing new RFID link with [your_wallet]."))
 		RegisterSignal(your_wallet, COMSIG_ITEM_POST_UNEQUIP, PROC_REF(on_id_item_unequipped))
 		RegisterSignal(your_wallet, COMSIG_STORAGE_STORED_ITEM, PROC_REF(on_id_item_stored))
 		RegisterSignal(your_wallet.GetID(), COMSIG_ITEM_UNSTORED, PROC_REF(on_id_item_moved))
