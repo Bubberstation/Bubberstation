@@ -4,7 +4,7 @@
 	sexes = TRUE // BUBBER EDIT: Lets abductors have pronouns. Abductors are asexual/agender, but they still can present however they wish for cosmetic purposes.
 	can_have_genitals = TRUE // BUBBER EDIT: Lets abductors have genitals.
 	inherent_traits = list(
-		TRAIT_MUTANT_COLORS, //bubber edit: Lets abductors change their skin color
+		TRAIT_MUTANT_COLORS, //BUBBER EDIT: Lets abductors change their skin color
 		TRAIT_ABDUCTOR_HUD,
 		TRAIT_CHUNKYFINGERS_IGNORE_BATON,
 		TRAIT_NEVER_WOUNDED,
