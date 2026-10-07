@@ -194,14 +194,6 @@
 	"worn ninja-control-sealed": [
 		{
 			"type": "icon_state",
-			"icon_state": "worn.ninja-control-sealed.glow",
-			"blend_mode": "overlay",
-			"color_ids": [
-				1
-			]
-		},
-		{
-			"type": "icon_state",
 			"icon_state": "worn.ninja-control-sealed.shade",
 			"blend_mode": "overlay",
 			"color_ids": [
@@ -210,16 +202,26 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "worn.ninja-control-sealed.highlight",
+			"icon_state": "worn.ninja-control-sealed.core",
 			"blend_mode": "overlay",
 			"color_ids": [
-				3
+				4
 			]
 		},
 		{
 			"type": "icon_state",
 			"icon_state": "worn.ninja-control-sealed.fixed",
 			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.ninja-control-sealed.add",
+			"blend_mode": "add"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "worn.ninja-control-sealed.sub",
+			"blend_mode": "subtract"
 		}
 	],
 	"worn ninja-control": [

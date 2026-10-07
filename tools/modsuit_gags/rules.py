@@ -217,33 +217,33 @@ SKINS = {
 LAYOUT = {
     'security': [('plate', 'Primary'), ('trim', 'Accent'), ('visor', 'Visor'), ('core', 'Core')],
     'engineering': [('joint', 'Undersuit'), ('shell', 'Primary'), ('lights', 'Lights'), ('shade', 'Glass shade'), ('visor', 'Visor'), ('visorhl', 'Visor highlight'), ('core', 'Core')],
-    'lustwish': [('plate', 'Primary'), ('body', 'Undersuit'), ('accent', 'Accent'), ('accenthl', 'Accent highlight'), ('light', 'Lights'), ('visor', 'Visor'), ('visorhl', 'Visor highlight')],
+    'lustwish': [('plate', 'Secondary'), ('body', 'Primary'), ('accent', 'Accent'), ('accenthl', 'Accent highlight'), ('light', 'Lights'), ('visor', 'Visor'), ('visorhl', 'Visor highlight')],
     'frontline': [('armor', 'Primary'), ('visor', 'Visor'), ('lights', 'Lights')],
     'voskhod': [('under', 'Undersuit'), ('armor', 'Primary'), ('orange', 'Lights'), ('visor', 'Visor'), ('green', 'Camo bands'), ('core', 'Core')],
     'ninja': [('glow', 'Lights'), ('shade', 'Lights shade'), ('highlight', 'Lights highlight'), ('core', 'Core')],
-    'advanced': [('under', 'Undersuit'), ('plate', 'Primary'), ('trim', 'Trim'), ('core', 'Core')],
+    'advanced': [('under', 'Undersuit'), ('plate', 'Primary'), ('trim', 'Trim'), ('visor', 'Visor'), ('core', 'Core')],
     'apocryphal': [('base', 'Primary'), ('accent', 'Accent'), ('glint', 'Visor glint'), ('visor', 'Visor'), ('core', 'Core')],
     'asteroid': [('base', 'Undersuit'), ('shell', 'Primary'), ('lights', 'Lights'), ('purple', 'Accent'), ('visor', 'Visor'), ('core', 'Core')],
     'atmospheric': [('base', 'Undersuit'), ('shell', 'Primary'), ('teal', 'Secondary'), ('lights', 'Lights'), ('visor', 'Visor'), ('core', 'Core')],
     'chrono': [('under', 'Undersuit'), ('plate', 'Primary'), ('lights', 'Lights'), ('visor', 'Visor'), ('core', 'Core')],
-    'civilian': [('plate', 'Primary'), ('suit', 'Undersuit'), ('visor', 'Visor'), ('core', 'Core')],
-    'corporate': [('base', 'Primary'), ('green', 'Accent'), ('lights', 'Lights'), ('gold', 'Trim'), ('visor', 'Visor'), ('core', 'Core')],
+    'civilian': [('plate', 'Secondary'), ('suit', 'Primary'), ('visor', 'Visor'), ('core', 'Core')],
+    'corporate': [('base', 'Secondary'), ('green', 'Primary'), ('lights', 'Lights'), ('gold', 'Trim'), ('visor', 'Visor'), ('core', 'Core')],
     'corpsman': [('plate', 'Primary'), ('under', 'Undersuit'), ('joints', 'Frame'), ('red', 'Accent'), ('lights', 'Lights'), ('core', 'Core')],
     'enchanted': [('runes', 'Robe'), ('robe', 'Armor'), ('base', 'Metal'), ('blue', 'Accent'), ('gold', 'Trim'), ('core', 'Core')],
     'glitch': [('pack', 'Backpack'), ('eyes', 'Eyes'), ('bands', 'Arm bands'), ('core', 'Core')],
     'infiltrator': [('base', 'Primary'), ('visor', 'Visor'), ('accent', 'Accent'), ('core', 'Core')],
     'inquisitory': [('base', 'Primary'), ('lights', 'Lights'), ('gold', 'Trim'), ('visor', 'Visor'), ('red', 'Accent'), ('core', 'Core')],
     'interdyne': [('lights', 'Lights'), ('teal', 'Secondary'), ('orange', 'Trim'), ('red', 'Accent'), ('base', 'Undersuit'), ('plate', 'Primary'), ('core', 'Core')],
-    'loader': [('base', 'Primary'), ('arms', 'Arms'), ('lights', 'Lights'), ('visor', 'Visor'), ('visorhl', 'Visor highlight'), ('core', 'Core')],
-    'magnate': [('base', 'Primary'), ('blue', 'Secondary'), ('purple', 'Accent'), ('gold', 'Trim'), ('core', 'Core')],
-    'medical': [('suit', 'Undersuit'), ('plate', 'Primary'), ('accent', 'Accent'), ('lights', 'Lights'), ('dome', 'Dome'), ('core', 'Core')],
+    'loader': [('base', 'Primary'), ('arms', 'Arms'), ('visor', 'Visor'), ('visorhl', 'Visor highlight'), ('core', 'Core')],
+    'magnate': [('base', 'Secondary'), ('blue', 'Primary'), ('purple', 'Accent'), ('gold', 'Trim'), ('core', 'Core')],
+    'medical': [('suit', 'Undersuit'), ('plate', 'Primary'), ('accent', 'Accent'), ('dome', 'Dome'), ('core', 'Core')],
     'mining': [('base', 'Primary'), ('lights', 'Lights'), ('visor', 'Visor'), ('core', 'Core')],
-    'rescue': [('base', 'Undersuit'), ('blue', 'Accent'), ('lights', 'Lights'), ('plate', 'Primary'), ('core', 'Core')],
+    'rescue': [('base', 'Undersuit'), ('blue', 'Primary'), ('plate', 'Secondary'), ('core', 'Core')],
     'research': [('base', 'Primary'), ('lights', 'Lights'), ('purple', 'Accent'), ('visor', 'Visor'), ('core', 'Core')],
     'responsory': [('primary', 'Primary'), ('visor', 'Visor'), ('accent', 'Accent'), ('highlight', 'Highlight'), ('core', 'Core')],
-    'safeguard': [('base', 'Primary'), ('packlight', 'Backpack light'), ('stripe', 'Trim'), ('arrow', 'Helmet arrow'), ('core', 'Core')],
-    'standard': [('suit', 'Primary'), ('lights', 'Lights'), ('visor', 'Visor'), ('trim', 'Trim'), ('core', 'Core')],
-    'syndicate': [('base', 'Primary'), ('under', 'Undersuit'), ('lights', 'Lights'), ('red', 'Accent'), ('visor', 'Visor'), ('core', 'Core')],
+    'safeguard': [('base', 'Primary'), ('stripe', 'Trim'), ('arrow', 'Helmet arrow'), ('core', 'Core')],
+    'standard': [('suit', 'Primary'), ('lights', 'Lights'), ('visor', 'Visor'), ('trim', 'Tie'), ('core', 'Core')],
+    'syndicate': [('base', 'Frame'), ('under', 'Undersuit'), ('lights', 'Lights'), ('red', 'Primary'), ('visor', 'Visor'), ('core', 'Core')],
     'debug': [('base', 'Primary'), ('blue', 'Accent'), ('glow', 'Lights'), ('glowhl', 'Lights highlight'), ('trim', 'Trim'), ('core', 'Core')],
     'praetorian': [('base', 'Primary'), ('blue', 'Accent'), ('lights', 'Lights'), ('visor', 'Visor'), ('visorhl', 'Visor highlight'), ('core', 'Core')],
 }
@@ -264,6 +264,13 @@ SHADE_NAME = {"engineering": {"visor": "shade", "lights": "shade"}}  # one share
 
 # Near-white shine on a colored channel stays white (fixed) on these skins, instead of tinting on a repaint
 FIXED_SHINE = {"ninja", "enchanted", "corpsman", "lustwish"}
+
+
+# Channels that only ever light up the back unit, so they are the core
+CORE_ALIASES = {"loader": ("lights",), "medical": ("lights",), "rescue": ("lights",), "safeguard": ("packlight",)}
+
+# Near-white shine keeps its own channel on these skins, instead of joining the dark channel around it
+SHINE_STAYS = {"advanced", "responsory", "chrono", "corpsman"}
 LEAK = 28  # residual spread (max - min of RGB) that counts as a visible tint
 
 
@@ -311,6 +318,11 @@ def medical_post(state, img, lab):
     if "-helmet" in state or state.endswith("helmet"):
         lab = lab.copy()
         lab[lab == "suit"] = "dome"
+        # Glints on the dome belong to the dome, not the plates
+        for y, x in zip(*np.where(lab == "plate")):
+            near = lab[max(y - 1, 0):y + 2, max(x - 1, 0):x + 2]
+            if (near == "dome").sum() >= 6:
+                lab[y, x] = "dome"
     return lab
 
 
@@ -335,10 +347,23 @@ def engineering_post(state, img, lab):
     return lab
 
 
+def advanced_post(state, img, lab):
+    if "helmet" in state:
+        lab = lab.copy()
+        lab[lab == "trim"] = "visor"
+    return lab
+
+
 def voskhod_post(state, img, lab):
     if "helmet" in state:
         lab = lab.copy()
         lab[lab == "green"] = "visor"
+    if "control" in state:
+        # The pack's ribbing alternates two dark greys. Both are the undersuit, or a repaint stripes it.
+        lab = lab.copy()
+        for y, x in zip(*np.where(lab == "armor")):
+            if hls(img[y, x])[1] < 0.25:
+                lab[y, x] = "under"
     return lab
 
 
@@ -361,7 +386,7 @@ def lustwish_post(state, img, lab):
 
 
 POSTS = {"glitch": glitch_post, "medical": medical_post, "safeguard": safeguard_post, "standard": standard_post,
-         "engineering": engineering_post, "voskhod": voskhod_post, "lustwish": lustwish_post}
+         "engineering": engineering_post, "voskhod": voskhod_post, "advanced": advanced_post, "lustwish": lustwish_post}
 
 
 def _neighbour_major(lab, y, x):
@@ -396,7 +421,7 @@ def general_post(name):
             if l >= 0.85 and s < 0.35:
                 shine[y, x] = True
         for y, x in zip(*np.where(shine)):
-            if lab[y, x] in ("", "fixed", "core"):
+            if name in SHINE_STAYS or lab[y, x] in ("", "fixed", "core"):
                 continue
             major = _neighbour_major(lab, y, x)
             if major and major != lab[y, x]:
@@ -463,6 +488,14 @@ class Skin:
                         if color not in self.chan:
                             h, l, s = hls(color)
                             self.chan[color] = next((ch for ch, rule in self.rules if rule(h, l, s)), "fixed")
+        # Colors the animated core cycles through. The worn back unit shows the core without animating it.
+        self.core_colors = set()
+        for f in self.sources:
+            for state in states_for(f, name):
+                if "control-sealed" in state:
+                    for i, frame in enumerate(dmi(f).frames(state)):
+                        mask = self.anim_mask(f, state, i) & (frame[..., 3] > 0)
+                        self.core_colors |= {tuple(int(v) for v in p[:3]) for p in frame[mask]}
         pools = defaultdict(Counter)
         for f in self.sources:
             for state in states_for(f, name):
@@ -500,10 +533,33 @@ class Skin:
         for y, x in zip(*np.where(img[..., 3] > 0)):
             lab[y, x] = self.classify(tuple(int(v) for v in img[y, x, :3]))
         lab = self.post(state, img, lab)
+        for alias in CORE_ALIASES.get(self.name, ()):
+            lab[lab == alias] = "core"
         mask = self.anim_mask(f, state, index)
         if mask.any():
             lab = lab.copy()
             lab[mask & (img[..., 3] > 0)] = "core"
+        if "control-sealed" in state and getattr(self, "core_colors", None):
+            lab = self.zone_core(img, lab)
+        return lab
+
+    def zone_core(self, img, lab):
+        """On the back unit: core colors are the core, and so is the colored rim between core pixels"""
+        lab = lab.copy()
+        for y, x in zip(*np.where(img[..., 3] > 0)):
+            if tuple(int(v) for v in img[y, x, :3]) in self.core_colors:
+                lab[y, x] = "core"
+        core = lab == "core"
+        if not core.any():
+            return lab
+        hues = [hls(img[y, x])[0] for y, x in zip(*np.where(core))]
+        for y, x in zip(*np.where((img[..., 3] > 0) & ~core)):
+            hue, l, s = hls(img[y, x])
+            if s < 0.3 or l < 0.08 or min(min(abs(hue - c), 1 - abs(hue - c)) for c in hues) > 0.08:
+                continue
+            near = core[max(y - 1, 0):y + 2, max(x - 1, 0):x + 2]
+            if near.sum() >= 2 and (core[y, max(x - 1, 0):x + 2].any() or core[max(y - 1, 0):y + 2, x].any()):
+                lab[y, x] = "core"
         return lab
 
     def split(self, img, state, f, index):

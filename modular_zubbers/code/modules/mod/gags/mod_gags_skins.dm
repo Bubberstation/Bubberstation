@@ -765,8 +765,8 @@
 
 /datum/mod_gags_skin/security
 	skin = "security"
-	stock_colors = "#505068#b51320#ffbc3e#ffd247"
-	default_colors = "#505068#b51320#ffbc3e#ffd247"
+	stock_colors = "#505068#b51320#ffbf40#ffc03e"
+	default_colors = "#505068#b51320#ffbf40#ffc03e"
 	color_labels = list("1" = "Primary", "2" = "Accent", "3" = "Visor", "4" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_security_menu
 	file_configs = list(
@@ -778,8 +778,8 @@
 
 /datum/mod_gags_skin/engineering
 	skin = "engineering"
-	stock_colors = "#4e4e6a#c6834f#3fa7ec#32427a#37afb0#79f8e6#53ceff"
-	default_colors = "#4e4e6a#ffa934#3fa7ec#32427a#37afb0#79f8e6#53ceff"
+	stock_colors = "#4e4e6a#c6834f#3fa7ec#32427a#37afb0#79f8e6#48bcff"
+	default_colors = "#4e4e6a#ffa934#3fa7ec#32427a#37afb0#79f8e6#48bcff"
 	color_labels = list("1" = "Undersuit", "2" = "Primary", "3" = "Lights", "4" = "Glass shade", "5" = "Visor", "6" = "Visor highlight", "7" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_engineering_menu
 	file_configs = list(
@@ -793,7 +793,7 @@
 	skin = "lustwish"
 	stock_colors = "#bac0cc#474955#8f50cf#ce8ad4#91f596#9050ce#ce8ad4"
 	default_colors = "#bac0cc#474955#8f50cf#ce8ad4#91f596#9050ce#ce8ad4"
-	color_labels = list("1" = "Primary", "2" = "Undersuit", "3" = "Accent", "4" = "Accent highlight", "5" = "Lights", "6" = "Visor", "7" = "Visor highlight")
+	color_labels = list("1" = "Secondary", "2" = "Primary", "3" = "Accent", "4" = "Accent highlight", "5" = "Lights", "6" = "Visor", "7" = "Visor highlight")
 	menu_config = /datum/greyscale_config/mod_gags_lustwish_menu
 	file_configs = list(
 		"modular_zubbers/icons/obj/clothing/modsuit/mod_lustwish.dmi" = /datum/greyscale_config/mod_gags_lustwish_obj,
@@ -815,8 +815,8 @@
 
 /datum/mod_gags_skin/voskhod
 	skin = "voskhod"
-	stock_colors = "#272b44#edf2fd#f29242#4cbe5c#345739#f39140"
-	default_colors = "#272b44#edf2fd#f29242#4cbe5c#345739#f39140"
+	stock_colors = "#2d3149#edf2fc#f29243#4cbe5c#345739#f2933f"
+	default_colors = "#2d3149#edf2fc#f29243#4cbe5c#345739#f2933f"
 	color_labels = list("1" = "Undersuit", "2" = "Primary", "3" = "Lights", "4" = "Visor", "5" = "Camo bands", "6" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_voskhod_menu
 	file_configs = list(
@@ -827,8 +827,8 @@
 
 /datum/mod_gags_skin/ninja
 	skin = "ninja"
-	stock_colors = "#21a52e#045d3f#83db2b#53e939"
-	default_colors = "#21a52e#045d3f#83db2b#53e939"
+	stock_colors = "#21a52e#045d3f#83db2b#56e839"
+	default_colors = "#21a52e#045d3f#83db2b#56e839"
 	color_labels = list("1" = "Lights", "2" = "Lights shade", "3" = "Lights highlight", "4" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_ninja_menu
 	file_configs = list(
@@ -840,9 +840,9 @@
 
 /datum/mod_gags_skin/advanced
 	skin = "advanced"
-	stock_colors = "#d7d4ff#e6e5f5#ff9858#f5994f"
-	default_colors = "#d7d4ff#e6e5f5#ff9858#f5994f"
-	color_labels = list("1" = "Undersuit", "2" = "Primary", "3" = "Trim", "4" = "Core")
+	stock_colors = "#504f68#e6e6f4#d66b31#f7964d#fc8d46"
+	default_colors = "#504f68#e6e6f4#d66b31#f7964d#fc8d46"
+	color_labels = list("1" = "Undersuit", "2" = "Primary", "3" = "Trim", "4" = "Visor", "5" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_advanced_menu
 	file_configs = list(
 		"icons/mob/clothing/modsuit/mod_clothing.dmi" = /datum/greyscale_config/mod_gags_advanced_worn,
@@ -853,8 +853,8 @@
 
 /datum/mod_gags_skin/apocryphal
 	skin = "apocryphal"
-	stock_colors = "#4c4c6c#b51120#a4fef4#4e8db3#92edff"
-	default_colors = "#4c4c6c#b51120#a4fef4#4e8db3#92edff"
+	stock_colors = "#4c4c6c#b51120#a4fef4#4e8db3#94f0ff"
+	default_colors = "#4c4c6c#b51120#a4fef4#4e8db3#94f0ff"
 	color_labels = list("1" = "Primary", "2" = "Accent", "3" = "Visor glint", "4" = "Visor", "5" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_apocryphal_menu
 	file_configs = list(
@@ -866,8 +866,8 @@
 
 /datum/mod_gags_skin/asteroid
 	skin = "asteroid"
-	stock_colors = "#4e4e6a#a16941#79e9ff#af3fef#95f4ff#8cefff"
-	default_colors = "#4e4e6a#a16941#79e9ff#af3fef#95f4ff#8cefff"
+	stock_colors = "#4e4e6a#a16941#7becff#af3fef#95f4ff#88e7ff"
+	default_colors = "#4e4e6a#a16941#7becff#af3fef#95f4ff#88e7ff"
 	color_labels = list("1" = "Undersuit", "2" = "Primary", "3" = "Lights", "4" = "Accent", "5" = "Visor", "6" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_asteroid_menu
 	file_configs = list(
@@ -879,8 +879,8 @@
 
 /datum/mod_gags_skin/atmospheric
 	skin = "atmospheric"
-	stock_colors = "#4e4e6a#f5b747#50abb2#62d7dd#5ceff9#4cd7cc"
-	default_colors = "#4e4e6a#f5b747#50abb2#62d7dd#5ceff9#4cd7cc"
+	stock_colors = "#4e4e6a#f5b747#50acb2#64d7dd#5ceff9#4eced3"
+	default_colors = "#4e4e6a#f5b747#50acb2#64d7dd#5ceff9#4eced3"
 	color_labels = list("1" = "Undersuit", "2" = "Primary", "3" = "Secondary", "4" = "Lights", "5" = "Visor", "6" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_atmospheric_menu
 	file_configs = list(
@@ -892,8 +892,8 @@
 
 /datum/mod_gags_skin/chrono
 	skin = "chrono"
-	stock_colors = "#cadcf2#eaecf4#6ae3ff#36e5ff#48e7fc"
-	default_colors = "#cadcf2#eaecf4#6ae3ff#36e5ff#48e7fc"
+	stock_colors = "#5f6d7d#eaedf3#40dcff#36e5ff#7feeff"
+	default_colors = "#5f6d7d#eaedf3#40dcff#36e5ff#7feeff"
 	color_labels = list("1" = "Undersuit", "2" = "Primary", "3" = "Lights", "4" = "Visor", "5" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_chrono_menu
 	file_configs = list(
@@ -905,9 +905,9 @@
 
 /datum/mod_gags_skin/civilian
 	skin = "civilian"
-	stock_colors = "#c0bfcd#454b5c#82f9ff#63ffe8"
-	default_colors = "#c0bfcd#454b5c#82f9ff#63ffe8"
-	color_labels = list("1" = "Primary", "2" = "Undersuit", "3" = "Visor", "4" = "Core")
+	stock_colors = "#c0bfcd#454b5c#95faff#5ef9ef"
+	default_colors = "#c0bfcd#454b5c#95faff#5ef9ef"
+	color_labels = list("1" = "Secondary", "2" = "Primary", "3" = "Visor", "4" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_civilian_menu
 	file_configs = list(
 		"icons/mob/clothing/modsuit/mod_clothing.dmi" = /datum/greyscale_config/mod_gags_civilian_worn,
@@ -918,9 +918,9 @@
 
 /datum/mod_gags_skin/corporate
 	skin = "corporate"
-	stock_colors = "#303047#3b9042#81d6ff#ffb248#95f4ff#8cefff"
-	default_colors = "#303047#3b9042#81d6ff#ffb248#95f4ff#8cefff"
-	color_labels = list("1" = "Primary", "2" = "Accent", "3" = "Lights", "4" = "Trim", "5" = "Visor", "6" = "Core")
+	stock_colors = "#303047#3b9042#294367#ffb248#95f4ff#89e7ff"
+	default_colors = "#303047#3b9042#294367#ffb248#95f4ff#89e7ff"
+	color_labels = list("1" = "Secondary", "2" = "Primary", "3" = "Lights", "4" = "Trim", "5" = "Visor", "6" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_corporate_menu
 	file_configs = list(
 		"icons/mob/clothing/modsuit/mod_clothing.dmi" = /datum/greyscale_config/mod_gags_corporate_worn,
@@ -931,8 +931,8 @@
 
 /datum/mod_gags_skin/corpsman
 	skin = "corpsman"
-	stock_colors = "#fff7f6#5a4243#e1dfe6#cd093d#ff0101#fe0311"
-	default_colors = "#fff7f6#5a4243#e1dfe6#cd093d#ff0101#fe0311"
+	stock_colors = "#fff7f6#492c2e#505067#cd093e#ff0101#fc031d"
+	default_colors = "#fff7f6#492c2e#505067#cd093e#ff0101#fc031d"
 	color_labels = list("1" = "Primary", "2" = "Undersuit", "3" = "Frame", "4" = "Accent", "5" = "Lights", "6" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_corpsman_menu
 	file_configs = list(
@@ -944,8 +944,8 @@
 
 /datum/mod_gags_skin/enchanted
 	skin = "enchanted"
-	stock_colors = "#9939cb#5c4669#c7b6ce#34b6ff#ffd370#8bfff1"
-	default_colors = "#9939cb#5c4669#c7b6ce#34b6ff#ffd370#8bfff1"
+	stock_colors = "#9939cb#5c4669#c6b6cf#34b5ff#ffd36e#b081fd"
+	default_colors = "#9939cb#5c4669#c6b6cf#34b5ff#ffd36e#b081fd"
 	color_labels = list("1" = "Robe", "2" = "Armor", "3" = "Metal", "4" = "Accent", "5" = "Trim", "6" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_enchanted_menu
 	file_configs = list(
@@ -957,8 +957,8 @@
 
 /datum/mod_gags_skin/glitch
 	skin = "glitch"
-	stock_colors = "#b51320#8fd292#787cd7#8cefff"
-	default_colors = "#b51320#8fd292#787cd7#8cefff"
+	stock_colors = "#b51320#8fd292#787cd7#88e4ff"
+	default_colors = "#b51320#8fd292#787cd7#88e4ff"
 	color_labels = list("1" = "Backpack", "2" = "Eyes", "3" = "Arm bands", "4" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_glitch_menu
 	file_configs = list(
@@ -970,8 +970,8 @@
 
 /datum/mod_gags_skin/infiltrator
 	skin = "infiltrator"
-	stock_colors = "#4f5068#7c8287#bd292d#53e939"
-	default_colors = "#4f5068#7c8287#bd292d#53e939"
+	stock_colors = "#4f4f69#7c8287#bd292d#56e839"
+	default_colors = "#4f4f69#7c8287#bd292d#56e839"
 	color_labels = list("1" = "Primary", "2" = "Visor", "3" = "Accent", "4" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_infiltrator_menu
 	file_configs = list(
@@ -982,8 +982,8 @@
 
 /datum/mod_gags_skin/inquisitory
 	skin = "inquisitory"
-	stock_colors = "#bcbbd4#7edbff#ffca69#87e7ff#b5151f#8ef0ff"
-	default_colors = "#bcbbd4#7edbff#ffca69#87e7ff#b5151f#8ef0ff"
+	stock_colors = "#bcbbd4#84e6ff#ffca69#87e7ff#b5151f#86e6ff"
+	default_colors = "#bcbbd4#84e6ff#ffca69#87e7ff#b5151f#86e6ff"
 	color_labels = list("1" = "Primary", "2" = "Lights", "3" = "Trim", "4" = "Visor", "5" = "Accent", "6" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_inquisitory_menu
 	file_configs = list(
@@ -1009,9 +1009,9 @@
 
 /datum/mod_gags_skin/loader
 	skin = "loader"
-	stock_colors = "#848ba3#e6aa42#55dbd5#28abb6#84fed8#46d8da"
-	default_colors = "#848ba3#e6aa42#55dbd5#28abb6#84fed8#46d8da"
-	color_labels = list("1" = "Primary", "2" = "Arms", "3" = "Lights", "4" = "Visor", "5" = "Visor highlight", "6" = "Core")
+	stock_colors = "#848ba3#e6aa42#28abb6#84fed8#4ad9d9"
+	default_colors = "#848ba3#e6aa42#28abb6#84fed8#4ad9d9"
+	color_labels = list("1" = "Primary", "2" = "Arms", "3" = "Visor", "4" = "Visor highlight", "5" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_loader_menu
 	file_configs = list(
 		"icons/mob/clothing/modsuit/mod_clothing.dmi" = /datum/greyscale_config/mod_gags_loader_worn,
@@ -1022,9 +1022,9 @@
 
 /datum/mod_gags_skin/magnate
 	skin = "magnate"
-	stock_colors = "#313047#2f628c#a378fb#ffb147#a97bf7"
-	default_colors = "#313047#2f628c#a378fb#ffb147#a97bf7"
-	color_labels = list("1" = "Primary", "2" = "Secondary", "3" = "Accent", "4" = "Trim", "5" = "Core")
+	stock_colors = "#313047#2f628c#a479fa#ffb147#a478fa"
+	default_colors = "#313047#2f628c#a479fa#ffb147#a478fa"
+	color_labels = list("1" = "Secondary", "2" = "Primary", "3" = "Accent", "4" = "Trim", "5" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_magnate_menu
 	file_configs = list(
 		"icons/mob/clothing/modsuit/mod_clothing.dmi" = /datum/greyscale_config/mod_gags_magnate_worn,
@@ -1035,9 +1035,9 @@
 
 /datum/mod_gags_skin/medical
 	skin = "medical"
-	stock_colors = "#515066#e6e5f5#81ceff#67fee8#535466#63ffe8"
-	default_colors = "#515066#e6e5f5#81ceff#67fee8#535466#63ffe8"
-	color_labels = list("1" = "Undersuit", "2" = "Primary", "3" = "Accent", "4" = "Lights", "5" = "Dome", "6" = "Core")
+	stock_colors = "#515066#e6e5f5#83ceff#7f809b#5ef9ef"
+	default_colors = "#515066#e6e5f5#83ceff#7f809b#5ef9ef"
+	color_labels = list("1" = "Undersuit", "2" = "Primary", "3" = "Accent", "4" = "Dome", "5" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_medical_menu
 	file_configs = list(
 		"icons/mob/clothing/modsuit/mod_clothing.dmi" = /datum/greyscale_config/mod_gags_medical_worn,
@@ -1048,8 +1048,8 @@
 
 /datum/mod_gags_skin/mining
 	skin = "mining"
-	stock_colors = "#514f57#95f3ff#86efff#8cefff"
-	default_colors = "#514f57#95f3ff#86efff#8cefff"
+	stock_colors = "#514f57#98f7ff#86efff#89e7ff"
+	default_colors = "#514f57#98f7ff#86efff#89e7ff"
 	color_labels = list("1" = "Primary", "2" = "Lights", "3" = "Visor", "4" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_mining_menu
 	file_configs = list(
@@ -1061,9 +1061,9 @@
 
 /datum/mod_gags_skin/rescue
 	skin = "rescue"
-	stock_colors = "#505067#7cc9ff#67fee8#ece7ee#63ffe8"
-	default_colors = "#505067#7cc9ff#67fee8#ece7ee#63ffe8"
-	color_labels = list("1" = "Undersuit", "2" = "Accent", "3" = "Lights", "4" = "Primary", "5" = "Core")
+	stock_colors = "#505067#7cc9ff#ece7ee#5ef9ef"
+	default_colors = "#505067#7cc9ff#ece7ee#5ef9ef"
+	color_labels = list("1" = "Undersuit", "2" = "Primary", "3" = "Secondary", "4" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_rescue_menu
 	file_configs = list(
 		"icons/mob/clothing/modsuit/mod_clothing.dmi" = /datum/greyscale_config/mod_gags_rescue_worn,
@@ -1074,8 +1074,8 @@
 
 /datum/mod_gags_skin/research
 	skin = "research"
-	stock_colors = "#4e4e69#54eefc#9d13e9#9bfbfd#63ffe8"
-	default_colors = "#4e4e69#54eefc#9d13e9#9bfbfd#63ffe8"
+	stock_colors = "#4e4e69#23768f#9d13e9#9bfbfd#5ef9ef"
+	default_colors = "#4e4e69#23768f#9d13e9#9bfbfd#5ef9ef"
 	color_labels = list("1" = "Primary", "2" = "Lights", "3" = "Accent", "4" = "Visor", "5" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_research_menu
 	file_configs = list(
@@ -1087,8 +1087,8 @@
 
 /datum/mod_gags_skin/responsory
 	skin = "responsory"
-	stock_colors = "#323344#8ae7ff#e7e6f3#545461#8cefff"
-	default_colors = "#323344#8ae7ff#e7e6f3#545461#8cefff"
+	stock_colors = "#303147#8be8ff#e8e7f2#545461#8ae6ff"
+	default_colors = "#303147#8be8ff#e8e7f2#545461#8ae6ff"
 	color_labels = list("1" = "Primary", "2" = "Visor", "3" = "Accent", "4" = "Highlight", "5" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_responsory_menu
 	file_configs = list(
@@ -1102,9 +1102,9 @@
 
 /datum/mod_gags_skin/safeguard
 	skin = "safeguard"
-	stock_colors = "#4f4f69#ffaf35#b51b20#ffad3b#ffd247"
-	default_colors = "#4f4f69#ffaf35#b51b20#ffad3b#ffd247"
-	color_labels = list("1" = "Primary", "2" = "Backpack light", "3" = "Trim", "4" = "Helmet arrow", "5" = "Core")
+	stock_colors = "#4f4f69#b51b20#ffad3b#ffc03e"
+	default_colors = "#4f4f69#b51b20#ffad3b#ffc03e"
+	color_labels = list("1" = "Primary", "2" = "Trim", "3" = "Helmet arrow", "4" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_safeguard_menu
 	file_configs = list(
 		"icons/mob/clothing/modsuit/mod_clothing.dmi" = /datum/greyscale_config/mod_gags_safeguard_worn,
@@ -1115,9 +1115,9 @@
 
 /datum/mod_gags_skin/standard
 	skin = "standard"
-	stock_colors = "#525253#66ccfa#59f3f6#6373a9#63fbed"
-	default_colors = "#525253#66ccfa#59f3f6#6373a9#63fbed"
-	color_labels = list("1" = "Primary", "2" = "Lights", "3" = "Visor", "4" = "Trim", "5" = "Core")
+	stock_colors = "#525253#6fc7ff#59f3f6#6373a9#54f5f6"
+	default_colors = "#525253#6fc7ff#59f3f6#6373a9#54f5f6"
+	color_labels = list("1" = "Primary", "2" = "Lights", "3" = "Visor", "4" = "Tie", "5" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_standard_menu
 	file_configs = list(
 		"icons/mob/clothing/modsuit/mod_clothing.dmi" = /datum/greyscale_config/mod_gags_standard_worn,
@@ -1128,9 +1128,9 @@
 
 /datum/mod_gags_skin/syndicate
 	skin = "syndicate"
-	stock_colors = "#535360#663a3f#63e43d#b51320#b3ff9f#53e939"
-	default_colors = "#535360#663a3f#63e43d#b51320#b3ff9f#53e939"
-	color_labels = list("1" = "Primary", "2" = "Undersuit", "3" = "Lights", "4" = "Accent", "5" = "Visor", "6" = "Core")
+	stock_colors = "#535360#663a3f#63e43d#b51320#b3ff9f#56e839"
+	default_colors = "#535360#663a3f#63e43d#b51320#b3ff9f#56e839"
+	color_labels = list("1" = "Frame", "2" = "Undersuit", "3" = "Lights", "4" = "Primary", "5" = "Visor", "6" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_syndicate_menu
 	file_configs = list(
 		"icons/mob/clothing/modsuit/mod_clothing.dmi" = /datum/greyscale_config/mod_gags_syndicate_worn,
@@ -1144,8 +1144,8 @@
 
 /datum/mod_gags_skin/debug
 	skin = "debug"
-	stock_colors = "#6a6c6e#0168ff#29b5ff#76fcff#836d1a#59f1ff"
-	default_colors = "#6a6c6e#0168ff#29b5ff#76fcff#836d1a#59f1ff"
+	stock_colors = "#6a6c6e#0168ff#29b6ff#77fcff#836d1a#35c1ff"
+	default_colors = "#6a6c6e#0168ff#29b6ff#77fcff#836d1a#35c1ff"
 	color_labels = list("1" = "Primary", "2" = "Accent", "3" = "Lights", "4" = "Lights highlight", "5" = "Trim", "6" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_debug_menu
 	file_configs = list(
@@ -1157,8 +1157,8 @@
 
 /datum/mod_gags_skin/praetorian
 	skin = "praetorian"
-	stock_colors = "#3b3b56#015dbb#0199cc#12c7ff#93fdff#35d3ff"
-	default_colors = "#3b3b56#015dbb#0199cc#12c7ff#93fdff#35d3ff"
+	stock_colors = "#3b3b56#015dbb#0199cc#10c7ff#8cfaff#41d5ff"
+	default_colors = "#3b3b56#015dbb#0199cc#10c7ff#8cfaff#41d5ff"
 	color_labels = list("1" = "Primary", "2" = "Accent", "3" = "Lights", "4" = "Visor", "5" = "Visor highlight", "6" = "Core")
 	menu_config = /datum/greyscale_config/mod_gags_praetorian_menu
 	file_configs = list(
