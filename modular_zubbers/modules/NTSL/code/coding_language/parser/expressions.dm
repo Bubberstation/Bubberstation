@@ -26,16 +26,16 @@
 	return SHIFT
 
 ///Takes a token expected to represent a value and returns an <expression> node.
-/datum/n_Parser/nS_Parser/proc/GetExpression(datum/token/T) as /datum/ntsl_node/expression
-	if(!T)
+/datum/n_Parser/nS_Parser/proc/GetExpression(datum/token/token_value) as /datum/ntsl_node/expression
+	if(!token_value)
 		return
-	if(istype(T, /datum/ntsl_node/expression))
-		return T
-	switch(T.type)
+	if(istype(token_value, /datum/ntsl_node/expression))
+		return token_value
+	switch(token_value.type)
 		if(/datum/token/word)
-			return new /datum/ntsl_node/expression/value/variable(T.value, T)
+			return new /datum/ntsl_node/expression/value/variable(token_value.value, token_value)
 		if(/datum/token/number, /datum/token/string)
-			return new /datum/ntsl_node/expression/value/literal(T.value, T)
+			return new /datum/ntsl_node/expression/value/literal(token_value.value, token_value)
 
 /*
  * GetOperator
@@ -52,23 +52,23 @@
  * - <GetBinaryOperator()>
  * - <GetUnaryOperator()>
  */
-/datum/n_Parser/nS_Parser/proc/GetOperator(O, type = /datum/ntsl_node/expression/expression_operator, L[])
+/datum/n_Parser/nS_Parser/proc/GetOperator(operator_object, type = /datum/ntsl_node/expression/expression_operator, list[])
 	var/datum/token/input_token
-	if(istype(O, type))
-		return O
-	if(istype(O, /datum/token))
-		input_token = O
-		O = input_token.value
-	if(istext(O))
-		if(L.Find(O))
-			O = L[O]
+	if(istype(operator_object, type))
+		return operator_object
+	if(istype(operator_object, /datum/token))
+		input_token = operator_object
+		operator_object = input_token.value
+	if(istext(operator_object))
+		if(list.Find(operator_object))
+			operator_object = list[operator_object]
 		else
 			return null
 	if(input_token)
-		O = new O(input_token)
+		operator_object = new operator_object(input_token)
 	else
 		return null
-	return O
+	return operator_object
 
 /*
  * GetBinaryOperator
@@ -79,8 +79,8 @@
  * - <GetOperator()>
  * - <GetUnaryOperator()>
  */
-/datum/n_Parser/nS_Parser/proc/GetBinaryOperator(O)
-	return GetOperator(O, /datum/ntsl_node/expression/expression_operator/binary, options.binary_operators)
+/datum/n_Parser/nS_Parser/proc/GetBinaryOperator(operator_object)
+	return GetOperator(operator_object, /datum/ntsl_node/expression/expression_operator/binary, options.binary_operators)
 
 /*
  * Proc: GetUnaryOperator
@@ -91,8 +91,8 @@
  * - <GetOperator()>
  * - <GetBinaryOperator()>
  */
-/datum/n_Parser/nS_Parser/proc/GetUnaryOperator(O)
-	return GetOperator(O, /datum/ntsl_node/expression/expression_operator/unary, options.unary_operators)
+/datum/n_Parser/nS_Parser/proc/GetUnaryOperator(operator_object)
+	return GetOperator(operator_object, /datum/ntsl_node/expression/expression_operator/unary, options.unary_operators)
 
 /*
  * Reduce
@@ -100,23 +100,23 @@
  * of the val stack.
  */
 /datum/n_Parser/nS_Parser/proc/Reduce(datum/ntsl_execution_stack/opr, datum/ntsl_execution_stack/val, check_assignments = 1)
-	var/datum/ntsl_node/expression/expression_operator/O = opr.Pop()
-	if(!O) return
-	if(!istype(O))
+	var/datum/ntsl_node/expression/expression_operator/operator_object = opr.Pop()
+	if(!operator_object) return
+	if(!istype(operator_object))
 		errors += new /datum/scriptError("Error reducing expression - invalid operator.")
 		return
 	//Take O and assign its operands, popping one or two values from the val stack
 	//depending on whether O is a binary or unary operator.
-	if(istype(O, /datum/ntsl_node/expression/expression_operator/binary))
-		var/datum/ntsl_node/expression/expression_operator/binary/B = O
-		B.exp2 = val.Pop()
-		B.exp = val.Pop()
-		val.Push(B)
-		if(check_assignments && istype(B, /datum/ntsl_node/expression/expression_operator/binary/Assign) && !istype(B.exp, /datum/ntsl_node/expression/value/variable) && !istype(B.exp, /datum/ntsl_node/expression/member))
+	if(istype(operator_object, /datum/ntsl_node/expression/expression_operator/binary))
+		var/datum/ntsl_node/expression/expression_operator/binary/binary_operator = operator_object
+		binary_operator.exp2 = val.Pop()
+		binary_operator.exp = val.Pop()
+		val.Push(binary_operator)
+		if(check_assignments && istype(binary_operator, /datum/ntsl_node/expression/expression_operator/binary/Assign) && !istype(binary_operator.exp, /datum/ntsl_node/expression/value/variable) && !istype(binary_operator.exp, /datum/ntsl_node/expression/member))
 			errors += new /datum/scriptError/InvalidAssignment()
 	else
-		O.exp = val.Pop()
-		val.Push(O)
+		operator_object.exp = val.Pop()
+		val.Push(operator_object)
 
 /*
  * EndOfExpression
@@ -227,10 +227,10 @@
 		else if(istype(curToken, /datum/token/word) && curToken.value == "list" && ntok && ntok.value == "(" && expecting == VALUE)
 			val.Push(ParseListExpression())
 		else if(istype(curToken, /datum/token/keyword)) //inline keywords
-			var/datum/n_Keyword/kw = options.keywords[curToken.value]
-			kw = new kw(inline = 1)
-			if(kw)
-				if(!kw.Parse(src))
+			var/datum/n_Keyword/keyword = options.keywords[curToken.value]
+			keyword = new keyword(inline = 1)
+			if(keyword)
+				if(!keyword.Parse(src))
 					return
 			else
 				errors += new /datum/scriptError/BadToken(curToken)
@@ -253,14 +253,14 @@
 		Reduce(opr, val, check_assignments) //Reduce the value stack completely
 	. = val.Pop() //Return what should be the last value on the stack
 	if(val.Top())
-		var/datum/ntsl_node/N = val.Pop()
-		errors += new /datum/scriptError("Error parsing expression. Unexpected value left on stack: [N.ToString()].")
+		var/datum/ntsl_node/node = val.Pop()
+		errors += new /datum/scriptError("Error parsing expression. Unexpected value left on stack: [node.ToString()].")
 		return null
 
 ///Parses a function call inside of an expression. (See also <ParseExpression()>)
 /datum/n_Parser/nS_Parser/proc/ParseFunctionExpression(func_exp) as /datum/ntsl_node/expression/FunctionCall
-	var/datum/ntsl_node/expression/FunctionCall/exp = new(curToken)
-	exp.function = func_exp
+	var/datum/ntsl_node/expression/FunctionCall/expression = new(curToken)
+	expression.function = func_exp
 	NextToken() //skip open parenthesis, already found
 	var/loops = 0
 
@@ -272,19 +272,19 @@
 			//CRASH("Something TERRIBLE has gone wrong in ParseFunctionExpression ;__;")
 
 		if(istype(curToken, /datum/token/symbol) && curToken.value == ")")
-			return exp
-		exp.parameters += ParseParamExpression()
+			return expression
+		expression.parameters += ParseParamExpression()
 		if(length(errors))
-			return exp
+			return expression
 		if(curToken.value == "," && istype(curToken, /datum/token/symbol))
 			NextToken()	//skip comma
 		if(istype(curToken, /datum/token/end)) //Prevents infinite loop...
 			errors += new /datum/scriptError/ExpectedToken(")")
-			return exp
+			return expression
 
 /datum/n_Parser/nS_Parser/proc/ParseListExpression() as /datum/ntsl_node/expression/value/list_init
-	var/datum/ntsl_node/expression/value/list_init/exp = new(curToken)
-	exp.init_list = list()
+	var/datum/ntsl_node/expression/value/list_init/expression = new(curToken)
+	expression.init_list = list()
 	NextToken() // skip the "list" word
 	NextToken() // skip the open parenthesis
 	var/loops = 0
@@ -295,20 +295,20 @@
 			break
 
 		if(istype(curToken, /datum/token/symbol) && curToken.value == ")")
-			return exp
+			return expression
 		var/datum/ntsl_node/expression/E = ParseParamExpression(check_assignments = FALSE)
 		if(E.type == /datum/ntsl_node/expression/expression_operator/binary/Assign)
 			var/datum/ntsl_node/expression/expression_operator/binary/Assign/A = E
-			exp.init_list[A.exp] = A.exp2
+			expression.init_list[A.exp] = A.exp2
 		else
-			exp.init_list += E
+			expression.init_list += E
 		if(length(errors))
-			return exp
+			return expression
 		if(curToken.value == "," && istype(curToken, /datum/token/symbol))
 			NextToken() //skip comma
 		if(istype(curToken, /datum/token/end)) //Prevents infinite loop...
 			errors += new /datum/scriptError/ExpectedToken(")")
-			return exp
+			return expression
 
 /*
  * ParseParenExpression

@@ -43,8 +43,8 @@
 	for(var/line in GLOB.pretty_filter_items)
 		var/list/parts = splittext(line, "=")
 		var/pattern = parts[1]
-		var/regex/R = new(pattern, "ig")
-		if(R.Find(text)) //If found
+		var/regex/current_regex = new(pattern, "ig")
+		if(current_regex.Find(text)) //If found
 			return TRUE // Yes, it isn't pretty.
 	return FALSE // No, it is pretty.
 

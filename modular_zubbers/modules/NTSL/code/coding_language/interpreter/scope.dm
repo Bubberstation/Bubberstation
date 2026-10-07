@@ -15,13 +15,13 @@
 	var/datum/ntsl_node/expression/FunctionCall/call_node
 	var/return_val
 
-/datum/scope/New(datum/ntsl_node/BlockDefinition/B, datum/scope/parent, datum/scope/variables_parent, allowed_status = 0)
-	src.block = B
+/datum/scope/New(datum/ntsl_node/BlockDefinition/defined_block, datum/scope/parent, datum/scope/variables_parent, allowed_status = 0)
+	src.block = defined_block
 	src.parent = parent
 	src.variables_parent = variables_parent || parent
-	if(B)
-		src.variables = B.initial_variables.Copy()
-		src.functions = B.functions.Copy()
+	if(defined_block)
+		src.variables = defined_block.initial_variables.Copy()
+		src.functions = defined_block.functions.Copy()
 	else
 		src.variables = list()
 		src.functions = list()
@@ -46,14 +46,14 @@
 	return ..()
 
 /datum/scope/proc/get_scope(name)
-	var/datum/scope/S = src
-	while(S)
-		if(S.variables.Find(name))
-			return S
-		S = S.variables_parent
+	var/datum/scope/current_scope = src
+	while(current_scope)
+		if(current_scope.variables.Find(name))
+			return current_scope
+		current_scope = current_scope.variables_parent
 
-/datum/scope/proc/push(datum/ntsl_node/BlockDefinition/B, datum/scope/variables_parent = src, allowed_status = 0) as /datum/scope
-	return new /datum/scope(B, src, variables_parent, allowed_status)
+/datum/scope/proc/push(datum/ntsl_node/BlockDefinition/defined_block, datum/scope/variables_parent = src, allowed_status = 0) as /datum/scope
+	return new /datum/scope(defined_block, src, variables_parent, allowed_status)
 
 /datum/scope/proc/pop(keep_status = (BREAKING | CONTINUING | RETURNING)) // keep_status is which flags you want to copy to the parent.
 	parent.status = (parent.status & ~keep_status) | (status & keep_status)
@@ -62,24 +62,24 @@
 	return parent
 
 /datum/scope/proc/get_var(name, datum/n_Interpreter/interp, datum/ntsl_node/node)
-	var/datum/scope/S = get_scope(name)
-	if(S)
-		return S.variables[name]
+	var/datum/scope/variable_scope = get_scope(name)
+	if(variable_scope)
+		return variable_scope.variables[name]
 	else if(interp)
 		interp.RaiseError(new /datum/runtimeError/UndefinedVariable(name), src, node)
 
 /datum/scope/proc/get_function(name)
-	var/datum/scope/S = src
-	while(S)
-		. = S.functions[name]
+	var/datum/scope/function_scope = src
+	while(function_scope)
+		. = function_scope.functions[name]
 		if(.)
 			return
-		S = S.variables_parent
+		function_scope = function_scope.variables_parent
 
 /datum/scope/proc/set_var(name, val, datum/n_Interpreter/interp, datum/ntsl_node/node)
-	var/datum/scope/S = get_scope(name)
-	if(S)
-		S.variables[name] = val
+	var/datum/scope/variable_scope = get_scope(name)
+	if(variable_scope)
+		variable_scope.variables[name] = val
 	else
 		init_var(name, val, interp, node)
 	return val

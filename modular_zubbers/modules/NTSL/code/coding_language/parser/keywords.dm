@@ -74,11 +74,11 @@
 
 /datum/n_Keyword/nS_Keyword/kwElseIf/Parse(datum/n_Parser/nS_Parser/parser)
 	. = KW_PASS
-	var/list/L = parser.curBlock.statements
+	var/list/current_list = parser.curBlock.statements
 	var/datum/ntsl_node/statement/IfStatement/ifstmt
 
-	if(L && length(L))
-		ifstmt = L[length(L)] //Get the last statement in the current block
+	if(current_list && length(current_list))
+		ifstmt = current_list[length(current_list)] //Get the last statement in the current block
 	if(!ifstmt || !istype(ifstmt) || ifstmt.else_if)
 		parser.errors += new /datum/scriptError/ExpectedToken("if statement", parser.curToken)
 		return KW_FAIL
@@ -100,9 +100,9 @@
 
 /datum/n_Keyword/nS_Keyword/kwElse/Parse(datum/n_Parser/nS_Parser/parser)
 	. = KW_PASS
-	var/list/L = parser.curBlock.statements
+	var/list/current_list = parser.curBlock.statements
 	var/datum/ntsl_node/statement/IfStatement/stmt
-	if(L && length(L)) stmt = L[length(L)] //Get the last statement in the current block
+	if(current_list && length(current_list)) stmt = current_list[length(current_list)] //Get the last statement in the current block
 	if(!stmt || !istype(stmt) || stmt.else_block) //Ensure that it is an if statement
 		parser.errors += new /datum/scriptError/ExpectedToken("if statement",parser.curToken)
 		return KW_FAIL

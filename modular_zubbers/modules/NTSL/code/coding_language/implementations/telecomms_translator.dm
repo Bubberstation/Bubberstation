@@ -416,18 +416,18 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	var/address = length(params) >= 1 ? params[1] : null
 	var/value = length(params) >= 2 ? params[2] : null
 	if(istext(address))
-		var/obj/machinery/telecomms/server/S = interp.Compiler.Holder
+		var/obj/machinery/telecomms/server/memory_server = interp.Compiler.Holder
 
 		if(length(params) == 1) // Getting the value
-			return S.memory[address]
+			return memory_server.memory[address]
 		else if(value == null) // setting it to null? You must be trying to remove it! Since altoids added this fancy ass memory thing might as well
-			S.memory -= address
+			memory_server.memory -= address
 			return TRUE
 		else // Setting the value
-			if(length(S.memory) >= MAX_MEM_VARS)
-				if(!(address in S.memory))
+			if(length(memory_server.memory) >= MAX_MEM_VARS)
+				if(!(address in memory_server.memory))
 					return FALSE
-			S.memory[address] = value
+			memory_server.memory[address] = value
 			return TRUE
 
 ///Wipes a memory list.
@@ -451,11 +451,11 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 
 	if(isnum(freq) && isnum(code))
 
-		var/obj/machinery/telecomms/server/S = interp.Compiler.Holder
+		var/obj/machinery/telecomms/server/executed_server = interp.Compiler.Holder
 
-		if(S.last_signal + SIGNAL_COOLDOWN > world.timeofday && S.last_signal < MIDNIGHT_ROLLOVER)
+		if(executed_server.last_signal + SIGNAL_COOLDOWN > world.timeofday && executed_server.last_signal < MIDNIGHT_ROLLOVER)
 			return
-		S.last_signal = world.timeofday
+		executed_server.last_signal = world.timeofday
 
 		if(findtext(num2text(freq), ".")) // if the frequency has been set as a decimal
 			freq *= 10 // shift the decimal one place
@@ -471,13 +471,13 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 		code = clamp(code, 0, 100)
 
 		var/datum/signal/signal = new
-		signal.source = S
+		signal.source = executed_server
 		signal.data["code"] = code
 		signal.data["message"] = "ACTIVATE"
 
-		connection.post_signal(S, signal)
+		connection.post_signal(executed_server, signal)
 
-		message_admins("Telecomms server \"[S.id]\" sent a signal command, which was triggered by NTSL<B>: </B> [format_frequency(freq)]/[code]")
+		message_admins("Telecomms server \"[executed_server.id]\" sent a signal command, which was triggered by NTSL<B>: </B> [format_frequency(freq)]/[code]")
 
 ///Broadcasts a message to the radio.
 /datum/n_function/default/broadcast
