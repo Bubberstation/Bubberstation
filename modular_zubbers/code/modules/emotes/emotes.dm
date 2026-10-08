@@ -270,3 +270,14 @@
 
 /datum/emote/living/bellow/get_sound(mob/living/user)
 	return 'modular_zubbers/sound/emotes/bellow.ogg'
+
+/datum/emote/living/yowl
+	key = "yowl"
+	key_third_person = "yowls"
+	message = "yowls loudly!"
+	message_mime = "yowls silently."
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
+	vary = TRUE
+
+/datum/emote/living/yowl/get_sound(mob/living/user)
+	return pick('modular_zubbers/sound/emotes/yowl1.ogg', 'modular_zubbers/sound/emotes/yowl2.ogg')
