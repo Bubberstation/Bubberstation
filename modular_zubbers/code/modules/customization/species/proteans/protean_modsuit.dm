@@ -64,6 +64,9 @@
 			REMOVE_TRAIT(src, TRAIT_NODROP, "protean")
 		wearer.dropItemToGround(src, TRUE, TRUE, TRUE)
 
+/// makes the MOD suit and its parts indestructible. This is done because a lot of stuff 
+/// overwrites the resistance flags but we REALLY need the protean MOD suit to be 
+/// indestructible or else fun and exotic bugs happen
 /obj/item/mod/control/pre_equipped/protean/proc/make_indestructible()
 	for (var/part in mod_parts)
 		var/datum/mod_part/modsuit_part = mod_parts[part]
