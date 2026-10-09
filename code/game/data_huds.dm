@@ -312,6 +312,13 @@ Security HUDs! Basic mode shows only the job.
 		set_hud_image_active(WANTED_HUD)
 		return
 
+	// BUBBER EDIT ADDITION START - WARRANTS - a person of interest flag lives on the mob, so it shows regardless of what name their ID resolves to
+	if(GetComponent(/datum/component/person_of_interest))
+		set_hud_image_state(WANTED_HUD, "hudpoi")
+		set_hud_image_active(WANTED_HUD)
+		return
+	// BUBBER EDIT ADDITION END
+
 	var/perp_name = get_face_name(get_id_name(""))
 
 	if(!perp_name || !GLOB.manifest)
@@ -334,6 +341,12 @@ Security HUDs! Basic mode shows only the job.
 			set_hud_image_state(WANTED_HUD, "hudparolled")
 		if(WANTED_DISCHARGED)
 			set_hud_image_state(WANTED_HUD, "huddischarged")
+		// BUBBER EDIT ADDITION START - WARRANTS
+		if(WANTED_GUARD_ALERT)
+			set_hud_image_state(WANTED_HUD, "hudinterest")
+		if(WANTED_EXECUTE)
+			set_hud_image_state(WANTED_HUD, "hudexecute")
+		// BUBBER EDIT ADDITION END
 
 	set_hud_image_active(WANTED_HUD)
 

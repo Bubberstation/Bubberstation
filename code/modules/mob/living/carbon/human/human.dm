@@ -308,6 +308,28 @@
 					to_chat(human_user, span_warning("ERROR: Invalid access."))
 					return
 
+			// BUBBER EDIT ADDITION START - WARRANTS - poi flagging runs before the id checks, unidentifiable is the point
+			if(href_list["poi"] && ishuman(human_or_ghost_user))
+				var/mob/living/carbon/human/flagger = human_or_ghost_user
+				if(!flagger.canUseHUD() || get_warrant_authority(flagger) < WARRANT_AUTH_GUARD)
+					to_chat(flagger, span_warning("ERROR: Invalid access."))
+					return
+				if(perpname && find_record(perpname))
+					to_chat(flagger, span_warning("ERROR: Target has a data core entry. Use their criminal status."))
+					return
+				if(GetComponent(/datum/component/person_of_interest))
+					clear_person_of_interest(flagger)
+					to_chat(flagger, span_notice("Person of interest flag cleared from [src]."))
+					return
+				flag_person_of_interest(flagger)
+				var/datum/component/person_of_interest/flag = GetComponent(/datum/component/person_of_interest)
+				if(flag?.corroborated_name)
+					to_chat(flagger, span_notice("Person of interest flag set on [src]. Face on record."))
+				else
+					to_chat(flagger, span_notice("Person of interest flag set on [src]. Identity unconfirmed."))
+				return
+			// BUBBER EDIT ADDITION END
+
 			if(!perpname)
 				to_chat(human_or_ghost_user, span_warning("ERROR: Can not identify target."))
 				return
@@ -322,14 +344,58 @@
 					to_chat(human_user, span_warning("ERROR: Invalid access."))
 					return
 				// BUBBER EDIT ADDITION END
-				var/new_status = tgui_input_list(human_user, "Specify a new criminal status for this person.", "Security HUD", WANTED_STATUSES(), target_record.wanted_status)
+				// BUBBER EDIT ADDITION START - WARRANTS
+				var/warrant_authority = get_warrant_authority(human_user)
+				var/obj/item/clothing/glasses/hud/security/emag_check = human_user.glasses
+				if(istype(emag_check) && (emag_check.obj_flags & EMAGGED))
+					warrant_authority = max(warrant_authority, WARRANT_AUTH_SECURITY)
+				if(target_record.wanted_status == WANTED_EXECUTE && !has_death_warrant_authority(human_user))
+					to_chat(human_user, span_warning("ERROR: Rescinding a death warrant requires death warrant authorization."))
+					return
+				var/list/status_options
+				switch(warrant_authority)
+					if(WARRANT_AUTH_GUARD)
+						status_options = list(WANTED_NONE, WANTED_GUARD_ALERT)
+					else
+						status_options = WANTED_STATUSES_WITH_WARRANTS()
+						if(!has_death_warrant_authority(human_user) || !death_warrants_active(target_record))
+							status_options -= WANTED_EXECUTE
+				// BUBBER EDIT ADDITION END
+				var/new_status = tgui_input_list(human_user, "Specify a new criminal status for this person.", "Security HUD", status_options, target_record.wanted_status) // BUBBER EDIT CHANGE - WARRANTS - Original: WANTED_STATUSES()
 				if(!new_status || !target_record || !human_user.canUseHUD() || !HAS_TRAIT(human_user, TRAIT_SECURITY_HUD))
 					return
+				// BUBBER EDIT ADDITION START - WARRANTS
+				if(new_status == WANTED_EXECUTE && !death_warrants_active(target_record))
+					to_chat(human_user, span_warning("ERROR: Death warrants require amber alert or above."))
+					return
+				if(new_status == WANTED_EXECUTE && target_record.wanted_status != WANTED_EXECUTE)
+					var/stated_reason = tgui_input_text(human_user, "State the grounds for this death warrant. This will be broadcast to the entire station.", "Death Warrant", max_length = WARRANT_REASON_MAX_LENGTH)
+					if(!stated_reason || !target_record || !human_user.canUseHUD() || !HAS_TRAIT(human_user, TRAIT_SECURITY_HUD))
+						return
+					if(!death_warrants_active(target_record) || !has_death_warrant_authority(human_user))
+						to_chat(human_user, span_warning("ERROR: Death warrant authorization withdrawn."))
+						return
+					target_record.death_warrant_reason = stated_reason
+					distribute_wanted_order(target_record, stated_reason, human_user)
+				if(new_status != WANTED_EXECUTE && target_record.wanted_status == WANTED_EXECUTE)
+					target_record.death_warrant_reason = null
+				var/alert_reason
+				if(new_status == WANTED_GUARD_ALERT && target_record.wanted_status != WANTED_GUARD_ALERT)
+					alert_reason = build_alert_incident(human_user)
+					// Backing out of the incident form still sets the Alert, it just files a bare crime the way a SecHUD arrest does.
+					if(!target_record || !human_user.canUseHUD() || !HAS_TRAIT(human_user, TRAIT_SECURITY_HUD))
+						return
+				// BUBBER EDIT ADDITION END
 
 				if(new_status == WANTED_ARREST)
 					var/datum/crime/new_crime = new(author = human_user, details = "Set by SecHUD.")
 					target_record.crimes += new_crime
 					investigate_log("SecHUD auto-crime | Added to [target_record.name] by [key_name(human_user)]", INVESTIGATE_RECORDS)
+
+				// BUBBER EDIT ADDITION START - WARRANTS - Alert and Execute leave a paper trail for IC accountability
+				if((new_status == WANTED_GUARD_ALERT || new_status == WANTED_EXECUTE) && target_record.wanted_status != new_status)
+					log_warrant_status_change(target_record, new_status, human_user, alert_reason)
+				// BUBBER EDIT ADDITION END
 
 				investigate_log("has been set from [target_record.wanted_status] to [new_status] via HUD by [key_name(human_user)].", INVESTIGATE_RECORDS)
 				target_record.wanted_status = new_status
@@ -531,6 +597,10 @@
 					threatcount += 2
 				if(WANTED_PAROLE)
 					threatcount += 2
+				// BUBBER EDIT ADDITION START - WARRANTS
+				if(WANTED_EXECUTE)
+					threatcount += 10
+				// BUBBER EDIT ADDITION END
 
 	//Check for dresscode violations
 	if(istype(head, /obj/item/clothing/head/wizard))

@@ -313,6 +313,7 @@ SUBSYSTEM_DEF(id_access)
 	desc_by_access[ACCESS_MINERAL_STOREROOM] = "Mineral Storage"
 	desc_by_access[ACCESS_MINISAT] = "AI Satellite"
 	desc_by_access[ACCESS_WEAPONS] = "Weapon Permit"
+	desc_by_access[ACCESS_DEATH_WARRANT] = "Death Warrant Authority" // BUBBER EDIT ADDITION - WARRANTS
 	desc_by_access[ACCESS_NETWORK] = "Network Access"
 	desc_by_access[ACCESS_MECH_MINING] = "Mining Mech Access"
 	desc_by_access[ACCESS_MECH_MEDICAL] = "Medical Mech Access"

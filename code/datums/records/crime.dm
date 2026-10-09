@@ -14,6 +14,8 @@
 	var/valid = TRUE
 	/// Player that marked the crime as invalid
 	var/voider
+	/// BUBBER EDIT ADDITION - WARRANTS - stable marker for warrant-issued crimes so their colour survives a rename ("execute", "alert", or null)
+	var/warrant_kind
 
 /datum/crime/New(name = "Crime", details = "No details provided.", author = "Anonymous")
 	src.author = author

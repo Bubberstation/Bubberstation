@@ -178,8 +178,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 
 	//Here is all the UI_data sent about the current wanted issue, as well as making a new one in the UI.
 	data["making_wanted_issue"] = !(GLOB.news_network.wanted_issue?.active)
-	data["criminal_name"] = criminal_name
-	data["crime_description"] = crime_description
+	// BUBBER EDIT CHANGE START - WARRANTS - a warrant filed from the records console or a sechud never touches this terminal's
+	// draft fields, so the panel read "N/A" underneath a live wanted issue. Fall back to the active issue when nothing is drafted.
+	data["criminal_name"] = criminal_name || GLOB.news_network.wanted_issue?.criminal
+	data["crime_description"] = crime_description || GLOB.news_network.wanted_issue?.criminal_activity || GLOB.news_network.wanted_issue?.body
+	// BUBBER EDIT CHANGE END
 	var/list/wanted_info = list()
 	if(GLOB.news_network.wanted_issue)
 		var/has_wanted_issue = !isnull(GLOB.news_network.wanted_issue.img)
