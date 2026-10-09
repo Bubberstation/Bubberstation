@@ -779,6 +779,7 @@ There are several things that need to be remembered:
 			digitigrade_clothing_cache[index] = fcopy_rsc(resulting_icon)
 
 		return icon(resulting_icon)
+	return base_icon // BUBBER EDIT - CHANGE - Fix female crop being discarded (originally returned null)
 
 /// Modifies a sprite to replace the legs with a new version
 /proc/replace_icon_legs(icon/base_icon, icon/new_legs)
