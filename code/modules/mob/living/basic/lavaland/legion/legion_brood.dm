@@ -81,10 +81,6 @@
 
 /// Turn the targeted mob into one of us
 /mob/living/basic/mining/legion_brood/proc/infest(mob/living/carbon/human/target)
-	// BUBBER EDIT: makes proteans immune to Legion infestation due to bugs with their code.
-	if (isprotean(target))
-		return
-	// BUBBER END EDIT
 	visible_message(span_warning("[name] burrows into the flesh of [target]!"))
 	var/spawn_type = get_legion_type(target)
 	var/mob/living/basic/mining/legion/new_legion = new spawn_type(loc)
