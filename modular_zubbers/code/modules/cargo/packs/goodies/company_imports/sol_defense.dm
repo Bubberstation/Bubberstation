@@ -70,4 +70,4 @@
 /datum/supply_pack/company_import/sol_defense/magazines/sol_grenade_drum
 	item_type = /obj/item/ammo_box/magazine/c980_grenade/drum/starts_empty
 	cost = PAYCHECK_CREW * 3
-	order_flags = ORDER_CONTRABAND
+	order_flags = parent_type::order_flags | ORDER_CONTRABAND
