@@ -48,6 +48,11 @@ ANTAG_PROMPT_POLL_EVERYONE 1
 ## Prompt crew for crewset antags even if they never enabled that antag in their preferences, requires ANTAG_PROMPT_ENABLED
 ANTAG_PROMPT_POLLS_REGARDLESS_OF_PREFS
 
+## Prompt crew for crewset antags even if they have the "Be Antagonist" toggle off, since accepting the prompt
+## is the consent. Independent of ANTAG_PROMPT_POLLS_REGARDLESS_OF_PREFS, but also requires ANTAG_PROMPT_ENABLED.
+## Midround prompts only, roundstart rolls and ghost role polls keep respecting the toggle either way.
+ANTAG_PROMPT_IGNORES_BE_ANTAG 1
+
 ## Percent chance for any one polled candidate to be shown a decoy antagonist instead of a real roll.
 ## doesn't work if ANTAG_PROMPT_POLL_EVERYONE is not enabled
 ANTAG_PROMPT_FAKE_CHANCE 15

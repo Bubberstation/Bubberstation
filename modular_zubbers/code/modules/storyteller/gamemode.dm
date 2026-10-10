@@ -252,6 +252,7 @@ SUBSYSTEM_DEF(gamemode)
 	list/restricted_roles,
 	list/restricted_species,
 	ignore_antag_prefs = FALSE,
+	ignore_be_antag = FALSE,
 	)
 
 	var/list/candidates = list()
@@ -294,7 +295,7 @@ SUBSYSTEM_DEF(gamemode)
 
 		if(is_banned_from(candidate.client.ckey, BAN_ANTAGONIST))
 			continue
-		if(!candidate.client?.prefs?.read_preference(/datum/preference/toggle/be_antag))
+		if(!ignore_be_antag && !candidate.client?.prefs?.read_preference(/datum/preference/toggle/be_antag))
 			continue
 		candidates += candidate
 	return candidates

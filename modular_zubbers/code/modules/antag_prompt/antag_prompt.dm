@@ -155,3 +155,6 @@
 
 /proc/ignoring_antag_prefs()
 	return CONFIG_GET(flag/antag_prompt_polls_regardless_of_prefs) && CONFIG_GET(flag/antag_prompt_enabled) && SSticker.HasRoundStarted()
+
+/proc/ignoring_be_antag()
+	return CONFIG_GET(flag/antag_prompt_ignores_be_antag) && CONFIG_GET(flag/antag_prompt_enabled) && SSticker.HasRoundStarted()

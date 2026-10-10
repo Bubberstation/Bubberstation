@@ -32,7 +32,7 @@
 			continue
 		if(is_banned_from(candidate.ckey, list(antag_flag, ROLE_SYNDICATE, BAN_ANTAGONIST)))
 			continue
-		if(!candidate.client.prefs.read_preference(/datum/preference/toggle/be_antag))
+		if(!ignoring_be_antag() && !candidate.client.prefs.read_preference(/datum/preference/toggle/be_antag))
 			continue
 		candidates += candidate
 	return candidates
