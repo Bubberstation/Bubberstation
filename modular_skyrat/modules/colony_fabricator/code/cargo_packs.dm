@@ -32,7 +32,7 @@
 /datum/supply_pack/engineering/colony_starter
 	name = "Colonization Starter Kit"
 	desc = "The Sol standard minimum kit for frontier colonization, contains everything you need to construct a mostly functioning colony in most places across the galaxy."
-	cost = CARGO_CRATE_VALUE * 11 // 6 for the lathe, 3 for the organics printer, 2 for the rest of the stuff
+	cost = CARGO_CRATE_VALUE * 42.5 // 37.5 for the lathe, the rest for the organics printer and supplies
 	contains = list(
 		/obj/item/flatpacked_machine,
 		/obj/item/flatpacked_machine/organics_printer,
@@ -47,4 +47,3 @@
 		/obj/item/stock_parts/power_store/battery/high,
 	)
 	crate_name = "colonization kit crate"
-	order_flags = ORDER_CONTRABAND

@@ -16,7 +16,7 @@
 /datum/design/biogen/food_replicator/pljeskavica
 	name = "Foreign Colonization Ration, Main Course"
 	id = "slavic_burger"
-	materials = list(/datum/material/biomass = 200)
+	materials = list(/datum/material/biomass = 300)
 	build_path = /obj/item/food/colonial_course/pljeskavica
 
 /datum/design/biogen/food_replicator/nachos

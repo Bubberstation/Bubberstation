@@ -10,10 +10,9 @@
 	max_integrity = 100
 	idle_power_usage = 0
 	anchored = TRUE
-	can_change_cable_layer = FALSE
+	can_change_cable_layer = TRUE
 	circuit = null
 	layer = ABOVE_MOB_LAYER
-	can_change_cable_layer = TRUE
 	/// How much power the turbine makes without a storm
 	var/regular_power_production = 2500
 	/// How much power the turbine makes during a storm
@@ -35,16 +34,18 @@
 	. = ..()
 	var/area/turbine_area = get_area(src)
 	if(!turbine_area.outdoors)
-		. += span_notice("Its must be constructed <b>outdoors</b> to function.")
+		. += span_notice("It must be constructed <b>outdoors</b> to function.")
 	if(pressure_too_low)
 		. += span_notice("There must be enough atmospheric <b>pressure</b> for the turbine to spin.")
 
 
 /obj/machinery/power/colony_wind_turbine/process()
+	if(!powernet)
+		connect_to_network()
+
 	var/area/our_current_area = get_area(src)
 	if(!our_current_area.outdoors)
 		icon_state = "turbine"
-		add_avail(0)
 		return
 
 	var/turf/our_turf = get_turf(src)
@@ -53,7 +54,6 @@
 	if(environment.return_pressure() < minimum_pressure)
 		pressure_too_low = TRUE
 		icon_state = "turbine"
-		add_avail(0)
 		return
 
 	pressure_too_low = FALSE
@@ -68,7 +68,7 @@
 		if(!(weather_we_track.stage == END_STAGE))
 			storming_out = TRUE
 
-	add_avail((storming_out ? storm_power_production : regular_power_production))
+	add_avail(power_to_energy(storming_out ? storm_power_production : regular_power_production))
 
 	var/new_icon_state = (storming_out ? "turbine_storm" : "turbine_normal")
 	icon_state = new_icon_state

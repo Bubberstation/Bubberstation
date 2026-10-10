@@ -12,3 +12,6 @@
 
 /// Transformation component
 #define TRAIT_TRANSFORMATION "transformation"
+
+/// Insulated multitool probes, while pulsing a wire
+#define INSULATED_PROBE_TRAIT "insulated_probe"
