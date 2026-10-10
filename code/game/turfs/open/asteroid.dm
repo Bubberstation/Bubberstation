@@ -492,6 +492,11 @@ GLOBAL_LIST_EMPTY(dug_up_basalt)
 	dig_result = /obj/item/stack/ore/glass/basalt
 	initial_gas_mix = MOONBASE19_ATMOS
 
+// BUBBER ADDITION START - Moon with air
+/turf/open/misc/asteroid/moon/standard_air
+	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+// BUBBER ADDITION END - Moon with air
+
 /turf/open/misc/asteroid/moon/dug //When you want one of these to be already dug.
 	dug = TRUE
 	floor_variance = 0
