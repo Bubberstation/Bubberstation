@@ -38,14 +38,14 @@
 	icon = 'modular_skyrat/master_files/icons/obj/drinks.dmi'
 	icon_state = null
 
-/obj/item/reagent_containers/cup/soda_cans/skyrat/attack(mob/M, mob/living/user)
-	if(istype(M, /mob/living/carbon) && !reagents.total_volume && user.combat_mode && user.zone_selected == BODY_ZONE_HEAD)
-		if(M == user)
+/obj/item/reagent_containers/cup/soda_cans/skyrat/interact_with_atom(atom/target, mob/living/user, list/modifiers)
+	if(iscarbon(target) && !reagents.total_volume && user.combat_mode && user.zone_selected == BODY_ZONE_HEAD)
+		if(target == user)
 			user.visible_message(span_warning("[user] crushes the can of [src] on [user.p_their()] forehead!"), span_notice("You crush the can of [src] on your forehead."))
 		else
-			user.visible_message(span_warning("[user] crushes the can of [src] on [M]'s forehead!"), span_notice("You crush the can of [src] on [M]'s forehead."))
-		playsound(M,'sound/items/weapons/pierce.ogg', rand(10,50), TRUE)
-		var/obj/item/trash/can/skyrat/crushed_can = new /obj/item/trash/can/skyrat(M.loc)
+			user.visible_message(span_warning("[user] crushes the can of [src] on [target]'s forehead!"), span_notice("You crush the can of [src] on [target]'s forehead."))
+		playsound(target,'sound/items/weapons/pierce.ogg', rand(10,50), TRUE)
+		var/obj/item/trash/can/skyrat/crushed_can = new /obj/item/trash/can/skyrat(target.drop_location())
 		crushed_can.icon_state = icon_state
 		qdel(src)
 		return TRUE
