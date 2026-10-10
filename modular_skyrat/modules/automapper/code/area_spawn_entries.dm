@@ -46,11 +46,6 @@
 	desired_atom = /obj/machinery/vending/dorms
 	mode = AREA_SPAWN_MODE_HUG_WALL
 
-/datum/area_spawn/gbp_machine
-	target_areas = list(/area/station/cargo/lobby, /area/station/cargo/boutique, /area/station/construction/storage_wing, /area/station/hallway/primary/port /* for kilo */) // lmao imagine map standardization
-	desired_atom = /obj/machinery/gbp_redemption
-	mode = AREA_SPAWN_MODE_HUG_WALL
-
 /datum/area_spawn/bar_jukebox
 	target_areas = list(/area/station/commons/lounge, /area/station/service/bar/atrium, /area/station/service/bar)
 	desired_atom = /obj/machinery/jukebox/no_access

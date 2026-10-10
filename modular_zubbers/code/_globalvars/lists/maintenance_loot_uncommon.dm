@@ -535,7 +535,6 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/pen/blue = 20
 	) = 20,
 	/obj/item/petri_dish = 50,
-	/obj/item/gbp_punchcard/starting = 5,
 	list(
 		/obj/item/fishing_line/reinforced = 10,
 		/obj/item/fishing_line/cloaked = 10,

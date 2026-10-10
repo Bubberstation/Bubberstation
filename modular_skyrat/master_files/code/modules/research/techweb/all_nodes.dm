@@ -88,7 +88,6 @@
 
 /datum/techweb_node/office_equip/New()
 	design_ids += list(
-		"gbp_machine",
 		"plastic_hair_tie",
 		"umbrella",
 	)
