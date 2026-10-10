@@ -307,3 +307,7 @@
 /datum/loadout_item/toys/art/spray_can
 	name = "Spray Can"
 	item_path = /obj/item/toy/crayon/spraycan
+
+/datum/loadout_item/toys/art/mod_paint_kit
+	name = "MOD Paint Kit"
+	item_path = /obj/item/mod/paint

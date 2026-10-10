@@ -120,7 +120,7 @@
 	var/list/skins = list()
 	for(var/mod_skin_name in mod.theme.variants)
 		var/list/mod_skin = mod.theme.variants[mod_skin_name]
-		skins[mod_skin_name] = image(icon = mod_skin[MOD_ICON_OVERRIDE] || mod.icon, icon_state = "[mod_skin_name]-control")
+		skins[mod_skin_name] = image(icon = mod_skin[MOD_ICON_OVERRIDE] || 'icons/obj/clothing/modsuit/mod_clothing.dmi', icon_state = "[mod_skin_name]-control") // BUBBER EDIT CHANGE - MODsuit GAGS - Original: skins[mod_skin_name] = image(icon = mod_skin[MOD_ICON_OVERRIDE] || mod.icon, icon_state = "[mod_skin_name]-control")
 	var/pick = show_radial_menu(user, mod, skins, custom_check = CALLBACK(src, PROC_REF(check_menu), mod, user), require_near = TRUE)
 	if(!pick)
 		balloon_alert(user, "no skin picked!")

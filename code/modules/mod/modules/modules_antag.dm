@@ -197,7 +197,7 @@
 /obj/item/mod/module/springlock/bite_of_87/on_part_activation()
 	..()
 	if(check_holidays(APRIL_FOOLS) || prob(1))
-		mod.set_mod_color("#b17f00")
+		mod.set_mod_color("#b17f00", force = TRUE) // BUBBER EDIT CHANGE - MODsuit GAGS - Original: mod.set_mod_color("#b17f00")
 		mod.wearer.remove_atom_colour(WASHABLE_COLOUR_PRIORITY) // turns purple guy purple
 		mod.wearer.add_atom_colour("#704b96", FIXED_COLOUR_PRIORITY)
 
@@ -359,6 +359,7 @@
 	mod.righthand_file = initial(mod.righthand_file)
 	mod.worn_icon_state = null
 	mod.inhand_icon_state = null
+	mod.restore_gags_after_disguise() // BUBBER EDIT ADDITION - MODsuit GAGS
 	update_clothing_slots()
 	current_disguise = null
 	UnregisterSignal(mod, COMSIG_MOD_ACTIVATE)

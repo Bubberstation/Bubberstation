@@ -76,7 +76,7 @@
 		add_overlay = FALSE
 
 	if(add_overlay)
-		icon_to_use = overlay_icon_file
+		icon_to_use = mod.get_gags_module_icon(overlay_icon_file, icon_state_to_use)
 		var/mutable_appearance/module_icon = mutable_appearance(icon_to_use, icon_state_to_use, layer = standing.layer + 0.1) // Just changed the raw icon path to icon_to_use and the used_overlay to icon_state_to_use
 		module_icon.appearance_flags |= RESET_COLOR
 		. += module_icon
@@ -92,6 +92,7 @@
 			icon_to_use = 'modular_skyrat/modules/better_vox/icons/clothing/mod_modules.dmi'
 			icon_state_to_use = module_icon_state
 
+		icon_to_use = mod.get_gags_module_icon(icon_to_use, icon_state_to_use)
 		var/mutable_appearance/additional_module_icon = mutable_appearance(icon_to_use, icon_state_to_use, layer = standing.layer + 0.1)
 		additional_module_icon.appearance_flags |= RESET_COLOR
 		. += additional_module_icon

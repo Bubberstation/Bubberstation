@@ -13,6 +13,10 @@
 	var/obj/item/mod/control/stored_modsuit
 	var/list/cached_modules = list()
 	var/datum/mod_theme/stored_theme
+	/// Our own skin, kept while we wear an assimilated suit
+	var/own_skin
+	/// Our own paint colors, kept while we wear an assimilated suit
+	var/own_gags_colors
 
 /datum/mod_theme/protean
 	name = "protean"
@@ -30,6 +34,21 @@
 			INVOKE_ASYNC(p_core.linked_species, TYPE_PROC_REF(/datum/species/protean, unassimilate_modsuit), null, TRUE)
 	cached_modules = null
 	return ..()
+
+/// Paint on an assimilated suit goes to the stored suit too, so it keeps the same colors when it comes out
+/obj/item/mod/control/pre_equipped/protean/set_gags_colors(colors)
+	. = ..()
+	if(.)
+		sync_stored_look()
+
+/// Copies our current skin and paint to the assimilated suit, so it comes out looking the way we wore it
+/obj/item/mod/control/pre_equipped/protean/proc/sync_stored_look()
+	if(!stored_theme || QDELETED(stored_modsuit))
+		return
+	if(stored_modsuit.skin != skin)
+		stored_modsuit.theme.set_skin(stored_modsuit, skin)
+	if(greyscale_colors && stored_modsuit.get_gags_skin())
+		stored_modsuit.set_gags_colors(greyscale_colors)
 
 /obj/item/mod/control/pre_equipped/protean/wrench_act(mob/living/user, obj/item/wrench)
 	to_chat(user, span_warning("The core is integrated and cannot be removed from the [src]."))

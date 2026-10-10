@@ -78,7 +78,7 @@
 	ReadColorsFromString(starting_colors || atom_target?.greyscale_colors)
 
 	if(target)
-		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(ui_close))
+		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(on_target_deleted)) // BUBBER EDIT CHANGE - Close the window too - Original: RegisterSignal(target, COMSIG_QDELETING, PROC_REF(ui_close))
 
 	refresh_preview()
 
@@ -88,6 +88,14 @@
 	apply_callback = null
 	config = null
 	return ..()
+
+// BUBBER EDIT ADDITION START - Close the window when the target is deleted. Before, the menu was deleted and the window stayed open on it.
+/datum/greyscale_modify_menu/proc/on_target_deleted(datum/source)
+	SIGNAL_HANDLER
+	SStgui.close_uis(src)
+	if(!QDELETED(src))
+		qdel(src)
+// BUBBER EDIT ADDITION END
 
 /datum/greyscale_modify_menu/ui_state(mob/user)
 	return unlocked ? GLOB.always_state : GLOB.greyscale_menu_state
@@ -103,6 +111,10 @@
 
 /datum/greyscale_modify_menu/ui_data(mob/user)
 	var/list/data = list()
+	// BUBBER EDIT ADDITION START - A deleted menu has no config, so do not send data for it
+	if(isnull(config))
+		return data
+	// BUBBER EDIT ADDITION END
 	data["greyscale_config"] = "[config.name]"
 	data["full_color_string"] = split_colors?.Join("") //BUBBER ADDITION
 
