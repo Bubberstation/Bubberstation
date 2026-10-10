@@ -17,19 +17,9 @@
 	// try to pick the successor from existing crew, or leave it empty if no valid candidates found
 	var/mob/living/carbon/human/chosen_successor = pick_holy_successor()
 	GLOB.current_highpriest = chosen_successor ? WEAKREF(chosen_successor) : null // if a successor is already on the station then pick the first in line
-
-	if(isnull(GLOB.religious_sect)) // sect already been reset, maybe a chaplain cryo'd before choosing a sect
-		return
-
-	// remember what the previous sect and favor values were so they can be restored if the same one gets chosen
-	GLOB.prev_favor = GLOB.religious_sect.favor
-	GLOB.prev_sect_type = GLOB.religious_sect.type
-
-	// set the altar references to the old religious_sect to null
-	SEND_GLOBAL_SIGNAL(COMSIG_RELIGIOUS_SECT_RESET)
-
-	QDEL_NULL(GLOB.religious_sect) // queue for removal but also set it to null, in case a new chaplain joins before it can be deleted
-
+	
+	// BUBBER EDIT START - This proc is not working? I have to reorder some of this.
+	
 	// set the rest of the global vars to null for the new chaplain
 	GLOB.religion = null
 	GLOB.deity = null
@@ -38,7 +28,22 @@
 	GLOB.bible_inhand_icon_state = null
 	GLOB.holy_armor_type = null
 	GLOB.holy_weapon_type = null
+		
+	if(isnull(GLOB.religious_sect)) // sect already been reset, maybe a chaplain cryo'd before choosing a sect
+		return
+	else
 
+		// remember what the previous sect and favor values were so they can be restored if the same one gets chosen
+		GLOB.prev_favor = GLOB.religious_sect.favor
+		GLOB.prev_sect_type = GLOB.religious_sect.type
+
+		// set the altar references to the old religious_sect to null
+		SEND_GLOBAL_SIGNAL(COMSIG_RELIGIOUS_SECT_RESET)
+
+		QDEL_NULL(GLOB.religious_sect) // queue for removal but also set it to null, in case a new chaplain joins before it can be deleted
+	
+	// BUBBER EDIT END
+	
 /**
  * Chooses a valid holy successor from GLOB.holy_successor weakref list and sets things up for them to be the new high priest
  *
