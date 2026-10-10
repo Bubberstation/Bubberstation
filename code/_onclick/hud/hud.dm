@@ -15,7 +15,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	"Glass" = 'icons/hud/screen_glass.dmi',
 	"Trasen-Knox" = 'icons/hud/screen_trasenknox.dmi',
 	"Detective" = 'icons/hud/screen_detective.dmi',
-	"Blue - 98" = 'modular_zubbers/master_files/icons/hud/screen_blue98.dmi' // Bubber Addition
+	"Blue - 98" = 'modular_zubbers/icons/hud/screen_blue98.dmi' // Bubber Addition
 ))
 
 //SKYRAT EDIT - ADDITION - ERP ICONS FIX
@@ -54,6 +54,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 
 	var/atom/movable/screen/ammo_counter //SKYRAT EDIT ADDITION
 	var/atom/movable/screen/text/activation_text/activation // BUBBER EDIT ADDITION
+	var/atom/movable/screen/mapvote_hud/mapvote_hud // BUBBER EDIT ADDITION
 	var/hotkey_ui_hidden = FALSE
 
 	/// Assoc list of key => "plane master groups"
@@ -134,9 +135,14 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	screentips_enabled = preferences?.read_preference(/datum/preference/choiced/enable_screentips)
 	screentip_images = preferences?.read_preference(/datum/preference/toggle/screentip_images)
 	screentip_text = add_screen_object(/atom/movable/screen/screentip, HUD_MOB_SCREENTIP)
+// BUBBER EDIT ADDITION START
+	activation = new(null, src)
+	add_screen_object(activation, null, HUD_GROUP_STATIC)
 
-	activation = new(null, src) // BUBBER EDIT ADDITION
-	add_screen_object(activation, null, HUD_GROUP_STATIC) // BUBBER EDIT ADDITION
+	if(preferences?.read_preference(/datum/preference/toggle/mapvote_hud))
+		mapvote_hud = new(null, src, preferences)
+		add_screen_object(mapvote_hud, null, HUD_GROUP_STATIC)
+// BUBBER EDIT ADDITION END
 
 	for(var/mytype in subtypesof(/atom/movable/plane_master_controller))
 		var/atom/movable/plane_master_controller/controller_instance = new mytype(null,src)
@@ -170,6 +176,7 @@ GLOBAL_LIST_INIT(available_erp_ui_styles, list(
 	QDEL_LIST(floating_actions)
 	screentip_text = null
 	screen_groups = null
+	mapvote_hud = null // BUBBER EDIT ADDITION
 	inventory_slots.Cut()
 	QDEL_LIST_ASSOC_VAL(screen_objects)
 	QDEL_LIST_ASSOC_VAL(master_groups)
