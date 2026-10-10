@@ -251,6 +251,8 @@ SUBSYSTEM_DEF(gamemode)
 	no_antags = TRUE,
 	list/restricted_roles,
 	list/restricted_species,
+	ignore_antag_prefs = FALSE,
+	ignore_be_antag = FALSE,
 	)
 
 	var/list/candidates = list()
@@ -283,7 +285,8 @@ SUBSYSTEM_DEF(gamemode)
 			if(restricted_species && (carbon.dna.species.id in restricted_species))
 				continue
 		if(special_role_flag)
-			if(!(candidate.client.prefs) || !(special_role_flag in candidate.client.prefs.be_special))
+			// The antag prompt can be configured to ask everyone instead of only those who opted in.
+			if(!ignore_antag_prefs && (!(candidate.client.prefs) || !(special_role_flag in candidate.client.prefs.be_special)))
 				continue
 			if(candidate.client.get_days_to_play_antag(special_role_flag) > 0)
 				continue
@@ -292,7 +295,7 @@ SUBSYSTEM_DEF(gamemode)
 
 		if(is_banned_from(candidate.client.ckey, BAN_ANTAGONIST))
 			continue
-		if(!candidate.client?.prefs?.read_preference(/datum/preference/toggle/be_antag))
+		if(!ignore_be_antag && !candidate.client?.prefs?.read_preference(/datum/preference/toggle/be_antag))
 			continue
 		candidates += candidate
 	return candidates
