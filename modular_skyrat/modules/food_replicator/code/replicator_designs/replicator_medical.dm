@@ -1,6 +1,5 @@
 /datum/design/biogen/medical_replicator
-	name = "Medical Replicator"
-	id = DESIGN_ID_IGNORE
+	name = null
 	build_path = /obj/item/storage/pouch
 	materials = list(/datum/material/biomass = 250)
 	category = list(

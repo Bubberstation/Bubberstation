@@ -1,20 +1,15 @@
 /datum/techweb_node/colony_fabricator_special_tools
-	id = TECHWEB_NODE_COLONY_TOOLS
 	display_name = "Colony Fabricator Tool Designs"
 	description = "Contains all of the colony fabricator's tool designs."
-	design_ids = list(
+	unlocked_designs = list(
 		"colony_power_drive",
 		"colony_prybar",
 		"colony_arc_welder",
 		"colony_compact_drill",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = INFINITY) // God save you
-	hidden = TRUE
-	show_on_wiki = FALSE
-	starting_node = TRUE
 
 // Screw-Wrench-Wirecutter combo machine
-
 /datum/design/colony_power_driver
 	name = "Powered Driver"
 	id = "colony_power_drive"

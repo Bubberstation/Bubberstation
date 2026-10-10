@@ -1,6 +1,5 @@
 /datum/design/biogen/frontier_utensils
-	name = "Frontier Utensils"
-	id = DESIGN_ID_IGNORE
+	name = null
 	materials = list(/datum/material/biomass = 10)
 	build_path = /obj/item/kitchen
 	category = list(

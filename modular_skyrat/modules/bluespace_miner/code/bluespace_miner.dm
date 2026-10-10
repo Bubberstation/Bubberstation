@@ -260,7 +260,7 @@
 	hidden = TRUE
 	experimental = TRUE
 	prereq_ids = list("applied_bluespace")
-	design_ids = list(
+	unlocked_designs = list(
 		"bluespace_miner",
 	)
 

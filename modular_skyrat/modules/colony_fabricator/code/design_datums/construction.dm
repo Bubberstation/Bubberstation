@@ -5,11 +5,10 @@
 // Techweb node that shouldnt show up anywhere ever specifically for the fabricator to work with
 
 /datum/techweb_node/colony_fabricator_structures
-	id = TECHWEB_NODE_COLONY_STRUCTURES
 	display_name = "Colony Fabricator Structure Designs"
 	description = "Contains all of the colony fabricator's structure designs."
-	design_ids = list(
-		"prefab_airlock_kit",
+	unlocked_designs = list(
+		/datum/design/prefab_airlock_kit,
 		"prefab_manual_airlock_kit",
 		"prefab_shutters_kit",
 		"prefab_floor_tile",
@@ -17,15 +16,12 @@
 		"colony_fab_plastic_wall_panel",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = INFINITY) // God save you
-	hidden = TRUE
-	show_on_wiki = FALSE
-	starting_node = TRUE
 
 // Airlock kit
 
 /datum/design/prefab_airlock_kit
 	name = "Prefab Airlock"
-	id = "prefab_airlock_kit"
+	id = /datum/design/prefab_airlock_kit
 	build_type = COLONY_FABRICATOR
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,

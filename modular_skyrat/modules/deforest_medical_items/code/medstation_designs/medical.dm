@@ -1,6 +1,5 @@
 /datum/design/biogen/organic_printer
-	name = "Organic Printer"
-	id = DESIGN_ID_IGNORE
+	name = null
 	materials = list(/datum/material/biomass = 25)
 	build_path = /obj/item/stack/medical
 	category = list(

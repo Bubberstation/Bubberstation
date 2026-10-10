@@ -521,7 +521,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/techweb_node/medbay_equip_adv/New()
-	design_ids += list(
+	unlocked_designs += list(
 		"satchel_medical",
 		"satchel_tech",
 		"satchel_surgical",

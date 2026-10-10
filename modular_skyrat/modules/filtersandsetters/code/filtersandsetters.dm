@@ -177,13 +177,13 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/techweb_node/surgery_tools/New()
-	design_ids += list(
+	unlocked_designs += list(
 		"combitool",
 	)
 	return ..()
 
 /datum/techweb_node/alien_surgery/New()
-	design_ids += list(
+	unlocked_designs += list(
 		"alien_bloodfilter",
 		"alien_bonesetter",
 	)

@@ -244,7 +244,7 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	display_name = "Cargo Teleporter"
 	description = "We can teleport items across long distances, as long as they are not blocked."
 	prereq_ids = list(TECHWEB_NODE_BLUESPACE_THEORY)
-	design_ids = list(
+	unlocked_designs = list(
 		"cargotele",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)

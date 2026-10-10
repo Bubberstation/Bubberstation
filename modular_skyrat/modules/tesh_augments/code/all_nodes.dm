@@ -5,7 +5,7 @@
 	display_name = "Raptoral Cybernetics"
 	description = "Specialized civilian-grade cybernetic limb designs."
 	prereq_ids = list(TECHWEB_NODE_ROBOTICS)
-	design_ids = list(
+	unlocked_designs = list(
 		"teshari_cyber_chest",
 		"teshari_cyber_l_arm",
 		"teshari_cyber_r_arm",
@@ -21,7 +21,7 @@
 	display_name = "Advanced Raptoral Cybernetics"
 	description = "Specialized industrial-grade cybernetic limb designs."
 	prereq_ids = list(TECHWEB_NODE_CYBERNETICS, TECHWEB_NODE_CYBERNETICS_TESHARI)
-	design_ids = list(
+	unlocked_designs = list(
 		"teshari_advanced_l_arm",
 		"teshari_advanced_r_arm",
 		"teshari_advanced_l_leg",

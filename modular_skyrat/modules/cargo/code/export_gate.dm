@@ -380,6 +380,6 @@
 
 /datum/techweb_node/office_equip/New()
 	. = ..()
-	design_ids += list(
+	unlocked_designs += list(
 		"export_gate",
 	)
