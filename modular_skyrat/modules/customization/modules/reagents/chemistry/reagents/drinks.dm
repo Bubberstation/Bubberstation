@@ -48,7 +48,7 @@
 		var/obj/item/trash/can/skyrat/crushed_can = new /obj/item/trash/can/skyrat(target.drop_location())
 		crushed_can.icon_state = icon_state
 		qdel(src)
-		return TRUE
+		return ITEM_INTERACT_SUCCESS
 	. = ..()
 
 /obj/item/reagent_containers/cup/soda_cans/skyrat/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit = FALSE)
