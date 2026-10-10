@@ -80,7 +80,7 @@
 	desc = "A tool used to expanded robotics work"
 	icon_state = "connector"
 	storable = list(
-					/obj/item/mmi,
+					/obj/item/brain_processor/organic,
 					/obj/item/bodypart/arm/left/robot,
 					/obj/item/bodypart/arm/right/robot,
 					/obj/item/bodypart/leg/left/robot,

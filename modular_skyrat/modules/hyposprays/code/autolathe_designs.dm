@@ -85,7 +85,7 @@
 
 // Hypospray Research
 /datum/techweb_node/chem_synthesis/New()
-	design_ids += list(
+	unlocked_designs += list(
 		"hypovial",
 		"large_hypovial",
 		"hypokit",
@@ -94,13 +94,13 @@
 	return ..()
 
 /datum/techweb_node/medbay_equip_adv/New()
-	design_ids += list(
+	unlocked_designs += list(
 		"hypokit_deluxe",
 	)
 	return ..()
 
 /datum/techweb_node/alien_surgery/New()
-	design_ids += list(
+	unlocked_designs += list(
 		"hypomkii_deluxe",
 	)
 	return ..()

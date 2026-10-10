@@ -511,8 +511,8 @@
 	acid = 40
 
 /*
-/obj/item/clothing/neck/petcollar/mob_can_equip(mob/M, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE, ignore_equipped = FALSE, indirect_action = FALSE)
-	if(!ismonkey(M) && !human_wearable)
+/obj/item/clothing/neck/petcollar/mob_can_equip(mob/mob, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE, ignore_equipped = FALSE, indirect_action = FALSE)
+	if(!HAS_TRAIT(mob, TRAIT_LESSER_HUMANOID) && !human_wearable)
 		return FALSE
 	return ..()
 */ //BUBBER EDIT END: LET ME WEAR MY PET COLLARS

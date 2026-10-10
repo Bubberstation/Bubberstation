@@ -6,5 +6,5 @@
 		SCIENCE_DRILL_DESIGN_ID,
 		SCIENCE_ROBORCD_DESIGN_ID,
 	)
-	design_ids += science_tools
+	unlocked_designs += science_tools
 

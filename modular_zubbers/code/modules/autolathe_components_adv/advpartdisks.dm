@@ -88,13 +88,13 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/techweb_node/parts_upg/New()
-	design_ids += list(
+	unlocked_designs += list(
 		"adv_part_disk",
 	)
 	return ..()
 
 /datum/techweb_node/parts_adv/New()
-	design_ids += list(
+	unlocked_designs += list(
 		"high_tech_part_disk",
 	)
 	return ..()

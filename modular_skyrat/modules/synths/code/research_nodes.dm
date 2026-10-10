@@ -3,7 +3,7 @@
 	display_name = "Improved Robotic Repair Surgeries"
 	description = "As it turns out, you don't actually need to cut out entire support rods if it's just scratched!"
 	prereq_ids = list(TECHWEB_NODE_CONSTRUCTION)
-	design_ids = list(
+	unlocked_designs = list(
 		"synthetic_surgery_heal_combo",
 		"synthetic_surgery_heal_upgrade",
 	)
@@ -16,7 +16,7 @@
 	display_name = "Advanced Robotic Surgeries"
 	description = "Did you know Hephaestus actually has a free online tutorial for synthetic trauma repairs? It's true!"
 	prereq_ids = list(TECHWEB_NODE_ROBOTIC_SURGERY)
-	design_ids = list(
+	unlocked_designs = list(
 		"synthetic_surgery_heal_combo_upgrade",
 		"synthetic_surgery_heal_combo_upgrade_femto",
 		"synthetic_surgery_heal_upgrade_femto"
@@ -71,7 +71,7 @@
 	display_name = "Experimental Synthetic Surgery"
 	description = "When robotics gets a little greedy."
 	prereq_ids = list(TECHWEB_NODE_ROBOTIC_SURGERY)
-	design_ids = list(
+	unlocked_designs = list(
 		"surgery_subsystem_upgrade_cortex_folding",
 		"surgery_subsystem_upgrade_cortex_imprint",
 		"surgery_subsystem_upgrade_ligament_reinforcement",

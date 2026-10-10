@@ -1,6 +1,5 @@
 /datum/design/biogen/organic_bloodbag
-	name = "Organic Bloodbag"
-	id = DESIGN_ID_IGNORE
+	name = null
 	build_path = /obj/item/reagent_containers/blood
 	materials = list(/datum/material/biomass = 100)
 	category = list(

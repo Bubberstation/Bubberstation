@@ -6,7 +6,7 @@
 		Using a simplified version of the chemistry dispenser's synthesizer process, it can create water out of nothing \
 		but good old electricity."
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/chemistry_machines.dmi'
-	icon_state = "water_synth"
+	icon_state = /datum/design/water_synthesizer
 	anchored = FALSE
 	/// Reagents that this can dispense, overrides the default list on init
 	var/static/list/synthesizable_reagents = list(

@@ -177,7 +177,7 @@
 	starting_node = TRUE
 	display_name = "Basic Xenoarchaeology"
 	description = "The basic designs of xenoarchaeology."
-	design_ids = list(
+	unlocked_designs = list(
 		"hammer_cm1",
 		"hammer_cm2",
 		"hammer_cm3",
@@ -195,7 +195,7 @@
 	display_name = "Xenoarchaeology Storage"
 	description = "When dealing with xenoarchaeology, one may need storage."
 	prereq_ids = list(TECHWEB_NODE_XENOARCH_BASIC)
-	design_ids = list(
+	unlocked_designs = list(
 		"xenoarch_belt",
 		"xenoarch_bag",
 	)
@@ -206,7 +206,7 @@
 	display_name = "Xenoarchaeology Machines"
 	description = "Sometimes, xenoarchaeology can be time consuming, perhaps machines can help?"
 	prereq_ids = list(TECHWEB_NODE_XENOARCH_BASIC)
-	design_ids = list(
+	unlocked_designs = list(
 		"xeno_researcher",
 		"xeno_scanner",
 		"xeno_recoverer",
@@ -218,7 +218,7 @@
 	display_name = "Advanced Xenoarchaeology"
 	description = "After some time, those tools we used have become antiquated-- we need an upgrade."
 	prereq_ids = list(TECHWEB_NODE_XENOARCH_BASIC, TECHWEB_NODE_XENOARCH_MACHINES, TECHWEB_NODE_XENOARCH_STORAGE)
-	design_ids = list(
+	unlocked_designs = list(
 		"xenoarch_adv_hammer",
 		"xenoarch_adv_brush",
 		"xenoarch_bag_adv",

@@ -1,6 +1,5 @@
 /datum/design/survival_knife
 	name = "Survival Knife"
-	id = "survival_knife"
 	build_type = COLONY_FABRICATOR
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 6,

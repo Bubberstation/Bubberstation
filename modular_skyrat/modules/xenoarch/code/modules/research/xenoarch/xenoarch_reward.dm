@@ -33,7 +33,7 @@ GLOBAL_LIST_INIT(tech_reward, list(
 	/obj/item/raw_anomaly_core/random = 1,
 	/obj/item/bag_of_holding_inert = 1,
 	/obj/item/construction/plumbing = 1,
-	/obj/item/mmi/posibrain = 1,
+	/obj/item/brain_processor/positronic = 1,
 	/obj/item/storage/portable_chem_mixer = 1,
 	/obj/item/stock_parts/power_store/cell/crank = 1,
 	/obj/item/stock_parts/power_store/cell/self_charge = 1,

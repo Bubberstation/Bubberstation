@@ -13,7 +13,7 @@
 	display_name = "Advanced Nanotrasen Viral Bioweapons Technology"
 	description = "Research devices from the Nanotrasen viral bioweapons division! Got a virus problem? This'll save your day."
 	prereq_ids = list("exp_tools", "cytology")
-	design_ids = list("rna_vial", "rna_extractor", "rna_recombinator")
+	unlocked_designs = list("rna_vial", "rna_extractor", "rna_recombinator")
 	research_costs = list(TECHWEB_NODE_SURGERY_TOOLS, TECHWEB_NODE_CYTOLOGY)
 
 /datum/design/rna_vial

@@ -15,7 +15,7 @@
 	display_name = "Advanced Action Components"
 	description = "Grants access to more advanced action components for the drone shell."
 	prereq_ids = list(TECHWEB_NODE_PROGRAMMED_ROBOT)
-	design_ids = list(
+	unlocked_designs = list(
 		"comp_mine",
 		"comp_iinteract",
 	)
@@ -41,9 +41,9 @@
 
 /datum/techweb_node/riot_supression/New()
 	. = ..()
-	design_ids += "comp_tscanner"
-	design_ids += "comp_ccharge"
+	unlocked_designs += "comp_tscanner"
+	unlocked_designs += "comp_ccharge"
 
 /datum/techweb_node/syndicate_basic/New()
 	. = ..()
-	design_ids += "comp_reagent_injector_bluespace"
+	unlocked_designs += "comp_reagent_injector_bluespace"

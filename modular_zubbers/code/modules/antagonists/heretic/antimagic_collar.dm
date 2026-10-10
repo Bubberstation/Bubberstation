@@ -11,7 +11,7 @@
 	drop_sound = 'sound/items/handling/toolbelt_drop.ogg'
 	pickup_sound = 'sound/items/handling/toolbelt_pickup.ogg'
 	equip_sound = 'sound/items/equip/toolbelt_equip.ogg'
-	clothing_flags = INEDIBLE_CLOTHING|DANGEROUS_OBJECT
+	clothing_flags = DANGEROUS_OBJECT
 	w_class = WEIGHT_CLASS_NORMAL
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
@@ -58,6 +58,9 @@
 
 	radio = new /obj/item/radio/headset/headset_sec(src)
 	ADD_TRAIT(src, TRAIT_NO_STRIP, REF(src))
+
+/obj/item/clothing/neck/antimagic_collar/create_moth_snack()
+	return null
 
 /obj/item/clothing/neck/antimagic_collar/attack_self(mob/user, modifiers)
 	var/new_id = tgui_input_text(user, "Input the new ID.", "ID input", timeout = 20 SECONDS, max_length = 100)

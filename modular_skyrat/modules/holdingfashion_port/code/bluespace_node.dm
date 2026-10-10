@@ -1,5 +1,5 @@
 /datum/techweb_node/anomaly_shells/New()
-	design_ids += list(
+	unlocked_designs += list(
 		"satchel_holding",
 		"duffel_holding",
 	)

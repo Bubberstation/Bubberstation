@@ -6,13 +6,12 @@
 
 /datum/techweb/tarkon/New()
 	. = ..()
-	research_node_id("oldstation_surgery", TRUE, TRUE, FALSE)
-	research_node_id("tarkontech", TRUE, TRUE, FALSE)
-	research_node_id("tarkon_borgs", TRUE, TRUE, FALSE)
-	research_node_id("tarkondefence", TRUE, TRUE, FALSE) // not ideal, but will have to do for now
+	research_node(/datum/techweb_node/oldstation_surgery, TRUE, TRUE, FALSE)
+	research_node(/datum/techweb_node/tarkon, TRUE, TRUE, FALSE)
+	research_node(/datum/techweb_node/tarkon_borgs, TRUE, TRUE, FALSE)
+	research_node(/datum/techweb_node/tarkonturret, TRUE, TRUE, FALSE) // not ideal, but will have to do for now
 
 /datum/techweb_node/tarkon
-	id = "tarkontech"
 	display_name = "Tarkon Industries Technology"
 	description = "Tools used by Tarkon Industries."
 	required_items_to_unlock = list(
@@ -20,64 +19,61 @@
 		/obj/item/construction/rcd/arcd/tarkon,
 		/obj/item/gun/energy/recharge/resonant_system,
 	)
-	design_ids = list(
-		"mod_plating_tarkon",
-		"arcs",
-		"rcd_tarkon",
-		"powerator_tarkon",
-		"cargoconsole_tarkon",
-		"bountypad_tarkon",
-		"bountyconsole_tarkon",
-		"hackc"
+	unlocked_designs = list(
+		/datum/design/mod_plating/tarkon,
+		/datum/design/arcs,
+		/datum/design/tarkonrcd,
+		/datum/design/tarkonpowerator,
+		/datum/design/tarkonexpressconsole,
+		/datum/design/bountypad,
+		/datum/design/bountypadconsole,
+		/datum/design/tarkonhackc,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
-	hidden = TRUE
+	node_flags = TECHWEB_NODE_WIKI | TECHWEB_NODE_HIDDEN
 
 /datum/techweb_node/tarkonturret
-	id = "tarkondefence"
 	display_name = "Tarkon Industries Defensive Technology"
 	description = "Tarkon Industries Blackrust Salvage division's defense designs."
-	prereq_ids = list(TECHWEB_NODE_TARKON, TECHWEB_NODE_BASIC_ARMS, TECHWEB_NODE_AI)
+	prerequisite_nodes = list(/datum/techweb_node/tarkon, /datum/techweb_node/basic_arms, /datum/techweb_node/ai)
 	required_items_to_unlock = list(
 		/obj/item/mod/construction/plating/tarkon,
 		/obj/item/construction/rcd/arcd/tarkon,
 		/obj/item/gun/energy/recharge/resonant_system,
 	)
-	design_ids = list(
-		"hoplite_assembly",
-		"cerberus_assembly",
-		"target_designator",
+	unlocked_designs = list(
+		/datum/design/hoplite_assembly,
+		/datum/design/cerberus_assembly,
+		/datum/design/target_designator,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
-	hidden = TRUE
+	node_flags = TECHWEB_NODE_WIKI | TECHWEB_NODE_HIDDEN
 
 /datum/techweb_node/tarkon_borgs //Nor this, suprisingly
-	id = "tarkon_borgs"
 	display_name = "Tarkon Industries Robotics Technology"
 	description = "Tarkon Industries Experimental Cyborg Prototypes. Not for public use."
-	prereq_ids = list(TECHWEB_NODE_TARKON, TECHWEB_NODE_BORG_ENGI, TECHWEB_NODE_AI, TECHWEB_NODE_BORG_UTILITY) // Should hold it back long enough
+	prerequisite_nodes = list(/datum/techweb_node/tarkon, /datum/techweb_node/borg_engi, /datum/techweb_node/ai, /datum/techweb_node/borg_utility) // Should hold it back long enough
 	required_items_to_unlock = list(
 		/obj/item/mod/construction/plating/tarkon,
 		/obj/item/construction/rcd/arcd/tarkon,
 		/obj/item/gun/energy/recharge/resonant_system,
 	)
-	design_ids = list(
-		"borg_upgrade_tarkon_medical",
-		"borg_upgrade_tarkon_engineering",
-		"borg_upgrade_tarkon_security",
-		"borg_upgrade_tarkon_cargo",
-		"borg_upgrade_tarkon_research",
-		"borg_upgrade_tarkon_service",
-		"borg_upgrade_tarkon_janitor",
-		"borg_upgrade_tarkon_main"
+	unlocked_designs = list(
+		/datum/design/borg_upgrade_tarkon_medical,
+		/datum/design/borg_upgrade_tarkon_engineering,
+		/datum/design/borg_upgrade_tarkon_security,
+		/datum/design/borg_upgrade_tarkon_cargo,
+		/datum/design/borg_upgrade_tarkon_research,
+		/datum/design/borg_upgrade_tarkon_service,
+		/datum/design/borg_upgrade_tarkon_janitor,
+		/datum/design/borg_upgrade_tarkon_main
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS) // They will likely have all other borg tech by now, no need to gate it further
-	hidden = TRUE
+	node_flags = TECHWEB_NODE_WIKI | TECHWEB_NODE_HIDDEN
 
 /datum/design/hoplite_assembly
 	name = "Hoplite Turret Assembly"
 	desc = "A deployable turret kit designed for basic construct defense. This one makes the \"Hoplite\" model."
-	id = "hoplite_assembly"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 25,
@@ -94,7 +90,6 @@
 /datum/design/cerberus_assembly
 	name = "Cerberus Turret Assembly"
 	desc = "A deployable turret kit designed for basic construct defense. This one makes the \"Cerberus\" model."
-	id = "cerberus_assembly"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 30,
@@ -111,7 +106,6 @@
 /datum/design/target_designator
 	name = "Turret Target Designator"
 	desc = "A basic target designator designed to control magazine-fed turrets."
-	id = "target_designator"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
@@ -128,7 +122,6 @@
 
 /datum/design/mod_plating/tarkon
 	name = "MOD Tarkon Plating"
-	id = "mod_plating_tarkon"
 	build_path = /obj/item/mod/construction/plating/tarkon
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3,
@@ -142,7 +135,6 @@
 
 /datum/design/arcs
 	name = "A.R.C.S Resonator"
-	id = "arcs"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
@@ -160,7 +152,6 @@
 /datum/design/tarkonrcd
 	name = "Tarkon R.C.D"
 	desc = "A Rapid Construction Device made by Tarkon Industries. Capable of ranged construction."
-	id = "rcd_tarkon"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 30,
@@ -181,7 +172,6 @@
 /datum/design/tarkonhackc
 	name = "Tarkon Hack-C Signaller"
 	desc = "A small device that signals a 'Hack-C' drone to repair specialized machinery."
-	id = "hackc"
 	build_path = /obj/item/hackc
 	category = list(
 		RND_CATEGORY_TOOLS
@@ -223,7 +213,7 @@
 /obj/machinery/rnd/server/tarkon/attackby(obj/item/attacking_item, mob/user, params)
 	if(istype(attacking_item, /obj/item/research_notes) && stored_research)
 		var/obj/item/research_notes/research_notes = attacking_item
-		stored_research.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = research_notes.value))
+		stored_research.adjust_multiple_points(list(TECHWEB_POINT_TYPE_GENERIC = research_notes.value))
 		playsound(src, 'sound/machines/copier.ogg', 50, TRUE)
 		qdel(research_notes)
 		return

@@ -12,7 +12,7 @@
 			var/datum/techweb_node/illegal_mech_node = SSresearch.techweb_nodes[found_illegal_mech_nods]
 			if(!illegal_mech_node?.illegal_mech_node)
 				continue
-			for(var/id in illegal_mech_node.design_ids)
+			for(var/id in illegal_mech_node.unlocked_designs)
 				var/datum/design/illegal_mech_design = SSresearch.techweb_design_by_id(id)
 //				illegal_local_designs |= illegal_mech_design // Fix this if it's broken after.
 				cached_designs |= illegal_mech_design

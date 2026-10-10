@@ -1,6 +1,6 @@
 // Don't know of a better place to put these. They're technically related to synths, so they're going here.
 
-/obj/item/mmi/posibrain/circuit
+/obj/item/brain_processor/positronic/circuit
 	name = "compact AI circuit"
 	desc = "A compact circuit, perfectly dimensioned to fit in the same slot as a cyborg's positronic brain."
 	icon = 'modular_skyrat/master_files/icons/obj/alt_silicon_brains.dmi'
@@ -24,13 +24,13 @@
 /mob/living/proc/prefs_get_brain_to_use(value, is_cyborg = FALSE)
 	switch(value)
 		if(ORGAN_PREF_POSI_BRAIN)
-			return is_cyborg ? /obj/item/mmi/posibrain : /obj/item/organ/brain/synth
+			return is_cyborg ? /obj/item/brain_processor/positronic : /obj/item/organ/brain/synth
 
 		if(ORGAN_PREF_MMI_BRAIN)
-			return is_cyborg ? /obj/item/mmi : /obj/item/organ/brain/synth/mmi
+			return is_cyborg ? /obj/item/brain_processor : /obj/item/organ/brain/synth/mmi
 
 		if(ORGAN_PREF_CIRCUIT_BRAIN)
-			return is_cyborg ? /obj/item/mmi/posibrain/circuit : /obj/item/organ/brain/synth/circuit
+			return is_cyborg ? /obj/item/brain_processor/positronic/circuit : /obj/item/organ/brain/synth/circuit
 
 /mob/living/silicon/robot/Initialize(mapload)
 	. = ..()
@@ -70,7 +70,7 @@
 // This is only implemented for cyborgs at the moment. AI has their own weird way of doing things.
 /mob/living/silicon/robot/transfer_brain_pref(client/player_client)
 	// Read the brain type from prefs and apply it to the mob.
-	var/obj/item/mmi/new_mmi = prefs_get_brain_to_use(player_client?.prefs?.read_preference(/datum/preference/choiced/brain_type), TRUE)
+	var/obj/item/brain_processor/new_mmi = prefs_get_brain_to_use(player_client?.prefs?.read_preference(/datum/preference/choiced/brain_type), TRUE)
 	if(!mmi || !new_mmi || new_mmi == mmi.type)
 		return
 	new_mmi = new new_mmi(src)
