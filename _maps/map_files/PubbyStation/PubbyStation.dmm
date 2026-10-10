@@ -22324,8 +22324,8 @@
 /area/station/tcommsat/computer)
 "cmx" = (
 /obj/machinery/computer/telecomms/server{
-	dir = 1;
-	network = "tcommsat"
+	network = "tcommsat";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow/anticorner/contrasted{
 	dir = 8
@@ -36309,7 +36309,10 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/yellow/half/contrasted{
-	dir = 4
+	dir = 3
+	},
+/obj/machinery/computer/telecomms/traffic{
+	dir = 3
 	},
 /turf/open/floor/iron,
 /area/station/tcommsat/computer)
