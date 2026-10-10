@@ -6,7 +6,7 @@
 
 /turf/closed/wall/mineral/plastitanium/darkpod/nodiagonal
 	icon_state = "dark_pod_walls-15"
-	base_icon_state = "survival_pod_walls"
+	base_icon_state = "dark_pod_walls"
 	smoothing_flags = SMOOTH_BITMASK
 	rust_resistance = RUST_RESISTANCE_TITANIUM
 
