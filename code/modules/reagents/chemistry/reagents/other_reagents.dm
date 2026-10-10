@@ -2885,6 +2885,8 @@
 	target.adjust_hallucinations(12.5 SECONDS * metabolization_ratio * seconds_per_tick)
 	var/datum/antagonist/changeling/changeling = IS_CHANGELING(target)
 	changeling?.adjust_chemicals(-5 * metabolization_ratio * seconds_per_tick)
+	// BUBBER EDIT ADDITION - burns off Organic Capacitor charge the same way it burns off chemicals
+	SEND_SIGNAL(target, COMSIG_CHANGELING_ADJUST_CAPACITOR, -5 * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/pax/peaceborg
 	name = "Synthpax"

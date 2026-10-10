@@ -63,6 +63,31 @@
 	hovering = FALSE
 	antagonist_datum.update_chemical_hud(antagonist_datum.chem_charges)
 
+/atom/movable/screen/ling/capacitor
+	name = "organic capacitor"
+	icon_state = "power_display"
+	screen_loc = ui_lingcapacitordisplay
+	///Boolean on whether a mouse is being hovered over us right now.
+	var/hovering = FALSE
+
+/atom/movable/screen/ling/capacitor/Click(location, control, params)
+	. = ..()
+	to_chat(usr, span_notice("Shows how charged our organic capacitor is. Once it's full, we can unleash a technophagic shriek."))
+
+/atom/movable/screen/ling/capacitor/MouseEntered(location, control, params)
+	if(usr != get_mob())
+		return
+	. = ..()
+	hovering = TRUE
+	SEND_SIGNAL(hud.mymob, COMSIG_CHANGELING_UPDATE_CAPACITOR_HUD)
+
+/atom/movable/screen/ling/capacitor/MouseExited(location, control, params)
+	if(usr != get_mob())
+		return
+	. = ..()
+	hovering = FALSE
+	SEND_SIGNAL(hud.mymob, COMSIG_CHANGELING_UPDATE_CAPACITOR_HUD)
+
 /atom/movable/screen/ling/sting
 	name = "current sting"
 	screen_loc = ui_lingstingdisplay
