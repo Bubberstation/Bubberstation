@@ -23,7 +23,7 @@
 					/obj/item/healthanalyzer, //To build medibots
 					/obj/item/borg_restart_board, //To allow repairs
 					/obj/item/borg/upgrade/rename, //Basics not an upgrade
-					/obj/item/relic,
+					/obj/item/assembly/relic,
 					/obj/item/mod,
 					/obj/item/reagent_containers/syringe,
 					/obj/item/reagent_containers/dropper,

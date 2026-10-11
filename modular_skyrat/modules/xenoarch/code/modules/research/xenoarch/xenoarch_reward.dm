@@ -29,7 +29,7 @@ GLOBAL_LIST_INIT(tech_reward, list(
 	/obj/item/anomaly_neutralizer = 1,
 	/obj/item/megaphone = 1,
 	/obj/item/bodybag/bluespace = 1,
-	/obj/item/relic = 1,
+	/obj/item/assembly/relic = 1,
 	/obj/item/raw_anomaly_core/random = 1,
 	/obj/item/bag_of_holding_inert = 1,
 	/obj/item/construction/plumbing = 1,
