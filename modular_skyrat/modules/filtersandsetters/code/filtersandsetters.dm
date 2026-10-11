@@ -85,7 +85,7 @@
 /datum/design/alienbonesetter
 	name = "Alien Bonesetter"
 	desc = "An abomination of reverse engineered tech, designed by a madman."
-	id = "alien_bonesetter"
+	id = /datum/design/alienbonesetter
 	build_path = /obj/item/bonesetter/alien
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT, /datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma =SMALL_MATERIAL_AMOUNT*5, /datum/material/titanium =HALF_SHEET_MATERIAL_AMOUNT * 1.5)
@@ -105,7 +105,6 @@
 /datum/design/alienbloodfilter
 	name = "Alien Blood filter"
 	desc = "An abomination of reverse engineered tech, designed by a madman."
-	id = "alien_bloodfilter"
 	build_path = /obj/item/blood_filter/alien
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT, /datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma =SMALL_MATERIAL_AMOUNT*5, /datum/material/titanium =HALF_SHEET_MATERIAL_AMOUNT * 1.5)
@@ -119,7 +118,7 @@
 	desc = "An unholy combination of bonesetter and bloodfilter."
 	icon = 'modular_skyrat/modules/filtersandsetters/icons/surgery_tools.dmi'
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*6, /datum/material/glass = SHEET_MATERIAL_AMOUNT*2, /datum/material/silver = SHEET_MATERIAL_AMOUNT*2, /datum/material/titanium =SHEET_MATERIAL_AMOUNT * 2.5)
-	icon_state = "combitool"
+	icon_state = /datum/design/combitool
 	inhand_icon_state = "adv_retractor"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
@@ -167,7 +166,6 @@
 /datum/design/combitool
 	name = "Medical Combitool"
 	desc = "This tool can be either used as bloodfilter or bonesetter."
-	id = "combitool"
 	build_path = /obj/item/blood_filter/advanced
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*6, /datum/material/glass = SHEET_MATERIAL_AMOUNT*2, /datum/material/silver = SHEET_MATERIAL_AMOUNT*2, /datum/material/titanium =SHEET_MATERIAL_AMOUNT * 2.5)
@@ -178,14 +176,14 @@
 
 /datum/techweb_node/surgery_tools/New()
 	unlocked_designs += list(
-		"combitool",
+		/datum/design/combitool,
 	)
 	return ..()
 
 /datum/techweb_node/alien_surgery/New()
 	unlocked_designs += list(
-		"alien_bloodfilter",
-		"alien_bonesetter",
+		/datum/design/alienbloodfilter,
+		/datum/design/alienbonesetter,
 	)
 	return ..()
 
