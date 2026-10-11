@@ -112,7 +112,7 @@
 		//overkill solutions on changeling simplemobs
 		if(istype(victim_living, /mob/living/basic/headslug) || istype(victim_living, /mob/living/simple_animal/hostile/true_changeling))
 			output_message = "Procedure successful! Eliminating excessive biotic hazard substance..."
-			occupant.gib()
+			victim_living.gib()
 
 	if(!isnull(output_message))
 		say(output_message)
