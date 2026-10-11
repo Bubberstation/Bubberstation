@@ -17,6 +17,20 @@
 		constant_row += shadow_rgb[i] / 255
 	return channel_row + channel_row + channel_row + constant_row
 
+/// Cache of baked custom shading icons, keyed by icon, icon state and matrix.
+GLOBAL_LIST_EMPTY(custom_shading_icon_cache)
+
+/// Returns a copy of the given icon state with the custom shading matrix baked into its pixels.
+/proc/get_custom_shaded_icon(icon_file, icon_state, list/matrix)
+	var/cache_key = "[icon_file]|[icon_state]|[matrix.Join(",")]"
+	var/icon/cached = GLOB.custom_shading_icon_cache[cache_key]
+	if(cached)
+		return cached
+	var/icon/baked = icon(icon_file, icon_state)
+	baked.MapColors(arglist(matrix))
+	GLOB.custom_shading_icon_cache[cache_key] = baked
+	return baked
+
 /// Returns the colors that count as this mob's "body" colors for custom shading, in lowercase.
 /mob/living/carbon/proc/get_custom_shading_targets()
 	var/list/targets = list()
