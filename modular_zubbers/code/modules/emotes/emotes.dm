@@ -281,3 +281,33 @@
 
 /datum/emote/living/yowl/get_sound(mob/living/user)
 	return pick('modular_zubbers/sound/emotes/yowl1.ogg', 'modular_zubbers/sound/emotes/yowl2.ogg')
+
+#define VIBE_FILTER "vibe_ripple"
+#define VIBE_DURATION (3 SECONDS)
+#define VIBE_VOLUME 25
+#define VIBE_FREQUENCY_MIN 5120
+#define VIBE_FREQUENCY_MAX 8800
+
+/datum/emote/living/vibe
+	key = "vibe"
+	key_third_person = "vibes"
+	message = "vibes."
+	emote_type = EMOTE_VISIBLE
+	cooldown = VIBE_DURATION
+
+/datum/emote/living/vibe/run_emote(mob/living/user, params, type_override, intentional)
+	. = ..()
+	// the stasis bed's low powered-up hum
+	playsound(user, 'sound/machines/synth/synth_yes.ogg', VIBE_VOLUME, TRUE, SILENCED_SOUND_EXTRARANGE, frequency = rand(VIBE_FREQUENCY_MIN, VIBE_FREQUENCY_MAX))
+	// same ripple the stasis bed puts on its occupant
+	user.add_filter(VIBE_FILTER, 2, list("type" = "ripple", "flags" = WAVE_BOUNDED, "radius" = 0, "size" = 2))
+	var/filter = user.get_filter(VIBE_FILTER)
+	animate(filter, radius = 0, time = 0.2 SECONDS, size = 2, easing = JUMP_EASING, loop = -1, flags = ANIMATION_PARALLEL)
+	animate(radius = 32, time = 1.5 SECONDS, size = 0)
+	addtimer(CALLBACK(user, TYPE_PROC_REF(/datum, remove_filter), VIBE_FILTER), VIBE_DURATION, TIMER_UNIQUE | TIMER_OVERRIDE)
+
+#undef VIBE_FILTER
+#undef VIBE_DURATION
+#undef VIBE_VOLUME
+#undef VIBE_FREQUENCY_MIN
+#undef VIBE_FREQUENCY_MAX
