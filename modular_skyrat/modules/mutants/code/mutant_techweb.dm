@@ -12,7 +12,7 @@
 	id = TECHWEB_NODE_MUTANT_TECH
 	display_name = "Advanced Nanotrasen Viral Bioweapons Technology"
 	description = "Research devices from the Nanotrasen viral bioweapons division! Got a virus problem? This'll save your day."
-	prereq_ids = list("exp_tools", "cytology")
+	prerequisite_nodes = list("exp_tools", "cytology")
 	unlocked_designs = list("rna_vial", "rna_extractor", "rna_recombinator")
 	research_costs = list(TECHWEB_NODE_SURGERY_TOOLS, TECHWEB_NODE_CYTOLOGY)
 

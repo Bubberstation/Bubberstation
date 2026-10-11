@@ -259,7 +259,7 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	hidden = TRUE
 	experimental = TRUE
-	prereq_ids = list("applied_bluespace")
+	prerequisite_nodes = list("applied_bluespace")
 	unlocked_designs = list(
 		"bluespace_miner",
 	)
