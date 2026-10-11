@@ -226,7 +226,6 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 /datum/design/cargo_teleporter
 	name = "Cargo Teleporter"
 	desc = "A wonderful item that can set markers and teleport things to those markers."
-	id = "cargotele"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/cargo_teleporter
 	materials = list(
@@ -240,12 +239,11 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/techweb_node/cargo_teleporter
-	id = TECHWEB_NODE_CARGO_TELEPORTER
 	display_name = "Cargo Teleporter"
 	description = "We can teleport items across long distances, as long as they are not blocked."
-	prerequisite_nodes = list(TECHWEB_NODE_BLUESPACE_THEORY)
+	prerequisite_nodes = list(/datum/techweb_node/bluespace_theory)
 	unlocked_designs = list(
-		"cargotele",
+		/datum/design/cargo_teleporter,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 

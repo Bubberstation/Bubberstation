@@ -9,19 +9,19 @@
 	description = "Contains all of the colony fabricator's structure designs."
 	unlocked_designs = list(
 		/datum/design/prefab_airlock_kit,
-		"prefab_manual_airlock_kit",
-		"prefab_shutters_kit",
-		"prefab_floor_tile",
-		"prefab_cat_floor_tile",
-		"colony_fab_plastic_wall_panel",
+		/datum/design/prefab_manual_airlock_kit,
+		/datum/design/prefab_shutters_kit,
+		/datum/design/prefab_floor_tile,
+		/datum/design/prefab_cat_floor_tile,
+		/datum/design/colony_fab_plastic_wall_panel,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = INFINITY) // God save you
+	node_flags = TECHWEB_NODE_HIDDEN | TECHWEB_NODE_EXPERIMENTAL
 
 // Airlock kit
 
 /datum/design/prefab_airlock_kit
 	name = "Prefab Airlock"
-	id = /datum/design/prefab_airlock_kit
 	build_type = COLONY_FABRICATOR
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
@@ -38,7 +38,6 @@
 
 /datum/design/prefab_manual_airlock_kit
 	name = "Prefab Manual Airlock"
-	id = "prefab_manual_airlock_kit"
 	build_type = COLONY_FABRICATOR
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
@@ -55,7 +54,6 @@
 
 /datum/design/prefab_shutters_kit
 	name = "Prefab Shutters"
-	id = "prefab_shutters_kit"
 	build_type = COLONY_FABRICATOR
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
@@ -72,7 +70,6 @@
 
 /datum/design/prefab_floor_tile
 	name = "Prefab Floor Tile"
-	id = "prefab_floor_tile"
 	build_type = COLONY_FABRICATOR
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT / 4,
@@ -88,7 +85,6 @@
 
 /datum/design/prefab_cat_floor_tile
 	name = "Prefab Catwalk Plating"
-	id = "prefab_cat_floor_tile"
 	build_type = COLONY_FABRICATOR
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT / 4,
@@ -104,7 +100,6 @@
 
 /datum/design/colony_fab_plastic_wall_panel
 	name = "Plastic Paneling"
-	id = "colony_fab_plastic_wall_panel"
 	build_type = COLONY_FABRICATOR
 	materials = list(
 		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT,

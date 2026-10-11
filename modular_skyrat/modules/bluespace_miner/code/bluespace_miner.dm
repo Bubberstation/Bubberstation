@@ -245,7 +245,6 @@
 /datum/design/board/bluespace_miner
 	name = "Machine Design (Bluespace Miner)"
 	desc = "Allows for the construction of circuit boards used to build a bluespace miner."
-	id = "bluespace_miner"
 	build_path = /obj/item/circuitboard/machine/bluespace_miner
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
@@ -253,15 +252,13 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/techweb_node/bluespace_miner
-	id = "bluespace_miner"
 	display_name = "Bluespace Miner"
 	description = "The future is here, where we can mine ores from the great bluespace sea."
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
-	hidden = TRUE
-	experimental = TRUE
-	prerequisite_nodes = list("applied_bluespace")
+	prerequisite_nodes = list(/datum/techweb_node/applied_bluespace)
+	node_flags = TECHWEB_NODE_HIDDEN | TECHWEB_NODE_EXPERIMENTAL
 	unlocked_designs = list(
-		"bluespace_miner",
+		/datum/design/board/bluespace_miner,
 	)
 
 #undef BLUESPACE_MINER_TOO_HOT

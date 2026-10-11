@@ -2,17 +2,17 @@
 	display_name = "Colony Fabricator Tool Designs"
 	description = "Contains all of the colony fabricator's tool designs."
 	unlocked_designs = list(
-		"colony_power_drive",
-		"colony_prybar",
-		"colony_arc_welder",
-		"colony_compact_drill",
+		/datum/design/colony_power_driver,
+		/datum/design/colony_door_crowbar,
+		/datum/design/colony_arc_welder,
+		/datum/design/colony_compact_drill,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = INFINITY) // God save you
+	node_flags = TECHWEB_NODE_HIDDEN | TECHWEB_NODE_EXPERIMENTAL
 
 // Screw-Wrench-Wirecutter combo machine
 /datum/design/colony_power_driver
 	name = "Powered Driver"
-	id = "colony_power_drive"
 	build_type = COLONY_FABRICATOR
 	build_path = /obj/item/screwdriver/omni_drill
 	materials = list(
@@ -29,7 +29,6 @@
 
 /datum/design/colony_door_crowbar
 	name = "Prybar"
-	id = "colony_prybar"
 	// build_type = COLONY_FABRICATOR // Zubber Edit: Takes it out of the all-too-easy to acquire RCF
 	build_path = /obj/item/crowbar/large/doorforcer
 	materials = list(
@@ -45,7 +44,6 @@
 
 /datum/design/colony_arc_welder
 	name = "Arc Welder"
-	id = "colony_arc_welder"
 	build_type = COLONY_FABRICATOR
 	build_path = /obj/item/weldingtool/electric/arc_welder
 	materials = list(
@@ -62,7 +60,6 @@
 
 /datum/design/colony_compact_drill
 	name = "Compact Mining Drill"
-	id = "colony_compact_drill"
 	build_type = COLONY_FABRICATOR
 	build_path = /obj/item/pickaxe/drill/compact
 	materials = list(
