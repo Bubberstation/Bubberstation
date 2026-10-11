@@ -81,8 +81,9 @@
 	if(isnull(occupant))
 		return
 
+	var/output_message
 	if(!use_energy(active_power_usage))
-		say("Procedure unsuccessful; not enough power. Aborting...")
+		output_message = "Procedure unsuccessful; not enough power. Aborting..."
 	else
 		var/mob/living/victim_living = occupant
 		var/datum/antagonist/changeling/target_ling = IS_CHANGELING(victim_living)
@@ -91,9 +92,9 @@
 			victim_living.mind.remove_antag_datum(/datum/antagonist/changeling)
 			var/datum/antagonist/fallen_changeling/fallen = victim_living.mind.add_antag_datum(/datum/antagonist/fallen_changeling)
 			fallen.objectives = copied_objectives
-			say("Procedure successful! Releasing occupant...")
+			output_message = "Procedure successful! Releasing occupant..."
 		else
-			say("ERROR: Occupant contains no identified biotic terror agents.")
+			output_message = "ERROR: Occupant contains no identified biotic terror agents."
 
 		//You probably don't want to be stuck in this, regardless of who you are
 		playsound(src, 'sound/effects/supermatter.ogg', 50, TRUE)
@@ -108,6 +109,13 @@
 			victim_living.Knockdown(15 SECONDS)
 
 		SSradiation.irradiate(occupant)
+		//overkill solutions on changeling simplemobs
+		if(istype(victim_living, /mob/living/basic/headslug) || istype(victim_living, /mob/living/simple_animal/hostile/true_changeling))
+			output_message = "Procedure successful! Eliminating excessive biotic hazard substance..."
+			occupant.gib()
+
+	if(!isnull(output_message))
+		say(output_message)
 	open_machine()
 
 /obj/item/circuitboard/machine/changeling_discombobulator
@@ -124,5 +132,5 @@
 	desc = "The circuit board used to build machines to destroy changelings."
 	id = "changeling_discombobulator"
 	build_path = /obj/item/circuitboard/machine/changeling_discombobulator
-	category = list(RND_CATEGORY_MACHINE)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY + DEPARTMENT_BITFLAG_SCIENCE
+	category = list(RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_GENETICS)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
