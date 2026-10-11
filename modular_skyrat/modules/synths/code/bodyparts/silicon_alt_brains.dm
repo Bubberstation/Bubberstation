@@ -10,13 +10,6 @@
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 
-	// It pains me to copy-paste so much, but I can't do it any other way
-	begin_activation_message = span_notice("You carefully locate the manual activation switch and start the compact AI circuit's boot process.")
-	success_message = span_notice("The compact AI circuit pings, and its lights start flashing. Success!")
-	fail_message = span_notice("The compact AI circuit buzzes quietly, and the golden lights fade away. Perhaps you could try again?")
-	new_mob_message = span_notice("The compact AI circuit chimes quietly.")
-	recharge_message = span_warning("The compact AI circuit isn't ready to activate again yet! Give it some time to recharge.")
-
 // CODE THAT ACTUALLY APPLIES THE BRAINS.
 // See modular_skyrat/master_files/code/modules/client/preferences/brain.dm for Synth/IPC application.
 
