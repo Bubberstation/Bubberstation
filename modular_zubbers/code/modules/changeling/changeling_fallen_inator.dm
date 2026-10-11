@@ -7,6 +7,7 @@
 	occupant_typecache = list(/mob/living/carbon) //todo make occupant_typecache per type
 	state_open = TRUE
 	circuit = /obj/item/circuitboard/machine/changeling_discombobulator
+	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 3
 
 	//bioscrambler that we are using to de-ling the lings
 	var/obj/item/assembly/signaler/anomaly/bioscrambler/bioscrambler
@@ -80,27 +81,33 @@
 	if(isnull(occupant))
 		return
 
-	var/mob/living/victim_living = occupant
-	var/datum/antagonist/changeling/target_ling = IS_CHANGELING(victim_living)
-	if(!isnull(target_ling))//If the target was a changeling, suck out their extra juice and objective points!
-		var/list/copied_objectives = target_ling.objectives.Copy()
-		victim_living.mind.remove_antag_datum(/datum/antagonist/changeling)
-		var/datum/antagonist/fallen_changeling/fallen = victim_living.mind.add_antag_datum(/datum/antagonist/fallen_changeling)
-		fallen.objectives = copied_objectives
-		say("Procedure successful! Releasing occupant...")
+	if(!use_energy(active_power_usage))
+		say("Procedure unsuccessful; not enough power. Aborting...")
 	else
-		say("ERROR: Occupant contains no identified biotic terror agents.")
+		var/mob/living/victim_living = occupant
+		var/datum/antagonist/changeling/target_ling = IS_CHANGELING(victim_living)
+		if(!isnull(target_ling))//If the target was a changeling, suck out their extra juice and objective points!
+			var/list/copied_objectives = target_ling.objectives.Copy()
+			victim_living.mind.remove_antag_datum(/datum/antagonist/changeling)
+			var/datum/antagonist/fallen_changeling/fallen = victim_living.mind.add_antag_datum(/datum/antagonist/fallen_changeling)
+			fallen.objectives = copied_objectives
+			say("Procedure successful! Releasing occupant...")
+		else
+			say("ERROR: Occupant contains no identified biotic terror agents.")
 
-	//You probably don't want to be stuck in this, regardless of who you are
-	playsound(src, 'sound/effects/supermatter.ogg', 50, TRUE)
-	if(istype(victim_living))
-		victim_living.apply_damage(15, BURN, BODY_ZONE_HEAD, wound_bonus = 7)
-		victim_living.apply_damage(15, BURN, BODY_ZONE_CHEST, wound_bonus = 21)
-		victim_living.apply_damage(15, BURN, BODY_ZONE_L_LEG, wound_bonus = 14)
-		victim_living.apply_damage(15, BURN, BODY_ZONE_R_LEG, wound_bonus = 14)
-		victim_living.apply_damage(15, BURN, BODY_ZONE_L_ARM, wound_bonus = 14)
-		victim_living.apply_damage(15, BURN, BODY_ZONE_R_ARM, wound_bonus = 14)
-	SSradiation.irradiate(occupant)
+		//You probably don't want to be stuck in this, regardless of who you are
+		playsound(src, 'sound/effects/supermatter.ogg', 50, TRUE)
+		if(istype(victim_living))
+			victim_living.apply_damage(15, BURN, BODY_ZONE_HEAD, wound_bonus = 7)
+			victim_living.apply_damage(15, BURN, BODY_ZONE_CHEST, wound_bonus = 21)
+			victim_living.apply_damage(15, BURN, BODY_ZONE_L_LEG, wound_bonus = 14)
+			victim_living.apply_damage(15, BURN, BODY_ZONE_R_LEG, wound_bonus = 14)
+			victim_living.apply_damage(15, BURN, BODY_ZONE_L_ARM, wound_bonus = 14)
+			victim_living.apply_damage(15, BURN, BODY_ZONE_R_ARM, wound_bonus = 14)
+
+			victim_living.Knockdown(15 SECONDS)
+
+		SSradiation.irradiate(occupant)
 	open_machine()
 
 /obj/item/circuitboard/machine/changeling_discombobulator
