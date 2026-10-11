@@ -75,6 +75,9 @@
 	if(alpha != ALPHA_OPAQUE)
 		. += "[alpha]"
 
+	if(limb?.owner)
+		. += limb.owner.get_custom_shading_key()
+
 	if(emissive_eligibility_by_color_index)
 		for(var/emissive_boolean in emissive_eligibility_by_color_index)
 			. += emissive_boolean
@@ -203,6 +206,10 @@
 
 			else
 				overlay.color = limb?.color
+
+		// Custom shading, only for greyscale layers and never on husks
+		if(sprite_datum.color_src && limb?.owner && !limb.is_husked && istext(overlay.color))
+			overlay.color = limb.owner.get_custom_shading(overlay.color)
 
 		overlay.alpha = alpha
 
