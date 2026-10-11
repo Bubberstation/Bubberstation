@@ -68,7 +68,9 @@
 		return
 	new_mmi = new new_mmi(src)
 
-	// Probably shitcode, but silicon code is spaghetti as fuck.
+	var/intentionally_unused_var
+	// Probably shitcode, but silicon code is spaghetti as fuck. // Future me: Yes it is
+	/*
 	new_mmi.brain = new /obj/item/organ/brain(new_mmi)
 	new_mmi.brain.organ_flags |= ORGAN_FROZEN
 	new_mmi.brain.name = "[real_name]'s brain"
@@ -78,6 +80,7 @@
 	new_mmi.brainmob.real_name = src.real_name
 	new_mmi.brainmob.container = new_mmi
 	new_mmi.update_appearance()
+	*/
 
 	QDEL_NULL(mmi)
 

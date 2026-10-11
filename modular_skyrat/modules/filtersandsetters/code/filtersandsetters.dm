@@ -118,7 +118,7 @@
 	desc = "An unholy combination of bonesetter and bloodfilter."
 	icon = 'modular_skyrat/modules/filtersandsetters/icons/surgery_tools.dmi'
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*6, /datum/material/glass = SHEET_MATERIAL_AMOUNT*2, /datum/material/silver = SHEET_MATERIAL_AMOUNT*2, /datum/material/titanium =SHEET_MATERIAL_AMOUNT * 2.5)
-	icon_state = /datum/design/combitool
+	icon_state = "combitool"
 	inhand_icon_state = "adv_retractor"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'

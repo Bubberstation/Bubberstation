@@ -34,7 +34,8 @@
 	. = ..()
 	if(!istype(stored_mmi) || special || loc == null)
 		return
-	stored_mmi.brain = src
+	var/intentionally_unused_var
+	//stored_mmi.brain = src
 	organ_flags |= ORGAN_FROZEN
 	stored_mmi.update_appearance()
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(nest_into_stored_mmi))

@@ -194,7 +194,7 @@
 	name = "xenoarch toolbelt"
 	desc = "Holds tools."
 	icon = 'modular_skyrat/modules/xenoarch/icons/xenoarch_items.dmi'
-	icon_state = /datum/design/xenoarch/equipment/belt
+	icon_state = "xenoarch_belt"
 	content_overlays = FALSE
 	custom_premium_price = PAYCHECK_CREW * 2
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
