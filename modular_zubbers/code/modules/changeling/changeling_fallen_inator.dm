@@ -10,7 +10,7 @@
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 3
 
 	//bioscrambler that we are using to de-ling the lings
-	var/obj/item/assembly/signaler/anomaly/bioscrambler/bioscrambler
+	//var/obj/item/assembly/signaler/anomaly/bioscrambler/bioscrambler
 	var/delay_to_de_ling = 5 SECONDS
 
 /obj/machinery/changeling_discombobulator/Initialize(mapload)
@@ -19,7 +19,7 @@
 
 /obj/machinery/changeling_discombobulator/examine(mob/user)
 	. = ..()
-	. += span_warning("[src] requires a bioscrambler anomaly to function!")
+	//. += span_warning("[src] requires a bioscrambler anomaly to function!")
 
 /obj/machinery/changeling_discombobulator/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	context[SCREENTIP_CONTEXT_LMB] = "[state_open ? "Close" : "Open"] machine"
@@ -34,20 +34,21 @@
 
 /obj/machinery/changeling_discombobulator/update_overlays()
 	. = ..()
-	if(!isnull(bioscrambler))
-		. += "bioscrambler_overlay"
+	//if(!isnull(bioscrambler))
+	. += "bioscrambler_overlay"
 
 /obj/machinery/changeling_discombobulator/interact(mob/user)
 	. = ..()
-	if(!isnull(bioscrambler))
-		playsound(src, 'sound/machines/click.ogg', 50)
-		toggle_open()
-	else
+	/*if(isnull(bioscrambler))
 		to_chat(user,span_warning("[src] requires a bioscrambler anomaly core to function."))
+		return*/
+	playsound(src, 'sound/machines/click.ogg', 50)
+	toggle_open()
 
 /obj/machinery/changeling_discombobulator/proc/toggle_open(mob/user)
 	state_open ? close_machine() : open_machine()
 
+/*
 /obj/machinery/changeling_discombobulator/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool,/obj/item/assembly/signaler/anomaly/bioscrambler))
 		return NONE
@@ -59,7 +60,7 @@
 	bioscrambler = tool
 	to_chat(user,span_notice("You insert the bioscrambler core."))
 	update_appearance()
-	return ITEM_INTERACT_SUCCESS
+4	return ITEM_INTERACT_SUCCESS*/
 
 /obj/machinery/changeling_discombobulator/close_machine(atom/movable/target, density_to_set = TRUE)
 	. = ..()
@@ -67,6 +68,7 @@
 		say("Preparing anti-Changeling radio-biotic pulse; ETA 8 seconds.")
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/machinery/changeling_discombobulator, try_de_lingify)), 8 SECONDS)
 
+/*
 /obj/machinery/changeling_discombobulator/dump_contents()
 	. = ..()
 	bioscrambler = null
@@ -76,6 +78,7 @@
 	// Don't drop the bioscrambler, it's directly inserted into the machine.
 	// dump_contents() will drop everything including the skillchip as an alternative to this.
 	return ..(contents - bioscrambler)
+*/
 
 /obj/machinery/changeling_discombobulator/proc/try_de_lingify()
 	if(isnull(occupant))
@@ -110,7 +113,9 @@
 
 		SSradiation.irradiate(occupant)
 		//overkill solutions on changeling simplemobs
-		if(istype(victim_living, /mob/living/basic/headslug) || istype(victim_living, /mob/living/simple_animal/hostile/true_changeling))
+		if(istype(victim_living, /mob/living/basic/headslug) \
+			|| istype(victim_living, /mob/living/simple_animal/hostile/true_changeling) \
+			|| istype(victim_living, /mob/living/basic/boss/thing))
 			output_message = "Procedure successful! Eliminating excessive biotic hazard substance..."
 			victim_living.gib()
 
