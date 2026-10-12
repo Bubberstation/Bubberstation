@@ -55,9 +55,9 @@
 
 /datum/supply_pack/company_import/vitezstvi/grenade_shells/shrapnel
 	item_type = /obj/item/ammo_box/c980grenade/shrapnel
-	order_flags = ORDER_CONTRABAND
+	order_flags = parent_type::order_flags | ORDER_CONTRABAND
 
 /datum/supply_pack/company_import/vitezstvi/grenade_shells/phosphor
 	item_type = /obj/item/ammo_box/c980grenade/shrapnel/phosphor
-	order_flags = ORDER_CONTRABAND
+	order_flags = parent_type::order_flags | ORDER_CONTRABAND
 
