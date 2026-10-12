@@ -95,9 +95,8 @@
 			victim_living.mind.remove_antag_datum(/datum/antagonist/changeling)
 			var/datum/antagonist/fallen_changeling/fallen = victim_living.mind.add_antag_datum(/datum/antagonist/fallen_changeling)
 			fallen.objectives = copied_objectives
-			output_message = "Procedure successful! Releasing occupant..."
-		else
-			output_message = "ERROR: Occupant contains no identified biotic terror agents."
+
+		output_message = "Procedure successful! Releasing occupant..."
 
 		//You probably don't want to be stuck in this, regardless of who you are
 		playsound(src, 'sound/effects/supermatter.ogg', 50, TRUE)
