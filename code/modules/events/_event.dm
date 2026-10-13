@@ -69,8 +69,8 @@
 	SHOULD_CALL_PARENT(TRUE)
 	if(occurrences >= max_occurrences)
 		if(log_for_admins)
-			message_admins("[name] failed to run because [span_warning("it exceeded max occurences")]")
-			log_admin_private("[name] failed to run because it exceeded max occurences")
+			message_admins("[name] failed to run because [span_warning("it exceeded max occurences")] [occurences]/[max_occurrences]")
+			log_admin_private("[name] failed to run because it exceeded max occurences [occurences]/[max_occurrences]")
 		return FALSE
 	if(!(roundstart ^ SSticker.HasRoundStarted())) // BUBBER EDIT: Roundstart checks added
 		if(log_for_admins)
@@ -79,8 +79,8 @@
 		return FALSE
 	if(weight == 0) // BUBBER EDIT: Weight check added
 		if(log_for_admins)
-			message_admins("[name] failed to run because [span_warning("its weight was 0, therefore it's ineligible")]")
-			log_admin_private("[name] failed to run because its weight was 0, therefore it's ineligible")
+			message_admins("[name] failed to run because [span_warning("its weight ([weight]) was 0, therefore it's ineligible")]")
+			log_admin_private("[name] failed to run because its weight ([weight]) was 0, therefore it's ineligible")
 		return FALSE
 	if(!allow_magic && wizardevent != SSevents.wizardmode)
 		if(log_for_admins)
@@ -89,8 +89,8 @@
 		return FALSE
 	if(players_amt < min_players)
 		if(log_for_admins)
-			message_admins("[name] failed to run because [span_warning("there aren't enough players to run this")]")
-			log_admin_private("[name] failed to run because there aren't enough players to run this")
+			message_admins("[name] failed to run because [span_warning("there aren't enough players to run this")] [players_amt]/[min_players]")
+			log_admin_private("[name] failed to run because there aren't enough players to run this [players_amt]/[min_players]")
 		return FALSE
 	if(holidayID && !check_holidays(holidayID))
 		if(log_for_admins)
