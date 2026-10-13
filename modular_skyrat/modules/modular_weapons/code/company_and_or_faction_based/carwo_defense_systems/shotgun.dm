@@ -76,3 +76,8 @@
 	name = "\improper Riot Renoster Shotgun"
 	desc = "A modified version of the Renoster shotgun, this one only holds beanbag and rubber rounds."
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/shot/less_lethal
+
+	icon_state = "renosterlesslethal"
+	worn_icon_state = "renosterlesslethal"
+	inhand_icon_state = "renosterlesslethal"
+
