@@ -51,7 +51,7 @@ export const SecurityRecordTabs = (props) => {
               <NoticeBox>{errorMessage}</NoticeBox>
             ) : (
               sorted.map((record, index) => (
-                <CrewTab record={record} key={index} />
+                <CrewTab index={index} record={record} key={index} />
               ))
             )}
           </Tabs>
@@ -84,14 +84,14 @@ export const SecurityRecordTabs = (props) => {
 };
 
 /** Individual record */
-const CrewTab = (props: { record: SecurityRecord }) => {
+const CrewTab = (props: { record: SecurityRecord; index: number }) => {
   const [selectedRecord, setSelectedRecord] = useLocalState<
     SecurityRecord | undefined
   >('securityRecord', undefined);
 
   const { act, data } = useBackend<SecurityRecordsData>();
   const { assigned_view } = data;
-  const { record } = props;
+  const { record, index } = props;
   const { crew_ref, name, trim, wanted_status } = record;
 
   /** Chooses a record */
@@ -114,16 +114,26 @@ const CrewTab = (props: { record: SecurityRecord }) => {
   };
 
   const isSelected = selectedRecord?.crew_ref === crew_ref;
+  const statusColor = CRIMESTATUS2COLOR[wanted_status]; // BUBBER EDIT ADDITION - WARRANTS
 
   return (
+    // BUBBER EDIT CHANGE START - WARRANTS - a flagged record fills its whole row with the status colour and a white name.
+    // The colour goes on the tab itself rather than an inner box so there is no gap around it, and the candystripe class
+    // comes off when it does, because that rule paints a gradient over any background colour underneath it. The bar then
+    // carries its own light/dark alternation on the same row parity, so ten wanted people still read as stripes.
     <Tabs.Tab
-      className="candystripe"
+      backgroundColor={statusColor}
+      className={statusColor ? undefined : 'candystripe'}
       onClick={() => selectRecord(record)}
       selected={isSelected}
+      style={
+        statusColor && index % 2 ? { filter: 'brightness(0.85)' } : undefined
+      }
     >
-      <Box bold={isSelected} color={CRIMESTATUS2COLOR[wanted_status]}>
+      <Box bold={isSelected} color={statusColor ? 'white' : undefined}>
         <Icon name={JOB2ICON[trim] || 'question'} /> {name}
       </Box>
     </Tabs.Tab>
+    // BUBBER EDIT CHANGE END
   );
 };

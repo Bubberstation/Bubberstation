@@ -533,7 +533,7 @@
 
 	var/perpname = get_face_name(get_id_name(""))
 	var/title = ""
-	if(perpname && (HAS_TRAIT(user, TRAIT_SECURITY_HUD) || HAS_TRAIT(user, TRAIT_MEDICAL_HUD)) && (!IS_UNCONSCIOUS_OR_CRIT(user) || isobserver(user)) && user != src)
+	if((HAS_TRAIT(user, TRAIT_SECURITY_HUD) || HAS_TRAIT(user, TRAIT_MEDICAL_HUD)) && (!IS_UNCONSCIOUS_OR_CRIT(user) || isobserver(user)) && user != src) // BUBBER EDIT CHANGE - WARRANTS - dropped the perpname requirement so recordless POI targets still show the security panel
 		var/datum/record/crew/target_record = find_record(perpname)
 		if(target_record)
 			. += "Rank: [target_record.rank]"
@@ -587,6 +587,27 @@
 		wanted_status = target_record.wanted_status
 		if(target_record.security_note)
 			security_note = target_record.security_note
+	// BUBBER EDIT ADDITION START - WARRANTS - recordless targets get the person of interest toggle instead of a criminal status
+	if(!target_record && ishuman(src))
+		var/datum/component/person_of_interest/flag = GetComponent(/datum/component/person_of_interest)
+		. += "Criminal status: \[NO DATA CORE ENTRY\]"
+		if(ishuman(user))
+			. += "Person of interest: <a href='byond://?src=[REF(src)];hud=s;poi=1;examine_time=[world.time]'>\[[flag ? "Flagged" : "Unflagged"]\]</a>"
+		else
+			. += "Person of interest: [flag ? "Flagged" : "Unflagged"]"
+		if(flag)
+			flag.try_corroborate()
+			flag.mark_seen()
+			. += span_warning("Attention: unidentified person of interest. Confirm civil status immediately.")
+			switch(flag.corroboration_source)
+				if("face")
+					. += span_smallnoticeital("Facial recognition data present. Flagged by [flag.flagged_by].")
+				if("id")
+					. += span_smallnoticeital("Tracking presented ID: [flag.corroborated_name]. Flagged by [flag.flagged_by].")
+				else
+					. += span_smallnoticeital("Identity unconfirmed. Flagged by [flag.flagged_by].")
+		return
+	// BUBBER EDIT ADDITION END
 	// BUBBER EDIT ADDITION START - silly HUDsunglasses replace the criminal status field outright
 	var/mob/living/carbon/human/human_examiner = user
 	if(ishuman(user) && istype(human_examiner.glasses, /obj/item/clothing/glasses/hud/security/sunglasses/guard/silly))
@@ -596,6 +617,10 @@
 		. += "Criminal status: <a href='byond://?src=[REF(src)];hud=s;status=1;examine_time=[world.time]'>\[[wanted_status]\]</a>"
 	else
 		. += "Criminal status: [wanted_status]"
+	// BUBBER EDIT ADDITION START - WARRANTS
+	if(target_record.wanted_status == WANTED_EXECUTE && target_record.death_warrant_reason)
+		. += span_warning("Death warrant grounds: [target_record.death_warrant_reason]")
+	// BUBBER EDIT ADDITION END
 	. += "Important Notes: [security_note]"
 	. += "Security record: <a href='byond://?src=[REF(src)];hud=s;view=1;examine_time=[world.time]'>\[View\]</a>"
 	if(ishuman(user))

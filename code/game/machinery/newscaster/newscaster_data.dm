@@ -145,6 +145,8 @@ GLOBAL_LIST_EMPTY(request_list)
 	var/icon/img
 	/// Reference to the photo file used by wanted message on creation.
 	var/photo_file
+	/// BUBBER EDIT ADDITION - WARRANTS - the bare offence, without whatever prefix the body carries, for prefilling the edit form
+	var/criminal_activity
 
 /datum/feed_network
 	/// All the feed channels that have been made on the feed network.
@@ -267,6 +269,7 @@ GLOBAL_LIST_EMPTY(request_list)
 	wanted_issue.active = FALSE
 	wanted_issue.criminal = null
 	wanted_issue.body = null
+	wanted_issue.criminal_activity = null // BUBBER EDIT ADDITION - WARRANTS
 	wanted_issue.scanned_user = null
 	wanted_issue.img = null
 	for(var/obj/machinery/newscaster/updated_newscaster as anything in GLOB.allCasters)
