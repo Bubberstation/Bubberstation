@@ -69,8 +69,8 @@
 	SHOULD_CALL_PARENT(TRUE)
 	if(occurrences >= max_occurrences)
 		if(log_for_admins)
-			message_admins("[name] failed to run because [span_warning("it exceeded max occurences")] [occurences]/[max_occurrences]")
-			log_admin_private("[name] failed to run because it exceeded max occurences [occurences]/[max_occurrences]")
+			message_admins("[name] failed to run because [span_warning("it exceeded max occurences")] [occurrences]/[max_occurrences]")
+			log_admin_private("[name] failed to run because it exceeded max occurences [occurrences]/[max_occurrences]")
 		return FALSE
 	if(!(roundstart ^ SSticker.HasRoundStarted())) // BUBBER EDIT: Roundstart checks added
 		if(log_for_admins)
