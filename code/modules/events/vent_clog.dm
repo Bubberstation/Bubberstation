@@ -8,7 +8,7 @@
 	category = EVENT_CATEGORY_JANITORIAL
 	description = "Harmless mobs climb out of a vent."
 
-/datum/round_event_control/vent_clog/can_spawn_event(players_amt, allow_magic = FALSE)
+/datum/round_event_control/vent_clog/can_spawn_event(players_amt, allow_magic = FALSE, log_for_admins = FALSE)
 	. = ..()
 	if(!.)
 		return

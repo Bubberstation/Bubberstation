@@ -9,7 +9,7 @@
 	var/previous_night_shift
 
 // because we can run night shift multiple times over 3+ hour rounds, we enforce a minimum time between night shift triggers
-/datum/round_event_control/nightshift/can_spawn_event(players_amt, allow_magic = FALSE)
+/datum/round_event_control/nightshift/can_spawn_event(players_amt, allow_magic = FALSE, log_for_admins = FALSE)
 	. = ..()
 	if(!.)
 		return
