@@ -1,7 +1,7 @@
 /mob/living/basic/carp/advanced/pipe_carp
 	name = "carpmospheric technician"
 	desc = "Ferocious, highly aggressive fish that thrives in the depths of shoddy engineering work. Drawn to poorly sealed pipes, mismatched connectors, and hastily patched atmospherics, these creatures feast on structural incompetence with alarming efficiency."
-	icon = 'modular_zubbers/icons/mob/simple/pipe_carp.dmi'
+	icon = 'modular_zubbers/icons/mob/simple/carp.dmi'
 	greyscale_config = null
 	ai_controller = /datum/ai_controller/basic_controller/carp/pipe_carp
 	var/static/list/pipes_list = typecacheof(list(/obj/machinery/atmospherics/pipe/heat_exchanging/simple))

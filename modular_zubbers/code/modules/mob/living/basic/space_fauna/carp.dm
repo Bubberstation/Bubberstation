@@ -21,12 +21,15 @@
 /mob/living/basic/carp/metacarp
 	name = "Metacarp"
 	desc = "A carp-shaped portal to the carp-filled dimension."
+	icon = 'modular_zubbers/icons/mob/simple/carp.dmi'
+	icon_state = "metacarp"
 	health = 450
 	maxHealth = 450
-
+	basic_mob_flags = parent_type::basic_mob_flags | DEL_ON_DEATH
 	//current living carp
 	var/mob/living/basic/carp/mycarp
 	var/time_between_carp_spawns = 10 SECONDS
+	var/carp_spawn_on_violent_death = 3
 
 	var/is_anomaly_containable = FALSE
 	var/anomaly_destabilize_threshhold = 0.5
@@ -66,19 +69,27 @@
 	wound_clothing = TRUE,
 )
 	. = ..()
-	if(is_anomaly_containable && istype(attacking_item, /obj/item/anomaly_neutralizer/))
-		anomaly_stabilize()
 	if(!is_anomaly_containable && health <= maxHealth * anomaly_destabilize_threshhold)
 		is_anomaly_containable = TRUE
 		balloon_alert_to_viewers("destabilized!")
-		Shake(3, 3, 5 SECONDS)
+		Shake(3, 3, 20 SECONDS)
+	else if(is_anomaly_containable && istype(attacking_item, /obj/item/anomaly_neutralizer/))
+		anomaly_stabilize()
+		qdel(attacking_item)
 
 /mob/living/basic/carp/metacarp/proc/anomaly_stabilize()
-
+	new /obj/effect/particle_effect/fluid/smoke/bad(loc)
 	if (SSresearch.is_core_available(anomaly_type))
 		SSresearch.increment_existing_anomaly_cores(anomaly_type)
-		anomaly_core.forceMove(drop_location())
-		anomaly_core = null
+		new anomaly_type(get_turf(src))
 	else // You exceeded the cap sorry
-		visible_message(span_warning("[anomaly_core] loses its lustre as it falls to the ground, there is too little ambient energy to support another core of this type."))
-		new /obj/item/inert_anomaly(drop_location())
+		visible_message(span_warning("The anomaly core loses its lustre as it falls to the ground, there is too little ambient energy to support another core of this type."))
+		new /obj/item/inert_anomaly(get_turf(src))
+	qdel(src)
+
+/mob/living/basic/carp/metacarp/death(gibbed)
+	for(var/i = 0; i < carp_spawn_on_violent_death; i ++)
+		mycarp = new(loc)
+	do_sparks(3)
+	playsound(get_turf(src),'sound/effects/magic/repulse.ogg', 100, TRUE)
+	. = ..()
