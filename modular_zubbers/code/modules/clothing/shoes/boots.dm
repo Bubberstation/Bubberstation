@@ -452,14 +452,14 @@
 	strip_delay = 60 SECONDS
 	resistance_flags = INDESTRUCTIBLE|LAVA_PROOF|FIRE_PROOF|UNACIDABLE|ACID_PROOF
 	lace_time = 0.5 SECONDS
-	clothing_traits = list(TRAIT_NO_SLIP_WATER)
+	clothing_traits = list(TRAIT_NO_SLIP_WATER, TRAIT_NO_SLIP_ICE, TRAIT_NO_SLIP_SLIDE, TRAIT_NO_SLIP_ALL)
 	actions_types = list(/datum/action/item_action/toggle)
 	w_class = WEIGHT_CLASS_SMALL
 
 	var/free_move = FALSE
-	var/list/active_traits = list(TRAIT_NO_SLIP_ICE, TRAIT_NO_SLIP_SLIDE, TRAIT_NO_SLIP_ALL, TRAIT_SPACEWALK)
+	var/list/active_traits = list(TRAIT_SPACEWALK, TRAIT_NEGATES_GRAVITY)
 
-GAME_VERB_SRC(/obj/item/clothing/shoes/combat/bluespace, toggle, usr, "Toggle Freedom of Movement", null)
+GAME_VERB_SRC(/obj/item/clothing/shoes/combat/bluespace, toggle, usr, "Toggle Bluespace Magnets", null)
 
 	if(!can_use(usr))
 		return
@@ -472,10 +472,10 @@ GAME_VERB_SRC(/obj/item/clothing/shoes/combat/bluespace, toggle, usr, "Toggle Fr
 	else
 		detach_clothing_traits(active_traits)
 
-	balloon_alert(user, "freedom of movement [free_move ? "activated" : "deactivated"]")
+	balloon_alert(user, "bluespace magnets [free_move ? "activated" : "deactivated"]")
 
 
 
 /obj/item/clothing/shoes/combat/bluespace/examine(mob/user)
 	. = ..()
-	. += "Its bluespace free movement device appears to be [free_move ? "activated" : "deactivated"]."
+	. += "It's bluespace magnets appear to be [free_move ? "activated" : "deactivated"]."

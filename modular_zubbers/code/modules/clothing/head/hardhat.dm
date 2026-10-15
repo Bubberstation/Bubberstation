@@ -1,11 +1,10 @@
 /obj/item/clothing/head/utility/hardhat/bluespace
-	name = "bluespace tech's hard hat"
+	name = "technician's hard hat"
 	desc = "A robust and elite hard hat, worn by Nanotrasen's theoretical bluespace technicians. You probably shouldn't have this."
 
 	icon = 'modular_zubbers/icons/obj/clothing/head/utility.dmi'
 	icon_state = "hardhat0_bst"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/utility.dmi'
-	worn_icon_state = "hardhat0_bst"
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/head/utility_teshari.dmi'
 	hat_type = "bst"
 	inhand_icon_state = null
@@ -33,4 +32,5 @@
 /obj/item/clothing/head/utility/hardhat/bluespace/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/earhealing)
+	AddElement(/datum/element/radiation_protected_clothing)
 	AddComponent(/datum/component/wearertargeting/earprotection, protection_amount = EAR_PROTECTION_FULL)

@@ -2,7 +2,7 @@
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/belts/belts_teshari.dmi'
 
 /obj/item/storage/belt/bluespace
-	name = "bluespace tech's belt"
+	name = "technician's belt"
 	desc = "Can hold various things, and specifically up to 21 things. You likely shouldn't have this."
 	content_overlays = FALSE
 	icon = 'modular_zubbers/icons/obj/clothing/belts/belts.dmi'
@@ -26,3 +26,4 @@
 	new /obj/item/pipe_dispenser/bluespace(src)
 	new /obj/item/holosign_creator/atmos(src)
 	new /obj/item/extinguisher/advanced(src)
+	new /obj/item/analyzer/ranged(src)
