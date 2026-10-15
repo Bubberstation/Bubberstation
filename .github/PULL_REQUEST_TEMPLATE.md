@@ -21,7 +21,7 @@
 
 ## AI Disclosure
 
-<!-- If you used generative AI for the making of your PR please disclose how and where it was used. If you did not, feel free to delete this section or just write you did not. -->
+<!-- If you used generative AI for the making of your PR please disclose how and where it was used. If you did not, feel free to ignore this section or just write you did not. -->
 
 ## Changelog
 
