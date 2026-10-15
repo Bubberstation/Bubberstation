@@ -1,3 +1,24 @@
+/datum/loadout_category/accessories
+	VAR_PRIVATE/max_allowed = 3
+
+/datum/loadout_category/accessories/New()
+	. = ..()
+	category_info = "([max_allowed] allowed)"
+
+/datum/loadout_category/accessories/handle_duplicate_entires(
+	datum/preference_middleware/loadout/manager,
+	datum/loadout_item/conflicting_item,
+	datum/loadout_item/added_item,
+	list/datum/loadout_item/all_loadout_items,
+)
+	var/list/datum/loadout_item/accessory/other_accessory_items = list()
+	for(var/datum/loadout_item/accessory/other_accessory_item in all_loadout_items)
+		other_accessory_items += other_accessory_item
+
+	if(length(other_accessory_items) >= max_allowed)
+		manager.deselect_item(other_accessory_items[1])
+	return TRUE
+
 /datum/loadout_category/pocket
 	max_allowed = 3
 

@@ -49,6 +49,7 @@
 	prereq_ids = list(TECHWEB_NODE_OFFICE_EQUIP)
 	design_ids = list(
 		"advmop",
+		"advbroom", // BUBBER EDIT ADDITION - advanced push broom
 		"light_replacer",
 		"spraybottle",
 		"paint_remover",
