@@ -1,0 +1,31 @@
+/obj/item/encryptionkey/admin
+	name = "administrator encryption key"
+	desc = "Lets you listen into way too many frequencies."
+	icon_state = "/obj/item/encryptionkey/headset_cent"
+	post_init_icon_state = "cypherkey_centcom"
+	special_channels = RADIO_SPECIAL_CENTCOM
+	channels = list(
+		RADIO_CHANNEL_COMMAND = 1,
+		RADIO_CHANNEL_SECURITY = 1,
+		RADIO_CHANNEL_ENGINEERING = 1,
+		RADIO_CHANNEL_SCIENCE = 1,
+		RADIO_CHANNEL_MEDICAL = 1,
+		RADIO_CHANNEL_SUPPLY = 1,
+		RADIO_CHANNEL_SERVICE = 1,
+		RADIO_CHANNEL_AI_PRIVATE = 1,
+		RADIO_CHANNEL_ENTERTAINMENT = 1,
+		RADIO_CHANNEL_SYNDICATE = 1,
+		RADIO_CHANNEL_INTERDYNE = 1,
+		RADIO_CHANNEL_CYBERSUN = 1,
+		RADIO_CHANNEL_CENTCOM = 1,
+		RADIO_CHANNEL_GUILD = 1,
+		RADIO_CHANNEL_TARKON = 1,
+		RADIO_CHANNEL_TERRAGOV = 1,
+		RADIO_CHANNEL_CTF_BLUE = 1,
+		RADIO_CHANNEL_CTF_RED = 1,
+		RADIO_CHANNEL_CTF_GREEN = 1,
+		RADIO_CHANNEL_CTF_YELLOW = 1,
+		RADIO_CHANNEL_UPLINK = 1,
+		)
+	greyscale_config = /datum/greyscale_config/encryptionkey_centcom
+	greyscale_colors = "#2724a1#dca01b"

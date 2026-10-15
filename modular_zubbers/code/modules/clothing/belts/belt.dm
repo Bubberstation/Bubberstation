@@ -27,3 +27,4 @@
 	new /obj/item/holosign_creator/atmos(src)
 	new /obj/item/extinguisher/advanced(src)
 	new /obj/item/analyzer/ranged(src)
+	new /obj/item/radio/admin(src)

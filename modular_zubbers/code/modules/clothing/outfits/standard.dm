@@ -19,8 +19,9 @@
 
 /datum/outfit/admin/bst //Stylized outfit with debug tools and without a predeployed modsuit
 	name = "Bluespace Tech (Admin)"
-	uniform = /obj/item/clothing/under/syndicate/combat
+	uniform = /obj/item/clothing/under/syndicate/combat/bluespace
 	head = /obj/item/clothing/head/utility/hardhat/bluespace
+	ears = /obj/item/radio/headset/headset_cent/commander/admin
 	mask = null
 	belt = /obj/item/storage/belt/bluespace
 	shoes = /obj/item/clothing/shoes/combat/bluespace
