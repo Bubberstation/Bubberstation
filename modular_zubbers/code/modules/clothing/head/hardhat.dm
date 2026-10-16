@@ -1,4 +1,4 @@
-/obj/item/clothing/head/utility/hardhat/bluespace
+/obj/item/clothing/head/utility/hardhat/debug
 	name = "technician's hard hat"
 	desc = "A robust and elite hard hat, worn by Nanotrasen's theoretical bluespace technicians. You probably shouldn't have this."
 
@@ -29,7 +29,7 @@
 	light_power = 1.6
 	light_color = "#ffcc99"
 
-/obj/item/clothing/head/utility/hardhat/bluespace/Initialize(mapload)
+/obj/item/clothing/head/utility/hardhat/debug/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/earhealing)
 	AddElement(/datum/element/radiation_protected_clothing)

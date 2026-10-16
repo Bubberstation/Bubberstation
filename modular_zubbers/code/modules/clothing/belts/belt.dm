@@ -1,7 +1,7 @@
 /obj/item/storage/belt/fannypack
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/belts/belts_teshari.dmi'
 
-/obj/item/storage/belt/bluespace
+/obj/item/storage/belt/debug
 	name = "technician's belt"
 	desc = "Can hold various things, and specifically up to 21 things. You likely shouldn't have this."
 	content_overlays = FALSE
@@ -17,7 +17,7 @@
 	preload = FALSE
 	storage_type = /datum/storage/bluespace_belt
 
-/obj/item/storage/belt/bluespace/PopulateContents()
+/obj/item/storage/belt/debug/PopulateContents()
 	new /obj/item/screwdriver/power/bluespace(src)
 	new /obj/item/crowbar/power/bluespace(src)
 	new /obj/item/weldingtool/experimental/bluespace(src)

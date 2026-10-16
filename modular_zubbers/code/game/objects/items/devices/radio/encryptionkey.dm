@@ -1,7 +1,7 @@
 /obj/item/encryptionkey/admin
 	name = "administrator encryption key"
 	desc = "Lets you listen into way too many frequencies."
-	icon_state = "/obj/item/encryptionkey/headset_cent"
+	icon_state = "/obj/item/encryptionkey/headset_admin"
 	post_init_icon_state = "cypherkey_centcom"
 	special_channels = RADIO_SPECIAL_CENTCOM
 	channels = list(

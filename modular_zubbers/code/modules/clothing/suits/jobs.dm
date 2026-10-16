@@ -34,7 +34,7 @@
 /obj/item/clothing/suit/toggle/lawyer/greyscale
 	greyscale_config_worn_teshari = /datum/greyscale_config/jacket_lawyer/worn/teshari
 
-/obj/item/clothing/suit/hazardvest/bluespace
+/obj/item/clothing/suit/hazardvest/debug
 	name = "technician's hazard vest"
 	desc = "The slick, black and blue hazard vest of a bluespace technician. Protects from most things, including the vaccuum of space. You probably shouldn't have this."
 
@@ -67,6 +67,6 @@
 		/obj/item/tank/internals,
 	)
 
-/obj/item/clothing/suit/hazardvest/bluespace/Initialize(mapload)
+/obj/item/clothing/suit/hazardvest/debug/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/radiation_protected_clothing)
