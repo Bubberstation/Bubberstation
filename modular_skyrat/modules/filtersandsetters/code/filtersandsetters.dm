@@ -85,7 +85,6 @@
 /datum/design/alienbonesetter
 	name = "Alien Bonesetter"
 	desc = "An abomination of reverse engineered tech, designed by a madman."
-	id = /datum/design/alienbonesetter
 	build_path = /obj/item/bonesetter/alien
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT, /datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma =SMALL_MATERIAL_AMOUNT*5, /datum/material/titanium =HALF_SHEET_MATERIAL_AMOUNT * 1.5)

@@ -2,9 +2,9 @@
 	. = ..()
 	// if this datum is ever instantiated twice, somehow, this is more efficient. i feel like an idiot writing this
 	var/static/list/science_tools = list(
-		SCIENCE_JAWS_OF_LIFE_DESIGN_ID,
-		SCIENCE_DRILL_DESIGN_ID,
-		SCIENCE_ROBORCD_DESIGN_ID,
+		/datum/design/jawsoflife/science,
+		/datum/design/handdrill/science,
+		/datum/design/rcd_loaded/robotics_rcd,
 	)
 	unlocked_designs += science_tools
 

@@ -5,8 +5,8 @@
 	description = "Specialized cybernetic limb designs. The shortening of the femur is surely the result of mechanical optimization."
 	prerequisite_nodes = list(/datum/techweb_node/robotics)
 	unlocked_designs = list(
-		"digitigrade_cyber_l_leg",
-		"digitigrade_cyber_r_leg",
+		/datum/design/digitigrade_cyber_l_leg,
+		/datum/design/digitigrade_cyber_r_leg,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 
@@ -16,7 +16,7 @@
 	description = "A step above consumer-grade digitigrade models, these have self-sharpening claws for destroying your footwear much faster."
 	prerequisite_nodes = list(/datum/techweb_node/augmentation)
 	unlocked_designs = list(
-		"digitigrade_advanced_l_leg",
-		"digitigrade_advanced_r_leg",
+		/datum/design/digitigrade_adv_l_leg,
+		/datum/design/digitigrade_adv_r_leg,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)

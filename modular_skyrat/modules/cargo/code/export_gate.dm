@@ -371,7 +371,6 @@
 /datum/design/board/export_gate
 	name = "Export Gate Board"
 	desc = "The circuit board for an export gate."
-	id = "export_gate"
 	build_path = /obj/item/circuitboard/machine/export_gate
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_CARGO
@@ -381,5 +380,5 @@
 /datum/techweb_node/office_equip/New()
 	. = ..()
 	unlocked_designs += list(
-		"export_gate",
+		/datum/design/board/export_gate,
 	)
