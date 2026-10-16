@@ -3,3 +3,6 @@
 	e_cost = LASER_SHOTS(40, STANDARD_CELL_CHARGE)
 	select_name = "kill"
 	fire_sound = 'sound/items/weapons/laser2.ogg'
+
+/obj/item/ammo_casing/energy/laser
+	e_cost = LASER_SHOTS(20, STANDARD_CELL_CHARGE)
