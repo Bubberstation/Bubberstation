@@ -256,6 +256,7 @@
 		CRASH("Somehow failed to find a valid organ to insert (inserting: [tool || "null"])")
 
 	if(organ.loc == surgeon)
+		surgeon.temporarilyRemoveItemFromInventory(organ, TRUE)
 	//Bubber Edit Start, Checks if the type attempted to be inserted is a positronic or not
 	if(istype(organ, /obj/item/brain_processor))
 		organ = new /obj/item/organ/brain/synth/mmi(null, organ)
@@ -264,7 +265,6 @@
 	else if(istype(organ, /obj/item/brain_processor/positronic/circuit))
 		organ = new /obj/item/organ/brain/synth/circuit(null, organ)
 	//Bubber Edit End
-		surgeon.temporarilyRemoveItemFromInventory(organ, TRUE)
 	organ.pre_surgical_insertion(surgeon, limb, limb.body_zone)
 	if (limb.owner)
 		organ.Insert(limb.owner)
