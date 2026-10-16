@@ -11,3 +11,4 @@
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = INDESTRUCTIBLE|LAVA_PROOF|FIRE_PROOF|UNACIDABLE|ACID_PROOF
 	custom_materials = null
+	usesound = 'sound/items/pshoom/pshoom.ogg'

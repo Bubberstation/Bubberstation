@@ -448,7 +448,7 @@
 
 /obj/item/clothing/shoes/combat/debug
 	name = "technician's boots"
-	desc = "The combat boots that you shouldn't have. Insoles lined with bluespace fabric enable it to do bullshit, like walking on air and space and lava and through walls."
+	desc = "The combat boots that you shouldn't have. Insoles lined with bluespace fabric enable it to do bullshit, like walking on air and chasms and space and lava and through walls."
 	strip_delay = 60 SECONDS
 	resistance_flags = INDESTRUCTIBLE|LAVA_PROOF|FIRE_PROOF|UNACIDABLE|ACID_PROOF
 	lace_time = 0.5 SECONDS

@@ -69,6 +69,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = INDESTRUCTIBLE|LAVA_PROOF|FIRE_PROOF|UNACIDABLE|ACID_PROOF
 	custom_materials = null
+	usesound = SFX_SPARKS
 
 	light_range = 1
 	light_power = 1
