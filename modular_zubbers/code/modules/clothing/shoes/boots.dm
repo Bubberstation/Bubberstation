@@ -448,7 +448,7 @@
 
 /obj/item/clothing/shoes/combat/debug
 	name = "technician's boots"
-	desc = "The combat boots that you shouldn't have. Insoles lined with bluespace fabric enable it to do bullshit, like walking on space and lava and through walls."
+	desc = "The combat boots that you shouldn't have. Insoles lined with bluespace fabric enable it to do bullshit, like walking on air and space and lava and through walls."
 	strip_delay = 60 SECONDS
 	resistance_flags = INDESTRUCTIBLE|LAVA_PROOF|FIRE_PROOF|UNACIDABLE|ACID_PROOF
 	lace_time = 0.5 SECONDS
@@ -457,7 +457,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 	var/free_move = FALSE
-	var/list/active_traits = list(TRAIT_SPACEWALK, TRAIT_NEGATES_GRAVITY, TRAIT_MOVE_PHASING, TRAIT_MOVE_FLYING, TRAIT_LAVA_IMMUNE)
+	var/list/active_traits = list(TRAIT_SPACEWALK, TRAIT_NEGATES_GRAVITY, TRAIT_MOVE_PHASING, TRAIT_MOVE_FLYING, TRAIT_LAVA_IMMUNE, TRAIT_NO_FLOATING_ANIM)
 
 GAME_VERB_SRC(/obj/item/clothing/shoes/combat/debug, toggle, usr, "Toggle Bluespace Magnets", null)
 	if(!can_use(usr))
@@ -472,8 +472,6 @@ GAME_VERB_SRC(/obj/item/clothing/shoes/combat/debug, toggle, usr, "Toggle Bluesp
 		detach_clothing_traits(active_traits)
 
 	balloon_alert(user, "bluespace magnets [free_move ? "activated" : "deactivated"]")
-
-
 
 /obj/item/clothing/shoes/combat/debug/examine(mob/user)
 	. = ..()
