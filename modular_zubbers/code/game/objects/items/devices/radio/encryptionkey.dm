@@ -28,4 +28,4 @@
 		RADIO_CHANNEL_UPLINK = 1,
 		)
 	greyscale_config = /datum/greyscale_config/encryptionkey_centcom
-	greyscale_colors = "#2724a1#dca01b"
+	greyscale_colors = "#2724a1#111111"
