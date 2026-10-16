@@ -1,7 +1,7 @@
 /obj/item/crowbar/power/paramedic
 	toolspeed = 0.7
 
-/obj/item/crowbar/power/bluespace
+/obj/item/crowbar/power/debug
 	name = "bluespace jaws"
 	desc = "The jaws that you shouldn't have. Powered by bullshit- I mean bluespace. Cuts and prys really fast."
 	icon = 'modular_zubbers/icons/obj/tools.dmi'

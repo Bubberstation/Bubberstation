@@ -1,4 +1,4 @@
-/obj/item/screwdriver/power/bluespace
+/obj/item/screwdriver/power/debug
 	name = "bluespace driver"
 	desc = "The drill you shouldn't have. Tipped and powered with bluespace to strip screws instantly."
 	icon = 'modular_zubbers/icons/obj/tools.dmi'

@@ -18,10 +18,10 @@
 	storage_type = /datum/storage/bluespace_belt
 
 /obj/item/storage/belt/debug/PopulateContents()
-	new /obj/item/screwdriver/power/bluespace(src)
-	new /obj/item/crowbar/power/bluespace(src)
-	new /obj/item/weldingtool/experimental/bluespace(src)
-	new /obj/item/multitool/abductor/bluespace(src)
+	new /obj/item/screwdriver/power/debug(src)
+	new /obj/item/crowbar/power/debug(src)
+	new /obj/item/weldingtool/experimental/debug(src)
+	new /obj/item/multitool/abductor/debug(src)
 	new /obj/item/construction/rcd/combat/admin(src)
 	new /obj/item/pipe_dispenser/bluespace(src)
 	new /obj/item/holosign_creator/atmos(src)
