@@ -216,6 +216,16 @@
 		/obj/item/gun/ballistic/shotgun/riot/sol,
 	)
 
+/datum/supply_pack/security/armory/peacekeepers_plus
+	name = "Riot Renoster Shotgun Crate"
+	desc = "Three less-lethal modified Renoster pump-action shotguns to restock your armories with."
+	cost = CARGO_CRATE_VALUE * 10
+	contains = list(
+		/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal,
+		/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal,
+		/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal,
+	)
+
 /datum/supply_pack/security/armory/hoshis
 	name = "Hoshi Modular Laser Carbine crate"
 	desc = "This crate includes 3 of Terra's newest addition to their armories, produced by... 'Saibasan'. These modular weapons have multiple fire modes that can be switched to, and an onboard AI."
