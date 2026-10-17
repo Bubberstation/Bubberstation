@@ -221,7 +221,7 @@
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec
-	name = "Prisoner Privlages Room"
+	name = "Private Lounge"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison/shower
