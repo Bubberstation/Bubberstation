@@ -63,7 +63,7 @@
 		/obj/item/sensor_device/secmed = 1
 		)
 	suit_store = /obj/item/flashlight/seclite
-	belt = /obj/item/modular_computer/pda/security
+	belt = /obj/item/modular_computer/pda/crew/security
 	ears = /obj/item/radio/headset/headset_medsec
 	uniform = /obj/item/clothing/under/rank/security/peacekeeper/security_medic
 	gloves = /obj/item/clothing/gloves/latex/nitrile

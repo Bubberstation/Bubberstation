@@ -135,15 +135,15 @@
 			"organization" = linked_techweb.organization,
 		)
 	data["programs"] = list()
-	for(var/i in linked_techweb.researched_designs)
-		var/datum/design/nanites/D = SSresearch.techweb_design_by_id(i)
+	for(var/design_path in linked_techweb?.researched_designs)
+		var/datum/design/nanites/D = SSresearch.techweb_designs[design_path]
 		if(!istype(D))
 			continue
 		var/cat_name = D.category[1] //just put them in the first category fuck it
 		if(isnull(data["programs"][cat_name]))
 			data["programs"][cat_name] = list()
 		var/list/program_design = list()
-		program_design["id"] = D.id
+		program_design["id"] = "[D.type]"
 		program_design["name"] = D.name
 		program_design["desc"] = D.desc
 		data["programs"][cat_name] += list(program_design)
@@ -162,9 +162,12 @@
 			eject(usr)
 			. = TRUE
 		if("download")
-			if(!disk)
+			if(!disk || !linked_techweb)
 				return
-			var/datum/design/nanites/downloaded = linked_techweb.isDesignResearchedID(params["program_id"]) //check if it's a valid design
+			var/design_path = text2path(params["program_id"])
+			if(!linked_techweb.researched_designs[design_path])
+				return
+			var/datum/design/nanites/downloaded = SSresearch.techweb_designs[design_path]
 			if(!istype(downloaded))
 				return
 			if(disk.program)

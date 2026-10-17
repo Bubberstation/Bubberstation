@@ -100,7 +100,6 @@
 
 /datum/design/humanoidbrain
 	name = "Brain"
-	id = "blankbrain"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 100)
 	build_path = /obj/item/organ/brain
@@ -108,7 +107,6 @@
 
 /datum/design/nitrogen_lungs
 	name = "Nitrogen-Adapted Lungs"
-	id = "nitrogenlunggeneric"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 20)
 	build_path = /obj/item/organ/lungs/nitrogen
@@ -116,7 +114,6 @@
 
 /datum/design/vox_nitrogen_lungs
 	name = "Vox Nitrogen Lungs"
-	id = "nitrogenlungvox"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 20)
 	build_path = /obj/item/organ/lungs/nitrogen/vox
@@ -124,7 +121,6 @@
 
 /datum/design/cold_lungs
 	name = "Cold-Adapted Lungs"
-	id = "coldlungs"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 35)
 	build_path = /obj/item/organ/lungs/adaptive/cold
@@ -132,7 +128,6 @@
 
 /datum/design/hot_lungs
 	name = "Heat-Adapted Lungs"
-	id = "hotlungs"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 35)
 	build_path = /obj/item/organ/lungs/adaptive/hot
@@ -140,7 +135,6 @@
 
 /datum/design/oxy_lungs
 	name = "Low-Oxygen-Adapted Lungs"
-	id = "oxylungs"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 35)
 	build_path = /obj/item/organ/lungs/oxy
@@ -148,7 +142,6 @@
 
 /datum/design/tox_lungs
 	name = "Toxin-Adapted Lungs"
-	id = "toxlungs"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 35)
 	build_path = /obj/item/organ/lungs/toxin
@@ -156,7 +149,6 @@
 
 /datum/design/hemophage_heart
 	name = "Pulsating Tumor"
-	id = "hemophageheart"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 25, /datum/reagent/blood = 10)
 	build_path = /obj/item/organ/heart/hemophage
@@ -164,7 +156,6 @@
 
 /datum/design/hemophage_liver
 	name = "Corrupted Liver"
-	id = "hemophageliver"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 15, /datum/reagent/blood = 10)
 	build_path = /obj/item/organ/liver/hemophage
@@ -172,7 +163,6 @@
 
 /datum/design/hemophage_stomach
 	name = "Corrupted Stomach"
-	id = "hemophagestomach"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10, /datum/reagent/blood = 10)
 	build_path = /obj/item/organ/stomach/hemophage
@@ -180,7 +170,6 @@
 
 /datum/design/hemophage_tongue
 	name = "Corrupted Tongue"
-	id = "hemophagetongue"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 5, /datum/reagent/blood = 10)
 	build_path = /obj/item/organ/tongue/hemophage
@@ -189,7 +178,6 @@
 //Shadekin organs
 /datum/design/shadekin_ears
 	name = "Shadekin Ears"
-	id = "shadekinears"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 15)
 	build_path = /obj/item/organ/ears/shadekin
@@ -197,7 +185,6 @@
 
 /datum/design/shadekin_eyes
 	name = "Shadekin Eyes"
-	id = "shadekineyes"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 15)
 	build_path = /obj/item/organ/eyes/shadekin
@@ -206,7 +193,6 @@
 //Tajaran organs
 /datum/design/tajaran_ears
 	name = "Tajaran Ears"
-	id = "tajaranears"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
 	build_path = /obj/item/organ/ears/cat/tajaran
@@ -214,7 +200,6 @@
 
 /datum/design/tajaran_eyes
 	name = "Tajaran Eyes"
-	id = "tajaraneyes"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
 	build_path = /obj/item/organ/eyes/tajaran
@@ -222,7 +207,6 @@
 
 /datum/design/tajaran_tongue
 	name = "Tajaran Tongue"
-	id = "tajarantounge"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
 	build_path = /obj/item/organ/tongue/cat/tajaran
@@ -231,7 +215,6 @@
 //Teshari organs
 /datum/design/teshari_ears
 	name = "Teshari Ears"
-	id = "teshariears"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
 	build_path = /obj/item/organ/ears/teshari
@@ -239,7 +222,6 @@
 
 /datum/design/teshari_eyes
 	name = "Teshari Eyes"
-	id = "tesharieyes"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
 	build_path = /obj/item/organ/eyes/teshari
@@ -247,7 +229,6 @@
 
 /datum/design/teshari_tongue
 	name = "Teshari Tongue"
-	id = "tesharitongue"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
 	build_path = /obj/item/organ/tongue/teshari
@@ -255,7 +236,6 @@
 
 /datum/design/wholehuman
 	name = "Blank Body"
-	id = "blankhuman"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 600)
 	build_path = /mob/living/carbon/human/empty
@@ -264,11 +244,10 @@
 /// Available through TECHWEB_NODE_CYBER_ORGANS_UPGRADED
 /obj/item/disk/design_disk/limbs/adaptive_lungs
 	name = "adaptive lungs organ design disk"
-	limb_designs = list(/datum/design/hot_lungs, /datum/design/oxy_lungs, /datum/design/tox_lungs)
+	blueprints = list(/datum/design/hot_lungs, /datum/design/oxy_lungs, /datum/design/tox_lungs)
 
 /// Available through TECHWEB_NODE_CYBER_ORGANS_UPGRADED
 /datum/design/limb_disk/adaptive_lungs
 	name = "Adaptive Lungs Organ Design Disk"
 	desc = "Contains designs for genetically modified adaptive lungs for the limbgrower."
-	id = "limbdesign_adaptive_lungs"
 	build_path = /obj/item/disk/design_disk/limbs/adaptive_lungs

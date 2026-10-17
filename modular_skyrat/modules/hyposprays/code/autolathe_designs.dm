@@ -1,7 +1,6 @@
 // Hypovials
 /datum/design/hypovial
 	name = "Hypovial"
-	id = "hypovial"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.5,
@@ -16,7 +15,6 @@
 
 /datum/design/hypovial/large
 	name = "Large Hypovial"
-	id = "large_hypovial"
 	materials = list(
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.5,
@@ -27,7 +25,6 @@
 // Hypospray cases
 /datum/design/hypokit
 	name = "Hypospray Case"
-	id = "hypokit"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 3,
@@ -42,7 +39,6 @@
 
 /datum/design/hypokit/deluxe
 	name = "Hypospray Case Deluxe"
-	id = "hypokit_deluxe"
 	materials = list(
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 6,
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3,
@@ -54,7 +50,6 @@
 // Hyposprays
 /datum/design/hypomkii
 	name = "Hypospray Mk. II"
-	id = "hypomkii"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 5,
@@ -70,7 +65,6 @@
 // Hypospray upgrade
 /datum/design/hypomkii/deluxe
 	name = "Hypospray Mk. II Deluxe Upgrade"
-	id = "hypomkii_deluxe"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 8,
@@ -85,22 +79,22 @@
 
 // Hypospray Research
 /datum/techweb_node/chem_synthesis/New()
-	design_ids += list(
-		"hypovial",
-		"large_hypovial",
-		"hypokit",
-		"hypomkii",
+	unlocked_designs += list(
+		/datum/design/hypovial,
+		/datum/design/hypovial/large,
+		/datum/design/hypokit,
+		/datum/design/hypomkii,
 	)
 	return ..()
 
 /datum/techweb_node/medbay_equip_adv/New()
-	design_ids += list(
-		"hypokit_deluxe",
+	unlocked_designs += list(
+		/datum/design/hypokit/deluxe,
 	)
 	return ..()
 
 /datum/techweb_node/alien_surgery/New()
-	design_ids += list(
-		"hypomkii_deluxe",
+	unlocked_designs += list(
+		/datum/design/hypomkii/deluxe,
 	)
 	return ..()

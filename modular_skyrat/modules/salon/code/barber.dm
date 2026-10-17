@@ -39,7 +39,7 @@
 	jobtype = /datum/job/barber
 
 	glasses = /obj/item/clothing/glasses/sunglasses
-	belt = /obj/item/modular_computer/pda
+	belt = /obj/item/modular_computer/pda/crew/assistant
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/barber
 	shoes = /obj/item/clothing/shoes/laceup
