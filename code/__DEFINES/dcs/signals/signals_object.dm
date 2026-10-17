@@ -512,6 +512,10 @@
 #define COMSIG_ITEM_ATTACK "item_attack"
 ///from base of obj/item/attack_self(): (/mob)
 #define COMSIG_ITEM_ATTACK_SELF "item_attack_self"
+// BUBBER EDIT ADDITION - lets a flatpacked machine hand things to the machine it deploys into
+///from base of /datum/component/deployable/proc/deploy(): (atom/deployed_object)
+#define COMSIG_DEPLOYABLE_DEPLOYED "deployable_deployed"
+// BUBBER EDIT ADDITION END
 //from base of obj/item/attack_self_secondary(): (/mob)
 #define COMSIG_ITEM_ATTACK_SELF_SECONDARY "item_attack_self_secondary"
 ///from base of obj/item/attack_atom(): (/atom, /mob, list/modifiers)
