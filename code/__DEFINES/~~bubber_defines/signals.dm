@@ -38,6 +38,7 @@
 #define COMSIG_HUMAN_TOGGLE_AROUSAL "human_toggle_arousal"
 /// From /mob/living/carbon/human/verb/toggle_genitals()
 #define COMSIG_HUMAN_TOGGLE_GENITALS "human_toggle_genitals"
+#define COMSIG_KB_LIVING_SCENE_ASSISTANT_DOWN "keybinding_living_scene_assistant_down"
 
 /// /datum/component/tameable/try_tame(atom/source, obj/item/food, mob/living/attacker) in
 #define COMSIG_MOB_TRY_TAME "mob_try_tame"
