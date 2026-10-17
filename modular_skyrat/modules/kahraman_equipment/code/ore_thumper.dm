@@ -336,7 +336,7 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 /// Why we have no room for a box, or null
 /obj/machinery/power/colony_ore_thumper/proc/get_output_blocker()
 	var/nearby_ore = 0
-	for(var/turf/nearby_turf in orange(ore_spawn_range, src))
+	for(var/turf/nearby_turf in get_output_turfs(FALSE))
 		for(var/obj/item/stack/ore/ore_pile in nearby_turf)
 			nearby_ore++
 	if(nearby_ore > nearby_ore_limit)
@@ -459,21 +459,59 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	GLOB.next_thumper_quake = world.time + THUMPER_QUAKE_COOLDOWN
 	quake.run_event(event_cause = "ore thumper fracking")
 
+/// Open ground nearby that we can reach without crossing a wall, conveyor tiles only if any exist and conveyors_first is set
+/obj/machinery/power/colony_ore_thumper/proc/get_output_turfs(conveyors_first = TRUE)
+	var/list/open_turfs = list()
+	var/list/conveyor_turfs = list()
+	for(var/turf/nearby_turf in orange(ore_spawn_range, src))
+		if(!isopenturf(nearby_turf) || isgroundlessturf(nearby_turf) || nearby_turf.is_blocked_turf(TRUE))
+			continue
+		var/list/line_of_turfs = get_line(src, nearby_turf)
+		var/walled_off = FALSE
+		for(var/line_index in 2 to length(line_of_turfs) - 1)
+			var/turf/between_turf = line_of_turfs[line_index]
+			if(between_turf.density || between_turf.is_blocked_turf(TRUE))
+				walled_off = TRUE
+				break
+		if(walled_off)
+			continue
+		open_turfs += nearby_turf
+		if(locate(/obj/machinery/conveyor) in nearby_turf)
+			conveyor_turfs += nearby_turf
+	if(conveyors_first && length(conveyor_turfs))
+		return conveyor_turfs
+	return open_turfs
+
+/// Animates throwing the ore out of itself, turns out ore will fucking explode sometimes if you actually throw it so we fake it here
+/obj/machinery/power/colony_ore_thumper/proc/toss_out(obj/item/tossed)
+	if(QDELETED(tossed))
+		return
+	var/turf/our_turf = get_turf(src)
+	var/turf/landing_turf = get_turf(tossed)
+	var/offset_x = (our_turf.x - landing_turf.x) * ICON_SIZE_X
+	var/offset_y = (our_turf.y - landing_turf.y) * ICON_SIZE_Y
+	var/matrix/resting = matrix(tossed.transform)
+	var/matrix/launch = matrix(resting)
+	launch.Translate(offset_x, offset_y)
+	var/matrix/apex = matrix(resting)
+	apex.Translate(offset_x / 2, offset_y / 2 + 12)
+	tossed.transform = launch
+	animate(tossed, transform = apex, time = 0.2 SECONDS, easing = SINE_EASING | EASE_OUT)
+	animate(transform = resting, time = 0.2 SECONDS, easing = SINE_EASING | EASE_IN)
+
 /// Spawns some ore piles around the thumper
 /obj/machinery/power/colony_ore_thumper/proc/make_some_ore()
-	var/list/nearby_valid_turfs = list()
-	for(var/turf/nearby_turf in orange(ore_spawn_range, src))
-		if(nearby_turf.is_blocked_turf(TRUE))
-			continue
-		if(!ismiscturf(nearby_turf))
-			continue
-		nearby_valid_turfs.Add(nearby_turf)
+	var/list/nearby_valid_turfs = get_output_turfs(FALSE)
+	var/list/ore_turfs = get_output_turfs()
 	// Fallback in case somehow there are no valid nearby turfs
 	if(!length(nearby_valid_turfs))
 		nearby_valid_turfs.Add(get_turf(src))
+		ore_turfs = nearby_valid_turfs
+	var/turf/our_turf = get_turf(src)
 
 	if(prob(THUMPER_MYTHRIL_CHANCE))
-		new /obj/item/stack/sheet/mineral/mythril(pick(nearby_valid_turfs), THUMPER_MYTHRIL_AMOUNT)
+		var/obj/item/stack/sheet/mineral/mythril/mythril_pile = new(pick(ore_turfs), THUMPER_MYTHRIL_AMOUNT)
+		toss_out(mythril_pile)
 
 	var/list/ore_weights = ore_weight_list
 	if(obj_flags & EMAGGED)
@@ -489,11 +527,11 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 			visible_message(span_danger("Something horrible scurries out of [src]'s wellbore!"))
 
 	for(var/iteration in 1 to rand(2, 4))
-		var/turf/target_turf = pick(nearby_valid_turfs)
 		var/obj/item/stack/ore/ore_type = pick_weight(ore_weights)
-		var/obj/new_ore_pile = new ore_type(target_turf, ore_spawn_values[ore_type])
-		new /obj/effect/temp_visual/mook_dust/robot(target_turf)
-		playsound(new_ore_pile, 'modular_skyrat/master_files/sound/effects/robot_sit.ogg', 25, TRUE)
+		var/obj/item/stack/ore/new_ore_pile = new ore_type(pick(ore_turfs), ore_spawn_values[ore_type])
+		new /obj/effect/temp_visual/mook_dust/robot(our_turf)
+		playsound(src, 'modular_skyrat/master_files/sound/effects/robot_sit.ogg', 25, TRUE)
+		toss_out(new_ore_pile)
 
 
 // Item for deploying ore thumpers

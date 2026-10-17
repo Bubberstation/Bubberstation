@@ -6,27 +6,27 @@
 
 /datum/supply_pack/company_import/akh_frontier/basic/omni_drill
 	item_type = /obj/item/screwdriver/omni_drill
-	cost = PAYCHECK_COMMAND * 5
+	cost = PAYCHECK_CREW * 5
 
 /datum/supply_pack/company_import/akh_frontier/basic/arc_welder
 	item_type = /obj/item/weldingtool/electric/arc_welder
-	cost = PAYCHECK_COMMAND * 3
+	cost = PAYCHECK_CREW * 3
 
 /datum/supply_pack/company_import/akh_frontier/basic/prybar
 	item_type = /obj/item/crowbar/large/colony_prybar
-	cost = PAYCHECK_COMMAND * 5
+	cost = PAYCHECK_CREW * 5
 
 /datum/supply_pack/company_import/akh_frontier/basic/multitool
 	item_type = /obj/item/multitool/colony
-	cost = PAYCHECK_COMMAND * 2
+	cost = PAYCHECK_COMMAND
 
 /datum/supply_pack/company_import/akh_frontier/basic/compact_drill
 	item_type = /obj/item/pickaxe/drill/compact
-	cost = PAYCHECK_COMMAND * 5
+	cost = PAYCHECK_CREW * 5
 
 /datum/supply_pack/company_import/akh_frontier/deployables_fab/rapid_construction_fabricator
 	item_type = /obj/item/flatpacked_machine
-	cost = CARGO_CRATE_VALUE * 37.5
+	cost = CARGO_CRATE_VALUE * 30
 
 /datum/supply_pack/company_import/akh_frontier/deployables_fab/rapid_construction_fabricator/New()
 	. = ..()
