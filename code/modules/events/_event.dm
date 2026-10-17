@@ -64,7 +64,54 @@
 
 // Checks if the event can be spawned. Used by event controller and "false alarm" event.
 // Admin-created events override this.
-/datum/round_event_control/proc/can_spawn_event(players_amt, allow_magic = FALSE)
+/// BUBBER TEMP EDIT START: Adds logging to notify WHY events fail to run.
+/datum/round_event_control/proc/can_spawn_event(players_amt, allow_magic = FALSE, log_for_admins = FALSE)
+	SHOULD_CALL_PARENT(TRUE)
+	if(occurrences >= max_occurrences)
+		if(log_for_admins)
+			message_admins("[name] failed to run because [span_warning("it exceeded max occurences")] [occurrences]/[max_occurrences]")
+			log_admin_private("[name] failed to run because it exceeded max occurences [occurrences]/[max_occurrences]")
+		return FALSE
+	if(!(roundstart ^ SSticker.HasRoundStarted())) // BUBBER EDIT: Roundstart checks added
+		if(log_for_admins)
+			message_admins("[name] failed to run because [span_warning("it was a roundstart event, and it's not currently roundstart")]")
+			log_admin_private("[name] failed to run because it was a roundstart event, and it's not currently roundstart")
+		return FALSE
+	if(weight == 0) // BUBBER EDIT: Weight check added
+		if(log_for_admins)
+			message_admins("[name] failed to run because [span_warning("its weight ([weight]) was 0, therefore it's ineligible")]")
+			log_admin_private("[name] failed to run because its weight ([weight]) was 0, therefore it's ineligible")
+		return FALSE
+	if(!allow_magic && wizardevent != SSevents.wizardmode)
+		if(log_for_admins)
+			message_admins("[name] failed to run because [span_warning("it cannot run during wizardmode")]")
+			log_admin_private("[name] failed to run because it cannot run during wizardmode")
+		return FALSE
+	if(players_amt < min_players)
+		if(log_for_admins)
+			message_admins("[name] failed to run because [span_warning("there aren't enough players to run this")] [players_amt]/[min_players]")
+			log_admin_private("[name] failed to run because there aren't enough players to run this [players_amt]/[min_players]")
+		return FALSE
+	if(holidayID && !check_holidays(holidayID))
+		if(log_for_admins)
+			message_admins("[name] failed to run because [span_warning("it's a holiday-exclusive event and it's not that holiday")]")
+			log_admin_private("[name] failed to run because it's a holiday-exclusive event and it's not that holiday")
+		return FALSE
+	if(EMERGENCY_ESCAPED_OR_ENDGAMED)
+		if(log_for_admins)
+			message_admins("[name] failed to run because [span_warning("the round is over")]")
+			log_admin_private("[name] failed to run because the round is over")
+		return FALSE
+	if(ispath(typepath, /datum/round_event/ghost_role) && !(GLOB.ghost_role_flags & GHOSTROLE_MIDROUND_EVENT))
+		if(log_for_admins)
+			message_admins("[name] failed to run because [span_warning("it's a ghost-role event and an admin disabled this specific ghost role subtype via admin controls")]")
+			log_admin_private("[name] failed to run because it's a ghost-role event and an admin disabled this specific ghost role subtype via admin controls")
+		return FALSE
+
+	return TRUE
+
+/* Original code:
+/datum/round_event_control/proc/can_spawn_event(players_amt, allow_magic = FALSE, )
 	SHOULD_CALL_PARENT(TRUE)
 	if(occurrences >= max_occurrences)
 		return FALSE
@@ -84,6 +131,7 @@
 		return FALSE
 
 	return TRUE
+*/// BUBBER TEMP EDIT END
 
 /datum/round_event_control/proc/preRunEvent()
 	if(!ispath(typepath, /datum/round_event))

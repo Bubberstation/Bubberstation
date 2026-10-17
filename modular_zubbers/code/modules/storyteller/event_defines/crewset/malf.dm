@@ -16,7 +16,7 @@
 	tags = list(TAG_CREW_ANTAG, TAG_COMBAT, TAG_CHAOTIC)
 	restricted_roles = list("Cyborg")
 
-/datum/round_event_control/antagonist/solo/malf/can_spawn_event(players_amt, allow_magic, popchecks)
+/datum/round_event_control/antagonist/solo/malf/can_spawn_event(players_amt, allow_magic, log_for_admins = FALSE, popchecks)
 	return ..() && !HAS_TRAIT(SSstation, STATION_TRAIT_HUMAN_AI)
 
 /datum/round_event_control/antagonist/solo/malf/get_candidates()
@@ -65,7 +65,7 @@
 		valid_candidates += candidate
 	return valid_candidates
 
-/datum/round_event_control/antagonist/solo/malf/roundstart/can_spawn_event(popchecks, allow_magic)
+/datum/round_event_control/antagonist/solo/malf/roundstart/can_spawn_event(popchecks, allow_magic, log_for_admins = FALSE)
 	. = ..()
 	if(!.)
 		return .
