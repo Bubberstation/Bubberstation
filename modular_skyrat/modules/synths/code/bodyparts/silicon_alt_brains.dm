@@ -20,7 +20,7 @@
 			return is_cyborg ? /obj/item/brain_processor/positronic : /obj/item/organ/brain/synth
 
 		if(ORGAN_PREF_MMI_BRAIN)
-			return is_cyborg ? /obj/item/brain_processor : /obj/item/organ/brain/synth/mmi
+			return is_cyborg ? /obj/item/brain_processor/organic : /obj/item/organ/brain/synth/mmi
 
 		if(ORGAN_PREF_CIRCUIT_BRAIN)
 			return is_cyborg ? /obj/item/brain_processor/positronic/circuit : /obj/item/organ/brain/synth/circuit
@@ -68,19 +68,18 @@
 		return
 	new_mmi = new new_mmi(src)
 
-	var/intentionally_unused_var
 	// Probably shitcode, but silicon code is spaghetti as fuck. // Future me: Yes it is
-	/*
-	new_mmi.brain = new /obj/item/organ/brain(new_mmi)
-	new_mmi.brain.organ_flags |= ORGAN_FROZEN
-	new_mmi.brain.name = "[real_name]'s brain"
+	if(istype(new_mmi, /obj/item/brain_processor/organic))
+		var/obj/item/brain_processor/organic/organic_mmi = new_mmi
+		organic_mmi.brain = new /obj/item/organ/brain(new_mmi)
+		organic_mmi.brain.organ_flags |= ORGAN_FROZEN
+		organic_mmi.brain.name = "[real_name]'s brain"
 	new_mmi.name = "[initial(new_mmi.name)]: [real_name]"
 	new_mmi.set_brainmob(new /mob/living/brain(new_mmi))
 	new_mmi.brainmob.name = src.real_name
 	new_mmi.brainmob.real_name = src.real_name
 	new_mmi.brainmob.container = new_mmi
 	new_mmi.update_appearance()
-	*/
 
 	QDEL_NULL(mmi)
 

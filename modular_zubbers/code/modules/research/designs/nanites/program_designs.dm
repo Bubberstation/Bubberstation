@@ -181,6 +181,7 @@
 	program_type = /datum/nanite_program/nervous
 	category = list("Augmentation Nanites")
 
+/* TODO: REFACTOR/FIX THESE
 /datum/design/nanites/hardening
 	name = "Dermal Hardening"
 	desc = "The nanites form a mesh under the host's skin, protecting them from melee and bullet impacts."
@@ -192,6 +193,7 @@
 	desc = "The nanites form a membrane above the host's skin, reducing the effect of laser and energy impacts."
 	program_type = /datum/nanite_program/dermal_armor/refractive
 	category = list("Augmentation Nanites")
+*/
 
 /datum/design/nanites/coagulating
 	name = "Vein Repressurization"

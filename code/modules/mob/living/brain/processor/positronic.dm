@@ -5,7 +5,7 @@
 	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves."
 	icon_state = "posibrain"
 	base_icon_state = "posibrain"
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_SMALL // BUBBER EDIT: Minimalizaton (This is so they can act as organs)
 	req_access = list(ACCESS_ROBOTICS)
 	braintype = "Android"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.85, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.67, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)

@@ -47,8 +47,8 @@
 		/datum/design/nanites/cryo,
 		/datum/design/nanites/dermal_button,
 		/datum/design/nanites/emp,
-		/datum/design/nanites/hardening,
-		/datum/design/nanites/refractive,
+		///datum/design/nanites/hardening, TODO -- REFACTOR THESE
+		///datum/design/nanites/refractive,
 		/datum/design/nanites/shock,
 		/datum/design/nanites/temperature,
 	)

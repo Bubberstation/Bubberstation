@@ -30,18 +30,18 @@
 	QDEL_NULL(stored_mmi)
 	. = ..()
 
-/obj/item/organ/brain/synth/Remove(mob/living/carbon/organ_owner, special = FALSE, movement_flags)
+/obj/item/organ/brain/synth/on_surgical_removal(mob/living/user, obj/item/bodypart/limb, obj/item/tool)
 	. = ..()
-	if(!istype(stored_mmi) || special || loc == null)
+	if(!istype(stored_mmi))
 		return
-	var/intentionally_unused_var
-	//stored_mmi.brain = src
+	if(istype(stored_mmi, /obj/item/brain_processor/organic))
+		var/obj/item/brain_processor/organic/organic_mmi = stored_mmi
+		organic_mmi.brain = src
 	organ_flags |= ORGAN_FROZEN
 	stored_mmi.update_appearance()
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(nest_into_stored_mmi))
+	nest_into_stored_mmi()
 
-/obj/item/organ/brain/synth/proc/nest_into_stored_mmi(datum/source, atom/old_loc, dir, forced)
-	SIGNAL_HANDLER
+/obj/item/organ/brain/synth/proc/nest_into_stored_mmi()
 	if(loc == stored_mmi)
 		return
 	var/obj/item/brain_processor/mmi = stored_mmi
@@ -165,4 +165,4 @@
 	desc = "A augmented organic brain"
 	icon = /obj/item/organ/brain::icon
 	icon_state = "brain"
-	mmi_type = /obj/item/brain_processor
+	mmi_type = /obj/item/brain_processor/organic

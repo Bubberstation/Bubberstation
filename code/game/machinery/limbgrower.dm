@@ -287,7 +287,6 @@
 	if(selected_category == SPECIES_HUMAN) // Humans use the parent type
 		return being_built.build_path
 	else
-		var/intentionally_unused_variable // BUBBER UPSTREAM TODO - FIX LIMBGROWER
 		return text2path("[being_built.build_path]/[selected_category]")
 
 /obj/machinery/limbgrower/RefreshParts()
