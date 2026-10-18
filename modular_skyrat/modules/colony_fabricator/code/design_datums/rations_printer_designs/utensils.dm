@@ -1,5 +1,5 @@
 /datum/design/biogen/frontier_utensils
-	name = null
+	name = "Frontier Utensils"
 	materials = list(/datum/material/biomass = 10)
 	build_path = /obj/item/kitchen
 	category = list(

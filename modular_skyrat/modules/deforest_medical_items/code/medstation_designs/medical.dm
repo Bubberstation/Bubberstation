@@ -1,5 +1,5 @@
 /datum/design/biogen/organic_printer
-	name = null
+	name = "Frontier Medicine"
 	materials = list(/datum/material/biomass = 25)
 	build_path = /obj/item/stack/medical
 	category = list(

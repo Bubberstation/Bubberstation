@@ -59,6 +59,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/nifsoft_hud
+	name = "NIFsoft Hud"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT,

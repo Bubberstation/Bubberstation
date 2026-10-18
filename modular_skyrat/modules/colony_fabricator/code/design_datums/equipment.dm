@@ -13,6 +13,7 @@
 
 // Lets colony fabricators make soup pots, removes bluespace crystal requirement.
 /datum/design/soup_pot/New()
+	name = "Soup Pot"
 	build_type |= COLONY_FABRICATOR
 	materials -= /datum/material/bluespace
 	return ..()

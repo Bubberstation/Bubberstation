@@ -59,43 +59,56 @@
 	)
 
 /datum/design/cat_tail
+	name = "Cat Tail"
 	category = list(SPECIES_FELINE, RND_CATEGORY_INITIAL)
 
 /datum/design/cat_ears
+	name = "Cat Ears"
 	category = list(SPECIES_FELINE, RND_CATEGORY_INITIAL)
 
 /datum/design/cat_tongue
+	name = "Cat Tongue"
 	category = list(SPECIES_FELINE, RND_CATEGORY_INITIAL)
 
 /datum/design/ethereal_stomach
+	name = "Ethereal Stomach"
 	category = list(SPECIES_ETHEREAL, RND_CATEGORY_INITIAL)
 
 /datum/design/ethereal_tongue
+	name = "Ethereal Tongue"
 	category = list(SPECIES_ETHEREAL, RND_CATEGORY_INITIAL)
 
 /datum/design/ethereal_lungs
+	name = "Ethereal Lungs"
 	category = list(SPECIES_ETHEREAL, RND_CATEGORY_INITIAL)
 
 /datum/design/ethereal_heart
+	name = "Ethereal Heart"
 	category = list(SPECIES_ETHEREAL, RND_CATEGORY_INITIAL)
 
 /datum/design/lizard_tail
+	name = "Lizard Tail"
 	category = list(SPECIES_LIZARD, RND_CATEGORY_INITIAL)
 
 /datum/design/lizard_tongue
+	name = "Lizard Tongue"
 	reagents_list = list(/datum/reagent/medicine/c2/synthflesh = 10)
 	category = list(SPECIES_LIZARD, RND_CATEGORY_INITIAL)
 
 /datum/design/plasmaman_lungs
+	name = "Plasmaman Lungs"
 	category = list(SPECIES_PLASMAMAN, RND_CATEGORY_INITIAL)
 
 /datum/design/plasmaman_tongue
+	name = "Plasmaman Tongue"
 	category = list(SPECIES_PLASMAMAN, RND_CATEGORY_INITIAL)
 
 /datum/design/plasmaman_liver
+	name = "Plasmaman Liver"
 	category = list(SPECIES_PLASMAMAN, RND_CATEGORY_INITIAL)
 
 /datum/design/plasmaman_stomach
+	name = "Plasmaman Stomach"
 	category = list(SPECIES_PLASMAMAN, RND_CATEGORY_INITIAL)
 
 /datum/design/humanoidbrain

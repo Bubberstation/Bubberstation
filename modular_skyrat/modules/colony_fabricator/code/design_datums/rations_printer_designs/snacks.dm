@@ -1,5 +1,5 @@
 /datum/design/biogen/frontier_ration/snacks
-	name = null
+	name = "Frontier Snacks"
 	materials = list(/datum/material/biomass = 50)
 	build_path = /obj/item/storage/box
 	category = list(

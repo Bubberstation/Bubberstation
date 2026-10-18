@@ -25,6 +25,13 @@
 	ricochet_incidence_leeway = 80
 	ricochet_decay_chance = 1
 
+/datum/design/c357
+	name = "Speed Loader (.357 Peacemaker)"
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
+	)
+	build_path = /obj/item/ammo_box/speedloader/c357
+
 /datum/design/c357/peacemaker
 	name = "Speed Loader (.357 Peacemaker)"
 	build_type = AUTOLATHE

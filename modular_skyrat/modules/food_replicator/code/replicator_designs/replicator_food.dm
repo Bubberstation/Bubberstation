@@ -1,10 +1,11 @@
 /datum/design/biogen/food_replicator
-	name = null
+	name = "Food Replicator"
 	materials = list(/datum/material/biomass = 100)
 	category = list(
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_NRI_FOOD,
 	)
+	build_path = /obj/item/circuitboard/food_replicator
 
 /datum/design/biogen/food_replicator/ration
 	name = "Foreign Colonization Ration"

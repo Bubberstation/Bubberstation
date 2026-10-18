@@ -1,5 +1,5 @@
 /datum/design/biogen/frontier_clothing
-	name = null
+	name = "Frontier Clothing"
 	materials = list(/datum/material/biomass = 100)
 
 	build_path = /obj/item/clothing/under/frontier_colonist

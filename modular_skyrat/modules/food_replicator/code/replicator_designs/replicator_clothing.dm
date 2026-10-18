@@ -1,5 +1,5 @@
 /datum/design/biogen/colonial
-	name = null
+	name = "Colonial Clothing"
 	build_path = /obj/item/clothing
 	materials = list(/datum/material/biomass = 200)
 	category = list(

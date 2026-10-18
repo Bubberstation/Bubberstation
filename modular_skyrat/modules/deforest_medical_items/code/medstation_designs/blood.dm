@@ -1,5 +1,5 @@
 /datum/design/biogen/organic_bloodbag
-	name = null
+	name = "Frontier Bloodbag"
 	build_path = /obj/item/reagent_containers/blood
 	materials = list(/datum/material/biomass = 100)
 	category = list(

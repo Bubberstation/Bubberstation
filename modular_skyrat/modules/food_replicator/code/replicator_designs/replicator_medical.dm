@@ -1,5 +1,5 @@
 /datum/design/biogen/medical_replicator
-	name = null
+	name = "Frontier Medicine"
 	build_path = /obj/item/storage/pouch
 	materials = list(/datum/material/biomass = 250)
 	category = list(

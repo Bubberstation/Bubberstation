@@ -1,5 +1,5 @@
 /datum/design/biogen/frontier_seeds
-	name = null
+	name = "Frontier Seeds"
 	materials = list(/datum/material/biomass = 25)
 	build_path = /obj/item/seeds
 	category = list(

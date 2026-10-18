@@ -4,6 +4,7 @@
 #define RND_SUBCATEGORY_TOOLS_XENOARCH_ADVANCED "/Xenoarchaeology Tools (Advanced)"
 
 /datum/design/xenoarch
+	name = "Xenoarchaeology"
 	build_type = PROTOLATHE | AWAY_LATHE
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
 	materials = list(
@@ -15,8 +16,13 @@
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_XENOARCH,
 	)
+	materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 
 /datum/design/xenoarch/tool/hammer
+	name = "Hammer"
 	desc = "A hammer that can slowly remove debris on strange rocks."
 
 /datum/design/xenoarch/tool/hammer/cm1
@@ -126,9 +132,11 @@
 	build_path = /obj/item/storage/bag/xenoarch/adv
 
 /datum/design/board/xenoarch
+	name = "Xenoarchaeology"
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_XENOARCH,
 	)
+	build_path = /obj/item/circuitboard/xenoarch
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/xenoarch/researcher
