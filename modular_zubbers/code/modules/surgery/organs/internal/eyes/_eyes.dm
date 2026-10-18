@@ -31,3 +31,15 @@
 	eye_icon_state = "motheyes_white"
 /obj/item/organ/eyes/robotic/glow/moth
 	eye_icon_state = "motheyes_white"
+
+/obj/item/organ/eyes/abductor
+	name = "abductor eyes"
+	desc = "The structure of these eyes is completely foreign to most, though it's rumored they possess up to four times the color cones of the average xenospecies."
+	icon = 'modular_zubbers/icons/mob/human/abductor_bodyparts.dmi'
+	icon_state = "objabductoreyes"
+	eye_icon = 'modular_zubbers/icons/mob/human/abductor_bodyparts.dmi'
+	eye_icon_state = "abductoreyes"
+	blink_animation = FALSE
+	iris_overlay = null
+	pupils_name = "photosensory lattice"
+	penlight_message = "refract the light into nonsensical shapes"
