@@ -46,7 +46,7 @@
 	set_wires(new /datum/wires/rnd/colony_lathe(src))
 	if(ispath(cell))
 		cell = new cell(src)
-	START_PROCESSING(SSmachines, src)
+	RegisterSignal(src, COMSIG_REPACKABLE_REPACKED, PROC_REF(on_repacked))
 	if(!mapload)
 		flick("colony_lathe_deploy", src) // Sick ass deployment animation
 
@@ -81,6 +81,7 @@
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 		cell = tool
+		power_change()
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 		balloon_alert(user, "cell installed")
 		return ITEM_INTERACT_SUCCESS
@@ -111,20 +112,19 @@
 	update_designs()
 	update_static_data_for_all_viewers()
 
-/obj/machinery/rnd/production/colony_lathe/on_deconstruction(disassembled)
-	if(isnull(cell))
-		return ..()
-	// the repack's new flatpack was made this tick
-	var/obj/item/flatpacked_machine/packed
-	for(var/obj/item/flatpacked_machine/flatpack in drop_location())
-		if(flatpack.created_at == world.time && ispath(flatpack.type_to_deploy, type))
-			packed = flatpack
-	var/datum/component/flatpack_cell/packed_cell = packed?.GetComponent(/datum/component/flatpack_cell)
-	if(disassembled && !isnull(packed_cell))
-		packed_cell.replace_cell(cell)
-	else
-		cell.forceMove(drop_location())
+/// Our cell, or lack of one, goes into the flatpack we repack into
+/obj/machinery/rnd/production/colony_lathe/proc/on_repacked(datum/source, obj/item/packed_item)
+	SIGNAL_HANDLER
+	var/datum/component/flatpack_cell/packed_cell = packed_item.GetComponent(/datum/component/flatpack_cell)
+	if(isnull(packed_cell))
+		return
+	packed_cell.replace_cell(cell)
 	cell = null
+
+/obj/machinery/rnd/production/colony_lathe/on_deconstruction(disassembled)
+	if(!isnull(cell))
+		cell.forceMove(drop_location())
+		cell = null
 	return ..()
 
 // with a cell aboard we can work in an unpowered area
@@ -137,7 +137,9 @@
 	. = ..()
 	if(. || isnull(cell))
 		return .
-	return cell.use(amount * RCF_CELL_ENERGY_MULTIPLIER, force = force)
+	. = cell.use(amount * RCF_CELL_ENERGY_MULTIPLIER, force = force)
+	if(!cell.charge())
+		power_change()
 
 /obj/machinery/rnd/production/colony_lathe/process(seconds_per_tick)
 	if(isnull(cell) || !cell.used_charge())
@@ -152,10 +154,14 @@
 	if(isnull(cell))
 		balloon_alert(user, "no cell!")
 		return ITEM_INTERACT_BLOCKING
+	if(busy)
+		balloon_alert(user, "busy printing!")
+		return ITEM_INTERACT_BLOCKING
 	tool.play_tool_sound(src, 50)
 	user.put_in_hands(cell)
 	balloon_alert(user, "cell removed")
 	cell = null
+	power_change()
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/rnd/production/colony_lathe/default_deconstruction_crowbar(obj/item/crowbar, ignore_panel, custom_deconstruct)
@@ -248,15 +254,12 @@
 	var/obj/type_to_deploy = /obj/machinery/rnd/production/colony_lathe
 	/// How long it takes to create the structure in question.
 	var/deploy_time = 4 SECONDS
-	/// World time this flatpack was made
-	var/created_at
 
 /obj/item/flatpacked_machine/Initialize(mapload)
 	. = ..()
 	desc = initial(type_to_deploy.desc)
 	give_deployable_component()
 	give_manufacturer_examine()
-	created_at = world.time
 	if(ispath(type_to_deploy, /obj/machinery/rnd/production/colony_lathe))
 		AddComponent(/datum/component/flatpack_cell, /obj/item/stock_parts/power_store/cell/high)
 
@@ -318,9 +321,11 @@
 	QDEL_NULL(cell)
 	return ..()
 
-/// Swaps our cell for the one a repacking machine hands back
+/// Swaps our cell for the one a repacking machine hands back, if it exists
 /datum/component/flatpack_cell/proc/replace_cell(obj/item/stock_parts/power_store/cell/new_cell)
 	QDEL_NULL(cell)
+	if(isnull(new_cell))
+		return
 	new_cell.forceMove(parent)
 	cell = new_cell
 
@@ -355,8 +360,9 @@
 
 /datum/component/flatpack_cell/proc/on_deployed(datum/source, obj/machinery/rnd/production/colony_lathe/fabricator)
 	SIGNAL_HANDLER
-	if(!istype(fabricator) || isnull(cell))
+	if(!istype(fabricator))
 		return
 	QDEL_NULL(fabricator.cell)
 	fabricator.cell = cell
-	cell.forceMove(fabricator)
+	cell?.forceMove(fabricator)
+	fabricator.power_change()

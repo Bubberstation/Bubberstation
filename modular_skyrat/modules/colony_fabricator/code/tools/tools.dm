@@ -243,6 +243,7 @@
 	light_power = 0.75
 	toolspeed = 1.25
 	power_use_amount = POWER_CELL_USE_INSANE
+	has_cell_overlays = FALSE
 	custom_materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
@@ -251,12 +252,6 @@
 
 /obj/item/weldingtool/electric/arc_welder/Initialize(mapload)
 	. = ..()
-	// the cell component's overlay ignores recolours, so cell_overlay draws it instead
-	var/datum/component/cell/cell_component = GetComponent(/datum/component/cell)
-	if(cell_component)
-		cell_component.has_cell_overlays = FALSE
-		cut_overlay(cell_component.cell_overlay)
-		QDEL_NULL(cell_component.cell_overlay)
 	AddElement(/datum/element/cell_overlay, "arc_welder_cell")
 	AddElement(/datum/element/gags_recolorable)
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)

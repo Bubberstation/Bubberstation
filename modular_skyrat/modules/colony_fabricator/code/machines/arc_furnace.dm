@@ -199,8 +199,7 @@
 /// The cable under us, if it can cover at least FURNACE_CABLE_MIN_FRACTION of a second of smelting
 /obj/machinery/arc_furnace/proc/get_powered_cable()
 	var/obj/structure/cable/cable = locate() in get_turf(src)
-	var/datum/powernet/grid = cable?.powernet
-	if(isnull(grid) || clamp(grid.avail - grid.load, 0, grid.avail) < active_power_usage * FURNACE_CABLE_MIN_FRACTION)
+	if(isnull(cable) || cable.surplus() < active_power_usage * FURNACE_CABLE_MIN_FRACTION)
 		return null
 	return cable
 
@@ -213,9 +212,7 @@
 	if(!(machine_stat & NOPOWER))
 		return
 	var/obj/structure/cable/cable = get_powered_cable()
-	var/datum/powernet/grid = cable?.powernet
-	if(grid)
-		grid.load += min(active_power_usage, grid.avail - grid.load)
+	cable?.add_load(min(active_power_usage, cable.surplus()))
 
 /// Takes the ore contained and turns it into an equal stack amount of its smelt result
 /obj/machinery/arc_furnace/proc/succeed_smelting()

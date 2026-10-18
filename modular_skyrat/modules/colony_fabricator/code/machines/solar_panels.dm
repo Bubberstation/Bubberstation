@@ -34,8 +34,13 @@
 		balloon_alert(user, "need two sheets!")
 		return ITEM_INTERACT_BLOCKING
 	drop_upgrade_glass()
+	// wiggle the solars so the console's capacity counts the new tier
+	var/obj/machinery/power/solar_control/our_control = control
+	unset_control()
 	power_tier = new_tier
 	material_type = glass_sheets.material_type
+	if(our_control)
+		set_control(our_control)
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	balloon_alert(user, "glass upgraded")
 	update_appearance(UPDATE_OVERLAYS)

@@ -515,6 +515,8 @@
 // BUBBER EDIT ADDITION - lets a flatpacked machine hand things to the machine it deploys into
 ///from base of /datum/component/deployable/proc/deploy(): (atom/deployed_object)
 #define COMSIG_DEPLOYABLE_DEPLOYED "deployable_deployed"
+///from /datum/element/repackable/proc/repack(), before the source is deconstructed: (obj/item/packed_item)
+#define COMSIG_REPACKABLE_REPACKED "repackable_repacked"
 // BUBBER EDIT ADDITION END
 //from base of obj/item/attack_self_secondary(): (/mob)
 #define COMSIG_ITEM_ATTACK_SELF_SECONDARY "item_attack_self_secondary"

@@ -34,6 +34,8 @@
 
 /// Minimum agreement before a group syncs
 #define THUMPER_SYNC_MIN_AGREEMENT 0.02
+/// How long the output tile scan is reused before it runs again
+#define THUMPER_OUTPUT_REFRESH (5 SECONDS)
 
 /// What each stall reads as on examine
 GLOBAL_LIST_INIT(thumper_stall_descriptions, list(
@@ -138,6 +140,11 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	var/syncs_with_others = TRUE
 	/// Last cadence multiplier from syncing
 	var/sync_multiplier = 1
+	/// Cached reachable open tiles around us
+	var/list/cached_open_turfs
+	/// Cached reachable conveyor tiles around us
+	var/list/cached_conveyor_turfs
+	COOLDOWN_DECLARE(output_turfs_refresh)
 
 /obj/machinery/power/colony_ore_thumper/Initialize(mapload)
 	. = ..()
@@ -235,7 +242,6 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	if(work_blocker)
 		return
 
-	GLOB.working_ore_thumpers |= src
 	add_load(power_to_energy(active_power_usage))
 	sync_multiplier = get_sync_multiplier()
 	slam_progress += (seconds_per_tick SECONDS) * sync_multiplier
@@ -460,7 +466,16 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 	quake.run_event(event_cause = "ore thumper fracking")
 
 /// Open ground nearby that we can reach without crossing a wall, conveyor tiles only if any exist and conveyors_first is set
-/obj/machinery/power/colony_ore_thumper/proc/get_output_turfs(conveyors_first = TRUE)
+/obj/machinery/power/colony_ore_thumper/proc/get_output_turfs(conveyors_first = TRUE, force_refresh = FALSE)
+	if(force_refresh || isnull(cached_open_turfs) || COOLDOWN_FINISHED(src, output_turfs_refresh))
+		scan_output_turfs()
+	if(conveyors_first && length(cached_conveyor_turfs))
+		return cached_conveyor_turfs.Copy()
+	return cached_open_turfs.Copy()
+
+/// Rebuilds the cached output tiles
+/obj/machinery/power/colony_ore_thumper/proc/scan_output_turfs()
+	COOLDOWN_START(src, output_turfs_refresh, THUMPER_OUTPUT_REFRESH)
 	var/list/open_turfs = list()
 	var/list/conveyor_turfs = list()
 	for(var/turf/nearby_turf in orange(ore_spawn_range, src))
@@ -478,9 +493,8 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 		open_turfs += nearby_turf
 		if(locate(/obj/machinery/conveyor) in nearby_turf)
 			conveyor_turfs += nearby_turf
-	if(conveyors_first && length(conveyor_turfs))
-		return conveyor_turfs
-	return open_turfs
+	cached_open_turfs = open_turfs
+	cached_conveyor_turfs = conveyor_turfs
 
 /// Animates throwing the ore out of itself, turns out ore will fucking explode sometimes if you actually throw it so we fake it here
 /obj/machinery/power/colony_ore_thumper/proc/toss_out(obj/item/tossed)
@@ -501,7 +515,7 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 
 /// Spawns some ore piles around the thumper
 /obj/machinery/power/colony_ore_thumper/proc/make_some_ore()
-	var/list/nearby_valid_turfs = get_output_turfs(FALSE)
+	var/list/nearby_valid_turfs = get_output_turfs(FALSE, force_refresh = TRUE)
 	var/list/ore_turfs = get_output_turfs()
 	// Fallback in case somehow there are no valid nearby turfs
 	if(!length(nearby_valid_turfs))
@@ -570,6 +584,7 @@ GLOBAL_VAR_INIT(next_thumper_quake, 0)
 #undef THUMPER_SYNC_MAX_SHIFT
 #undef THUMPER_SYNC_GAIN
 #undef THUMPER_SYNC_MIN_AGREEMENT
+#undef THUMPER_OUTPUT_REFRESH
 #undef THUMPER_POWER_GRACE
 #undef THUMPER_STALL_LOCATION
 #undef THUMPER_STALL_NO_WIRE
