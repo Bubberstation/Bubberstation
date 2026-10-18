@@ -24,6 +24,7 @@ type ProteanData = {
   is_owner: boolean;
   icon: string;
   icon_state: string;
+  icon_base64?: string;
 };
 
 export const ProteanUI = () => {
@@ -42,6 +43,7 @@ export const Protean = () => {
     metal_max,
     icon,
     icon_state,
+    icon_base64,
     low_power,
     transformation,
     assimilated,
@@ -128,6 +130,7 @@ export const Protean = () => {
           <Stack vertical align="center">
             <Stack.Item>
               <ImageButton
+                base64={icon_base64} /* Painted suits use a generated icon, which DmIcon cannot load */
                 dmIcon={icon}
                 dmIconState={icon_state}
                 style={{ display: 'inline-flex' }}
