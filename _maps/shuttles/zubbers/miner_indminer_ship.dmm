@@ -32,34 +32,20 @@
 /turf/open/space/basic,
 /area/shuttle/abandoned)
 "bF" = (
+/obj/machinery/light/small/directional/north,
+/obj/structure/closet/crate,
+/turf/open/floor/catwalk_floor,
+/area/shuttle/abandoned)
+"bV" = (
 /obj/machinery/light/directional/south,
 /obj/effect/decal/cleanable/wrapping,
 /turf/open/floor/iron/shuttle/exploration/doubleside{
 	dir = 1
 	},
 /area/shuttle/abandoned)
-"bV" = (
-/obj/effect/turf_decal/trimline/dark_green/filled/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 4
-	},
-/obj/structure/closet/crate/hydroponics,
-/obj/item/storage/bag/plants/primitive,
-/obj/item/storage/bag/plants/primitive,
-/turf/open/floor/iron/shuttle/exploration/doubleside{
-	dir = 4
-	},
-/area/shuttle/abandoned)
 "ch" = (
-/obj/structure/fans/tiny/forcefield{
-	dir = 4
-	},
-/obj/machinery/door/poddoor{
-	id = indmine
-	},
-/turf/open/floor/catwalk_floor,
+/obj/machinery/mineral/ore_redemption/offstation,
+/turf/open/floor/iron/shuttle/cargo,
 /area/shuttle/abandoned)
 "cM" = (
 /obj/structure/table/reinforced/ctf,
@@ -128,10 +114,11 @@
 /turf/open/floor/iron/shuttle/exploration/corner_invcorner,
 /area/shuttle/abandoned)
 "dr" = (
-/obj/machinery/power/shuttle_engine/propulsion{
-	dir = 8
+/obj/structure/fluff/metalpole/anchor{
+	dir = 4;
+	pixel_x = -33
 	},
-/turf/open/space/basic,
+/turf/closed/wall/mineral/titanium,
 /area/shuttle/abandoned)
 "dB" = (
 /obj/structure/table/reinforced/ctf,
@@ -190,31 +177,27 @@
 	},
 /area/shuttle/abandoned)
 "fQ" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 4
-	},
-/obj/structure/chair/sofa/corp/left{
-	dir = 8
-	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/holopad/secure,
 /turf/open/floor/iron/shuttle/exploration/doubleside{
-	dir = 4
+	dir = 1
 	},
 /area/shuttle/abandoned)
 "fY" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 9
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 10
 	},
-/obj/structure/sink/directional/east,
 /obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 9
+	dir = 10
 	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/tank_holder/anesthetic,
-/obj/item/clothing/mask/breath,
-/turf/open/floor/iron/shuttle/exploration/corner_invcorner,
+/obj/machinery/vending/dinnerware{
+	all_products_free = 1;
+	scan_id = 0;
+	shut_up = 1
+	},
+/turf/open/floor/iron/shuttle/exploration/uside{
+	dir = 4
+	},
 /area/shuttle/abandoned)
 "fZ" = (
 /obj/machinery/door/airlock/external/glass,
@@ -327,11 +310,18 @@
 	},
 /area/shuttle/abandoned)
 "jb" = (
-/obj/structure/window/reinforced/spawner/directional/east,
-/obj/machinery/power/shuttle_engine/heater{
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 4
+	},
+/obj/structure/chair/sofa/corp/right{
 	dir = 8
 	},
-/turf/open/floor/plating,
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 4
+	},
 /area/shuttle/abandoned)
 "je" = (
 /obj/effect/turf_decal/trimline/dark_green/filled/line,
@@ -365,20 +355,28 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/shuttle/exploration/blanktile,
 /area/shuttle/abandoned)
-"kk" = (
+"kE" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 10
+	},
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 10
 	},
-/obj/effect/turf_decal/siding/thinplating/dark/corner{
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack/shelf,
+/obj/item/mod/module/tether{
+	pixel_y = -5
+	},
+/obj/item/mod/module/tether,
+/obj/item/mod/module/tether{
+	pixel_y = 5
+	},
+/obj/item/stock_parts/power_store/cell/lead,
+/obj/item/stock_parts/power_store/cell/lead,
+/obj/item/stock_parts/power_store/cell/lead,
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/iron/shuttle/exploration/blanktile,
-/area/shuttle/abandoned)
-"kE" = (
-/obj/machinery/light/small/directional/south,
-/obj/structure/closet/crate,
-/turf/open/floor/catwalk_floor,
 /area/shuttle/abandoned)
 "kJ" = (
 /obj/machinery/vending/boozeomat/cafe,
@@ -479,7 +477,18 @@
 /turf/open/floor/circuit/off,
 /area/shuttle/abandoned)
 "nr" = (
-/turf/open/floor/iron/shuttle/exploration/corner_invcorner,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 4
+	},
+/obj/structure/chair/sofa/corp/left{
+	dir = 8
+	},
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 4
+	},
 /area/shuttle/abandoned)
 "ny" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -490,29 +499,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/shuttle/cargo,
-/area/shuttle/abandoned)
-"oi" = (
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 10
-	},
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 10
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/rack/shelf,
-/obj/item/mod/module/tether{
-	pixel_y = -5
-	},
-/obj/item/mod/module/tether,
-/obj/item/mod/module/tether{
-	pixel_y = 5
-	},
-/obj/item/stock_parts/power_store/cell/lead,
-/obj/item/stock_parts/power_store/cell/lead,
-/obj/item/stock_parts/power_store/cell/lead,
-/turf/open/floor/iron/shuttle/exploration/corner_invcorner{
-	dir = 4
-	},
 /area/shuttle/abandoned)
 "oj" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -624,16 +610,6 @@
 /obj/effect/decal/cleanable/garbage,
 /turf/open/floor/catwalk_floor,
 /area/shuttle/abandoned)
-"sl" = (
-/obj/effect/turf_decal/trimline/dark_green/filled/line,
-/obj/effect/turf_decal/siding/thinplating/dark,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/biogenerator/food_replicator,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/iron/shuttle/exploration/doubleside{
-	dir = 1
-	},
-/area/shuttle/abandoned)
 "sT" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 9
@@ -658,6 +634,16 @@
 /area/shuttle/abandoned)
 "sV" = (
 /turf/open/floor/iron/shuttle/exploration/doubleside,
+/area/shuttle/abandoned)
+"tf" = (
+/obj/effect/turf_decal/trimline/dark_green/filled/line,
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/biogenerator/food_replicator,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 1
+	},
 /area/shuttle/abandoned)
 "tL" = (
 /obj/structure/table/reinforced/ctf,
@@ -689,6 +675,16 @@
 "uv" = (
 /turf/open/floor/catwalk_floor,
 /area/shuttle/abandoned)
+"uB" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 10
+	},
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/shuttle/exploration/blanktile,
+/area/shuttle/abandoned)
 "uD" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Engineering Bay"
@@ -700,6 +696,12 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/door/poddoor{
+	id = indmine
+	},
+/obj/structure/fans/tiny/forcefield{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -725,16 +727,6 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/iron/shuttle/exploration/doubleside{
-	dir = 1
-	},
-/area/shuttle/abandoned)
-"vC" = (
-/obj/machinery/light/directional/north,
-/obj/structure/table/reinforced/rglass,
-/obj/machinery/chem_dispenser/drinks/fullupgrade{
-	pixel_y = 8
-	},
 /turf/open/floor/iron/shuttle/exploration/doubleside{
 	dir = 1
 	},
@@ -767,8 +759,8 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/turf/template_noop,
-/area/shuttle/abandoned)
+/turf/open/floor/plating,
+/area/template_noop)
 "wC" = (
 /obj/structure/toilet,
 /obj/machinery/light/small/directional/north,
@@ -813,32 +805,15 @@
 	dir = 8
 	},
 /area/shuttle/abandoned)
-"xV" = (
-/obj/structure/table/reinforced/rglass,
-/obj/effect/turf_decal/trimline/white/filled/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/obj/machinery/chem_dispenser/drinks/beer/fullupgrade{
-	pixel_y = 8
-	},
-/turf/open/floor/iron/shuttle/exploration/doubleside{
-	dir = 1
-	},
-/area/shuttle/abandoned)
 "ze" = (
 /obj/structure/fluff/metalpole/end/right,
 /turf/template_noop,
 /area/shuttle/abandoned)
 "zf" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 9
+/obj/machinery/button/door/directional/west{
+	id = indminecargo
 	},
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 9
-	},
+/obj/structure/closet/crate,
 /turf/open/floor/iron/shuttle/exploration/corner_invcorner,
 /area/shuttle/abandoned)
 "zh" = (
@@ -917,13 +892,6 @@
 /obj/effect/decal/cleanable/blood/old,
 /obj/machinery/light/directional/north,
 /turf/open/floor/circuit/off,
-/area/shuttle/abandoned)
-"zO" = (
-/obj/machinery/button/door/directional/west{
-	id = indminecargo
-	},
-/obj/structure/closet/crate,
-/turf/open/floor/iron/shuttle/exploration/corner_invcorner,
 /area/shuttle/abandoned)
 "An" = (
 /obj/machinery/mecha_part_fabricator{
@@ -1030,27 +998,24 @@
 	},
 /area/shuttle/abandoned)
 "CY" = (
-/obj/machinery/mineral/ore_redemption/offstation,
-/turf/open/floor/iron/shuttle/cargo,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 1
+	},
 /area/shuttle/abandoned)
 "Dg" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/machinery/vending/cigarette{
-	all_products_free = 1;
-	shut_up = 1;
-	scan_id = 0
-	},
-/turf/open/floor/iron/shuttle/exploration/corner_invcorner{
-	dir = 8
-	},
+/obj/structure/window/reinforced/spawner/directional/east,
+/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/abandoned)
 "DP" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 9
 	},
-/obj/effect/turf_decal/siding/thinplating/dark/corner,
-/turf/open/floor/iron/shuttle/exploration/blanktile,
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 9
+	},
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner,
 /area/shuttle/abandoned)
 "DS" = (
 /obj/effect/turf_decal/siding/thinplating/dark,
@@ -1138,8 +1103,16 @@
 	},
 /area/shuttle/abandoned)
 "HA" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/holopad/secure,
+/obj/structure/table/reinforced/rglass,
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/machinery/chem_dispenser/drinks/beer/fullupgrade{
+	pixel_y = 8
+	},
 /turf/open/floor/iron/shuttle/exploration/doubleside{
 	dir = 1
 	},
@@ -1240,11 +1213,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/shuttle/exploration/blanktile,
 /area/shuttle/abandoned)
-"LO" = (
-/obj/machinery/light/small/directional/north,
-/obj/structure/closet/crate,
-/turf/open/floor/catwalk_floor,
-/area/shuttle/abandoned)
 "LT" = (
 /obj/effect/turf_decal/trimline/white/filled/line,
 /obj/effect/turf_decal/siding/thinplating/dark,
@@ -1299,22 +1267,13 @@
 /turf/open/floor/circuit/off,
 /area/shuttle/abandoned)
 "MF" = (
-/obj/machinery/rnd/production/circuit_imprinter,
-/obj/machinery/cell_charger_multi/wall_mounted/directional/east,
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 5
+/obj/effect/turf_decal/siding/thinplating/dark/end{
+	dir = 1
 	},
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 5
-	},
-/obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/extinguisher_cabinet/directional/north,
-/turf/open/floor/iron/shuttle/exploration/corner_invcorner{
-	dir = 8
-	},
+/obj/machinery/light/small/directional/north,
+/turf/open/floor/iron/shuttle/exploration/blanktile,
 /area/shuttle/abandoned)
-"MQ" = (
+"MS" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/flashlight/lantern,
 /obj/item/flashlight/lantern,
@@ -1335,22 +1294,6 @@
 	},
 /obj/machinery/light_switch/default_on/directional/south,
 /turf/open/floor/iron/shuttle/exploration/doubleside,
-/area/shuttle/abandoned)
-"MS" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/tank/internals/emergency_oxygen/engi,
-/obj/item/tank/internals/emergency_oxygen/engi,
-/obj/item/tank/internals/emergency_oxygen/engi,
-/obj/item/tank/internals/emergency_oxygen/engi,
-/obj/item/tank/internals/emergency_oxygen/engi,
-/obj/item/tank/internals/emergency_oxygen/engi,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/obj/structure/closet/crate/eva,
-/turf/open/floor/iron/shuttle/exploration/doubleside{
-	dir = 1
-	},
 /area/shuttle/abandoned)
 "Nj" = (
 /turf/template_noop,
@@ -1403,10 +1346,9 @@
 /turf/open/floor/catwalk_floor,
 /area/shuttle/abandoned)
 "Ou" = (
-/obj/effect/turf_decal/siding/thinplating/dark/end,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/light/small/directional/south,
-/turf/open/floor/iron/shuttle/exploration/blanktile,
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner{
+	dir = 4
+	},
 /area/shuttle/abandoned)
 "OP" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -1440,9 +1382,31 @@
 	},
 /turf/open/floor/circuit/off,
 /area/shuttle/abandoned)
+"PR" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 9
+	},
+/obj/structure/sink/directional/east,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/tank_holder/anesthetic,
+/obj/item/clothing/mask/breath,
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner,
+/area/shuttle/abandoned)
 "Qb" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/tank/internals/emergency_oxygen/engi,
+/obj/item/tank/internals/emergency_oxygen/engi,
+/obj/item/tank/internals/emergency_oxygen/engi,
+/obj/item/tank/internals/emergency_oxygen/engi,
+/obj/item/tank/internals/emergency_oxygen/engi,
+/obj/item/tank/internals/emergency_oxygen/engi,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/structure/closet/crate/eva,
 /turf/open/floor/iron/shuttle/exploration/doubleside{
 	dir = 1
 	},
@@ -1455,24 +1419,16 @@
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
 "QE" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 4
-	},
-/obj/structure/chair/sofa/corp/right{
-	dir = 8
-	},
-/turf/open/floor/iron/shuttle/exploration/doubleside{
-	dir = 4
-	},
+/obj/effect/turf_decal/siding/thinplating/dark/end,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small/directional/south,
+/turf/open/floor/iron/shuttle/exploration/blanktile,
 /area/shuttle/abandoned)
 "QV" = (
-/obj/machinery/power/shuttle_engine/propulsion{
-	dir = 8
-	},
-/turf/template_noop,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate,
+/obj/structure/extinguisher_cabinet/directional/north,
+/turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/shuttle/abandoned)
 "Rg" = (
 /obj/structure/closet,
@@ -1538,11 +1494,9 @@
 /turf/open/floor/iron/shuttle/exploration/doubleside,
 /area/shuttle/abandoned)
 "TN" = (
-/obj/effect/turf_decal/siding/thinplating/dark/end{
-	dir = 1
-	},
-/obj/machinery/light/small/directional/north,
-/turf/open/floor/iron/shuttle/exploration/blanktile,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/catwalk_floor,
 /area/shuttle/abandoned)
 "TQ" = (
 /obj/item/gps/computer/space{
@@ -1552,10 +1506,6 @@
 /turf/open/floor/iron/shuttle/exploration/corner_invcorner{
 	dir = 8
 	},
-/area/shuttle/abandoned)
-"Up" = (
-/obj/structure/window/reinforced/spawner/directional/east,
-/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/abandoned)
 "Uw" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line,
@@ -1592,6 +1542,20 @@
 	dir = 4
 	},
 /area/shuttle/abandoned)
+"VZ" = (
+/obj/effect/turf_decal/trimline/dark_green/filled/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/structure/closet/crate/hydroponics,
+/obj/item/storage/bag/plants/primitive,
+/obj/item/storage/bag/plants/primitive,
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 4
+	},
+/area/shuttle/abandoned)
 "Wi" = (
 /obj/machinery/vending/wallmed/directional/north,
 /obj/structure/table/reinforced/rglass,
@@ -1620,19 +1584,19 @@
 	},
 /area/shuttle/abandoned)
 "WG" = (
-/obj/effect/turf_decal/trimline/white/filled/line{
-	dir = 10
+/obj/machinery/rnd/production/circuit_imprinter,
+/obj/machinery/cell_charger_multi/wall_mounted/directional/east,
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 5
 	},
 /obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 10
+	dir = 5
 	},
-/obj/machinery/vending/dinnerware{
-	all_products_free = 1;
-	scan_id = 0;
-	shut_up = 1
-	},
-/turf/open/floor/iron/shuttle/exploration/uside{
-	dir = 4
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/extinguisher_cabinet/directional/north,
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner{
+	dir = 8
 	},
 /area/shuttle/abandoned)
 "WX" = (
@@ -1640,6 +1604,9 @@
 	id = indminecargo
 	},
 /turf/open/floor/iron/shuttle/cargo/cargo_maintc,
+/area/shuttle/abandoned)
+"Xe" = (
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner,
 /area/shuttle/abandoned)
 "Xm" = (
 /obj/structure/table/reinforced/ctf,
@@ -1729,8 +1696,30 @@
 	},
 /area/shuttle/abandoned)
 "Ya" = (
-/turf/open/floor/iron/shuttle/exploration/corner_invcorner{
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
 	dir = 4
+	},
+/obj/structure/fans/tiny/forcefield{
+	dir = 4
+	},
+/obj/machinery/door/poddoor{
+	id = indmine
+	},
+/turf/open/floor/plating,
+/area/shuttle/abandoned)
+"Yv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/machinery/vending/cigarette{
+	all_products_free = 1;
+	shut_up = 1;
+	scan_id = 0
+	},
+/turf/open/floor/iron/shuttle/exploration/corner_invcorner{
+	dir = 8
 	},
 /area/shuttle/abandoned)
 "YK" = (
@@ -1745,25 +1734,25 @@
 	},
 /area/shuttle/abandoned)
 "YN" = (
-/obj/machinery/power/shuttle_engine/heater{
-	dir = 8
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 9
 	},
-/obj/structure/window/reinforced/spawner/directional/east,
-/obj/machinery/power/shuttle_engine/heater{
-	dir = 8
-	},
-/obj/structure/window/reinforced/spawner/directional/east,
-/turf/open/floor/plating,
+/obj/effect/turf_decal/siding/thinplating/dark/corner,
+/turf/open/floor/iron/shuttle/exploration/blanktile,
 /area/shuttle/abandoned)
 "YV" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /turf/open/floor/catwalk_floor,
 /area/shuttle/abandoned)
 "Za" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/crate,
-/obj/structure/extinguisher_cabinet/directional/north,
-/turf/open/floor/iron/shuttle/exploration/doubleside,
+/obj/machinery/light/directional/north,
+/obj/structure/table/reinforced/rglass,
+/obj/machinery/chem_dispenser/drinks/fullupgrade{
+	pixel_y = 8
+	},
+/turf/open/floor/iron/shuttle/exploration/doubleside{
+	dir = 1
+	},
 /area/shuttle/abandoned)
 "Zf" = (
 /obj/machinery/door/airlock/grunge{
@@ -1772,8 +1761,8 @@
 /turf/open/floor/catwalk_floor,
 /area/shuttle/abandoned)
 "Zs" = (
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/machinery/portable_atmospherics/canister/air,
+/obj/machinery/light/small/directional/south,
+/obj/structure/closet/crate,
 /turf/open/floor/catwalk_floor,
 /area/shuttle/abandoned)
 "ZL" = (
@@ -1791,21 +1780,21 @@ Nj
 Nj
 Nj
 Nj
+Nj
+Nj
+Nj
+Nj
+lK
 dr
-Nj
-Nj
-Nj
-QV
-QV
 uH
+Ya
 uH
-uH
-QV
-QV
-Nj
-Nj
-Nj
 dr
+lK
+Nj
+Nj
+Nj
+Nj
 Nj
 Nj
 Nj
@@ -1816,22 +1805,22 @@ Nj
 Nj
 Nj
 wf
-Qu
-Up
+lK
+Dg
 fZ
 qc
-Qu
-Qu
-ch
-ch
-ch
-Qu
-Qu
+lK
+Xe
+ZL
+aX
+ZL
+Ou
+lK
 qc
 fZ
 qc
-YN
-zm
+lK
+wf
 Nj
 Nj
 Nj
@@ -1840,17 +1829,17 @@ Nj
 Nj
 Nj
 Nj
-jb
+Qu
 qc
 rq
 uv
 Vt
 qc
-nr
-ZL
-aX
-ZL
-Ya
+QV
+ch
+Ed
+uI
+Qb
 qc
 Vt
 uv
@@ -1871,9 +1860,9 @@ qc
 Os
 qc
 qc
-Za
-CY
-Ed
+sV
+wV
+sV
 uI
 MS
 qc
@@ -1889,32 +1878,32 @@ Nj
 (5,1,1) = {"
 Nj
 Nj
-Nj
+zm
 qc
 My
-fY
+PR
 oE
 hN
 qc
 cU
-wV
+Or
 Ed
 uI
-MQ
+sV
 qc
 sT
 lC
-oi
+kE
 uO
 qc
-Nj
+zm
 Nj
 Nj
 "}
 (6,1,1) = {"
 Nj
 Nj
-Nj
+Qu
 qc
 zC
 fE
@@ -1922,9 +1911,9 @@ Lw
 wZ
 qc
 Xp
-Or
+Lw
 Ed
-uI
+Lw
 qw
 qc
 oC
@@ -1932,14 +1921,14 @@ Lw
 Uw
 hy
 qc
-Nj
+Qu
 Nj
 Nj
 "}
 (7,1,1) = {"
 Nj
 Nj
-lK
+qc
 qc
 Wi
 vA
@@ -1957,7 +1946,7 @@ Lw
 AD
 XL
 qc
-lK
+qc
 Nj
 Nj
 "}
@@ -1977,7 +1966,7 @@ gK
 ZL
 mu
 qc
-MF
+WG
 ug
 An
 qc
@@ -2016,12 +2005,12 @@ Nj
 Nj
 ay
 no
-zf
+DP
 XZ
 zo
 dT
 qc
-zO
+zf
 ZL
 aX
 BG
@@ -2046,7 +2035,7 @@ fg
 Lw
 Hq
 rp
-Qb
+CY
 Lw
 Ed
 Lw
@@ -2056,7 +2045,7 @@ Ir
 Lw
 nK
 pP
-sl
+tf
 bm
 Nj
 Nj
@@ -2073,9 +2062,9 @@ Nw
 qc
 Tj
 Lw
-HA
+fQ
 Lw
-bF
+bV
 lK
 KR
 Lw
@@ -2088,12 +2077,12 @@ Nj
 "}
 (13,1,1) = {"
 Nj
-Nj
-bm
+zm
+qc
 Rg
 YK
-QE
-fQ
+jb
+nr
 HC
 qc
 dc
@@ -2104,16 +2093,16 @@ RU
 lK
 Xn
 kP
-bV
+VZ
 os
 hp
-bm
-Nj
+qc
+zm
 Nj
 "}
 (14,1,1) = {"
 Nj
-Nj
+Qu
 qc
 qc
 ik
@@ -2121,7 +2110,7 @@ qc
 qc
 qc
 qc
-Dg
+Yv
 ZL
 gK
 BG
@@ -2133,15 +2122,15 @@ qc
 YV
 qc
 qc
-Nj
+Qu
 Nj
 "}
 (15,1,1) = {"
 Nj
 lK
 lK
-DP
-Ou
+YN
+QE
 lK
 GA
 zt
@@ -2155,8 +2144,8 @@ qc
 kJ
 iM
 lK
-TN
-kk
+MF
+uB
 lK
 lK
 Nj
@@ -2177,7 +2166,7 @@ Lw
 Lw
 GS
 qc
-xV
+HA
 Kp
 lK
 lK
@@ -2202,9 +2191,9 @@ Lw
 RS
 oj
 qc
-vC
+Za
 oA
-WG
+fY
 qc
 dh
 NZ
@@ -2333,12 +2322,12 @@ Nj
 qc
 ld
 uv
-kE
+Zs
 qc
 "}
 (23,1,1) = {"
 qc
-LO
+bF
 uv
 lK
 lK
@@ -2363,7 +2352,7 @@ qc
 "}
 (24,1,1) = {"
 lK
-Zs
+TN
 uv
 fZ
 Nj
