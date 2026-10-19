@@ -178,6 +178,7 @@
 
 /datum/bt_node/composite/subplan/tick(datum/ai_controller/controller, seconds_per_tick)
 	if(loop_delay > 0 && next_loop_time > world.time)
+		controller.active_execution_index = execution_index // BUBBER EDIT ADDITION - we are the thing running, say so or observer aborts compare against a stale index
 		return BT_RUNNING
 
 	var/datum/bt_node/child = LAZYACCESS(children, 1)
@@ -197,6 +198,7 @@
 			child.reset_tick_state()
 			if(loop_delay > 0)
 				next_loop_time = world.time + loop_delay
+			controller.active_execution_index = execution_index // BUBBER EDIT ADDITION
 			return BT_RUNNING
 		next_loop_time = 0
 		return BT_FAILURE
@@ -205,6 +207,7 @@
 		child.reset_tick_state()
 		if(loop_delay > 0)
 			next_loop_time = world.time + loop_delay
+		controller.active_execution_index = execution_index // BUBBER EDIT ADDITION
 		return BT_RUNNING
 	next_loop_time = 0
 	return BT_SUCCESS

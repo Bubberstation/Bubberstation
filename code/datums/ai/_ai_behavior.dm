@@ -62,14 +62,22 @@
 		EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "[controller.pawn] [type]: succeeded")
 		failed_last_perform = FALSE
 		finish_action(controller, TRUE)
+		clear_active_index(controller) // BUBBER EDIT ADDITION
 		return BT_SUCCESS
 	if(process_flags & AI_BEHAVIOR_FAILED)
 		EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_BEHAVIORS, "[controller.pawn] [type]: failed")
 		failed_last_perform = TRUE
 		finish_action(controller, FALSE)
+		clear_active_index(controller) // BUBBER EDIT ADDITION
 		return BT_FAILURE
 	controller.active_execution_index = execution_index
 	return BT_RUNNING
+
+// BUBBER EDIT ADDITION START - a finished leaf is no longer the active node, don't leave a stale index behind for observer aborts to compare against
+/datum/bt_node/ai_behavior/proc/clear_active_index(datum/ai_controller/controller)
+	if(controller.active_execution_index == execution_index)
+		controller.active_execution_index = 0
+// BUBBER EDIT ADDITION END
 
 /// Returns the cooldown to apply after a AI_BEHAVIOR_DELAY perform(). Override for conditional delays.
 /datum/bt_node/ai_behavior/proc/get_cooldown(datum/ai_controller/cooldown_for)
