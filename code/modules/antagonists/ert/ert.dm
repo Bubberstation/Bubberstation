@@ -29,9 +29,13 @@
 
 
 /datum/antagonist/ert/on_gain()
-	if(random_names)
+	// BUBBER EDIT CHANGE BEGIN - ERT NAMES - ORIGINAL: if(random_names) update_name()
+	var/chosen_alias = owner.current.client?.prefs?.read_preference(/datum/preference/name/emergency)
+	if(random_names || !chosen_alias)
 		update_name()
-	else owner.current.fully_replace_character_name(owner.current.real_name,"[role] [owner.current.client?.prefs?.read_preference(/datum/preference/name/emergency)]") //BUBBER EDIT ADDITION: ERT NAMES
+	else
+		owner.current.fully_replace_character_name(owner.current.real_name, "[role] [chosen_alias]")
+	// BUBBER EDIT CHANGE END
 	if(forge_objectives_for_ert)
 		forge_objectives()
 	if(equip_ert)
