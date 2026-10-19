@@ -5,7 +5,7 @@
 ///Put your movement behavior in here!
 /datum/ai_movement/dumb/start_moving_towards(datum/ai_controller/controller, atom/current_movement_target, min_distance, delay_override)
 	. = ..()
-	if(.)
+	if(!.) // BUBBER EDIT CHANGE - ORIGINAL: if(.)
 		return FALSE
 	var/atom/movable/moving = controller.pawn
 	var/delay = delay_override || controller.movement_delay
