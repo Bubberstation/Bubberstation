@@ -164,6 +164,7 @@
 /datum/techweb_node/basic_xenoarch
 	display_name = "Basic Xenoarchaeology"
 	description = "The basic designs of xenoarchaeology."
+	node_flags = TECHWEB_NODE_STARTER | TECHWEB_NODE_WIKI
 	unlocked_designs = list(
 		/datum/design/xenoarch/tool/hammer/cm1,
 		/datum/design/xenoarch/tool/hammer/cm2,

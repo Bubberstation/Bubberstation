@@ -179,10 +179,16 @@
 	)
 	return ..()
 
-/datum/techweb_node/alien_surgery/New()
+/datum/techweb_node/alien/surgery/New()
 	unlocked_designs += list(
 		/datum/design/alienbloodfilter,
 		/datum/design/alienbonesetter,
+		/datum/design/hypomkii/deluxe,
+		/datum/design/medicell/brute3,
+		/datum/design/medicell/burn3,
+		/datum/design/medicell/oxy3,
+		/datum/design/surgical_processor,
+		/datum/design/medicell/toxin3,
 	)
 	return ..()
 

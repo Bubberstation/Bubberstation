@@ -29,7 +29,7 @@
 		/datum/design/tabletop_griddle,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = INFINITY) // God save you
-	node_flags = TECHWEB_NODE_HIDDEN | TECHWEB_NODE_EXPERIMENTAL
+	node_flags = TECHWEB_NODE_HIDDEN | TECHWEB_NODE_EXPERIMENTAL | TECHWEB_NODE_STARTER
 
 /// Wall mountable multi cell charger
 /datum/design/wall_mounted_multi_charger

@@ -92,9 +92,3 @@
 		/datum/design/hypokit/deluxe,
 	)
 	return ..()
-
-/datum/techweb_node/alien_surgery/New()
-	unlocked_designs += list(
-		/datum/design/hypomkii/deluxe,
-	)
-	return ..()

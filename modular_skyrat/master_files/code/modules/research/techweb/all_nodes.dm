@@ -221,18 +221,6 @@
 	)
 	return ..()
 
-////////////////////////Alien technology////////////////////////
-
-/datum/techweb_node/alien_surgery/New()
-	unlocked_designs += list(
-		/datum/design/medicell/brute3,
-		/datum/design/medicell/burn3,
-		/datum/design/medicell/oxy3,
-		/datum/design/surgical_processor,
-		/datum/design/medicell/toxin3,
-	)
-	return ..()
-
 /////////////////////////engineering tech/////////////////////////
 
 /datum/techweb_node/fusion/New()

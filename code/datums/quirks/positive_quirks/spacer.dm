@@ -61,8 +61,8 @@
 	MODIFY_PHYSIOLOGY(quirk_holder, PHYS_COEFF_COLD, damage_mod)
 
 	//taller from lack of gravity
-	var/mob/living/carbon/human/human_quirker = quirk_holder
-	human_quirker.set_mob_height(modded_height)
+	//var/mob/living/carbon/human/human_quirker = quirk_holder //BUBBER EDIT REMOVAL
+	//human_quirker.set_mob_height(modded_height) //BUBBER EDIT REMOVAL
 
 /datum/quirk/spacer_born/post_add()
 	var/on_a_planet = SSmapping.is_planetary()

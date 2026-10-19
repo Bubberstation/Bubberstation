@@ -5,14 +5,16 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	can_randomize = FALSE
+	// BUBBER EDIT BEGIN - Removes reservations
 	var/list/height_to_actual = list(
-		// "Shortest" = HUMAN_HEIGHT_SHORTEST, // Reserved for Settler
+		"Shortest" = HUMAN_HEIGHT_SHORTEST, // Reserved for Settler
 		"Short" = HUMAN_HEIGHT_SHORT,
 		DEFAULT_HEIGHT = HUMAN_HEIGHT_MEDIUM,
 		"Tall" = HUMAN_HEIGHT_TALL,
-		// "Taller" = HUMAN_HEIGHT_TALLER, // Reserved for Spacer
-		// "Tallest" = HUMAN_HEIGHT_TALLEST, // Reserved for Spacer
+		"Taller" = HUMAN_HEIGHT_TALLER, // Reserved for Spacer
+		"Tallest" = HUMAN_HEIGHT_TALLEST, // Reserved for Spacer
 	)
+	// BUBBER EDIT END
 
 /datum/preference/choiced/mob_height/init_possible_values()
 	return assoc_to_keys(height_to_actual)
