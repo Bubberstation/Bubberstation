@@ -47,6 +47,10 @@
 #define ACCESS_COURT "court"
 /// The "Weapons Permit" Access, or the one that lets you walk past secbots without them charging at you as you hold your weaponry.
 #define ACCESS_WEAPONS "weapons"
+// BUBBER EDIT ADDITION START - WARRANTS
+/// Authority to file a death warrant. Held by the Captain, Head of Security and Warden, and nobody else unless command says so.
+#define ACCESS_DEATH_WARRANT "death_warrant"
+// BUBBER EDIT ADDITION END
 /// Access used for the Head of Security's personal quarters in mapping, as well as other HoS-related things.
 #define ACCESS_HOS "hos"
 /// Access for the detective to get into their office, the medical data console, and some other detective-related stuff.
@@ -351,7 +355,8 @@
 	ACCESS_XENOBIOLOGY, \
 	ACCESS_BARBER, \
 	ACCESS_BLACKSMITH, \
-) // SKYRAT EDIT ADDITION
+	ACCESS_DEATH_WARRANT, \
+) // SKYRAT EDIT ADDITION, BUBBER EDIT ADDITION - WARRANTS - ACCESS_DEATH_WARRANT
 
 /// Command staff/secure accesses, think bridge/armoury, ai_upload, notably access to modify ID cards themselves. Do not use direct, access via SSid_access.get_flag_access_list(ACCESS_FLAG_COMMAND)
 #define COMMAND_ACCESS list( \
@@ -459,6 +464,7 @@
 	ACCESS_BRIG_ENTRANCE, \
 	ACCESS_BUDGET, \
 	ACCESS_COURT, \
+	ACCESS_DEATH_WARRANT, \
 	ACCESS_DETECTIVE, \
 	ACCESS_HOS, \
 	ACCESS_MECH_SECURITY, \
