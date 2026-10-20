@@ -16,7 +16,7 @@
 	map_flags = EVENT_PLANETARY_ONLY
 	admin_setup = list(/datum/event_admin_setup/set_location/earthquake)
 
-/datum/round_event_control/earthquake/can_spawn_event(players_amt, allow_magic)
+/datum/round_event_control/earthquake/can_spawn_event(players_amt, allow_magic, log_for_admins = FALSE)
 	. = ..()
 	if(!.)
 		return .

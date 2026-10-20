@@ -12,7 +12,7 @@ GLOBAL_VAR_INIT(rbmk_did_warning, FALSE)
 	tags = list(TAG_COMMUNAL, TAG_DESTRUCTIVE)
 	track = EVENT_TRACK_MODERATE
 
-/datum/round_event_control/rbmk_voidcheck/can_spawn_event(players_amt, allow_magic)
+/datum/round_event_control/rbmk_voidcheck/can_spawn_event(players_amt, allow_magic, log_for_admins = FALSE)
 
 	if(length(GLOB.active_rbmk_machines) <= 12)
 		return FALSE

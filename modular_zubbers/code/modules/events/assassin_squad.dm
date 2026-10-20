@@ -9,7 +9,7 @@
 	tags = list(TAG_COMBAT, TAG_NPC_ANTAG)
 	track = EVENT_TRACK_MODERATE
 
-/datum/round_event_control/syndicate_assassination_attempt/can_spawn_event(players_amt, allow_magic = FALSE)
+/datum/round_event_control/syndicate_assassination_attempt/can_spawn_event(players_amt, allow_magic = FALSE, log_for_admins = FALSE)
 	. = ..(players_amt, allow_magic)
 	if(!.)
 		return
