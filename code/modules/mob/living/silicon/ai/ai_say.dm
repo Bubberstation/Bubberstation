@@ -2,7 +2,8 @@
 /mob/living/silicon/compose_track_href(atom/movable/speaker, namepart)
 	if(!HAS_TRAIT(src, TRAIT_CAN_GET_AI_TRACKING_MESSAGE))
 		return ""
-	var/mob/M = speaker.GetSource()
+	// var/mob/M = speaker.GetSource() // BUBBERSTATION EDIT OLD
+	var/mob/M = speaker.GetJob() // BUBBER EDIT NEW -- NTSL
 	if(M)
 		return "<a href='byond://?src=[REF(src)];track=[html_encode(namepart)]'>"
 	return ""
