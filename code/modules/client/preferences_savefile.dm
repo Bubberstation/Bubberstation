@@ -508,6 +508,19 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		value_cache[preference.type] = new_value
 	return success
 
+/// Read a /datum/preference type from a specific character slot without changing the active slot.
+/datum/preferences/proc/read_preference_special(preference_type, override_slot)
+	var/datum/preference/preference_entry = GLOB.preference_entries[preference_type]
+	if (isnull(preference_entry))
+		CRASH("Preference type `[preference_type]` is invalid!")
+
+	override_slot = sanitize_integer(override_slot, 1, max_save_slots, default_slot)
+	var/list/save_data = savefile.get_entry("character[override_slot]")
+	var/value = preference_entry.read(save_data, src)
+	if (isnull(value))
+		value = preference_entry.create_informed_default_value(src)
+	return value
+
 /datum/preferences/proc/sanitize_be_special(list/input_be_special)
 	var/list/output = list()
 
