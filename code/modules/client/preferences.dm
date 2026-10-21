@@ -386,6 +386,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if (!update_preference(requested_preference, default_value_list))
 				return FALSE
 
+			update_body_parts(requested_preference)
+
 			return TRUE
 
 		// For the quirks in the prefs menu.

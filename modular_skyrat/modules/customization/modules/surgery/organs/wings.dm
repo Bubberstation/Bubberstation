@@ -22,7 +22,11 @@
 
 //TODO: Well you know what this flight stuff is a bit complicated and hardcoded, this is enough for now
 
-/datum/bodypart_overlay/mutant/wings/override_color(rgb_value)
+/datum/bodypart_overlay/mutant/wings/override_color(obj/item/bodypart/bodypart_owner)
+	var/mob/living/carbon/human/wearer = bodypart_owner?.owner
+	var/list/mutant_part = wearer?.dna?.mutant_bodyparts?[feature_key]
+	if(mutant_part?[MUTANT_INDEX_COLOR_LIST])
+		return mutant_part[MUTANT_INDEX_COLOR_LIST]
 	return draw_color
 
 /obj/item/organ/wings/moth
