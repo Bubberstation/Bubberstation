@@ -29,12 +29,12 @@
 	var/client/target_client = human_owner.client
 	if (!isnull(target_client))
 		var/name = human_owner.real_name
-		var/slot = target_client.prefs.read_preference(/datum/preference/numeric/cursekin_char_slot)
-		var/transfer = TRUE
 		if (isnull(lycan_brain.last_slot))
-			lycan_brain.last_slot = target_client.prefs.savefile.get_entry("default_slot")
+			lycan_brain.last_slot = human_owner.mind?.original_character_slot_index || target_client.prefs.default_slot
+		var/slot = target_client.prefs.read_preference_special(/datum/preference/numeric/cursekin_char_slot, lycan_brain.last_slot)
+		var/transfer = TRUE
 		target_client.prefs.load_character(slot)
-		if (!ispath(target_client.prefs.read_preference(/datum.preference/choiced/species), current_wolf.lycanthropy_species))
+		if (!ispath(target_client.prefs.read_preference(/datum/preference/choiced/species), current_wolf.lycanthropy_species))
 			to_chat(human_owner, span_warning("Your selected slot is not a lycan! Defaulting to simply changing your species..."))
 			target_client.prefs.load_character(lycan_brain.last_slot)
 			human_owner.set_species(current_wolf.lycanthropy_species, TRUE, TRUE, FALSE)
