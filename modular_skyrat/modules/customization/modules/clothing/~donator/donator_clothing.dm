@@ -1160,7 +1160,7 @@
 
 // Donation reward for gamerguy14948
 /obj/item/clothing/head/hooded/occult
-	name = "hood"
+	name = "occult collector's hood"
 	desc = "Certainly makes you look more ominous."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
