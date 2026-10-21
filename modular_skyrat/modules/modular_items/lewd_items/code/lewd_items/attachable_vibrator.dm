@@ -325,7 +325,7 @@
 				. = TRUE
 		if("reset")
 			if(params["reset"] == "freq")
-				frequency = initial(frequency)
+				set_frequency(initial(frequency))
 				. = TRUE
 			else if(params["reset"] == "code")
 				code = initial(code)
