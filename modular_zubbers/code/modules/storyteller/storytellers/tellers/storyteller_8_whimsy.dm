@@ -14,7 +14,7 @@
 
 	guarantees_roundstart_crewset = FALSE
 
-	track_data = /datum/storyteller_data/tracks/whimsy
+	// track_data = /datum/storyteller_data/tracks/whimsy
 
 	starting_point_multipliers = list(
 		EVENT_TRACK_MUNDANE = 0.6,

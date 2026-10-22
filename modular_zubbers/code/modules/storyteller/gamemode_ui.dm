@@ -94,7 +94,7 @@
 				return
 			message_admins("[key_name_admin(usr)] has changed the Storyteller to [new_storyteller_name].")
 			var/new_storyteller_type = name_list[new_storyteller_name]
-			set_storyteller(new_storyteller_type, TRUE, usr.ckey)
+			set_storyteller(new_storyteller_name, TRUE, usr.ckey)
 		if("halt_storyteller")
 			halt_storyteller(usr)
 		if("track_action")

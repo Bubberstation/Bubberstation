@@ -11,7 +11,7 @@
 
 	guarantees_roundstart_crewset = TRUE
 
-	track_data = /datum/storyteller_data/tracks/npc_war
+	// track_data = /datum/storyteller_data/tracks/npc_war
 
 	starting_point_multipliers = list(
 		EVENT_TRACK_MUNDANE = 0.6,

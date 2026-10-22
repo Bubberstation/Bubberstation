@@ -130,8 +130,7 @@ SUBSYSTEM_DEF(gamemode)
 		event_pools[track] = list()
 
 	// Populate storytellers
-	for(var/type in subtypesof(/datum/storyteller))
-		storytellers[type] = new type()
+	load_config_storytellers()
 
 	for(var/type in typesof(/datum/round_event_control))
 		var/datum/round_event_control/event = new type()
@@ -754,6 +753,12 @@ SUBSYSTEM_DEF(gamemode)
 			channel_tag,
 		)
 
+#define THRESHOLD_MUNDANE 0
+#define THRESHOLD_MODERATE 1
+#define THRESHOLD_MAJOR 2
+#define THRESHOLD_CREWSET 3
+#define THRESHOLD_GHOSTSET 4
+
 /**
  * set_storyteller
  *
@@ -767,14 +772,20 @@ SUBSYSTEM_DEF(gamemode)
 		CRASH("Attempted to set an invalid storyteller type: [passed_type].")
 	storyteller = storytellers[passed_type]
 
-	var/datum/storyteller_data/tracks/track_data = storyteller.track_data
-	point_thresholds[EVENT_TRACK_MUNDANE] = track_data.threshold_mundane * CONFIG_GET(number/mundane_point_threshold)
-	point_thresholds[EVENT_TRACK_MODERATE] = track_data.threshold_moderate * CONFIG_GET(number/moderate_point_threshold)
-	point_thresholds[EVENT_TRACK_MAJOR] = track_data.threshold_major * CONFIG_GET(number/major_point_threshold)
-	point_thresholds[EVENT_TRACK_CREWSET] = track_data.threshold_crewset * CONFIG_GET(number/crewset_point_threshold)
-	point_thresholds[EVENT_TRACK_GHOSTSET] = track_data.threshold_ghostset * CONFIG_GET(number/ghostset_point_threshold)
+	// var/datum/storyteller_data/tracks/track_data = storyteller.track_data
+	point_thresholds[EVENT_TRACK_MUNDANE] = storyteller.track_data[THRESHOLD_MUNDANE]
+	point_thresholds[EVENT_TRACK_MODERATE] = storyteller.track_data[THRESHOLD_MODERATE]
+	point_thresholds[EVENT_TRACK_MAJOR] = storyteller.track_data[THRESHOLD_MAJOR]
+	point_thresholds[EVENT_TRACK_CREWSET] = storyteller.track_data[THRESHOLD_CREWSET]
+	point_thresholds[EVENT_TRACK_GHOSTSET] = storyteller.track_data[THRESHOLD_GHOSTSET]
 
 	log_admin_private("Storyteller switched to [storyteller.name]. [forced ? "Forced by admin ckey [force_ckey]" : ""]")
+
+#undef THRESHOLD_MUNDANE
+#undef THRESHOLD_MODERATE
+#undef THRESHOLD_MAJOR
+#undef THRESHOLD_CREWSET
+#undef THRESHOLD_GHOSTSET
 
 /**
  * halt_storyteller
@@ -847,6 +858,52 @@ SUBSYSTEM_DEF(gamemode)
 	if(isnull(event_control))
 		event_control = pick_weight(SSgamemode.antag_rerolls)
 	SSgamemode.inject_event(event_control = event_control)
+
+/datum/controller/subsystem/gamemode/proc/load_config_storytellers()
+	var/json_file = file("[global.config.directory]/bubbers/storytellers.json")
+	if (!fexists(json_file))
+		return
+	var/list/storyteller_configs = json_decode(file2text(json_file))
+	for (var/storyteller in storyteller_configs)
+		var/datum/storyteller/new_storyteller = new
+		var/list/var_list = storyteller_configs[storyteller]
+		for (var/variable in var_list)
+			var/value = var_list[variable]
+			switch (variable)
+				if ("name")
+					new_storyteller.name = value
+				if ("desc")
+					new_storyteller.desc = value
+				if ("welcome_text")
+					new_storyteller.welcome_text = value
+				if ("event_repetition_multiplier")
+					new_storyteller.event_repetition_multiplier = value
+				if ("starting_point_multipliers")
+					new_storyteller.starting_point_multipliers = value[1]
+				if ("track_data")
+					new_storyteller.track_data = value[1]
+				if ("roundstart_points_variance")
+					new_storyteller.roundstart_points_variance = value
+				if ("tag_multipliers")
+					new_storyteller.tag_multipliers = value[1]
+				if ("cost_variance")
+					new_storyteller.cost_variance = value
+				if ("guarantees_roundstart_crewset")
+					new_storyteller.guarantees_roundstart_crewset = value
+				if ("disable_distribution")
+					new_storyteller.disable_distribution = value
+				if ("votable")
+					new_storyteller.votable = value
+				if ("population_min")
+					new_storyteller.population_min = value
+				if ("population_max")
+					new_storyteller.population_max = value
+				if ("antag_divisor")
+					new_storyteller.antag_divisor = value
+				if ("storyteller_type")
+					new_storyteller.storyteller_type = value
+
+		storytellers[storyteller] = new_storyteller
 
 ADMIN_VERB(create_antagonist, R_FUN, "Create Antagonist", "Inject a little more action into the round.", ADMIN_CATEGORY_EVENTS)
 	var/list/available_antags = list()
