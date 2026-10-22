@@ -4,7 +4,7 @@
 	var/maint_flipped = FALSE
 
 /datum/weather/rad_storm/New(...)
-	LAZYOR(protected_areas, list(
+	protected_areas |= list(
 		/area/station/terminal,
 		/area/lavaland,
 		/area/ruin,
@@ -16,7 +16,7 @@
 		/area/ruin/space/has_grav/bubbers/dauntless,
 		/area/ruin/space/has_grav/bubbers/dauntless_space,
 		/area/ruin/space/has_grav/bubbers/persistance,
-	))
+	)
 	. = ..()
 
 /datum/weather/rad_storm/telegraph()
