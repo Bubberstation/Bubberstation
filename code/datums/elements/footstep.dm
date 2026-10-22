@@ -162,7 +162,10 @@
 	var/list/footstep_sounds
 	var/stepcount = steps_for_living[source]
 	// any leg covering sounds defaults to shoe sounds
-	if((source.wear_suit?.body_parts_covered|source.w_uniform?.body_parts_covered|source.shoes?.body_parts_covered) & FEET)
+	// BUBBER EDIT START
+	var/shoe_foot_coverage = source.shoes?.preserve_natural_footsteps ? NONE : source.shoes?.body_parts_covered
+	if((source.wear_suit?.body_parts_covered|source.w_uniform?.body_parts_covered|shoe_foot_coverage) & FEET)
+	// BUBBER EDIT END
 		footstep_type = FOOTSTEP_MOB_SHOE
 	// now pick whether to draw from left foot or right foot sounds
 	else
