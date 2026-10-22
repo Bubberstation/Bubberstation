@@ -153,13 +153,39 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	//but the biggest reason is that the chef requires produce to cook and do their job, and if they are using this system they
 	//already got let down by the botanists. So to open a new chance for cargo to also screw them over any more than is necessary is bad.
 	if(SSshuttle.chef_groceries.len)
-		var/obj/structure/closet/crate/freezer/grocery_crate = new(pick_n_take(empty_turfs))
-		grocery_crate.name = "kitchen produce freezer"
-		grocery_crate.desc = "Produce order for the Kitchen, deliver to the chef ASAP."
-		investigate_log("Chef's [SSshuttle.chef_groceries.len] sized produce order arrived. Cost was deducted from orderer, not cargo.", INVESTIGATE_CARGO)
-		for(var/datum/orderable_item/item as anything in SSshuttle.chef_groceries)//every order
-			for(var/amt in 1 to SSshuttle.chef_groceries[item])//every order amount
-				new item.purchase_path(grocery_crate)
+		// BUBBER EDIT REMOVAL START
+		// var/obj/structure/closet/crate/freezer/grocery_crate = new(pick_n_take(empty_turfs))
+		// grocery_crate.name = "kitchen produce freezer"
+		// grocery_crate.desc = "Produce order for the Kitchen, deliver to the chef ASAP."
+		// investigate_log("Chef's [SSshuttle.chef_groceries.len] sized produce order arrived. Cost was deducted from orderer, not cargo.", INVESTIGATE_CARGO)
+		// for(var/datum/orderable_item/item as anything in SSshuttle.chef_groceries)//every order
+		// 	for(var/amt in 1 to SSshuttle.chef_groceries[item])//every order amount
+		// 		new item.purchase_path(grocery_crate)
+		// BUBBER EDIT REMOVAL END
+		// BUBBER EDIT ADDITION START - a bad grocery item ships in the error crate instead of jamming the shuttle
+		var/list/grocery_paths = list()
+		var/groceries_broken = FALSE
+		for(var/datum/orderable_item/item as anything in SSshuttle.chef_groceries)
+			if(!ispath(item.purchase_path, /atom/movable))
+				groceries_broken = TRUE
+				continue
+			grocery_paths[item.purchase_path] += SSshuttle.chef_groceries[item]
+		if(groceries_broken)
+			var/obj/structure/closet/crate/secure/error/salvage_crate = new(pick_n_take(empty_turfs))
+			salvage_crate.salvage(grocery_paths)
+			salvage_crate.locked = FALSE
+			salvage_crate.update_appearance()
+			stack_trace("The chef's grocery order had an invalid item and shipped in an error crate.")
+			message_admins("The chef's grocery order had an invalid item and shipped in an ERROR crate. Report this to a coder.")
+		else
+			var/obj/structure/closet/crate/freezer/grocery_crate = new(pick_n_take(empty_turfs))
+			grocery_crate.name = "kitchen produce freezer"
+			grocery_crate.desc = "Produce order for the Kitchen, deliver to the chef ASAP."
+			investigate_log("Chef's [SSshuttle.chef_groceries.len] sized produce order arrived. Cost was deducted from orderer, not cargo.", INVESTIGATE_CARGO)
+			for(var/datum/orderable_item/item as anything in SSshuttle.chef_groceries)//every order
+				for(var/amt in 1 to SSshuttle.chef_groceries[item])//every order amount
+					new item.purchase_path(grocery_crate)
+		// BUBBER EDIT ADDITION END
 		SSshuttle.chef_groceries.Cut() //This lets the console know it can order another round.
 
 	if(!SSshuttle.shopping_list.len)
@@ -171,6 +197,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	var/pack_cost
 	var/list/goodies_by_buyer = list() // if someone orders more than GOODY_FREE_SHIPPING_MAX goodies, we upcharge to a normal crate so they can't carry around 20 combat shotties
 	var/list/clean_up_orders = list() // orders to remove since we are done with them
+	var/list/goody_charges = list() // BUBBER EDIT ADDITION - what each account paid for goodies, for refunds
 
 	for(var/datum/supply_order/spawning_order in SSshuttle.shopping_list)
 		if(!empty_turfs.len)
@@ -215,10 +242,26 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 						clean_up_orders += spawning_order
 					continue
 
+		// BUBBER EDIT ADDITION START - dequeue first so one bad order can't jam the shuttle. broken orders ship in the error crate with a refund
+		SSshuttle.shopping_list -= spawning_order
+		clean_up_orders += spawning_order
+		if(!(spawning_order.pack.order_flags & ORDER_GOODY)) //we handle goody crates below
+			var/turf/crate_turf = pick_n_take(empty_turfs)
+			var/obj/structure/closet/crate = spawning_order.generate(crate_turf)
+			if(!crate && length(spawning_order.pack.contains))
+				crate = spawning_order.ship_in_error_crate(crate_turf)
+			if(crate)
+				crate.name += " - #[spawning_order.id]"
+			var/obj/structure/closet/crate/secure/error/error_crate = astype(crate)
+			if(error_crate?.salvaged)
+				spawning_order.refund_failed(paying_for_this, price)
+		// BUBBER EDIT ADDITION END
+
 		pack_cost = spawning_order.pack.get_cost()
 		// BUBBER EDIT START - include cargo-funded goodies in per-buyer goody packaging
 		if(spawning_order.charge_on_purchase && (spawning_order.pack.order_flags & ORDER_GOODY) && paying_for_this)
 			LAZYADD(goodies_by_buyer[paying_for_this], spawning_order)
+			goody_charges[paying_for_this] += price // BUBBER EDIT ADDITION
 		// BUBBER EDIT END
 		if(spawning_order.paying_account && spawning_order.charge_on_purchase) // SKYRAT EDIT CHANGE - ORIGINAL: if(spawning_order.paying_account)
 			paying_for_this = spawning_order.paying_account
@@ -235,9 +278,11 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			cargo.adjust_money(price - pack_cost) //Cargo gets the handling fee
 		value += pack_cost
 
-		if(!(spawning_order.pack.order_flags & ORDER_GOODY)) //we handle goody crates below
-			var/obj/structure/closet/crate = spawning_order.generate(pick_n_take(empty_turfs))
-			crate.name += " - #[spawning_order.id]"
+		// BUBBER EDIT REMOVAL START - moved above
+		// if(!(spawning_order.pack.order_flags & ORDER_GOODY)) //we handle goody crates below
+		// 	var/obj/structure/closet/crate = spawning_order.generate(pick_n_take(empty_turfs))
+		// 	crate.name += " - #[spawning_order.id]"
+		// BUBBER EDIT REMOVAL END
 
 		SSblackbox.record_feedback("nested tally", "cargo_imports", 1, list("[spawning_order.pack.get_cost()]", "[spawning_order.pack.name]", "[spawning_order.orderer_rank]"))
 		var/from_whom = paying_for_this?.account_holder || "nobody (department order)"
@@ -247,16 +292,20 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			message_admins("\A [spawning_order.pack.name] ordered by [ADMIN_LOOKUPFLW(spawning_order.orderer_ckey)], paid by [from_whom] has shipped.")
 		purchases++
 
-		// done dealing with order. Time to remove & delete it
-		SSshuttle.shopping_list -= spawning_order
-		clean_up_orders += spawning_order
+		// BUBBER EDIT REMOVAL START - moved above
+		// // done dealing with order. Time to remove & delete it
+		// SSshuttle.shopping_list -= spawning_order
+		// clean_up_orders += spawning_order
+		// BUBBER EDIT REMOVAL END
 
 	// we handle packing all the goodies last, since the type of crate we use depends on how many goodies they ordered. If it's more than GOODY_FREE_SHIPPING_MAX
 	// then we send it in a crate (including the CRATE_TAX cost), otherwise send it in a free shipping case
+	var/list/misc_accounts = list() // BUBBER EDIT ADDITION - who paid for each box, for refunds
 	for(var/buyer_key in goodies_by_buyer)
 		var/list/buying_account_orders = goodies_by_buyer[buyer_key]
 		var/datum/bank_account/buying_account = buyer_key
 		var/buyer = buying_account.account_holder || "Account ID: [buying_account.account_id]" // BUBBER EDIT - allow goodies to be bought privately
+		misc_accounts[buyer] = buying_account // BUBBER EDIT ADDITION
 
 		if(buying_account_orders.len > GOODY_FREE_SHIPPING_MAX) // no free shipping, send a crate
 			// BUBBER EDIT BEGIN - ORIGINAL: new /obj/structure/closet/crate/secure(...)
@@ -289,7 +338,25 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	for(var/miscbox in miscboxes)
 		var/datum/supply_order/order = new/datum/supply_order()
 		order.id = misc_order_num[miscbox]
-		order.generateCombo(miscboxes[miscbox], miscbox, misc_contents[miscbox], misc_costs[miscbox])
+		// BUBBER EDIT REMOVAL START
+		// order.generateCombo(miscboxes[miscbox], miscbox, misc_contents[miscbox], misc_costs[miscbox])
+		// BUBBER EDIT REMOVAL END
+		// BUBBER EDIT ADDITION START - a goody box with junk in it ships in the error crate with a refund
+		if(supply_contents_valid(misc_contents[miscbox]))
+			order.generateCombo(miscboxes[miscbox], miscbox, misc_contents[miscbox], misc_costs[miscbox])
+		else
+			var/datum/bank_account/goody_account = misc_accounts[miscbox]
+			var/obj/structure/closet/crate/secure/error/salvage_crate = new(get_turf(miscboxes[miscbox]))
+			salvage_crate.name += " - goodies for [miscbox]"
+			salvage_crate.salvage(misc_contents[miscbox])
+			salvage_crate.lock_for(null, goody_account)
+			qdel(miscboxes[miscbox])
+			if(goody_account && goody_charges[goody_account])
+				goody_account.adjust_money(goody_charges[goody_account], "Cargo: refund for goody orders [misc_order_num[miscbox]]")
+				goody_account.bank_card_talk("Goody orders [misc_order_num[miscbox]]hit an error. Whatever could be shipped is in an ERROR crate, and [goody_charges[goody_account]] [MONEY_NAME] have been refunded.")
+			stack_trace("Goody orders [misc_order_num[miscbox]]for [miscbox] had invalid contents and shipped in an error crate.")
+			message_admins("Goody orders [misc_order_num[miscbox]]for [miscbox] had invalid contents, shipped in an ERROR crate and were refunded. Report this to a coder.")
+		// BUBBER EDIT ADDITION END
 		qdel(order)
 
 	//clean up all dealt with orders

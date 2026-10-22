@@ -160,7 +160,7 @@
 	desc ="A suit by Honk Ltd. Protects against low humor environments. Most of the tech went to lower the power cost."
 	cost = PAYCHECK_COMMAND * 2
 	contains = list(/obj/item/mod/construction/plating/cosmohonk)
-	order_flags = ORDER_CONTRABAND
+	order_flags = parent_type::order_flags | ORDER_CONTRABAND
 
 /datum/supply_pack/goody/magnetic_deployable
 	name = "MOD Magnetic Deployment Module"
@@ -256,4 +256,4 @@
 	desc = "Contains a single Lanca rifle magazine"
 	cost = PAYCHECK_COMMAND * 1.5
 	contains = list(/obj/item/ammo_box/magazine/lanca)
-	order_flags = ORDER_CONTRABAND
+	order_flags = parent_type::order_flags | ORDER_CONTRABAND
