@@ -163,7 +163,10 @@
 	var/stepcount = steps_for_living[source]
 	// any leg covering sounds defaults to shoe sounds
 	// BUBBER EDIT START
-	var/shoe_foot_coverage = source.shoes?.preserve_natural_footsteps ? NONE : source.shoes?.body_parts_covered
+	var/obj/item/clothing/shoes/worn_shoes = source.shoes
+	var/shoe_foot_coverage = worn_shoes?.body_parts_covered
+	if(istype(worn_shoes) && worn_shoes.preserve_natural_footsteps)
+		shoe_foot_coverage = NONE
 	if((source.wear_suit?.body_parts_covered|source.w_uniform?.body_parts_covered|shoe_foot_coverage) & FEET)
 	// BUBBER EDIT END
 		footstep_type = FOOTSTEP_MOB_SHOE
