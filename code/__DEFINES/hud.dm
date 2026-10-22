@@ -148,6 +148,7 @@
 #define HUD_VOIDWALKER_SPACE_CAMO "voidwalker_space_camo"
 #define HUD_VOIDWALKER_VOID_JUMP "voidwalker_void_jump"
 
+#define HUD_CHANGELING_CAPACITOR "changeling_capacitor"
 #define HUD_CHANGELING_CHEMS "changeling_chems"
 #define HUD_CHANGELING_STING "changeling_sting"
 
@@ -211,6 +212,7 @@
 #define ui_inventory "WEST:6,SOUTH:5"
 
 //Middle left indicators
+#define ui_lingcapacitordisplay "WEST,CENTER:15"
 #define ui_lingchemdisplay "WEST,CENTER-1:15"
 #define ui_lingstingdisplay "WEST:6,CENTER-3:11"
 #define ui_blooddisplay "WEST:6,CENTER:-2"
