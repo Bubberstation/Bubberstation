@@ -93,7 +93,6 @@
 	gas_mix.remove_specific(/datum/gas/carbon_dioxide, moles_to_replace)
 	gas_mix.adjust_gas(/datum/gas/oxygen, moles_to_replace)
 	gas_mix.garbage_collect()
-	current_turf.air = gas_mix
 	current_turf.air_update_turf(FALSE, FALSE)
 
 #undef MUTATION_HEAL_AMOUNT_CROSS
