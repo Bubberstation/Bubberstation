@@ -59,6 +59,7 @@
 
 		space_turf.ChangeTurf(/turf/open/floor/plating/kudzu)
 		space_turf.color = hue
+
 /turf/open/floor/plating/kudzu
 	name = "vine flooring"
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi'
