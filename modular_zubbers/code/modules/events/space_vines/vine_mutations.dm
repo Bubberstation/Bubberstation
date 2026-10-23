@@ -85,7 +85,7 @@
 		return
 
 	var/datum/gas_mixture/gas_mix = current_turf.air
-	if(!gas_mix.moles[/datum/gas/carbon_dioxide])
+	if(!gas_mix.has_gas(/datum/gas/carbon_dioxide))
 		return
 
 	var/moles_to_replace = GAS_MUTATION_REMOVAL_MULTIPLIER * vine_object.growth_stage
