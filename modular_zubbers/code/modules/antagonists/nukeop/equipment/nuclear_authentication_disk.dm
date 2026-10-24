@@ -34,7 +34,7 @@
 	\n\
 	\n\
 	An imminent high-speed insertion has been detected. The signtature matches common identifiers typically found with solo Syndicate nuclear operative deployments. \
-	No chances can be taken. Immediate crew action and preparation is expected. Any present command staff are highly encouraged to secure the Nuclear Authentication Disk.",
+	No chances can be taken. Immediate crew action and preparation is expected. Any present command staff are highly encouraged to secure the nuclear authentication disk.",
 	"Central Command Nuclear Operations", 'sound/announcer/notice/notice3.ogg',
 	has_important_message = TRUE, color_override = "red")
 	SSsecurity_level.set_level(SEC_LEVEL_RED, announce = FALSE)
