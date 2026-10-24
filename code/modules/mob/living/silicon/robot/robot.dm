@@ -80,16 +80,7 @@
 	else
 		//MMI stuff. Held togheter by magic. ~Miauw
 		if(!mmi?.brainmob)
-			mmi = new (src)
-			mmi.brain = new /obj/item/organ/brain(mmi)
-			mmi.brain.organ_flags |= ORGAN_FROZEN
-			mmi.brain.name = "[real_name]'s brain"
-			mmi.name = "[initial(mmi.name)]: [real_name]"
-			mmi.set_brainmob(new /mob/living/brain(mmi))
-			mmi.brainmob.name = src.real_name
-			mmi.brainmob.real_name = src.real_name
-			mmi.brainmob.container = mmi
-			mmi.update_appearance()
+			mmi = new /obj/item/brain_processor/organic(src, new /obj/item/organ/brain())
 		setup_default_name()
 
 		if(mmi.brainmob)
@@ -117,11 +108,7 @@
 
 /mob/living/silicon/robot/set_suicide(suicide_state)
 	. = ..()
-	if(mmi)
-		if(mmi.brain)
-			mmi.brain.suicided = suicide_state
-		if(suicide_state && mmi.brainmob)
-			ADD_TRAIT(mmi.brainmob, TRAIT_SUICIDED, REF(src))
+	mmi?.set_suicide(suicide_state)
 
 /**
  * Sets the tablet theme and icon
@@ -169,6 +156,8 @@
 	//Show alerts window if user clicked on "Show alerts" in chat
 	if(href_list["showalerts"])
 		alert_control.ui_interact(src)
+	if(locked && href_list["unlock_self"])
+		toggle_cover()
 
 /mob/living/silicon/robot/get_cell()
 	return cell
@@ -319,6 +308,15 @@
 /mob/living/silicon/robot/proc/after_righted(mob/user)
 	return
 
+///Toggles the Cyborg's cover lock, user is provided only if it's someone else doing it (not the borg itself)
+/mob/living/silicon/robot/proc/toggle_cover(mob/user)
+	locked = !locked
+	balloon_alert(src, "cover [locked ? "locked" : "unlocked"]")
+	update_icons()
+	if(user)
+		balloon_alert(user, "chassis cover [emagged ? "lock glitches" : "[locked ? "locked" : "unlocked"]"]")
+	logevent("[emagged ? "ChÃ¥vÃis" : "Chassis"] cover lock has been [locked ? "engaged" : "released"]")
+
 /mob/living/silicon/robot/regenerate_icons()
 	return update_icons()
 
@@ -326,7 +324,7 @@
 	cut_overlays()
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 	icon_state = model.cyborg_base_icon
-	if(!IS_UNCONSCIOUS(src) && !IsStun() && !IsParalyzed() && !low_power_mode) //Not dead, not stunned.
+	if(!IS_UNCONSCIOUS(src) && !IsStun() && !IsParalyzed() && !low_power_mode && !is_empty_shell()) //Not dead, not stunned, not an unpiloted AI shell.
 		if(!eye_lights)
 			eye_lights = new()
 		if(lamp_enabled || lamp_doom)
@@ -533,7 +531,7 @@
 		balloon_alert(src, "disrupted!")
 		return FALSE
 
-	if(!(update_color && lamp_enabled) && (turn_off || lamp_enabled || update_color || !lamp_functional || IS_UNCONSCIOUS_OR_CRIT(src) || low_power_mode || istype(loc, /obj/item/mob_holder)))
+	if(!(update_color && lamp_enabled) && (turn_off || lamp_enabled || update_color || !lamp_functional || IS_UNCONSCIOUS_OR_CRIT(src) || low_power_mode || is_empty_shell()))
 		set_light_on(lamp_functional && stat != DEAD && lamp_doom) //If the lamp isn't broken and borg isn't dead, doomsday borgs cannot disable their light fully.
 		set_light_color(COLOR_RED) //This should only matter for doomsday borgs, as any other time the lamp will be off and the color not seen
 		set_light_range(1) //Again, like above, this only takes effect when the light is forced on by doomsday mode.
@@ -590,7 +588,7 @@
 	if(isnull(mmi))
 		return
 
-	var/obj/item/mmi/removing = mmi
+	var/obj/item/brain_processor/removing = mmi
 	mmi.forceMove(at_location) // Nulls it out via exited
 
 	if(isnull(mind)) // no one to transfer, just leave the MMI.
@@ -749,6 +747,7 @@
 		builtInCamera.c_tag = real_name
 		modularInterface.imprint_id(name = real_name)
 	custom_name = newname
+	mmi?.set_name(newname)
 
 
 /mob/living/silicon/robot/proc/ResetModel()
@@ -888,6 +887,13 @@
 	if(!QDELETED(builtInCamera))
 		builtInCamera.c_tag = real_name //update the camera name too
 	diag_hud_set_aishell()
+	if(lamp_enabled)
+		toggle_headlamp(TRUE)
+	update_icons()
+
+/// Is this an AI shell with no AI currently piloting it?
+/mob/living/silicon/robot/proc/is_empty_shell()
+	return shell && !deployed
 
 /**
  * revert_shell: Reverts AI shell back into a normal cyborg unit
@@ -906,6 +912,7 @@
 	if(!QDELETED(builtInCamera))
 		builtInCamera.c_tag = real_name
 	diag_hud_set_aishell()
+	update_icons()
 
 /**
  * deploy_init: Deploys AI unit into AI shell
@@ -936,6 +943,7 @@
 			LAZYSET(radio.secure_radio_connections, chan, add_radio(radio, GLOB.default_radio_channels[chan]))
 
 	diag_hud_set_aishell()
+	update_icons()
 	undeployment_action.Grant(src)
 
 /datum/action/innate/undeployment
@@ -963,6 +971,9 @@
 	deployed = FALSE
 	mainframe.deployed_shell = null
 	undeployment_action.Remove(src)
+	if(lamp_enabled)
+		toggle_headlamp(TRUE)
+	update_icons()
 	REMOVE_TRAIT(src, TRAIT_LOUD_BINARY, REF(mainframe))
 	if(radio) //Return radio to normal
 		radio.recalculateChannels()
