@@ -15,7 +15,6 @@
 	/// A list of toy designs for use in the radial color choice menu
 	var/static/list/fleshlight_designs
 	slot_flags = NONE
-	clothing_flags = INEDIBLE_CLOTHING
 
 /// Generates a list of toy colors (or designs) for use in the radial color choice menu
 /obj/item/clothing/sextoy/fleshlight/proc/populate_fleshlight_designs()
@@ -38,6 +37,9 @@
 	update_icon_state()
 	if(!length(fleshlight_designs))
 		populate_fleshlight_designs()
+
+/obj/item/clothing/sextoy/fleshlight/create_moth_snack()
+	return null
 
 /obj/item/clothing/sextoy/fleshlight/update_icon_state()
 	. = ..()
