@@ -344,3 +344,9 @@ export const oviparity_eggs_rate: Feature<number> = {
   description: 'Number of seconds between each produced egg.',
   component: FeatureNumberInput,
 };
+
+export const oviparity_egglaying_rate: Feature<number> = {
+  name: 'Oviposition Period',
+  description: 'Number of seconds it takes to lay an egg.',
+  component: FeatureNumberInput,
+};

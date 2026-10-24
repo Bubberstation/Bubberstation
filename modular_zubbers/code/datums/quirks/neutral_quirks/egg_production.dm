@@ -10,8 +10,9 @@
 /datum/quirk_constant_data/egg_production
 	associated_typepath = /datum/quirk/egg_production
 	customization_options = list(
-		/datum/preference/numeric/oviparity_eggs_rate,
 		/datum/preference/numeric/oviparity_eggs_max,
+		/datum/preference/numeric/oviparity_eggs_rate,
+		/datum/preference/numeric/oviparity_egglaying_rate,
 	)
 
 /datum/preference/numeric/oviparity_eggs_max
@@ -35,6 +36,18 @@
 	maximum = 300
 	create_default_value()
 		return 20
+	apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+		return
+
+/datum/preference/numeric/oviparity_egglaying_rate
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_key = "oviparity_egglaying_rate"
+	savefile_identifier = PREFERENCE_CHARACTER
+	step = 1
+	minimum = 5
+	maximum = 30
+	create_default_value()
+		return 15
 	apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 		return
 
@@ -74,6 +87,8 @@
 	var/maximum_eggs = 10
 	// How much time between each produced egg
 	var/production_period = 20
+	// How much time between each layed egg
+	var/laying_period = 15
 	// List of possible to_chat messages egg creation is able to trigger
 	var/list/possible_egg_thoughts = list(
 		"You feel a slight weight added to you.",
@@ -92,6 +107,7 @@
 	if(prefs)
 		maximum_eggs = prefs.read_preference(/datum/preference/numeric/oviparity_eggs_max)
 		production_period = prefs.read_preference(/datum/preference/numeric/oviparity_eggs_rate) SECONDS
+		laying_period = prefs.read_preference(/datum/preference/numeric/oviparity_egglaying_rate) SECONDS
 
 	can_produce = TRUE //redundancy
 	return ..()
