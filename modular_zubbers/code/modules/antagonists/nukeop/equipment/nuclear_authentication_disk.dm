@@ -17,7 +17,7 @@
 		\n\
 		SUGGESTION:::THROW ROCKS AT YOUR CAPTAIN.",
 		"MILCOM Early Warning System",
-		'modular_zubbers/sound/alerts/power_surge.ogg',
+		'sound/machines/engine_alert/engine_alert3.ogg',
 		has_important_message = TRUE,
 		color_override = "red"
 	)
