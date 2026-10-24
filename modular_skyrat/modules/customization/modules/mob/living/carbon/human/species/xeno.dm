@@ -19,7 +19,7 @@
 		/obj/item/organ/alien/resinspinner/roundstart,
 		/obj/item/organ/alien/hivenode,
 		)
-	exotic_bloodtype = BLOOD_TYPE_XENO
+	exotic_bloodtype = /datum/blood_type/xeno
 	heatmod = 2.5
 	mutant_bodyparts = list()
 	payday_modifier = 1.0

@@ -13,7 +13,6 @@
 			for faster healing on the field. Also comes with basic medical tools and sterlizer."
 	item = /obj/item/storage/medkit/tactical
 	cost = 4
-	progression_minimum = 15 MINUTES
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 
 /datum/uplink_item/device_tools/guerillagloves_traitor
@@ -45,7 +44,6 @@
 	item = /obj/item/reagent_containers/vapecart/syndicate
 	cost = 5
 	surplus = 90
-	progression_minimum = 20 MINUTES
 
 /datum/uplink_item/device_tools/syndicateborg
 	name = "Syndicate Cyborg Upgrade"
