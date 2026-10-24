@@ -30,7 +30,7 @@
 
 /datum/supply_pack/company_import/akh_frontier/deployables_fab/rapid_construction_fabricator/New()
 	. = ..()
-	name = "Rapid Construction Fabricator"
+	name = "Rapid Construction Fabricator (RCF)"
 	desc = "Contains one flat-packed rapid construction fabricator, with a charged cell to get it running anywhere."
 
 /datum/supply_pack/company_import/akh_frontier/deployables_fab/foodricator

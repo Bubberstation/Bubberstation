@@ -2,7 +2,7 @@
 #define RCF_CELL_ENERGY_MULTIPLIER 10
 
 /obj/machinery/rnd/production/colony_lathe
-	name = "rapid construction fabricator"
+	name = "rapid construction fabricator (RCF)"
 	desc = "These bad boys are seen just about anywhere someone would want or need to build fast, damn the consequences. \
 		That tends to be colonies, especially on dangerous worlds, where the influences of this one machine can be seen \
 		in every bit of architecture."
@@ -247,7 +247,7 @@
 // Item for carrying the lathe around and building it
 
 /obj/item/flatpacked_machine
-	name = "flat-packed rapid construction fabricator"
+	name = "flat-packed rapid construction fabricator (RCF)"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/packed_machines.dmi'
 	icon_state = "colony_lathe_packed"
 	w_class = WEIGHT_CLASS_BULKY
