@@ -1,3 +1,7 @@
+/obj/item/clothing/shoes
+	/// If TRUE, wearing these shoes will not override the wearer's natural barefoot/claw footstep sounds
+	var/preserve_natural_footsteps = FALSE
+
 /obj/item/clothing/shoes/wraps
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'

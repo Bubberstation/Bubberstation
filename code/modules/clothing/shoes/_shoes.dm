@@ -29,8 +29,6 @@
 	///An active alert
 	var/datum/weakref/our_alert_ref
 	var/footprint_sprite = FOOTPRINT_SPRITE_SHOES
-	/// If TRUE, wearing these shoes will not override the wearer's natural barefoot/claw footstep sounds
-	var/preserve_natural_footsteps = FALSE
 
 /obj/item/clothing/shoes/Initialize(mapload)
 	. = ..()
