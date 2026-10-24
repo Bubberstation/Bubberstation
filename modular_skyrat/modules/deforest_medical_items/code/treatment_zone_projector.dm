@@ -31,7 +31,6 @@
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 5,
 		/datum/material/silver = SMALL_MATERIAL_AMOUNT,
 	)
-	id = "treatment_zone_projector"
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
 	)
@@ -39,7 +38,7 @@
 
 /datum/techweb_node/holographics/New()
 	. = ..()
-	design_ids.Add("treatment_zone_projector")
+	unlocked_designs.Add(/datum/design/treatment_zone_projector)
 
 // Adds the funny projector to medical borgs
 
