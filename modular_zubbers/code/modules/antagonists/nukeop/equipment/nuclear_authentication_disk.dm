@@ -17,7 +17,7 @@
 		\n\
 		SUGGESTION:::THROW ROCKS AT YOUR CAPTAIN.",
 		"MILCOM Early Warning System",
-		'sound/machines/engine_alert/engine_alert3.ogg',
+		'modular_zubbers/sound/alerts/power_surge.ogg',
 		has_important_message = TRUE,
 		color_override = "red"
 	)
@@ -26,8 +26,18 @@
 	our_component.last_move = world.time
 
 	addtimer(CALLBACK(src, PROC_REF(spawn_loneop)), LONEOP_DELAY MINUTES)
-
+	addtimer(CALLBACK(src, PROC_REF(delayed_alert)), 30 SECONDS)
 	message_admins("Lone operative queued up for [LONEOP_DELAY] minutes from now due to the nuke disk being unsecured.")
+
+/obj/item/disk/nuclear/proc/delayed_alert()
+	priority_announce( "The security level has been elevated by Central Command.\
+	\n\
+	\n\
+	An imminent high-speed insertion has been detected. The signtature matches common identifiers typically found with solo Syndicate nuclear operative deployments. \
+	No chances can be taken. Immediate crew action and preparation is expected. Any present command staff are highly encouraged to secure the Nuclear Authentication Disk.",
+	"Central Command Nuclear Operations", 'sound/announcer/notice/notice3.ogg',
+	has_important_message = TRUE, color_override = "red")
+	SSsecurity_level.set_level(SEC_LEVEL_RED, announce = FALSE)
 
 /obj/item/disk/nuclear/proc/spawn_loneop()
 	var/datum/round_event_control/operative/loneop = locate(/datum/round_event_control/operative) in SSgamemode.control
