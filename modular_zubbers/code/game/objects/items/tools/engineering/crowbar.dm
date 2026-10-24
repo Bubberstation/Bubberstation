@@ -1,7 +1,7 @@
 /obj/item/crowbar/power/paramedic
 	toolspeed = 0.7
 
-/obj/item/crowbar/power/bluespace
+/obj/item/crowbar/power/debug
 	name = "bluespace jaws"
 	desc = "The jaws that you shouldn't have. Powered by bullshit- I mean bluespace. Cuts and prys really fast."
 	icon = 'modular_zubbers/icons/obj/tools.dmi'
@@ -14,3 +14,4 @@
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = INDESTRUCTIBLE|LAVA_PROOF|FIRE_PROOF|UNACIDABLE|ACID_PROOF
 	custom_materials = null
+	usesound = 'sound/items/weapons/sonic_jackhammer.ogg'
