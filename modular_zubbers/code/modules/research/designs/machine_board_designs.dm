@@ -1,7 +1,6 @@
 /datum/design/board/plantgenes
 	name = "Plant DNA Manipulator Board"
 	desc = "The circuit board for a plant gene editing machine."
-	id = "plantgene"
 	build_path = /obj/item/circuitboard/machine/plantgenes
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_BOTANY
@@ -11,7 +10,6 @@
 /datum/design/board/mechpad
 	name = "Mecha Orbital Pad Board"
 	desc = "The circuit board for a mecha orbital pad."
-	id = "mechlauncher_pad"
 	build_type = IMPRINTER
 	build_path = /obj/item/circuitboard/machine/mechpad
 	category = list(
@@ -22,7 +20,6 @@
 /datum/design/board/megacell_charger
 	name = "Machine Design (Megacell Charger Board)"
 	desc = "The circuit board for a megacell charger."
-	id = "megacell_charger"
 	build_path = /obj/item/circuitboard/machine/megacell_charger
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING

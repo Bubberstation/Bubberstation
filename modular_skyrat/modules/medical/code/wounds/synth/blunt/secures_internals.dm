@@ -195,7 +195,7 @@
 				stun_chance *= human_user.gloves.siemens_coefficient
 
 			if (ishuman(user))
-				stun_chance *= human_user.physiology.siemens_coeff
+				stun_chance *= GET_PHYSIOLOGY(human_user, PHYS_COEFF_ELEC_CONDUCTIVITY)
 			stun_chance *= human_user.dna.species.siemens_coeff
 
 		if (stun_chance && prob(stun_chance))
