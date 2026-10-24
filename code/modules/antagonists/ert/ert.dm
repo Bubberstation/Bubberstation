@@ -25,7 +25,7 @@
 	var/equip_ert = TRUE
 	var/forge_objectives_for_ert = TRUE
 	/// Typepath indicating the kind of job datum this ert member will have.
-	var/ert_job_path = /datum/job/ert_generic
+	var/ert_job_path = /datum/job/ert
 
 
 /datum/antagonist/ert/on_gain()
@@ -56,6 +56,7 @@
 	role = "Inspector"
 	random_names = FALSE
 	outfit = /datum/outfit/centcom/centcom_official
+	ert_job_path = /datum/job/ert/official
 
 /datum/antagonist/ert/official/greet()
 	. = ..()
@@ -77,6 +78,7 @@
 	objectives |= mission
 
 /datum/antagonist/ert/security // kinda handled by the base template but here for completion
+	ert_job_path = /datum/job/ert/officer
 
 /datum/antagonist/ert/security/red
 	outfit = /datum/outfit/centcom/ert/security/alert
@@ -84,6 +86,7 @@
 /datum/antagonist/ert/engineer
 	role = "Engineer"
 	outfit = /datum/outfit/centcom/ert/engineer
+	ert_job_path = /datum/job/ert/engineer
 
 /datum/antagonist/ert/engineer/red
 	outfit = /datum/outfit/centcom/ert/engineer/alert
@@ -91,6 +94,7 @@
 /datum/antagonist/ert/medic
 	role = "Medical Officer"
 	outfit = /datum/outfit/centcom/ert/medic
+	ert_job_path = /datum/job/ert/medical_doctor
 
 /datum/antagonist/ert/medic/red
 	outfit = /datum/outfit/centcom/ert/medic/alert
@@ -99,6 +103,7 @@
 	role = "Commander"
 	outfit = /datum/outfit/centcom/ert/commander
 	plasmaman_outfit = /datum/outfit/plasmaman/centcom_commander
+	ert_job_path = /datum/job/ert/commander
 
 /datum/antagonist/ert/commander/red
 	outfit = /datum/outfit/centcom/ert/commander/alert
@@ -106,6 +111,7 @@
 /datum/antagonist/ert/janitor
 	role = "Janitor"
 	outfit = /datum/outfit/centcom/ert/janitor
+	ert_job_path = /datum/job/ert/janitor
 
 /datum/antagonist/ert/janitor/heavy
 	role = "Heavy Duty Janitor"
@@ -117,6 +123,7 @@
 	plasmaman_outfit = /datum/outfit/plasmaman/centcom_commander
 	role = "Trooper"
 	rip_and_tear = TRUE
+	ert_job_path = /datum/job/ert/deatsquad
 
 /datum/antagonist/ert/deathsquad/New()
 	. = ..()
@@ -144,6 +151,7 @@
 /datum/antagonist/ert/chaplain
 	role = "Chaplain"
 	outfit = /datum/outfit/centcom/ert/chaplain
+	ert_job_path = /datum/job/ert/chaplain
 
 /datum/antagonist/ert/chaplain/inquisitor
 	outfit = /datum/outfit/centcom/ert/chaplain/inquisitor
@@ -166,23 +174,27 @@
 	random_names = FALSE
 	role = "Intern"
 	suicide_cry = "FOR MY INTERNSHIP!!"
+	ert_job_path = /datum/job/ert/intern
 
 /datum/antagonist/ert/intern/leader
 	name = "CentCom Head Intern"
 	outfit = /datum/outfit/centcom/centcom_intern/leader
 	random_names = FALSE
 	role = "Head Intern"
+	ert_job_path = /datum/job/ert/intern/leader
 
 /datum/antagonist/ert/intern/unarmed
 	outfit = /datum/outfit/centcom/centcom_intern/unarmed
 
 /datum/antagonist/ert/intern/leader/unarmed
 	outfit = /datum/outfit/centcom/centcom_intern/leader/unarmed
+	ert_job_path = /datum/antagonist/ert/intern/leader::ert_job_path
 
 /datum/antagonist/ert/clown
 	role = "Clown"
 	outfit = /datum/outfit/centcom/ert/clown
 	plasmaman_outfit = /datum/outfit/plasmaman/party_comedian
+	ert_job_path = /datum/job/ert/clown
 
 /datum/antagonist/ert/clown/New()
 	. = ..()
@@ -267,22 +279,26 @@
 /datum/antagonist/ert/marine
 	name = "Marine Commander"
 	outfit = /datum/outfit/centcom/ert/marine
+	ert_job_path = /datum/antagonist/ert/commander::ert_job_path
 	role = "Commander"
 
 /datum/antagonist/ert/marine/security
 	name = "Marine Heavy"
 	outfit = /datum/outfit/centcom/ert/marine/security
+	ert_job_path = /datum/antagonist/ert/security::ert_job_path
 	role = "Trooper"
 
 /datum/antagonist/ert/marine/engineer
 	name = "Marine Engineer"
 	outfit = /datum/outfit/centcom/ert/marine/engineer
 	role = "Engineer"
+	ert_job_path = /datum/antagonist/ert/engineer::ert_job_path
 
 /datum/antagonist/ert/marine/medic
 	name = "Marine Medic"
 	outfit = /datum/outfit/centcom/ert/marine/medic
 	role = "Medical Officer"
+	ert_job_path = /datum/antagonist/ert/medic::ert_job_path
 
 /datum/antagonist/ert/militia
 	name = "Frontier Militia"
@@ -298,8 +314,10 @@
 	role = "Chief EMT"
 	outfit = /datum/outfit/centcom/ert/medical_commander
 	plasmaman_outfit = /datum/outfit/plasmaman/medical_commander
+	ert_job_path = /datum/antagonist/ert/medic::ert_job_path
 
 /datum/antagonist/ert/medical_technician
 	role = "Emergency Medical Technician"
 	outfit = /datum/outfit/centcom/ert/medical_technician
 	plasmaman_outfit = /datum/outfit/plasmaman/medical_technician
+	ert_job_path = /datum/antagonist/ert/medic::ert_job_path
