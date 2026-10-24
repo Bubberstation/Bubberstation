@@ -59,6 +59,7 @@
 
 		space_turf.ChangeTurf(/turf/open/floor/plating/kudzu)
 		space_turf.color = hue
+
 /turf/open/floor/plating/kudzu
 	name = "vine flooring"
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi'
@@ -84,15 +85,15 @@
 		return
 
 	var/datum/gas_mixture/gas_mix = current_turf.air
-	if(!gas_mix.moles[/datum/gas/carbon_dioxide])
+	if(!gas_mix.has_gas(/datum/gas/carbon_dioxide))
 		return
 
 	var/moles_to_replace = GAS_MUTATION_REMOVAL_MULTIPLIER * vine_object.growth_stage
-	gas_mix.moles[/datum/gas/carbon_dioxide] = max(gas_mix.moles[/datum/gas/carbon_dioxide] - moles_to_replace, 0)
+	moles_to_replace = min(moles_to_replace, gas_mix.moles[/datum/gas/carbon_dioxide])
+	gas_mix.remove_specific(/datum/gas/carbon_dioxide, moles_to_replace)
+	gas_mix.adjust_gas(/datum/gas/oxygen, moles_to_replace)
 	gas_mix.garbage_collect()
-
-	var/happy_atmos = "oxygen=[moles_to_replace];TEMP=296"
-	current_turf.atmos_spawn_air(happy_atmos)
+	current_turf.air_update_turf(FALSE, FALSE)
 
 #undef MUTATION_HEAL_AMOUNT_CROSS
 #undef MUTATION_HEAL_AMOUNT_EAT
