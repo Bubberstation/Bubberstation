@@ -22,10 +22,12 @@
 	step = 1
 	minimum = 1
 	maximum = 100
-	create_default_value()
-		return 10
-	apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-		return
+
+/datum/preference/numeric/oviparity_eggs_max/create_default_value()
+	return 10
+
+/datum/preference/numeric/oviparity_eggs_max/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return
 
 /datum/preference/numeric/oviparity_eggs_rate
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
@@ -34,10 +36,12 @@
 	step = 5
 	minimum = 5
 	maximum = 300
-	create_default_value()
-		return 20
-	apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-		return
+
+/datum/preference/numeric/oviparity_eggs_rate/create_default_value()
+	return 20
+
+/datum/preference/numeric/oviparity_eggs_rate/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return
 
 /datum/preference/numeric/oviparity_egglaying_rate
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
@@ -46,10 +50,12 @@
 	step = 1
 	minimum = 5
 	maximum = 30
-	create_default_value()
-		return 15
-	apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-		return
+
+/datum/preference/numeric/oviparity_egglaying_rate/create_default_value()
+	return 15
+
+/datum/preference/numeric/oviparity_egglaying_rate/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	return
 
 //Quirk addition
 /datum/quirk/egg_production/add(client/client_source)
