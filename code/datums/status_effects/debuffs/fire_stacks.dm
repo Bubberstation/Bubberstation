@@ -1,11 +1,3 @@
-/////////// BUBBER EDIT THIS WILL BE FORCED TO CONFLICT READ THIS
-/*
-	RESET THIS FILE BACK TO TG ONCE YOU GET FISH INFUSION
-	RESET THIS FILE BACK TO TG ONCE YOU GET FISH INFUSION
-	RESET THIS FILE BACK TO TG ONCE YOU GET FISH INFUSION
-	RESET THIS FILE BACK TO TG ONCE YOU GET FISH INFUSION
-
-*/
 /datum/status_effect/fire_handler
 	duration = STATUS_EFFECT_PERMANENT
 	id = STATUS_EFFECT_ID_ABSTRACT
@@ -148,7 +140,7 @@
 	/// Cached particle type
 	var/cached_state
 
-/datum/status_effect/fire_handler/fire_stacks/get_examine_text()
+/datum/status_effect/fire_handler/fire_stacks/get_examine_text(mob/examiner)
 	if(owner.on_fire)
 		return
 
@@ -306,59 +298,11 @@
 	overlays |= created_overlay
 	overlays |= source.make_fire_emissive(created_overlay)
 
-/*
-/datum/status_effect/fire_handler/wet_stacks
-	id = "wet_stacks"
+#define WET_STACKS_DAMP 3
+#define WET_STACKS_DRIPPING 7.5
+#define WET_STACKS_SOAKED 15
+#define WET_STACKS_MINIMUM_VFX WET_STACKS_DAMP
 
-	enemy_types = list(/datum/status_effect/fire_handler/fire_stacks)
-	stack_modifier = -1
-	/// If the mob has the TRAIT_SLIPPERY_WHEN_WET trait, the mob gets this component while it's wet
-	//var/datum/component/slippery/slipperiness - BUBBER EDIT - REQUIRES FISH INFUSION
-
-/datum/status_effect/fire_handler/wet_stacks/on_apply()
-	. = ..()
-	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_WET_FOR_LONGER), SIGNAL_REMOVETRAIT(TRAIT_WET_FOR_LONGER)), PROC_REF(update_wet_stack_modifier))
-	update_wet_stack_modifier()
-	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_SLIPPERY_WHEN_WET), PROC_REF(become_slippery))
-	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_SLIPPERY_WHEN_WET), PROC_REF(no_longer_slippery))
-	if(HAS_TRAIT(owner, TRAIT_SLIPPERY_WHEN_WET))
-		become_slippery()
-	ADD_TRAIT(owner, TRAIT_IS_WET,  TRAIT_STATUS_EFFECT(id))
-	owner.add_shared_particles(/particles/droplets)
-
-/datum/status_effect/fire_handler/wet_stacks/on_remove()
-	. = ..()
-	REMOVE_TRAIT(owner, TRAIT_IS_WET, TRAIT_STATUS_EFFECT(id))
-	if(HAS_TRAIT(owner, TRAIT_SLIPPERY_WHEN_WET))
-		no_longer_slippery()
-	owner.remove_shared_particles(/particles/droplets)
-
-/datum/status_effect/fire_handler/wet_stacks/proc/update_wet_stack_modifier()
-	SIGNAL_HANDLER
-	stack_modifier = HAS_TRAIT(owner, TRAIT_WET_FOR_LONGER) ? -3.5 : -1
-
-/datum/status_effect/fire_handler/wet_stacks/proc/become_slippery()
-	SIGNAL_HANDLER
-	slipperiness = owner.AddComponent(/datum/component/slippery, 5 SECONDS, lube_flags = SLIPPERY_WHEN_LYING_DOWN)
-	ADD_TRAIT(owner, TRAIT_NO_SLIP_WATER, TRAIT_STATUS_EFFECT(id))
-
-/datum/status_effect/fire_handler/wet_stacks/proc/no_longer_slippery()
-	SIGNAL_HANDLER
-	QDEL_NULL(slipperiness)
-	REMOVE_TRAIT(owner, TRAIT_NO_SLIP_WATER, TRAIT_STATUS_EFFECT(id))
-
-/datum/status_effect/fire_handler/wet_stacks/get_examine_text()
-	return "[owner.p_They()] look[owner.p_s()] a little soaked."
-
-/datum/status_effect/fire_handler/wet_stacks/tick(seconds_between_ticks)
-	adjust_stacks(-0.5 * seconds_between_ticks)
-	if(stacks <= 0)
-		qdel(src)
-
-/datum/status_effect/fire_handler/wet_stacks/check_basic_mob_immunity(mob/living/basic/basic_owner)
-	return !(basic_owner.basic_mob_flags & IMMUNE_TO_GETTING_WET)
-
-BUBBER EDIT RESET THIS TG BACK TO MASTER ONCE YOU GET FISH INFUSION*/
 /datum/status_effect/fire_handler/wet_stacks
 	id = "wet_stacks"
 
@@ -368,8 +312,6 @@ BUBBER EDIT RESET THIS TG BACK TO MASTER ONCE YOU GET FISH INFUSION*/
 	var/datum/component/slippery/slipperiness
 
 /datum/status_effect/fire_handler/wet_stacks/on_apply()
-	if(HAS_TRAIT(owner, TRAIT_SHADED))
-		return FALSE
 	. = ..()
 	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_WET_FOR_LONGER), SIGNAL_REMOVETRAIT(TRAIT_WET_FOR_LONGER)), PROC_REF(update_wet_stack_modifier))
 	update_wet_stack_modifier()
@@ -378,20 +320,12 @@ BUBBER EDIT RESET THIS TG BACK TO MASTER ONCE YOU GET FISH INFUSION*/
 	if(HAS_TRAIT(owner, TRAIT_SLIPPERY_WHEN_WET))
 		become_slippery()
 	ADD_TRAIT(owner, TRAIT_IS_WET,  TRAIT_STATUS_EFFECT(id))
-	// BUBBER EDIT BEGIN - Moist skin quirk
-	if(!HAS_TRAIT(owner, TRAIT_MOIST_SKIN))
-		owner.add_shared_particles(/particles/droplets)
-	// BUBBER EDIT END
 
 /datum/status_effect/fire_handler/wet_stacks/on_remove()
 	. = ..()
 	REMOVE_TRAIT(owner, TRAIT_IS_WET, TRAIT_STATUS_EFFECT(id))
 	if(HAS_TRAIT(owner, TRAIT_SLIPPERY_WHEN_WET))
 		no_longer_slippery()
-	// BUBBER EDIT BEGIN - Moist skin quirk
-	if(!HAS_TRAIT(owner, TRAIT_MOIST_SKIN))
-		owner.remove_shared_particles(/particles/droplets)
-	// BUBBER EDIT END
 
 /datum/status_effect/fire_handler/wet_stacks/proc/update_wet_stack_modifier()
 	SIGNAL_HANDLER
@@ -407,8 +341,26 @@ BUBBER EDIT RESET THIS TG BACK TO MASTER ONCE YOU GET FISH INFUSION*/
 	QDEL_NULL(slipperiness)
 	REMOVE_TRAIT(owner, TRAIT_NO_SLIP_WATER, TRAIT_STATUS_EFFECT(id))
 
-/datum/status_effect/fire_handler/wet_stacks/get_examine_text()
-	return "[owner.p_They()] look[owner.p_s()] a little soaked."
+/datum/status_effect/fire_handler/wet_stacks/get_examine_text(mob/examiner)
+	if(stacks <= WET_STACKS_DAMP)
+		return "[owner.p_They()] seem[owner.p_s()] damp."
+	else if(stacks >= WET_STACKS_SOAKED)
+		return "[owner.p_They()] look[owner.p_s()] completely soaked."
+	else
+		return "[owner.p_They()] appear[owner.p_s()] to be dripping wet."
+
+/datum/status_effect/fire_handler/wet_stacks/cache_stacks()
+	. = ..()
+	if(stacks > WET_STACKS_MINIMUM_VFX)
+		// BUBBER EDIT BEGIN - Moist skin quirk
+		if(!HAS_TRAIT(owner, TRAIT_MOIST_SKIN))
+			owner.add_shared_particles(/particles/droplets)
+		// BUBBER EDIT END
+	if(stacks <= WET_STACKS_MINIMUM_VFX)
+		// BUBBER EDIT BEGIN - Moist skin quirk
+		if(!HAS_TRAIT(owner, TRAIT_MOIST_SKIN))
+			owner.remove_shared_particles(/particles/droplets)
+		// BUBBER EDIT END
 
 /datum/status_effect/fire_handler/wet_stacks/tick(seconds_between_ticks)
 	var/decay = HAS_TRAIT(owner, TRAIT_WET_FOR_LONGER) ? -0.035 : -0.5
@@ -426,4 +378,8 @@ BUBBER EDIT RESET THIS TG BACK TO MASTER ONCE YOU GET FISH INFUSION*/
 
 /datum/status_effect/fire_handler/wet_stacks/check_basic_mob_immunity(mob/living/basic/basic_owner)
 	return !(basic_owner.basic_mob_flags & IMMUNE_TO_GETTING_WET)
-/// BUBBER EDIT END
+
+#undef WET_STACKS_MINIMUM_VFX
+#undef WET_STACKS_DAMP
+#undef WET_STACKS_DRIPPING
+#undef WET_STACKS_SOAKED
