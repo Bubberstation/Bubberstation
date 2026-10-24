@@ -10,6 +10,7 @@
 	mutanteyes = /obj/item/organ/eyes/felinid
 	mutant_organs = list(
 		/obj/item/organ/tail/cat = "Cat",
+		/obj/item/organ/fangs/cat,
 	)
 	*/ // SKYRAT EDIT REMOVAL END
 	inherent_traits = list(
