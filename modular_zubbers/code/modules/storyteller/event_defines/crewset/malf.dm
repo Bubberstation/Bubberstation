@@ -12,7 +12,7 @@
 
 	antag_datum = /datum/antagonist/malf_ai
 	antag_flag = ROLE_MALF
-	weight = 2
+	weight = 4
 	tags = list(TAG_CREW_ANTAG, TAG_COMBAT, TAG_CHAOTIC)
 	restricted_roles = list("Cyborg")
 
@@ -42,7 +42,7 @@
 
 	roundstart = TRUE
 	typepath = /datum/round_event/antagonist/solo/malf_ai/roundstart
-	weight = 3
+	weight = 6
 
 // God has abandoned us
 /datum/round_event_control/antagonist/solo/malf/roundstart/get_candidates()
