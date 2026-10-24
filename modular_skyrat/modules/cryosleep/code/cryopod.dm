@@ -350,7 +350,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod, 32)
 /obj/machinery/cryopod/proc/try_store_item(mob/living/holder, obj/item/target_item, obj/machinery/computer/cryopod/control_computer)
 	if(!istype(target_item) || HAS_TRAIT(target_item, TRAIT_NODROP))
 		return FALSE
-	if (issilicon(holder) && istype(target_item, /obj/item/mmi))
+	if (issilicon(holder) && istype(target_item, /obj/item/brain_processor))
 		return FALSE
 	if(istype(target_item, /obj/item/implant/storage)) // store the contents of the storage implant
 		for(var/obj/item/nested_item as anything in target_item)

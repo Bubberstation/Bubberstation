@@ -64,7 +64,6 @@
 /datum/design/adv_part_disk
 	name = "Advanced components design disk"
 	desc = "A disk for an autolathe containing advanced component designs."
-	id = "adv_part_disk"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1.5)
 	build_path = /obj/item/disk/design_disk/advanced_parts
@@ -77,7 +76,6 @@
 /datum/design/high_tech_part_disk
 	name = "High-tech components design disk"
 	desc = "A disk for an autolathe containing high-tech component designs."
-	id = "high_tech_part_disk"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1.5, /datum/material/gold = SMALL_MATERIAL_AMOUNT*1.5, /datum/material/silver = SMALL_MATERIAL_AMOUNT*1.5)
 	build_path = /obj/item/disk/design_disk/high_tech_parts
@@ -88,14 +86,14 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/techweb_node/parts_upg/New()
-	design_ids += list(
-		"adv_part_disk",
+	unlocked_designs += list(
+		/datum/design/adv_part_disk,
 	)
 	return ..()
 
 /datum/techweb_node/parts_adv/New()
-	design_ids += list(
-		"high_tech_part_disk",
+	unlocked_designs += list(
+		/datum/design/high_tech_part_disk,
 	)
 	return ..()
 
