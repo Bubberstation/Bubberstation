@@ -1,25 +1,20 @@
 /datum/techweb_node/colony_fabricator_special_tools
-	id = TECHWEB_NODE_COLONY_TOOLS
 	display_name = "Colony Fabricator Tool Designs"
 	description = "Contains all of the colony fabricator's tool designs."
-	design_ids = list(
-		"colony_power_drive",
-		"colony_prybar",
-		"colony_arc_welder",
-		"colony_compact_drill",
-		"colony_multitool",
-		"colony_mining_satchel",
+	unlocked_designs = list(
+		/datum/design/colony_power_driver,
+		/datum/design/colony_door_crowbar,
+		/datum/design/colony_arc_welder,
+		/datum/design/colony_compact_drill,
+		/datum/design/colony_multitool,
+		/datum/design/colony_mining_satchel,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = INFINITY) // God save you
-	hidden = TRUE
-	show_on_wiki = FALSE
-	starting_node = TRUE
+	node_flags = TECHWEB_NODE_HIDDEN | TECHWEB_NODE_EXPERIMENTAL
 
 // Screw-Wrench-Wirecutter combo machine
-
 /datum/design/colony_power_driver
 	name = "Powered Driver"
-	id = "colony_power_drive"
 	build_type = COLONY_FABRICATOR
 	build_path = /obj/item/screwdriver/omni_drill
 	materials = list(
@@ -43,7 +38,6 @@
 
 /datum/design/colony_door_crowbar
 	name = "Prybar"
-	id = "colony_prybar"
 	build_type = COLONY_FABRICATOR
 	build_path = /obj/item/crowbar/large/colony_prybar
 	materials = list(
@@ -59,7 +53,6 @@
 
 /datum/design/colony_arc_welder
 	name = "Arc Welder"
-	id = "colony_arc_welder"
 	build_type = COLONY_FABRICATOR
 	build_path = /obj/item/weldingtool/electric/arc_welder
 	materials = list(
@@ -82,7 +75,6 @@
 
 /datum/design/colony_compact_drill
 	name = "Compact Mining Drill"
-	id = "colony_compact_drill"
 	build_type = COLONY_FABRICATOR
 	build_path = /obj/item/pickaxe/drill/compact
 	materials = list(
@@ -96,7 +88,6 @@
 
 /datum/design/colony_multitool
 	name = "Field Multitool"
-	id = "colony_multitool"
 	build_type = COLONY_FABRICATOR
 	build_path = /obj/item/multitool/colony
 	materials = list(
@@ -112,7 +103,6 @@
 
 /datum/design/colony_mining_satchel
 	name = "Mining Satchel"
-	id = "colony_mining_satchel"
 	build_type = COLONY_FABRICATOR
 	build_path = /obj/item/storage/bag/ore
 	materials = list(

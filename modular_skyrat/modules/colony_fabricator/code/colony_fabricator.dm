@@ -25,7 +25,7 @@
 	var/obj/item/stock_parts/power_store/cell = /obj/item/stock_parts/power_store/cell/high
 	/// Designs locked behind station research
 	var/static/list/station_research_designs = list(
-		"minerbag_holding",
+		/datum/design/miningsatchel_holding,
 	)
 	/// The station's techweb
 	var/datum/techweb/station_research
@@ -38,6 +38,7 @@
 	AddElement(/datum/element/manufacturer_examine, COMPANY_FRONTIER)
 	// We don't get new designs but can't print stuff if something's not researched, so we use the web that has everything researched
 	stored_research = locate(/datum/techweb/admin) in SSresearch.techwebs
+	stored_research ||= new /datum/techweb/admin
 	station_research = locate(/datum/techweb/science) in SSresearch.techwebs
 	if(station_research)
 		RegisterSignals(station_research, list(COMSIG_TECHWEB_ADD_DESIGN, COMSIG_TECHWEB_REMOVE_DESIGN), TYPE_PROC_REF(/obj/machinery/rnd/production, on_techweb_update))
@@ -179,8 +180,8 @@
 		return FALSE
 
 	// contraband designs are autolathe designs
-	var/datum/design/design = SSresearch.techweb_design_by_id(params["ref"])
-	if(istype(design) && !station_has_researched(design.id))
+	var/datum/design/design = SSresearch.techweb_designs[text2path(params["design_path"])]
+	if(istype(design) && !station_has_researched(design.type))
 		say("This design has not been researched by the station yet.")
 		return FALSE
 	var/borrowing_autolathe_systems = istype(design) && !(design.build_type & allowed_buildtypes)
@@ -216,17 +217,17 @@
 
 	designs_follow_hack = hacked
 
-	for(var/design_id in SSresearch.techweb_designs)
-		var/datum/design/design = SSresearch.techweb_designs[design_id]
+	for(var/design_path in SSresearch.techweb_designs)
+		var/datum/design/design = SSresearch.techweb_designs[design_path]
 
-		if(!station_has_researched(design_id))
+		if(!station_has_researched(design_path))
 			continue
 
 		if((isnull(allowed_department_flags) || (design.departmental_flags & allowed_department_flags)) && (design.build_type & allowed_buildtypes))
 			cached_designs |= design
 			continue
 
-		if(hacked && (RND_CATEGORY_HACKED in design.category) && (design.build_type & AUTOLATHE))
+		if(hacked && (RND_CATEGORY_HACKED in design.category) && (design.build_type & AUTOLATHE) && stored_research.researched_designs[design_path])
 			cached_designs |= design
 
 	var/design_delta = cached_designs.len - previous_design_count
@@ -238,10 +239,10 @@
 	update_static_data_for_all_viewers()
 
 /// Has the station researched this design, if it needs to
-/obj/machinery/rnd/production/colony_lathe/proc/station_has_researched(design_id)
-	if(!(design_id in station_research_designs))
+/obj/machinery/rnd/production/colony_lathe/proc/station_has_researched(design_path)
+	if(!(design_path in station_research_designs))
 		return TRUE
-	return !isnull(station_research) && station_research.researched_designs[design_id]
+	return !isnull(station_research) && station_research.researched_designs[design_path]
 
 // Item for carrying the lathe around and building it
 

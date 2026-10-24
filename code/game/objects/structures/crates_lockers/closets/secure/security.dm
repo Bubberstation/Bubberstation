@@ -18,6 +18,7 @@
 /obj/structure/closet/secure_closet/captains/populate_contents_immediate()
 	new /obj/item/gun/energy/e_gun(src)
 	new /obj/item/storage/belt/sheath/sabre(src)
+	new /obj/item/clothing/glasses/hud/security/sunglasses/guard/command(src) //BUBBER EDIT ADDITION
 
 	new /obj/item/storage/photo_album/captain(src)
 

@@ -187,17 +187,16 @@
 		greyscale_colors = null
 
 /obj/item/hypospray/mkii/proc/unload_hypo(obj/item/hypo, mob/user)
-	if((istype(hypo, /obj/item/reagent_containers/cup/vial)))
-		var/obj/item/reagent_containers/cup/vial/container = hypo
-		container.forceMove(user.loc)
-		user.put_in_hands(container)
-		to_chat(user, span_notice("You remove [vial] from [src]."))
-		vial = null
-		update_icon()
-		playsound(loc, 'sound/items/weapons/empty.ogg', 50, 1)
-	else
+	if(!hypo)
 		to_chat(user, span_notice("This hypo isn't loaded!"))
 		return
+
+	hypo.forceMove(user.loc)
+	user.put_in_hands(hypo)
+	to_chat(user, span_notice("You remove [vial] from [src]."))
+	vial = null
+	update_icon()
+	playsound(loc, 'sound/items/weapons/empty.ogg', 50, 1)
 
 /obj/item/hypospray/mkii/proc/insert_vial(obj/item/new_vial, mob/living/user)
 	if(!is_type_in_list(new_vial, allowed_containers))

@@ -1,6 +1,5 @@
 /datum/design/survival_knife
 	name = "Survival Knife"
-	id = "survival_knife"
 	build_type = COLONY_FABRICATOR
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 6,
@@ -15,7 +14,6 @@
 // Soup pot
 /datum/design/colony_soup_pot
 	name = "Soup Pot"
-	id = "colony_soup_pot"
 	build_type = COLONY_FABRICATOR
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5,
@@ -29,39 +27,35 @@
 
 // Autolathe contraband for hacked fabricators. Designs owned by other nodes are left out
 /datum/techweb_node/colony_fabricator_contraband
-	id = TECHWEB_NODE_COLONY_CONTRABAND
 	display_name = "Colony Fabricator Contraband Designs"
 	description = "Contains all of the colony fabricator's hidden designs."
-	design_ids = list(
-		"a357",
-		"a357PM",
-		"c10mm",
-		"c45",
-		"c45_lethal",
-		"c46x30mm",
-		"c9mm",
-		"c9mm_sec",
-		"cleaver",
-		"confidential_biscuit",
-		"flamethrower",
-		"handcuffs",
-		"incendiary_slug",
-		"receiver",
-		"riot_dart",
-		"riot_darts",
-		"shockcollar",
-		"shotgun_dart",
-		"strilka310_surplus",
-		"tinfoil_hat",
+	unlocked_designs = list(
+		/datum/design/a357,
+		/datum/design/c357/peacemaker,
+		/datum/design/c10mm,
+		/datum/design/c45,
+		/datum/design/c45_lethal,
+		/datum/design/c46x30mm,
+		/datum/design/c9mm,
+		/datum/design/c9mm_sec,
+		/datum/design/cleaver,
+		/datum/design/paper_biscuit_confidential,
+		/datum/design/flamethrower,
+		/datum/design/handcuffs,
+		/datum/design/incendiary_slug,
+		/datum/design/receiver,
+		/datum/design/riot_dart,
+		/datum/design/riot_darts,
+		/datum/design/electropack/shockcollar,
+		/datum/design/shotgun_dart,
+		/datum/design/strilka310_surplus,
+		/datum/design/foilhat,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = INFINITY)
-	hidden = TRUE
-	show_on_wiki = FALSE
-	starting_node = TRUE
+	node_flags = TECHWEB_NODE_HIDDEN | TECHWEB_NODE_EXPERIMENTAL
 
 /datum/design/frontier_radio_headset
 	name = "Frontier Radio Headset"
-	id = "frontier_radio_headset"
 	build_type = COLONY_FABRICATOR
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 7.75,

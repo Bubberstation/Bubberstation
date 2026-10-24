@@ -41,7 +41,7 @@
 		/obj/item/restraints/legcuffs/bola/energy = 10,
 	)
 
-	job_flags = STATION_JOB_FLAGS | HEAD_OF_STAFF_JOB_FLAGS
+	job_flags = JOB_ANTAG_PROTECTED | STATION_JOB_FLAGS | HEAD_OF_STAFF_JOB_FLAGS
 	banned_quirks = list(SEC_RESTRICTED_QUIRKS)
 	banned_augments = list(SEC_RESTRICTED_AUGMENTS)
 	is_hand_required = TRUE
@@ -53,6 +53,8 @@
 		"Command Protection Officer",
 		"Henchman",
 	)
+
+	tgui_icon = FA_ICON_SHIELD
 
 /datum/outfit/job/blueshield
 	name = "Blueshield"
@@ -71,7 +73,7 @@
 	messenger = /obj/item/storage/backpack/messenger/blueshield
 	head = /obj/item/clothing/head/beret/blueshield
 	box = /obj/item/storage/box/survival/security
-	belt = /obj/item/modular_computer/pda/blueshield
+	belt = /obj/item/modular_computer/pda/crew/blueshield
 	suit_store = /obj/item/gun/energy/e_gun/blueshield
 	accessory = /obj/item/clothing/accessory/bubber/acc_medal/neckpin/centcom
 
@@ -83,7 +85,7 @@
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blueshield
 	uniform = /obj/item/clothing/under/plasmaman/blueshield
 
-/obj/item/modular_computer/pda/blueshield
+/obj/item/modular_computer/pda/crew/blueshield
 	name = "blueshield PDA"
 	icon_state = "/obj/item/modular_computer/pda/blueshield"
 	greyscale_colors = "#2B356D#1E1E1E"
