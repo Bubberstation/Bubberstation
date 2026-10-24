@@ -29,6 +29,6 @@
 		)
 		objects += list(apc_info)
 
-/obj/item/modular_computer/pda/assistant/install_default_programs()
+/obj/item/modular_computer/pda/crew/assistant/install_default_programs()
 	. = ..()
 	store_file(new /datum/computer_file/program/radar/navsec)
