@@ -26,19 +26,15 @@
 /datum/preference/numeric/hungry_level/create_default_value()
 	return 1.5
 
-
 /datum/preference/numeric/hungry_level/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return
 
 /datum/quirk/hungry/add(client/client_source)
-	var/mob/living/carbon/human/human_holder = quirk_holder
-	if(istype(human_holder))
-		human_holder.physiology.hunger_mod *= client_source.prefs.read_preference(/datum/preference/numeric/hungry_level)
+	MODIFY_PHYSIOLOGY(quirk_holder, PHYS_COEFF_HUNGER_MOD, client_source.prefs.read_preference(/datum/preference/numeric/hungry_level))
 
 /datum/quirk/hungry/remove()
-	var/mob/living/carbon/human/human_holder = quirk_holder
-	var/client/target_client = human_holder?.client
-	if (istype(human_holder) && target_client)
-		human_holder.physiology.hunger_mod /= target_client.prefs.read_preference(/datum/preference/numeric/hungry_level)
+	if(isnull(quirk_holder.client))
+		return
+	MODIFY_PHYSIOLOGY(quirk_holder, PHYS_COEFF_HUNGER_MOD, 1/quirk_holder.client.prefs.read_preference(/datum/preference/numeric/hungry_level))
 
 #undef QUIRK_HUNGRY_MOD
