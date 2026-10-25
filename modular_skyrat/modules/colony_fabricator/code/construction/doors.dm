@@ -16,6 +16,24 @@
 		if(DOOR_CLOSING_ANIMATION)
 			playsound(src, animation_sound, 30, TRUE)
 
+/obj/machinery/door/poddoor/shutters/colony_fabricator/animation_length(animation)
+	switch(animation)
+		if(DOOR_OPENING_ANIMATION)
+			return 0.4 SECONDS
+		if(DOOR_CLOSING_ANIMATION)
+			return 0.4 SECONDS
+
+/obj/machinery/door/poddoor/shutters/colony_fabricator/animation_segment_delay(animation)
+	switch(animation)
+		if(DOOR_OPENING_PASSABLE)
+			return 0.3 SECONDS
+		if(DOOR_OPENING_FINISHED)
+			return 0.4 SECONDS
+		if(DOOR_CLOSING_UNPASSABLE)
+			return 0.1 SECONDS
+		if(DOOR_CLOSING_FINISHED)
+			return 0.4 SECONDS
+
 /obj/item/flatpacked_machine/shutter_kit
 	name = "prefab shutters parts kit"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/doors/packed.dmi'
