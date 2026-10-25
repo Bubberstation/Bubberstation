@@ -287,8 +287,8 @@
 	AddComponent(\
 		/datum/component/spawner, \
 		spawn_types = defending_mobs, \
-		spawn_time = 10 SECONDS, \ // BUBBER EDIT, REVERT TO 10 SECONDS PER WAVE
-		max_spawned = 5, \ // BUBBER EDIT, DROPS TOTAL ACTIVE WAVE AMOUNT BECAUSE WHY CAN THERE JUST BE 10 WAVES WORTH OF MOBS SITTING ON A LARGE
+		spawn_time = 10 SECONDS, \				// BUBBER EDIT, REVERT TO 10 SECONDS PER WAVE
+		max_spawned = 5, \				// BUBBER EDIT, DROPS TOTAL ACTIVE WAVE AMOUNT BECAUSE WHY CAN THERE JUST BE 10 WAVES WORTH OF MOBS SITTING ON A LARGE
 		max_spawn_per_attempt = round(boulder_size/5), \
 		max_spawn_types_per_attempt = 2, \
 		spawn_text = "emerges to assault", \
