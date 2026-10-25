@@ -119,7 +119,7 @@
 			conditional_pref_sound(loc, 'sound/items/weapons/magout.ogg', 20, TRUE)
 			soundloop3.stop()
 
-/obj/item/clothing/sextoy/eggvib/lewd_equipped(mob/living/carbon/human/user, slot, initial)
+/obj/item/clothing/sextoy/eggvib/lewd_equipped(mob/living/user, slot, initial)
 	. = ..()
 	if(!istype(user))
 		return
@@ -133,7 +133,7 @@
 /obj/item/clothing/sextoy/eggvib/process(seconds_per_tick)
 	if(!toy_on)
 		return
-	var/mob/living/carbon/human/target = loc
+	var/mob/living/target = loc
 	if(!istype(target))
 		return
 	switch(vibration_mode)
@@ -253,7 +253,7 @@
 		soundloop3.stop()
 
 	//adding messages to chat if vibrator enabled while
-	var/mob/living/carbon/human/vibrated = loc
+	var/mob/living/vibrated = loc
 	if(!istype(vibrated))
 		return
 	if(toy_on)

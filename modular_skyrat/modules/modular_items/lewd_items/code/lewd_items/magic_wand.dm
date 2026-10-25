@@ -59,7 +59,7 @@
 	. = ..()
 	icon_state = "[base_icon_state]_[vibration_mode]"
 
-/obj/item/clothing/sextoy/magic_wand/lewd_equipped(mob/living/carbon/human/user, slot)
+/obj/item/clothing/sextoy/magic_wand/lewd_equipped(mob/living/user, slot)
 	. = ..()
 	if(vibration_mode == MAGIC_WAND_MODE_OFF || !istype(user))
 		return
@@ -71,7 +71,7 @@
 	STOP_PROCESSING(SSobj, src)
 
 /obj/item/clothing/sextoy/magic_wand/process(seconds_per_tick)
-	var/mob/living/carbon/human/current_user = loc
+	var/mob/living/current_user = loc
 	if(!istype(current_user) || current_user.stat == DEAD)
 		return FALSE
 

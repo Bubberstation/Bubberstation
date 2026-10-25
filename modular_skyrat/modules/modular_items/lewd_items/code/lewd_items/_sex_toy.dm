@@ -23,7 +23,7 @@
  * * slot(s) that item is equipped to
  * * initial is used to indicate whether or not this is the initial equipment (job datums etc) or just a player doing it
  */
-/obj/item/clothing/sextoy/proc/lewd_equipped(mob/living/carbon/human/user, slot, initial)
+/obj/item/clothing/sextoy/proc/lewd_equipped(mob/living/user, slot, initial)
 	SHOULD_CALL_PARENT(TRUE)
 
 	current_equipped_slot = slot
@@ -36,19 +36,21 @@
 	..()
 
 	update_appearance()
-	if(!ishuman(loc))
+	if(!isliving(loc))
 		return
 
-	var/mob/living/carbon/human/holder = loc
+	var/mob/living/holder = loc
 	holder.update_inv_lewd()
-	holder.fan_hud_set_fandom()
+	if(ishuman(holder))
+		var/mob/living/carbon/human/human_holder = holder
+		human_holder.fan_hud_set_fandom()
 
 // Try to force evacuate it.
 /obj/item/clothing/sextoy/moveToNullspace()
-	if(!ishuman(loc) || !current_equipped_slot)
+	if(!isliving(loc) || !current_equipped_slot)
 		return ..()
 
-	var/mob/living/carbon/human/current_holder = loc
+	var/mob/living/current_holder = loc
 
 	current_holder.dropItemToGround(src, force = TRUE) // Force is true, cause nodrop shouldn't affect lewd items.
 	current_holder.vars[current_equipped_slot] = null
@@ -65,5 +67,5 @@
 	return TRUE
 
 /// Returns if the item is inside a lewd slot.
-/obj/item/clothing/sextoy/proc/is_inside_lewd_slot(mob/living/carbon/human/target)
+/obj/item/clothing/sextoy/proc/is_inside_lewd_slot(mob/living/target)
 	return (src == target.penis || src == target.vagina || src == target.anus || src == target.nipples)

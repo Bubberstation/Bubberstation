@@ -51,39 +51,33 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 	/// What sexuality preference do we display for.
 	var/sexuality = ""
 
-/datum/interaction/proc/allow_act(mob/living/carbon/human/user, mob/living/carbon/human/target)
+/datum/interaction/proc/allow_act(mob/living/user, mob/living/target)
 	if(target == user && usage == INTERACTION_OTHER)
 		return FALSE
 
 	if(user_required_parts.len)
 		for(var/thing in user_required_parts)
-			var/obj/item/organ/genital/required_part = user.get_organ_slot(thing)
-			if(isnull(required_part))
-				return FALSE
-			if(!required_part.is_exposed())
+			if(!user.has_required_part(thing))
 				return FALSE
 
 	if(target_required_parts.len)
 		for(var/thing in target_required_parts)
-			var/obj/item/organ/genital/required_part = target.get_organ_slot(thing)
-			if(isnull(required_part))
-				return FALSE
-			if(!required_part.is_exposed())
+			if(!target.has_required_part(thing))
 				return FALSE
 
 	for(var/requirement in interaction_requires)
 		switch(requirement)
 			if(INTERACTION_REQUIRE_SELF_HAND)
-				if(!user.get_active_hand())
+				if(!user.has_arms())
 					return FALSE
 			if(INTERACTION_REQUIRE_TARGET_HAND)
-				if(!target.get_active_hand())
+				if(!target.has_arms())
 					return FALSE
 			else
 				CRASH("Unimplemented interaction requirement '[requirement]'")
 	return TRUE
 
-/datum/interaction/proc/act(mob/living/carbon/human/user, mob/living/carbon/human/target, obj/body_relay = null)
+/datum/interaction/proc/act(mob/living/user, mob/living/target, obj/body_relay = null)
 	if(!allow_act(user, target))
 		return
 	if(!message)

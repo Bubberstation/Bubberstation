@@ -1,4 +1,4 @@
-/mob/living/carbon/human
+/mob/living
 	var/arousal = 0
 	var/pleasure = 0
 	var/pain = 0
@@ -7,7 +7,7 @@
 	var/pain_limit = 0
 	var/arousal_status = AROUSAL_NONE
 
-	// Add variables for slots to the human class
+	// Lewd toy slots.
 	var/obj/item/vagina = null
 	var/obj/item/anus = null
 	var/obj/item/nipples = null
@@ -20,11 +20,11 @@
 */
 
 /// Are we wearing something that covers our chest?
-/mob/living/carbon/human/proc/is_topless()
+/mob/living/carbon/human/is_topless()
 	return (!(wear_suit) || !(wear_suit.body_parts_covered & CHEST)) && (!(w_uniform) || !(w_uniform.body_parts_covered & CHEST))
 
 /// Are we wearing something that covers our groin?
-/mob/living/carbon/human/proc/is_bottomless()
+/mob/living/carbon/human/is_bottomless()
 	return (!(wear_suit) || !(wear_suit.body_parts_covered & GROIN)) && (!(w_uniform) || !(w_uniform.body_parts_covered & GROIN))
 
 /// Are we wearing something that covers our shoes?
@@ -38,7 +38,7 @@
 	return (head?.body_parts_covered & HEAD)
 
 /// Returns true if the human has an accessible penis for the parameter. Accepts any of the `REQUIRE_GENITAL_` defines.
-/mob/living/carbon/human/proc/has_penis(required_state = REQUIRE_GENITAL_ANY)
+/mob/living/carbon/human/has_penis(required_state = REQUIRE_GENITAL_ANY)
 	var/obj/item/organ/genital/genital = get_organ_slot(ORGAN_SLOT_PENIS)
 	if(!genital)
 		return FALSE
@@ -54,7 +54,7 @@
 			return TRUE
 
 /// Returns true if the human has a accessible balls for the parameter. Accepts any of the `REQUIRE_GENITAL_` defines.
-/mob/living/carbon/human/proc/has_balls(required_state = REQUIRE_GENITAL_ANY)
+/mob/living/carbon/human/has_balls(required_state = REQUIRE_GENITAL_ANY)
 	var/obj/item/organ/genital/genital = get_organ_slot(ORGAN_SLOT_TESTICLES)
 	if(!genital)
 		return FALSE
@@ -70,7 +70,7 @@
 			return TRUE
 
 /// Returns true if the human has an accessible vagina for the parameter. Accepts any of the `REQUIRE_GENITAL_` defines.
-/mob/living/carbon/human/proc/has_vagina(required_state = REQUIRE_GENITAL_ANY)
+/mob/living/carbon/human/has_vagina(required_state = REQUIRE_GENITAL_ANY)
 	var/obj/item/organ/genital/genital = get_organ_slot(ORGAN_SLOT_VAGINA)
 	if(!genital)
 		return FALSE
@@ -86,7 +86,7 @@
 			return TRUE
 
 /// Returns true if the human has a accessible breasts for the parameter. Accepts any of the `REQUIRE_GENITAL_` defines.
-/mob/living/carbon/human/proc/has_breasts(required_state = REQUIRE_GENITAL_ANY)
+/mob/living/carbon/human/has_breasts(required_state = REQUIRE_GENITAL_ANY)
 	var/obj/item/organ/genital/genital = get_organ_slot(ORGAN_SLOT_BREASTS)
 	if(!genital)
 		return FALSE
@@ -102,7 +102,7 @@
 			return TRUE
 
 /// Returns true if the human has an accessible anus for the parameter. Accepts any of the `REQUIRE_GENITAL_` defines.
-/mob/living/carbon/human/proc/has_anus(required_state = REQUIRE_GENITAL_ANY)
+/mob/living/carbon/human/has_anus(required_state = REQUIRE_GENITAL_ANY)
 	if(issilicon(src))
 		return TRUE
 	var/obj/item/organ/genital/genital = get_organ_slot(ORGAN_SLOT_ANUS)
@@ -120,7 +120,7 @@
 			return TRUE
 
 /// Returns true if the human has a accessible feet for the parameter, returning the number of feet the human has if they do. Accepts any of the `REQUIRE_GENITAL_` defines.
-/mob/living/carbon/human/proc/has_arms(required_state = REQUIRE_GENITAL_ANY)
+/mob/living/carbon/human/has_arms(required_state = REQUIRE_GENITAL_ANY)
 	var/hand_count = 0
 	var/covered = 0
 	var/is_covered = FALSE
@@ -347,7 +347,7 @@
 	update_body_parts()
 
 /// Helper proc for calling all the lewd slot update_inv_ procs.
-/mob/living/carbon/human/proc/update_inv_lewd()
+/mob/living/carbon/human/update_inv_lewd()
 	update_inv_vagina()
 	update_inv_anus()
 	update_inv_nipples()

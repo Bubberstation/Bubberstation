@@ -1,7 +1,7 @@
 
 /datum/component/interactable
 	/// A hard reference to the parent
-	var/mob/living/carbon/human/self = null
+	var/mob/living/self = null
 	/// A list of interactions that the user can engage in.
 	var/list/datum/interaction/interactions
 	var/interact_last = 0
@@ -14,7 +14,7 @@
 		qdel(src)
 		return
 
-	if(!ishuman(parent))
+	if(!ishuman(parent) && !iscyborg(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	self = parent
@@ -44,12 +44,12 @@
 	return ..()
 
 /datum/component/interactable/proc/open_interaction_menu(datum/source, mob/user)
-	if(!ishuman(user))
+	if(!ishuman(user) && !iscyborg(user))
 		return
 	build_interactions_list()
 	ui_interact(user)
 
-/datum/component/interactable/proc/can_interact(datum/interaction/interaction, mob/living/carbon/human/target)
+/datum/component/interactable/proc/can_interact(datum/interaction/interaction, mob/living/target)
 	if(!interaction.allow_act(target, self))
 		return FALSE
 	if(interaction.lewd && !target.client?.prefs?.read_preference(/datum/preference/toggle/erp))
@@ -71,7 +71,7 @@
 		ui.open()
 
 /datum/component/interactable/ui_status(mob/user, datum/ui_state/state)
-	if(!ishuman(user))
+	if(!ishuman(user) && !iscyborg(user))
 		return UI_CLOSE
 
 	return UI_INTERACTIVE // This UI is always interactive as we handle distance flags via can_interact
@@ -113,8 +113,6 @@
 	data["interactions"] = categories
 	data["erp_interaction"] = self.client?.prefs?.read_preference(/datum/preference/toggle/erp)
 
-	var/mob/living/carbon/human/human_user = user
-
 	data["isTargetSelf"] = (user == self)
 
 	// user (the one who opened the ui)
@@ -122,15 +120,16 @@
 	var/user_arousal = 0
 	var/user_pain = 0
 
-	if(user)
-		user_pleasure = human_user.pleasure
-		user_arousal = human_user.arousal
-		user_pain = human_user.pain
+	if(isliving(user))
+		var/mob/living/living_user = user
+		user_pleasure = living_user.pleasure
+		user_arousal = living_user.arousal
+		user_pain = living_user.pain
+		data["yourName"] = living_user.real_name
 
-		data["pleasure"] = user_pleasure
-		data["arousal"] = user_arousal
-		data["pain"] = user_pain
-		data["yourName"] = human_user.real_name
+	data["pleasure"] = user_pleasure
+	data["arousal"] = user_arousal
+	data["pain"] = user_pain
 
 
 	// self - the one who the interaction component belongs to, aka who it's opened on (confusing var name yep)
@@ -142,15 +141,17 @@
 
 	var/list/parts = list()
 
-	if(ishuman(user) && can_lewd_strip(user, self))
+	if(isliving(user) && can_lewd_strip(user, self))
+		var/mob/living/strip_user = user
 		if(self.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy))
 			if(self.has_vagina())
-				parts += list(generate_strip_entry(ORGAN_SLOT_VAGINA, self, user, self.vagina))
+				parts += list(generate_strip_entry(ORGAN_SLOT_VAGINA, self, strip_user, self.vagina))
 			if(self.has_penis())
-				parts += list(generate_strip_entry(ORGAN_SLOT_PENIS, self, user, self.penis))
+				parts += list(generate_strip_entry(ORGAN_SLOT_PENIS, self, strip_user, self.penis))
 			if(self.has_anus())
-				parts += list(generate_strip_entry(ORGAN_SLOT_ANUS, self, user, self.anus))
-			parts += list(generate_strip_entry(ORGAN_SLOT_NIPPLES, self, user, self.nipples))
+				parts += list(generate_strip_entry(ORGAN_SLOT_ANUS, self, strip_user, self.anus))
+			if(ishuman(self) || self.has_breasts())
+				parts += list(generate_strip_entry(ORGAN_SLOT_NIPPLES, self, strip_user, self.nipples))
 
 	data["lewd_slots"] = parts
 
@@ -166,7 +167,7 @@
  * * source - The mob that's interacting.
  * * item - The item that's currently inside said slot. Can be null.
  */
-/datum/component/interactable/proc/generate_strip_entry(name, mob/living/carbon/human/target, mob/living/carbon/human/source, obj/item/clothing/sextoy/item)
+/datum/component/interactable/proc/generate_strip_entry(name, mob/living/target, mob/living/source, obj/item/clothing/sextoy/item)
 	return list(
 		"name" = name,
 		"img" = (item && can_lewd_strip(source, target, name)) ? icon2base64(icon(item.icon, item.icon_state, SOUTH, 1)) : null
@@ -177,13 +178,13 @@
 	if(.)
 		return
 
-	if(!ishuman(usr))
+	if(!ishuman(usr) && !iscyborg(usr))
 		return
 
 	if(params["interaction"])
 		var/interaction_id = params["interaction"]
 		if(GLOB.interaction_instances[interaction_id])
-			var/mob/living/carbon/human/user = locate(params["userref"])
+			var/mob/living/user = locate(params["userref"])
 			if(!can_interact(GLOB.interaction_instances[interaction_id], user))
 				return FALSE
 			if(body_relay && !can_see(user, self))
@@ -199,8 +200,13 @@
 	if(params["item_slot"])
 		// This code should be easy enough to follow... I hope.
 		var/item_index = params["item_slot"]
-		var/mob/living/carbon/human/source = locate(params["userref"])
-		var/mob/living/carbon/human/target = locate(params["selfref"])
+		var/mob/living/source = locate(params["userref"])
+		var/mob/living/target = locate(params["selfref"])
+
+		if(!isliving(source) || !isliving(target))
+			source.show_message(span_warning("Toys can only be adjusted on living bodies!"))
+			return
+
 		var/obj/item/clothing/sextoy/new_item = source.get_active_held_item()
 		var/obj/item/clothing/sextoy/existing_item = target.vars[item_index]
 
@@ -248,8 +254,10 @@
 
 	message_admins("Unhandled interaction '[params["interaction"]]'. Inform coders.")
 
-/// Checks if the target has ERP toys enabled, and can be logially reached by the user.
-/datum/component/interactable/proc/can_lewd_strip(mob/living/carbon/human/source, mob/living/carbon/human/target, slot_index)
+/// Checks if the target has ERP toys enabled, and can be logically reached by the user.
+/datum/component/interactable/proc/can_lewd_strip(mob/living/source, mob/living/target, slot_index)
+	if(!isliving(source) || !isliving(target))
+		return FALSE
 	if(!target.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy))
 		return FALSE
 	if(!(source.loc == target.loc || source.Adjacent(target)))

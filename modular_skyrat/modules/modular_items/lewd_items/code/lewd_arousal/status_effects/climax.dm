@@ -14,7 +14,7 @@
 	if(!owner.client?.prefs?.read_preference(/datum/preference/toggle/erp))
 		return
 
-	var/mob/living/carbon/human/affected_mob = owner
+	var/mob/living/affected_mob = owner
 
 	owner.reagents.add_reagent(/datum/reagent/drug/aphrodisiac/dopamine, 0.5)
 	owner.adjust_stamina_loss(STAMINA_REMOVAL_AMOUNT_EXTERNAL)
@@ -35,7 +35,7 @@
 	if(!owner.client?.prefs?.read_preference(/datum/preference/toggle/erp))
 		return
 
-	var/mob/living/carbon/human/affected_mob = owner
+	var/mob/living/affected_mob = owner
 
 	owner.reagents.add_reagent(/datum/reagent/drug/aphrodisiac/dopamine, 0.3)
 	owner.adjust_stamina_loss(STAMINA_REMOVAL_AMOUNT_SELF)

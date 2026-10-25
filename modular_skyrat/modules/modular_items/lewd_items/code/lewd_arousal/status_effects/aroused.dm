@@ -19,7 +19,7 @@
 	if(owner.stat >= DEAD || !owner.client?.prefs?.read_preference(/datum/preference/toggle/erp))
 		return
 
-	var/mob/living/carbon/human/affected_mob = owner
+	var/mob/living/affected_mob = owner
 	var/temp_arousal = BASE_AROUSAL_ADJUSTMENT
 	var/temp_pleasure = BASE_PAIN_AND_PLEASURE_ADJUSTMENT
 	var/temp_pain = BASE_PAIN_AND_PLEASURE_ADJUSTMENT

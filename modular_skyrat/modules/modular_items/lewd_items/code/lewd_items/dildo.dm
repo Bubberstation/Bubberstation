@@ -69,7 +69,7 @@
 	icon_state = "[base_icon_state][change_sprite ? "_[current_type]" : ""]"
 	inhand_icon_state = "[base_icon_state][change_sprite ? "_[current_type]" : ""]"
 
-/obj/item/clothing/sextoy/dildo/lewd_equipped(mob/living/carbon/human/user, slot)
+/obj/item/clothing/sextoy/dildo/lewd_equipped(mob/living/user, slot)
 	. = ..()
 	if(!istype(user))
 		return
@@ -81,7 +81,7 @@
 	STOP_PROCESSING(SSobj, src)
 
 /obj/item/clothing/sextoy/dildo/process(seconds_per_tick)
-	var/mob/living/carbon/human/user = loc
+	var/mob/living/user = loc
 	if(!istype(user))
 		return
 	if(poly_size == "small" && user.arousal < (AROUSAL_REGULAR_THRESHOLD * 0.8))
@@ -97,6 +97,8 @@
 /obj/item/clothing/sextoy/dildo/attack(mob/living/carbon/human/target, mob/living/carbon/human/user)
 	. = ..()
 	if(target.stat == DEAD)
+		return
+	if(!ishuman(user))
 		return
 	if(!ishuman(target)) //Don't.
 		return
@@ -314,7 +316,7 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 /obj/item/clothing/sextoy/dildo/double_dildo/click_alt(mob/user)
 	return NONE
 
-/obj/item/clothing/sextoy/dildo/double_dildo/lewd_equipped(mob/living/carbon/human/user, slot, initial)
+/obj/item/clothing/sextoy/dildo/double_dildo/lewd_equipped(mob/living/user, slot, initial)
 	. = ..()
 	in_back = (src == user.anus)
 	update_icon_state()
@@ -347,36 +349,39 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 		to_chat(user, span_warning("You need to equip [src] before you can use it!"))
 
 //dumb way to fix organs overlapping with toys, but WHY NOT. Find a better way if you're not lazy as me.
-/obj/item/clothing/sextoy/dildo/double_dildo/lewd_equipped(mob/living/carbon/human/user, slot)
+/obj/item/clothing/sextoy/dildo/double_dildo/lewd_equipped(mob/living/user, slot)
 	. = ..()
 	if(!istype(user))
 		return
-	var/obj/item/organ/genital/vagina/vagina = user.get_organ_slot(ORGAN_SLOT_VAGINA)
-	var/obj/item/organ/genital/womb/womb = user.get_organ_slot(ORGAN_SLOT_WOMB)
-	var/obj/item/organ/genital/penis/penis = user.get_organ_slot(ORGAN_SLOT_PENIS)
-	var/obj/item/organ/genital/testicles/testicles = user.get_organ_slot(ORGAN_SLOT_TESTICLES)
-	var/obj/item/organ/genital/anus/anus = user.get_organ_slot(ORGAN_SLOT_ANUS)
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/human_user = user
+	var/obj/item/organ/genital/vagina/vagina = human_user.get_organ_slot(ORGAN_SLOT_VAGINA)
+	var/obj/item/organ/genital/womb/womb = human_user.get_organ_slot(ORGAN_SLOT_WOMB)
+	var/obj/item/organ/genital/penis/penis = human_user.get_organ_slot(ORGAN_SLOT_PENIS)
+	var/obj/item/organ/genital/testicles/testicles = human_user.get_organ_slot(ORGAN_SLOT_TESTICLES)
+	var/obj/item/organ/genital/anus/anus = human_user.get_organ_slot(ORGAN_SLOT_ANUS)
 
-	if(src == user.vagina)
+	if(src == human_user.vagina)
 		vagina?.visibility_preference = GENITAL_NEVER_SHOW
 		womb?.visibility_preference = GENITAL_NEVER_SHOW
 		penis?.visibility_preference = GENITAL_NEVER_SHOW
 		testicles?.visibility_preference = GENITAL_NEVER_SHOW
-		user.update_body()
+		human_user.update_body()
 
-	else if(src == user.anus)
+	else if(src == human_user.anus)
 		anus?.visibility_preference = GENITAL_NEVER_SHOW
-		user.update_body()
+		human_user.update_body()
 
 /obj/item/clothing/sextoy/dildo/double_dildo/process(seconds_per_tick)
-	var/mob/living/carbon/human/user = loc
+	var/mob/living/user = loc
 	if(!istype(user))
 		return FALSE
 	if(user.arousal < AROUSAL_REGULAR_THRESHOLD)
 		user.adjust_arousal(0.8 * seconds_per_tick)
 		user.adjust_pleasure(0.8 * seconds_per_tick)
 
-/obj/item/clothing/sextoy/dildo/double_dildo/dropped(mob/living/carbon/human/user)
+/obj/item/clothing/sextoy/dildo/double_dildo/dropped(mob/living/user)
 	. = ..()
 	if(!istype(user))
 		return FALSE
@@ -384,15 +389,19 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 	if(other_end)
 		QDEL_NULL(other_end)
 
-	var/obj/item/organ/genital/vagina/vagina = user.get_organ_slot(ORGAN_SLOT_VAGINA)
-	var/obj/item/organ/genital/womb/womb = user.get_organ_slot(ORGAN_SLOT_WOMB)
-	var/obj/item/organ/genital/penis/penis = user.get_organ_slot(ORGAN_SLOT_PENIS)
-	var/obj/item/organ/genital/testicles/testicles = user.get_organ_slot(ORGAN_SLOT_TESTICLES)
-	var/obj/item/organ/genital/anus/anus = user.get_organ_slot(ORGAN_SLOT_ANUS)
+	if(!ishuman(user))
+		return
 
-	if(!(src == user.vagina))
+	var/mob/living/carbon/human/human_user = user
+	var/obj/item/organ/genital/vagina/vagina = human_user.get_organ_slot(ORGAN_SLOT_VAGINA)
+	var/obj/item/organ/genital/womb/womb = human_user.get_organ_slot(ORGAN_SLOT_WOMB)
+	var/obj/item/organ/genital/penis/penis = human_user.get_organ_slot(ORGAN_SLOT_PENIS)
+	var/obj/item/organ/genital/testicles/testicles = human_user.get_organ_slot(ORGAN_SLOT_TESTICLES)
+	var/obj/item/organ/genital/anus/anus = human_user.get_organ_slot(ORGAN_SLOT_ANUS)
+
+	if(!(src == human_user.vagina))
 		anus?.visibility_preference = GENITAL_HIDDEN_BY_CLOTHES
-		user.update_body()
+		human_user.update_body()
 		return
 
 	vagina?.visibility_preference = GENITAL_HIDDEN_BY_CLOTHES
@@ -400,7 +409,7 @@ GLOBAL_LIST_INIT(dildo_colors, list(//mostly neon colors
 	penis?.visibility_preference = GENITAL_HIDDEN_BY_CLOTHES
 	testicles?.visibility_preference = GENITAL_HIDDEN_BY_CLOTHES
 
-	user.update_body()
+	human_user.update_body()
 
 /obj/item/clothing/sextoy/dildo/double_dildo/Destroy()
 	moveToNullspace() // This will ensure it gets removed from the world, and from any slots in mobs

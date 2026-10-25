@@ -86,26 +86,30 @@
 	icon_state = "[base_icon_state]_[current_color]_[current_size]"
 	worn_icon_state = "[base_icon_state]_[current_color]"
 
-/obj/item/clothing/sextoy/buttplug/lewd_equipped(mob/living/carbon/human/user, slot)
+/obj/item/clothing/sextoy/buttplug/lewd_equipped(mob/living/user, slot)
 	. = ..()
 	if(!istype(user))
 		return
 	if(src == user.anus || src == user.vagina)
 		START_PROCESSING(SSobj, src)
 
-	if(src == user.vagina && current_color == "tail")
-		user.cut_overlay(user.overlays_standing[VAGINA_LAYER])
+	if(!ishuman(user))
+		return
+
+	var/mob/living/carbon/human/human_user = user
+	if(src == human_user.vagina && current_color == "tail")
+		human_user.cut_overlay(human_user.overlays_standing[VAGINA_LAYER])
 
 	// I did this shit with taur icons on purpose because fuck skyrat's system with taurs, it's dumb and maybe dumber than me I CANT DO THIS ANYMORE WHY THIS OVERLAPPING WITH MY SPRITES AAAAAARGH
-	if(user.dna.species.mutant_bodyparts[FEATURE_TAUR] && src == user.anus)
-		user.cut_overlay(user.overlays_standing[ANUS_LAYER])
+	if(human_user.dna.species.mutant_bodyparts[FEATURE_TAUR] && src == human_user.anus)
+		human_user.cut_overlay(human_user.overlays_standing[ANUS_LAYER])
 
 /obj/item/clothing/sextoy/buttplug/dropped(mob/user, slot)
 	. = ..()
 	STOP_PROCESSING(SSobj, src)
 
 /obj/item/clothing/sextoy/buttplug/process(seconds_per_tick)
-	var/mob/living/carbon/human/target = loc
+	var/mob/living/target = loc
 	if(!istype(target))
 		return
 	// I tried using switch here, but it need static value, and u.arousal can't be it. So fuck switches. Reject it, embrace the IFs

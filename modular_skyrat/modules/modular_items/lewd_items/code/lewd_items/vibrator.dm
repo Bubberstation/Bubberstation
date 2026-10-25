@@ -85,7 +85,7 @@
 	icon_state = "[base_icon_state]_[current_color]_[vibration_mode]"
 	inhand_icon_state = "[base_icon_state]_[current_color]"
 
-/obj/item/clothing/sextoy/vibrator/lewd_equipped(mob/living/carbon/human/user, slot)
+/obj/item/clothing/sextoy/vibrator/lewd_equipped(mob/living/user, slot)
 	. = ..()
 	if(!istype(user))
 		return
@@ -97,7 +97,7 @@
 	STOP_PROCESSING(SSobj, src)
 
 /obj/item/clothing/sextoy/vibrator/process(seconds_per_tick)
-	var/mob/living/carbon/human/user = loc
+	var/mob/living/user = loc
 	if(!istype(user))
 		return
 	if(toy_on)
@@ -115,11 +115,11 @@
 		user.adjust_pleasure(0.5 * seconds_per_tick)
 
 //SHITCODESHITCODESHITCODESHITCODESHITCODESHITCODESHITCODESHITCODESHITCODESHITCODESHITCODESHITCODESHITCODESHITCODESHITCODESHITCODE
-/obj/item/clothing/sextoy/vibrator/attack(mob/living/carbon/human/target, mob/living/carbon/human/user)
+/obj/item/clothing/sextoy/vibrator/attack(mob/living/target, mob/living/user)
 	. = ..()
 	if(target.stat == DEAD)
 		return
-	if(!istype(target))
+	if(!isliving(target))
 		return
 
 	var/message = ""

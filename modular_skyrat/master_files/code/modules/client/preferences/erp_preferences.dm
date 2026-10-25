@@ -71,8 +71,8 @@
 /datum/preference/toggle/erp/sex_toy/apply_to_client_updated(client/client, value)
 	apply_to_client(client, value)
 	if(!value)
-		if(ishuman(client.mob))
-			var/mob/living/carbon/human/target = client.mob
+		if(isliving(client.mob))
+			var/mob/living/target = client.mob
 			if(target.vagina != null)
 				target.dropItemToGround(target.vagina, TRUE, TRUE, FALSE)
 				target.vagina = null
@@ -85,6 +85,7 @@
 			if(target.penis != null)
 				target.dropItemToGround(target.penis, TRUE, TRUE, FALSE)
 				target.penis = null
+			target.update_inv_lewd()
 
 
 	client.mob.hud_used.inventory_update(client.mob)

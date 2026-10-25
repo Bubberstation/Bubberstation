@@ -36,6 +36,7 @@
 	. = ..()
 	// Intentionally set like this, because people have different lore for their cyborgs, and there's no real non-invasive way to print posibrains that match.
 	RegisterSignal(src, COMSIG_MOB_MIND_TRANSFERRED_INTO, PROC_REF(on_mob_mind_transferred_into))
+	AddComponent(/datum/component/interactable)
 
 /mob/living/silicon/proc/on_mob_mind_transferred_into(mob/living/silicon/robot)
 	SIGNAL_HANDLER
@@ -95,6 +96,9 @@
 	transfer_chat_color_pref(player_client)
 	transfer_brain_pref(player_client)
 	transfer_emote_pref(player_client)
+	if(istype(src, /mob/living/silicon/robot))
+		var/mob/living/silicon/robot/robot = src
+		robot.apply_synthetic_genital_prefs(player_client)
 
 /mob/living/silicon/robot/apply_prefs_job(client/player_client, datum/job/job)
 	. = ..()
