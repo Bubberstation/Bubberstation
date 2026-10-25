@@ -452,7 +452,7 @@
 	strip_delay = 60 SECONDS
 	resistance_flags = INDESTRUCTIBLE|LAVA_PROOF|FIRE_PROOF|UNACIDABLE|ACID_PROOF
 	lace_time = 0.5 SECONDS
-	clothing_traits = list(TRAIT_NO_SLIP_WATER, TRAIT_NO_SLIP_ICE, TRAIT_NO_SLIP_SLIDE, TRAIT_NO_SLIP_ALL)
+	clothing_traits = list(TRAIT_NO_SLIP_ALL)
 	actions_types = list(/datum/action/item_action/toggle)
 	w_class = WEIGHT_CLASS_SMALL
 
