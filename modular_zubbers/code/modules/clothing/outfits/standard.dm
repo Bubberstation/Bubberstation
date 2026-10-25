@@ -6,6 +6,7 @@
 	ears = /obj/item/radio/headset/headset_cent/commander/admin
 	mask = null
 	belt = /obj/item/storage/belt/debug
+	gloves = /obj/item/clothing/gloves/combat/debug
 	shoes = /obj/item/clothing/shoes/combat/debug
 	suit = /obj/item/clothing/suit/hazardvest/debug
 	suit_store = /obj/item/tank/internals/oxygen
