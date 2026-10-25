@@ -38,9 +38,6 @@
 		SEND_GLOBAL_SIGNAL(COMSIG_RELIGIOUS_SECT_RESET)
 
 		QDEL_NULL(GLOB.religious_sect) // queue for removal but also set it to null, in case a new chaplain joins before it can be deleted
-	
-	// BUBBER EDIT END
-	
 /**
  * Chooses a valid holy successor from GLOB.holy_successor weakref list and sets things up for them to be the new high priest
  *
