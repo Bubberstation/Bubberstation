@@ -5,6 +5,7 @@
 	alt_titles = list(
 		"Quartermaster",
 		"Deck Chief",
+		"Head Crate Pusher",
 		"Head of Supply",
 		"Logistics Coordinator",
 		"Supply Foreman",
