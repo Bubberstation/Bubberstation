@@ -55,6 +55,13 @@
 	INVOKE_ASYNC(src, PROC_REF(try_auto_heal), interacting_with, user, damaged_limbs, preferred_limb)
 	return ITEM_INTERACT_SUCCESS
 
+/obj/item/weldingtool/experimental/protonitrate
+	name = "proto nitrate welding tool"
+	desc = "An experimental welder further enchanced by combining it with Proto Nitrate Crystal."
+	icon = 'modular_zubbers/icons/obj/equipment/equipment.dmi'
+	icon_state = "pn_welder"
+	toolspeed = 0.25
+
 /obj/item/weldingtool/experimental/debug
 	name = "bluespace welder"
 	desc = "The welding tool that you shouldn't have. Power of the (bluespace) sun, right on your hip."
