@@ -30,11 +30,11 @@
 
 // Timers for the ore vents to perform wave defense.
 /// Number of waves players will need to defeat for a small vent.
-#define WAVE_DURATION_SMALL 5
+#define WAVE_DURATION_SMALL 3 // BUBBER EDIT, SUBJECT TO CHANGE. DROPS TOTAL WAVE AMOUNT.
 /// Number of waves players will need to defeat for a medium vent.
-#define WAVE_DURATION_MEDIUM 10
+#define WAVE_DURATION_MEDIUM 8 // BUBBER EDIT, SUBJECT TO CHANGE. DROPS TOTAL WAVE AMOUNT.
 /// Number of waves players will need to defeat for a large vent.
-#define WAVE_DURATION_LARGE 15
+#define WAVE_DURATION_LARGE 10 // BUBBER EDIT, SUBJECT TO CHANGE. DROPS TOTAL WAVE AMOUNT.
 /// Duration for wave defense for the tarkon emergency engines. BUBBER EDIT
 #define WAVE_DURATION_TARKON 12 // THIS IS A BUBBER EDIT BECAUSE TARKON IS US
 
