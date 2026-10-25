@@ -39,6 +39,10 @@
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/plasmaman,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/plasmaman,
 	)
+	survival_box_overrides = list(
+		SURVIVAL_INTERNALS_TYPE = /obj/item/tank/internals/plasmaman/belt,
+		SURVIVAL_MEDIPEN_TYPE = /obj/item/reagent_containers/hypospray/medipen,
+	)
 
 	// Body temperature for Plasmen is much lower human as they can handle colder environments
 	bodytemp_normal = (BODYTEMP_NORMAL - 40)
@@ -70,13 +74,6 @@
 		equipping.equipOutfit(job.plasmaman_outfit, visuals_only)
 	else
 		give_important_for_life(equipping)
-
-/datum/species/plasmaman/get_scream_sound(mob/living/carbon/human)
-	return pick(
-		'sound/mobs/humanoids/plasmaman/plasmeme_scream_1.ogg',
-		'sound/mobs/humanoids/plasmaman/plasmeme_scream_2.ogg',
-		'sound/mobs/humanoids/plasmaman/plasmeme_scream_3.ogg',
-	)
 
 /datum/species/plasmaman/get_physical_attributes()
 	return "Plasmamen literally breathe and live plasma. They spontaneously combust on contact with oxygen, and besides all the quirks that go with that, \

@@ -2,13 +2,13 @@
 //as they handle all relevant stuff like adding it to the player's screen and updating their overlays.
 
 ///Returns the thing we're currently holding
-/mob/proc/get_active_held_item()
+/mob/proc/get_active_held_item() as /obj/item
 	return get_item_for_held_index(active_hand_index)
 
 
 //Finds the opposite limb for the active one (eg: upper left arm will find the item in upper right arm)
 //So we're treating each "pair" of limbs as a team, so "both" refers to them
-/mob/proc/get_inactive_held_item()
+/mob/proc/get_inactive_held_item() as /obj/item
 	return get_item_for_held_index(get_inactive_hand_index())
 
 
@@ -449,8 +449,8 @@
 			item_dropping.forceMove(newloc)
 
 	has_unequipped(item_dropping, silent)
-	SEND_SIGNAL(item_dropping, COMSIG_ITEM_POST_UNEQUIP, force, newloc, no_move, invdrop, silent)
-	SEND_SIGNAL(src, COMSIG_MOB_UNEQUIPPED_ITEM, item_dropping, force, newloc, no_move, invdrop, silent)
+	SEND_SIGNAL(item_dropping, COMSIG_ITEM_POST_UNEQUIP, force, newloc, no_move, invdrop, silent, hand_index)
+	SEND_SIGNAL(src, COMSIG_MOB_UNEQUIPPED_ITEM, item_dropping, force, newloc, no_move, invdrop, silent, hand_index)
 	return TRUE
 
 /**

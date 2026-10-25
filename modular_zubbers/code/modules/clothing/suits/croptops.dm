@@ -9,6 +9,7 @@
 	post_init_icon_state = "crop_jacket"
 	greyscale_config = /datum/greyscale_config/crop_jacket
 	greyscale_config_worn = /datum/greyscale_config/crop_jacket/worn
+	greyscale_config_worn_teshari = /datum/greyscale_config/crop_jacket/worn/teshari
 	greyscale_colors = "#ebebeb#a52f29#292929"
 	body_parts_covered = CHEST|ARMS
 	flags_1 = IS_PLAYER_COLORABLE_1
@@ -26,6 +27,7 @@
 	post_init_icon_state = "crop_jacket_short"
 	greyscale_config = /datum/greyscale_config/shortsleeve_crop_jacket
 	greyscale_config_worn = /datum/greyscale_config/shortsleeve_crop_jacket/worn
+	greyscale_config_worn_teshari = /datum/greyscale_config/shortsleeve_crop_jacket/worn/teshari
 
 /obj/item/clothing/suit/crop_jacket/sleeveless
 	name = "sleeveless crop-top jacket"
@@ -35,6 +37,7 @@
 	post_init_icon_state = "crop_jacket_sleeveless"
 	greyscale_config = /datum/greyscale_config/sleeveless_crop_jacket
 	greyscale_config_worn = /datum/greyscale_config/sleeveless_crop_jacket/worn
+	greyscale_config_worn_teshari = /datum/greyscale_config/sleeveless_crop_jacket/worn/teshari
 	greyscale_colors = "#ebebeb#a52f29"
 	body_parts_covered = CHEST
 

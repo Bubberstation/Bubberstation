@@ -146,13 +146,9 @@
 				if(ishuman(living_user))
 					context[SCREENTIP_CONTEXT_LMB] = "Knock"
 					return CONTEXTUAL_SCREENTIP_SET
-			else
-				if(ismonkey(living_user))
-					context[SCREENTIP_CONTEXT_LMB] = "Attack"
-					return CONTEXTUAL_SCREENTIP_SET
-				if(ishuman(living_user))
-					context[SCREENTIP_CONTEXT_LMB] = "Bash"
-					return CONTEXTUAL_SCREENTIP_SET
+			else if(ishuman(living_user))
+				context[SCREENTIP_CONTEXT_LMB] = "Bash"
+				return CONTEXTUAL_SCREENTIP_SET
 		else if(issilicon(living_user))
 			context[SCREENTIP_CONTEXT_LMB] = "Close"
 			return CONTEXTUAL_SCREENTIP_SET
@@ -377,8 +373,8 @@
 	active = TRUE
 	alarm_type = code
 	add_as_source()
-	update_appearance(UPDATE_ICON) //Sets the door lights even if the door doesn't move.
 	correct_state()
+	update_appearance(UPDATE_ICON) //Sets the door lights even if the door doesn't move.
 
 /// Adds this fire door as a source of trouble to all of its areas
 /obj/machinery/door/firedoor/proc/add_as_source()
@@ -404,8 +400,8 @@
 	remove_as_source()
 	soundloop.stop()
 	is_playing_alarm = FALSE
-	update_appearance(UPDATE_ICON) //Sets the door lights even if the door doesn't move.
 	correct_state()
+	update_appearance(UPDATE_ICON) //Sets the door lights even if the door doesn't move.
 
 /**
  * Open the firedoor without resetting existing alarms
@@ -422,8 +418,8 @@
 	soundloop.stop()
 	is_playing_alarm = FALSE
 	remove_as_source()
-	update_appearance(UPDATE_ICON) //Sets the door lights even if the door doesn't move.
 	correct_state()
+	update_appearance(UPDATE_ICON) //Sets the door lights even if the door doesn't move.
 
 	/// Please be called 3 seconds after the LAST open, rather then 3 seconds after the first
 	addtimer(CALLBACK(src, PROC_REF(release_constraints)), 3 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
@@ -556,7 +552,7 @@
 		being_held_open = TRUE
 		crowbar_owner.balloon_alert_to_viewers("holding firelock open", "holding firelock open")
 		COOLDOWN_START(src, activation_cooldown, REACTIVATION_DELAY)
-		open()
+		open(opener = user)
 		if(QDELETED(crowbar_owner))
 			being_held_open = FALSE
 			return
@@ -573,7 +569,7 @@
 		return
 
 	if(density)
-		open()
+		open(opener = user)
 		/* BUBBERSTATION CHANGE: Crowbar secondary actually permanently opens firelocks.
 		if(active)
 			addtimer(CALLBACK(src, PROC_REF(correct_state)), 2 SECONDS, TIMER_UNIQUE)
@@ -604,7 +600,7 @@
 	if(welded || operating || machine_stat & NOPOWER)
 		return TRUE
 	if(density)
-		open()
+		open(opener = user)
 		if(active)
 			addtimer(CALLBACK(src, PROC_REF(correct_state)), 2 SECONDS, TIMER_UNIQUE)
 	else
@@ -619,7 +615,7 @@
 	if(welded)
 		balloon_alert(user, "refuses to budge!")
 		return
-	open()
+	open(opener = user)
 	if(active)
 		addtimer(CALLBACK(src, PROC_REF(correct_state)), 2 SECONDS, TIMER_UNIQUE)
 
@@ -688,7 +684,7 @@
 		INVOKE_ASYNC(src, PROC_REF(open))
 		return
 
-/obj/machinery/door/firedoor/open()
+/obj/machinery/door/firedoor/open(forced = DEFAULT_DOOR_CHECKS, mob/living/opener)
 	if(welded)
 		return
 	var/old_activity = active

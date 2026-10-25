@@ -6,6 +6,14 @@
 	type_to_generate = /datum/loadout_item/toys
 	tab_order = /datum/loadout_category/head::tab_order + 13
 
+/datum/loadout_item/toys/foam_baton
+	name = "Foam Force Baton"
+	item_path = /obj/item/foam_baton
+
+/datum/loadout_item/toys/foam_sword
+	name = "Foam Force Claymore"
+	item_path = /obj/item/foam_baton/sword
+
 /datum/loadout_item/toys/plush
 	group = "Plushies"
 	abstract_type = /datum/loadout_item/toys/plush

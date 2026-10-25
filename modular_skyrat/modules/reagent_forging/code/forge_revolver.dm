@@ -8,6 +8,7 @@
 	icon_preview = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_items.dmi'
 	icon_state_preview = "revolver_preview"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/handcrafted_single_action
+	material_slots = list(/datum/material_slot/revolver/frame = /datum/material/iron, /datum/material_slot/revolver/cylinder = /datum/material/iron)
 	fire_sound_volume = 90
 	bolt_type = BOLT_TYPE_NO_BOLT
 	semi_auto = FALSE
@@ -21,6 +22,7 @@
 	throwforce = 14
 	force = 8
 	material_flags = MATERIAL_EFFECTS | MATERIAL_AFFECT_STATISTICS | MATERIAL_ADD_PREFIX
+	obj_flags = UNIQUE_RENAME
 
 	//is the hammer primed (ready to fire) or released (safe)?
 	var/hammer_is_primed = FALSE

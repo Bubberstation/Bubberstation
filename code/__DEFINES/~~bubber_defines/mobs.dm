@@ -49,6 +49,11 @@
 
 // Genital Layers
 #define BUTT_LAYER_OFFSET 0.08
+/// Butt layers while wearing a MODsuit, over the suit but under belts and backpacks. Front stays above adjacent
+#define ASS_LAYER_ABOVE_SUIT 13.9
+#define ASS_ADJ_LAYER_ABOVE_SUIT 13.95
+/// Side and front butt layer over a jumpsuit, just under the rear view and still under oversuits
+#define ASS_ADJ_LAYER_ABOVE_UNIFORM 19.95
 #define ANUS_LAYER_OFFSET  0.07
 #define VAGINA_LAYER_OFFSET 0.06
 #define TESTICLES_LAYER_OFFSET 0.05
@@ -60,3 +65,6 @@
 // Body Sizes
 #define BODY_SIZE_MAX 1.5
 #define BODY_SIZE_MIN 0.8
+
+///Checks if a mob is in crit specifically
+#define IS_CRITICAL(mob) (mob.stat >= SOFT_CRIT && mob.stat != DEAD)

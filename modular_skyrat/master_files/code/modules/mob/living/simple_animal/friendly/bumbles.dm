@@ -33,11 +33,11 @@
 	/// List of flower types that can be attacked to smell, or are targetted by AI.
 	var/list/flower_types = list(
 		/obj/item/bouquet,
-		/obj/item/food/grown/poppy,
-		/obj/item/food/grown/sunflower,
-		/obj/item/food/grown/moonflower,
-		/obj/item/food/grown/rose,
-		/obj/item/food/grown/harebell,
+		/obj/item/food/grown/flower/poppy,
+		/obj/item/food/grown/flower/sunflower,
+		/obj/item/food/grown/flower/moonflower,
+		/obj/item/food/grown/flower/rose,
+		/obj/item/food/grown/flower/harebell,
 	)
 
 /mob/living/basic/pet/bumbles/Initialize(mapload)

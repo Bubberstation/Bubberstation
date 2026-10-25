@@ -332,7 +332,7 @@
 
 // Handles climbing up and down between turfs with height differences, as well as manipulating others to do the same.
 /turf/open/mouse_drop_receive(mob/living/dropped_mob, mob/living/user, params)
-	if(!isliving(dropped_mob) || !isliving(user) || !dropped_mob.has_gravity() || !Adjacent(user) || !dropped_mob.Adjacent(user) || !(user.stat == CONSCIOUS) || user.body_position == LYING_DOWN)
+	if(!isliving(dropped_mob) || !isliving(user) || !dropped_mob.has_gravity() || !Adjacent(user) || !dropped_mob.Adjacent(user) || IS_UNCONSCIOUS_OR_CRIT(user) || user.body_position == LYING_DOWN)
 		return
 	if(!dropped_mob.has_gravity())
 		return

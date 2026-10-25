@@ -257,7 +257,7 @@
 		return
 	if(ismob(AM))
 		var/mob/B = AM
-		if((isdrone(B) || iscyborg(B)) && B.stat)
+		if((isdrone(B) || iscyborg(B)) && IS_UNCONSCIOUS_OR_CRIT(B))
 			return
 		if(isliving(AM))
 			var/mob/living/M = AM
@@ -342,7 +342,7 @@
 	// note: if the ID wire is cut no ID cards are checked at all! (This is intentional!)
 	if(access_bypass || (requiresID() && user_can_activate_door(user)))
 		if(density)
-			open()
+			open(opener = user)
 		else
 			close()
 		return TRUE
@@ -376,7 +376,7 @@
 	stoplag(1) // allow the door to process any allow/deny responses first
 	var/do_after_time = rand(delayed_unres_time_lower, delayed_unres_time_upper)
 	ADD_TRAIT(opener, TRAIT_UNRESTRICTED_AIRLOCK_OPENING, REF(src))
-	RegisterSignal(opener, COMSIG_ATOM_PRE_PRESSURE_PUSH, PROC_REF(stop_pressure_during_unres_open))
+	RegisterSignal(opener, COMSIG_ATOM_PRE_PRESSURE_PUSH, PROC_REF(stop_pressure_during_unres_open), override = TRUE)
 	addtimer(CALLBACK(src, PROC_REF(deregister_pressure_push_signal), opener), do_after_time + 0.5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE) // extra half-second to be safe, else this is just a guarantee we remove the signal.
 
 	SSblackbox.record_feedback("tally", "unrestricted_airlock_usage", 1, "open attempt ([type])") // statcollecting on how often people try to use this.
@@ -586,11 +586,15 @@
 
 /// Public proc that simply handles opening the door. Returns TRUE if the door was opened, FALSE otherwise.
 /// Use argument "forced" in conjunction with try_to_force_door_open if you want/need additional checks depending on how sorely you need the door opened.
-/obj/machinery/door/proc/open(forced = DEFAULT_DOOR_CHECKS)
+/obj/machinery/door/proc/open(forced = DEFAULT_DOOR_CHECKS, mob/living/opener)
 	if(!density)
 		return TRUE
 	if(operating)
 		return FALSE
+
+	if (opener)
+		SEND_SIGNAL(opener, COMSIG_MOB_OPENED_DOOR, forced)
+
 	operating = TRUE
 	use_energy(active_power_usage)
 	run_animation(DOOR_OPENING_ANIMATION)
@@ -675,12 +679,8 @@
 			if(isalien(future_pancake))  //For xenos
 				future_pancake.apply_damage(DOOR_CRUSH_DAMAGE * 1.5, BRUTE, BODY_ZONE_CHEST, wound_bonus = door_wounding, attacking_item = src) //Xenos go into crit after aproximately the same amount of crushes as humans.
 				future_pancake.emote("roar")
-			else if(ismonkey(future_pancake)) //For monkeys
-				future_pancake.emote("screech")
-				future_pancake.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE, BODY_ZONE_CHEST, wound_bonus = door_wounding, attacking_item = src)
-				future_pancake.Paralyze(10 SECONDS)
 			else if(ishuman(future_pancake)) //For humans
-				future_pancake.emote("scream")
+				future_pancake.emote(HAS_TRAIT(future_pancake, TRAIT_SIMIAN) ? "screch" : "scream")
 				future_pancake.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE, BODY_ZONE_CHEST, wound_bonus = door_wounding, attacking_item = src)
 				future_pancake.Paralyze(10 SECONDS)
 			else //for simple_animals & borgs

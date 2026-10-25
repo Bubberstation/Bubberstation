@@ -6,7 +6,6 @@
 	icon_living = "basilisk"
 	icon_dead = "basilisk_dead"
 	speak_emote = list("chimes")
-	damage_coeff = list(BRUTE = 1, BURN = 0.1, TOX = 1, STAMINA = 0, OXY = 1)
 	mob_biotypes = parent_type::mob_biotypes | MOB_MINERAL
 	speed = 20
 	maxHealth = 200
@@ -67,7 +66,7 @@
 
 /// We got hit by something hot, go into heat mode
 /mob/living/basic/mining/basilisk/proc/heat_up()
-	if (stat != CONSCIOUS || has_status_effect(/datum/status_effect/basilisk_overheat))
+	if (IS_UNCONSCIOUS_OR_CRIT(src) || has_status_effect(/datum/status_effect/basilisk_overheat))
 		return
 	apply_status_effect(/datum/status_effect/basilisk_overheat)
 

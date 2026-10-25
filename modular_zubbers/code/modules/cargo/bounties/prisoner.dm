@@ -23,7 +23,7 @@
 	description = "Stop asking questions, send the poppies, get paid. INMATE!"
 	reward = CARGO_CRATE_VALUE * 2
 	required_count = 3
-	wanted_types = list(/obj/item/food/grown/poppy = TRUE)
+	wanted_types = list(/obj/item/food/grown/flower/poppy = TRUE)
 	include_subtypes = FALSE
 
 /datum/bounty/item/prisoner/lilly
@@ -31,7 +31,7 @@
 	description = "Stop asking questions, send the lillies, get paid. INMATE!"
 	reward = CARGO_CRATE_VALUE * 3
 	required_count = 3
-	wanted_types = list(/obj/item/food/grown/poppy/lily = TRUE)
+	wanted_types = list(/obj/item/food/grown/flower/poppy/lily = TRUE)
 	include_subtypes = FALSE
 
 /datum/bounty/item/prisoner/geranium
@@ -39,7 +39,7 @@
 	description = "Stop asking questions, send the geraniums, get paid. INMATE!"
 	reward = CARGO_CRATE_VALUE * 3
 	required_count = 3
-	wanted_types = list(/obj/item/food/grown/poppy/geranium = TRUE)
+	wanted_types = list(/obj/item/food/grown/flower/poppy/geranium = TRUE)
 	include_subtypes = FALSE
 
 /datum/bounty/item/prisoner/tomatoes

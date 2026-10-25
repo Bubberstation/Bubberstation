@@ -8,7 +8,7 @@
 		TRAIT_LITERATE,
 		TRAIT_HATED_BY_DOGS,
 		TRAIT_MUTANT_COLORS,
-		TRAIT_CATLIKE_GRACE,
+		TRAIT_CATLIKE_INSTINCT,
 	)
 	mutanteyes = /obj/item/organ/eyes/tajaran
 	mutantears = /obj/item/organ/ears/cat/tajaran

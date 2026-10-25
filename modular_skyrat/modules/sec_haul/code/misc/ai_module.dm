@@ -1,4 +1,4 @@
-/obj/item/ai_module/core/full/armadyne_safeguard
+/obj/item/ai_module/law/core/full/armadyne_safeguard
 	name = "'Armadyne OS Safeguard V1.0"
 	law_id = "armadyne_safeguard"
 

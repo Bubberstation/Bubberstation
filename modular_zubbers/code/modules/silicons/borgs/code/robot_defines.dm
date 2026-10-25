@@ -20,8 +20,8 @@
 	cell = /obj/item/stock_parts/power_store/cell/bluespace
 
 /mob/living/silicon/robot/model/centcom/Initialize(mapload)
-	laws = new /datum/ai_laws/central_override()
-	laws.associate(src)
+	replace_law_set(/datum/ai_laws/central_override)
+	//TODO DRACLION UPSTREAM
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(show_playstyle)), 0.5 SECONDS)
 

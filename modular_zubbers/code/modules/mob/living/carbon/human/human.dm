@@ -56,7 +56,7 @@
 	)
 
 	// Stat check
-	if(stat != CONSCIOUS)
+	if(IS_UNCONSCIOUS_OR_CRIT(usr))
 		to_chat(usr, span_warning("You can't do this right now..."))
 		return
 

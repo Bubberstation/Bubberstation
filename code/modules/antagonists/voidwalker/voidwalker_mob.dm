@@ -11,7 +11,7 @@
 	mob_biotypes = MOB_SPECIAL
 	maxHealth = 150
 	health = 150
-	damage_coeff = list(BRUTE = 1, BURN = 0.66, TOX = 1, STAMINA = 1, OXY = 0)
+	physiology = list(BURN = 0.66, OXY = 0)
 
 	pressure_resistance = 200
 	combat_mode = TRUE
@@ -225,7 +225,7 @@
 		victim.balloon_alert(src, "is dead!")
 		return FALSE
 
-	if(victim.stat == CONSCIOUS) //we're still beating them up!!
+	if(!IS_UNCONSCIOUS_OR_CRIT(victim)) //we're still beating them up!!
 		return TRUE
 
 	if(!istype(get_turf(victim), home_turf) && !(locate(kidnapping_decal) in get_turf(victim)))
@@ -320,7 +320,7 @@
 	var/obj/particles = new /obj/effect/abstract/particle_holder (our_wall, /particles/void_wall)
 
 	balloon_alert(src, "opening window...")
-	if(!do_after(src, 8 SECONDS, our_wall, hidden = TRUE))
+	if(!do_after(src, 8 SECONDS, our_wall, cog_icon = null))
 		qdel(particles)
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	if(!conversions_remaining)

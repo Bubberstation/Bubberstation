@@ -310,7 +310,7 @@
 		var/mob/M = arrived
 		show_fullscreen(M)
 		RegisterSignal(M, COMSIG_MOVABLE_USING_RADIO, PROC_REF(try_deny_radio))
-		ADD_TRAIT(M, TRAIT_SOFTSPOKEN, TRAIT_SOURCE_VORE)
+		ADD_TRAIT(M, TRAIT_FORCE_WHISPER, TRAIT_SOURCE_VORE)
 		deep_search_prey(M)
 		to_chat(M, boxed_message("You slide into [span_notice("[owner.parent]")]'s [span_green(LOWER_TEXT(name))]!\n[EXAMINE_SECTION_BREAK][format_message(desc, M)]"))
 		// Add the appearance_holder to prey so they can see fellow prey
@@ -355,7 +355,7 @@
 		M.clear_fullscreen("vore")
 		M.reset_perspective()
 		UnregisterSignal(M, COMSIG_MOVABLE_USING_RADIO)
-		REMOVE_TRAIT(M, TRAIT_SOFTSPOKEN, TRAIT_SOURCE_VORE)
+		REMOVE_TRAIT(M, TRAIT_FORCE_WHISPER, TRAIT_SOURCE_VORE)
 		// Unabsorb if they leave by any method
 		REMOVE_TRAIT(M, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE)
 		REMOVE_TRAIT(M, TRAIT_STASIS, TRAIT_SOURCE_VORE)

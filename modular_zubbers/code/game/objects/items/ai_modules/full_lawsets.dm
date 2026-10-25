@@ -1,16 +1,16 @@
-/obj/item/ai_module/core/full/crewsimov
+/obj/item/ai_module/law/core/full/crewsimov
 	name = "Crewsimov Core AI module"
 	law_id = "crewsimov"
 
-/obj/item/ai_module/core/full/crewsimovpp
+/obj/item/ai_module/law/core/full/crewsimovpp
 	name = "Crewsimov++ Core AI module"
 	law_id = "crewsimovpp"
 
-/obj/item/ai_module/core/full/ntos
+/obj/item/ai_module/law/core/full/ntos
 	name = "NTOS v3.0"
 	law_id = "ntos"
 
-/obj/item/ai_module/core/full/armadyne_safeguard
+/obj/item/ai_module/law/core/full/armadyne_safeguard
 	name = "'NT OS Safeguard V1.0"
 	law_id = "armadyne_safeguard"
 

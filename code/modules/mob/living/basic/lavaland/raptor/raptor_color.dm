@@ -234,7 +234,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 
 /obj/item/mob_holder/purple_raptor/proc/can_fly(silent = FALSE)
 	var/mob/living/carbon/human/user = loc
-	if (!istype(user) || user.stat || user.body_position == LYING_DOWN || isnull(user.client))
+	if (!istype(user) || IS_UNCONSCIOUS_OR_CRIT(user) || user.body_position == LYING_DOWN || isnull(user.client))
 		return FALSE
 
 	var/turf/location = get_turf(user)
@@ -274,7 +274,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 		wings_underlay = mutable_appearance(worn_icon, "raptor_purple_wings", -BODY_BEHIND_LAYER, user)
 		user.apply_height(wings_underlay, UPPER_BODY)
 		user.add_overlay(wings_underlay)
-		user.physiology.stun_mod *= 2
+		MODIFY_PHYSIOLOGY(user, PHYS_COEFF_STUN, 2)
 		user.add_traits(list(TRAIT_MOVE_FLOATING, TRAIT_IGNORING_GRAVITY, TRAIT_NOGRAV_ALWAYS_DRIFT), REF(src))
 		if (struggling)
 			user.add_movespeed_modifier(/datum/movespeed_modifier/jetpack/raptor/slow)
@@ -292,7 +292,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 
 	user.cut_overlay(wings_underlay)
 	QDEL_NULL(wings_underlay)
-	user.physiology.stun_mod *= 0.5
+	MODIFY_PHYSIOLOGY(user, PHYS_COEFF_STUN, 0.5)
 	user.remove_traits(list(TRAIT_MOVE_FLOATING, TRAIT_IGNORING_GRAVITY, TRAIT_NOGRAV_ALWAYS_DRIFT), REF(src))
 	user.remove_movespeed_modifier(/datum/movespeed_modifier/jetpack/raptor/slow)
 	user.remove_movespeed_modifier(/datum/movespeed_modifier/jetpack/raptor)
@@ -398,7 +398,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 	if (istype(target, /mob/living/basic/raptor))
 		return TRUE
 	// Only heal raptors, or critted rider
-	if (target.stat == CONSCIOUS || target.stat == DEAD)
+	if (target.stat == STABLE || target.stat == DEAD)
 		return FALSE
 	return target.buckled == healer
 

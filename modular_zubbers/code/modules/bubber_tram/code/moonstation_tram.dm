@@ -40,6 +40,7 @@
 	name = "moon rover controls"
 	desc = "Unlike the iconic moon rover of yesteryears, our tram is here to remind you that even in space, mediocrity finds a way."
 	icon = 'modular_zubbers/icons/obj/machines/tram_controls.dmi'
+	base_icon_state = "moon"
 	icon_screen = MOONSTATION_LINE_1
 	specific_transport_id = MOONSTATION_LINE_1
 

@@ -19,7 +19,7 @@
 		check_end_torpor()
 	if(is_head)
 		return
-	if(owner.current.stat == CONSCIOUS && !HAS_TRAIT(owner.current, TRAIT_IMMOBILIZED) && !is_in_torpor())
+	if(!IS_UNCONSCIOUS_OR_CRIT(owner.current) && !HAS_TRAIT(owner.current, TRAIT_IMMOBILIZED) && !is_in_torpor())
 		INVOKE_ASYNC(src, PROC_REF(AdjustBloodVolume), -BLOODSUCKER_PASSIVE_BLOOD_DRAIN) // -.1 currently
 
 /datum/antagonist/bloodsucker/proc/life_active()
@@ -281,8 +281,8 @@
 //	handled in bloodsucker_integration.dm
 	// BLOOD_VOLUME_EXIT: [250] - Exit Frenzy (If in one) This is high because we want enough to kill the poor soul they feed off of.
 	var/datum/status_effect/frenzy/status_effect = owner.current.has_status_effect(/datum/status_effect/frenzy)
-	if(bloodsucker_blood_volume >= frenzy_exit_threshold() && frenzied && status_effect?.duration == -1)
-		status_effect.duration = world.time + 10 SECONDS
+	if(bloodsucker_blood_volume >= frenzy_exit_threshold() && status_effect?.duration == STATUS_EFFECT_PERMANENT)
+		status_effect.duration = 10 SECONDS
 		owner.current.balloon_alert(owner.current, "frenzy ends in 10 seconds!")
 	// BLOOD_VOLUME_BAD: [224] - Jitter
 	if(bloodsucker_blood_volume < BLOOD_VOLUME_BAD && prob(0.5) && !is_in_torpor() && !HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
@@ -292,7 +292,7 @@
 		owner.current.set_eye_blur_if_lower((8 - 8 * (bloodsucker_blood_volume / BLOOD_VOLUME_BAD))*2 SECONDS)
 
 	// The more blood, the better the Regeneration, get too low blood, and you enter Frenzy.
-	if(bloodsucker_blood_volume < frenzy_enter_threshold() && !frenzied)
+	if(bloodsucker_blood_volume < frenzy_enter_threshold() && !status_effect && owner.current.stat != DEAD)
 		owner.current.apply_status_effect(/datum/status_effect/frenzy)
 	else if(bloodsucker_blood_volume < BLOOD_VOLUME_BAD)
 		additional_regen = 0.1
@@ -343,7 +343,7 @@
 	RegisterSignal(poor_fucker, COMSIG_MOB_TRY_SPEECH, PROC_REF(allow_head_to_talk))
 	RegisterSignal(poor_fucker, COMSIG_MOB_SAY, PROC_REF(shake_head_on_talk))
 	poor_fucker.revive()
-	poor_fucker.stat = CONSCIOUS
+	poor_fucker.stat = STABLE
 	to_chat(poor_fucker, span_warning("Your immortal [pick(list("blood", "curse"))] keeps your head alive! Though... what will you do now?"))
 	// No lungs to speak, let's make it spooky
 	poor_fucker.speech_span = SPAN_PAPYRUS

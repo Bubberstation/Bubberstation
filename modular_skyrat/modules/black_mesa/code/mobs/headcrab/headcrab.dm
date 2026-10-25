@@ -89,7 +89,7 @@
 	var/mob/living/carbon/human/human_target = hit_atom
 
 	// Regular damage if the target is conscious
-	if(human_target.stat < UNCONSCIOUS)
+	if(!IS_UNCONSCIOUS(human_target))
 		human_target.apply_damage(damage, BRUTE, BODY_ZONE_HEAD)
 		return
 

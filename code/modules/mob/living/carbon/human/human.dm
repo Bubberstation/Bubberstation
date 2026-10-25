@@ -1,4 +1,4 @@
-/mob/living/carbon/human/Initialize(mapload)
+/mob/living/carbon/human/Initialize(mapload, datum/species/species)
 	ASSIGN_GAME_VERB(src, /mob/living, mob_sleep)
 	add_verb(src, /mob/living/proc/toggle_resting)
 
@@ -7,10 +7,9 @@
 	setup_mood()
 	// This needs to be called very very early in human init (before organs / species are created at the minimum)
 	setup_organless_effects()
-	// Physiology needs to be created before species, as some species modify physiology
-	setup_physiology()
 
-	create_dna()
+
+	create_dna(species)
 	dna.species.create_fresh_body(src)
 	setup_human_dna()
 
@@ -38,16 +37,17 @@
 	ADD_TRAIT(src, TRAIT_CAN_MOUNT_HUMANS, INNATE_TRAIT)
 	ADD_TRAIT(src, TRAIT_CAN_MOUNT_CYBORGS, INNATE_TRAIT)
 
-/mob/living/carbon/human/proc/setup_physiology()
-	physiology = new()
+/mob/living/carbon/human/get_unconscious_appearance()
+	return get_generic_humanoid_static_appearance()
 
 /mob/living/carbon/human/proc/setup_mood()
-	if (CONFIG_GET(flag/disable_human_mood))
-		return
 	mob_mood = new /datum/mood(src)
 
+/mob/living/carbon/human/dummy/get_unconscious_appearance()
+	return null
+
 /mob/living/carbon/human/dummy/setup_mood()
-	return
+	mob_mood = new /datum/mood/dummy(src)
 
 /// This proc is for holding effects applied when a mob is missing certain organs
 /// It is called very, very early in human init because all humans innately spawn with no organs and gain them during init
@@ -64,7 +64,6 @@
 	randomize_human_normie(src, randomize_mutations = TRUE, update_body = FALSE)
 
 /mob/living/carbon/human/Destroy()
-	QDEL_NULL(physiology)
 	GLOB.human_list -= src
 
 	if (mob_mood)
@@ -98,7 +97,6 @@
 		update_fullscreen()
 		return
 	return ..()
-
 
 /mob/living/carbon/human/Topic(href, href_list)
 
@@ -275,9 +273,18 @@
 			var/allowed_access = null
 			if(!HAS_TRAIT(human_or_ghost_user, TRAIT_SECURITY_HUD))
 				return
+			// BUBBER EDIT ADDITION START - the clown's parody status field
+			if(ishuman(human_or_ghost_user) && href_list["honkstatus"])
+				var/mob/living/carbon/human/clown_user = human_or_ghost_user
+				var/obj/item/clothing/glasses/hud/security/sunglasses/guard/silly/shades = clown_user.glasses
+				if(!istype(shades))
+					return
+				shades.issue_gag(clown_user, src)
+				return
+			// BUBBER EDIT ADDITION END
 			if(ishuman(human_or_ghost_user))
 				var/mob/living/carbon/human/human_user = human_or_ghost_user
-				if(human_user.stat || human_user == src) //|| !human_user.canmove || human_user.restrained()) Fluff: Sechuds have eye-tracking technology and sets 'arrest' to people that the wearer looks and blinks at.
+				if(IS_UNCONSCIOUS_OR_CRIT(human_user) || human_user == src) //|| !human_user.canmove || human_user.restrained()) Fluff: Sechuds have eye-tracking technology and sets 'arrest' to people that the wearer looks and blinks at.
 					return   //Non-fluff: This allows sec to set people to arrest as they get disarmed or beaten
 			// Checks the user has security clearence before allowing them to change arrest status via hud, comment out to enable all access
 				var/obj/item/clothing/glasses/hud/security/user_glasses = human_user.glasses
@@ -302,6 +309,11 @@
 				return
 			if(ishuman(human_or_ghost_user) && href_list["status"])
 				var/mob/living/carbon/human/human_user = human_or_ghost_user
+				// BUBBER EDIT ADDITION START - silly HUDsunglasses never touch real records
+				if(istype(human_user.glasses, /obj/item/clothing/glasses/hud/security/sunglasses/guard/silly))
+					to_chat(human_user, span_warning("ERROR: Invalid access."))
+					return
+				// BUBBER EDIT ADDITION END
 				var/new_status = tgui_input_list(human_user, "Specify a new criminal status for this person.", "Security HUD", WANTED_STATUSES(), target_record.wanted_status)
 				if(!new_status || !target_record || !human_user.canUseHUD() || !HAS_TRAIT(human_user, TRAIT_SECURITY_HUD))
 					return
@@ -451,8 +463,8 @@
 	return chest?.get_butt_sprite()
 
 /mob/living/carbon/human/get_footprint_sprite()
-	var/obj/item/bodypart/leg/L = get_bodypart(BODY_ZONE_R_LEG) || get_bodypart(BODY_ZONE_L_LEG)
-	return shoes?.footprint_sprite || L?.footprint_sprite
+	var/obj/item/bodypart/leg/leg = get_bodypart(BODY_ZONE_R_LEG) || get_bodypart(BODY_ZONE_L_LEG)
+	return astype(get_item_by_slot(ITEM_SLOT_FEET), /obj/item/clothing/shoes)?.footprint_sprite || leg?.footprint_sprite
 
 #define CHECK_PERMIT(item) (item && item.item_flags & NEEDS_PERMIT)
 
@@ -563,7 +575,7 @@
 		if (DOING_INTERACTION_WITH_TARGET(src,target))
 			return FALSE
 
-		if (target.stat == DEAD || HAS_TRAIT(target, TRAIT_FAKEDEATH))
+		if (IS_DEAD_OR_FAKING(target))
 			balloon_alert(src, "[target.p_they()] [target.p_are()] dead!")
 			return FALSE
 
@@ -622,14 +634,17 @@
 
 #undef CPR_PANIC_SPEED
 
-/mob/living/carbon/human/cuff_resist(obj/item/I)
+/mob/living/carbon/human/get_all_attached_restraints()
+	. = ..()
+	if(wear_suit?.breakouttime)
+		. += wear_suit
+
+/mob/living/carbon/human/cuff_resist(obj/item/cuffs, breakouttime = null, cuff_break = 0)
 	if(HAS_TRAIT(src, TRAIT_HULK))
 		say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced = "hulk")
-		if(..(I, cuff_break = FAST_CUFFBREAK))
-			dropItemToGround(I)
+		. = ..(cuffs, cuff_break = FAST_CUFFBREAK)
 	else
-		if(..())
-			dropItemToGround(I)
+		. = ..()
 
 /**
  * Wash the hands, cleaning either the gloves if equipped and not obscured, otherwise the hands themselves if they're not obscured.
@@ -704,14 +719,6 @@
 	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_BLACK)
 	cut_overlay(MA)
 
-/mob/living/carbon/human/resist_restraints()
-	if(wear_suit?.breakouttime)
-		changeNext_move(CLICK_CD_BREAKOUT)
-		last_special = world.time + CLICK_CD_BREAKOUT
-		cuff_resist(wear_suit)
-	else
-		..()
-
 /mob/living/carbon/human/clear_cuffs(obj/item/I, cuff_break)
 	. = ..()
 	if(.)
@@ -738,7 +745,7 @@
 	if(locked_record)
 		locked_record.name = newname
 
-/mob/living/carbon/human/update_health_hud()
+/mob/living/carbon/human/update_health_hud(healthpercent)
 	if(!client || !hud_used)
 		return
 	// Updates the health bar, also sends signal
@@ -915,10 +922,10 @@
 			to_chat(usr, "This mob has no brain to insert into an MMI.")
 			return
 
-		var/obj/item/mmi/new_mmi = new(get_turf(src))
+		var/obj/item/brain_processor/organic/new_mmi = new(get_turf(src))
 
 		target_brain.Remove(src)
-		new_mmi.force_brain_into(target_brain)
+		new_mmi.insert_brain(target_brain)
 
 		to_chat(usr, "Turned [src] into an MMI.")
 		log_admin("[key_name(usr)] turned [key_name_and_tag(src)] into an MMI.")
@@ -934,7 +941,7 @@
 	return ..()
 
 /mob/living/carbon/human/mouse_buckle_handling(mob/living/M, mob/living/user)
-	if(pulling != M || grab_state != GRAB_AGGRESSIVE || stat != CONSCIOUS)
+	if(pulling != M || grab_state != GRAB_AGGRESSIVE || IS_UNCONSCIOUS_OR_CRIT(src))
 		return FALSE
 
 	//If they dragged themselves to you and you're currently aggressively grabbing them try to piggyback
@@ -949,7 +956,7 @@
 
 //src is the user that will be carrying, target is the mob to be carried
 /mob/living/carbon/human/proc/can_piggyback(mob/living/carbon/target)
-	return (istype(target) && target.stat == CONSCIOUS)
+	return (istype(target) && !IS_UNCONSCIOUS_OR_CRIT(target))
 
 /mob/living/carbon/human/proc/can_be_firemanned(mob/living/carbon/target)
 	return ishuman(target) && target.body_position == LYING_DOWN
@@ -1124,10 +1131,8 @@
 	var/race = null
 	var/use_random_name = TRUE
 
-/mob/living/carbon/human/species/create_dna()
-	dna = new /datum/dna(src)
-	if (!isnull(race))
-		dna.species = new race
+/mob/living/carbon/human/species/create_dna(datum/species/species)
+	..(race) //Kind of shit but I'm brainfarting how to do this better right now.
 
 /mob/living/carbon/human/species/set_species(datum/species/mrace, icon_update = TRUE, pref_load = FALSE, replace_missing = TRUE, list/override_features, list/override_mutantparts, list/override_markings, retain_features = FALSE, retain_mutantparts = FALSE) // SKYRAT EDIT - Customization
 
@@ -1177,20 +1182,6 @@
 	if(gloves?.max_heat_protection_temperature >= BURNING_ITEM_MINIMUM_TEMPERATURE)
 		return TRUE
 	return ..()
-
-/mob/living/carbon/human/get_sight_and_cutoffs()
-	. = ..()
-	if(!istype(glasses))
-		return
-	. |= glasses.vision_flags
-	if(glasses.invis_override)
-		set_invis_see(glasses.invis_override)
-	else
-		set_invis_see(min(glasses.invis_view, see_invisible))
-	if(!isnull(glasses.lighting_cutoff))
-		lighting_cutoff = max(lighting_cutoff, glasses.lighting_cutoff)
-	if(length(glasses.color_cutoffs))
-		lighting_color_cutoffs = blend_cutoff_colors(lighting_color_cutoffs, glasses.color_cutoffs)
 
 /mob/living/carbon/human/species/abductor
 	race = /datum/species/abductor
@@ -1269,6 +1260,3 @@
 
 /mob/living/carbon/human/species/zombie
 	race = /datum/species/zombie
-
-/mob/living/carbon/human/species/zombie/infectious
-	race = /datum/species/zombie/infectious

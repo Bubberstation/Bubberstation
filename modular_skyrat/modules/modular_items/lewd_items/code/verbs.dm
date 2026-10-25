@@ -1,7 +1,7 @@
 GAME_VERB(/mob/living/carbon/human, climax_verb, "Climax", "IC")
 	if(!has_status_effect(/datum/status_effect/climax_cooldown))
 		if(tgui_alert(usr, "Are you sure you want to cum?", "Climax", list("Yes", "No")) == "Yes")
-			if(stat != CONSCIOUS)
+			if(IS_UNCONSCIOUS(usr))
 				to_chat(usr, span_warning("You can't climax right now..."))
 				return
 			else
@@ -61,8 +61,9 @@ GAME_VERB_DESC(/mob/living/carbon/human, safeword, "OOC Safe Word", "Removes any
 
 	return TRUE
 
-GAME_VERB(/mob/living/carbon/human, lick, "Lick", "IC", mob/living/carbon/human/target in get_adjacent_humans())
-	if(!istype(target))
+GAME_VERB(/mob/living/carbon/human, lick, "Lick", "IC")
+	VERB_ARG_TYPED(target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_VIEW, /mob/living/carbon/human)
+	if(!istype(target) || !(target in get_adjacent_humans()))
 		return FALSE
 
 	var/taste = target?.dna?.features["taste"]
@@ -73,8 +74,9 @@ GAME_VERB(/mob/living/carbon/human, lick, "Lick", "IC", mob/living/carbon/human/
 	to_chat(src, span_notice("[target] tastes like [taste]."))
 	to_chat(target, span_notice("[src] licks you."))
 
-GAME_VERB(/mob/living/carbon/human, smell, "Smell", "IC", mob/living/carbon/human/target in get_adjacent_humans())
-	if(!istype(target))
+GAME_VERB(/mob/living/carbon/human, smell, "Smell", "IC")
+	VERB_ARG_TYPED(target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_VIEW, /mob/living/carbon/human)
+	if(!istype(target) || !(target in get_adjacent_humans()))
 		return FALSE
 
 	var/smell = target?.dna?.features["smell"]

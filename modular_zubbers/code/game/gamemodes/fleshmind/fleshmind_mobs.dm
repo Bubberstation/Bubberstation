@@ -14,6 +14,7 @@
 	ai_controller = /datum/ai_controller/basic_controller/fleshmind
 	armour_penetration = 10
 	combat_mode = TRUE
+	pass_flags = parent_type::pass_flags | PASSBLOB
 	/// A link to our controller
 	var/datum/fleshmind_controller/our_controller
 	/// If we have been converted from another mob, here is our reference.
@@ -358,6 +359,8 @@
 	)
 	health = 5
 	maxHealth = 5
+	melee_damage_lower = 3
+	melee_damage_upper = 5
 	var/explode_attack = /datum/action/cooldown/mob_cooldown/floater_explode
 	mob_size = MOB_SIZE_SMALL
 	light_color = "#820D1C"
@@ -376,7 +379,7 @@
 /mob/living/basic/fleshmind/floater/melee_attack(atom/target, list/modifiers, ignore_cooldown)
 	. = ..()
 	var/mob/living/target_mob = target
-	if(ishuman(target_mob) && target_mob.stat < UNCONSCIOUS)
+	if(ishuman(target_mob) && !IS_UNCONSCIOUS(target_mob))
 		pre_detonate()
 
 /mob/living/basic/fleshmind/floater/death()

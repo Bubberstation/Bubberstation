@@ -60,7 +60,7 @@
 /obj/structure/cargo_shelf/relay_container_resist_act(mob/living/user, obj/structure/closet/crate)
 	to_chat(user, span_notice("You begin attempting to knock [crate] out of [src]"))
 	if(do_after(user, 30 SECONDS, target = crate))
-		if(!user || user.stat != CONSCIOUS || user.loc != crate || crate.loc != src)
+		if(!user || IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != crate || crate.loc != src)
 			return // If the user is in a strange condition, return early.
 		visible_message(span_warning("[crate] falls off of [src]!"),
 						span_notice("You manage to knock [crate] free of [src]"),
@@ -168,7 +168,7 @@
 		return
 	building = TRUE
 	to_chat(user, span_notice("You start constructing a cargo shelf..."))
-	if(do_after(user, 50, target = user, progress=TRUE))
+	if(do_after(user, 50, target = user, show_progress = TRUE))
 		if(!user.temporarilyRemoveItemFromInventory(src))
 			return
 		var/obj/structure/cargo_shelf/R = new /obj/structure/cargo_shelf(get_turf(src))
@@ -194,7 +194,7 @@
 		return
 	building = TRUE
 	to_chat(user, span_notice("You start constructing a gun rack..."))
-	if(do_after(user, 50, target = user, progress=TRUE))
+	if(do_after(user, 50, target = user, show_progress = TRUE))
 		if(!user.temporarilyRemoveItemFromInventory(src))
 			return
 		var/obj/structure/rack/gunrack/R = new /obj/structure/rack/gunrack(get_turf(src))
@@ -220,7 +220,7 @@
 		return
 	building = TRUE
 	to_chat(user, span_notice("You start constructing a standard shelf..."))
-	if(do_after(user, 50, target = user, progress=TRUE))
+	if(do_after(user, 50, target = user, show_progress = TRUE))
 		if(!user.temporarilyRemoveItemFromInventory(src))
 			return
 		var/obj/structure/rack/shelf/R = new /obj/structure/rack/shelf(get_turf(src))

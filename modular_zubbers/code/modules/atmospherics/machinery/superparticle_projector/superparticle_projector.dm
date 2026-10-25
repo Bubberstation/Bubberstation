@@ -105,9 +105,14 @@
 	. += "It is [on ? "on" : "off"]."
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("<b>Right-click</b> to toggle [on ? "off" : "on"].")
-		. += span_notice("Current range of the field: [range] tiles.")
+		if(connected_supermatter.internal_energy < SUPERPARTICLE_MAX_POWER)
+			. += span_notice("Current range of the field: [range] tiles.")
+		else
+			. += span_notice("The superparticle fields effect is extending over the entire area around the projector!")
 		. += span_notice("<b>Carbon Dioxide</b> effect is <b>[superparticle_gas_flags & SP_GAS_FLAG_CARBON ? "active" : "not active"]</b>.")
 		. += span_notice("<b>Healium</b> effect is <b>[superparticle_gas_flags & SP_GAS_FLAG_HEALIUM ? "active" : "not active"]</b>.")
+		if (connected_supermatter.internal_energy >= SUPERPARTICLE_STOP_POWER)
+			. += span_warning("The connected crystal is overloaded, disabling the superparticle field!")
 
 /obj/machinery/power/superparticlegen/attack_hand_secondary(mob/user, list/modifiers)
 	if(!can_interact(user))
@@ -177,49 +182,43 @@
 		return PROCESS_KILL
 	range = round((connected_supermatter.internal_energy) / SUPERPARTICLE_MAX_POWER * SUPERPARTICLE_MAX_RANGE)
 
-	if(connected_supermatter.gas_percentage[/datum/gas/carbon_dioxide] > SUPERPARTICLE_CARBON_GAS_TRESHHOLD)
-		if(superparticle_gas_flags ^ SP_GAS_FLAG_CARBON)
-			superparticle_gas_flags |= SP_GAS_FLAG_CARBON
+	check_gas_concentration(/datum/gas/carbon_dioxide, SP_GAS_FLAG_CARBON, SUPERPARTICLE_CARBON_GAS_TRESHHOLD)
+	check_gas_concentration(/datum/gas/healium, SP_GAS_FLAG_HEALIUM, SUPERPARTICLE_HEALIUM_GAS_TRESHHOLD)
+
+	if (connected_supermatter.internal_energy >= SUPERPARTICLE_STOP_POWER)
+		return	// we aren't doing anything below anyway
+
+	if(connected_supermatter.internal_energy < SUPERPARTICLE_MAX_POWER)
+		for(var/mob/living/carbon/target in range(src, range))
+			apply_effect(target)
+		for(var/mob/living/silicon/robot/target in range(src, range))
+			apply_effect(target)
+	else
+		for(var/mob/living/carbon/target as anything in GLOB.carbon_list)
+			if(target.z == loc.z | (is_station_level(loc.z) & is_station_level(target.z)))
+				apply_effect(target)
+		for(var/mob/living/silicon/robot/target in GLOB.silicon_mobs)
+			if(target.z == loc.z | (is_station_level(loc.z) & is_station_level(target.z)))
+				apply_effect(target)
+
+/obj/machinery/power/superparticlegen/proc/check_gas_concentration(datum/gas/gas_to_check, gas_flag, threshold)
+	if(connected_supermatter.gas_percentage[gas_to_check.type] > threshold)
+		if(superparticle_gas_flags ^ gas_flag)
+			superparticle_gas_flags |= gas_flag
 			update_appearance()
 	else
-		if(superparticle_gas_flags & SP_GAS_FLAG_CARBON)
-			superparticle_gas_flags ^= SP_GAS_FLAG_CARBON
+		if(superparticle_gas_flags & gas_flag)
+			superparticle_gas_flags ^= gas_flag
 			update_appearance()
-	if(connected_supermatter.gas_percentage[/datum/gas/healium] > SUPERPARTICLE_HEALIUM_GAS_TRESHHOLD)
-		if(superparticle_gas_flags ^ SP_GAS_FLAG_HEALIUM)
-			superparticle_gas_flags |= SP_GAS_FLAG_HEALIUM
-			update_appearance()
-	else
-		if(superparticle_gas_flags & SP_GAS_FLAG_HEALIUM)
-			superparticle_gas_flags ^= SP_GAS_FLAG_HEALIUM
-			update_appearance()
-	if(connected_supermatter.internal_energy < SUPERPARTICLE_STOP_POWER)
-		if(connected_supermatter.internal_energy < SUPERPARTICLE_MAX_POWER)
-			for(var/mob/living/carbon/target in range(src, range))
-				target.apply_status_effect(/datum/status_effect/atmosgenbuff)
-				if(superparticle_gas_flags & SP_GAS_FLAG_CARBON)
-					target.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
-				if(superparticle_gas_flags & SP_GAS_FLAG_HEALIUM)
-					target.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
-			for(var/mob/living/silicon/robot/target in range(src, range))
-				if(superparticle_gas_flags & SP_GAS_FLAG_CARBON)
-					target.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
-				if(superparticle_gas_flags & SP_GAS_FLAG_HEALIUM)
-					target.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
-		else
-			for(var/mob/living/carbon/target as anything in GLOB.carbon_list)
-				if(target.z == loc.z | (is_station_level(loc.z) & is_station_level(target.z)))
-					target.apply_status_effect(/datum/status_effect/atmosgenbuff)
-					if(superparticle_gas_flags & SP_GAS_FLAG_CARBON)
-						target.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
-					if(superparticle_gas_flags & SP_GAS_FLAG_HEALIUM)
-						target.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
-			for(var/mob/living/silicon/robot/target in GLOB.silicon_mobs)
-				if(target.z == loc.z | (is_station_level(loc.z) & is_station_level(target.z)))
-					if(superparticle_gas_flags & SP_GAS_FLAG_CARBON)
-						target.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
-					if(superparticle_gas_flags & SP_GAS_FLAG_HEALIUM)
-						target.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
+
+/obj/machinery/power/superparticlegen/proc/apply_effect(mob/living/target)
+	if (iscarbon(target))	// no point in applying on silicons
+		target.apply_status_effect(/datum/status_effect/atmosgenbuff)
+
+	if(superparticle_gas_flags & SP_GAS_FLAG_CARBON)
+		target.apply_status_effect(/datum/status_effect/atmosgenbuff_carbon)
+	if(superparticle_gas_flags & SP_GAS_FLAG_HEALIUM)
+		target.apply_status_effect(/datum/status_effect/atmosgenbuff_healium)
 
 #undef SUPERPARTICLE_MAX_RANGE
 #undef SUPERPARTICLE_MAX_POWER

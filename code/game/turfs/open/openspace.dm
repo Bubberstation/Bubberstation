@@ -57,6 +57,11 @@
 	. = ..()
 	if(movable.set_currently_z_moving(CURRENTLY_Z_FALLING))
 		zFall(movable, falling_from_move = TRUE)
+
+/turf/open/openspace/initialize_occupant(atom/movable/occupant)
+	. = ..()
+	zfall_if_on_turf(occupant)
+
 /**
  * Drops movables spawned on this turf after they are successfully initialized.
  * so that spawned movables that should fall to gravity, will fall.
@@ -124,14 +129,19 @@
 
 	if(istype(tool, /obj/item/stack/rods))
 		build_with_rods(tool, user)
-	else if(ismetaltile(tool))
-		build_with_floor_tiles(tool, user)
-	else if(istype(tool, /obj/item/stack/thermoplastic))
-		build_with_transport_tiles(tool, user)
-	else if(istype(tool, /obj/item/stack/sheet/mineral/titanium))
-		build_with_titanium(tool, user)
+		return ITEM_INTERACT_SUCCESS
 
-	return ITEM_INTERACT_SUCCESS
+	if(ismetaltile(tool))
+		build_with_floor_tiles(tool, user)
+		return ITEM_INTERACT_SUCCESS
+
+	if(istype(tool, /obj/item/stack/thermoplastic))
+		build_with_transport_tiles(tool, user)
+		return ITEM_INTERACT_SUCCESS
+
+	if(istype(tool, /obj/item/stack/sheet/mineral/titanium))
+		build_with_titanium(tool, user)
+		return ITEM_INTERACT_SUCCESS
 
 /turf/open/openspace/build_with_floor_tiles(obj/item/stack/tile/iron/used_tiles)
 	if(!CanCoverUp())

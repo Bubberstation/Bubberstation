@@ -37,7 +37,7 @@
 					"Preservation: You must protect the critical systems and infrastructure of Port Tarkon."
 	)
 
-/obj/item/ai_module/core/full/tarkon
+/obj/item/ai_module/law/core/full/tarkon
 	name = "Port Tarkon Core AI Module"
 	law_id = "tarkon"
 
@@ -145,8 +145,8 @@
 	req_access = list(ACCESS_TARKON)
 
 /mob/living/silicon/robot/model/tarkon/Initialize(mapload)
-	laws = new /datum/ai_laws/tarkon
-	laws.associate(src)
+	replace_law_set(/datum/ai_laws/tarkon)
+	//TODO DRACLION UPSTREAM
 	. = ..()
 
 	/// MODULES ///

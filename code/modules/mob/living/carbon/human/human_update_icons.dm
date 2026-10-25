@@ -779,6 +779,7 @@ There are several things that need to be remembered:
 			digitigrade_clothing_cache[index] = fcopy_rsc(resulting_icon)
 
 		return icon(resulting_icon)
+	return base_icon // BUBBER EDIT - CHANGE - Fix female crop being discarded (originally returned null)
 
 /// Modifies a sprite to replace the legs with a new version
 /proc/replace_icon_legs(icon/base_icon, icon/new_legs)
@@ -1062,7 +1063,7 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 	remove_overlay(EYES_LAYER)
 
 	var/obj/item/bodypart/head/noggin = get_bodypart(BODY_ZONE_HEAD)
-	if(isnull(noggin) || noggin.is_husked || noggin.is_invisible)
+	if(isnull(noggin) || noggin.is_invisible)
 		return
 
 	if(refresh)

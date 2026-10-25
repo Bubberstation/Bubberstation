@@ -14,7 +14,7 @@
 	required_reagents = list(
 		/datum/reagent/impedrezene = 5,
 		/datum/reagent/bluespace = 10,
-		/datum/reagent/consumable/liquidelectricity/enriched = 2,
+		/datum/reagent/consumable/liquidelectricity = 2,
 	)
 	mob_react = FALSE
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_DRUG | REACTION_TAG_ORGAN | REACTION_TAG_DAMAGING

@@ -115,7 +115,7 @@ GLOBAL_VAR_INIT(combat_indicator_overlay, GenerateCombatOverlay())
  */
 
 /mob/living/proc/user_toggle_combat_indicator()
-	if(stat != CONSCIOUS)
+	if(IS_UNCONSCIOUS_OR_CRIT(src))
 		return
 	set_combat_indicator(!combat_indicator) // Set CI status to whatever is the opposite of the current status.
 

@@ -106,12 +106,12 @@
 		angry_thing.ai_controller?.set_blackboard_key(BB_CURRENT_TARGET, user)
 		angry_thing.ai_controller?.set_blackboard_key(BB_TARGET_MINIMUM_STAT, HARD_CRIT)
 		angry_thing.ai_controller?.ai_interact(user, combat_mode = TRUE)
-		user.apply_damage(35, BRUTE, forced = TRUE) // Mimics are not actually very strong so we pretend that it just bit us so we die faster, at least 3 charges & worn items should do it
+		user.apply_damage(35, BRUTE) // Mimics are not actually very strong so we pretend that it just bit us so we die faster, at least 3 charges & worn items should do it
 		sleep(0.25 SECONDS)
 
 	if (QDELETED(user))
 		return MANUAL_SUICIDE
-	if (user.stat == CONSCIOUS)
+	if (!IS_UNCONSCIOUS_OR_CRIT(user))
 		return SHAME
 	if (user.stat != DEAD)
 		user.death() // If you got put into crit by the mobs we'll finish you off

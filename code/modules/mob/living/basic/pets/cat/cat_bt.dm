@@ -102,8 +102,10 @@
 		return AI_BEHAVIOR_DELAY
 
 	// 50/50 chance we lose.
-	var/datum/ai_controller/loser_controller = prob(50) ? controller : target.ai_controller
-	loser_controller.set_blackboard_key(BB_BASIC_MOB_FLEE_TARGET, target)
+	if(prob(50))
+		controller.set_blackboard_key(BB_BASIC_MOB_FLEE_TARGET, target)
+	else
+		target.ai_controller?.set_blackboard_key(BB_BASIC_MOB_FLEE_TARGET, living_pawn)
 	target.ai_controller?.clear_blackboard_key(target_key)
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
@@ -181,7 +183,7 @@
 	var/mob/living/living_pawn = controller.pawn
 	var/list/locate_items = controller.blackboard[BB_HUNTABLE_PREY]
 	for(var/mob/living/carbon/human/human_target in oview(search_range, living_pawn))
-		if(human_target.stat != CONSCIOUS || isnull(human_target.mind))
+		if(IS_UNCONSCIOUS_OR_CRIT(human_target) || isnull(human_target.mind))
 			continue
 		for(var/obj/item/held_item in human_target.held_items)
 			if(is_type_in_typecache(held_item, locate_items))

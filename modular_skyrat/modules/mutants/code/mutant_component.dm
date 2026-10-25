@@ -130,7 +130,7 @@
 		old_species = host.dna.species
 		host.set_species(selected_type)
 
-	var/stand_up = (host.stat == DEAD) || (host.stat == UNCONSCIOUS)
+	var/stand_up = (host.stat == DEAD) || (IS_UNCONSCIOUS_OR_CRIT(host))
 
 	//Fully heal the mutant's damage the first time they rise
 	regenerate()

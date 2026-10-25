@@ -83,6 +83,9 @@
 	else
 		new /obj/item/stack/sheet/bone(src)
 
+/turf/open/misc/asteroid/basalt/wasteland/station
+	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+
 //***Oil well puddles.
 /obj/structure/sink/oil_well //You're not going to enjoy bathing in this...
 	name = "oil well"
@@ -289,8 +292,7 @@
 	if(opened)
 		return
 	// The player is trying to dig themselves out of an early grave
-	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.last_special = world.time + CLICK_CD_BREAKOUT
+	user.change_next_special_move(CLICK_CD_BREAKOUT)
 	user.visible_message(
 		span_warning("[src]'s dirt begins to shift and rumble!"),
 		span_notice("You desperately begin to claw at the dirt around you, trying to force yourself upwards through the soil... (this will take about [DisplayTimeText(breakout_time)].)"),

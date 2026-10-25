@@ -25,6 +25,11 @@
 	if(isturf(the_target) || isnull(the_target)) // bail out on invalids
 		return FALSE
 
+/datum/targeting_strategy/basic/is_valid_target(mob/living/living_mob, atom/the_target, vision_range, datum/ai_controller/controller = null)
+	// checks are ordered cheapest first so invalid targets are rejected before the expensive sight check
+	if(isturf(the_target) || isnull(the_target)) // bail out on invalids
+		return FALSE
+
 	var/datum/ai_controller/basic_controller/our_controller = living_mob.ai_controller
 
 	if(isnull(our_controller))
@@ -57,6 +62,11 @@
 			var/mob/living/living_target = the_target
 			if(custom_faction_check ? faction_check(our_controller, living_mob, living_target) : TARGETING_FACTION_CHECK(src, our_controller, living_mob, living_target))
 				return FALSE
+
+			var/checked_stat = living_target.stat
+			if(our_controller.blackboard[BB_TREAT_UNCONSCIOUS_AS_HARDCRIT] && IS_UNCONSCIOUS(living_target))
+				checked_stat = max(checked_stat, HARD_CRIT)
+
 // BUBBER EDIT START - Adds flipped checks
 			if(!flip_stat_check && living_target.stat > our_controller.blackboard[minimum_stat_key])
 				return FALSE
@@ -98,8 +108,8 @@
 		return target.loc
 	return null
 
-/datum/targeting_strategy/basic/can_keep_target(mob/living/living_mob, atom/target, range)
-	return can_see(living_mob, target, range)
+/datum/targeting_strategy/basic/can_keep_target(mob/living/living_mob, atom/target, range, datum/ai_controller/controller = null)
+	return is_valid_target(living_mob, target, range, controller)
 
 /// Returns true if the mob and target share factions.
 /// Slow path for subtypes with custom_faction_check set; everything else uses TARGETING_FACTION_CHECK directly

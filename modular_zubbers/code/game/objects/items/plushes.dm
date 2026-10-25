@@ -1,3 +1,13 @@
+/obj/item/toy/plush/attack_self(mob/user)
+	. = ..()
+	if(stuffed)
+		if(HAS_TRAIT(user, TRAIT_MONOPHOBIA))
+			to_chat(user, span_notice("You feel your heart warm up... You don't feel so alone."))
+
+	else
+		if(HAS_TRAIT(user, TRAIT_MONOPHOBIA))
+			to_chat(user, span_warning("You remember that even stitched companions can't stop the solitude building up inside your heart..."))
+
 /obj/item/toy/plush/chaotic_toaster
 	name = "Chaotic toaster"
 	desc = "You arent sure if this plushie want a hug, or harvest your organs, or both."
@@ -621,7 +631,7 @@
 	if(.)
 		return
 
-	if(usr.stat != CONSCIOUS || HAS_TRAIT(usr, TRAIT_HANDS_BLOCKED))
+	if(!IS_UNCONSCIOUS_OR_CRIT(usr) || HAS_TRAIT(usr, TRAIT_HANDS_BLOCKED))
 		return
 
 	switch(action)

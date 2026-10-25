@@ -24,7 +24,7 @@
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	melee_attack_cooldown = 0.6 SECONDS
 	speak_emote = list("growls")
-	damage_coeff = list(BRUTE = 1, BURN = 0.5, TOX = 0, STAMINA = 0, OXY = 0)
+	physiology = list(BURN = 0.5, TOX = 0, OXY = 0, STAMINA = 0)
 	death_sound = 'sound/effects/magic/cosmic_expansion.ogg'
 
 	slowed_by_drag = FALSE
@@ -364,7 +364,7 @@
 				if(victim == our_master?.resolve())
 					continue
 				var/mob/living/living_victim = victim
-				if(living_victim.stat > CONSCIOUS)
+				if(living_victim.stat != STABLE)
 					playsound(living_victim, 'sound/effects/supermatter.ogg', 80, TRUE)
 					living_victim.visible_message(
 						span_danger("You see [living_victim] engulfed in the scorching wrath of the cosmos. \

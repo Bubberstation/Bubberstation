@@ -99,7 +99,7 @@
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/dominate/FireTargetedPower(atom/target, params)
 	var/mob/living/target_mob = target
 	var/mob/living/user = owner
-	if(target_mob.stat != CONSCIOUS && level_current >= DOMINATE_GHOULIZE_LEVEL)
+	if(IS_UNCONSCIOUS(target_mob) && level_current >= DOMINATE_GHOULIZE_LEVEL)
 		if(user.Adjacent(target))
 			attempt_ghoulize(target, user)
 		else
