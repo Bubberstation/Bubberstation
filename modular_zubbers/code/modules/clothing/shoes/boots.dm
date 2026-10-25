@@ -475,4 +475,4 @@ GAME_VERB_SRC(/obj/item/clothing/shoes/combat/debug, toggle, usr, "Toggle Bluesp
 
 /obj/item/clothing/shoes/combat/debug/examine(mob/user)
 	. = ..()
-	. += "It's bluespace magnets appear to be [free_move ? "activated" : "deactivated"]."
+	. += "Its bluespace magnets appear to be [free_move ? "activated" : "deactivated"]."
