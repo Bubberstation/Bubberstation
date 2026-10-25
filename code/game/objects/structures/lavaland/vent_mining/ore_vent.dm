@@ -282,7 +282,7 @@
  * Starts the wave defense event, which will spawn a number of lavaland mobs based on the size of the ore vent.
  * Called after the vent has been tapped by a scanning device.
  * Will summon a number of waves of mobs, ending in the vent being tapped after the final wave.
- * BUBBER EDITS have been set to SPAWN_TIME and MAX_SPAWNED to tweak the amount of active waves, and timing between the waves.
+ * BUBBER EDITS have been set to SPAWN_TIME (7.5) and MAX_SPAWNED (10) to tweak the amount of active waves, and timing between the waves.
  */
 /obj/structure/ore_vent/proc/start_wave_defense()
 	AddComponent(\
