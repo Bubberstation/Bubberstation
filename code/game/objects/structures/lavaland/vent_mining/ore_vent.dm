@@ -302,6 +302,7 @@
 		spawn_windup = 0.9 SECONDS, \
 		linked_mob = node, \
 	)
+
 	COOLDOWN_START(src, wave_cooldown, INFINITY)
 	RegisterSignal(src, COMSIG_VENT_WAVE_CONCLUDED, PROC_REF(handle_wave_conclusion))
 	update_appearance(UPDATE_ICON_STATE)
