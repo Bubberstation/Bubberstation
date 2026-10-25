@@ -203,9 +203,7 @@
 	desc = "Three tacticool energy guns to express your individuality compared to all those other energy gun users!"
 	cost = CARGO_CRATE_VALUE * 8
 	contains = list(
-		/obj/item/gun/energy/tacticool,
-		/obj/item/gun/energy/tacticool,
-		/obj/item/gun/energy/tacticool,
+		/obj/item/gun/energy/e_gun/stun/tacticool = 3,
 	)
 
 /datum/supply_pack/security/armory/peacekeepers

@@ -99,11 +99,14 @@
 /obj/item/clothing/suit/straight_jacket/shackles/reinforced
 	name = "reinforced shackles"
 	desc = "Fancy shackles, but with a suspiciously sturdy lock..."
-	clothing_flags = DANGEROUS_OBJECT
 	equip_delay_self = 100
 	strip_delay = 120
 	breakouttime = 1800 //better than handcuffs, but not better than straightjacket. Please, do not change this var.
 	slowdown = 2
+
+/obj/item/clothing/suit/straight_jacket/shackles/reinforced/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_DANGEROUS_EQUIP, INNATE_TRAIT)
 
 //message when equipping that thing
 /obj/item/clothing/suit/straight_jacket/shackles/reinforced/equipped(mob/user, slot)

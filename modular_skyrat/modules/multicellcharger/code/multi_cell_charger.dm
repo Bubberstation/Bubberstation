@@ -206,7 +206,6 @@
 /datum/design/board/cell_charger_multi
 	name = "Machine Design (Multi-Cell Charger Board)"
 	desc = "The circuit board for a multi-cell charger."
-	id = "multi_cell_charger"
 	build_path = /obj/item/circuitboard/machine/cell_charger_multi
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
