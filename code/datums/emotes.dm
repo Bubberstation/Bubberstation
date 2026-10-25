@@ -238,7 +238,7 @@
 	else
 		CRASH("Emote [type] has no valid emote type set!")
 
-	// BUBBER EDIT -- BEGIN -- ADDITION -- AI QOL - RELAY EMOTES OVER HOLOPADS
+	// BUBBER EDIT BEGIN ADDITION -- AI QOL - RELAY EMOTES OVER HOLOPADS
 	var/obj/effect/overlay/holo_pad_hologram/hologram = GLOB.hologram_impersonators[user]
 	if(hologram)
 		if(is_important)
@@ -271,7 +271,7 @@
 				separation = space,
 				pref_to_check = pref_to_check,
 			)
-	// BUBBER EDIT -- END
+	// BUBBER EDIT END ADDITION
 
 	if(!isnull(user.client))
 		var/dchatmsg = "<b>[user]</b>[space][msg]" // SKYRAT EDIT - Better emotes - Original: var/dchatmsg = "<b>[user]</b> [msg]"
