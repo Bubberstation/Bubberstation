@@ -17,9 +17,6 @@
 	// try to pick the successor from existing crew, or leave it empty if no valid candidates found
 	var/mob/living/carbon/human/chosen_successor = pick_holy_successor()
 	GLOB.current_highpriest = chosen_successor ? WEAKREF(chosen_successor) : null // if a successor is already on the station then pick the first in line
-	
-	// BUBBER EDIT START - This proc is not working? I have to reorder some of this.
-	
 	// set the rest of the global vars to null for the new chaplain
 	GLOB.religion = null
 	GLOB.deity = null
