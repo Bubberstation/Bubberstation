@@ -5,12 +5,14 @@
 	alt_titles = list(
 		"Quartermaster",
 		"Deck Chief",
+		"Head Crate Pusher",
 		"Head of Supply",
 		"Logistics Coordinator",
 		"Supply Foreman",
 		"Union Requisitions Officer",
 		"Warehouse Supervisor",
 	)
+	job_flags = JOB_ANTAG_PROTECTED | STATION_JOB_FLAGS | HEAD_OF_STAFF_JOB_FLAGS
 
 /datum/outfit/job/quartermaster
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/guard/customs
