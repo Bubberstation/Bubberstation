@@ -96,9 +96,8 @@
 		if(entered_living.can_block_magic(MAGIC_RESISTANCE | MAGIC_RESISTANCE_HOLY))
 			return
 		for(var/to_apply in src.effect_types)
-			if(prob(50/effect_types.len))
+			if(prob(100/effect_types.len))
 				entered_living.apply_status_effect(to_apply, src.potency)
-				// TODO: Cooldown whe application procs
 
 
 /obj/effect/magical_light/impotent

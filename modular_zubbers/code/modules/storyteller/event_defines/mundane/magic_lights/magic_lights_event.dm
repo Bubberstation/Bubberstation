@@ -21,23 +21,49 @@
 
 /datum/round_event/magic_lights
 	announce_chance = 0
-	var/impotence_chance = 66
+	var/impotence_chance = 30
+	var/lights_per_maint = 3
+	var/maints_count = 2
 
 /datum/round_event/magic_lights/strong
 	impotence_chance = 0
+	lights_per_maint = 4
+	maints_count = 3
 
 /datum/round_event/magic_lights/start()
-	var/area/target = get_random_maintenance_area()
-	var/list/candidate_turfs = get_area_turfs(target)
+	for(var/m_count = 0, m_count < maints_count, m_count++)
+		get_maint_and_populate()
+
+/datum/round_event/magic_lights/proc/get_maint_and_populate()
+	var/area/target_maint = get_random_maintenance_area()
+	var/list/candidate_turfs = get_area_turfs(target_maint) + get_area_turfs(target_maint)
 	for(var/turf/potential_turf in candidate_turfs)
-		if(isgroundlessturf(potential_turf) || potential_turf.density)
+		if(!is_valid_turf(potential_turf))
 			candidate_turfs -= potential_turf
-	var/amount_of_lights = rand(2,4)
-	for(var/i = 0, i < amount_of_lights, i++)
+	var/announced = FALSE // Makes sure we announce only one per maint.
+	for(var/i = 0, i < lights_per_maint, i++)
+		if(!candidate_turfs.len)
+			return
 		var/turf/open/picked_turf = pick_n_take(candidate_turfs)
 		var/obj/effect/magical_light/light
 		if(prob(impotence_chance))
 			light = new /obj/effect/magical_light/impotent(picked_turf)
 		else
 			light = new /obj/effect/magical_light(picked_turf)
-		announce_to_ghosts(light)
+		if(!announced)
+			announce_to_ghosts(light)
+			announced = TRUE
+
+/datum/round_event/magic_lights/proc/is_valid_turf(turf/tile)
+	if(isnull(tile))
+		return FALSE
+	if(isgroundlessturf(tile) || tile.density)
+		return FALSE
+	for(var/obj/to_check in tile.contents)
+		if(to_check.density)
+			return FALSE
+		if(istype(to_check, /obj/machinery/door) || istype(to_check, /obj/effect/magical_light))
+			return FALSE
+		if(to_check.pass_flags_self & (PASSGRILLE | PASSWINDOW))
+			return FALSE
+	return TRUE

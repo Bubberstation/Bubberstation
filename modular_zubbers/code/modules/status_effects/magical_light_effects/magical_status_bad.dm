@@ -28,19 +28,17 @@
 	id = "magical_light_hunger"
 	duration = 120 SECONDS
 	tick_interval = STATUS_EFFECT_NO_TICK
-	alert_type = null
+	alert_type = /atom/movable/screen/alert/status_effect/magical_light/bad
 	special_description = "nutriment draining properties"
 
 /datum/status_effect/magical_light/hunger/on_apply()
 	if(!ishuman(owner))
 		return FALSE
-	var/mob/living/carbon/human/human_owner = owner
-	human_owner.physiology.hunger_mod *= MAGICAL_HUNGER_MULTIPLIER
+	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_HUNGER_MOD, MAGICAL_HUNGER_MULTIPLIER)
 	return TRUE
 
 /datum/status_effect/magical_light/hunger/on_remove()
-	var/mob/living/carbon/human/human_owner = owner
-	human_owner.physiology.hunger_mod /= MAGICAL_HUNGER_MULTIPLIER
+	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_HUNGER_MOD, 1/MAGICAL_HUNGER_MULTIPLIER)
 
 /datum/status_effect/magical_light/blood_drain
 	id = "magical_light_blood_drain"
