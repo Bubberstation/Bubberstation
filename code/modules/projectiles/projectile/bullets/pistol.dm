@@ -25,7 +25,7 @@
 
 /obj/projectile/bullet/c9mm/ap
 	name = "9mm armor-piercing bullet"
-	damage = 27
+	damage = 25
 	armour_penetration = 40
 	embed_type = null
 	shrapnel_type = null
@@ -37,7 +37,7 @@
 
 /obj/projectile/bullet/incendiary/c9mm
 	name = "9mm incendiary bullet"
-	damage = 15
+	damage = 25
 	fire_stacks = 2
 
 // 10mm
@@ -58,7 +58,7 @@
 
 /obj/projectile/bullet/incendiary/c10mm
 	name = "10mm incendiary bullet"
-	damage = 20
+	damage = 35
 	fire_stacks = 3
 
 // .160 Smart
