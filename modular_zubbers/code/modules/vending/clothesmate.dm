@@ -75,6 +75,7 @@
 				/obj/item/clothing/neck/syntech/collar = 5,
 				/obj/item/clothing/gloves/ring/syntech = 5,
 				/obj/item/clothing/gloves/ring/syntech/band = 5,
+				/obj/item/clothing/accessory/syntech = 5,
 			),
 		),
 

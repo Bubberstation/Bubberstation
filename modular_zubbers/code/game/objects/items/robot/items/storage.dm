@@ -23,7 +23,7 @@
 					/obj/item/healthanalyzer, //To build medibots
 					/obj/item/borg_restart_board, //To allow repairs
 					/obj/item/borg/upgrade/rename, //Basics not an upgrade
-					/obj/item/relic,
+					/obj/item/assembly/relic,
 					/obj/item/mod,
 					/obj/item/reagent_containers/syringe,
 					/obj/item/reagent_containers/dropper,
@@ -80,7 +80,7 @@
 	desc = "A tool used to expanded robotics work"
 	icon_state = "connector"
 	storable = list(
-					/obj/item/mmi,
+					/obj/item/brain_processor/organic,
 					/obj/item/bodypart/arm/left/robot,
 					/obj/item/bodypart/arm/right/robot,
 					/obj/item/bodypart/leg/left/robot,

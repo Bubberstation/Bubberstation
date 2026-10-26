@@ -23,7 +23,8 @@
 	var/outfit_option
 	/// Initial list of outfits
 	var/list/outfit_options = list(
-		"Bluespace Tech" = /datum/outfit/admin/bst,
+		"Bluespace Tech (Admin)" = /datum/outfit/admin/bst,
+		"Bluespace Tech (Admin) (MODSuit)" = /datum/outfit/admin/bst/mod,
 		"Naked" = /datum/outfit,
 		"Show All" = "Show All",
 	)
@@ -54,7 +55,7 @@
 		return
 
 	outfit_option = tgui_input_list(user, "Which outfit to use?", "IC Quick Spawn", outfit_options)
-	if(outfit_option == outfit_options[3])
+	if(outfit_option == outfit_options[4])
 		outfit_option = user.client.robust_dress_shop_skyrat()
 	else
 		outfit_option = outfit_options[outfit_option]
