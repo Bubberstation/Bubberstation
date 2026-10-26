@@ -201,10 +201,6 @@ SUBSYSTEM_DEF(gamemode)
 		for(var/datum/scheduled_event/sch_event in scheduled_events)
 			if(world.time >= sch_event.start_time)
 				sch_event.try_fire()
-			else if(!sch_event.alerted_admins && world.time >= sch_event.start_time - 1 MINUTES)
-				///Alert admins 1 minute before running and allow them to cancel or refund the event, once again.
-				sch_event.alerted_admins = TRUE
-				message_admins("Scheduled Event: [sch_event.event] will run in [(sch_event.start_time - world.time) / 10] seconds. (<a href='byond://?src=[REF(sch_event)];action=cancel'>CANCEL</a>) (<a href='byond://?src=[REF(sch_event)];action=refund'>REFUND</a>)")
 
 	// Reset the cache value to false
 	pop_data_cached = FALSE
