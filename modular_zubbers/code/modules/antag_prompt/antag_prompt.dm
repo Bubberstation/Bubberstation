@@ -138,15 +138,12 @@
 		return decoy
 	return null
 
-/// Trims a candidate list down to `amount` people, weighted by their antag tickets.
 /datum/round_event/antagonist/proc/pick_candidates_by_tickets(list/candidates, amount)
 	if(amount <= 0 || length(candidates) <= amount)
 		return candidates
-	var/list/weighted = candidates_to_tickets(candidates)
 	var/list/picked = list()
-	while(length(picked) < amount && length(weighted))
-		var/mob/candidate = pick_weight(weighted)
-		weighted -= candidate
+	while(length(picked) < amount)
+		var/mob/candidate = pick_n_take(candidates)
 		picked += candidate
 	return picked
 
