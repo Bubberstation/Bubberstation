@@ -441,10 +441,7 @@
 	)
 	return fluid_names[synthetic_breast_reagent] || "milk"
 
-/mob/living/silicon/robot/verb/configure_synthetic_anatomy()
-	set name = "Configure Synthetic Anatomy"
-	set category = "Robot Commands"
-	set desc = "Toggle and customize your cyborg's synthetic genitals."
+GAME_VERB_DESC(/mob/living/silicon/robot, configure_synthetic_anatomy, "Configure Synthetic Anatomy", "Toggle and customize your cyborg's synthetic genitals.", "Robot Commands")
 
 	if(stat == DEAD)
 		return
