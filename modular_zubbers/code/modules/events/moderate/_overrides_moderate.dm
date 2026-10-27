@@ -33,8 +33,7 @@
 	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_NPC_ANTAG)
 
 /datum/round_event_control/anomaly
-	weight = 10 // Lower from original 15 because it KEEPS SPAWNING THEM
-	tags = list(TAG_COMMUNAL, TAG_DESTRUCTIVE)
+	tags = list(TAG_COMMUNAL)
 
 /datum/round_event_control/anomaly/anomaly_vortex
 	tags = list(TAG_DESTRUCTIVE)
@@ -43,6 +42,10 @@
 /datum/round_event_control/anomaly/anomaly_pyro
 	tags = list(TAG_DESTRUCTIVE)
 	weight = 5
+
+/datum/round_event_control/anomaly/anomaly_flux
+	tags = list(TAG_DESTRUCTIVE)
+	weight = 10
 
 /datum/round_event_control/spacevine
 	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_CHAOTIC, TAG_NPC_ANTAG)
