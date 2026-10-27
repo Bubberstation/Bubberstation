@@ -220,6 +220,7 @@
 							visible_message(span_userlove("[src] shoots their sticky load onto [target_living]!"), \
 								span_userlove("You shoot string after string of hot cum onto [target_living]!"))
 							to_chat(target_living, span_userlove("[src] shoots their sticky load all over you!"))
+						target_living.add_cum("body", LEWD_FLUID_CUM)
 					else
 						visible_message(
 							span_userlove("[src] hilts [self_their] cock into [target_living]'s [climax_into_choice], shooting cum into [target_living_them]!"),
@@ -236,6 +237,14 @@
 							var/obj/item/organ/genital/anus/anus = target_living.get_organ_slot(ORGAN_SLOT_ANUS)
 							if(anus)
 								testicles.reagents.trans_to(anus, testicles.cumshot_size, transferred_by = src, methods = INGEST)
+
+						switch(climax_into_choice)
+							if(ORGAN_SLOT_VAGINA)
+								target_living.add_cum("vagina", LEWD_FLUID_CUM)
+							if("asshole")
+								target_living.add_cum("anus", LEWD_FLUID_CUM)
+							else
+								target_living.add_cum("body", LEWD_FLUID_CUM)
 
 					// if someone wanted to, they could add code for actually putting cum inside of a vagina since it's a reagent container now...
 					// would need to change up the fluid_generation.dm and tweak the organ itself for it to make sense though
@@ -269,6 +278,7 @@
 					visible_message(span_userlove("[src] sprays their fem-cum all over [squirt_target], coating the person who just got them off!"), \
 						span_userlove("You spray your fem-cum all over [squirt_target], rewarding them for getting you off!"))
 					to_chat(squirt_target, span_userlove("[src] sprays their fem-cum all over you as thanks for getting them off!"))
+					squirt_target.add_cum("body", LEWD_FLUID_FEMCUM)
 				else
 					add_cum_splatter_floor(get_turf(src), female = TRUE)
 		else

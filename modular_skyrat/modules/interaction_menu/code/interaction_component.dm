@@ -61,6 +61,8 @@
 		return FALSE
 	if(self == target && interaction.usage == INTERACTION_OTHER)
 		return FALSE
+	if(interaction.usage == INTERACTION_SELF && self != target)
+		return FALSE
 	return TRUE
 
 /// UI Control

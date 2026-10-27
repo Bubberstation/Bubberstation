@@ -11,6 +11,14 @@
 #define REQUIRE_GENITAL_UNEXPOSED 2
 #define REQUIRE_GENITAL_ANY 3
 
+// Lewd fluid types (bitflags) used for cum/femcum dirt tracking.
+#define LEWD_FLUID_CUM (1<<0)
+#define LEWD_FLUID_FEMCUM (1<<1)
+#define LEWD_FLUID_SYNTH_CUM (1<<2)
+#define LEWD_FLUID_SYNTH_FEMCUM (1<<3)
+/// Maximum dirt tier a lewd fluid can accumulate to on a mob.
+#define LEWD_DIRT_MAX_TIER 10
+
 #define BREAST_SIZE_FLATCHESTED "Flatchested"
 #define BREAST_SIZE_A "A"
 #define BREAST_SIZE_B "B"

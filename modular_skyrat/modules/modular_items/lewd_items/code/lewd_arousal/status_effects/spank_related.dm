@@ -28,10 +28,33 @@
 
 /mob/living/carbon/human/examine(mob/user)
 	. = ..()
-	if(stat >= DEAD || HAS_TRAIT(src, TRAIT_FAKEDEATH) || src == user || !has_status_effect(/datum/status_effect/spanked) || !is_bottomless())
+	if(stat >= DEAD || HAS_TRAIT(src, TRAIT_FAKEDEATH) || src == user)
 		return
 
-	. += span_purple("[user.p_Their()] butt has a red tint to it.") + "\n"
+	if(has_status_effect(/datum/status_effect/spanked) && is_bottomless())
+		. += span_purple("[p_Their()] butt has a red tint to it.") + "\n"
+
+	if(!client?.prefs?.read_preference(/datum/preference/toggle/erp) || !user.client?.prefs?.read_preference(/datum/preference/toggle/erp))
+		return
+
+	if(has_penis(REQUIRE_GENITAL_EXPOSED))
+		. += span_purple("[p_Their()] cock is exposed.") + "\n"
+	if(has_vagina(REQUIRE_GENITAL_EXPOSED))
+		. += span_purple("[p_Their()] vagina is exposed.") + "\n"
+	if(has_breasts(REQUIRE_GENITAL_EXPOSED))
+		. += span_purple("[p_Their()] breasts are exposed.") + "\n"
+	if(has_anus(REQUIRE_GENITAL_EXPOSED))
+		. += span_purple("[p_Their()] anus is exposed.") + "\n"
+
+	if(cum_on_body)
+		if(is_topless() || is_bottomless())
+			. += span_purple("[p_They()] [p_are()] [get_lewd_coverage_string(cum_on_body)] [get_lewd_fluid_string(cum_on_body_type)].") + "\n"
+		else
+			. += span_purple("[p_Their()] clothes look damp and stained.") + "\n"
+	if(cum_in_vagina && is_bottomless())
+		. += span_purple("[capitalize(get_lewd_drip_text(cum_in_vagina_type, cum_in_vagina))] from [p_their()] vagina.") + "\n"
+	if(cum_in_anus && is_bottomless())
+		. += span_purple("[capitalize(get_lewd_drip_text(cum_in_anus_type, cum_in_anus))] from [p_their()] ass.") + "\n"
 
 //Mood boost for masochist
 /datum/mood_event/perv_spanked

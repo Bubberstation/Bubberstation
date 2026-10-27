@@ -14,6 +14,18 @@
 	var/obj/item/penis = null
 	/// The last living mob this mob performed a lewd interaction with. Used for climax targeting.
 	var/mob/living/last_lewd_partner = null
+	/// Dirt tier (0-LEWD_DIRT_MAX_TIER) of fluid splattered on the outside of the body. Cleaned by water or space cleaner.
+	var/cum_on_body = 0
+	/// Bitmask of LEWD_FLUID_* currently covering the body.
+	var/cum_on_body_type = 0
+	/// Dirt tier of fluid inside the vagina (creampie). Requires douching to remove.
+	var/cum_in_vagina = 0
+	/// Bitmask of LEWD_FLUID_* inside the vagina.
+	var/cum_in_vagina_type = 0
+	/// Dirt tier of fluid inside the anus (creampie). Requires douching to remove.
+	var/cum_in_anus = 0
+	/// Bitmask of LEWD_FLUID_* inside the anus.
+	var/cum_in_anus_type = 0
 
 
 /*

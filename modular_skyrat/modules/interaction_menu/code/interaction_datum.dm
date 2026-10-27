@@ -1,6 +1,14 @@
 
 GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 
+/// Returns a purple-to-pink gradient span based on intensity (0-100). Kept short so it can be reused.
+/proc/lewd_gradient_span(text, intensity)
+	intensity = clamp(intensity, 0, 100)
+	var/red = round(106 + (255 - 106) * (intensity / 100))
+	var/green = round(13 + (182 - 13) * (intensity / 100))
+	var/blue = round(173 + (193 - 173) * (intensity / 100))
+	return "<span style='color:rgb([red],[green],[blue])'>[text]</span>"
+
 /datum/interaction
 	/// The name to be displayed in the interaction menu for this interaction
 	var/name = "broken interaction"
@@ -63,9 +71,13 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 	var/sexuality = ""
 	/// If this interaction involves suckling on the target's nipples and should transfer breast fluid.
 	var/nipple_sucking = FALSE
+	/// If this is a douche self-interaction that cleans internal cum (requires shower or water spray bottle).
+	var/douche = FALSE
 
 /datum/interaction/proc/allow_act(mob/living/user, mob/living/target)
 	if(target == user && usage == INTERACTION_OTHER)
+		return FALSE
+	if(target != user && usage == INTERACTION_SELF)
 		return FALSE
 
 	if(user_required_parts.len)
@@ -102,6 +114,13 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 /datum/interaction/proc/act(mob/living/user, mob/living/target, obj/body_relay = null)
 	if(!allow_act(user, target))
 		return
+	if(douche)
+		if(!user.is_in_shower() && !user.holds_water_spray())
+			to_chat(user, span_warning("You need to be in a shower or holding a water-filled spray bottle to clean yourself out."))
+			return
+		if(!user.douche_lewd())
+			to_chat(user, span_notice("You're already clean."))
+			return
 	if(!message)
 		message_admins("Interaction had a null message list. '[name]'")
 		return
@@ -110,6 +129,7 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 		message = list(message)
 
 	var/max_arousal = max(user.arousal, target.arousal)
+	var/lewd_intensity = clamp(max(user.arousal, target.arousal, user.pain, target.pain) / AROUSAL_LIMIT * 100, 0, 100)
 	var/list/message_pool = get_arousal_message_pool(message, message_low, message_medium, message_high, max_arousal)
 	var/msg = pick(message_pool)
 	if(!isnull(body_relay))
@@ -118,7 +138,7 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 	msg = trim(replacetext(replacetext(msg, "%TARGET%", "[target]"), "%USER%", ""), INTERACTION_MAX_CHAR)
 	msg = replacetext(msg, "%COCK%", user.get_cock_flavor())
 	if(lewd)
-		msg = span_userlove(msg)
+		msg = lewd_gradient_span(msg, lewd_intensity)
 		user.emote("subtle", null, msg, TRUE)
 	else
 		user.manual_emote(msg)
@@ -131,7 +151,7 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 		user_msg = replacetext(replacetext(user_msg, "%TARGET%", "[target]"), "%USER%", "[user]")
 		user_msg = replacetext(user_msg, "%COCK%", user.get_cock_flavor())
 		if(lewd)
-			user_msg = span_userlove(user_msg)
+			user_msg = lewd_gradient_span(user_msg, lewd_intensity)
 		to_chat(user, user_msg)
 
 	if(target_messages.len || target_messages_low.len || target_messages_medium.len || target_messages_high.len)
@@ -142,7 +162,7 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 		target_msg = replacetext(replacetext(target_msg, "%TARGET%", "[target]"), "%USER%", "[user]")
 		target_msg = replacetext(target_msg, "%COCK%", user.get_cock_flavor())
 		if(lewd)
-			target_msg = span_userlove(target_msg)
+			target_msg = lewd_gradient_span(target_msg, lewd_intensity)
 		to_chat(target, target_msg)
 
 	if(sound_use)
@@ -165,8 +185,9 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 		target.adjust_pleasure(round(target_pleasure * arousal_factor))
 		target.adjust_arousal(round(target_arousal * arousal_factor))
 		target.adjust_pain(target_pain)
-		user.last_lewd_partner = target
-		target.last_lewd_partner = user
+		if(!douche)
+			user.last_lewd_partner = target
+			target.last_lewd_partner = user
 
 		if(nipple_sucking)
 			if(ishuman(target))
@@ -236,6 +257,7 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 	lewd = sanitize_integer(json["lewd"], 0, 1, 0)
 	sexuality = sanitize_text(json["sexuality"])
 	nipple_sucking = sanitize_integer(json["nipple_sucking"], 0, 1, 0)
+	douche = sanitize_integer(json["douche"], 0, 1, 0)
 	return TRUE
 
 /datum/interaction/proc/json_save(path)
@@ -276,6 +298,7 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 		"lewd" = lewd,
 		"sexuality" = sexuality,
 		"nipple_sucking" = nipple_sucking,
+		"douche" = douche,
 	)
 	var/file = file(fpath)
 	WRITE_FILE(file, json_encode(json))

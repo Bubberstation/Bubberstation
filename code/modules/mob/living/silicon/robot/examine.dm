@@ -54,7 +54,7 @@
 		if(DEAD)
 			. += span_deadsay("[p_They()] look[p_s()] like its system is corrupted and requires a reset.")
 	//SKYRAT EDIT ADDITION BEGIN - CUSTOMIZATION
-	. += get_silicon_flavortext()
+	. += get_silicon_flavortext(user)
 	//SKYRAT EDIT ADDITION END
 	. += "</span>"
 

@@ -76,6 +76,114 @@
 /mob/living/proc/has_required_part(slot)
 	return FALSE
 
+/// Adds lewd dirt to this mob. `location` is "body", "vagina", or "anus". `fluid` is a LEWD_FLUID_* bitflag.
+/mob/living/proc/add_cum(location = "body", fluid = LEWD_FLUID_CUM, amount = 1)
+	switch(location)
+		if("vagina")
+			cum_in_vagina = min(cum_in_vagina + amount, LEWD_DIRT_MAX_TIER)
+			cum_in_vagina_type |= fluid
+			notify_internal_cum("vagina", fluid)
+		if("anus")
+			cum_in_anus = min(cum_in_anus + amount, LEWD_DIRT_MAX_TIER)
+			cum_in_anus_type |= fluid
+			notify_internal_cum("anus", fluid)
+		else
+			cum_on_body = min(cum_on_body + amount, LEWD_DIRT_MAX_TIER)
+			cum_on_body_type |= fluid
+	update_inv_lewd()
+
+/// Returns a human-readable description of the lewd fluids present in a bitmask.
+/mob/living/proc/get_lewd_fluid_string(bitmask)
+	var/list/fluids = list()
+	if(bitmask & LEWD_FLUID_CUM)
+		fluids += "cum"
+	if(bitmask & LEWD_FLUID_FEMCUM)
+		fluids += "fem-cum"
+	if(bitmask & LEWD_FLUID_SYNTH_CUM)
+		fluids += "synthetic cum"
+	if(bitmask & LEWD_FLUID_SYNTH_FEMCUM)
+		fluids += "synthetic fem-cum"
+	return english_list(fluids)
+
+/mob/living/proc/get_lewd_coverage_string(amount)
+	amount = clamp(amount, 0, LEWD_DIRT_MAX_TIER)
+	switch(amount)
+		if(0)
+			return null
+		if(1 to 3)
+			return "lightly splattered with"
+		if(4 to 6)
+			return "splattered with"
+		if(7 to 9)
+			return "heavily coated in"
+		else
+			return "absolutely drenched in"
+
+/mob/living/proc/get_lewd_drip_text(fluid_bitmask, amount)
+	var/fluid = get_lewd_fluid_string(fluid_bitmask)
+	switch(clamp(amount, 1, LEWD_DIRT_MAX_TIER))
+		if(1 to 3)
+			return "a little [fluid] drips"
+		if(4 to 6)
+			return "[fluid] drips"
+		if(7 to 9)
+			return "[fluid] leaks"
+		else
+			return "[fluid] gushes"
+
+/// Lets the owner feel internal cum they can't see (it is hidden under clothes when dressed).
+/mob/living/proc/notify_internal_cum(where, fluid = LEWD_FLUID_CUM)
+	var/drip_where = (where == "anus") ? "legs" : "thighs"
+	var/fluid_name = get_lewd_fluid_string(fluid)
+	if(ishuman(src))
+		var/mob/living/carbon/human/human = src
+		if(human.is_bottomless())
+			to_chat(src, span_userlove("You feel [fluid_name] dripping down your [drip_where]."))
+		else
+			to_chat(src, span_userlove("You feel [fluid_name] soaking into your underwear, warm against your [where]."))
+	else if(iscyborg(src))
+		to_chat(src, span_userlove("You feel [fluid_name] pooling inside your [where]."))
+
+/// Clears external cum. Used by showers, soap, spray bottles, etc.
+/mob/living/proc/clean_lewd_external()
+	if(!cum_on_body)
+		return FALSE
+	cum_on_body = 0
+	cum_on_body_type = 0
+	update_inv_lewd()
+	return TRUE
+
+/// Clears internal cum (vagina/anus). Only callable via the douche self-interaction.
+/mob/living/proc/douche_lewd()
+	if(!cum_in_vagina && !cum_in_anus)
+		return FALSE
+	cum_in_vagina = 0
+	cum_in_vagina_type = 0
+	cum_in_anus = 0
+	cum_in_anus_type = 0
+	return TRUE
+
+/// Are we standing under a running shower?
+/mob/living/proc/is_in_shower()
+	for(var/obj/machinery/shower/shower in loc)
+		if(shower.actually_on)
+			return TRUE
+	return FALSE
+
+/// Are we holding a spray bottle that contains water?
+/mob/living/proc/holds_water_spray()
+	var/obj/item/held = get_active_held_item()
+	if(!istype(held, /obj/item/reagent_containers/spray))
+		return FALSE
+	return held.reagents?.has_reagent(/datum/reagent/water, 1)
+
+/// Hooks into the existing washing system so external cum is cleaned like blood.
+/mob/living/wash(clean_types)
+	. = ..()
+	if((clean_types & CLEAN_TYPE_BLOOD) && !(clean_types & CLEAN_TYPE_FIBERS))
+		if(clean_lewd_external())
+			. |= COMPONENT_CLEANED
+
 /mob/living/carbon/human/has_required_part(slot)
 	var/obj/item/organ/genital/required_part = get_organ_slot(slot)
 	if(isnull(required_part))
@@ -100,6 +208,8 @@
 	var/synthetic_penis = FALSE
 	var/synthetic_breasts = FALSE
 	var/synthetic_anus = FALSE
+	/// When TRUE, synthetic genitals are hidden (like underwear) and cannot be non-consensually touched.
+	var/synthetic_genitals_hidden = TRUE
 	/// Synthetic penis customization.
 	var/synthetic_penis_type = "human"
 	var/synthetic_penis_size = 1
@@ -134,30 +244,46 @@
 /mob/living/silicon/robot/has_penis(required_state = REQUIRE_GENITAL_ANY)
 	if(!synthetic_penis)
 		return FALSE
-	if(required_state == REQUIRE_GENITAL_UNEXPOSED)
-		return FALSE
-	return TRUE
+	switch(required_state)
+		if(REQUIRE_GENITAL_EXPOSED)
+			return !synthetic_genitals_hidden
+		if(REQUIRE_GENITAL_UNEXPOSED)
+			return synthetic_genitals_hidden
+		else
+			return TRUE
 
 /mob/living/silicon/robot/has_vagina(required_state = REQUIRE_GENITAL_ANY)
 	if(!synthetic_vagina)
 		return FALSE
-	if(required_state == REQUIRE_GENITAL_UNEXPOSED)
-		return FALSE
-	return TRUE
+	switch(required_state)
+		if(REQUIRE_GENITAL_EXPOSED)
+			return !synthetic_genitals_hidden
+		if(REQUIRE_GENITAL_UNEXPOSED)
+			return synthetic_genitals_hidden
+		else
+			return TRUE
 
 /mob/living/silicon/robot/has_breasts(required_state = REQUIRE_GENITAL_ANY)
 	if(!synthetic_breasts)
 		return FALSE
-	if(required_state == REQUIRE_GENITAL_UNEXPOSED)
-		return FALSE
-	return TRUE
+	switch(required_state)
+		if(REQUIRE_GENITAL_EXPOSED)
+			return !synthetic_genitals_hidden
+		if(REQUIRE_GENITAL_UNEXPOSED)
+			return synthetic_genitals_hidden
+		else
+			return TRUE
 
 /mob/living/silicon/robot/has_anus(required_state = REQUIRE_GENITAL_ANY)
 	if(!synthetic_anus)
 		return FALSE
-	if(required_state == REQUIRE_GENITAL_UNEXPOSED)
-		return FALSE
-	return TRUE
+	switch(required_state)
+		if(REQUIRE_GENITAL_EXPOSED)
+			return !synthetic_genitals_hidden
+		if(REQUIRE_GENITAL_UNEXPOSED)
+			return synthetic_genitals_hidden
+		else
+			return TRUE
 
 /mob/living/silicon/robot/has_balls(required_state = REQUIRE_GENITAL_ANY)
 	return synthetic_balls
@@ -171,7 +297,7 @@
 	return TRUE
 
 /mob/living/silicon/robot/is_bottomless()
-	return TRUE
+	return !synthetic_genitals_hidden
 
 /// Cyborgs don't use the human overlay system; keeping this as a no-op is fine for now.
 /mob/living/silicon/robot/update_inv_lewd()
@@ -200,6 +326,9 @@
 
 /mob/living/silicon/robot/climax(manual = TRUE)
 	if(stat >= DEAD || !client?.prefs?.read_preference(/datum/preference/toggle/erp))
+		return FALSE
+
+	if(has_status_effect(/datum/status_effect/climax_cooldown))
 		return FALSE
 
 	if(!has_penis() && !has_vagina())
@@ -248,9 +377,11 @@
 			if(finish_inside && finish_inside != "On [finish_target_them]")
 				visible_message(span_userlove("[src]'s synthetic phallus hilts into [finish_target]'s [finish_inside], filling it with synthetic cum!"))
 				to_chat(finish_target, span_userlove("Your [finish_inside] fills with synthetic cum as [src] finishes!"))
+				finish_target.add_cum(finish_inside == ORGAN_SLOT_VAGINA ? "vagina" : (finish_inside == "asshole" ? "anus" : "body"), LEWD_FLUID_SYNTH_CUM)
 			else
 				visible_message(span_userlove("[src]'s synthetic phallus twitches and sprays synthetic cum all over [finish_target]!"))
 				to_chat(finish_target, span_userlove("[src] sprays you with a warm load of synthetic cum!"))
+				finish_target.add_cum("body", LEWD_FLUID_SYNTH_CUM)
 			new /obj/effect/decal/cleanable/cum/synthetic(get_turf(finish_target))
 		else
 			visible_message(span_userlove("[src]'s synthetic phallus twitches and spills a load of synthetic cum onto the floor!"))
@@ -261,9 +392,11 @@
 			if(finish_inside && finish_inside != "On [finish_target_them]")
 				visible_message(span_userlove("[src] sprays synthetic fem-cum into [finish_target]'s [finish_inside]!"))
 				to_chat(finish_target, span_userlove("[src] fills your [finish_inside] with synthetic fem-cum!"))
+				finish_target.add_cum(finish_inside == ORGAN_SLOT_VAGINA ? "vagina" : (finish_inside == "asshole" ? "anus" : "body"), LEWD_FLUID_SYNTH_FEMCUM)
 			else
 				visible_message(span_userlove("[src] shudders and sprays synthetic fem-cum all over [finish_target]!"))
 				to_chat(finish_target, span_userlove("[src] sprays you with slick synthetic fem-cum!"))
+				finish_target.add_cum("body", LEWD_FLUID_SYNTH_FEMCUM)
 			new /obj/effect/decal/cleanable/cum/femcum/synthetic(get_turf(finish_target))
 		else
 			visible_message(span_userlove("[src] shudders as synthetic fem-cum drips out of [p_them()] onto the floor!"))
@@ -271,6 +404,9 @@
 
 	apply_status_effect(/datum/status_effect/climax)
 	apply_status_effect(/datum/status_effect/climax_cooldown)
+	// Drop arousal/pleasure immediately so auto-climax does not re-trigger and spray again.
+	arousal = max(AROUSAL_MINIMUM, arousal - 12)
+	pleasure = max(AROUSAL_MINIMUM, pleasure - 12)
 	try_lewd_autoemote("beep")
 	return TRUE
 
@@ -322,6 +458,7 @@
 		"synthetic penis: [synthetic_penis ? "ON" : "OFF"]",
 		"synthetic breasts: [synthetic_breasts ? "ON" : "OFF"]",
 		"synthetic anus: [synthetic_anus ? "ON" : "OFF"]",
+		"synthetic genitals hidden: [synthetic_genitals_hidden ? "ON" : "OFF"]",
 		"synthetic testicles: [synthetic_balls ? "ON" : "OFF"]",
 		"synthetic sheath: [synthetic_penis_sheathed ? "ON" : "OFF"]",
 		"synthetic slit: [synthetic_penis_slit ? "ON" : "OFF"]",
@@ -350,6 +487,8 @@
 	else if(findtext(choice, "synthetic anus"))
 		synthetic_anus = !synthetic_anus
 		client.prefs.write_preference(GLOB.preference_entries[/datum/preference/toggle/silicon_anus], synthetic_anus)
+	else if(findtext(choice, "synthetic genitals hidden"))
+		synthetic_genitals_hidden = !synthetic_genitals_hidden
 	else if(findtext(choice, "synthetic testicles"))
 		synthetic_balls = !synthetic_balls
 	else if(findtext(choice, "synthetic sheath"))

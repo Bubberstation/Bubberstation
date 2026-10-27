@@ -2,7 +2,7 @@
  *  Returns a list of lines containing silicon flavourtext, temporary flavourtext, ERP preferences and a link to "look closer" and open the examine panel.
  *  Intended to be appended at the end of examine() result.
  */
-/mob/living/silicon/proc/get_silicon_flavortext()
+/mob/living/silicon/proc/get_silicon_flavortext(mob/user = null)
 	. = list()
 	var/flavor_text_link
 	/// The first 1-FLAVOR_PREVIEW_LIMIT characters in the mob's client's silicon_flavor_text preference datum. FLAVOR_PREVIEW_LIMIT is defined in flavor_defines.dm.
@@ -26,6 +26,25 @@
 			. += span_notice("<b>They look different than usual:</b> [temporary_flavor_text]")
 		else
 			. += span_notice("<b>They look different than usual:</b> [copytext_char(temporary_flavor_text, 1, 37)]... <a href='byond://?src=[REF(src)];temporary_flavor=1'>More...</a>")
+
+	if(iscyborg(src))
+		var/mob/living/silicon/robot/robot = src
+		if(robot.client?.prefs?.read_preference(/datum/preference/toggle/erp) && (!user || user.client?.prefs?.read_preference(/datum/preference/toggle/erp)))
+			if(!robot.synthetic_genitals_hidden)
+				if(robot.synthetic_penis)
+					. += span_purple("[p_Their()] synthetic [robot.synthetic_penis_type] cock is exposed.")
+				if(robot.synthetic_vagina)
+					. += span_purple("[p_Their()] synthetic vagina is exposed.")
+				if(robot.synthetic_breasts)
+					. += span_purple("[p_Their()] synthetic breasts are exposed.")
+				if(robot.synthetic_anus)
+					. += span_purple("[p_Their()] synthetic anus is exposed.")
+			if(robot.cum_on_body)
+				. += span_purple("[p_They()] [p_are()] [robot.get_lewd_coverage_string(robot.cum_on_body)] [robot.get_lewd_fluid_string(robot.cum_on_body_type)].")
+			if(robot.cum_in_vagina && !robot.synthetic_genitals_hidden)
+				. += span_purple("[capitalize(robot.get_lewd_drip_text(robot.cum_in_vagina_type, robot.cum_in_vagina))] from [p_their()] slit.")
+			if(robot.cum_in_anus && !robot.synthetic_genitals_hidden)
+				. += span_purple("[capitalize(robot.get_lewd_drip_text(robot.cum_in_anus_type, robot.cum_in_anus))] from [p_their()] rear.")
 
 /mob/living/silicon/get_chat_examine_headshot(mob/user)
 	if(!client?.prefs || !user?.client?.prefs)
