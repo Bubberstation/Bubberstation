@@ -124,9 +124,6 @@
 			if(living_observers.mind?.has_antag_datum(/datum/antagonist/ashwalker))
 				living_observers.add_mood_event("oogabooga", /datum/mood_event/sacrifice_good)
 
-			else
-				living_observers.add_mood_event("oogabooga", /datum/mood_event/sacrifice_bad)
-
 		ashies.sacrifices_made++
 
 /**

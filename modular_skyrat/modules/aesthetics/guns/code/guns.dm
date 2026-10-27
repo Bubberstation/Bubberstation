@@ -347,7 +347,7 @@
 
 // overrides for .38 Special, used in the .38 revolvers, including the det's
 /obj/item/ammo_box/speedloader/c38
-	caliber = CALIBER_38
+	caliber = CALIBER_357_38
 
 /obj/item/ammo_casing/c38/trac
 	custom_materials = AMMO_MATS_TRAC

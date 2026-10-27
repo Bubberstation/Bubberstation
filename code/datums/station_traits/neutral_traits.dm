@@ -566,6 +566,7 @@
 	if(isnull(customization))
 		return
 	INVOKE_ASYNC(customization, TYPE_PROC_REF(/datum/pet_customization, create_pet), spawned, player_client)
+*/ // BUBBER EDIT REMOVAL END - Lobby Buttons
 
 /// We're pulling a Jim Kramer with this one boys
 /datum/station_trait/gmm_spotlight

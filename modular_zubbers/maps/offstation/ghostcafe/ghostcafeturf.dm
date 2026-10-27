@@ -28,7 +28,6 @@
 		/obj/item/stack/sheet/bone = 15,
 		/obj/item/stack/sheet/sinew = 15,
 		/obj/structure/closet/crate/necropolis/tendril = 1,
-		/obj/item/skeleton_key = 1,
 		/obj/item/stack/sheet/mineral/runite = 1,
 		/obj/effect/mob_spawn/corpse/human/charredskeleton = 1,
 	)
