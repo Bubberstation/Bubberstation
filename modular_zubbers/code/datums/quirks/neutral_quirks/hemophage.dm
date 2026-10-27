@@ -39,7 +39,7 @@
 	), QUIRK_TRAIT)
 
 	old_blood_type = human_holder.dna.blood_type.get_type()
-	human_holder.dna.blood_type = get_blood_type(BLOOD_TYPE_UNIVERSAL)
+	human_holder.dna.blood_type = get_blood_type(/datum/blood_type/universal)
 
 	if(client_source?.prefs.read_preference(/datum/preference/toggle/masquerade))
 		ADD_TRAIT(quirk_holder, TRAIT_MASQUERADE_FOOD, QUIRK_TRAIT)

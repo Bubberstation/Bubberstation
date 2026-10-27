@@ -453,7 +453,8 @@
 	visor_flags_inv = HIDEFACIALHAIR | HIDESNOUT
 	flags_cover = MASKCOVERSMOUTH | MASKCOVERSEYES | PEPPERPROOF
 	visor_flags_cover = MASKCOVERSMOUTH | MASKCOVERSEYES | PEPPERPROOF
-	clothing_flags = VOICEBOX_DISABLED | MASKINTERNALS | BLOCK_GAS_SMOKE_EFFECT | GAS_FILTERING
+	has_filter = TRUE
+	clothing_flags = VOICEBOX_DISABLED | MASKINTERNALS | BLOCK_GAS_SMOKE_EFFECT
 	alternate_worn_layer = ABOVE_BODY_FRONT_HEAD_LAYER
 	use_radio_beeps_tts = TRUE
 
@@ -1155,15 +1156,22 @@
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
 	icon_state = "occultoutfit"
+	can_adjust = FALSE
 	supports_variations_flags = NONE
 
 // Donation reward for gamerguy14948
 /obj/item/clothing/head/hooded/occult
-	name = "hood"
+	name = "occult collector's hood"
 	desc = "Certainly makes you look more ominous."
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/head.dmi'
 	icon_state = "occulthood"
+	body_parts_covered = HEAD
+	cold_protection = HEAD
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	flags_inv = HIDEEARS
+	hair_mask = /datum/hair_mask/winterhood
+	armor_type = /datum/armor/hooded_winterhood
 	supports_variations_flags = NONE
 
 // Donation reward for gamerguy14948
@@ -1174,6 +1182,11 @@
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/suit.dmi'
 	icon_state = "occultcoat"
 	hoodtype = /obj/item/clothing/head/hooded/occult
+	body_parts_covered = CHEST|GROIN|ARMS
+	cold_protection = CHEST|GROIN|ARMS
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+	allowed = list()
+	armor_type = /datum/armor/hooded_wintercoat
 	supports_variations_flags = NONE
 
 // Donation reward for Octus

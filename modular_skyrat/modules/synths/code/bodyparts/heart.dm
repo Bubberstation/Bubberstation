@@ -33,7 +33,6 @@
 /datum/design/synth_heart
 	name = "Hydraulic Pump Engine"
 	desc = "An electronic device that handles the hydraulic pumps, powering one's robotic limbs. Without this, synthetics are unable to move."
-	id = "synth_heart"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(
