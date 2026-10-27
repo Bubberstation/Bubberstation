@@ -88,15 +88,25 @@
 		if(GENITAL_ALWAYS_SHOW)
 			return TRUE
 		if(GENITAL_HIDDEN_BY_CLOTHES)
-			var/covered = (human.w_uniform && human.w_uniform.body_parts_covered & genital_location) || (human.wear_suit && human.wear_suit.body_parts_covered & genital_location)
-			if(genital_location & GROIN)
-				covered = covered || (human.underwear != "Nude")
-			if(genital_location & CHEST)
-				covered = covered || (human.bra != "Nude" || human.undershirt != "Nude")
-			if(covered)
+			if((human.w_uniform && human.w_uniform.body_parts_covered & genital_location) || (human.wear_suit && human.wear_suit.body_parts_covered & genital_location))
 				return FALSE
-			else
-				return TRUE
+			if(istype(human.wear_suit, /obj/item/clothing/suit/toggle/labcoat/hospitalgown))
+				return FALSE
+			if(human.undershirt != "Nude" && !(human.underwear_visibility & UNDERWEAR_HIDE_SHIRT))
+				if(genital_location == CHEST)
+					return FALSE
+				var/datum/sprite_accessory/clothing/undershirt/worn_undershirt = SSaccessories.undershirt_list[human.undershirt]
+				if(genital_location == GROIN && worn_undershirt?.hides_groin)
+					return FALSE
+			if(human.underwear != "Nude" && !(human.underwear_visibility & UNDERWEAR_HIDE_UNDIES))
+				if(genital_location == GROIN)
+					return FALSE
+				var/datum/sprite_accessory/clothing/underwear/worn_underwear = SSaccessories.underwear_list[human.underwear]
+				if(genital_location == CHEST && worn_underwear?.hides_breasts)
+					return FALSE
+			if(human.bra != "Nude" && !(human.underwear_visibility & UNDERWEAR_HIDE_BRA) && genital_location == CHEST)
+				return FALSE
+			return TRUE
 		else
 			return FALSE
 
