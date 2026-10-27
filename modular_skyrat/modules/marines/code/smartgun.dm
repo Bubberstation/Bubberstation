@@ -68,10 +68,12 @@
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/gun/ballistic/automatic/smart_machine_gun/can_shoot()
+	return ..() && !cover_open
+
+/obj/item/gun/ballistic/automatic/smart_machine_gun/shoot_with_empty_chamber(mob/living/user)
 	if(cover_open)
 		balloon_alert_to_viewers("cover open!")
-		return FALSE
-	return chambered
+	return ..()
 
 /obj/item/gun/ballistic/automatic/smart_machine_gun/eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/tac_load = null)
 	if(!cover_open)
