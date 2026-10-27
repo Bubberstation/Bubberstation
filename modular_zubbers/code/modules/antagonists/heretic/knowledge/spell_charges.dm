@@ -18,3 +18,6 @@
 
 /datum/status_effect/heretic_passive/recharge_spells()
 	return
+
+/obj/item/clothing/neck/heretic_focus/process(seconds_per_tick)
+	return PROCESS_KILL
