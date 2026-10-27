@@ -35,5 +35,5 @@
 /obj/machinery/door/poddoor/ancient_milsim/welder_act()
 	return
 
-/obj/machinery/door/poddoor/ancient_milsim/open()
+/obj/machinery/door/poddoor/ancient_milsim/open(forced = DEFAULT_DOOR_CHECKS, mob/living/opener)
 	qdel(src)

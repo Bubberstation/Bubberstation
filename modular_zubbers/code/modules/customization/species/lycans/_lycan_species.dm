@@ -139,7 +139,7 @@
 
 /datum/species/lycan/proc/handle_gaian_physique(mob/living/carbon/human/gainer)
 	stunmod = 0.5
-	gainer.physiology.stamina_mod *= 0.25
+	MODIFY_PHYSIOLOGY(gainer, STAMINA, 0.25)
 
 	var/obj/item/bodypart/arm/l_arm = gainer.get_bodypart(BODY_ZONE_L_ARM)
 	var/obj/item/bodypart/arm/r_arm = gainer.get_bodypart(BODY_ZONE_R_ARM)
@@ -190,7 +190,7 @@
 	if (claws_action)
 		qdel(claws_action)
 
-	loser.physiology.stamina_mod *= 4
+	MODIFY_PHYSIOLOGY(loser, STAMINA, 4)
 
 	// already lost the limb shit
 
