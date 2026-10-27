@@ -8,7 +8,7 @@
 
 	var/list/real_candidates = candidates.Copy()
 	if(!CONFIG_GET(flag/antag_prompt_poll_everyone))
-		real_candidates = pick_candidates_by_tickets(real_candidates, antag_count)
+		real_candidates = pick_candidates_by_amount(real_candidates, antag_count)
 
 	var/list/decoy_candidates = list()
 	var/list/believable = list()
@@ -138,7 +138,7 @@
 		return decoy
 	return null
 
-/datum/round_event/antagonist/proc/pick_candidates_by_tickets(list/candidates, amount)
+/datum/round_event/antagonist/proc/pick_candidates_by_amount(list/candidates, amount)
 	if(amount <= 0 || length(candidates) <= amount)
 		return candidates
 	var/list/picked = list()
