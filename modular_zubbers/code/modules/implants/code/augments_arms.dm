@@ -2,7 +2,9 @@
 /obj/item/organ/cyberimp/arm/toolkit/rope
 	name = "climbing hook implant"
 	desc = "An implanted grappling hook."
-	items_to_create = list(/obj/item/climbing_hook/implanted)
+
+/obj/item/organ/cyberimp/arm/toolkit/rope/get_init_items()
+	return list(/obj/item/climbing_hook/implanted)
 
 /obj/item/flashlight/seclite/implant
 	name = "implanted seclite"
@@ -17,22 +19,30 @@
 /obj/item/organ/cyberimp/arm/toolkit/seclite
 	name = "seclite implant"
 	desc = "An implanted model of seclite installed in the palm."
-	items_to_create = list(/obj/item/flashlight/seclite/implant)
+
+/obj/item/organ/cyberimp/arm/toolkit/seclite/get_init_items()
+	return list(/obj/item/flashlight/seclite/implant)
 
 /obj/item/organ/cyberimp/arm/toolkit/penfour
 	name = "four color pen implant"
 	desc = "A cybernetic fingertip replacement containing a four color pen."
-	items_to_create = list(/obj/item/pen/fourcolor)
+
+/obj/item/organ/cyberimp/arm/toolkit/penfour/get_init_items()
+	return list(/obj/item/pen/fourcolor)
 
 /obj/item/organ/cyberimp/arm/toolkit/tape_recorder
 	name = "universal recorder implant"
 	desc = "A tape recorder implanted within the forearm. Triple press button on wrist to quickly start and stop recording. Further controls on inside facing of casette slot panel."
-	items_to_create = list(/obj/item/taperecorder)
+
+/obj/item/organ/cyberimp/arm/toolkit/tape_recorder/get_init_items()
+	return list(/obj/item/taperecorder)
 
 /obj/item/organ/cyberimp/arm/toolkit/foamforce_implant
 	name = "donksoft pop-up blaster implant"
 	desc = "An implanted foam dart blaster from Donksoft. Do not aim at face. Do not use modified darts."
-	items_to_create = list(/obj/item/gun/ballistic/toy/foamforce_implant)
+
+/obj/item/organ/cyberimp/arm/toolkit/foamforce_implant/get_init_items()
+	return list(/obj/item/gun/ballistic/toy/foamforce_implant)
 
 //LEFT ARM IMPLANTS
 /obj/item/organ/cyberimp/arm/toolkit/power_cord/left_arm
