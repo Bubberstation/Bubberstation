@@ -28,7 +28,7 @@
 
 /mob/living/carbon/human/examine(mob/user)
 	. = ..()
-	if(stat >= DEAD || HAS_TRAIT(src, TRAIT_FAKEDEATH) || src == user)
+	if(stat >= DEAD || HAS_TRAIT(src, TRAIT_FAKEDEATH))
 		return
 
 	if(has_status_effect(/datum/status_effect/spanked) && is_bottomless())
@@ -36,15 +36,6 @@
 
 	if(!client?.prefs?.read_preference(/datum/preference/toggle/erp) || !user.client?.prefs?.read_preference(/datum/preference/toggle/erp))
 		return
-
-	if(has_penis(REQUIRE_GENITAL_EXPOSED))
-		. += span_purple("[p_Their()] cock is exposed.") + "\n"
-	if(has_vagina(REQUIRE_GENITAL_EXPOSED))
-		. += span_purple("[p_Their()] vagina is exposed.") + "\n"
-	if(has_breasts(REQUIRE_GENITAL_EXPOSED))
-		. += span_purple("[p_Their()] breasts are exposed.") + "\n"
-	if(has_anus(REQUIRE_GENITAL_EXPOSED))
-		. += span_purple("[p_Their()] anus is exposed.") + "\n"
 
 	if(cum_on_body)
 		if(is_topless() || is_bottomless())

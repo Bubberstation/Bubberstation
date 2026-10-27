@@ -88,7 +88,12 @@
 		if(GENITAL_ALWAYS_SHOW)
 			return TRUE
 		if(GENITAL_HIDDEN_BY_CLOTHES)
-			if((human.w_uniform && human.w_uniform.body_parts_covered & genital_location) || (human.wear_suit && human.wear_suit.body_parts_covered & genital_location))
+			var/covered = (human.w_uniform && human.w_uniform.body_parts_covered & genital_location) || (human.wear_suit && human.wear_suit.body_parts_covered & genital_location)
+			if(genital_location & GROIN)
+				covered = covered || (human.underwear != "Nude")
+			if(genital_location & CHEST)
+				covered = covered || (human.bra != "Nude" || human.undershirt != "Nude")
+			if(covered)
 				return FALSE
 			else
 				return TRUE

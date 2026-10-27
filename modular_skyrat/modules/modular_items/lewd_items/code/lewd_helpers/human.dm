@@ -35,11 +35,11 @@
 
 /// Are we wearing something that covers our chest?
 /mob/living/carbon/human/is_topless()
-	return (!(wear_suit) || !(wear_suit.body_parts_covered & CHEST)) && (!(w_uniform) || !(w_uniform.body_parts_covered & CHEST))
+	return (!(wear_suit) || !(wear_suit.body_parts_covered & CHEST)) && (!(w_uniform) || !(w_uniform.body_parts_covered & CHEST)) && (bra == "Nude" && undershirt == "Nude")
 
 /// Are we wearing something that covers our groin?
 /mob/living/carbon/human/is_bottomless()
-	return (!(wear_suit) || !(wear_suit.body_parts_covered & GROIN)) && (!(w_uniform) || !(w_uniform.body_parts_covered & GROIN))
+	return (!(wear_suit) || !(wear_suit.body_parts_covered & GROIN)) && (!(w_uniform) || !(w_uniform.body_parts_covered & GROIN)) && (underwear == "Nude")
 
 /// Are we wearing something that covers our shoes?
 /mob/living/carbon/human/proc/is_barefoot()
