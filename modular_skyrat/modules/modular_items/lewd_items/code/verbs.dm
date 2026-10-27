@@ -9,6 +9,17 @@ GAME_VERB(/mob/living/carbon/human, climax_verb, "Climax", "IC")
 	else
 		to_chat(src, span_warning("You can't cum right now!"))
 
+GAME_VERB(/mob/living/silicon/robot, climax_verb, "Climax", "IC")
+	if(!has_status_effect(/datum/status_effect/climax_cooldown))
+		if(tgui_alert(usr, "Are you sure you want to cum?", "Climax", list("Yes", "No")) == "Yes")
+			if(IS_UNCONSCIOUS(usr))
+				to_chat(usr, span_warning("You can't climax right now..."))
+				return
+			else
+				climax(TRUE)
+	else
+		to_chat(src, span_warning("You can't cum right now!"))
+
 GAME_VERB(/mob/living, reflexes_verb, "Toggle Reflexes", "IC")
 	if(!HAS_TRAIT_FROM(src, TRAIT_QUICKREFLEXES, REF(src)))
 		ADD_TRAIT(src, TRAIT_QUICKREFLEXES, REF(src))

@@ -12,6 +12,8 @@
 	var/obj/item/anus = null
 	var/obj/item/nipples = null
 	var/obj/item/penis = null
+	/// The last living mob this mob performed a lewd interaction with. Used for climax targeting.
+	var/mob/living/last_lewd_partner = null
 
 
 /*

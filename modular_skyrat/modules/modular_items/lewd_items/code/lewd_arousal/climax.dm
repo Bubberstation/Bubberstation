@@ -88,20 +88,22 @@
 			testicles.reagents.remove_all(testicles.cumshot_size)
 
 		else
-			var/list/interactable_inrange_humans = list()
+			var/list/interactable_inrange_targets = list()
 			// monkey see, monkey do
 			var/list/interactable_inrange_open_containers = list()
 
 			// Unfortunately prefs can't be checked here, because byond/tgstation moment.
-			for(var/mob/living/carbon/human/iterating_human in (view(1, src) - src))
-				interactable_inrange_humans[iterating_human.name] = iterating_human
+			for(var/mob/living/iterating_living in (view(1, src) - src))
+				if(!ishuman(iterating_living) && !iscyborg(iterating_living))
+					continue
+				interactable_inrange_targets[iterating_living.name] = iterating_living
 
 			// this should be making a list of cups(?)
 			for(var/obj/item/reagent_containers/cup/iterating_open_container in (view(1, src) - src))
 				interactable_inrange_open_containers[iterating_open_container.name] = iterating_open_container
 
 			var/list/buttons = list(CLIMAX_ON_FLOOR)
-			if(interactable_inrange_humans.len)
+			if(interactable_inrange_targets.len)
 				buttons += CLIMAX_IN_OR_ON
 
 			if(interactable_inrange_open_containers.len)
@@ -118,8 +120,13 @@
 
 			if(!penis_climax_choice || penis_climax_choice == CLIMAX_ON_FLOOR)
 				create_cum_decal = TRUE
-				visible_message(span_userlove("[src] shoots [self_their] sticky load onto the floor!"), \
-					span_userlove("You shoot string after string of hot cum, hitting the floor!"))
+				if(last_lewd_partner && (last_lewd_partner in view(1, src)))
+					visible_message(span_userlove("[src] pulls out and shoots [self_their] sticky load onto the floor instead of finishing on [last_lewd_partner]!"), \
+						span_userlove("You pull out and shoot string after string of hot cum onto the floor instead of finishing on [last_lewd_partner]!"))
+					to_chat(last_lewd_partner, span_userlove("[src] pulls out and shoots their sticky load onto the floor instead of you!"))
+				else
+					visible_message(span_userlove("[src] shoots [self_their] sticky load onto the floor!"), \
+						span_userlove("You shoot string after string of hot cum, hitting the floor!"))
 				testicles.reagents.remove_all(testicles.cumshot_size)
 
 			else if(penis_climax_choice == CLIMAX_OPEN_CONTAINER)
@@ -164,47 +171,71 @@
 				add_cum_splatter_floor(get_turf(portal.relayed_body))
 
 			else
-				var/target_choice = tgui_input_list(src, "Choose a person to cum in or on.", "Choose target!", interactable_inrange_humans)
+				var/target_choice = tgui_input_list(src, "Choose a person to cum in or on.", "Choose target!", interactable_inrange_targets)
 				if(!target_choice)
 					create_cum_decal = TRUE
 					visible_message(span_userlove("[src] shoots [self_their] sticky load onto the floor!"), \
 						span_userlove("You shoot string after string of hot cum, hitting the floor!"))
 				else
-					var/mob/living/carbon/human/target_human = interactable_inrange_humans[target_choice]
-					var/target_human_them = target_human.p_them()
+					var/mob/living/target_living = interactable_inrange_targets[target_choice]
+					var/target_living_them = target_living.p_them()
 
 					var/list/target_buttons = list()
 
-					if(!target_human.wear_mask)
-						target_buttons += "mouth"
-					if(target_human.has_vagina(REQUIRE_GENITAL_EXPOSED))
+					if(ishuman(target_living))
+						var/mob/living/carbon/human/target_human = target_living
+						if(!target_human.wear_mask)
+							target_buttons += "mouth"
+					if(target_living.has_vagina(REQUIRE_GENITAL_EXPOSED))
 						target_buttons += ORGAN_SLOT_VAGINA
-					if(target_human.has_anus(REQUIRE_GENITAL_EXPOSED))
+					if(target_living.has_anus(REQUIRE_GENITAL_EXPOSED))
 						target_buttons += "asshole"
-					if(target_human.has_penis(REQUIRE_GENITAL_EXPOSED))
-						var/obj/item/organ/genital/penis/other_penis = target_human.get_organ_slot(ORGAN_SLOT_PENIS)
-						if(other_penis.sheath != "None")
+					if(ishuman(target_living))
+						var/mob/living/carbon/human/target_human_penis = target_living
+						if(target_human_penis.has_penis(REQUIRE_GENITAL_EXPOSED))
+							var/obj/item/organ/genital/penis/other_penis = target_human_penis.get_organ_slot(ORGAN_SLOT_PENIS)
+							if(other_penis?.sheath != "None")
+								target_buttons += "sheath"
+					else if(iscyborg(target_living))
+						var/mob/living/silicon/robot/target_robot = target_living
+						if(target_robot.synthetic_penis && target_robot.synthetic_penis_sheathed)
 							target_buttons += "sheath"
-					target_buttons += "On [target_human_them]"
+						if(target_robot.synthetic_penis && target_robot.synthetic_penis_slit)
+							target_buttons += "slit"
+					target_buttons += "On [target_living_them]"
 
-					var/climax_into_choice = tgui_input_list(src, "Where on or in [target_human] do you wish to cum?", "Final frontier!", target_buttons)
+					var/climax_into_choice = tgui_input_list(src, "Where on or in [target_living] do you wish to cum?", "Final frontier!", target_buttons)
 
 					if(!climax_into_choice)
 						create_cum_decal = TRUE
 						visible_message(span_userlove("[src] shoots their sticky load onto the floor!"), \
 							span_userlove("You shoot string after string of hot cum, hitting the floor!"))
-					else if(climax_into_choice == "On [target_human_them]")
+					else if(climax_into_choice == "On [target_living_them]")
 						create_cum_decal = TRUE
-						visible_message(span_userlove("[src] shoots their sticky load onto [target_human]!"), \
-							span_userlove("You shoot string after string of hot cum onto [target_human]!"))
+						if(target_living == last_lewd_partner)
+							visible_message(span_userlove("[src] pulls out and unloads all over [target_living], painting the person who just got them off!"), \
+								span_userlove("You pull out and unload all over [target_living], rewarding them for getting you off!"))
+							to_chat(target_living, span_userlove("[src] pulls out and covers you in their load as thanks for getting them off!"))
+						else
+							visible_message(span_userlove("[src] shoots their sticky load onto [target_living]!"), \
+								span_userlove("You shoot string after string of hot cum onto [target_living]!"))
+							to_chat(target_living, span_userlove("[src] shoots their sticky load all over you!"))
 					else
 						visible_message(
-							span_userlove("[src] hilts [self_their] cock into [target_human]'s [climax_into_choice], shooting cum into [target_human_them]!"),
-							span_userlove("You hilt your cock into [target_human]'s [climax_into_choice], shooting cum into [target_human_them]!"))
-						to_chat(target_human, span_userlove("Your [climax_into_choice] fills with warm cum as [src] shoots [self_their] load into it."))
+							span_userlove("[src] hilts [self_their] cock into [target_living]'s [climax_into_choice], shooting cum into [target_living_them]!"),
+							span_userlove("You hilt your cock into [target_living]'s [climax_into_choice], shooting cum into [target_living_them]!"))
+						to_chat(target_living, span_userlove("Your [climax_into_choice] fills with warm cum as [src] shoots [self_their] load into it."))
 
 						if(climax_into_choice == "mouth")
-							testicles.reagents.trans_to(target_human, testicles.cumshot_size, transferred_by = src, methods = INGEST)
+							testicles.reagents.trans_to(target_living, testicles.cumshot_size, transferred_by = src, methods = INGEST)
+						else if(climax_into_choice == ORGAN_SLOT_VAGINA)
+							var/obj/item/organ/genital/vagina/vagina = target_living.get_organ_slot(ORGAN_SLOT_VAGINA)
+							if(vagina)
+								testicles.reagents.trans_to(vagina, testicles.cumshot_size, transferred_by = src, methods = INGEST)
+						else if(climax_into_choice == "asshole")
+							var/obj/item/organ/genital/anus/anus = target_living.get_organ_slot(ORGAN_SLOT_ANUS)
+							if(anus)
+								testicles.reagents.trans_to(anus, testicles.cumshot_size, transferred_by = src, methods = INGEST)
 
 					// if someone wanted to, they could add code for actually putting cum inside of a vagina since it's a reagent container now...
 					// would need to change up the fluid_generation.dm and tweak the organ itself for it to make sense though
@@ -228,7 +259,18 @@
 				span_userlove("[src] twitches and moans as [p_they()] climax from their vagina!"),
 				span_userlove("You twitch and moan as you climax from your vagina!"))
 			if(vagina.reagents.total_volume >= MIN_VAGINA_WETNESS_THRESHOLD)
-				add_cum_splatter_floor(get_turf(src), female = TRUE)
+				var/mob/living/squirt_target = null
+				if(last_lewd_partner && (last_lewd_partner in view(1, src)))
+					var/squirt_choice = tgui_alert(src, "Choose where to squirt.", "Squirt preference!", list(CLIMAX_ON_FLOOR, "On [last_lewd_partner]"))
+					if(squirt_choice == "On [last_lewd_partner]")
+						squirt_target = last_lewd_partner
+				if(squirt_target)
+					add_cum_splatter_floor(get_turf(squirt_target), female = TRUE)
+					visible_message(span_userlove("[src] sprays their fem-cum all over [squirt_target], coating the person who just got them off!"), \
+						span_userlove("You spray your fem-cum all over [squirt_target], rewarding them for getting you off!"))
+					to_chat(squirt_target, span_userlove("[src] sprays their fem-cum all over you as thanks for getting them off!"))
+				else
+					add_cum_splatter_floor(get_turf(src), female = TRUE)
 		else
 			if(vagina.reagents.total_volume >= MIN_VAGINA_WETNESS_THRESHOLD)
 				visible_message(

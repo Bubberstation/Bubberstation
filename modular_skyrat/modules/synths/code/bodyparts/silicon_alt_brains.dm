@@ -30,6 +30,8 @@
 	// Intentionally set like this, because people have different lore for their cyborgs, and there's no real non-invasive way to print posibrains that match.
 	RegisterSignal(src, COMSIG_MOB_MIND_TRANSFERRED_INTO, PROC_REF(on_mob_mind_transferred_into))
 	AddComponent(/datum/component/interactable)
+	if(CONFIG_GET(flag/disable_erp_preferences))
+		UNASSIGN_GAME_VERB(src, /mob/living/silicon/robot, climax_verb)
 
 /mob/living/silicon/proc/on_mob_mind_transferred_into(mob/living/silicon/robot)
 	SIGNAL_HANDLER

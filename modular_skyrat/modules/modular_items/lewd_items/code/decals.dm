@@ -13,3 +13,19 @@
 	icon_state = "femcum_1"
 	random_icon_states = list("femcum_1", "femcum_2", "femcum_3", "femcum_4")
 	beauty = -50
+
+/obj/effect/decal/cleanable/cum/synthetic
+	name = "synthetic cum"
+	desc = "A puddle of pale synthetic lubricant."
+	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_decals/lewd_decals.dmi'
+	icon_state = "cum_1"
+	random_icon_states = list("cum_1", "cum_2", "cum_3", "cum_4")
+	beauty = -50
+
+/obj/effect/decal/cleanable/cum/femcum/synthetic
+	name = "synthetic fem-cum"
+	desc = "A puddle of pale synthetic fem-cum."
+	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_decals/lewd_decals.dmi'
+	icon_state = "femcum_1"
+	random_icon_states = list("femcum_1", "femcum_2", "femcum_3", "femcum_4")
+	beauty = -50

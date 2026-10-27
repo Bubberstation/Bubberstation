@@ -7,6 +7,7 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "silicon_vagina"
 	default_value = FALSE
+	should_update_preview = FALSE
 
 /datum/preference/toggle/silicon_vagina/is_accessible(datum/preferences/preferences)
 	if(CONFIG_GET(flag/disable_erp_preferences))
@@ -23,6 +24,7 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "silicon_penis"
 	default_value = FALSE
+	should_update_preview = FALSE
 
 /datum/preference/toggle/silicon_penis/is_accessible(datum/preferences/preferences)
 	if(CONFIG_GET(flag/disable_erp_preferences))
@@ -39,6 +41,7 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "silicon_breasts"
 	default_value = FALSE
+	should_update_preview = FALSE
 
 /datum/preference/toggle/silicon_breasts/is_accessible(datum/preferences/preferences)
 	if(CONFIG_GET(flag/disable_erp_preferences))
@@ -55,6 +58,7 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "silicon_anus"
 	default_value = FALSE
+	should_update_preview = FALSE
 
 /datum/preference/toggle/silicon_anus/is_accessible(datum/preferences/preferences)
 	if(CONFIG_GET(flag/disable_erp_preferences))
