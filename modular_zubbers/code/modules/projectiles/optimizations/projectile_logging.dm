@@ -1,8 +1,5 @@
 #define MAX_LISTED_TARGETS 10
 
-// Projectile combat logs are queued and written once per tick, grouped by shooter.
-// Each global log write costs ~2ms, and a volley of hundreds can stall the tick long enough for the MC to skip it.
-
 // Projectile combat logs are queued and written once a tick, grouped by shooter, this is because each write sepparately costs ~2ms,
 // and a huge volley can cause shittons of lag
 
