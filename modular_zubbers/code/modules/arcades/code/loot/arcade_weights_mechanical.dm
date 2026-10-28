@@ -18,6 +18,6 @@ GLOBAL_LIST_INIT(arcade_prize_pool_mechanical, list(
 		/obj/item/melee/skateboard/hoverboard = 1,
 		/obj/item/melee/skateboard/pro = 10,
 	) = 50,
-	/obj/item/relic = 25,
+	/obj/item/assembly/relic = 25,
 	/obj/item/taster = 5
 ))

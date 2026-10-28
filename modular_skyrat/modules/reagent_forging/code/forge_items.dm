@@ -62,8 +62,6 @@
 		user.balloon_alert(user, "tongs are full already!")
 		return
 	forceMove(tool)
-	tool.icon_state = "tong_full"
-
 
 /obj/item/forging/incomplete/pickup(mob/living/user)
 	var/hand_protected = FALSE
@@ -194,6 +192,12 @@
 	spawn_item = /obj/item/forging/complete/revolver_frame
 	desc = "The frame of a classical single-action revolver."
 
+/obj/item/forging/incomplete/baseball_bat
+	name = "incomplete baseball bat"
+	icon_state = "hot_baseball_bat"
+	spawn_item = /obj/item/forging/complete/baseball_bat
+	desc = "A baseball bat in production."
+
 /obj/item/forging/incomplete/rail_nail
 	name = "incomplete rail nail"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/railroad.dmi'
@@ -220,8 +224,11 @@
 	var/perfect_ratio = 0
 	///when this was worked at an anvil, how many hits were actually applied of the max?
 	var/hammer_completion_amount = 0
+	///the crafting recipe datum that contains additional requirements to finish this item
+	var/recipe_requirements = list(/obj/item/stack/sheet/mineral/wood = 1)
 	//because who doesn't want to have a plasma sword?
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
+
 	///does it cut the user's hand when used as a weapon?
 	var/double_edged_damage = 0
 	var/has_reagent_component = TRUE
@@ -255,7 +262,6 @@
 		user.balloon_alert(user, "tongs are full already!")
 		return
 	forceMove(tool)
-	tool.icon_state = "tong_full"
 
 /obj/item/forging/complete/chain
 	name = "chain"
@@ -304,12 +310,14 @@
 	desc = "A staff head, ready to get some wood for completion."
 	icon_state = "staffhead"
 	spawning_item = /obj/item/melee/forged_reagent_weapon/staff
+	recipe_requirements = list(/obj/item/stack/sheet/mineral/wood = 2)
 
 /obj/item/forging/complete/spear
 	name = "spear head"
 	desc = "A spear head, ready to get some wood for completion."
 	icon_state = "spearhead"
 	spawning_item = /obj/item/melee/forged_reagent_weapon/spear
+	recipe_requirements = list(/obj/item/stack/sheet/mineral/wood = 2)
 	force = 3
 	double_edged_damage = 2
 
@@ -325,6 +333,7 @@
 	desc = "A hammer head, ready to get some wood for completion."
 	icon_state = "hammerhead"
 	spawning_item = /obj/item/melee/forged_reagent_weapon/hammer
+	recipe_requirements = list(/obj/item/stack/sheet/mineral/wood = 2)
 	force = 5
 
 /obj/item/forging/complete/pickaxe
@@ -363,6 +372,14 @@
 	icon_state = "nail"
 	spawning_item = /obj/item/stack/rail_track/ten
 	force = 3
+
+/obj/item/forging/complete/baseball_bat
+	name = "baseball bat"
+	desc = "The main piece of a baseball bat. Requires leather to be wrapped around its grip, to really be able to hit a home run..."
+	icon_state = "baseball_bat_incomplete"
+	recipe_requirements = list(/obj/item/stack/sheet/leather = 3)
+	spawning_item = /obj/item/melee/baseball_bat/reagent_forged
+	force = 12
 
 /obj/item/forging/coil
 	name = "coil"
@@ -425,7 +442,6 @@
 	if(!isnull(stack_to_move))
 		stack_to_move.forceMove(tool)
 		user.balloon_alert(user, "took one")
-		tool.icon_state = "tong_full"
 	else
 		stack_trace("[src] was grabbed by [tool] and couldn't pull one sheet!")
 
@@ -436,7 +452,6 @@
 		return FALSE
 	if(!isnull(GetComponent(/datum/component/forge_smithable/)) || !isnull(GetComponent(/datum/component/reagent_imbued)))
 		forceMove(tool)
-		tool.icon_state = "tong_full"
 		user.balloon_alert(user, "took [src]")
 
 /obj/item/empty_circuit
@@ -478,5 +493,3 @@
 		return
 
 	return ..()
-
-/obj/item/

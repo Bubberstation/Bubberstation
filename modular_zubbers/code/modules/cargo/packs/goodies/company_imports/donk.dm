@@ -63,6 +63,14 @@
 	item_type = /obj/item/toy/balloon/arrest
 	cost = PAYCHECK_CREW
 
+/datum/supply_pack/company_import/donk/foamforce/foam_baton
+	item_type = /obj/item/foam_baton
+	cost = PAYCHECK_CREW
+
+/datum/supply_pack/company_import/donk/foamforce/foam_sword
+	item_type = /obj/item/foam_baton/sword
+	cost = PAYCHECK_CREW
+
 /datum/supply_pack/company_import/donk/foamforce/foam_pistol
 	item_type = /obj/item/gun/ballistic/automatic/pistol/toy
 	cost = PAYCHECK_COMMAND

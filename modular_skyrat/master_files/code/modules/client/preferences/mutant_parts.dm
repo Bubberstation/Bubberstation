@@ -48,12 +48,16 @@
 	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "mutant_colors_color"
+	priority = PREFERENCE_PRIORITY_BODYPARTS  //Bubber edit: Ensures mutant colors are applied with body part updates
 	check_mode = TRICOLOR_NO_CHECK
 
 /datum/preference/tri_color/mutant_colors/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features[FEATURE_MUTANT_COLOR] = sanitize_hexcolor(value[1])
 	target.dna.features[FEATURE_MUTANT_COLOR_TWO] = sanitize_hexcolor(value[2])
 	target.dna.features[FEATURE_MUTANT_COLOR_THREE] = sanitize_hexcolor(value[3])
+	if(istype(target.dna.species, /datum/species/abductor)) //bubber edit: Apply body part updates for abductors after setting mutant colors.
+		for(var/obj/item/bodypart/part as anything in target.get_bodyparts()) //bubber edit: Apply body part updates for abductors after setting mutant colors.
+			part.add_color_override(sanitize_hexcolor(value[1]), LIMB_COLOR_AYYLMAO + 1) //bubber edit: Apply body part updates for abductors after setting mutant colors.
 
 /datum/preference/toggle/eye_emissives
 	savefile_key = "eye_emissives"

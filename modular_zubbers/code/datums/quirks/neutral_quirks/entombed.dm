@@ -100,25 +100,19 @@
 	modsuit.skin = LOWER_TEXT(modsuit_skin)
 
 	var/static/list/hardlight_display_names = list(
-		"Standard Blue" = "standard_blue",
-		"Alert Amber" = "alert_amber",
-		"Contractor Red" = "contractor_red",
-		"Extrashield Green" = "extrashield_green",
-		"Evil Green" = "evil_green",
-		"Royal Purple" = "royal_purple",
-		"Hazard Orange" = "hazard_orange",
-		"Cosmic Blue" = "cosmic_blue"
+		"Standard Blue" = STANDARD_BLUE,
+		"Alert Amber" = ALERT_AMBER,
+		"Contractor Red" = CONTRACTOR_RED,
+		"Extrashield Green" = EXTRASHIELD_GREEN,
+		"Evil Green" = EVIL_GREEN,
+		"Royal Purple" = ROYAL_PURPLE,
+		"Hazard Orange" = HAZARD_ORANGE,
+		"Cosmic Blue" = COSMIC_BLUE,
 	)
 
-	if (modsuit_hardlight == NONE)
-		modsuit_hardlight = "standard_blue"
-	else
-		modsuit_hardlight = hardlight_display_names[modsuit_hardlight] || "standard_blue"
-
-	if (!modsuit_hardlight)
-		modsuit_hardlight = "standard_blue"
-
-	modsuit.theme.hardlight_theme = modsuit_hardlight
+	// themes are shared singletons, so the choice goes on this suit only
+	if (modsuit_hardlight != NONE)
+		modsuit.hardlight_color_override = hardlight_display_names[modsuit_hardlight]
 
 	add_unique_skin()
 

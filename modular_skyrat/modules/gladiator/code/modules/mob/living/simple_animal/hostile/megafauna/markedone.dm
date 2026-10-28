@@ -112,8 +112,7 @@
 		. = ..()
 		. += span_boldwarning("They are currently in Phase [phase].")
 
-/// Gets him mad at you if you're a species he's not racist towards, and provides the 50% to block attacks in the first and fourth phases
-/mob/living/simple_animal/hostile/megafauna/gladiator/adjustHealth(amount, updating_health, forced)
+/mob/living/simple_animal/hostile/megafauna/gladiator/toggle_ai_on_damage(amount)
 	get_angry()
 	if(prob(block_chance) && (phase == 1 || phase == 4) && !stunned)
 		var/our_turf = get_turf(src)

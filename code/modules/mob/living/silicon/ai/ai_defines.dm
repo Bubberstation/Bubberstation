@@ -47,6 +47,7 @@
 	/* ROBOTS */
 	/// List of robots currently synced to the AI
 	VAR_FINAL/list/mob/living/silicon/robot/connected_robots = list()
+	var/list/connected_ipcs = list() // Bubber Edit
 
 
 	/* POWER */
