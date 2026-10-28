@@ -62,6 +62,10 @@ type SuitStatus = {
   link_id: string;
   link_freq: string;
   link_call: string;
+  // BUBBER EDIT ADDITION START - MOD hardlight
+  hardlight_color: string | null;
+  hardlight_custom: BooleanLike;
+  // BUBBER EDIT ADDITION END
 };
 
 type UserStatus = {
@@ -381,6 +385,8 @@ const SuitStatusSection = (props) => {
     link_id,
     link_freq,
     link_call,
+    hardlight_color, // BUBBER EDIT ADDITION - MOD hardlight
+    hardlight_custom, // BUBBER EDIT ADDITION - MOD hardlight
   } = data.suit_status;
   const { display_time, shift_time, shift_id } = data.module_custom_status;
   const status = malfunctioning
@@ -438,6 +444,27 @@ const SuitStatusSection = (props) => {
             onClick={() => act('call')}
           />
         </LabeledList.Item>
+        {/* BUBBER EDIT ADDITION START - MOD hardlight */}
+        {!!hardlight_color && (
+          <LabeledList.Item label="Hardlight">
+            <ColorBox color={hardlight_color} mr={1} />
+            <Button
+              icon="eye-dropper"
+              tooltip="Pick the color projected over your tail, ears and other parts"
+              onClick={() => act('hardlight_color')}
+            >
+              {hardlight_custom ? 'Custom' : 'Default'}
+            </Button>
+            {!!hardlight_custom && (
+              <Button
+                icon="rotate-left"
+                tooltip="Reset to the suit's default color"
+                onClick={() => act('hardlight_reset')}
+              />
+            )}
+          </LabeledList.Item>
+        )}
+        {/* BUBBER EDIT ADDITION END */}
         {!!open && (
           <LabeledList.Item label="Cover">
             <Box color="red">Open</Box>

@@ -131,6 +131,16 @@ GLOBAL_LIST_INIT(skyrat_leather_belt_recipes, list(
 	. += GLOB.skyrat_leather_recipes
 	add_recipes_to_sublist(., "belts", GLOB.skyrat_leather_belt_recipes)
 
+// Titanium
+
+GLOBAL_LIST_INIT(skyrat_titanium_recipes, list(
+	new/datum/stack_recipe("anvil", /obj/structure/reagent_anvil, 10, time = 2 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_TOOLS),
+))
+
+/obj/item/stack/sheet/mineral/titanium/get_main_recipes()
+	. = ..()
+	. += GLOB.skyrat_titanium_recipes
+
 // Snow
 
 GLOBAL_LIST_INIT(skyrat_snow_recipes, list(
@@ -150,13 +160,3 @@ GLOBAL_LIST_INIT(skyrat_sand_recipes, list(
 /obj/item/stack/ore/glass/get_main_recipes()
 	. = ..()
 	. += GLOB.skyrat_sand_recipes
-
-// Plastitanium
-
-GLOBAL_LIST_INIT(skyrat_plastitanium_recipes, list(
-	new/datum/stack_recipe("anvil", /obj/structure/reagent_anvil, 10, time = 2 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_TOOLS),
-))
-
-/obj/item/stack/sheet/mineral/plastitanium/get_main_recipes()
-	. = ..()
-	. += GLOB.skyrat_plastitanium_recipes

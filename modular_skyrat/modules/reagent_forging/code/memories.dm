@@ -7,14 +7,6 @@
 	/// name of the item for strings
 	var/item_name = null
 
-/datum/memory/smithing/New(
-	datum/mind/memorizer_mind,
-	atom/protagonist,
-	atom/deuteragonist,
-	atom/antagonist,
-)
-	return ..()
-
 /datum/memory/smithing/get_names()
 	return list("The time [protagonist_name] made a [initial(item_name)].")
 
@@ -64,13 +56,17 @@
 	smithed_item_type = /obj/item/shield/buckler/reagent_weapon/pavise
 	item_name = "pavise"
 
+/datum/memory/smithing/baseball_bat
+	smithed_item_type = /obj/item/melee/baseball_bat/reagent_forged
+	item_name = "baseball bat"
+
 /datum/memory/smithing/revolver
 	smithed_item_type = /obj/item/gun/ballistic/revolver/handcrafted_single_action
 	item_name = "revolver"
 
 /datum/memory/smithing/helmet
 	smithed_item_type = /obj/item/clothing/head/helmet/forging_plate_helmet
-	item_name = "hammer"
+	item_name = "plate helmet"
 
 /datum/memory/smithing/plate_vest
 	smithed_item_type = /obj/item/clothing/suit/armor/forging_plate_armor
@@ -97,27 +93,27 @@
 	item_name = "collar"
 
 /datum/memory/smithing/cowboy_holster
-	smithed_item_type = /obj/item/storage/belt/hip_holster/cowboy
+	smithed_item_type = /obj/item/storage/belt/holster/hip_holster/cowboy
 	item_name = "holster"
 
 /datum/memory/smithing/charging_holster
-	smithed_item_type = /obj/item/storage/belt/hip_holster/charging
+	smithed_item_type = /obj/item/storage/belt/holster/hip_holster/charging
 	item_name = "charging holster"
 
 /datum/memory/smithing/crusader_belt
-	smithed_item_type = /obj/item/storage/belt/crusader
+	smithed_item_type =  /obj/item/storage/belt/sheath/hip_only/crusader
 	item_name = "utility-scabbard belt"
 
 /datum/memory/smithing/multi_scabbard
-	smithed_item_type = /obj/item/storage/belt/sheath/multi
+	smithed_item_type = /obj/item/storage/belt/sheath/hip_only/multi
 	item_name = "multi-scabbard belt"
 
 /datum/memory/smithing/repairing_scabbard
-	smithed_item_type = /obj/item/storage/belt/sheath/repairing
+	smithed_item_type = /obj/item/storage/belt/sheath/hip_only/repairing
 	item_name = "repairing scabbard"
 
 /datum/memory/smithing/knifethrower
-	smithed_item_type = /obj/item/storage/belt/knifethrowers_belt
+	smithed_item_type = /obj/item/storage/belt/sheath/hip_only/knifethrowers_belt
 	item_name = "knifethrower's belt"
 
 /datum/memory/smithing/bluespace_plants

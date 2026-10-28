@@ -50,16 +50,18 @@
 
 ///ABDUCTOR
 /obj/item/bodypart/head/abductor
+	icon_greyscale = 'modular_zubbers/icons/mob/human/abductor_bodyparts.dmi' //bubber edit: Lets abductors change their skin color
 	limb_id = SPECIES_ABDUCTOR
 	is_dimorphic = FALSE
-	should_draw_greyscale = FALSE
-	head_flags = NONE
+	should_draw_greyscale = TRUE //bubber edit: Lets abductors change their skin color
+	head_flags = HEAD_HAIR | HEAD_FACIAL_HAIR | HEAD_EYESPRITES //Bubber Edit: Lets the abductor have hair and facial hair. Mainly intended for like, fake hair or more customization options for custom species.
 	teeth_count = 0
 
 /obj/item/bodypart/chest/abductor
+	icon_greyscale = 'modular_zubbers/icons/mob/human/abductor_bodyparts.dmi' //bubber edit: Lets abductors change their skin color
 	limb_id = SPECIES_ABDUCTOR
 	is_dimorphic = FALSE
-	should_draw_greyscale = FALSE
+	should_draw_greyscale = TRUE //bubber edit: Lets abductors change their skin color
 	wing_types = null
 	bodypart_traits = list(TRAIT_ABDUCTOR_QUICK_SCAN)
 
@@ -67,22 +69,26 @@
 	return icon('icons/mob/butts.dmi', BUTT_SPRITE_GREY)
 
 /obj/item/bodypart/arm/left/abductor
+	icon_greyscale = 'modular_zubbers/icons/mob/human/abductor_bodyparts.dmi' //bubber edit: Lets abductors change their skin color
 	limb_id = SPECIES_ABDUCTOR
-	should_draw_greyscale = FALSE
+	should_draw_greyscale = TRUE //bubber edit: Lets abductors change their skin color
 	bodypart_traits = list(TRAIT_CHUNKYFINGERS)
 
 /obj/item/bodypart/arm/right/abductor
+	icon_greyscale = 'modular_zubbers/icons/mob/human/abductor_bodyparts.dmi' //bubber edit: Lets abductors change their skin color
 	limb_id = SPECIES_ABDUCTOR
-	should_draw_greyscale = FALSE
+	should_draw_greyscale = TRUE //bubber edit: Lets abductors change their skin color
 	bodypart_traits = list(TRAIT_CHUNKYFINGERS)
 
 /obj/item/bodypart/leg/left/abductor
+	icon_greyscale = 'modular_zubbers/icons/mob/human/abductor_bodyparts.dmi' //bubber edit: Lets abductors change their skin color
 	limb_id = SPECIES_ABDUCTOR
-	should_draw_greyscale = FALSE
+	should_draw_greyscale = TRUE //bubber edit: Lets abductors change their skin color
 
 /obj/item/bodypart/leg/right/abductor
+	icon_greyscale = 'modular_zubbers/icons/mob/human/abductor_bodyparts.dmi' //bubber edit: Lets abductors change their skin color
 	limb_id = SPECIES_ABDUCTOR
-	should_draw_greyscale = FALSE
+	should_draw_greyscale = TRUE //bubber edit: Lets abductors change their skin color
 
 ///JELLY
 /obj/item/bodypart/head/jelly
@@ -93,6 +99,7 @@
 	burn_modifier = 0.5 // = 1/2x generic burn damage
 	head_flags = HEAD_EYECOLOR | HEAD_EYESPRITES | HEAD_HAIR | HEAD_FACIAL_HAIR
 	butcher_replacement = null
+	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/slime_passgrille)
 
 /obj/item/bodypart/chest/jelly
 	biological_state = (BIO_FLESH|BIO_BLOODED|BIO_JELLY)
@@ -100,8 +107,9 @@
 	is_dimorphic = TRUE
 	dmg_overlay_type = null
 	burn_modifier = 0.5 // = 1/2x generic burn damage
-	wing_types = list(/obj/item/organ/wings/functional/slime)
+	wing_types = list(/obj/item/organ/wings/slime)
 	butcher_replacement = null
+	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/slime_passgrille)
 
 /obj/item/bodypart/chest/jelly/get_butt_sprite()
 	return icon('icons/mob/butts.dmi', BUTT_SPRITE_SLIME)
@@ -112,6 +120,7 @@
 	dmg_overlay_type = null
 	burn_modifier = 0.5 // = 1/2x generic burn damage
 	butcher_replacement = null
+	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/slime_passgrille)
 
 /obj/item/bodypart/arm/right/jelly
 	biological_state = (BIO_FLESH|BIO_BLOODED|BIO_JELLY)
@@ -119,6 +128,7 @@
 	dmg_overlay_type = null
 	burn_modifier = 0.5 // = 1/2x generic burn damage
 	butcher_replacement = null
+	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/slime_passgrille)
 
 /obj/item/bodypart/leg/left/jelly
 	biological_state = (BIO_FLESH|BIO_BLOODED|BIO_JELLY)
@@ -126,6 +136,7 @@
 	dmg_overlay_type = null
 	burn_modifier = 0.5 // = 1/2x generic burn damage
 	butcher_replacement = null
+	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/slime_passgrille)
 
 /obj/item/bodypart/leg/right/jelly
 	biological_state = (BIO_FLESH|BIO_BLOODED|BIO_JELLY)
@@ -133,6 +144,7 @@
 	dmg_overlay_type = null
 	burn_modifier = 0.5 // = 1/2x generic burn damage
 	butcher_replacement = null
+	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/slime_passgrille)
 
 ///SLIME
 /obj/item/bodypart/head/jelly/slime
@@ -251,7 +263,7 @@
 	limb_id = SPECIES_FLYPERSON
 	is_dimorphic = TRUE
 	should_draw_greyscale = FALSE
-	wing_types = list(/obj/item/organ/wings/functional/fly)
+	wing_types = list(/obj/item/organ/wings/fly)
 	bodypart_traits = list(TRAIT_TACKLING_FRAIL_ATTACKER)
 
 /obj/item/bodypart/arm/left/fly
@@ -350,7 +362,7 @@
 	should_draw_greyscale = FALSE
 	dmg_overlay_type = null
 	bodypart_flags = BODYPART_UNHUSKABLE
-	wing_types = list(/obj/item/organ/wings/functional/skeleton)
+	wing_types = list(/obj/item/organ/wings/skeleton)
 	scarrable = FALSE
 	butcher_replacement = null
 

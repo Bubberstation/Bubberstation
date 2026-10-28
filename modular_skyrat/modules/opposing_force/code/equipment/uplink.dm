@@ -65,7 +65,7 @@
 
 /datum/opposing_force_equipment/uplink/custom_announcement
 	name = "Custom Announcement"
-	item_type = /obj/item/device/traitor_announcer
+	item_type = /obj/item/traitor_announcer
 	admin_note = "Ask players to put the message inside the 'Reason' box, the item adminlogs but won't give a chance to preview. Can be VV'd to give more 'uses'."
 	description = "A one-use device that lets you make an announcement tailored to your choice."
 

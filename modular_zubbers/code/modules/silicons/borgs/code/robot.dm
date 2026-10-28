@@ -5,6 +5,9 @@
 	held_rh = 'icons/mob/inhands/pai_item_rh.dmi'
 	held_state = "cat"
 
+/mob/living/silicon/robot/shell
+	cell = /obj/item/stock_parts/power_store/cell/upgraded
+
 //Cyborgs that are being held should act almost as how the AI behaves when carded.
 /mob/living/silicon/robot/mob_pickup(mob/living/user)
 	drop_all_held_items()

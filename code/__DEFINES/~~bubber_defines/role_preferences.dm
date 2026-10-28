@@ -2,7 +2,7 @@
 #define ROLE_OPFOR_CANDIDATE "OPFOR Candidate"
 
 #define ROLE_BORER "Borer"
-#define ROLE_LONE_INFILTRATOR "Lone Infiltrator"
+#define ROLE_SYNDICATE_BOARDER "Syndicate Boarder"
 #define ROLE_MUTANT "Mutated Abomination"
 #define ROLE_CLOCK_CULTIST "Clock Cultist"
 
@@ -20,3 +20,4 @@
 #define ROLE_VASSAL "Ghoul"
 #define ROLE_CHANGELING_ZOMBIE "Changeling Zombie"
 #define ROLE_WIRE_PRIEST "Wire Priest"
+#define ROLE_INFECTED_SYNTHETIC "Hacked Synthetic"

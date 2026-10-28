@@ -222,6 +222,7 @@
 #include "interaction_silicon.dm"
 #include "interaction_structures.dm"
 #include "job_display_order.dm"
+#include "job_icons.dm"
 #include "json_savefile_importing.dm"
 #include "keybinding_init.dm"
 #include "kinetic_crusher.dm"
@@ -230,6 +231,7 @@
 #include "language_transfer.dm"
 #include "leash.dm"
 #include "lesserform.dm"
+#include "light_replacer.dm"
 #include "limbsanity.dm"
 #include "ling_decap.dm"
 #include "liver.dm"
@@ -380,6 +382,7 @@
 #include "~skyrat\nanite_designs.dm"
 #include "~skyrat\opposing_force.dm"
 #include "~skyrat\proteans.dm"
+#include "~zubbers\antag_prompt_timing.dm"
 #include "~zubbers\vitezstvi_turret_flags.dm"
 // SKYRAT EDIT END
 // END_INCLUDE

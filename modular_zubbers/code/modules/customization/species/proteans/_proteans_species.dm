@@ -198,6 +198,7 @@
 		if(species_modsuit.install(module, owner, TRUE))
 			continue
 	species_modsuit.theme.set_up_parts(species_modsuit, species_modsuit.theme.default_skin)
+	species_modsuit.make_indestructible()
 	species_modsuit.update_static_data_for_all_viewers()
 
 /datum/species/protean/proc/unassimilate_modsuit(mob/living/user, forced = FALSE)
@@ -237,6 +238,7 @@
 	species_modsuit.theme = species_modsuit.stored_theme
 	species_modsuit.stored_theme = null
 	species_modsuit.theme.set_up_parts(species_modsuit, species_modsuit.theme.default_skin)
+	species_modsuit.make_indestructible()
 	species_modsuit.name = initial(species_modsuit.name)
 	species_modsuit.desc = initial(species_modsuit.desc)
 	species_modsuit.extended_desc = initial(species_modsuit.extended_desc)
@@ -263,6 +265,7 @@
 
 	species_modsuit.theme = the_theme
 	species_modsuit.theme.set_up_parts(species_modsuit, the_theme.default_skin)
+	species_modsuit.make_indestructible()
 	update_static_data_for_all_viewers()
 
 /datum/species/protean/get_default_mutant_bodyparts()

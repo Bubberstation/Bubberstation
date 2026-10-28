@@ -1,7 +1,6 @@
 /datum/design/diskplantgene
 	name = "Plant Data Disk"
 	desc = "A disk for storing plant genetic data."
-	id = "diskplantgene"
 	build_type = PROTOLATHE
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
@@ -15,7 +14,6 @@
 /datum/design/nitrogen_tank
 	name = "Nitrogen Tank"
 	desc = "An empty nitrogen tank."
-	id = "nitrogen_tank"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/tank/internals/nitrogen/empty
@@ -28,7 +26,6 @@
 * /datum/design/nitrogen_tank_belt
 *	name = "Nitrogen Internals Tank"
 *	desc = "An empty nitrogen tank."
-*	id = "nitrogen_tank_belt"
 *	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 *	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT)
 *	build_path = /obj/item/tank/internals/nitrogen/belt/empty
@@ -41,7 +38,6 @@
 /datum/design/anesthetic_tank
 	name = "Anesthetic Tank"
 	desc = "An empty tank designed specifically for use with anesthetics."
-	id = "anesthetic_tank"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/tank/internals/anesthetic/empty
@@ -53,7 +49,6 @@
 /datum/design/civilian_hud
 	name = "Civilian HUD"
 	desc = "A heads-up display that scans the humanoids around you and displays their ID status. Experts say this has well over 9000 uses."
-	id = "civ_hud"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -68,7 +63,6 @@
 /datum/design/cyberimp_civ_hud
 	name = "Civilian HUD Implant"
 	desc = "These cybernetic eyes will display a civilian HUD over everything you see. Wiggle eyes to control."
-	id = "ci-civhud"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 5 SECONDS
 	//just about half the materials of a sechudimplant but no silver
@@ -86,7 +80,6 @@
 
 /datum/design/umbrella
 	name = "Umbrella"
-	id = "umbrella"
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.75, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.25)
 	transfered_materials = list(/obj/item/umbrella = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5))

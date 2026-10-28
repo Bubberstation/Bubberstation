@@ -3,11 +3,15 @@
 
 /mob/living/simple_animal/hostile/megafauna/dragon/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
-
-/mob/living/simple_animal/hostile/megafauna/dragon/proc/on_move(atom/source, atom/new_loc)
-	SIGNAL_HANDLER
-	for(var/obj/item/food/meat/slab/drakebait in view(src, 1.5)) //Checks if the bait is on, or is next to the Ashdrake
-		qdel(drakebait)// bait is kil
-		new /obj/item/stack/sheet/animalhide/ashdrake(get_turf(src))
-		visible_message(span_notice("[src] accepts your offering."), span_notice("The drake consumes the meat."))
+	AddComponent(/datum/component/egg_layer,\
+		egg_type = /obj/item/stack/sheet/animalhide/ashdrake,\
+		food_types = list(/obj/item/food/meat/slab/drakebait),\
+		feed_messages = list("The drake accepts your offering."),\
+		lay_messages = list(\
+				"shakes its head, letting out a pleased grumble. Dry, old scales fall off harmlessly from its hide.",\
+				"stretches its wings. Some scales shed off, falling into a neat pile.",\
+				"sighs comfortably. The movement of its diaphragm loosens its spare scales, dropping them to the ground below its belly."),\
+		eggs_left = 0,\
+		eggs_added_from_eating = 7,\
+		max_eggs_held = 14,\
+	)

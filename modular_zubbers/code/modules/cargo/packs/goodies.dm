@@ -36,6 +36,13 @@
 	access_view = ACCESS_WEAPONS
 	cost = PAYCHECK_COMMAND * 14 //I'd say it's at odds with the combat shotgun, sustain vs burst and such, but since ss13 favours burst I'll make it a tad cheaper.
 
+/datum/supply_pack/goody/renoster_shotgun_lesslethal
+	name = "Riot Renoster Shotgun Single-Pack"
+	desc = "A common modern shotgun used by Terran Government Police, modified to only fire less-lethal rounds."
+	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/rubber)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 8 //Even cheaper because its only less lethal
+
 /datum/supply_pack/goody/double_barrel
 	cost = PAYCHECK_COMMAND * 10 //1400 is too much considering the combat shotgun is 1500 for 1
 	access_view = ACCESS_WEAPONS
@@ -123,8 +130,8 @@
 
 /datum/supply_pack/goody/shotgun_revolver
 	name = "Bóbr 12 GA Revolver Single-Pack"
-	desc = "Contains 1 civilian-modified Bóbr revolver, chambered in 12 gauge. For when you really want the power of a shotgun in the palm of your hand. Comes with a box of beanbag shells."
-	contains = list(/obj/item/gun/ballistic/revolver/shotgun_revolver/civvie = 1,
+	desc = "Contains 1 Bóbr revolver, chambered in 12 gauge. For when you really want the power of a shotgun in the palm of your hand. Comes with a box of beanbag shells."
+	contains = list(/obj/item/gun/ballistic/revolver/shotgun_revolver = 1,
 	/obj/item/ammo_box/advanced/s12gauge/bean = 1)
 	access_view = ACCESS_WEAPONS
 	cost = PAYCHECK_COMMAND * 20
@@ -191,7 +198,7 @@
 	desc = "Contains one tacticool energy gun, for all your operator needs."
 	cost = PAYCHECK_COMMAND * 6
 	access_view = ACCESS_WEAPONS
-	contains = list(/obj/item/gun/energy/tacticool)
+	contains = list(/obj/item/gun/energy/e_gun/stun/tacticool)
 
 /datum/supply_pack/goody/seclite_implant
 	name = "Seclite Implant"
