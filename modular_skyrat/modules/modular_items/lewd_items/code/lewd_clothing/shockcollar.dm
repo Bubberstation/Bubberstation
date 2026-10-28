@@ -20,7 +20,6 @@
 
 /datum/design/electropack/shockcollar
 	name = "Shockcollar"
-	id = "shockcollar"
 	build_type = AUTOLATHE
 	build_path = /obj/item/electropack/shockcollar
 	materials = list(
