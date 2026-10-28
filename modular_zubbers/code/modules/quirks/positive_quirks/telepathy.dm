@@ -138,17 +138,17 @@
 	if((HAS_TRAIT(target, TRAIT_PSIONIC_DAMPENER)))
 		return FALSE
 
-	if (ishuman(caster))
-		var/mob/living/carbon/human/human_caster = caster
-		if (human_caster.dna.get_mutation(/datum/mutation/telepathy))
-			to_chat(target, span_boldnotice("A psychic presence resounds in your mind: \"[span_purple(message)]\""))
-			if(CHECK_RUNECHAT_PREF(target))
-				target.create_chat_message(target, target.get_selected_language(), message, list("italics")) // it appears over them since they hear it in their head
+	if (caster.has_dna().get_mutation(/datum/mutation/telepathy))
+		to_chat(target, span_boldnotice("A psychic presence resounds in your mind: \"[span_purple(message)]\""))
+		if(CHECK_RUNECHAT_PREF(target))
+			target.create_chat_message(target, target.get_selected_language(), message, list("italics")) // it appears over them since they hear it in their head
 
-			return TRUE
+		return TRUE
 
 	var/range = get_dist(caster, target)
 	for (var/mob/living/creature in range(range, caster))
+		if (creature == caster)
+			continue
 		to_chat(creature, span_boldnotice("[caster]'s voice echoes in your head: \"[span_purple(message)]\""))
 		if(CHECK_RUNECHAT_PREF(creature))
 			creature.create_chat_message(creature, creature.get_selected_language(), message, list("italics")) // it appears over them since they hear it in their head
