@@ -62,7 +62,7 @@
 	icon_state = "pn_welder"
 	toolspeed = 0.25
 
-/obj/item/weldingtool/experimental/bluespace
+/obj/item/weldingtool/experimental/debug
 	name = "bluespace welder"
 	desc = "The welding tool that you shouldn't have. Power of the (bluespace) sun, right on your hip."
 	icon = 'modular_zubbers/icons/obj/tools.dmi'
@@ -76,12 +76,13 @@
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = INDESTRUCTIBLE|LAVA_PROOF|FIRE_PROOF|UNACIDABLE|ACID_PROOF
 	custom_materials = null
+	usesound = SFX_SPARKS
 
 	light_range = 1
 	light_power = 1
 	light_color = LIGHT_COLOR_HALOGEN
 
-/obj/item/weldingtool/experimental/bluespace/process()
+/obj/item/weldingtool/experimental/debug/process()
 	if(get_fuel() <= max_fuel)
 		reagents.add_reagent(/datum/reagent/fuel, 1)
 	..()
