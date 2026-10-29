@@ -6,6 +6,10 @@
 	name = "Pure white"
 	desc = "You feel as if you are looking out at an impossibly large horizion, in the distance you can see marble white pillars in a formal and organizied pattern and they go up, and up, and up until the point where you have to look almost straight up to see some of the ones closest to you, and looking down the hallway you can see onto further than you thought a mere mortal could."
 
+/obj/machinery/conveyor/auto/hardened
+	name = "Hardened conveyor belt"
+	max_integrity = 2000
+
 /turf/open/chasm/true/fakeout/plating//please lord forgive me for my sins
 	name = "plating"
 	icon_state = "plating"
@@ -15,6 +19,14 @@
 
 /turf/open/floor/engine/slowdown
 	slowdown = 3
+
+/obj/structure/sign/flag/wardens
+	name = "The Caoivish Flag"
+	desc = "This flag represents the nation of Caoivish, also known as, the wardens"
+
+/obj/structure/sign/flag/terragov/terragov_marines
+	name = "Terragov Marine Corp Flag"
+	desc = "This flag has the emblem of the TGMC on it, short for Terra Gov Marine Corp"
 
 /turf/open/indestructible/mad_grass
 	name = "perfect grass"
@@ -195,22 +207,6 @@
 	description = "My mind feels secure. It was worth it."
 	mood_change = 31
 
-/obj/effect/spawner/random/maintsrooms/anomalies
-	name = "safe anomaly spawner without bioscramblers"
-	loot = list(
-		/obj/effect/spawner/random/maintsrooms/garbage_or_artifact = 13,
-		/obj/effect/spawner/random/environmentally_safe_anomaly/maintsroom = 25,
-		/obj/effect/spawner/random/maintsrooms/materials = 37,
-		/obj/effect/spawner/random/maintsrooms = 25,
-	)
-
-/obj/effect/spawner/random/environmentally_safe_anomaly/maintsroom
-	name = "safe anomaly spawner without bioscramblers"
-	loot = list(
-		/obj/effect/anomaly/flux = 5,
-		/obj/effect/anomaly/bluespace = 5,
-		/obj/effect/anomaly/hallucination = 5,
-		/obj/effect/anomaly/grav = 5,
-		/obj/effect/anomaly/bioscrambler/docile = 5,
-	)
-	anchor_anomaly = TRUE
+/obj/effect/baseturf_helper/beach/black
+	name = "beach sand baseturf editor"
+	baseturf = /turf/open/floor/black
