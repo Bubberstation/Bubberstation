@@ -24,4 +24,6 @@
 		return
 
 	living_source.investigate_log("was dusted due to leaving their valid areas.", INVESTIGATE_DEATHS)
-	living_source.dust(TRUE, force = TRUE)
+	do_sparks(10, TRUE, living_source, spark_type = /datum/effect_system/basic/spark_spread/quantum)
+	living_source.ghostize
+	qdel(living_source)
