@@ -22,3 +22,4 @@ GLOBAL_LIST_INIT(maintsroomlobby_ambience,list(
 GLOBAL_LIST_INIT(maintsroomeighties_ambience,list(
 	'modular_zubbers/sound/ambiance/maintsroom_ambience/vapor.ogg',
 ))
+//file name is aamaintsroom in order to be higher in the load order than ambience to prevent a bug.
