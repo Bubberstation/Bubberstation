@@ -49,3 +49,6 @@
 //#vibes #lofi #ICouldFallAsleepToThis
 /area/misc/condo/rain
 	ambient_buzz = 'modular_zubbers/sound/ambience/rain_indoor.ogg'
+
+/area/misc/condo/arcade
+	ambient_buzz = 'modular_zubbers/sound/ambience/arcade_ambience.ogg'
