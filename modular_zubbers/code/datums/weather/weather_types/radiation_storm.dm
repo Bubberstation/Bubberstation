@@ -56,3 +56,33 @@
 		do_mutate(human)
 
 	return ..()
+
+//Radstorm mutation resistance OVERRIDE
+
+/datum/weather/rad_storm/weather_act_mob(mob/living/living)
+	if(!prob(mutate_chance))
+		return
+
+	if(!ishuman(living) || HAS_TRAIT(living, TRAIT_GODMODE))
+		return
+
+	var/mob/living/carbon/human/human = living
+	if(!human.can_mutate())
+		return
+
+	if(HAS_TRAIT(human, TRAIT_RAD_RESISTANCE))
+		return
+
+	if(HAS_TRAIT(human, TRAIT_RADIMMUNE))
+		return
+
+	if (SSradiation.wearing_rad_protected_clothing(human))
+		return
+
+	human.random_mutate_unique_identity()
+	human.random_mutate_unique_features()
+
+	if(prob(50))
+		do_mutate(human)
+
+	return ..()
