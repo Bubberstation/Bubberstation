@@ -2,7 +2,7 @@
 /obj/item/slimecross/stabilized/purple/soul
 	name = "Strange comforting rock"
 	desc = "A strange rock that secretes a kind of slime that when smeared on wounds will heal them almost supernaturally, and when placed on your belt will automatically move to said wounds."
-	icon = 'modular_skyrat/master_files/icons/obj/startifacts.dmi'
+	icon = 'modular_zubbers/modules/awaymissions_zubbers/Maintsroom/sprites/startifacts.dmi'
 	worn_icon_state = "polybelt_inactive"
 	icon_state = "soul"
 	colour = COLOR_WHITE
@@ -48,8 +48,8 @@
 
 /obj/item/slimecross/stabilized/yellow/battery
 	name = "Strange electric rock"
-	desc = "A strange rock that feels charged to the touch."
-	icon = 'modular_skyrat/master_files/icons/obj/startifacts.dmi'
+	desc = "A strange rock that feels charged to the touch, fits on your belt."
+	icon = 'modular_zubbers/modules/awaymissions_zubbers/Maintsroom/sprites/startifacts.dmi'
 	worn_icon_state = "polybelt_inactive"
 	icon_state = "battery"
 	colour = COLOR_BLUE_GRAY
@@ -86,8 +86,8 @@
 
 /obj/item/slimecross/stabilized/blue/gravi//extremely strong, no slip from blue but better, speed bonus from light pink but no pacifism and no crit healing, and the movespeed modifier ignore from red.
 	name = "Strange weightless rock"
-	desc = "A strange rock that feels almost completely weightless."
-	icon = 'modular_skyrat/master_files/icons/obj/startifacts.dmi'
+	desc = "A strange rock that feels almost completely weightless, fits on your belt."
+	icon = 'modular_zubbers/modules/awaymissions_zubbers/Maintsroom/sprites/startifacts.dmi'
 	worn_icon_state = "polybelt_inactive"
 	icon_state = "meduza"
 	colour = COLOR_DARK_BROWN
