@@ -87,7 +87,7 @@
 		if(verbose)
 			to_chat(user, span_warning("[target]'s DNA is ruined beyond usability!"))
 		return FALSE
-	if(!ishuman(target) || ismonkey(target))//Absorbing monkeys is entirely possible, but it can cause issues with transforming. That's what lesser form is for anyway!
+	if(!ishuman(target) || ismonkey(target) || !isnull(target?.mind?.key))//Absorbing monkeys is entirely possible, but it can cause issues with transforming. That's what lesser form is for anyway!
 		if(verbose)
 			to_chat(user, span_warning("We could gain no benefit from absorbing a lesser creature."))
 		return FALSE
