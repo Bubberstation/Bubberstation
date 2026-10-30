@@ -48,4 +48,4 @@
 	damage = 40
 	armour_penetration = 30
 	wound_bonus = 10
-	demolition_mod = 1.8
+	demolition_mod = 2
