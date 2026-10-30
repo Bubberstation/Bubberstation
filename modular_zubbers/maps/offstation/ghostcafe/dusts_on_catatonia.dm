@@ -38,7 +38,7 @@
 /datum/element/dusts_on_catatonia/proc/on_player_left_body(datum/source, mob/living/old_body, datum/mind/swapping)
 	remove_player(old_body)
 
-/datum/element/dusts_on_catatonia/proc/remove_player(attached)
+/datum/element/dusts_on_catatonia/proc/remove_player(mob/living/attached)
 	attached.investigate_log("was deleted due to no longer being linked to a player or ghost.", INVESTIGATE_DEATHS)
 	do_sparks(10, TRUE, attached, spark_type = /datum/effect_system/basic/spark_spread/quantum)
 	attached.ghostize
