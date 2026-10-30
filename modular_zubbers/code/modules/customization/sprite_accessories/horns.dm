@@ -124,11 +124,11 @@
 	name = "Mutant Lizard (Inverted)"
 	icon_state = "deathclawinverted"
 
-/datum/sprite_accessory/horns/bubber/fishtype
+/datum/sprite_accessory/horns/bubber/shieldguard
 	name = "Shieldguard"
 	icon_state = "shieldguard"
 
-/datum/sprite_accessory/horns/bubber/bifurcated
+/datum/sprite_accessory/horns/bubber/ilkhan
 	name = "Ilkhan"
 	icon_state = "ilkhan"
 
