@@ -24,6 +24,9 @@
 	icon_angle = 45
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
+	hitsound = 'sound/items/weapons/bladeslice.ogg'
+	attack_verb_continuous = list("reaps", "judges", "rends")
+	attack_verb_simple = list("reap", "judge", "rend")
 
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	obj_flags = UNIQUE_RENAME
@@ -73,18 +76,17 @@
 
 	if(essence == MODE_DEATH)
 		user.do_attack_animation(target)
-		to_chat(target, span_danger("You feel something cut through you. Your life essence fades as your soul leaves your body. You have been reaped."))
+		to_chat(target, span_danger("You feel a silent blade cut through you, followed by an eerie stillness. Your life essence fades as your soul is rent from your body, and harvested by the scythe."))
 		target.death()
-		target.investigate_log("has been reaped.", INVESTIGATE_DEATHS)
 
 	if(essence == MODE_LIFE)
 		user.do_attack_animation(target)
 		target.revive(ADMIN_HEAL_ALL, force_grab_ghost = TRUE)
-		to_chat(target, span_notice("You feel something cut through you. Your life essence returns as your soul is brought back to your body. You have been restored."))
+		to_chat(target, span_notice("You feel something cut through you, but you bear no wounds. What life essence has faded from you returns as your body and soul are restored."))
 
 	if(essence == MODE_TIMECUTTER)
 		user.do_attack_animation(target)
-		to_chat(target, span_danger("You feel something cut through you. Your life essence halts in place as your soul is severed from the timeline. You have been corrected."))
+		to_chat(target, span_danger("You feel something cut through you. Your body and essence halts as your ears are doused in hollow ringing; You are being slowly severed from the timeline."))
 		new /obj/structure/chrono_field(target.loc, target)
 
 	effect = FALSE
