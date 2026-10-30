@@ -6,7 +6,7 @@
 	category = EVENT_CATEGORY_INVASION
 	description = "A single nuclear operative assaults the station."
 
-/datum/round_event_control/operative/can_spawn_event(players_amt, allow_magic)
+/datum/round_event_control/operative/can_spawn_event(players_amt, allow_magic, log_for_admins = FALSE)
 	return ..() && SSdynamic.antag_events_enabled
 
 /datum/round_event/ghost_role/operative

@@ -13,7 +13,7 @@
 	/// List of servers on the station
 	var/list/datum/weakref/active_servers = list()
 
-/datum/round_event_control/bitrunning_glitch/can_spawn_event(players_amt, allow_magic = FALSE)
+/datum/round_event_control/bitrunning_glitch/can_spawn_event(players_amt, allow_magic = FALSE, log_for_admins = FALSE)
 	. = ..()
 	if(!.)
 		return .
