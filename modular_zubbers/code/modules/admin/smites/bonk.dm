@@ -6,4 +6,4 @@
 	. = ..()
 	playsound(target, 'modular_zubbers/code/modules/emotes/sound/effects/bonk.ogg', 100, 1)
 	target.AddElement(/datum/element/squish, 30 SECONDS)
-	to_chat(target, "<span class='warning big'>Bonk.</span>")
+	to_chat(target, span_warning(span_big("Bonk.")))
