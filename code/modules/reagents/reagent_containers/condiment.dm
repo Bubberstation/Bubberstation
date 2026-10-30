@@ -25,7 +25,7 @@
 
 /obj/item/reagent_containers/condiment/update_icon_state()
 	. = ..()
-	if(length(reagents.reagent_list)) // BUBBER EDIT CHANGE - FIXES A RUNTIME I LITERALLY CANNOT FIGURE OUT IM SORRY - ORIGINAL: reagents.reagent_list.len
+	if(length(reagents.reagent_list))
 		if(icon_preempty)
 			icon_state = icon_preempty
 			icon_preempty = null

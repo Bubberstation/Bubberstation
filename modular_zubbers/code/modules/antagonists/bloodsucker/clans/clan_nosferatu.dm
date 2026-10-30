@@ -35,7 +35,7 @@
 
 /datum/bloodsucker_clan/nosferatu/proc/can_ventcrawl(mob/living/carbon/human/owner_mob, atom/vent, provide_feedback)
 	SIGNAL_HANDLER
-	for(var/item in owner_mob.held_items)
+	for(var/item in owner_mob.get_held_items())
 		if(isnull(item))
 			continue
 		if(provide_feedback)

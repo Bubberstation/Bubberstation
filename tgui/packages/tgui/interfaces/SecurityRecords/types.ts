@@ -26,6 +26,7 @@ export type SecurityRecord = {
   rank: string;
   species: string;
   trim: string;
+  job_icon: string;
   wanted_status: string;
   voice: string;
   // SKYRAT EDIT START - RP Records

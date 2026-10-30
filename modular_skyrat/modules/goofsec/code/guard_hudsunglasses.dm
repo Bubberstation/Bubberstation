@@ -693,9 +693,8 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 		return TRUE
 	if(their_job?.job_flags & JOB_HEAD_OF_STAFF)
 		return FALSE
-	for(var/obj/item/held as anything in suspect.held_items)
-		if(isgun(held))
-			return TRUE
+	for(var/obj/item/held as anything in suspect.get_held_items_of_type(/obj/item/gun))
+		return TRUE
 	return FALSE
 
 /datum/component/gun_spotter/process(seconds_per_tick)

@@ -40,7 +40,7 @@
 		target_ref = WEAKREF(owner.pulling)
 		return TRUE
 
-	var/blood_bag = locate(/obj/item/reagent_containers/blood) in user.held_items
+	var/blood_bag = user.is_holding_item_of_type(/obj/item/reagent_containers/blood)
 	if(!blood_bag)
 		owner.balloon_alert(owner, "blood bag needed!")
 		return FALSE
