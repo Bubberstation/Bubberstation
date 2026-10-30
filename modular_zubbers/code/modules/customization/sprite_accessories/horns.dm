@@ -123,3 +123,12 @@
 /datum/sprite_accessory/horns/bubber/deathclawinverted
 	name = "Mutant Lizard (Inverted)"
 	icon_state = "deathclawinverted"
+
+/datum/sprite_accessory/horns/bubber/fishtype
+	name = "Fish-Type"
+	icon_state = "fishtype"
+
+/datum/sprite_accessory/horns/bubber/bifurcated
+	name = "Bifurcated"
+	icon_state = "bifurcated"
+
