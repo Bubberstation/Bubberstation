@@ -263,3 +263,15 @@
 		/obj/item/gun/grenadelauncher,
 		/obj/item/storage/box/flashbangs,
 	)
+
+/datum/supply_pack/security/armory/antimatcrate
+	name = "Wylom Anti-Material Rifle Crate"
+	desc = "Do you have a hard target that you need dead? That ion gun not stopping the bad guy with a mech? Buy this to aquire a singular Wylom, with two spare magazines."
+	cost = 7500
+	contains = list(
+		/obj/item/gun/ballistic/automatic/wylom,
+		/obj/item/ammo_box/magazine/wylom,
+		/obj/item/ammo_box/magazine/wylom,
+	)
+	crate_name = "AMR Crate"
+	access_view = ACCESS_ARMORY
