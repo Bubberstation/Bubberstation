@@ -36,6 +36,13 @@
 	access_view = ACCESS_WEAPONS
 	cost = PAYCHECK_COMMAND * 14 //I'd say it's at odds with the combat shotgun, sustain vs burst and such, but since ss13 favours burst I'll make it a tad cheaper.
 
+/datum/supply_pack/goody/renoster_shotgun_lesslethal
+	name = "Riot Renoster Shotgun Single-Pack"
+	desc = "A common modern shotgun used by Terran Government Police, modified to only fire less-lethal rounds."
+	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/rubber)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 8 //Even cheaper because its only less lethal
+
 /datum/supply_pack/goody/double_barrel
 	cost = PAYCHECK_COMMAND * 10 //1400 is too much considering the combat shotgun is 1500 for 1
 	access_view = ACCESS_WEAPONS
