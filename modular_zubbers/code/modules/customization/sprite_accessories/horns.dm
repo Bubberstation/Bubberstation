@@ -125,10 +125,10 @@
 	icon_state = "deathclawinverted"
 
 /datum/sprite_accessory/horns/bubber/fishtype
-	name = "Fish-Type"
-	icon_state = "fishtype"
+	name = "Shieldguard"
+	icon_state = "shieldguard"
 
 /datum/sprite_accessory/horns/bubber/bifurcated
-	name = "Bifurcated"
-	icon_state = "bifurcated"
+	name = "Ilkhan"
+	icon_state = "ilkhan"
 
