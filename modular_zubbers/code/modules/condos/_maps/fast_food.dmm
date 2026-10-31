@@ -4,13 +4,13 @@
 	dir = 4
 	},
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
 "af" = (
 /obj/machinery/door/airlock{
 	name = "Locker Room Restroom"
 	},
 /turf/open/floor/plating,
-/area/misc/condo)
+/area/misc/condo/rain)
 "ag" = (
 /obj/effect/light_emitter/fake_outdoors,
 /obj/effect/turf_decal/trimline/white/line{
@@ -22,7 +22,7 @@
 	alpha = 100
 	},
 /turf/open/floor/asphalt,
-/area/misc/condo)
+/area/misc/condo/rain)
 "ah" = (
 /obj/item/storage/basket/easter,
 /obj/effect/abstract/marker{
@@ -30,25 +30,56 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/misc/asteroid/moon/standard_air,
-/area/misc/condo)
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1,
+/area/misc/condo/rain)
+"ao" = (
+/obj/effect/abstract/marker{
+	icon = 'modular_skyrat/master_files/icons/obj/skyscraper/rain.dmi';
+	icon_state = "rain";
+	alpha = 100
+	},
+/obj/structure/broken_flooring/singular/directional/south{
+	color = "#dde1d6"
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	color = "#646761";
+	dir = 1
+	},
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "aA" = (
 /obj/effect/turf_decal/siding/dark,
 /obj/machinery/door/window,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "bs" = (
 /obj/machinery/light/small/dim/directional/west,
 /turf/open/floor/iron/white,
-/area/misc/condo)
+/area/misc/condo/rain)
 "bu" = (
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
-/area/misc/condo)
+/area/misc/condo/rain)
 "bA" = (
 /obj/structure/urinal/directional/north,
 /obj/machinery/light/small/broken/directional/south,
 /turf/open/floor/iron/white,
-/area/misc/condo)
+/area/misc/condo/rain)
+"bD" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/obj/effect/abstract/marker{
+	icon = 'modular_skyrat/master_files/icons/obj/skyscraper/rain.dmi';
+	icon_state = "rain";
+	alpha = 100
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/siding/thinplating_new{
+	color = "#646761"
+	},
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "bH" = (
 /obj/item/chair/plastic,
 /obj/item/chair/plastic{
@@ -65,8 +96,8 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/misc/asteroid/moon/standard_air,
-/area/misc/condo)
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "bJ" = (
 /obj/item/paper/crumpled,
 /obj/effect/abstract/marker{
@@ -74,22 +105,22 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/misc/asteroid/moon/standard_air,
-/area/misc/condo)
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "bM" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/dark/corner,
 /obj/item/rag,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "bR" = (
 /obj/machinery/vending/boozeomat/cafe,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "dj" = (
 /obj/structure/window/green_glass_pane,
 /turf/open/floor/plating,
-/area/misc/condo)
+/area/misc/condo/rain)
 "dl" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/dark{
@@ -98,13 +129,13 @@
 /obj/item/clothing/suit/apron/chef,
 /obj/item/clothing/head/utility/chefhat,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "dp" = (
 /obj/machinery/vending/dinnerware{
 	shut_up = 1
 	},
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "er" = (
 /obj/structure/fence{
 	dir = 4
@@ -114,8 +145,11 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/misc/asteroid/moon/standard_air,
-/area/misc/condo)
+/obj/effect/turf_decal/siding/thinplating_new{
+	color = "#646761"
+	},
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "eG" = (
 /obj/machinery/griddle,
 /obj/item/book/manual/chef_recipes{
@@ -123,7 +157,7 @@
 	pixel_y = 6
 	},
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "eU" = (
 /obj/structure/closet/secure_closet/freezer/fridge{
 	locked = 0
@@ -138,18 +172,18 @@
 /obj/item/storage/box/ingredients/wildcard,
 /obj/item/storage/box/ingredients/wildcard,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
-/area/misc/condo)
+/area/misc/condo/rain)
 "eX" = (
 /obj/structure/chair/sofa/right/maroon,
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
 	},
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "fa" = (
 /obj/structure/chair/sofa/left/maroon,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "fh" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/dark/inner_corner{
@@ -157,7 +191,7 @@
 	},
 /obj/item/reagent_containers/cup/glass/waterbottle/tea/strawberry,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "fo" = (
 /obj/structure/closet/secure_closet/freezer/fridge{
 	locked = 0
@@ -177,7 +211,7 @@
 /obj/effect/turf_decal/siding/white,
 /obj/structure/window/reinforced/survival_pod,
 /turf/open/floor/iron/dark/textured,
-/area/misc/condo)
+/area/misc/condo/rain)
 "fJ" = (
 /obj/effect/turf_decal/trimline/white/line{
 	dir = 4
@@ -188,20 +222,20 @@
 	alpha = 100
 	},
 /turf/open/floor/asphalt,
-/area/misc/condo)
+/area/misc/condo/rain)
 "fK" = (
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
 "fR" = (
 /obj/effect/decal/cleanable/food/tomato_smudge,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "gp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
-/area/misc/condo)
+/area/misc/condo/rain)
 "gM" = (
 /obj/effect/turf_decal/siding/thinplating_new/terracotta,
 /obj/item/disk/nuclear/fake{
@@ -214,11 +248,11 @@
 	alpha = 100
 	},
 /turf/open/floor/asphalt,
-/area/misc/condo)
+/area/misc/condo/rain)
 "hg" = (
 /obj/structure/decorative/shelf/milkjugs,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "hq" = (
 /obj/structure/fence,
 /obj/effect/abstract/marker{
@@ -227,7 +261,7 @@
 	alpha = 100
 	},
 /turf/open/floor/asphalt,
-/area/misc/condo)
+/area/misc/condo/rain)
 "hL" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/dark{
@@ -239,12 +273,12 @@
 	pixel_x = 9
 	},
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "hM" = (
 /obj/structure/table/reinforced,
 /obj/machinery/microwave,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "it" = (
 /obj/structure/table,
 /obj/item/reagent_containers/condiment/mayonnaise{
@@ -256,12 +290,12 @@
 	pixel_x = -2
 	},
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "iC" = (
 /obj/effect/turf_decal/siding/dark,
 /obj/machinery/light/directional/south,
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
 "iF" = (
 /obj/effect/turf_decal/skyrat_decals/misc/handicapped,
 /obj/effect/abstract/marker{
@@ -270,7 +304,7 @@
 	alpha = 100
 	},
 /turf/open/floor/asphalt,
-/area/misc/condo)
+/area/misc/condo/rain)
 "iP" = (
 /obj/effect/light_emitter/fake_outdoors,
 /obj/effect/abstract/marker{
@@ -278,8 +312,8 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/floor/iron/textured_large,
-/area/misc/condo)
+/turf/open/floor/concrete/slab_1,
+/area/misc/condo/rain)
 "iR" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/glass,
@@ -288,15 +322,15 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/misc/asteroid/moon/standard_air,
-/area/misc/condo)
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "iT" = (
 /obj/structure/toilet{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/cum,
 /turf/open/floor/iron/white,
-/area/misc/condo)
+/area/misc/condo/rain)
 "jI" = (
 /obj/effect/turf_decal/siding/thinplating_new/terracotta,
 /obj/effect/abstract/marker{
@@ -305,15 +339,15 @@
 	alpha = 100
 	},
 /turf/open/floor/asphalt,
-/area/misc/condo)
+/area/misc/condo/rain)
 "jL" = (
 /obj/machinery/vending/wardrobe/chef_wardrobe/ghost_cafe,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "ks" = (
 /obj/machinery/door/morgue,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
-/area/misc/condo)
+/area/misc/condo/rain)
 "kz" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -323,11 +357,11 @@
 	alpha = 100
 	},
 /turf/open/floor/asphalt,
-/area/misc/condo)
+/area/misc/condo/rain)
 "ld" = (
 /obj/structure/decorative/shelf/soda_milk,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "lv" = (
 /obj/structure/mop_bucket/janitorialcart{
 	dir = 4
@@ -337,17 +371,17 @@
 	},
 /obj/machinery/light/directional/north,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "lO" = (
 /obj/item/knife/butcher,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
-/area/misc/condo)
+/area/misc/condo/rain)
 "lV" = (
 /obj/effect/turf_decal/siding/dark,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/directional/south,
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
 "mm" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/trash/popcorn,
@@ -356,11 +390,11 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/misc/asteroid/moon/standard_air,
-/area/misc/condo)
+/turf/open/floor/concrete/slab_2,
+/area/misc/condo/rain)
 "my" = (
 /turf/open/floor/iron/white,
-/area/misc/condo)
+/area/misc/condo/rain)
 "nu" = (
 /obj/structure/closet/secure_closet/freezer/fridge{
 	locked = 0
@@ -380,7 +414,7 @@
 /obj/item/reagent_containers/condiment/soymilk,
 /obj/machinery/light/directional/west,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
-/area/misc/condo)
+/area/misc/condo/rain)
 "nE" = (
 /obj/effect/spawner/random/trash/crushed_can,
 /obj/effect/abstract/marker{
@@ -388,19 +422,19 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/misc/asteroid/moon/standard_air,
-/area/misc/condo)
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "nW" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/dark,
 /obj/item/ceramic/tray,
 /obj/item/food/cheesyfries,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "oL" = (
 /obj/item/chair,
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
 "oU" = (
 /obj/structure/fence,
 /obj/effect/abstract/marker{
@@ -408,8 +442,8 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/floor/iron/textured_large,
-/area/misc/condo)
+/turf/open/floor/concrete/slab_1,
+/area/misc/condo/rain)
 "pC" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/dark/corner{
@@ -417,27 +451,65 @@
 	},
 /obj/machinery/coffeemaker/impressa,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "pS" = (
 /obj/structure/table,
 /obj/item/newspaper,
 /obj/structure/sign/poster/contraband/syndiemoth/directional/east,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
+"pU" = (
+/obj/effect/abstract/marker{
+	icon = 'modular_skyrat/master_files/icons/obj/skyscraper/rain.dmi';
+	icon_state = "rain";
+	alpha = 100
+	},
+/obj/structure/broken_flooring/singular/directional/south{
+	color = "#dde1d6"
+	},
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "qa" = (
 /obj/machinery/light/directional/north,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
-/area/misc/condo)
+/area/misc/condo/rain)
 "qh" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
 /obj/machinery/light/directional/north,
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
 "qA" = (
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
+"rV" = (
+/obj/effect/abstract/marker{
+	icon = 'modular_skyrat/master_files/icons/obj/skyscraper/rain.dmi';
+	icon_state = "rain";
+	alpha = 100
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/broken_flooring/singular/directional/south{
+	color = "#dde1d6"
+	},
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
+"si" = (
+/obj/effect/abstract/marker{
+	icon = 'modular_skyrat/master_files/icons/obj/skyscraper/rain.dmi';
+	icon_state = "rain";
+	alpha = 100
+	},
+/obj/structure/broken_flooring/singular/directional/east{
+	color = "#dde1d6"
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	color = "#646761";
+	dir = 1
+	},
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "sE" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/abstract/marker{
@@ -445,21 +517,33 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/floor/iron/textured_large,
-/area/misc/condo)
+/turf/open/floor/concrete/slab_1,
+/area/misc/condo/rain)
 "sF" = (
 /obj/structure/table,
 /obj/effect/turf_decal/siding/dark,
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
+"ts" = (
+/obj/effect/abstract/marker{
+	icon = 'modular_skyrat/master_files/icons/obj/skyscraper/rain.dmi';
+	icon_state = "rain";
+	alpha = 100
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/broken_flooring/singular/directional/east{
+	color = "#dde1d6"
+	},
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "tC" = (
 /obj/machinery/light/small/dim/directional/south,
 /turf/open/floor/plating,
-/area/misc/condo)
+/area/misc/condo/rain)
 "tD" = (
 /turf/closed/indestructible/normal_wall,
-/area/misc/condo)
+/area/misc/condo/rain)
 "tG" = (
 /obj/effect/light_emitter/fake_outdoors,
 /obj/effect/abstract/marker{
@@ -467,48 +551,43 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/misc/asteroid/moon/standard_air,
-/area/misc/condo)
+/obj/structure/fence/end{
+	dir = 4
+	},
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "tH" = (
 /obj/structure/chair/stool/bar{
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/misc/condo)
+/area/misc/condo/rain)
 "ua" = (
 /obj/structure/kitchenspike,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
-/area/misc/condo)
-"un" = (
-/obj/effect/abstract/marker{
-	icon = 'modular_skyrat/master_files/icons/obj/skyscraper/rain.dmi';
-	icon_state = "rain";
-	alpha = 100
-	},
-/turf/open/floor/iron/textured_large,
-/area/misc/condo)
+/area/misc/condo/rain)
 "uC" = (
 /obj/machinery/light/small/dim/directional/south,
 /turf/open/floor/iron/white,
-/area/misc/condo)
+/area/misc/condo/rain)
 "uS" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
 "uT" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
 	},
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "vt" = (
 /obj/structure/chair/stool/bar{
 	dir = 1
 	},
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
 "vv" = (
 /obj/item/paper/crumpled,
 /obj/effect/abstract/marker{
@@ -517,7 +596,7 @@
 	alpha = 100
 	},
 /turf/open/floor/asphalt,
-/area/misc/condo)
+/area/misc/condo/rain)
 "vz" = (
 /obj/item/trash/cheesie,
 /obj/effect/abstract/marker{
@@ -526,12 +605,23 @@
 	alpha = 100
 	},
 /turf/open/floor/asphalt,
-/area/misc/condo)
+/area/misc/condo/rain)
+"vV" = (
+/obj/effect/abstract/marker{
+	icon = 'modular_skyrat/master_files/icons/obj/skyscraper/rain.dmi';
+	icon_state = "rain";
+	alpha = 100
+	},
+/obj/structure/broken_flooring/singular/directional/east{
+	color = "#dde1d6"
+	},
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "ws" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
 "wA" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/beakers/bluespace,
@@ -541,7 +631,7 @@
 /obj/item/coffee_cartridge/decaf,
 /obj/item/mop,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "xe" = (
 /obj/item/reagent_containers/condiment/pack/mayonnaise,
 /obj/effect/abstract/marker{
@@ -549,8 +639,11 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/misc/asteroid/moon/standard_air,
-/area/misc/condo)
+/obj/structure/broken_flooring/singular/directional/south{
+	color = "#dde1d6"
+	},
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "xh" = (
 /obj/structure/chair/sofa/left/maroon{
 	dir = 1
@@ -559,7 +652,7 @@
 	dir = 8
 	},
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "xo" = (
 /obj/structure/table,
 /obj/effect/turf_decal/siding/dark{
@@ -570,33 +663,42 @@
 	pixel_x = 8
 	},
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "xO" = (
 /obj/machinery/door/morgue,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
-/area/misc/condo)
+/area/misc/condo/rain)
 "yd" = (
 /obj/machinery/chem_master/condimaster{
 	name = "CondiMaster Neo"
 	},
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "yp" = (
 /obj/structure/table,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "yw" = (
 /obj/structure/chair/stool/bar,
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
+"yP" = (
+/obj/effect/abstract/marker{
+	icon = 'modular_skyrat/master_files/icons/obj/skyscraper/rain.dmi';
+	icon_state = "rain";
+	alpha = 100
+	},
+/obj/machinery/light/small/red/dim/directional/east,
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "zO" = (
 /obj/effect/turf_decal/siding/dark/inner_corner{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Ao" = (
 /obj/structure/fence{
 	dir = 4
@@ -607,18 +709,18 @@
 	alpha = 100
 	},
 /turf/open/floor/asphalt,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Ap" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Ar" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
 	},
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
 "AM" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/dark/inner_corner,
@@ -626,20 +728,20 @@
 	desc = "That's the name of a horse I used to own, Ma'am."
 	},
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "AN" = (
 /obj/machinery/deepfryer,
 /obj/machinery/light/directional/west,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "AR" = (
 /obj/item/reagent_containers/condiment/pack/ketchup,
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Bj" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Bo" = (
 /obj/item/clothing/head/cone,
 /obj/effect/abstract/marker{
@@ -648,7 +750,7 @@
 	alpha = 100
 	},
 /turf/open/floor/asphalt,
-/area/misc/condo)
+/area/misc/condo/rain)
 "BX" = (
 /obj/structure/closet/crate/trashcart,
 /obj/effect/abstract/marker{
@@ -656,8 +758,8 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/misc/asteroid/moon/standard_air,
-/area/misc/condo)
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "BZ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/abstract/marker{
@@ -665,8 +767,8 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/misc/asteroid/moon/standard_air,
-/area/misc/condo)
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "Cg" = (
 /obj/effect/spawner/random/vending/colavend,
 /obj/effect/abstract/marker{
@@ -674,8 +776,8 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/misc/asteroid/moon/standard_air,
-/area/misc/condo)
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "CQ" = (
 /obj/effect/spawner/random/vending/snackvend,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -684,20 +786,21 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/misc/asteroid/moon/standard_air,
-/area/misc/condo)
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "Ef" = (
 /obj/machinery/door/morgue,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Et" = (
 /obj/effect/abstract/marker{
 	icon = 'modular_skyrat/master_files/icons/obj/skyscraper/rain.dmi';
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/misc/asteroid/moon/standard_air,
-/area/misc/condo)
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "Ew" = (
 /obj/effect/spawner/random/trash/crushed_can,
 /obj/effect/abstract/marker{
@@ -706,7 +809,7 @@
 	alpha = 100
 	},
 /turf/open/floor/asphalt,
-/area/misc/condo)
+/area/misc/condo/rain)
 "EC" = (
 /obj/structure/statue/bananium/clown{
 	icon = 'icons/mob/rideables/vehicles.dmi';
@@ -720,18 +823,18 @@
 	alpha = 100
 	},
 /turf/open/floor/asphalt,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Fl" = (
 /obj/effect/turf_decal/siding/dark,
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
 "FB" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
 	},
 /obj/machinery/light/directional/west,
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
 "FL" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/dark{
@@ -739,7 +842,7 @@
 	},
 /obj/item/reagent_containers/cup/coffeepot/bluespace,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "FM" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -748,8 +851,8 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/floor/iron/textured_large,
-/area/misc/condo)
+/turf/open/floor/concrete/slab_1,
+/area/misc/condo/rain)
 "Gt" = (
 /obj/structure/closet/secure_closet/freezer/fridge{
 	locked = 0
@@ -764,12 +867,20 @@
 /obj/item/storage/fancy/egg_box,
 /obj/item/storage/fancy/egg_box,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Gz" = (
 /obj/structure/chair/sofa/left/maroon,
 /obj/machinery/light/directional/east,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
+"GD" = (
+/obj/effect/abstract/marker{
+	icon = 'modular_skyrat/master_files/icons/obj/skyscraper/rain.dmi';
+	icon_state = "rain";
+	alpha = 100
+	},
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "GZ" = (
 /obj/structure/closet/secure_closet/freezer/fridge{
 	locked = 0
@@ -784,17 +895,17 @@
 /obj/effect/turf_decal/siding/white,
 /obj/machinery/light/directional/north,
 /turf/open/floor/iron/dark/textured,
-/area/misc/condo)
+/area/misc/condo/rain)
 "HN" = (
 /obj/structure/chair/sofa/right/maroon{
 	dir = 8
 	},
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "HQ" = (
 /obj/effect/light_emitter/fake_outdoors,
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Iq" = (
 /obj/structure/chair/sofa/left/maroon{
 	dir = 8
@@ -803,21 +914,21 @@
 	dir = 8
 	},
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Jp" = (
 /obj/structure/table,
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
 	},
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "JB" = (
 /obj/machinery/jukebox,
 /obj/effect/turf_decal/siding/dark/inner_corner{
 	dir = 1
 	},
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
 "JS" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/dark{
@@ -830,7 +941,7 @@
 	pixel_x = 6
 	},
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Kk" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/bed/maint,
@@ -842,17 +953,17 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/misc/asteroid/moon/standard_air,
-/area/misc/condo)
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "Kq" = (
 /obj/structure/falsewall,
 /turf/open/floor/plating,
-/area/misc/condo)
+/area/misc/condo/rain)
 "KH" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/dark/inner_corner,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "KY" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
@@ -860,7 +971,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/sign/poster/official/dick_gum/directional/north,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "LA" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -869,8 +980,8 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/misc/asteroid/moon/standard_air,
-/area/misc/condo)
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "LE" = (
 /obj/structure/chair/stool/bar{
 	dir = 1
@@ -878,7 +989,20 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
-/area/misc/condo)
+/area/misc/condo/rain)
+"LW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/abstract/marker{
+	icon = 'modular_skyrat/master_files/icons/obj/skyscraper/rain.dmi';
+	icon_state = "rain";
+	alpha = 100
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	color = "#646761";
+	dir = 1
+	},
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "Mw" = (
 /obj/structure/mirror/directional/west,
 /obj/effect/decal/cleanable/dirt,
@@ -888,15 +1012,15 @@
 	pixel_x = -16
 	},
 /turf/open/floor/iron/white,
-/area/misc/condo)
+/area/misc/condo/rain)
 "MG" = (
 /obj/machinery/oven/range,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Nc" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Nz" = (
 /obj/structure/fence/corner{
 	dir = 8
@@ -907,7 +1031,7 @@
 	alpha = 100
 	},
 /turf/open/floor/asphalt,
-/area/misc/condo)
+/area/misc/condo/rain)
 "NC" = (
 /obj/item/trash/raisins,
 /obj/effect/abstract/marker{
@@ -916,35 +1040,35 @@
 	alpha = 100
 	},
 /turf/open/floor/asphalt,
-/area/misc/condo)
+/area/misc/condo/rain)
 "NF" = (
 /obj/effect/turf_decal/siding/dark,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
 "NR" = (
 /obj/structure/mop_bucket,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "NS" = (
 /obj/structure/toilet{
 	dir = 1
 	},
 /turf/open/floor/iron/white,
-/area/misc/condo)
+/area/misc/condo/rain)
 "NY" = (
 /obj/structure/sink/kitchen/directional/south,
 /obj/effect/mapping_helpers/broken_floor,
 /obj/item/lead_pipe,
 /turf/open/floor/plating,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Og" = (
 /obj/structure/toiletbong{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/white,
-/area/misc/condo)
+/area/misc/condo/rain)
 "On" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/dark{
@@ -953,14 +1077,14 @@
 /obj/item/ceramic/tray,
 /obj/item/food/burger,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "OF" = (
 /obj/structure/chair/stool/bar,
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
 	},
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
 "OG" = (
 /obj/structure/table/reinforced,
 /obj/item/kitchen/rollingpin,
@@ -970,12 +1094,15 @@
 /obj/item/coffee_cartridge/bootleg,
 /obj/item/coffee_cartridge/bootleg,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Pq" = (
 /obj/structure/table,
 /obj/item/reagent_containers/condiment/pack/ketchup,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
+"Py" = (
+/turf/closed/indestructible/hoteldoor/fakedoor,
+/area/misc/condo/rain)
 "PP" = (
 /obj/structure/fence,
 /obj/effect/abstract/marker{
@@ -983,32 +1110,44 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/misc/asteroid/moon/standard_air,
-/area/misc/condo)
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "PQ" = (
 /obj/structure/chair/stool/bar{
 	dir = 8
 	},
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Qa" = (
 /obj/structure/chair/sofa/right/maroon{
 	dir = 1
 	},
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
+"Qq" = (
+/obj/effect/abstract/marker{
+	icon = 'modular_skyrat/master_files/icons/obj/skyscraper/rain.dmi';
+	icon_state = "rain";
+	alpha = 100
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	color = "#646761";
+	dir = 1
+	},
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "Rh" = (
 /obj/structure/chair/sofa/left/maroon{
 	dir = 4
 	},
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Rp" = (
 /obj/item/reagent_containers/syringe/contraband/fentanyl,
 /obj/structure/urinal/directional/north,
 /obj/machinery/light/small/dim/directional/south,
 /turf/open/floor/iron/white,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Rv" = (
 /obj/structure/sink/kitchen/directional/south{
 	dir = 4;
@@ -1017,7 +1156,7 @@
 	},
 /obj/machinery/light/directional/west,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "RB" = (
 /obj/effect/decal/cleanable/glass,
 /obj/effect/abstract/marker{
@@ -1025,8 +1164,8 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/misc/asteroid/moon/standard_air,
-/area/misc/condo)
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "RG" = (
 /obj/effect/light_emitter/fake_outdoors,
 /obj/effect/abstract/marker{
@@ -1035,22 +1174,44 @@
 	alpha = 100
 	},
 /turf/open/floor/asphalt,
-/area/misc/condo)
+/area/misc/condo/rain)
 "RL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/urinal/directional/north,
 /turf/open/floor/iron/white,
-/area/misc/condo)
+/area/misc/condo/rain)
+"RT" = (
+/obj/effect/abstract/marker{
+	icon = 'modular_skyrat/master_files/icons/obj/skyscraper/rain.dmi';
+	icon_state = "rain";
+	alpha = 100
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/concrete/slab_1,
+/area/misc/condo/rain)
 "Sj" = (
 /obj/effect/turf_decal/siding/dark/inner_corner{
 	dir = 8
 	},
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
+"Sl" = (
+/obj/effect/spawner/random/trash/crushed_can,
+/obj/effect/abstract/marker{
+	icon = 'modular_skyrat/master_files/icons/obj/skyscraper/rain.dmi';
+	icon_state = "rain";
+	alpha = 100
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	color = "#646761";
+	dir = 1
+	},
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "Sn" = (
 /obj/structure/reagent_dispensers/cooking_oil,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
-/area/misc/condo)
+/area/misc/condo/rain)
 "SB" = (
 /obj/structure/table,
 /obj/effect/turf_decal/siding/dark{
@@ -1058,23 +1219,23 @@
 	},
 /obj/item/reagent_containers/cup/soda_cans/pwr_game,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "SQ" = (
 /obj/machinery/door/morgue,
 /turf/open/floor/iron,
-/area/misc/condo)
+/area/misc/condo/rain)
 "SX" = (
 /obj/machinery/door/airlock/public/glass,
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
 "TW" = (
 /turf/open/floor/plating,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Um" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/white,
-/area/misc/condo)
+/area/misc/condo/rain)
 "UF" = (
 /obj/structure/closet/secure_closet/freezer/fridge{
 	locked = 0
@@ -1095,7 +1256,7 @@
 /obj/structure/window/reinforced/survival_pod,
 /obj/effect/turf_decal/siding/white,
 /turf/open/floor/iron/dark/textured,
-/area/misc/condo)
+/area/misc/condo/rain)
 "UG" = (
 /obj/structure/mirror/directional/west,
 /obj/structure/sink/kitchen/directional/south{
@@ -1104,7 +1265,7 @@
 	pixel_x = -16
 	},
 /turf/open/floor/iron/white,
-/area/misc/condo)
+/area/misc/condo/rain)
 "UU" = (
 /obj/structure/chair/sofa/right/maroon{
 	dir = 4
@@ -1112,7 +1273,7 @@
 /obj/effect/turf_decal/siding/dark,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "UW" = (
 /obj/structure/closet/secure_closet/freezer/fridge{
 	locked = 0
@@ -1128,7 +1289,15 @@
 /obj/item/food/meat/slab/monkey,
 /obj/machinery/light/directional/south,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
-/area/misc/condo)
+/area/misc/condo/rain)
+"Vf" = (
+/obj/effect/abstract/marker{
+	icon = 'modular_skyrat/master_files/icons/obj/skyscraper/rain.dmi';
+	icon_state = "rain";
+	alpha = 100
+	},
+/turf/open/floor/concrete/slab_1,
+/area/misc/condo/rain)
 "Vp" = (
 /obj/effect/turf_decal/siding/thinplating_new/terracotta,
 /obj/item/reagent_containers/condiment/pack/mayonnaise,
@@ -1138,26 +1307,38 @@
 	alpha = 100
 	},
 /turf/open/floor/asphalt,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Vv" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/white,
-/area/misc/condo)
+/area/misc/condo/rain)
+"VM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/abstract/marker{
+	icon = 'modular_skyrat/master_files/icons/obj/skyscraper/rain.dmi';
+	icon_state = "rain";
+	alpha = 100
+	},
+/obj/structure/fence/end{
+	dir = 8
+	},
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "VT" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/dark/inner_corner{
 	dir = 4
 	},
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Wc" = (
 /turf/closed/indestructible/iron,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Wl" = (
 /obj/effect/mapping_helpers/broken_floor,
 /obj/machinery/light/small/dim/directional/south,
 /turf/open/floor/iron/white,
-/area/misc/condo)
+/area/misc/condo/rain)
 "WE" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/dark{
@@ -1170,11 +1351,11 @@
 	pixel_x = 3
 	},
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "WG" = (
 /obj/machinery/griddle,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "WX" = (
 /obj/structure/chair/plastic{
 	dir = 8
@@ -1188,8 +1369,8 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/misc/asteroid/moon/standard_air,
-/area/misc/condo)
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "Xh" = (
 /obj/structure/fence,
 /obj/effect/turf_decal/siding/thinplating_new/terracotta,
@@ -1199,7 +1380,7 @@
 	alpha = 100
 	},
 /turf/open/floor/asphalt,
-/area/misc/condo)
+/area/misc/condo/rain)
 "XI" = (
 /obj/structure/table/reinforced,
 /obj/machinery/reagentgrinder{
@@ -1210,7 +1391,7 @@
 	pixel_x = 7
 	},
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Ye" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -1218,7 +1399,20 @@
 /obj/machinery/light/directional/north,
 /obj/machinery/light_switch/directional/north,
 /turf/open/floor/iron/kitchen,
-/area/misc/condo)
+/area/misc/condo/rain)
+"Yn" = (
+/obj/structure/fence,
+/obj/effect/abstract/marker{
+	icon = 'modular_skyrat/master_files/icons/obj/skyscraper/rain.dmi';
+	icon_state = "rain";
+	alpha = 100
+	},
+/obj/effect/turf_decal/siding/thinplating_new{
+	color = "#646761";
+	dir = 1
+	},
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "Yp" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light/directional/west,
@@ -1226,18 +1420,18 @@
 	dir = 4
 	},
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Yr" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
 	},
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "YB" = (
 /obj/machinery/processor,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "YL" = (
 /obj/machinery/barsign/all_access/directional/south,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1246,17 +1440,17 @@
 	icon_state = "rain";
 	alpha = 100
 	},
-/turf/open/misc/asteroid/moon/standard_air,
-/area/misc/condo)
+/turf/open/floor/concrete,
+/area/misc/condo/rain)
 "YW" = (
 /turf/closed/indestructible/hoteldoor/fakedoor{
 	dir = 4
 	},
-/area/misc/condo)
+/area/misc/condo/rain)
 "Zh" = (
 /obj/effect/decal/cleanable/vomit,
 /turf/open/floor/iron/white,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Zk" = (
 /obj/effect/abstract/marker{
 	icon = 'modular_skyrat/master_files/icons/obj/skyscraper/rain.dmi';
@@ -1264,19 +1458,19 @@
 	alpha = 100
 	},
 /turf/open/floor/asphalt,
-/area/misc/condo)
+/area/misc/condo/rain)
 "Zl" = (
 /obj/machinery/gibber,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
-/area/misc/condo)
+/area/misc/condo/rain)
 "ZB" = (
 /obj/structure/table,
 /obj/item/ceramic/tray,
 /obj/item/food/cheesyfries,
 /obj/structure/sign/poster/contraband/blood_geometer/directional/east,
 /turf/open/floor/iron/cafeteria,
-/area/misc/condo)
+/area/misc/condo/rain)
 "ZG" = (
 /obj/structure/fence/corner,
 /obj/effect/abstract/marker{
@@ -1285,12 +1479,12 @@
 	alpha = 100
 	},
 /turf/open/floor/asphalt,
-/area/misc/condo)
+/area/misc/condo/rain)
 "ZP" = (
 /obj/structure/sink/kitchen/directional/south,
 /obj/effect/decal/cleanable/vomit/old/black_bile,
 /turf/open/floor/plating,
-/area/misc/condo)
+/area/misc/condo/rain)
 
 (1,1,1) = {"
 Bo
@@ -1303,9 +1497,9 @@ Zk
 Bo
 Zk
 jI
-un
-Et
-Et
+Vf
+Qq
+GD
 tD
 tD
 tD
@@ -1339,9 +1533,9 @@ vv
 Zk
 Zk
 jI
-un
-Et
-Et
+Vf
+Qq
+Vf
 tD
 fo
 YB
@@ -1375,9 +1569,9 @@ Zk
 Zk
 Zk
 gM
-un
-Et
-Et
+Vf
+Qq
+GD
 tD
 GZ
 qA
@@ -1411,9 +1605,9 @@ Zk
 Zk
 Zk
 jI
-un
-Et
-Et
+Vf
+si
+GD
 tD
 UF
 qA
@@ -1448,7 +1642,7 @@ hq
 hq
 Xh
 oU
-PP
+Yn
 PP
 tD
 tD
@@ -1484,7 +1678,7 @@ Zk
 Zk
 jI
 iP
-Et
+Qq
 Cg
 tD
 JB
@@ -1519,8 +1713,8 @@ Zk
 Zk
 Zk
 jI
-un
-Et
+Vf
+Qq
 CQ
 tD
 qh
@@ -1555,8 +1749,8 @@ NC
 Zk
 Zk
 jI
-un
-Et
+Vf
+ao
 YL
 tD
 uS
@@ -1591,8 +1785,8 @@ Zk
 Zk
 Zk
 jI
-un
-Et
+Vf
+Qq
 LA
 tD
 uS
@@ -1627,9 +1821,9 @@ Zk
 Zk
 Zk
 jI
-un
-BZ
-Et
+Vf
+LW
+GD
 tD
 Ye
 fK
@@ -1664,8 +1858,8 @@ Zk
 Zk
 jI
 FM
-nE
-Et
+Sl
+GD
 SX
 Bj
 fK
@@ -1699,9 +1893,9 @@ Zk
 Zk
 Zk
 jI
-un
-Et
-Et
+Vf
+Qq
+GD
 SX
 Bj
 Bj
@@ -1735,8 +1929,8 @@ Zk
 Zk
 Zk
 Vp
-un
-Et
+Vf
+ao
 Et
 Wc
 KY
@@ -1772,7 +1966,7 @@ Zk
 Zk
 jI
 iP
-Et
+Qq
 RB
 dj
 Rh
@@ -1807,9 +2001,9 @@ Zk
 Zk
 Zk
 jI
-un
-Et
-Et
+Vf
+Qq
+Vf
 dj
 Pq
 sF
@@ -1843,8 +2037,8 @@ Zk
 Zk
 vz
 jI
-un
-Et
+Vf
+Qq
 bJ
 dj
 HN
@@ -1879,9 +2073,9 @@ Zk
 Zk
 Zk
 jI
-un
-Et
-Et
+Vf
+Qq
+vV
 tD
 lv
 qA
@@ -1915,9 +2109,9 @@ Zk
 Zk
 Zk
 jI
-un
-Et
-Et
+Vf
+ao
+GD
 tD
 tD
 tD
@@ -1951,28 +2145,28 @@ Zk
 Zk
 Zk
 jI
-un
-BZ
-Et
-BZ
-Et
+Vf
+LW
+GD
+VM
+GD
 BX
 BX
 bH
 Et
+Vf
+GD
 Et
-Et
-Et
-Et
-Et
+GD
+Vf
 nE
+GD
 Et
-Et
-Et
+Vf
 bJ
 er
-Et
-Et
+rV
+RT
 Et
 tD
 "}
@@ -1988,27 +2182,27 @@ Zk
 Zk
 jI
 sE
-BZ
-Et
+LW
+GD
 BZ
 iR
-Et
-Et
+Vf
+GD
 xe
-Et
+GD
 BZ
 BZ
-BZ
-BZ
-Et
-Et
-Et
-Et
 Et
 BZ
-er
+GD
+GD
+Vf
+vV
+GD
+BZ
+bD
 Et
-Et
+RT
 ah
 tD
 "}
@@ -2023,29 +2217,29 @@ RG
 Zk
 Zk
 jI
-un
-Et
+Vf
+Qq
 Et
 tG
 BZ
 iR
 WX
-Et
-Et
-Et
+Vf
+vV
+yP
 BZ
 BZ
+Vf
 Et
-Et
-Et
+pU
 BZ
 BZ
 Kk
 mm
 er
-Et
-Et
-Et
+RT
+rV
+ts
 tD
 "}
 (22,1,1) = {"
@@ -2060,14 +2254,14 @@ hq
 hq
 Xh
 oU
+Yn
 PP
-PP
 Wc
 Wc
 Wc
 Wc
 Wc
-Wc
+Py
 Wc
 Wc
 Wc
