@@ -36,12 +36,14 @@
 	unlocked_designs = list(
 		/datum/design/board/xenobiocamera,
 		/datum/design/slime_scanner,
+		///BUBBER EDIT START: Changeling antag remover to the xenobiology node
+		/datum/design/board/changeling_discombobulator,
 		/* BUBBER EDIT REMOVE - LIMB GROWERS INCLUDE ALL LIMB TYPES
 		/datum/design/limb_disk/ethereal,
 		/datum/design/limb_disk/felinid,
 		/datum/design/limb_disk/lizard,
-		/datum/design/limb_disk/plasmaman,
-		*/
+		/datum/design/limb_disk/plasmaman,*/
+		///BUBBER EDIT END
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	discount_experiments = list(/datum/experiment/scanning/cytology/slime = TECHWEB_TIER_3_POINTS)

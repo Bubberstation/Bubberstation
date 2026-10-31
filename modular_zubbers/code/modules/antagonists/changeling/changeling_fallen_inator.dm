@@ -134,7 +134,6 @@
 /datum/design/board/changeling_discombobulator
 	name = "Machine Design (Changeling discombobulator)"
 	desc = "The circuit board used to build machines to destroy changelings."
-	id = "changeling_discombobulator"
 	build_path = /obj/item/circuitboard/machine/changeling_discombobulator
 	category = list(RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_GENETICS)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
