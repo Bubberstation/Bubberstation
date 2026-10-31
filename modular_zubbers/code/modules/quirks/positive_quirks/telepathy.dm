@@ -98,24 +98,13 @@
 	if (copytext(message, 1, 2) == "#")
 		subtler = TRUE
 		message = copytext(message, 2) // Strip the leading #
+
 	to_chat(owner, span_boldnotice("You reach out and convey to [target]: \"[span_purple(message)]\""))
 	// flub a runechat chat message, do something with the language later
 	if(owner.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
 		owner.create_chat_message(owner, owner.get_selected_language(), message, list("italics"))
-	if(!target.can_block_magic(antimagic_flags, charge_cost = 0) && target.client && !(HAS_TRAIT(target, TRAIT_PSIONIC_DAMPENER))) //make sure we've got a client before we bother sending anything
-		//different messaging if the target has the telepathy mutation themselves themselves
-		if (ishuman(caster))
-			var/mob/living/carbon/human/human_caster = caster
-			var/datum/mutation/telepathy/tele_mut = human_caster.dna.get_mutation(/datum/mutation/telepathy)
 
-			if (tele_mut)
-				to_chat(target, span_boldnotice("A psychic presence resounds in your mind: \"[span_purple(message)]\""))
-			else
-				to_chat(target, span_boldnotice("[caster]'s voice echoes in your head: \"[span_purple(message)]\""))
-
-		if(target.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
-			target.create_chat_message(target, target.get_selected_language(), message, list("italics")) // it appears over them since they hear it in their head
-	else
+	if(!communicate(caster, target, message))
 		owner.balloon_alert(owner, "something blocks your thoughts!")
 		to_chat(owner, span_warning("Your mind encounters impassable resistance: the thought was blocked!"))
 		return
@@ -133,6 +122,40 @@
 		var/to_mob_name = span_name("[target]")
 
 		to_chat(ghost, "[from_link] " + span_purple("<b>\[Telepathy\]</b> [from_mob_name] transmits, \"[message]\"") + " to [to_mob_name] [to_link]")
+
+// it is a mouthful
+#define CHECK_RUNECHAT_PREF(creature) creature.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat)
+
+/// the actual proc responsible for sanity checks and sending the message
+/// returns TRUE if it transmitted, FALSE if for whatever reason it wasn't possible
+/datum/action/cooldown/spell/pointed/telepathy/proc/communicate(mob/living/caster, mob/living/target, message)
+	if(target.can_block_magic(antimagic_flags, charge_cost = 0))
+		return FALSE
+	
+	if(!target.client)
+		return FALSE
+	
+	if((HAS_TRAIT(target, TRAIT_PSIONIC_DAMPENER)))
+		return FALSE
+
+	if (caster.has_dna().get_mutation(/datum/mutation/telepathy))
+		to_chat(target, span_boldnotice("A psychic presence resounds in your mind: \"[span_purple(message)]\""))
+		if(CHECK_RUNECHAT_PREF(target))
+			target.create_chat_message(target, target.get_selected_language(), message, list("italics")) // it appears over them since they hear it in their head
+
+		return TRUE
+
+	var/range = get_dist(caster, target)
+	for (var/mob/living/creature in range(range, caster))
+		if (creature == caster)
+			continue
+		to_chat(creature, span_boldnotice("[caster]'s voice echoes in your head: \"[span_purple(message)]\""))
+		if(CHECK_RUNECHAT_PREF(creature))
+			creature.create_chat_message(creature, creature.get_selected_language(), message, list("italics")) // it appears over them since they hear it in their head
+
+	return TRUE
+
+#undef CHECK_RUNECHAT_PREF
 
 /datum/quirk/telepathic
 	name = "Telepathic"
