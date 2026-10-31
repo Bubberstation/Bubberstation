@@ -198,6 +198,10 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SCIENCE)
 
+/datum/techweb_node/xenobiology/New()
+	design_ids += "changeling_discombobulator"
+	. = ..()
+
 // Computer Tech
 /datum/techweb_node/gaming/New()
 	. = ..()
