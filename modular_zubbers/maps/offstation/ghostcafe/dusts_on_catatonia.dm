@@ -28,5 +28,6 @@
 			continue
 
 		attached.investigate_log("was dusted due to no longer being linked to a player or ghost.", INVESTIGATE_DEATHS)
-		attached.dust(TRUE, force = TRUE)
-		Detach(attached)
+		do_sparks(10, TRUE, living_source, spark_type = /datum/effect_system/basic/spark_spread/quantum)
+		living_source.ghostize()
+		qdel(living_source)
