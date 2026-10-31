@@ -113,7 +113,9 @@
 /obj/item/crowbar,
 /obj/structure/alien/egg/burst,
 /obj/structure/alien/weeds,
-/obj/item/clothing/mask/facehugger/infertile,
+/obj/item/clothing/mask/facehugger{
+	sterile = 1
+	},
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "agI" = (
@@ -204,7 +206,9 @@
 "apD" = (
 /obj/structure/alien/egg/burst,
 /obj/structure/alien/weeds,
-/obj/item/clothing/mask/facehugger/infertile,
+/obj/item/clothing/mask/facehugger{
+	sterile = 1
+	},
 /turf/open/misc/asteroid,
 /area/awaymission/caves/maintsroom)
 "apR" = (
@@ -609,7 +613,8 @@
 "aOK" = (
 /turf/closed/indestructible/reinforced{
 	name = "adurrr";
-	color = "#FF0000"
+	color = "#FF0000";
+	desc = "A red wall, of no signifigance, seriously this means nothing"
 	},
 /area/awaymission/caves/maintsroom)
 "aPE" = (
@@ -640,7 +645,7 @@
 	desc = "A rectangular steel crate, ."
 	},
 /obj/item/gun/ballistic/derringer{
-	desc = "A completely normal .310 derringer of the period. but it feels like- its the perfect size to fit inside your mouth, maybe you should try it ou- and as soon as that thought starts to enter your mind a simple 'no' is heard in your head and not in your voice, and then the urge is gone if it was ever there to begin with. But the gun seems different, its uncanny valley, something is off but nothing is off, but when you shoot it you see what's off.";
+	desc = "A completely normal .310 derringer of the period. But the gun seems different, its uncanny valley, something is off but nothing is off, but when you shoot it you see what's off.";
 	projectile_damage_multiplier = 2;
 	name = "Yinbi Derringer?"
 	},
@@ -692,7 +697,13 @@
 /area/awaymission/caves/maintsroom)
 "aUt" = (
 /obj/effect/decal/remains/xeno/larva,
-/turf/open/indestructible/mad_grass,
+/turf/open/indestructible{
+	name = "perfect grass";
+	desc = "The grass is perfect, it looks amazing and appealing, you should just lay down in it for a while.";
+	icon_state = "grass";
+	color = "#FF0000";
+	slowdown = 50
+	},
 /area/awaymission/caves/maintsroom/deeper/biome1)
 "aUz" = (
 /obj/machinery/computer/slot_machine/security,
@@ -1198,7 +1209,6 @@
 	id = "Thetrueend.";
 	height = 2
 	},
-/obj/effect/light_emitter/fake_outdoors,
 /turf/open/floor/white,
 /area/awaymission/caves/maintsroom)
 "bFJ" = (
@@ -1212,7 +1222,9 @@
 /area/awaymission/caves/maintsroom)
 "bFU" = (
 /obj/machinery/recycler,
-/obj/machinery/conveyor/auto/hardened{
+/obj/machinery/conveyor/auto{
+	name = "Hardened conveyor belt";
+	max_integrity = 2000;
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -1420,7 +1432,12 @@
 "bUU" = (
 /obj/item/book/granter/action/spell/charge,
 /obj/structure/fans/tiny/invisible,
-/turf/open/indestructible/anomaly,
+/turf/open/indestructible{
+	name = "Color shifting tile";
+	desc = "Looking at this is hurting my eyes.";
+	icon_state = "light_on-10";
+	slowdown = 2
+	},
 /area/awaymission/caves/maintsroom/deeper/biome2)
 "bVK" = (
 /turf/open/floor/circuit,
@@ -1650,7 +1667,10 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "ciF" = (
-/turf/closed/indestructible/oldshuttle/pure_white,
+/turf/closed/indestructible/oldshuttle{
+	desc = "You feel as if you are looking out at an impossibly large horizion, in the distance you can see marble white pillars in a formal and organizied pattern and they go up, and up, and up until the point where you have to look almost straight up to see some of the ones closest to you, and looking down the hallway you can see onto further than you thought a mere mortal could.";
+	name = "Pure white"
+	},
 /area/ruin/powered/reebe)
 "ciM" = (
 /obj/machinery/vending/imported,
@@ -1708,7 +1728,12 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "cmm" = (
-/obj/vehicle/sealed/mecha/ripley/mk2,
+/obj/structure/showcase/mecha/marauder{
+	name = "Logistics 'Combat' Mech";
+	desc = "A ripley with the serial numbers filed off with a green camo painted on it- it also has a large integrated welder on it to assumedly repair other mechs";
+	icon_state = "ripleymkii";
+	color = "#008000"
+	},
 /turf/open/floor/iron/diagonal,
 /area/awaymission/caves/maintsroom)
 "cmS" = (
@@ -1962,7 +1987,9 @@
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "cHz" = (
-/obj/machinery/conveyor/auto/hardened{
+/obj/machinery/conveyor/auto{
+	name = "Hardened conveyor belt";
+	max_integrity = 2000;
 	dir = 5
 	},
 /turf/open/floor/plating,
@@ -1988,13 +2015,9 @@
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
 "cHP" = (
-/obj/item/stack/tile/carpet/black{
-	anchored = 1;
-	name = "Doormat";
-	desc = "it says welcome on it"
-	},
-/turf/open/floor/white,
-/area/awaymission/caves/maintsroom/deeper/biome3)
+/obj/machinery/light/directional/south,
+/turf/open/floor/black,
+/area/awaymission/caves/maintsroom/deeper)
 "cIC" = (
 /turf/open/floor/iron/vaporwave,
 /area/awaymission/caves/maintsroom/vapor_spatial)
@@ -2175,7 +2198,9 @@
 /area/awaymission/caves/maintsroom)
 "cQQ" = (
 /obj/effect/gibspawner/robot,
-/turf/open/floor/engine,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "cRl" = (
 /obj/structure/table,
@@ -2253,7 +2278,9 @@
 /area/awaymission/caves/maintsroom)
 "cYh" = (
 /turf/closed/indestructible/reinforced{
-	color = "#000000"
+	color = "#000000";
+	desc = "A completely black wall made out of some kind of glass, its smooth almost like obsidian but it absoarbs any light that touches it not reflecting anything.";
+	name = "black glass wall"
 	},
 /area/awaymission/caves/maintsroom/deeper)
 "cYz" = (
@@ -2344,7 +2371,12 @@
 /turf/open/floor/white,
 /area/awaymission/caves/maintsroom/deeper)
 "dfL" = (
-/turf/open/chasm/true/fakeout/plating,
+/turf/open/chasm/true/fakeout{
+	name = "plating";
+	icon_state = "plating";
+	base_icon_state = "plating";
+	color = "#FF0000"
+	},
 /area/awaymission/caves/maintsroom)
 "dgq" = (
 /obj/structure/safe/floor,
@@ -3128,7 +3160,9 @@
 	},
 /obj/structure/safe/floor,
 /obj/item/fakeartefact,
-/turf/open/floor/engine/slowdown,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "efT" = (
 /obj/structure/flora/tree/palm,
@@ -3208,7 +3242,9 @@
 	dir = 4
 	},
 /obj/item/implanter/kaza_ruk,
-/turf/open/floor/engine/slowdown,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "emd" = (
 /obj/item/storage/toolbox/electrical{
@@ -3384,7 +3420,9 @@
 /area/awaymission/caves/maintsroom)
 "ewT" = (
 /obj/effect/spawner/random/trash/graffiti,
-/turf/open/floor/engine,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "exw" = (
 /obj/machinery/computer/slot_machine/science,
@@ -3398,7 +3436,13 @@
 /area/awaymission/caves/maintsroom)
 "exT" = (
 /obj/effect/light_emitter/fake_outdoors,
-/mob/living/basic/trooper/nanotrasen/ranged/elite/seargent_crowlie,
+/mob/living/basic/trooper/nanotrasen/ranged/elite{
+	name = "Seargent Crowlie";
+	desc = "He stands looking out at the water of this, real, fake beach, he stands completely still- that is until he hears you to which he imeediatly takes up a combative stance and starts opening fire.";
+	health = 2000;
+	maxHealth = 2000;
+	loot = list(/obj/item/keycard/blue)
+	},
 /turf/open/misc/beach/sand,
 /area/awaymission/caves/maintsroom)
 "eyt" = (
@@ -3421,7 +3465,10 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "eBa" = (
-/obj/machinery/door/poddoor/shutters/window/indestructible/maints_armory,
+/obj/machinery/door/poddoor/shutters/window/indestructible{
+	name = "Armory";
+	desc = "A shutter with a thick see-through polycarbonate window, breaking into here will not be worth your time."
+	},
 /turf/open/floor/iron/diagonal,
 /area/awaymission/caves/maintsroom)
 "eBh" = (
@@ -3443,8 +3490,7 @@
 /turf/open/floor/plating/abductor2,
 /area/awaymission/caves/maintsroom)
 "eBR" = (
-/obj/structure/sign/flag/wardens,
-/turf/closed/indestructible/reinforced,
+/turf/open/space/basic,
 /area/awaymission/caves/maintsroom)
 "eCw" = (
 /obj/effect/mapping_helpers/burnt_floor,
@@ -3544,7 +3590,9 @@
 /obj/structure/signpost/salvation{
 	name = "Mercy"
 	},
-/turf/open/floor/engine,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "eGv" = (
 /obj/effect/turf_decal/trimline/red/line{
@@ -3941,7 +3989,9 @@
 /area/awaymission/caves/maintsroom)
 "fch" = (
 /obj/structure/window/reinforced/plasma/spawner/directional/north,
-/obj/machinery/conveyor/auto/hardened{
+/obj/machinery/conveyor/auto{
+	name = "Hardened conveyor belt";
+	max_integrity = 2000;
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -4619,7 +4669,10 @@
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
 "geA" = (
-/obj/structure/showcase/mecha/marauder/fakeout,
+/obj/structure/showcase/mecha/marauder{
+	name = "Combat Mech";
+	desc = "A combat mech standing proud and tall in near pristine condition, this would make for an amazing joyride- if you happened to be trained in these more extremely complex military grade mechs."
+	},
 /turf/open/floor/iron/diagonal,
 /area/awaymission/caves/maintsroom)
 "geV" = (
@@ -4817,7 +4870,9 @@
 /turf/open/floor/plating/airless,
 /area/awaymission/caves/maintsroom)
 "gyS" = (
-/obj/machinery/conveyor/auto/hardened{
+/obj/machinery/conveyor/auto{
+	name = "Hardened conveyor belt";
+	max_integrity = 2000;
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -4897,6 +4952,11 @@
 /obj/item/toy/plush/lizard_plushie/green{
 	name = "Passes-The-Checks(PLEASE)"
 	},
+/obj/structure/sign/flag{
+	name = "The Caoivish Flag";
+	desc = "This flag represents the nation of Caoivish, also known as, the wardens";
+	pixel_y = 28
+	},
 /turf/open/floor/iron/diagonal,
 /area/awaymission/caves/maintsroom)
 "gEl" = (
@@ -4920,7 +4980,11 @@
 	},
 /area/awaymission/caves/maintsroom)
 "gFm" = (
-/obj/item/paper/fluff/awaymissions/maintsroom/go_to_the_xenos,
+/obj/item/paper/fluff/awaymissions{
+	default_raw_text = "Sorry for stopping you here- but before I let you continue on further I would like to request you go help out some creatures that are stuck in a pen- i put the keycard to unlock this door behind them.";
+	name = "Black Note";
+	color = "#0f0f0f"
+	},
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "gFX" = (
@@ -5017,7 +5081,13 @@
 /area/awaymission/caves/maintsroom)
 "gOP" = (
 /obj/item/book/granter/action/spell/summonitem,
-/turf/open/indestructible/mad_grass,
+/turf/open/indestructible{
+	name = "perfect grass";
+	desc = "The grass is perfect, it looks amazing and appealing, you should just lay down in it for a while.";
+	icon_state = "grass";
+	color = "#FF0000";
+	slowdown = 50
+	},
 /area/awaymission/caves/maintsroom/deeper/biome1)
 "gOR" = (
 /obj/effect/bump_teleporter{
@@ -5270,7 +5340,13 @@
 	desc = "I am not out of my mind, most excellent Festus, but I am speaking true and rational words.";
 	health = 1000
 	},
-/turf/open/indestructible/mad_grass,
+/turf/open/indestructible{
+	name = "perfect grass";
+	desc = "The grass is perfect, it looks amazing and appealing, you should just lay down in it for a while.";
+	icon_state = "grass";
+	color = "#FF0000";
+	slowdown = 50
+	},
 /area/awaymission/caves/maintsroom/deeper/biome1)
 "hht" = (
 /obj/structure/table/wood,
@@ -5497,7 +5573,9 @@
 	dir = 4
 	},
 /obj/item/stack/spacecash/c1,
-/turf/open/floor/engine/slowdown,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "hpg" = (
 /obj/structure/chair/sofa/bench/right,
@@ -5815,7 +5893,10 @@
 	},
 /area/awaymission/caves/maintsroom)
 "hFv" = (
-/obj/machinery/door/poddoor/shutters/window/indestructible/maints_armory,
+/obj/machinery/door/poddoor/shutters/window/indestructible{
+	name = "Armory";
+	desc = "A shutter with a thick see-through polycarbonate window, breaking into here will not be worth your time."
+	},
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "hFB" = (
@@ -5853,7 +5934,13 @@
 /area/awaymission/caves/maintsroom/deeper)
 "hIu" = (
 /obj/effect/decal/remains/xeno,
-/turf/open/indestructible/mad_grass,
+/turf/open/indestructible{
+	name = "perfect grass";
+	desc = "The grass is perfect, it looks amazing and appealing, you should just lay down in it for a while.";
+	icon_state = "grass";
+	color = "#FF0000";
+	slowdown = 50
+	},
 /area/awaymission/caves/maintsroom/deeper/biome1)
 "hIA" = (
 /obj/effect/decal/cleanable/dirt,
@@ -5911,7 +5998,11 @@
 /obj/item/clothing/head/frontier_colonist_helmet,
 /obj/item/clothing/suit/frontier_colonist_flak,
 /obj/item/clothing/under/frontier_colonist,
-/obj/item/storage/backpack/industrial/frontier_colonist/military_grade_backpack,
+/obj/item/storage/backpack/industrial/frontier_colonist{
+	name = "Military Backpack";
+	desc = "A rugged backpack often used by settlers and explorers. It's fireproof, this one has military ensignia on it.";
+	storage_type = /datum/storage/duffel
+	},
 /obj/item/radio/headset/headset_frontier_colonist,
 /obj/item/storage/belt/utility/frontier_colonist,
 /obj/item/clothing/gloves/color/black/peacekeeper,
@@ -6125,10 +6216,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom)
-"icO" = (
-/obj/item/clothing/accessory/armband/gift_of_the_void,
-/turf/open/floor/black,
-/area/awaymission/caves/maintsroom/deeper)
 "idb" = (
 /obj/effect/bump_teleporter{
 	id = "elevator_teleporter_destination2";
@@ -6196,7 +6283,9 @@
 /obj/structure/signpost/salvation{
 	name = "Sages Wisdom"
 	},
-/turf/open/floor/engine/slowdown,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "ijM" = (
 /obj/structure/dresser,
@@ -6309,7 +6398,6 @@
 	id_target = "spatial_destination_exit"
 	},
 /obj/item/clothing/accessory/armband/gift_of_the_void,
-/obj/item/clothing/accessory/armband/gift_of_the_void,
 /obj/effect/light_emitter/tendril,
 /turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom/deeper/biome3)
@@ -6379,12 +6467,22 @@
 "itG" = (
 /obj/item/book/granter/action/spell/summon_cheese,
 /obj/structure/fans/tiny/invisible,
-/turf/open/indestructible/anomaly,
+/turf/open/indestructible{
+	name = "Color shifting tile";
+	desc = "Looking at this is hurting my eyes.";
+	icon_state = "light_on-10";
+	slowdown = 2
+	},
 /area/awaymission/caves/maintsroom/deeper/biome2)
 "itQ" = (
 /obj/structure/safe/floor,
-/obj/item/paper/fluff/awaymissions/maintsroom,
-/turf/open/floor/engine/slowdown,
+/obj/item/paper/fluff/awaymissions{
+	name = "act one";
+	default_raw_text = "Act one, the beings enter, they see the bridge between our world and theirs, familiar to both of us."
+	},
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "ius" = (
 /obj/structure/rack,
@@ -6702,7 +6800,9 @@
 	},
 /obj/structure/safe/floor,
 /obj/item/card/emagfake,
-/turf/open/floor/engine/slowdown,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "iPi" = (
 /obj/effect/mapping_helpers/burnt_floor,
@@ -7150,7 +7250,11 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "jpX" = (
-/obj/vehicle/sealed/mecha/odysseus,
+/obj/structure/showcase/mecha/marauder{
+	name = "Evac Combat Mech";
+	desc = "A medical mech designed around dragging failed mech pilots out of their suits and tending to them.";
+	icon_state = "odysseus"
+	},
 /turf/open/floor/iron/diagonal,
 /area/awaymission/caves/maintsroom)
 "jqS" = (
@@ -7222,7 +7326,11 @@
 /area/awaymission/caves/maintsroom/lobby_spatial)
 "jtc" = (
 /obj/structure/lattice/catwalk/mining,
-/obj/item/paper/fluff/awaymissions/maintsroom/gunstoreflyer,
+/obj/item/paper/fluff/awaymissions{
+	default_raw_text = "Come down to the gun dealership! We sell stuff were not supposed to! We buy energy weapons and sell ballistic weapons!";
+	name = "Gun store flyer";
+	color = "#FFFF00"
+	},
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "jtj" = (
@@ -7350,7 +7458,9 @@
 /turf/open/floor/plating/abductor,
 /area/awaymission/caves/maintsroom)
 "jzb" = (
-/obj/machinery/conveyor/auto/hardened{
+/obj/machinery/conveyor/auto{
+	name = "Hardened conveyor belt";
+	max_integrity = 2000;
 	dir = 10
 	},
 /turf/open/floor/plating,
@@ -7475,7 +7585,11 @@
 /turf/open/misc/asteroid/basalt,
 /area/awaymission/caves/maintsroom)
 "jIJ" = (
-/obj/structure/showcase/mecha/marauder/fakeout/command,
+/obj/structure/showcase/mecha/marauder{
+	name = "Commanding Combat Mech";
+	desc = "A combat mech standing proud and tall in near pristine condition, this would make for an amazing joyride- if you happened to be trained in these more extremely complex military grade mechs.";
+	icon_state = "seraph"
+	},
 /turf/open/floor/iron/diagonal,
 /area/awaymission/caves/maintsroom)
 "jJS" = (
@@ -7501,7 +7615,11 @@
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "jKi" = (
-/obj/item/paper/fluff/awaymissions/maintsroom/gunstoreflyer,
+/obj/item/paper/fluff/awaymissions{
+	default_raw_text = "Come down to the gun dealership! We sell stuff were not supposed to! We buy energy weapons and sell ballistic weapons!";
+	name = "Gun store flyer";
+	color = "#FFFF00"
+	},
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "jKj" = (
@@ -7906,7 +8024,9 @@
 /area/awaymission/caves/maintsroom)
 "knJ" = (
 /turf/closed/indestructible/reinforced{
-	color = "#000000"
+	color = "#000000";
+	desc = "A completely black wall made out of some kind of glass, its smooth almost like obsidian but it absoarbs any light that touches it not reflecting anything.";
+	name = "black glass wall"
 	},
 /area/awaymission/caves/maintsroom)
 "knP" = (
@@ -8074,7 +8194,9 @@
 /area/awaymission/caves/maintsroom)
 "kyq" = (
 /obj/effect/mob_spawn/corpse/human/skeleton,
-/turf/open/floor/engine,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "kyA" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -8390,7 +8512,12 @@
 /area/awaymission/caves/maintsroom)
 "kZW" = (
 /obj/effect/spawner/random/maintsrooms/anomalies,
-/turf/open/indestructible/anomaly,
+/turf/open/indestructible{
+	name = "Color shifting tile";
+	desc = "Looking at this is hurting my eyes.";
+	icon_state = "light_on-10";
+	slowdown = 2
+	},
 /area/awaymission/caves/maintsroom/deeper/biome2)
 "kZY" = (
 /obj/structure/rack,
@@ -8461,7 +8588,10 @@
 /turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom/deeper/biome3)
 "lex" = (
-/obj/item/paper/fluff/awaymissions/maintsroom/acttwo,
+/obj/item/paper/fluff/awaymissions{
+	name = "act two";
+	default_raw_text = Act two, the beings figure out the reason why the bridge formed, this part is more familiar to them than us"
+	},
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "lez" = (
@@ -8610,7 +8740,13 @@
 /turf/open/floor/plating/rust,
 /area/awaymission/caves/maintsroom)
 "lpL" = (
-/turf/open/indestructible/mad_grass,
+/turf/open/indestructible{
+	name = "perfect grass";
+	desc = "The grass is perfect, it looks amazing and appealing, you should just lay down in it for a while.";
+	icon_state = "grass";
+	color = "#FF0000";
+	slowdown = 50
+	},
 /area/awaymission/caves/maintsroom/deeper/biome1)
 "lqc" = (
 /obj/effect/spawner/random/structure/closet_empty/crate,
@@ -9091,7 +9227,9 @@
 	id = "Horrificdescent.";
 	height = 2
 	},
-/turf/open/floor/engine,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "lRd" = (
 /obj/structure/disposalpipe/junction/flip{
@@ -9109,7 +9247,11 @@
 /area/awaymission/caves/maintsroom)
 "lSU" = (
 /obj/effect/light_emitter/fake_outdoors,
-/obj/item/paper/fluff/awaymissions/maintsroom/danger_ahead,
+/obj/item/paper/fluff/awaymissions{
+	default_raw_text = "Be warned, the area up ahead is- dangerous, imagine your world like a vast ship, the place you are currently in is the equivalent to an ocean, and going any further will have you go into the abyss.";
+	name = "Black Note";
+	color = "#0f0f0f"
+	},
 /turf/open/floor/asphalt,
 /area/awaymission/caves/maintsroom)
 "lTn" = (
@@ -9883,7 +10025,12 @@
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
 "mTn" = (
-/obj/vehicle/sealed/mecha/gygax,
+/obj/structure/showcase/mecha/marauder{
+	name = "Blue gygax";
+	desc = "A gygax painted with a very thin and peeling layer of darkblue paint, 'why are you blue?'";
+	icon_state = "gygax";
+	color = "#4169E1"
+	},
 /turf/open/floor/iron/diagonal,
 /area/awaymission/caves/maintsroom)
 "mTw" = (
@@ -10059,9 +10206,13 @@
 /turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom/deeper/biome3)
 "nbI" = (
-/obj/structure/falsewall/silver/grim,
-/turf/open/floor/white,
-/area/awaymission/caves/maintsroom)
+/obj/item/clothing/accessory/armband/gift_of_the_void,
+/turf/closed/indestructible/reinforced{
+	color = "#000000";
+	desc = "A completely black wall made out of some kind of glass, its smooth almost like obsidian but it absoarbs any light that touches it not reflecting anything, <b>this wall seems different however and there seems to be a bit of cloth on the side! You can pull it off the wall!</b>";
+	name = "black glass wall"
+	},
+/area/awaymission/caves/maintsroom/deeper)
 "nbJ" = (
 /obj/machinery/light/directional/north,
 /turf/open/floor/mineral/gold,
@@ -10098,7 +10249,9 @@
 /obj/structure/closet/crate/trashcart,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/alien/weeds,
-/obj/item/clothing/mask/facehugger/infertile,
+/obj/item/clothing/mask/facehugger{
+	sterile = 1
+	},
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
 "nhw" = (
@@ -10163,7 +10316,9 @@
 /turf/open/misc/grass/jungle/station,
 /area/awaymission/caves/maintsroom)
 "nml" = (
-/turf/open/floor/engine,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "nms" = (
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
@@ -10228,7 +10383,13 @@
 /area/awaymission/caves/maintsroom)
 "nrd" = (
 /obj/item/book/granter/action/spell/blind,
-/turf/open/indestructible/mad_grass,
+/turf/open/indestructible{
+	name = "perfect grass";
+	desc = "The grass is perfect, it looks amazing and appealing, you should just lay down in it for a while.";
+	icon_state = "grass";
+	color = "#FF0000";
+	slowdown = 50
+	},
 /area/awaymission/caves/maintsroom/deeper/biome1)
 "nrn" = (
 /obj/structure/closet,
@@ -10269,7 +10430,10 @@
 /turf/open/floor/plating/rust,
 /area/awaymission/caves/maintsroom)
 "ntd" = (
-/obj/item/paper/fluff/awaymissions/maintsroom/actthree,
+/obj/item/paper/fluff/awaymissions{
+	default_raw_text = "Act three, they get to see something that is more familiar to us than it is to them, do you think theyve seen these scripts? Well, if they have, if they read this, continue on, beyond the finale.";
+	name = "act three"
+	},
 /turf/open/floor/white,
 /area/awaymission/caves/maintsroom)
 "ntP" = (
@@ -10759,7 +10923,11 @@
 /turf/open/floor/plating/rust,
 /area/awaymission/caves/maintsroom)
 "obY" = (
-/obj/item/paper/fluff/awaymissions/maintsroom/danger_ahead_reward,
+/obj/item/paper/fluff/awaymissions{
+	default_raw_text = "I commend you for choosing to continue on, I decided to give you some material to make the journey ahead easier- also, i reccomend climbing under the tables and not over them- and also to fallow the light, the darkness contains more rewards but is significantly more- challenging.";
+	name = "Black Note";
+	color = "#0f0f0f"
+	},
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "ods" = (
@@ -10900,7 +11068,11 @@
 /obj/item/storage/belt/military,
 /obj/item/clothing/shoes/combat,
 /obj/item/radio/headset,
-/obj/item/storage/backpack/industrial/frontier_colonist/military_grade_backpack,
+/obj/item/storage/backpack/industrial/frontier_colonist{
+	name = "Military Backpack";
+	desc = "A rugged backpack often used by settlers and explorers. It's fireproof, this one has military ensignia on it.";
+	storage_type = /datum/storage/duffel
+	},
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "oqo" = (
@@ -11183,7 +11355,9 @@
 "oQZ" = (
 /obj/effect/gibspawner/human,
 /obj/effect/light_emitter/fake_outdoors,
-/obj/machinery/conveyor/auto/hardened{
+/obj/machinery/conveyor/auto{
+	name = "Hardened conveyor belt";
+	max_integrity = 2000;
 	dir = 4
 	},
 /turf/open/misc/grass/jungle,
@@ -11213,7 +11387,7 @@
 	},
 /area/awaymission/caves/maintsroom)
 "oTd" = (
-/obj/structure/curtain/cloth/fancy/mechanical/start_closed/maints_finale,
+/obj/structure/curtain/cloth/fancy/mechanical/start_closed,
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "oTe" = (
@@ -11283,7 +11457,9 @@
 /area/awaymission/caves/maintsroom)
 "oYh" = (
 /obj/structure/alien/egg/burst,
-/obj/item/clothing/mask/facehugger/infertile,
+/obj/item/clothing/mask/facehugger{
+	sterile = 1
+	},
 /obj/structure/alien/weeds/node,
 /turf/open/misc/asteroid,
 /area/awaymission/caves/maintsroom)
@@ -11662,6 +11838,7 @@
 /area/awaymission/caves/maintsroom/vapor_spatial)
 "pCM" = (
 /obj/structure/rack,
+/obj/item/gun/ballistic/automatic/sol_rifle/evil,
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "pDH" = (
@@ -11694,7 +11871,9 @@
 "pFw" = (
 /obj/item/clothing/neck/stethoscope,
 /obj/item/crowbar,
-/turf/open/floor/engine/slowdown,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "pGU" = (
 /obj/structure/bed/medical/emergency{
@@ -11935,7 +12114,13 @@
 /area/awaymission/caves/maintsroom)
 "pQO" = (
 /obj/effect/light_emitter/fake_outdoors,
-/turf/open/indestructible/mad_grass,
+/turf/open/indestructible{
+	name = "perfect grass";
+	desc = "The grass is perfect, it looks amazing and appealing, you should just lay down in it for a while.";
+	icon_state = "grass";
+	color = "#FF0000";
+	slowdown = 50
+	},
 /area/awaymission/caves/maintsroom/deeper/biome1)
 "pQX" = (
 /obj/machinery/light/directional/west,
@@ -12118,7 +12303,9 @@
 	},
 /obj/structure/safe/floor,
 /obj/item/claymore/weak/weaker,
-/turf/open/floor/engine/slowdown,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "qed" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
@@ -12513,9 +12700,6 @@
 	},
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
-"qEk" = (
-/turf/open/floor/engine/slowdown,
-/area/awaymission/caves/maintsroom)
 "qFM" = (
 /obj/structure/mirror/directional/west,
 /turf/open/floor/iron/white,
@@ -12612,8 +12796,10 @@
 /obj/structure/railing{
 	dir = 9
 	},
-/mob/living/basic/trooper/syndicate/ranged/smg/anthro/ambush_moth,
 /obj/structure/flora/bush/large/style_random,
+/mob/living/basic/trooper/syndicate/ranged/smg/anthro{
+	name = "Ambush Moth"
+	},
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "qNQ" = (
@@ -12652,7 +12838,9 @@
 /area/awaymission/caves/maintsroom)
 "qRf" = (
 /obj/effect/mob_spawn/corpse/human/clown,
-/turf/open/floor/engine,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "qRl" = (
 /obj/item/flashlight/lantern,
@@ -12672,9 +12860,17 @@
 	dir = 4
 	},
 /obj/item/clothing/head/helmet/chaplain/bland,
-/obj/item/shield/buckler/reagent_weapon/pavise/stalwart_defense,
 /obj/item/clothing/suit/chaplainsuit/armor/templar/generic,
-/turf/open/floor/engine/slowdown,
+/obj/item/shield/buckler/reagent_weapon/pavise{
+	name = "Stalwart Defense";
+	slowdown = 4;
+	block_chance = 65;
+	uses_integrity = 0;
+	desc = "An large wall-like shield. Very heavy, but extremely protective, this one instead of using a reasonable wood like oak or ceder instead uses ironwood for even more defense,  but it sure is heavy."
+	},
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "qRG" = (
 /obj/item/ectoplasm/construct,
@@ -12740,7 +12936,9 @@
 /turf/open/floor/plating/airless,
 /area/awaymission/caves/maintsroom)
 "qVa" = (
-/obj/machinery/conveyor/auto/hardened{
+/obj/machinery/conveyor/auto{
+	name = "Hardened conveyor belt";
+	max_integrity = 2000;
 	dir = 6
 	},
 /turf/open/floor/plating,
@@ -12842,7 +13040,11 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/awaymission/caves/maintsroom)
 "rcO" = (
-/obj/machinery/porta_turret/syndicate/hc_police/ancient_milsim/garrison_turret,
+/obj/machinery/porta_turret/syndicate/hc_police/ancient_milsim{
+	faction = list("hostile","cult");
+	desc = "A repurposed point defense turret usually used to stop heavy projectiles or large missiles coming for small ships- imagine what it would do to you.";
+	name = "anti-personel turret"
+	},
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "rcR" = (
@@ -13676,7 +13878,9 @@
 /area/awaymission/caves/maintsroom)
 "seX" = (
 /obj/effect/spawner/random/vending/snackvend,
-/turf/open/floor/engine,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "sfe" = (
 /obj/item/gun/ballistic/automatic/smart_machine_gun{
@@ -13905,7 +14109,9 @@
 /obj/effect/spawner/random/trash/garbage{
 	spawn_scatter_radius = 1
 	},
-/turf/open/floor/engine,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "sxz" = (
 /obj/item/trash/candy,
@@ -14615,7 +14821,10 @@
 /turf/open/floor/sepia,
 /area/awaymission/caves/maintsroom)
 "tqR" = (
-/turf/closed/indestructible/oldshuttle/pure_white,
+/turf/closed/indestructible/oldshuttle{
+	desc = "You feel as if you are looking out at an impossibly large horizion, in the distance you can see marble white pillars in a formal and organizied pattern and they go up, and up, and up until the point where you have to look almost straight up to see some of the ones closest to you, and looking down the hallway you can see onto further than you thought a mere mortal could.";
+	name = "Pure white"
+	},
 /area/awaymission/caves/maintsroom)
 "tra" = (
 /obj/effect/light_emitter,
@@ -14623,7 +14832,13 @@
 /area/awaymission/caves/maintsroom)
 "trf" = (
 /obj/effect/decal/cleanable/ants,
-/turf/open/indestructible/mad_grass,
+/turf/open/indestructible{
+	name = "perfect grass";
+	desc = "The grass is perfect, it looks amazing and appealing, you should just lay down in it for a while.";
+	icon_state = "grass";
+	color = "#FF0000";
+	slowdown = 50
+	},
 /area/awaymission/caves/maintsroom/deeper)
 "trh" = (
 /obj/effect/turf_decal/trimline/green/filled/arrow_ccw,
@@ -14736,7 +14951,12 @@
 /turf/open/floor/iron/white,
 /area/awaymission/caves/maintsroom)
 "tyU" = (
-/turf/open/indestructible/anomaly,
+/turf/open/indestructible{
+	name = "Color shifting tile";
+	desc = "Looking at this is hurting my eyes.";
+	icon_state = "light_on-10";
+	slowdown = 2
+	},
 /area/awaymission/caves/maintsroom/deeper/biome2)
 "tzt" = (
 /obj/effect/spawner/random/engineering/atmospherics_portable,
@@ -14754,7 +14974,9 @@
 "tAJ" = (
 /obj/structure/alien/weeds,
 /obj/structure/alien/egg/burst,
-/obj/item/clothing/mask/facehugger/infertile,
+/obj/item/clothing/mask/facehugger{
+	sterile = 1
+	},
 /turf/open/misc/asteroid,
 /area/awaymission/caves/maintsroom)
 "tAS" = (
@@ -14813,7 +15035,9 @@
 /area/awaymission/caves/maintsroom/lobby_spatial)
 "tDR" = (
 /obj/effect/mapping_helpers/engraving,
-/turf/open/floor/engine,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "tDY" = (
 /obj/structure/destructible/cult/item_dispenser/altar,
@@ -15403,7 +15627,9 @@
 /obj/structure/safe/floor,
 /obj/item/clothing/suit/syndicatefake,
 /obj/item/clothing/head/syndicatefake,
-/turf/open/floor/engine/slowdown,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "unL" = (
 /obj/structure/flora/bush/large/style_random,
@@ -15411,7 +15637,13 @@
 /area/awaymission/caves/maintsroom/deeper/biome3)
 "uou" = (
 /obj/effect/decal/remains/robot,
-/turf/open/indestructible/mad_grass,
+/turf/open/indestructible{
+	name = "perfect grass";
+	desc = "The grass is perfect, it looks amazing and appealing, you should just lay down in it for a while.";
+	icon_state = "grass";
+	color = "#FF0000";
+	slowdown = 50
+	},
 /area/awaymission/caves/maintsroom/deeper/biome1)
 "uow" = (
 /obj/structure/disposalpipe/segment{
@@ -15435,7 +15667,9 @@
 /obj/structure/safe/floor,
 /obj/item/disk/nuclear/fake/obvious,
 /obj/item/clothing/glasses/fake_sunglasses/aviator,
-/turf/open/floor/engine/slowdown,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "uqq" = (
 /obj/effect/light_emitter/fake_outdoors,
@@ -15558,7 +15792,9 @@
 	dir = 4
 	},
 /obj/item/stack/spacecash/c5000,
-/turf/open/floor/engine/slowdown,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "uwu" = (
 /obj/machinery/door/poddoor/shutters{
@@ -15599,7 +15835,9 @@
 	icon_state = "bookknock";
 	name = "\improper A Simpleton's Guide to Trolling"
 	},
-/turf/open/floor/engine/slowdown,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "uzt" = (
 /obj/effect/spawner/random/food_or_drink/cake_ingredients,
@@ -15674,7 +15912,9 @@
 /area/awaymission/caves/maintsroom)
 "uEa" = (
 /obj/machinery/camera/xray/directional/north,
-/turf/open/floor/engine/slowdown,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "uEq" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -15760,7 +16000,9 @@
 /turf/open/floor/iron/tgmcemblem,
 /area/awaymission/caves/maintsroom)
 "uHP" = (
-/obj/machinery/conveyor/auto/hardened{
+/obj/machinery/conveyor/auto{
+	name = "Hardened conveyor belt";
+	max_integrity = 2000;
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -15949,8 +16191,13 @@
 	dir = 8
 	},
 /obj/structure/safe/floor,
-/obj/item/paper/carbon/rare_pepe,
-/turf/open/floor/engine/slowdown,
+/obj/item/fake_items{
+	name = "Strange Anthropomorphic Frog Poster";
+	desc = "A poster of a strange looking frog, its grinning."
+	},
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "uTb" = (
 /obj/structure/kitchenspike_frame,
@@ -15982,7 +16229,9 @@
 /obj/structure/window/spawner/directional/south,
 /obj/machinery/door/window/right/directional/west,
 /obj/effect/decal/remains/human,
-/obj/machinery/conveyor/auto/hardened{
+/obj/machinery/conveyor/auto{
+	name = "Hardened conveyor belt";
+	max_integrity = 2000;
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -16245,12 +16494,14 @@
 /obj/effect/oneway{
 	dir = 4
 	},
-/obj/machinery/conveyor/auto/hardened{
-	dir = 4
-	},
 /obj/machinery/scanner_gate/luxury_shuttle{
 	name = "Insurance";
 	threshold = 1
+	},
+/obj/machinery/conveyor/auto{
+	name = "Hardened conveyor belt";
+	max_integrity = 2000;
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
@@ -16419,7 +16670,10 @@
 /obj/item/reagent_containers/cup/soda_cans/monkey_energy,
 /obj/item/reagent_containers/cup/soda_cans/monkey_energy,
 /obj/machinery/camera/xray/directional/north,
-/obj/item/paper/fluff/awaymissions/maintsroom/actone,
+/obj/item/paper/fluff/awaymissions{
+	name = "act one";
+	default_raw_text = "Act one, the beings enter, they see the bridge between our world and theirs, familiar to both of us."
+	},
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "vxI" = (
@@ -16930,7 +17184,10 @@
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
 "wkD" = (
-/obj/item/paper/fluff/awaymissions/maintsroom/xenomorph,
+/obj/item/paper/fluff/awaymissions{
+	name = "Xenomorph Warning";
+	default_raw_text = "The fallowing area has xenomorphs in it- do NOT under ANY circumstances break those turrets- otherwise, the xenomorphs inside COULD GET OUT"
+	},
 /turf/open/floor/sepia,
 /area/awaymission/caves/maintsroom)
 "wll" = (
@@ -17119,7 +17376,9 @@
 	dir = 4
 	},
 /obj/item/food/classic_hard_shell_taco,
-/turf/open/floor/engine/slowdown,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "wzy" = (
 /obj/item/stack/ore/uranium{
@@ -17348,7 +17607,9 @@
 /area/awaymission/caves/maintsroom)
 "wPq" = (
 /obj/effect/mob_spawn/corpse/human/wizard/black,
-/turf/open/floor/engine,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "wPA" = (
 /obj/machinery/door/airlock/maintenance,
@@ -17388,7 +17649,9 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "wSM" = (
-/obj/machinery/conveyor/auto/hardened{
+/obj/machinery/conveyor/auto{
+	name = "Hardened conveyor belt";
+	max_integrity = 2000;
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -17610,7 +17873,11 @@
 /turf/open/misc/grass/jungle,
 /area/awaymission/caves/maintsroom/deeper/biome3)
 "xid" = (
-/obj/machinery/porta_turret/syndicate/shuttle/bar_defense,
+/obj/machinery/porta_turret/syndicate/shuttle{
+	faction = list("neutral","Deathsquad");
+	name = "Bar defense turret";
+	max_integrity = 1000
+	},
 /turf/open/floor/wood,
 /area/awaymission/caves/maintsroom)
 "xii" = (
@@ -17628,7 +17895,7 @@
 /turf/open/floor/grass,
 /area/awaymission/caves/maintsroom)
 "xiH" = (
-/mob/living/basic/trooper/syndicate/ranged/smg/pilot/super_american,
+/mob/living/basic/trooper/syndicate/ranged/smg/pilot,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "xiL" = (
@@ -17684,7 +17951,9 @@
 	},
 /obj/structure/safe/floor,
 /obj/item/clothing/sextoy/dildo,
-/turf/open/floor/engine/slowdown,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "xlO" = (
 /obj/machinery/disposal/bin,
@@ -17867,7 +18136,11 @@
 /area/awaymission/caves/maintsroom)
 "xvC" = (
 /obj/effect/mine/sound/bwoink,
-/obj/item/paper/fluff/awaymissions/maintsroom/danger_ahead_reward,
+/obj/item/paper/fluff/awaymissions{
+	default_raw_text = "I commend you for choosing to continue on, I decided to give you some material to make the journey ahead easier- also, i reccomend climbing under the tables and not over them- and also to fallow the light, the darkness contains more rewards but is significantly more- challenging.";
+	name = "Black Note";
+	color = "#0f0f0f"
+	},
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "xvX" = (
@@ -18065,7 +18338,9 @@
 /area/awaymission/caves/maintsroom)
 "xKy" = (
 /obj/structure/barricade/sandbags,
-/turf/open/floor/engine,
+/turf/open/floor/engine{
+	slowdown = 3
+	},
 /area/awaymission/caves/maintsroom)
 "xKC" = (
 /obj/effect/mapping_helpers/burnt_floor,
@@ -18330,7 +18605,13 @@
 /area/awaymission/caves/maintsroom)
 "yfI" = (
 /obj/effect/decal/remains/human,
-/turf/open/indestructible/mad_grass,
+/turf/open/indestructible{
+	name = "perfect grass";
+	desc = "The grass is perfect, it looks amazing and appealing, you should just lay down in it for a while.";
+	icon_state = "grass";
+	color = "#FF0000";
+	slowdown = 50
+	},
 /area/awaymission/caves/maintsroom/deeper/biome1)
 "ygq" = (
 /mob/living/basic/malf_borg{
@@ -18833,7 +19114,7 @@ eps
 eps
 ffG
 ffG
-eBR
+ffG
 gEi
 ffG
 ffG
@@ -20549,29 +20830,29 @@ ffG
 ffG
 ffG
 ffG
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
 ffG
 ffG
 eps
@@ -20769,7 +21050,7 @@ fhW
 sWQ
 eZq
 lgX
-qEk
+nml
 ffG
 ffG
 ffG
@@ -20791,7 +21072,7 @@ ffG
 ffG
 ffG
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -20989,7 +21270,7 @@ tSB
 tSB
 axM
 lgX
-qEk
+nml
 lgX
 iyD
 mpt
@@ -21011,7 +21292,7 @@ dfL
 dfL
 dfL
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -21209,7 +21490,7 @@ eZq
 eZq
 eZq
 lgX
-qEk
+nml
 lgX
 oUq
 dhk
@@ -21231,7 +21512,7 @@ eZq
 lra
 dfL
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -21429,7 +21710,7 @@ esI
 eZq
 eZq
 lgX
-qEk
+nml
 lgX
 nhw
 dfL
@@ -21451,7 +21732,7 @@ dfL
 wPK
 dfL
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -21649,7 +21930,7 @@ tSB
 tSB
 axM
 lgX
-qEk
+nml
 lgX
 ref
 dfL
@@ -21671,7 +21952,7 @@ dfL
 wPK
 dfL
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -21869,7 +22150,7 @@ ude
 ahv
 eZq
 lgX
-qEk
+nml
 lgX
 dfL
 dfL
@@ -21891,7 +22172,7 @@ dfL
 wPK
 dfL
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -22089,7 +22370,7 @@ lgX
 lgX
 axM
 lgX
-qEk
+nml
 lgX
 eZq
 eZq
@@ -22111,7 +22392,7 @@ dfL
 wPK
 dfL
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -22309,7 +22590,7 @@ koH
 lgX
 uLF
 lgX
-qEk
+nml
 lgX
 eZq
 dfL
@@ -22331,7 +22612,7 @@ dfL
 wPK
 dfL
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -22551,7 +22832,7 @@ dfL
 wPK
 dfL
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -22749,7 +23030,7 @@ beI
 lgX
 eZq
 lgX
-qEk
+nml
 lgX
 dfL
 dfL
@@ -22771,7 +23052,7 @@ hnf
 aRa
 eLa
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -22969,7 +23250,7 @@ nIY
 lTL
 wxJ
 lgX
-qEk
+nml
 lgX
 eZq
 eZq
@@ -23189,7 +23470,7 @@ pZk
 lgX
 tPD
 lgX
-qEk
+nml
 lgX
 eZq
 dfL
@@ -23211,7 +23492,7 @@ smE
 eZq
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -23409,7 +23690,7 @@ dZo
 lgX
 tiz
 lgX
-qEk
+nml
 lgX
 eZq
 eZq
@@ -23431,7 +23712,7 @@ eZq
 eZq
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -23629,7 +23910,7 @@ ubR
 lgX
 tiz
 lgX
-qEk
+nml
 lgX
 lgX
 lgX
@@ -23651,7 +23932,7 @@ lgX
 eZq
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -23849,7 +24130,7 @@ gJb
 lgX
 sNr
 lgX
-qEk
+nml
 lgX
 jaf
 jaf
@@ -23871,7 +24152,7 @@ lgX
 eZq
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -24069,7 +24350,7 @@ sEj
 sEj
 lIJ
 lgX
-qEk
+nml
 lgX
 bkA
 mji
@@ -24091,7 +24372,7 @@ lgX
 rBu
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -24289,7 +24570,7 @@ lgX
 lgX
 lgX
 lgX
-qEk
+nml
 lgX
 jaf
 jaf
@@ -24311,7 +24592,7 @@ lgX
 eZq
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -24509,7 +24790,7 @@ eZq
 eZq
 eZq
 lgX
-qEk
+nml
 lgX
 jaf
 jaf
@@ -24531,7 +24812,7 @@ lgX
 anb
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -24729,7 +25010,7 @@ eZq
 eZq
 eZq
 lgX
-qEk
+nml
 lgX
 jaf
 jaf
@@ -24751,7 +25032,7 @@ lgX
 ykH
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -24949,7 +25230,7 @@ wnS
 lgl
 eZq
 lgX
-qEk
+nml
 lgX
 jaf
 jaf
@@ -24971,7 +25252,7 @@ lgX
 lgX
 mnt
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -25169,7 +25450,7 @@ eZq
 eZq
 oMC
 lgX
-qEk
+nml
 lgX
 jaf
 jaf
@@ -25191,7 +25472,7 @@ qrD
 iCF
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -25389,7 +25670,7 @@ lgX
 lgX
 lgX
 lgX
-qEk
+nml
 lgX
 lgX
 lgX
@@ -25411,7 +25692,7 @@ eZq
 eZq
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -25631,7 +25912,7 @@ lgX
 lgX
 lgX
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -25851,7 +26132,7 @@ hCN
 eZq
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -26071,7 +26352,7 @@ lgX
 lgX
 mnt
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -26291,7 +26572,7 @@ oMC
 eZq
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -26511,7 +26792,7 @@ qrD
 eZq
 iCF
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -26731,7 +27012,7 @@ oMC
 eZq
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -26951,7 +27232,7 @@ lgX
 pyw
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -27171,7 +27452,7 @@ lgX
 eZq
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -27391,7 +27672,7 @@ lgX
 oMC
 oMC
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -27611,7 +27892,7 @@ lgX
 lgX
 lgX
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -27831,7 +28112,7 @@ eZq
 eZq
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -28051,7 +28332,7 @@ lgX
 lgX
 mnx
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -28271,7 +28552,7 @@ eZq
 eZq
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -28491,7 +28772,7 @@ eZq
 cEY
 cEY
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -28711,7 +28992,7 @@ cEY
 cEY
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -28931,7 +29212,7 @@ cEY
 cEY
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -29151,7 +29432,7 @@ cEY
 cEY
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -29371,7 +29652,7 @@ cEY
 cEY
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -29591,7 +29872,7 @@ cEY
 cEY
 cEY
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -29811,7 +30092,7 @@ cEY
 cEY
 cEY
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -30031,7 +30312,7 @@ cEY
 cEY
 cEY
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -30251,7 +30532,7 @@ cEY
 cEY
 cEY
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -30471,7 +30752,7 @@ cEY
 cEY
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -30691,7 +30972,7 @@ cEY
 eZq
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -30911,7 +31192,7 @@ cEY
 eZq
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -31131,7 +31412,7 @@ eZq
 eZq
 eZq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -31351,7 +31632,7 @@ ffG
 ffG
 ffG
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -31571,7 +31852,7 @@ xNA
 ptH
 fnK
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -31791,7 +32072,7 @@ nRv
 eZq
 huo
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -32011,7 +32292,7 @@ eZq
 eZq
 wxx
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -32231,7 +32512,7 @@ sYx
 ffG
 ffG
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -32451,7 +32732,7 @@ kKB
 kKB
 kKB
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -32671,7 +32952,7 @@ bMK
 hdK
 oHp
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -32891,7 +33172,7 @@ bMK
 bMK
 mrH
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -33111,7 +33392,7 @@ vMd
 vMd
 vFc
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -33331,7 +33612,7 @@ iTA
 iTA
 cqm
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -33551,7 +33832,7 @@ ffG
 ffG
 ffG
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -33771,7 +34052,7 @@ hOz
 hOz
 jrD
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -33991,7 +34272,7 @@ eZq
 eZq
 uHP
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -34211,7 +34492,7 @@ pLg
 kpB
 uHP
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -34431,7 +34712,7 @@ bFU
 wSM
 wSM
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -34651,7 +34932,7 @@ wMU
 isC
 szq
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -34871,7 +35152,7 @@ eZq
 trh
 bYH
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -35091,7 +35372,7 @@ kZi
 trh
 nCH
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -35311,7 +35592,7 @@ eZq
 htf
 jnu
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -35531,7 +35812,7 @@ hss
 hRM
 tmW
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -35751,7 +36032,7 @@ tcb
 uTB
 hac
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -35971,7 +36252,7 @@ ffG
 vnO
 ffG
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -36191,7 +36472,7 @@ wJm
 oQZ
 tEH
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -36411,7 +36692,7 @@ tEH
 xeQ
 wJm
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -36631,7 +36912,7 @@ tEH
 tEH
 mXJ
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -36851,7 +37132,7 @@ tEH
 scz
 xBb
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -37071,7 +37352,7 @@ lOh
 tEH
 tEH
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -37291,7 +37572,7 @@ iFy
 tEH
 tEH
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -37511,7 +37792,7 @@ scz
 tEH
 scz
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -37731,7 +38012,7 @@ rGT
 tEH
 tEH
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -37951,7 +38232,7 @@ lgX
 lgX
 lgX
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -38171,7 +38452,7 @@ nNY
 twI
 lgX
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -38391,7 +38672,7 @@ mwm
 nHQ
 lgX
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -38439,7 +38720,7 @@ sgl
 sgl
 wBa
 sgl
-sgl
+oKG
 sgl
 mlN
 foN
@@ -38611,7 +38892,7 @@ lgX
 lgX
 lgX
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -38659,7 +38940,7 @@ sgl
 sgl
 sgl
 sgl
-sgl
+dGT
 sgl
 mlN
 mlN
@@ -38831,7 +39112,7 @@ fFr
 fFr
 lgX
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -38879,7 +39160,7 @@ sgl
 wBa
 sgl
 sgl
-sgl
+rGv
 sgl
 mlN
 mlN
@@ -39051,7 +39332,7 @@ sbe
 fFr
 lgX
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -39099,7 +39380,7 @@ sgl
 sgl
 sgl
 sgl
-sgl
+pzW
 sgl
 mlN
 aKL
@@ -39271,7 +39552,7 @@ fFr
 fFr
 lgX
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -39491,7 +39772,7 @@ fFr
 fFr
 lgX
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -39547,7 +39828,7 @@ mlN
 mlN
 mlN
 mlN
-oKG
+eBR
 ffG
 oSs
 mDq
@@ -39711,7 +39992,7 @@ fFr
 fFr
 lgX
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -39767,7 +40048,7 @@ iHZ
 iHZ
 mlN
 mlN
-dGT
+eBR
 ffG
 oSs
 xUJ
@@ -39931,7 +40212,7 @@ nvO
 fFr
 lgX
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -39984,10 +40265,10 @@ sgl
 lSU
 iHZ
 lSU
-mlN
 iHZ
-mlN
-rGv
+iHZ
+iHZ
+eBR
 ffG
 oSs
 oSs
@@ -40151,7 +40432,7 @@ fFr
 fFr
 lgX
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -40204,10 +40485,10 @@ sgl
 iHZ
 iHZ
 iHZ
+iHZ
 mlN
-mlN
-mlN
-pzW
+iHZ
+eBR
 ffG
 fTg
 vvK
@@ -40371,7 +40652,7 @@ fFr
 nvO
 lgX
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -40591,7 +40872,7 @@ fFr
 fFr
 lgX
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -40811,7 +41092,7 @@ fFr
 fFr
 lgX
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -41031,7 +41312,7 @@ fFr
 fFr
 lgX
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -41251,7 +41532,7 @@ fFr
 kDc
 lgX
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -41471,7 +41752,7 @@ fFr
 fFr
 lgX
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -41691,7 +41972,7 @@ fFr
 fFr
 ffG
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -41911,7 +42192,7 @@ fFr
 fFr
 ffG
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -42131,7 +42412,7 @@ fFr
 fFr
 ffG
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -42351,7 +42632,7 @@ ffG
 ffG
 ffG
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -42571,7 +42852,7 @@ ffG
 ffG
 ffG
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -42604,7 +42885,7 @@ uMy
 php
 uMy
 uMy
-nbI
+uMy
 iVv
 tqR
 rZI
@@ -42791,7 +43072,7 @@ ffG
 ffG
 ffG
 ffG
-qEk
+nml
 ffG
 ffG
 eps
@@ -42931,87 +43212,87 @@ iPg
 xlJ
 uSX
 pFw
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
-qEk
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
+nml
 ffG
 ffG
 eps
@@ -46683,7 +46964,7 @@ lpL
 lpL
 lpL
 lpL
-hhq
+lpL
 lpL
 lpL
 lpL
@@ -49846,8 +50127,8 @@ ffG
 ffG
 tqR
 bFA
-nbI
-cHP
+uMy
+kXy
 kXy
 kXy
 kXy
@@ -62297,11 +62578,11 @@ dgS
 dgS
 dgS
 dgS
+cHP
+nbI
 dgS
-cYh
 dgS
 dgS
-icO
 cYh
 bLq
 bLq
