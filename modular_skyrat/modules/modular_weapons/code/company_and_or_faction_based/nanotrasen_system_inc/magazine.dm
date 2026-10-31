@@ -41,4 +41,14 @@
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	max_ammo = 8
 
+/obj/item/ammo_box/magazine/internal/shot/less_lethal
+	name = "less-lethal shotgun internal magazine"
+	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
+	max_ammo = 7
+
+/obj/item/ammo_box/magazine/internal/shot/less_lethal/is_compatible_round(obj/item/ammo_casing/new_round)
+	if(istype(new_round, /obj/item/ammo_casing/shotgun/beanbag) || istype(new_round, /obj/item/ammo_casing/shotgun/incapacitate) || istype(new_round, /obj/item/ammo_casing/shotgun/rubbershot))
+		return TRUE
+	return FALSE
+
 //10mm Stuff

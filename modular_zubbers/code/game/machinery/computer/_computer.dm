@@ -27,11 +27,15 @@
 	. = ..()
 	RemoveElement(/datum/element/connectable_computer, old_loc)
 
+/obj/machinery/modular_computer
+	var/connectable = TRUE
+
 /obj/machinery/modular_computer/Initialize(mapload)
 	. = ..()
 
-	// Modular consoles all have the same case.
-	AddElement(/datum/element/connectable_computer)
+	// Modular consoles don't have the same case. why the fuck is the punch clock computer a modular computer.
+	if (connectable)
+		AddElement(/datum/element/connectable_computer)
 
 /obj/machinery/modular_computer/Destroy()
 	var/old_loc = loc
