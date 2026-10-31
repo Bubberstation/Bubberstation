@@ -8,7 +8,6 @@
 	pixel_x = 0
 	layer = FLY_LAYER
 	plane = ABOVE_GAME_PLANE
-	anchored = 1
 
 /obj/structure/medieval/stone_arch/Initialize(mapload)
 	. = ..()
@@ -23,7 +22,6 @@
 	density = TRUE
 	max_integrity = 150
 	pixel_x = 0
-	anchored = 1
 
 /obj/structure/medieval/bed_1x2
 	name = "bed"
@@ -34,7 +32,6 @@
 	density = FALSE
 	max_integrity = 150
 	pixel_x = 0
-	anchored = 1
 
 /obj/structure/medieval/bed_2x2
 	name = "bed"
@@ -45,7 +42,6 @@
 	density = FALSE
 	max_integrity = 150
 	pixel_x = 0
-	anchored = 1
 
 /obj/structure/sink/standalone
 	name = "sink"
@@ -56,3 +52,4 @@
 	blocks_air = TRUE
 	light_power = 0
 	space_lit = TRUE
+

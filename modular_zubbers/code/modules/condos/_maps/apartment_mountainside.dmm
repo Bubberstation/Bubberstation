@@ -787,7 +787,7 @@
 /obj/structure/decorative{
 	icon_state = "borgmat";
 	pixel_y = 2;
-	icon = 'modular_skyrat/master_files/icons/effects/turf_effects_64.dmi';
+	icon = 'modular_skyrat\master_files\icons\effects\turf_effects_64.dmi';
 	base_icon_state = "borgmat";
 	dir = 8;
 	pixel_x = 5;
@@ -883,8 +883,8 @@
 /obj/structure/decorative{
 	anchored = 1;
 	name = "Emergency Server Reboot button";
-	icon = 'icons/obj/machines/wallmounts.dmi';
-	icon_state = "button-warning";
+	icon = 'modular_skyrat/modules/delam_emergency_stop/icons/scram.dmi';
+	icon_state = "button";
 	pixel_x = -26;
 	desc = "Looks like it's seen some use. Don't press it.";
 	uses_integrity = 0
@@ -1227,7 +1227,7 @@
 /obj/structure/decorative{
 	icon_state = "borgmat";
 	pixel_y = 7;
-	icon = 'modular_skyrat/master_files/icons/effects/turf_effects_64.dmi';
+	icon = 'modular_skyrat\master_files\icons\effects\turf_effects_64.dmi';
 	base_icon_state = "borgmat";
 	dir = 8;
 	pixel_x = -1;
@@ -2092,7 +2092,7 @@
 /obj/structure/decorative{
 	icon_state = "zoomba_peace";
 	pixel_y = 2;
-	icon = 'modular_skyrat/modules/borgs/icons/robots_pk.dmi';
+	icon = 'modular_skyrat\modules\borgs\icons\robots_pk.dmi';
 	base_icon_state = "tile_half";
 	pixel_x = -1;
 	name = "head maintainer";
@@ -2607,7 +2607,7 @@
 /obj/structure/decorative{
 	icon_state = "borgmat";
 	pixel_y = 10;
-	icon = 'modular_skyrat/master_files/icons/effects/turf_effects_64.dmi';
+	icon = 'modular_skyrat\master_files\icons\effects\turf_effects_64.dmi';
 	base_icon_state = "borgmat";
 	dir = 8;
 	pixel_x = 2;
@@ -4602,11 +4602,12 @@
 	},
 /area/misc/condo)
 "AF" = (
-/obj/structure/fake_stairs/directional/north{
+/obj/structure/fake_stairs/directional/south{
 	icon_state = "stairs-old";
-	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi';
 	color = "#555555";
-	dir = 4
+	dir = 4;
+	pixel_y = 1
 	},
 /obj/structure/railing,
 /turf/open/floor/plating,
@@ -5195,7 +5196,9 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
 	},
-/obj/structure/closet/secure_closet/wall/directional/north,
+/obj/structure/closet/secure_closet/wall{
+	pixel_y = 28
+	},
 /turf/open/floor/wood/large,
 /area/misc/condo)
 "Fx" = (
@@ -5800,7 +5803,7 @@
 "Jv" = (
 /obj/structure/fake_stairs/directional/north{
 	icon_state = "stairs-old";
-	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi';
 	color = "#555555"
 	},
 /obj/structure/railing{
@@ -6248,9 +6251,10 @@
 "MI" = (
 /obj/structure/fake_stairs/directional/north{
 	icon_state = "stairs-old";
-	icon = 'modular_zubbers/icons/turf/floors/floors.dmi';
+	icon = 'modular_skyrat/modules/aesthetics/floors/icons/floors.dmi';
 	color = "#555555";
-	dir = 8
+	dir = 8;
+	pixel_y = 1
 	},
 /obj/structure/railing,
 /turf/open/floor/plating,
@@ -7143,7 +7147,7 @@
 /obj/structure/decorative{
 	icon_state = "borgmat";
 	pixel_y = 5;
-	icon = 'modular_skyrat/master_files/icons/effects/turf_effects_64.dmi';
+	icon = 'modular_skyrat\master_files\icons\effects\turf_effects_64.dmi';
 	base_icon_state = "borgmat";
 	dir = 8;
 	pixel_x = 2;

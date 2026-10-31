@@ -45,10 +45,3 @@
 	SScondos.active_condos -= "[condo_number]"
 	parent_object = null
 	QDEL_NULL(reservation)
-
-//#vibes #lofi #ICouldFallAsleepToThis
-/area/misc/condo/rain
-	ambient_buzz = 'modular_zubbers/sound/ambience/rain_indoor.ogg'
-
-/area/misc/condo/arcade
-	ambient_buzz = 'modular_zubbers/sound/ambience/arcade_ambience.ogg'
