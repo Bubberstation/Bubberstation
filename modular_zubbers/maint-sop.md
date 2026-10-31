@@ -6,7 +6,9 @@ PR - Pull Request
 
 FixPR - A bugfix/spellcheck/qol/internal PR.
 
-TM - Test Merge
+Merge - A full merge of a PR into the codebase
+
+TM - A Test Merge of a PR deployed only on the server side
 
 DB - Database
 
@@ -14,7 +16,7 @@ DB - Database
 
 - A single maintainer is enough for approval and merging/TMing a PR. They may request more reviews if they deem it necessary.
 - With the exception of FixPRs, TMs and Merges must be approved by someone other than the person who created the PR.
-- Any PR that isn't a FixPR must not be merged before at least 24 hours have passed since the last major adjustment was made to its player facing features. This is to allow time for secondary reviews and feedback.
+- Any PR that isn't a FixPR must not be TMd or Merged before at least 24 hours have passed since the last major adjustment was made to its player facing features. This is to allow time for secondary reviews and feedback.
 
 ## Upstreams
 
