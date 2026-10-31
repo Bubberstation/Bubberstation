@@ -1,3 +1,4 @@
+// TODO: Fix these, waterpig
 /mob/living/basic/carp/advanced/pipe_carp
 	name = "carpmospheric technician"
 	desc = "Ferocious, highly aggressive fish that thrives in the depths of shoddy engineering work. Drawn to poorly sealed pipes, mismatched connectors, and hastily patched atmospherics, these creatures feast on structural incompetence with alarming efficiency."
@@ -43,7 +44,7 @@
 	name = "Pipe Carp"
 	description = "Summons a school of supermatter loving carp."
 	typepath = /datum/round_event/carp_migration/pipe_carp
-	weight = 5
+	weight = 0 // Disabled until they can be fixed. Original 5
 	max_occurrences = 1
 	admin_setup = null
 
