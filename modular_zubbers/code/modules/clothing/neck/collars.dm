@@ -70,12 +70,15 @@
 
 /obj/item/clothing/neck/kink_collar/locked/gps/update_overlays()
 	. = ..()
-	if(gps.tracking)
+	// The parent Initialize() updates our greyscale, which rebuilds our icon, before we have had a
+	// chance to assign gps below it. Nothing is tracking yet at that point, so skip the overlay.
+	if(gps?.tracking)
 		. += mutable_appearance('modular_zubbers/icons/obj/clothing/GAGS/collar.dmi', "light")
 		. += emissive_appearance('modular_zubbers/icons/obj/clothing/GAGS/collar.dmi', "light", src, alpha = src.alpha)
 
 /obj/item/clothing/neck/kink_collar/locked/gps/worn_overlays(mutable_appearance/standing, isinhands = FALSE)
 	. = ..()
-	if(gps.tracking && !isinhands)
+	// Same as update_overlays(): this runs once from the parent Initialize(), before gps exists.
+	if(gps?.tracking && !isinhands)
 		. += mutable_appearance('modular_zubbers/icons/obj/clothing/GAGS/collar.dmi', "collar_mob_tracker_light")
 		. += emissive_appearance('modular_zubbers/icons/obj/clothing/GAGS/collar.dmi', "collar_mob_tracker_light", src, alpha = src.alpha)
