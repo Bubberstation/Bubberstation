@@ -1,5 +1,6 @@
 /datum/design/biogen/medical_replicator
 	abstract_type = /datum/design/biogen/medical_replicator
+	prints_full_stack = TRUE
 	build_path = /obj/item/storage/pouch
 	materials = list(/datum/material/biomass = 250)
 	category = list(
@@ -17,12 +18,16 @@
 
 /datum/design/biogen/medical_replicator/sutures
 	name = "Hemostatic Sutures"
-	materials = list(/datum/material/biomass = 150)
+	research_icon = 'modular_skyrat/modules/food_replicator/icons/medicine.dmi'
+	research_icon_state = "hemo_suture_3"
+	materials = list(/datum/material/biomass = 180)
 	build_path = /obj/item/stack/medical/suture/bloody
 
 /datum/design/biogen/medical_replicator/mesh
 	name = "Hemostatic Mesh"
-	materials = list(/datum/material/biomass = 150)
+	research_icon = 'modular_skyrat/modules/food_replicator/icons/medicine.dmi'
+	research_icon_state = "hemo_mesh_3"
+	materials = list(/datum/material/biomass = 200)
 	build_path = /obj/item/stack/medical/mesh/bloody
 
 /datum/design/biogen/medical_replicator/bruise_patch
@@ -35,6 +40,8 @@
 
 /datum/design/biogen/medical_replicator/gauze
 	name = "Medical Gauze"
+	research_icon = 'icons/obj/medical/stack_medical.dmi'
+	research_icon_state = "gauze_3"
 	materials = list(/datum/material/biomass = 100)
 	build_path = /obj/item/stack/medical/wrap/gauze
 
@@ -52,3 +59,13 @@
 	name = "Multiver Pill"
 	materials = list(/datum/material/biomass = 75)
 	build_path = /obj/item/reagent_containers/applicator/pill/multiver
+
+/datum/design/biogen
+	/// Stack designs with this print the stack's full starting amount per order
+	var/prints_full_stack = FALSE
+
+/datum/design/biogen/create_result(atom/drop_loc, list/custom_materials, amount)
+	if(!prints_full_stack || !ispath(build_path, /obj/item/stack))
+		return ..()
+	var/obj/item/stack/pack = build_path
+	return ..(drop_loc, custom_materials, initial(pack.amount))
