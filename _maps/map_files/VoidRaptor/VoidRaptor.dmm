@@ -7297,6 +7297,20 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
+"cfi" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/machinery/camera/directional/east{
+	c_tag = "Telecomms - Monitoring";
+	name = "telecomms camera";
+	network = list("ss13","tcomms")
+	},
+/obj/machinery/computer/telecomms/traffic{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/pod/dark/edge{
+	dir = 8
+	},
+/area/station/tcommsat/computer)
 "cfm" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
@@ -8604,6 +8618,11 @@
 /obj/machinery/newscaster/directional/south,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
+"cAO" = (
+/obj/structure/table,
+/obj/item/brain_processor/organic,
+/turf/open/floor/iron/smooth_large,
+/area/station/engineering/circuit_workshop)
 "cAQ" = (
 /obj/machinery/computer/operating,
 /obj/effect/turf_decal/trimline/blue/filled/warning{
@@ -30919,11 +30938,6 @@
 /obj/effect/turf_decal/tile/red/diagonal_centre,
 /turf/open/floor/iron/dark/diagonal,
 /area/station/hallway/secondary/exit/departure_lounge)
-"iRb" = (
-/obj/structure/table,
-/obj/item/brain_processor/organic,
-/turf/open/floor/iron/smooth_large,
-/area/station/engineering/circuit_workshop)
 "iRd" = (
 /obj/machinery/atmospherics/pipe/smart/manifold/yellow/visible{
 	dir = 1
@@ -59558,17 +59572,6 @@
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/iron/smooth_large,
 /area/station/command/gateway)
-"qsl" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/obj/machinery/camera/directional/east{
-	c_tag = "Telecomms - Monitoring";
-	name = "telecomms camera";
-	network = list("ss13","tcomms")
-	},
-/turf/open/floor/mineral/plastitanium/pod/dark/edge{
-	dir = 8
-	},
-/area/station/tcommsat/computer)
 "qso" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -117323,7 +117326,7 @@ dPb
 qDk
 lMj
 wPR
-qsl
+cfi
 mIB
 bNv
 sHv
@@ -123251,7 +123254,7 @@ enY
 hcw
 nFx
 qDb
-iRb
+cAO
 pQO
 oTb
 xMx
