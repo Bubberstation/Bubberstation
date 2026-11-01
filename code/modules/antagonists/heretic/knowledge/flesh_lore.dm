@@ -206,11 +206,13 @@
 /datum/heretic_knowledge/limited_amount/flesh_ghoul/proc/apply_to_ghoul(mob/living/ghoul)
 	LAZYADD(created_items, WEAKREF(ghoul))
 	ADD_TRAIT(ghoul, TRAIT_MUTE, MAGIC_TRAIT)
+	ghoul.AddComponent(/datum/component/sign_language) // BUBBER EDIT - Communication, but still voiceless
 
 /// Callback for the ghoul status effect - Tracks all of our ghouls and applies effects
 /datum/heretic_knowledge/limited_amount/flesh_ghoul/proc/remove_from_ghoul(mob/living/ghoul)
 	LAZYREMOVE(created_items, WEAKREF(ghoul))
 	REMOVE_TRAIT(ghoul, TRAIT_MUTE, MAGIC_TRAIT)
+	qdel(ghoul.GetComponent(/datum/component/sign_language)) // BUBBER EDIT - Communication, but still voiceless
 
 /datum/heretic_knowledge/spell/flesh_surgery
 	name = "Knitting of Flesh"
