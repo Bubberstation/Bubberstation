@@ -519,7 +519,7 @@
 	. = ..()
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		for(var/obj/item/shield/I in H.held_items)
+		for(var/obj/item/shield/I as anything in H.get_held_items())
 			if(I.breakable_by_damage)
 				user.balloon_alert(user, "devastating blow!")
 				playsound(src, 'sound/effects/bang.ogg', 30)

@@ -141,9 +141,8 @@
 //BUCKLE HOOKS
 /obj/machinery/mounted_machine_gun/unbuckle_mob(mob/living/buckled_mob, force = FALSE, can_fall = TRUE)
 	playsound(src,'sound/vehicles/mecha/mechmove01.ogg', 50, TRUE)
-	for(var/obj/item/iterating_item in buckled_mob.held_items)
-		if(istype(iterating_item, /obj/item/gun_control))
-			qdel(iterating_item)
+	for(var/obj/item/iterating_item in buckled_mob.get_held_items_of_type(/obj/item/gun_control))
+		qdel(iterating_item)
 	if(istype(buckled_mob))
 		buckled_mob.pixel_x = buckled_mob.base_pixel_x
 		buckled_mob.pixel_y = buckled_mob.base_pixel_y
@@ -220,7 +219,7 @@
 /obj/machinery/mounted_machine_gun/proc/register_user(mob/living/user_to_buckle)
 	current_user = user_to_buckle
 
-	for(var/hand_item in user_to_buckle.held_items)
+	for(var/hand_item in user_to_buckle.get_hand_slots())
 		var/obj/item/item = hand_item
 		if(istype(item))
 			if(user_to_buckle.dropItemToGround(item))

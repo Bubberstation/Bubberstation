@@ -7,5 +7,5 @@
 /obj/item/ammo_box/magazine/internal/cylinder/defender38
 	name = "\improper 38 CYLINDER OF DOOM"
 	ammo_type = /obj/item/ammo_casing/c38
-	caliber = CALIBER_38
+	caliber = CALIBER_357_38
 	max_ammo = 5
