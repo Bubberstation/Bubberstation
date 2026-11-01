@@ -169,7 +169,7 @@ Then the player gets the profit from selling his own wasted time.
  * * apply_elastic - should we use elasticity
 */
 /datum/export/proc/get_cost(obj/exported_item, apply_elastic = TRUE)
-	SHOULD_NOT_OVERRIDE(TRUE)
+	//SHOULD_NOT_OVERRIDE(TRUE) //BUBBER EDIT - We want to be able to override it actually
 
 	var/total = get_base_cost(exported_item) * get_amount(exported_item)
 	if(apply_elastic && initial(k_elasticity) > 0)
