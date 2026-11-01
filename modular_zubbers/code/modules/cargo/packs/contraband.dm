@@ -49,3 +49,16 @@
 	)
 	crate_name = "Battle Rifle Crate"
 	order_flags = ORDER_CONTRABAND
+
+/datum/supply_pack/imports/specialops
+	order_flags = ORDER_CONTRABAND
+
+	contains = list(
+		/obj/item/clothing/mask/chameleon,
+		/obj/item/clothing/under/chameleon,
+		/obj/item/storage/belt/chameleon,
+		/obj/item/switchblade,
+		/obj/item/grenade/mirage = 5,
+	)
+
+	cost = CARGO_CRATE_VALUE * 20
