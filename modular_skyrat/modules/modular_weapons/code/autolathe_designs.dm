@@ -6,7 +6,6 @@
 
 /datum/design/c46x30mm
 	name = "4.6x30mm Bullet"
-	id = "c46x30mm"
 	build_type = AUTOLATHE
 	materials = AMMO_MATS_BASIC
 	build_path = /obj/item/ammo_casing/c46x30mm
@@ -19,7 +18,6 @@
 
 /datum/design/c45_lethal
 	name = ".45 Bullet"
-	id = "c45_lethal"
 	build_type = AUTOLATHE
 	materials = AMMO_MATS_BASIC
 	build_path = /obj/item/ammo_casing/c45

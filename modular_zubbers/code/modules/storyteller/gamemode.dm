@@ -201,10 +201,6 @@ SUBSYSTEM_DEF(gamemode)
 		for(var/datum/scheduled_event/sch_event in scheduled_events)
 			if(world.time >= sch_event.start_time)
 				sch_event.try_fire()
-			else if(!sch_event.alerted_admins && world.time >= sch_event.start_time - 1 MINUTES)
-				///Alert admins 1 minute before running and allow them to cancel or refund the event, once again.
-				sch_event.alerted_admins = TRUE
-				message_admins("Scheduled Event: [sch_event.event] will run in [(sch_event.start_time - world.time) / 10] seconds. (<a href='byond://?src=[REF(sch_event)];action=cancel'>CANCEL</a>) (<a href='byond://?src=[REF(sch_event)];action=refund'>REFUND</a>)")
 
 	// Reset the cache value to false
 	pop_data_cached = FALSE
@@ -251,6 +247,8 @@ SUBSYSTEM_DEF(gamemode)
 	no_antags = TRUE,
 	list/restricted_roles,
 	list/restricted_species,
+	ignore_antag_prefs = FALSE,
+	ignore_be_antag = FALSE,
 	)
 
 	var/list/candidates = list()
@@ -283,7 +281,8 @@ SUBSYSTEM_DEF(gamemode)
 			if(restricted_species && (carbon.dna.species.id in restricted_species))
 				continue
 		if(special_role_flag)
-			if(!(candidate.client.prefs) || !(special_role_flag in candidate.client.prefs.be_special))
+			// The antag prompt can be configured to ask everyone instead of only those who opted in.
+			if(!ignore_antag_prefs && (!(candidate.client.prefs) || !(special_role_flag in candidate.client.prefs.be_special)))
 				continue
 			if(candidate.client.get_days_to_play_antag(special_role_flag) > 0)
 				continue
@@ -292,7 +291,7 @@ SUBSYSTEM_DEF(gamemode)
 
 		if(is_banned_from(candidate.client.ckey, BAN_ANTAGONIST))
 			continue
-		if(!candidate.client?.prefs?.read_preference(/datum/preference/toggle/be_antag))
+		if(!ignore_be_antag && !candidate.client?.prefs?.read_preference(/datum/preference/toggle/be_antag))
 			continue
 		candidates += candidate
 	return candidates

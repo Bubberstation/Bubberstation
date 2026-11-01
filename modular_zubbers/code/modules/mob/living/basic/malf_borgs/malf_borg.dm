@@ -49,7 +49,7 @@
 	minimum_survivable_temperature = 0
 	maximum_survivable_temperature = INFINITY
 
-	damage_coeff = list(
+	physiology = list(
 		BRUTE = 1,
 		BURN = 1,
 		TOX = 0,
