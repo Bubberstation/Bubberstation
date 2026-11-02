@@ -129,7 +129,6 @@
 
 /datum/heretic_knowledge/limited_amount/flesh_ghoul
 	name = "Imperfect Ritual"
-	var/list/datum/weakref/ghoul_sign_language_components
 	desc = "Enchant a corpse into a Voiceless Dead. \
 		The corpse does not need to have a soul.<br>\
 		Voiceless Dead are mute ghouls and only have 50 health, but can use Bloody Blades effectively. \
@@ -144,6 +143,7 @@
 	cost = 2
 	research_tree_icon_path = 'icons/ui_icons/antags/heretic/knowledge.dmi'
 	research_tree_icon_state = "ghoul_voiceless"
+	var/list/datum/weakref/ghoul_sign_language_components // BUBBER EDIT
 
 /datum/heretic_knowledge/limited_amount/flesh_ghoul/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
 	. = ..()
