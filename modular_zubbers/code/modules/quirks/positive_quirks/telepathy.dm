@@ -140,8 +140,11 @@
 
 	var/datum/dna/dna = caster.has_dna()
 	// you have to focus on them REALLY HARD if you don't have the mutation
-	if (!isnull(dna) && dna.get_mutation(/datum/mutation/telepathy))
-		caster.balloon_alert_to_viewers("[caster]'s attention locks onto [target].")
+	if (isnull(dna) || !dna.get_mutation(/datum/mutation/telepathy))
+		caster.balloon_alert_to_viewers(
+			"[caster]'s attention locks onto [target].",
+			"You lock your attention onto [target]."
+			)
 
 	to_chat(target, span_boldnotice("A psychic presence resounds in your mind: \"[span_purple(message)]\""))
 	if(CHECK_RUNECHAT_PREF(target))
