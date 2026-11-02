@@ -74,7 +74,7 @@
 
 /obj/item/gun/ballistic/shotgun/riot/sol/lesslethal
 	name = "\improper Ystervark LTL Shotgun"
-	desc = "A Renoster refit for police work, with safety orange furniture so nobody mistakes it for the real thing. The loading gate only takes less-lethal and breaching shells, and the barrel lacks the threading for muzzle attachments."
+	desc = "A police refit of the Renoster shotgun in safety orange, this one only loads less-lethal and breaching shells. The barrel lacks the threading of the military version and cannot fit muzzle attachments."
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/shot/less_lethal
 	can_suppress = FALSE
 
