@@ -27,13 +27,14 @@
 	order_flags = ORDER_CONTRABAND
 
 /datum/supply_pack/imports/specialops/nerfed
-	name = "Budget Chameleon Crate"
+	name = "Surplus Chameleon Crate"
 	desc= "#@!$# HELLO GLORIOUS STATION QUARTER-MASTER. WE HEARD YOU ARE INTERESTED IN ONLY THE FINEST OF DISGUISE IMPLEMENTS. WE CAN SELL YOU THIS. #@!$@#"
 	cost = CARGO_CRATE_VALUE * 30
 	contains = list(
-		/obj/item/clothing/gloves/chameleon,
-		/obj/item/clothing/under/chameleon,
-		/obj/item/storage/belt/chameleon,
-		/obj/item/clothing/suit/chameleon,
+		/obj/item/clothing/gloves/chameleon/named,
+		/obj/item/clothing/under/chameleon/named,
+		/obj/item/storage/belt/chameleon/nerfed,
+		/obj/item/clothing/suit/chameleon/named,
+		/obj/item/clothing/shoes/chameleon/named,
 	)
 	order_flags = ORDER_CONTRABAND
