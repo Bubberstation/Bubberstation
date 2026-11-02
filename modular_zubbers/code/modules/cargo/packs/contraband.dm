@@ -33,7 +33,6 @@
 		/obj/item/clothing/mask/chameleon,
 		/obj/item/clothing/under/chameleon,
 		/obj/item/storage/belt/chameleon,
-		/obj/item/switchblade,
 		/obj/item/grenade/mirage = 5,
 	)
 
