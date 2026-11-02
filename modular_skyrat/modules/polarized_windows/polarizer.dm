@@ -53,6 +53,7 @@
 
 /datum/design/polarizer
 	name = "Window Polarization Remote Controller"
+	id = "polarizer"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE | COLONY_FABRICATOR
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT,

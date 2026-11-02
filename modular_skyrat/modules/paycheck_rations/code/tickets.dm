@@ -200,23 +200,23 @@
 
 	switch(alcohol_choice)
 		if("Navy Rum")
-			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/bubber/navy_rum
-			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/bubber/navy_rum
+			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/skyrat/navy_rum
+			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/skyrat/navy_rum
 		if("Ginger Beer")
-			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/bubber/ginger_beer
-			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/bubber/ginger_beer
+			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/skyrat/ginger_beer
+			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/skyrat/ginger_beer
 		if("Kortara")
-			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/bubber/kortara
-			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/bubber/kortara
+			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/skyrat/kortara
+			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/skyrat/kortara
 		if("Voltaic Wine")
-			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/bubber/wine_voltaic
-			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/bubber/wine_voltaic
+			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/skyrat/wine_voltaic
+			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/skyrat/wine_voltaic
 		if("Hemoglobin Iced Tea")
 			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/bubber/blood_tea
 			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/bubber/blood_tea
 		if("Soda and Lemonade")
-			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/bubber/soda_water_moth
-			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/bubber/lemonade
+			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/skyrat/soda_water_moth
+			items_we_deliver += /obj/item/reagent_containers/cup/soda_cans/skyrat/lemonade
 
 	// List of produce options we get
 	var/list/radial_consumables_options = list(

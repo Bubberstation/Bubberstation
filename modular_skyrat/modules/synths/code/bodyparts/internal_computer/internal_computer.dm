@@ -32,7 +32,7 @@
 		var/obj/item/modular_computer/pda/job_pda = SSjob.get_pda_type_by_job(owner.job)
 		if(istype(job_pda))
 			starting_programs += job_pda.starting_programs
-			var/obj/item/modular_computer/pda/crew/heads/head_pda = job_pda
+			var/obj/item/modular_computer/pda/heads/head_pda = job_pda
 			if(istype(head_pda))
 				starting_programs += head_pda.head_programs
 			install_default_programs()

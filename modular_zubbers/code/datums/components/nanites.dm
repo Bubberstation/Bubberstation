@@ -174,13 +174,16 @@
 	if(prob(8) && programs.len)
 		var/datum/nanite_program/NP = pick(programs)
 		NP.software_error()
+// todo test this
 /datum/component/nanites/proc/add_design(datum/techweb/web, datum/design/design, custom = FALSE)
 	SIGNAL_HANDLER
-	harmonic_regenerating = !!web.researched_nodes[/datum/techweb_node/nanite_harmonic]
+	if(design.id == "nanite_harmonic")
+		harmonic_regenerating = TRUE
 
 /datum/component/nanites/proc/remove_design(datum/techweb/web, datum/design/design, custom = FALSE)
 	SIGNAL_HANDLER
-	harmonic_regenerating = !!web.researched_nodes[/datum/techweb_node/nanite_harmonic]
+	if(design.id == "nanite_harmonic")
+		harmonic_regenerating = FALSE
 
 /datum/component/nanites/proc/connect_techweb(datum/techweb/new_web)
 	if(!new_web || new_web == techweb)
@@ -189,7 +192,7 @@
 		disconnect_techweb()
 	techweb = new_web
 	var/list/all_nodes = techweb.get_researched_nodes()
-	harmonic_regenerating = !!all_nodes[/datum/techweb_node/nanite_harmonic]
+	harmonic_regenerating = !!all_nodes["nanite_harmonic"]
 	RegisterSignal(techweb, COMSIG_TECHWEB_ADD_DESIGN, PROC_REF(add_design))
 	RegisterSignal(techweb, COMSIG_TECHWEB_REMOVE_DESIGN, PROC_REF(remove_design))
 
@@ -436,7 +439,7 @@
 	research_progress += progress_addition
 	if(research_progress >= 100)
 		research_progress -= 100
-		techweb.adjust_multiple_points(
+		techweb.add_point_list(
 				list(
 					TECHWEB_POINT_TYPE_GENERIC = TECHWEB_SINGLE_SERVER_INCOME,
 					TECHWEB_POINT_TYPE_NANITE = TECHWEB_SINGLE_SERVER_INCOME

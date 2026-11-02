@@ -138,7 +138,6 @@
 		HUMAN_HEIGHT_MEDIUM,
 		HUMAN_HEIGHT_TALL,
 		HUMAN_HEIGHT_TALLER,
-		HUMAN_HEIGHT_TALLEST, // BUBBER EDIT - LET PEOPLE BE TALL!!!!
 	)
 
 /datum/dna_block/identity/height/create_unique_block(mob/living/carbon/human/target)
@@ -149,4 +148,4 @@
 /datum/dna_block/identity/height/apply_to_mob(mob/living/carbon/human/target, dna_hash)
 	var/max_height_index = length(dna_heights)
 	var/mob_height_index = deconstruct_block(get_block(dna_hash), max_height_index, block_length)
-	target.set_mob_height(dna_heights[mob_height_index] || HUMAN_HEIGHT_MEDIUM, update_dna = FALSE)
+	target.set_mob_height(text2num(dna_heights[mob_height_index]) || HUMAN_HEIGHT_MEDIUM, update_dna = FALSE)

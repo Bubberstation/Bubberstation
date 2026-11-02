@@ -330,7 +330,6 @@
 	desc = "It's a stick..?"
 	icon = 'icons/obj/weapons/staff.dmi'
 	icon_state = "godstaff-red"
-	inhand_icon_state = "godstaff-red"
 	icon_angle = -45
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
@@ -363,7 +362,6 @@
 
 /obj/item/godstaff/blue
 	icon_state = "godstaff-blue"
-	inhand_icon_state = "godstaff-blue"
 	conversion_color = "#0000ff"
 
 /obj/item/clothing/gloves/plate

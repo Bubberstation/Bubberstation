@@ -2,6 +2,7 @@
 
 /datum/design/borg_suit
 	name = "Cyborg Endoskeleton"
+	id = "borg_suit"
 	build_type = MECHFAB
 	build_path = /obj/item/robot_suit
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*7.5)
@@ -12,6 +13,7 @@
 
 /datum/design/borg_chest
 	name = "Cyborg Torso"
+	id = "borg_chest"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/chest/robot
 	materials = list(/datum/material/iron= SHEET_MATERIAL_AMOUNT*20)
@@ -22,6 +24,7 @@
 
 /datum/design/borg_head
 	name = "Cyborg Head"
+	id = "borg_head"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/head/robot
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 2.5)
@@ -32,6 +35,7 @@
 
 /datum/design/borg_l_arm
 	name = "Cyborg Left Arm"
+	id = "borg_l_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/arm/left/robot
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*5)
@@ -42,6 +46,7 @@
 
 /datum/design/borg_r_arm
 	name = "Cyborg Right Arm"
+	id = "borg_r_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/arm/right/robot
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*5)
@@ -52,6 +57,7 @@
 
 /datum/design/borg_l_leg
 	name = "Cyborg Left Leg"
+	id = "borg_l_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/left/robot
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*5)
@@ -62,6 +68,7 @@
 
 /datum/design/borg_r_leg
 	name = "Cyborg Right Leg"
+	id = "borg_r_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/right/robot
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*5)
@@ -74,6 +81,7 @@
 
 /datum/design/advanced_l_arm
 	name = "Advanced Left Arm"
+	id = "advanced_l_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/arm/left/robot/advanced
 	materials = list(
@@ -88,6 +96,7 @@
 
 /datum/design/advanced_r_arm
 	name = "Advanced Right Arm"
+	id = "advanced_r_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/arm/right/robot/advanced
 	materials = list(
@@ -102,6 +111,7 @@
 
 /datum/design/advanced_l_leg
 	name = "Advanced Left Leg"
+	id = "advanced_l_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/left/robot/advanced
 	materials = list(
@@ -116,6 +126,7 @@
 
 /datum/design/advanced_r_leg
 	name = "Advanced Right Leg"
+	id = "advanced_r_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/bodypart/leg/right/robot/advanced
 	materials = list(
@@ -131,6 +142,7 @@
 //Ripley
 /datum/design/ripley_chassis
 	name = "Exosuit Chassis (APLU \"Ripley\")"
+	id = "ripley_chassis"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/chassis/ripley
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*10)
@@ -141,6 +153,7 @@
 
 /datum/design/ripley_torso
 	name = "Exosuit Torso (APLU \"Ripley\")"
+	id = "ripley_torso"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/ripley_torso
 	materials = list(
@@ -154,6 +167,7 @@
 
 /datum/design/ripley_left_arm
 	name = "Exosuit Left Arm (APLU \"Ripley\")"
+	id = "ripley_left_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/ripley_left_arm
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*7.5)
@@ -164,6 +178,7 @@
 
 /datum/design/ripley_right_arm
 	name = "Exosuit Right Arm (APLU \"Ripley\")"
+	id = "ripley_right_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/ripley_right_arm
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*7.5)
@@ -174,6 +189,7 @@
 
 /datum/design/ripley_left_leg
 	name = "Exosuit Left Leg (APLU \"Ripley\")"
+	id = "ripley_left_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/ripley_left_leg
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*7.5)
@@ -184,6 +200,7 @@
 
 /datum/design/ripley_right_leg
 	name = "Exosuit Right Leg (APLU \"Ripley\")"
+	id = "ripley_right_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/ripley_right_leg
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*7.5)
@@ -195,6 +212,7 @@
 //Odysseus
 /datum/design/odysseus_chassis
 	name = "Exosuit Chassis (\"Odysseus\")"
+	id = "odysseus_chassis"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/chassis/odysseus
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*10)
@@ -205,6 +223,7 @@
 
 /datum/design/odysseus_torso
 	name = "Exosuit Torso (\"Odysseus\")"
+	id = "odysseus_torso"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/odysseus_torso
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*6)
@@ -215,6 +234,7 @@
 
 /datum/design/odysseus_head
 	name = "Exosuit Head (\"Odysseus\")"
+	id = "odysseus_head"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/odysseus_head
 	materials = list(
@@ -228,6 +248,7 @@
 
 /datum/design/odysseus_left_arm
 	name = "Exosuit Left Arm (\"Odysseus\")"
+	id = "odysseus_left_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/odysseus_left_arm
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*3)
@@ -238,6 +259,7 @@
 
 /datum/design/odysseus_right_arm
 	name = "Exosuit Right Arm (\"Odysseus\")"
+	id = "odysseus_right_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/odysseus_right_arm
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*3)
@@ -248,6 +270,7 @@
 
 /datum/design/odysseus_left_leg
 	name = "Exosuit Left Leg (\"Odysseus\")"
+	id = "odysseus_left_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/odysseus_left_leg
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*3.5)
@@ -258,6 +281,7 @@
 
 /datum/design/odysseus_right_leg
 	name = "Exosuit Right Leg (\"Odysseus\")"
+	id = "odysseus_right_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/odysseus_right_leg
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*3.5)
@@ -269,6 +293,7 @@
 //Gygax
 /datum/design/gygax_chassis
 	name = "Exosuit Chassis (\"Gygax\")"
+	id = "gygax_chassis"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/chassis/gygax
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*10)
@@ -279,6 +304,7 @@
 
 /datum/design/gygax_torso
 	name = "Exosuit Torso (\"Gygax\")"
+	id = "gygax_torso"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/gygax_torso
 	materials = list(
@@ -294,6 +320,7 @@
 
 /datum/design/gygax_head
 	name = "Exosuit Head (\"Gygax\")"
+	id = "gygax_head"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/gygax_head
 	materials = list(
@@ -309,6 +336,7 @@
 
 /datum/design/gygax_left_arm
 	name = "Exosuit Left Arm (\"Gygax\")"
+	id = "gygax_left_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/gygax_left_arm
 	materials = list(
@@ -323,6 +351,7 @@
 
 /datum/design/gygax_right_arm
 	name = "Exosuit Right Arm (\"Gygax\")"
+	id = "gygax_right_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/gygax_right_arm
 	materials = list(
@@ -337,6 +366,7 @@
 
 /datum/design/gygax_left_leg
 	name = "Exosuit Left Leg (\"Gygax\")"
+	id = "gygax_left_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/gygax_left_leg
 	materials = list(
@@ -351,6 +381,7 @@
 
 /datum/design/gygax_right_leg
 	name = "Exosuit Right Leg (\"Gygax\")"
+	id = "gygax_right_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/gygax_right_leg
 	materials = list(
@@ -365,6 +396,7 @@
 
 /datum/design/gygax_armor
 	name = "Exosuit Armor (\"Gygax\")"
+	id = "gygax_armor"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/gygax_armor
 	materials = list(
@@ -381,6 +413,7 @@
 //Durand
 /datum/design/durand_chassis
 	name = "Exosuit Chassis (\"Durand\")"
+	id = "durand_chassis"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/chassis/durand
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*12.5)
@@ -391,6 +424,7 @@
 
 /datum/design/durand_torso
 	name = "Exosuit Torso (\"Durand\")"
+	id = "durand_torso"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_torso
 	materials = list(
@@ -405,6 +439,7 @@
 
 /datum/design/durand_head
 	name = "Exosuit Head (\"Durand\")"
+	id = "durand_head"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_head
 	materials = list(
@@ -419,6 +454,7 @@
 
 /datum/design/durand_left_arm
 	name = "Exosuit Left Arm (\"Durand\")"
+	id = "durand_left_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_left_arm
 	materials = list(
@@ -432,6 +468,7 @@
 
 /datum/design/durand_right_arm
 	name = "Exosuit Right Arm (\"Durand\")"
+	id = "durand_right_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_right_arm
 	materials = list(
@@ -445,6 +482,7 @@
 
 /datum/design/durand_left_leg
 	name = "Exosuit Left Leg (\"Durand\")"
+	id = "durand_left_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_left_leg
 	materials = list(
@@ -458,6 +496,7 @@
 
 /datum/design/durand_right_leg
 	name = "Exosuit Right Leg (\"Durand\")"
+	id = "durand_right_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_right_leg
 	materials = list(
@@ -471,6 +510,7 @@
 
 /datum/design/durand_armor
 	name = "Exosuit Armor (\"Durand\")"
+	id = "durand_armor"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/durand_armor
 	materials = list(
@@ -486,6 +526,7 @@
 //H.O.N.K
 /datum/design/honk_chassis
 	name = "Exosuit Chassis (\"H.O.N.K\")"
+	id = "honk_chassis"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/chassis/honker
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*10)
@@ -496,6 +537,7 @@
 
 /datum/design/honk_torso
 	name = "Exosuit Torso (\"H.O.N.K\")"
+	id = "honk_torso"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/honker_torso
 	materials = list(
@@ -510,6 +552,7 @@
 
 /datum/design/honk_head
 	name = "Exosuit Head (\"H.O.N.K\")"
+	id = "honk_head"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/honker_head
 	materials = list(
@@ -524,6 +567,7 @@
 
 /datum/design/honk_left_arm
 	name = "Exosuit Left Arm (\"H.O.N.K\")"
+	id = "honk_left_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/honker_left_arm
 	materials = list(
@@ -537,6 +581,7 @@
 
 /datum/design/honk_right_arm
 	name = "Exosuit Right Arm (\"H.O.N.K\")"
+	id = "honk_right_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/honker_right_arm
 	materials = list(
@@ -550,6 +595,7 @@
 
 /datum/design/honk_left_leg
 	name = "Exosuit Left Leg (\"H.O.N.K\")"
+	id = "honk_left_leg"
 	build_type = MECHFAB
 	build_path =/obj/item/mecha_parts/part/honker_left_leg
 	materials = list(
@@ -563,6 +609,7 @@
 
 /datum/design/honk_right_leg
 	name = "Exosuit Right Leg (\"H.O.N.K\")"
+	id = "honk_right_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/honker_right_leg
 	materials = list(
@@ -577,6 +624,7 @@
 //Phazon
 /datum/design/phazon_chassis
 	name = "Exosuit Chassis (\"Phazon\")"
+	id = "phazon_chassis"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/chassis/phazon
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*10)
@@ -587,6 +635,7 @@
 
 /datum/design/phazon_torso
 	name = "Exosuit Torso (\"Phazon\")"
+	id = "phazon_torso"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/phazon_torso
 	materials = list(
@@ -601,6 +650,7 @@
 
 /datum/design/phazon_head
 	name = "Exosuit Head (\"Phazon\")"
+	id = "phazon_head"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/phazon_head
 	materials = list(
@@ -615,6 +665,7 @@
 
 /datum/design/phazon_left_arm
 	name = "Exosuit Left Arm (\"Phazon\")"
+	id = "phazon_left_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/phazon_left_arm
 	materials = list(
@@ -628,6 +679,7 @@
 
 /datum/design/phazon_right_arm
 	name = "Exosuit Right Arm (\"Phazon\")"
+	id = "phazon_right_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/phazon_right_arm
 	materials = list(
@@ -641,6 +693,7 @@
 
 /datum/design/phazon_left_leg
 	name = "Exosuit Left Leg (\"Phazon\")"
+	id = "phazon_left_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/phazon_left_leg
 	materials = list(
@@ -654,6 +707,7 @@
 
 /datum/design/phazon_right_leg
 	name = "Exosuit Right Leg (\"Phazon\")"
+	id = "phazon_right_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/phazon_right_leg
 	materials = list(
@@ -667,6 +721,7 @@
 
 /datum/design/phazon_armor
 	name = "Exosuit Armor (\"Phazon\")"
+	id = "phazon_armor"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/phazon_armor
 	materials = list(
@@ -682,6 +737,7 @@
 //Savannah-Ivanov
 /datum/design/savannah_ivanov_chassis
 	name = "Exosuit Chassis (\"Savannah-Ivanov\")"
+	id = "savannah_ivanov_chassis"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/chassis/savannah_ivanov
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*10)
@@ -692,6 +748,7 @@
 
 /datum/design/savannah_ivanov_torso
 	name = "Exosuit Torso (\"Savannah-Ivanov\")"
+	id = "savannah_ivanov_torso"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/savannah_ivanov_torso
 	materials = list(
@@ -705,6 +762,7 @@
 
 /datum/design/savannah_ivanov_head
 	name = "Exosuit Head (\"Savannah-Ivanov\")"
+	id = "savannah_ivanov_head"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/savannah_ivanov_head
 	materials = list(
@@ -718,6 +776,7 @@
 
 /datum/design/savannah_ivanov_left_arm
 	name = "Exosuit Left Arm (\"Savannah-Ivanov\")"
+	id = "savannah_ivanov_left_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/savannah_ivanov_left_arm
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*7.5)
@@ -728,6 +787,7 @@
 
 /datum/design/savannah_ivanov_right_arm
 	name = "Exosuit Right Arm (\"Savannah-Ivanov\")"
+	id = "savannah_ivanov_right_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/savannah_ivanov_right_arm
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*7.5)
@@ -738,6 +798,7 @@
 
 /datum/design/savannah_ivanov_chassis
 	name = "Exosuit Chassis (\"Savannah-Ivanov\")"
+	id = "savannah_ivanov_chassis"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/chassis/savannah_ivanov
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*12.5)
@@ -748,6 +809,7 @@
 
 /datum/design/savannah_ivanov_torso
 	name = "Exosuit Torso (\"Savannah-Ivanov\")"
+	id = "savannah_ivanov_torso"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/savannah_ivanov_torso
 	materials = list(
@@ -762,6 +824,7 @@
 
 /datum/design/savannah_ivanov_head
 	name = "Exosuit Head (\"Savannah-Ivanov\")"
+	id = "savannah_ivanov_head"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/savannah_ivanov_head
 	materials = list(
@@ -776,6 +839,7 @@
 
 /datum/design/savannah_ivanov_left_arm
 	name = "Exosuit Left Arm (\"Savannah-Ivanov\")"
+	id = "savannah_ivanov_left_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/savannah_ivanov_left_arm
 	materials = list(
@@ -789,6 +853,7 @@
 
 /datum/design/savannah_ivanov_right_arm
 	name = "Exosuit Right Arm (\"Savannah-Ivanov\")"
+	id = "savannah_ivanov_right_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/savannah_ivanov_right_arm
 	materials = list(
@@ -802,6 +867,7 @@
 
 /datum/design/savannah_ivanov_left_leg
 	name = "Exosuit Left Leg (\"Savannah-Ivanov\")"
+	id = "savannah_ivanov_left_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/savannah_ivanov_left_leg
 	materials = list(
@@ -815,6 +881,7 @@
 
 /datum/design/savannah_ivanov_right_leg
 	name = "Exosuit Right Leg (\"Savannah-Ivanov\")"
+	id = "savannah_ivanov_right_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/savannah_ivanov_right_leg
 	materials = list(
@@ -828,6 +895,7 @@
 
 /datum/design/savannah_ivanov_armor
 	name = "Exosuit Armor (\"Savannah-Ivanov\")"
+	id = "savannah_ivanov_armor"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/savannah_ivanov_armor
 	materials = list(
@@ -843,6 +911,7 @@
 //Clarke
 /datum/design/clarke_chassis
 	name = "Exosuit Chassis (\"Clarke\")"
+	id = "clarke_chassis"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/chassis/clarke
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*10)
@@ -853,6 +922,7 @@
 
 /datum/design/clarke_torso
 	name = "Exosuit Torso (\"Clarke\")"
+	id = "clarke_torso"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/clarke_torso
 	materials = list(
@@ -866,6 +936,7 @@
 
 /datum/design/clarke_head
 	name = "Exosuit Head (\"Clarke\")"
+	id = "clarke_head"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/clarke_head
 	materials = list(
@@ -879,6 +950,7 @@
 
 /datum/design/clarke_left_arm
 	name = "Exosuit Left Arm (\"Clarke\")"
+	id = "clarke_left_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/clarke_left_arm
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*7.5)
@@ -889,6 +961,7 @@
 
 /datum/design/clarke_right_arm
 	name = "Exosuit Right Arm (\"Clarke\")"
+	id = "clarke_right_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/clarke_right_arm
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*7.5)
@@ -900,6 +973,7 @@
 //Exosuit Equipment
 /datum/design/ripleyupgrade
 	name = "Ripley MK-I to MK-II Conversion Kit"
+	id = "ripleyupgrade"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/ripleyupgrade
 	materials = list(
@@ -914,6 +988,7 @@
 
 /datum/design/paddyupgrade
 	name = "Ripley MK-I to Paddy Conversion Kit"
+	id = "paddyupgrade"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/ripleyupgrade/paddy
 	materials = list(
@@ -929,6 +1004,7 @@
 
 /datum/design/mech_hydraulic_clamp
 	name = "Hydraulic Clamp"
+	id = "mech_hydraulic_clamp"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*5)
@@ -940,6 +1016,7 @@
 
 /datum/design/mech_hydraulic_claw
 	name = "Hydraulic Claw"
+	id = "mech_hydraulic_claw"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/paddy_claw
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*5)
@@ -951,6 +1028,7 @@
 
 /datum/design/mech_drill
 	name = "Mining Drill"
+	id = "mech_drill"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/drill
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*5)
@@ -969,6 +1047,7 @@
 
 /datum/design/mech_mining_scanner
 	name = "Mining Scanner"
+	id = "mech_mscanner"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/mining_scanner
 	materials = list(
@@ -984,6 +1063,7 @@
 
 /datum/design/mech_extinguisher
 	name = "Extinguisher"
+	id = "mech_extinguisher"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/extinguisher
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*5)
@@ -996,6 +1076,7 @@
 
 /datum/design/mech_generator
 	name = "Plasma Generator"
+	id = "mech_generator"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/generator/printed
 	materials = list(
@@ -1019,6 +1100,7 @@
 
 /datum/design/mech_mousetrap_mortar
 	name = "Mousetrap Mortar"
+	id = "mech_mousetrap_mortar"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/mousetrap_mortar
 	materials = list(
@@ -1034,6 +1116,7 @@
 
 /datum/design/mech_banana_mortar
 	name = "Banana Mortar"
+	id = "mech_banana_mortar"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/banana_mortar
 	materials = list(
@@ -1049,6 +1132,7 @@
 
 /datum/design/mech_honker
 	name = "HoNkER BlAsT 5000"
+	id = "mech_honker"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/honker
 	materials = list(
@@ -1064,6 +1148,7 @@
 
 /datum/design/mech_punching_glove
 	name = "Oingo Boingo Punch-face"
+	id = "mech_punching_face"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/punching_glove
 	materials = list(
@@ -1079,6 +1164,7 @@
 
 /datum/design/mech_radio
 	name = "Mech Radio"
+	id = "mech_radio"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/radio
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*2.5)
@@ -1097,6 +1183,7 @@
 
 /datum/design/mech_air_tank
 	name = "Mech Air Tank"
+	id = "mech_air_tank"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/air_tank
 	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*5)
@@ -1119,6 +1206,7 @@
 
 /datum/design/borg_upgrade_rename
 	name = "Rename Board"
+	id = "borg_upgrade_rename"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/rename
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5)
@@ -1129,6 +1217,7 @@
 
 /datum/design/borg_upgrade_restart
 	name = "Emergency Reboot Board"
+	id = "borg_upgrade_restart"
 	build_type = MECHFAB
 	build_path = /obj/item/borg_restart_board
 	materials = list(
@@ -1142,6 +1231,7 @@
 
 /datum/design/borg_upgrade_thrusters
 	name = "Ion Thrusters"
+	id = "borg_upgrade_thrusters"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/thrusters
 	materials = list(
@@ -1157,6 +1247,7 @@
 
 /datum/design/borg_upgrade_disablercooler
 	name = "Rapid Disabler Cooling Module"
+	id = "borg_upgrade_disablercooler"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/disablercooler
 	materials = list(
@@ -1172,6 +1263,7 @@
 
 /datum/design/borg_upgrade_diamonddrill
 	name = "Diamond Drill"
+	id = "borg_upgrade_diamonddrill"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/diamond_drill
 	materials = list(
@@ -1186,6 +1278,7 @@
 
 /datum/design/borg_upgrade_holding
 	name = "Ore Satchel of Holding"
+	id = "borg_upgrade_holding"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/soh
 	materials = list(
@@ -1200,6 +1293,7 @@
 
 /datum/design/borg_upgrade_lavaproof
 	name = "Lavaproof Tracks"
+	id = "borg_upgrade_lavaproof"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/lavaproof
 	materials = list(
@@ -1214,6 +1308,7 @@
 
 /datum/design/borg_syndicate_module
 	name = "Illegal Modules"
+	id = "borg_syndicate_module"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/syndicate
 	materials = list(
@@ -1228,6 +1323,7 @@
 
 /datum/design/borg_transform_clown
 	name = "Clown Module"
+	id = "borg_transform_clown"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/transform/clown
 	materials = list(
@@ -1242,6 +1338,7 @@
 
 /datum/design/borg_upgrade_selfrepair
 	name = "Self-Repair Module"
+	id = "borg_upgrade_selfrepair"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/selfrepair
 	materials = list(
@@ -1255,6 +1352,7 @@
 
 /datum/design/borg_upgrade_expandedsynthesiser
 	name = "Expanded Hypospray Synthesiser"
+	id = "borg_upgrade_expandedsynthesiser"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/hypospray/expanded
 	materials = list(
@@ -1270,6 +1368,7 @@
 
 /datum/design/borg_upgrade_piercinghypospray
 	name = "Piercing Hypospray"
+	id = "borg_upgrade_piercinghypospray"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/piercing_hypospray
 	materials = list(
@@ -1285,6 +1384,7 @@
 
 /datum/design/borg_upgrade_defibrillator
 	name = "Defibrillator"
+	id = "borg_upgrade_defibrillator"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/defib
 	materials = list(
@@ -1300,6 +1400,7 @@
 
 /datum/design/borg_upgrade_surgicalprocessor
 	name = "Surgical Processor"
+	id = "borg_upgrade_surgicalprocessor"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/processor
 	materials = list(
@@ -1314,6 +1415,7 @@
 
 /datum/design/borg_upgrade_surgicalomnitool
 	name = "Advanced Surgical Omnitool Upgrade"
+	id = "borg_upgrade_surgicalomnitool"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/surgery_omnitool
 	materials = list(
@@ -1328,6 +1430,7 @@
 
 /datum/design/borg_upgrade_engineeringomnitool
 	name = "Advanced Engineering Omnitool Upgrade"
+	id = "borg_upgrade_engineeringomnitool"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/engineering_omnitool
 	materials = list(
@@ -1342,6 +1445,7 @@
 
 /datum/design/borg_upgrade_trashofholding
 	name = "Trash Bag of Holding"
+	id = "borg_upgrade_trashofholding"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/tboh
 	materials = list(
@@ -1355,6 +1459,7 @@
 
 /datum/design/borg_upgrade_advancedmop
 	name = "Advanced Mop"
+	id = "borg_upgrade_advancedmop"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/amop
 	materials = list(
@@ -1368,6 +1473,7 @@
 
 /datum/design/borg_upgrade_prt
 	name = "Plating Repair Tool"
+	id = "borg_upgrade_prt"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/prt
 	materials = list(
@@ -1381,6 +1487,7 @@
 
 /datum/design/borg_upgrade_plunger
 	name = "Integrated Plunger"
+	id = "borg_upgrade_plunger"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/plunger
 	materials = list(
@@ -1394,6 +1501,7 @@
 
 /datum/design/borg_upgrade_high_capacity_replacer
 	name = "High Capacity Light Replacer"
+	id = "borg_upgrade_high_capacity_replacer"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/high_capacity_light_replacer
 	materials = list(
@@ -1407,6 +1515,7 @@
 
 /datum/design/borg_upgrade_rolling_table
 	name = "Rolling Table Dock"
+	id = "borg_upgrade_rolling_table"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/rolling_table
 	materials = list(
@@ -1420,6 +1529,7 @@
 
 /datum/design/borg_upgrade_condiment_synthesizer
 	name = "Condiment Synthesizer"
+	id = "borg_upgrade_condiment_synthesizer"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/condiment_synthesizer
 	materials = list(
@@ -1435,6 +1545,7 @@
 
 /datum/design/borg_upgrade_silicon_knife
 	name = "Kitchen Toolset"
+	id = "borg_upgrade_silicon_knife"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/silicon_knife
 	materials = list(
@@ -1449,6 +1560,7 @@
 
 /datum/design/borg_upgrade_botany
 	name = "Botany Tools"
+	id = "borg_upgrade_botany"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/botany_upgrade
 	materials = list(
@@ -1463,6 +1575,7 @@
 
 /datum/design/borg_upgrade_drink_apparatus
 	name = "Drink Apparatus"
+	id = "borg_upgrade_drink_apparatus"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/drink_app
 	materials = list(
@@ -1476,6 +1589,7 @@
 
 /datum/design/borg_upgrade_service_apparatus
 	name = "Service Apparatus"
+	id = "borg_upgrade_service_apparatus"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/service_apparatus
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*2.5)
@@ -1486,6 +1600,7 @@
 
 /datum/design/borg_upgrade_service_cookbook
 	name = "Service Cookbook"
+	id = "borg_upgrade_service_cookbook"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/service_cookbook
 	materials = list(
@@ -1499,6 +1614,7 @@
 
 /datum/design/borg_upgrade_shuttle_blueprints
 	name = "Engineering Shuttle Blueprints"
+	id = "borg_upgrade_engineering_shuttle_blueprints"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/shuttle_blueprints
 	materials = list(
@@ -1512,6 +1628,7 @@
 
 /datum/design/borg_upgrade_expand
 	name = "Expand Module"
+	id = "borg_upgrade_expand"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/expand
 	materials = list(
@@ -1525,6 +1642,7 @@
 
 /datum/design/boris_ai_controller
 	name = "B.O.R.I.S. AI-Cyborg Remote Control"
+	id = "borg_ai_control"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/ai
 	materials = list(
@@ -1536,9 +1654,11 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_CONTROL_INTERFACES
 	)
+	search_metadata = "boris"
 
 /datum/design/borg_upgrade_rped
 	name = "Rapid Part Exchange Device Expanded"
+	id = "borg_upgrade_rped"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/rped
 	materials = list(
@@ -1553,6 +1673,7 @@
 
 /datum/design/borg_upgrade_inducer
 	name = "Cyborg inducer"
+	id = "borg_upgrade_inducer"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/inducer
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2)
@@ -1563,6 +1684,7 @@
 
 /datum/design/borg_upgrade_engineering_app
 	name = "Engineering Apparatus"
+	id = "borg_upgrade_engineeringapp"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/engineering_app
 	materials = list(
@@ -1576,6 +1698,7 @@
 
 /datum/design/borg_upgrade_beaker_app
 	name = "Secondary Beaker Storage"
+	id = "borg_upgrade_beakerapp"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/beaker_app
 	materials = list(
@@ -1589,6 +1712,7 @@
 
 /datum/design/borg_upgrade_pinpointer
 	name = "Crew Pinpointer"
+	id = "borg_upgrade_pinpointer"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/pinpointer
 	materials = list(
@@ -1602,6 +1726,7 @@
 
 /datum/design/borg_upgrade_syringe
 	name = "Advanced Syringe"
+	id = "borg_upgrade_syringe"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/bs_syringe
 	materials = list(
@@ -1619,6 +1744,7 @@
 /*
 /datum/design/borg_upgrade_broomer
 	name = "Experimental Push Broom"
+	id = "borg_upgrade_broomer"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/broomer
 	materials = list(
@@ -1634,13 +1760,14 @@
 /datum/design/mmi
 	name = "Man-Machine Interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity."
+	id = "mmi"
 	build_type = MECHFAB
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass =SMALL_MATERIAL_AMOUNT*5,
 	)
 	construction_time = 7.5 SECONDS
-	build_path = /obj/item/brain_processor/organic
+	build_path = /obj/item/mmi
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_CONTROL_INTERFACES
 	)
@@ -1648,6 +1775,7 @@
 
 /datum/design/mmi/medical
 	build_type = PROTOLATHE | AWAY_LATHE
+	id = "mmi_m"
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL
 	)
@@ -1656,6 +1784,7 @@
 /datum/design/posibrain
 	name = "Positronic Brain"
 	desc = "The latest in Artificial Intelligences."
+	id = "mmi_posi"
 	build_type = MECHFAB
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT*1.7,
@@ -1663,7 +1792,7 @@
 		/datum/material/gold =SMALL_MATERIAL_AMOUNT*5
 	)
 	construction_time = 7.5 SECONDS
-	build_path = /obj/item/brain_processor/positronic
+	build_path = /obj/item/mmi/posibrain
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_CONTROL_INTERFACES
 	)
@@ -1672,6 +1801,7 @@
 //Misc
 /datum/design/mecha_tracking
 	name = "Exosuit Tracking Beacon"
+	id = "mecha_tracking"
 	build_type = MECHFAB
 	build_path =/obj/item/mecha_parts/mecha_tracking
 	materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*5)
@@ -1690,6 +1820,7 @@
 
 /datum/design/mecha_tracking_ai_control
 	name = "AI Control Beacon"
+	id = "mecha_tracking_ai_control"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_tracking/ai_control
 	materials = list(
@@ -1712,6 +1843,7 @@
 /datum/design/mecha_camera
 	name = "Exosuit External Camera Kit"
 	desc = "A durable CCTV camera designed for exosuit operations."
+	id = "mecha_camera"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/camera_kit
 	materials = list(
@@ -1736,6 +1868,7 @@
 /datum/design/synthetic_flash
 	name = "Flash"
 	desc = "When a problem arises, SCIENCE is the solution."
+	id = "sflash"
 	build_type = MECHFAB
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 7.5,
@@ -1756,6 +1889,7 @@
 /datum/design/mod_shell
 	name = "MOD Shell"
 	desc = "A 'Nakamura Engineering' designed shell for a Modular Suit."
+	id = "mod_shell"
 	build_type = MECHFAB
 	materials = list(
 		/datum/material/iron =SHEET_MATERIAL_AMOUNT*5,
@@ -1770,6 +1904,7 @@
 /datum/design/mod_helmet
 	name = "MOD Helmet"
 	desc = "A 'Nakamura Engineering' designed helmet for a Modular Suit."
+	id = "mod_helmet"
 	build_type = MECHFAB
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5)
 	construction_time = 10 SECONDS
@@ -1781,6 +1916,7 @@
 /datum/design/mod_chestplate
 	name = "MOD Chestplate"
 	desc = "A 'Nakamura Engineering' designed chestplate for a Modular Suit."
+	id = "mod_chestplate"
 	build_type = MECHFAB
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5)
 	construction_time = 10 SECONDS
@@ -1792,6 +1928,7 @@
 /datum/design/mod_gauntlets
 	name = "MOD Gauntlets"
 	desc = "'Nakamura Engineering' designed gauntlets for a Modular Suit."
+	id = "mod_gauntlets"
 	build_type = MECHFAB
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5)
 	construction_time = 10 SECONDS
@@ -1803,6 +1940,7 @@
 /datum/design/mod_boots
 	name = "MOD Boots"
 	desc = "'Nakamura Engineering' designed boots for a Modular Suit."
+	id = "mod_boots"
 	build_type = MECHFAB
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5)
 	construction_time = 10 SECONDS
@@ -1814,6 +1952,7 @@
 /datum/design/mod_plating
 	name = "MOD External Plating"
 	desc = "External plating for a MODsuit."
+	id = "mod_plating_standard"
 	build_type = MECHFAB
 	materials = list(
 		/datum/material/iron =SHEET_MATERIAL_AMOUNT*3,
@@ -1836,6 +1975,7 @@
 
 /datum/design/mod_plating/civilian
 	name = "MOD Civilian Plating"
+	id = "mod_plating_civilian"
 	build_path = /obj/item/mod/construction/plating/civilian
 	materials = list(
 		/datum/material/iron =SHEET_MATERIAL_AMOUNT*3,
@@ -1846,6 +1986,7 @@
 
 /datum/design/mod_plating/portable_suit
 	name = "MOD Portable Suit Plating"
+	id = "mod_plating_portable_suit"
 	build_path = /obj/item/mod/construction/plating/portable_suit
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3,
@@ -1857,6 +1998,7 @@
 
 /datum/design/mod_plating/engineering
 	name = "MOD Engineering Plating"
+	id = "mod_plating_engineering"
 	build_path = /obj/item/mod/construction/plating/engineering
 	materials = list(
 		/datum/material/iron =SHEET_MATERIAL_AMOUNT*3,
@@ -1869,6 +2011,7 @@
 
 /datum/design/mod_plating/atmospheric
 	name = "MOD Atmospheric Plating"
+	id = "mod_plating_atmospheric"
 	build_path = /obj/item/mod/construction/plating/atmospheric
 	materials = list(
 		/datum/material/iron =SHEET_MATERIAL_AMOUNT*3,
@@ -1881,6 +2024,7 @@
 
 /datum/design/mod_plating/medical
 	name = "MOD Medical Plating"
+	id = "mod_plating_medical"
 	build_path = /obj/item/mod/construction/plating/medical
 	materials = list(
 		/datum/material/iron =SHEET_MATERIAL_AMOUNT*3,
@@ -1893,6 +2037,7 @@
 
 /datum/design/mod_plating/cosmohonk
 	name = "MOD Cosmohonk Plating"
+	id = "mod_plating_cosmohonk"
 	build_path = /obj/item/mod/construction/plating/cosmohonk
 	materials = list(
 		/datum/material/iron =SHEET_MATERIAL_AMOUNT*3,
@@ -1906,6 +2051,7 @@
 /datum/design/mod_paint_kit
 	name = "MOD Paint Kit"
 	desc = "A paint kit for Modular Suits."
+	id = "mod_paint_kit"
 	build_type = MECHFAB
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
@@ -1920,6 +2066,7 @@
 /datum/design/modlink_scryer
 	name = "MODlink Scryer"
 	desc = "A neck-worn piece of gear that can call with another MODlink-compatible device."
+	id = "modlink_scryer"
 	build_type = MECHFAB
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -1935,7 +2082,6 @@
 //MODsuit modules
 
 /datum/design/module
-	abstract_type = /datum/design/module
 	name = "MOD Module"
 	build_type = MECHFAB
 	construction_time = 1 SECONDS
@@ -1955,6 +2101,7 @@
 
 /datum/design/module/mod_storage
 	name = "Compact Storage Module"
+	id = "mod_storage"
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT *1.25,
 		/datum/material/glass =SMALL_MATERIAL_AMOUNT*5,
@@ -1963,6 +2110,7 @@
 
 /datum/design/module/mod_storage_expanded
 	name = "Storage Module"
+	id = "mod_storage_expanded"
 	materials = list(
 		/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5,
 		/datum/material/uranium =SHEET_MATERIAL_AMOUNT,
@@ -1971,6 +2119,7 @@
 
 /datum/design/module/mod_storage_holding
 	name = "Storage Module of Holding"
+	id = "mod_storage_holding"
 	materials = list(
 		/datum/material/gold =SHEET_MATERIAL_AMOUNT * 1.5,
 		/datum/material/diamond =HALF_SHEET_MATERIAL_AMOUNT * 1.5,
@@ -1981,6 +2130,7 @@
 
 /datum/design/module/mod_visor_medhud
 	name = "Medical Visor Module"
+	id = "mod_visor_medhud"
 	materials = list(
 		/datum/material/silver =SMALL_MATERIAL_AMOUNT*5,
 		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
@@ -1992,6 +2142,7 @@
 
 /datum/design/module/mod_visor_diaghud
 	name = "Diagnostic Visor Module"
+	id = "mod_visor_diaghud"
 	materials = list(
 		/datum/material/gold =SMALL_MATERIAL_AMOUNT*5,
 		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2002,6 +2153,7 @@
 	)
 /datum/design/module/mod_visor_sechud
 	name = "Security Visor Module"
+	id = "mod_visor_sechud"
 	materials = list(
 		/datum/material/titanium =SMALL_MATERIAL_AMOUNT*5,
 		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2012,6 +2164,7 @@
 	)
 /datum/design/module/mod_visor_meson
 	name = "Meson Visor Module"
+	id = "mod_visor_meson"
 	materials = list(
 		/datum/material/uranium =SMALL_MATERIAL_AMOUNT*5,
 		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2022,6 +2175,7 @@
 	)
 /datum/design/module/mod_visor_welding
 	name = "Welding Protection Module"
+	id = "mod_welding"
 	materials = list(
 		/datum/material/iron =SMALL_MATERIAL_AMOUNT*5,
 		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2032,6 +2186,7 @@
 	)
 /datum/design/module/mod_head_protection
 	name = "Safety-First Head Protection Module"
+	id = "mod_safety"
 	materials = list(
 		/datum/material/iron =SMALL_MATERIAL_AMOUNT*5,
 		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2042,6 +2197,7 @@
 	)
 /datum/design/module/mod_t_ray
 	name = "T-Ray Scanner Module"
+	id = "mod_t_ray"
 	materials = list(
 		/datum/material/iron =SMALL_MATERIAL_AMOUNT*5,
 		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2052,6 +2208,7 @@
 	)
 /datum/design/module/mod_health_analyzer
 	name = "Health Analyzer Module"
+	id = "mod_health_analyzer"
 	materials = list(
 		/datum/material/iron =SMALL_MATERIAL_AMOUNT*5,
 		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2063,6 +2220,7 @@
 
 /datum/design/module/mod_stealth
 	name = "Cloak Module"
+	id = "mod_stealth"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/bluespace =SMALL_MATERIAL_AMOUNT*5,
@@ -2073,11 +2231,13 @@
 	)
 /datum/design/module/mod_jetpack
 	name = "Ion Jetpack Module"
+	id = "mod_jetpack"
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma =HALF_SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/mod/module/jetpack
 
 /datum/design/module/mod_magboot
 	name = "Magnetic Stabilizator Module"
+	id = "mod_magboot"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/gold =SMALL_MATERIAL_AMOUNT*5,
@@ -2089,6 +2249,7 @@
 
 /datum/design/module/mod_mag_harness
 	name = "Magnetic Harness Module"
+	id = "mod_mag_harness"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT * 1.5,
 		/datum/material/silver =SMALL_MATERIAL_AMOUNT*5,
@@ -2100,6 +2261,7 @@
 
 /datum/design/module/mod_tether
 	name = "Emergency Tether Module"
+	id = "mod_tether"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/silver =SMALL_MATERIAL_AMOUNT*5,
@@ -2111,11 +2273,13 @@
 
 /datum/design/module/mod_mouthhole
 	name = "Eating Apparatus Module"
+	id = "mod_mouthhole"
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT * 1.5)
 	build_path = /obj/item/mod/module/mouthhole
 
 /datum/design/module/mod_rad_protection
 	name = "Radiation Protection Module"
+	id = "mod_rad_protection"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/uranium =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2126,6 +2290,7 @@
 	)
 /datum/design/module/mod_emp_shield
 	name = "EMP Shield Module"
+	id = "mod_emp_shield"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/plasma =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2134,6 +2299,7 @@
 
 /datum/design/module/mod_flashlight
 	name = "Flashlight Module"
+	id = "mod_flashlight"
 	materials = list(
 		/datum/material/iron =SMALL_MATERIAL_AMOUNT*5,
 		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2142,6 +2308,7 @@
 
 /datum/design/module/mod_reagent_scanner
 	name = "Reagent Scanner Module"
+	id = "mod_reagent_scanner"
 	materials = list(/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/mod/module/reagent_scanner
 	category = list(
@@ -2150,6 +2317,7 @@
 
 /datum/design/module/mod_gps
 	name = "Internal GPS Module"
+	id = "mod_gps"
 	materials = list(
 		/datum/material/iron =SMALL_MATERIAL_AMOUNT*5,
 		/datum/material/glass =SMALL_MATERIAL_AMOUNT*5,
@@ -2161,6 +2329,7 @@
 
 /datum/design/module/mod_constructor
 	name = "Constructor Module"
+	id = "mod_constructor"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/titanium =SMALL_MATERIAL_AMOUNT*5,
@@ -2171,6 +2340,7 @@
 	)
 /datum/design/module/mod_quick_carry
 	name = "Quick Carry Module"
+	id = "mod_quick_carry"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/titanium =SMALL_MATERIAL_AMOUNT*5,
@@ -2182,11 +2352,13 @@
 
 /datum/design/module/mod_longfall
 	name = "Longfall Module"
+	id = "mod_longfall"
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/mod/module/longfall
 
 /datum/design/module/mod_thermal_regulator
 	name = "Thermal Regulator Module"
+	id = "mod_thermal_regulator"
 	materials = list(
 		/datum/material/iron =SMALL_MATERIAL_AMOUNT*5,
 		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2195,6 +2367,7 @@
 
 /datum/design/module/mod_injector
 	name = "Injector Module"
+	id = "mod_injector"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/diamond =SMALL_MATERIAL_AMOUNT*5,
@@ -2206,6 +2379,7 @@
 
 /datum/design/module/mod_bikehorn
 	name = "Bike Horn Module"
+	id = "mod_bikehorn"
 	materials = list(
 		/datum/material/plastic =SMALL_MATERIAL_AMOUNT*5,
 		/datum/material/iron =SMALL_MATERIAL_AMOUNT*5,
@@ -2217,6 +2391,7 @@
 
 /datum/design/module/mod_microwave_beam
 	name = "Microwave Beam Module"
+	id = "mod_microwave_beam"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/uranium =SMALL_MATERIAL_AMOUNT*5,
@@ -2228,6 +2403,7 @@
 
 /datum/design/module/mod_waddle
 	name = "Waddle Module"
+	id = "mod_waddle"
 	materials = list(
 		/datum/material/plastic =HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2239,6 +2415,7 @@
 
 /datum/design/module/mod_clamp
 	name = "Crate Clamp Module"
+	id = "mod_clamp"
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/mod/module/clamp
 	category = list(
@@ -2247,6 +2424,7 @@
 
 /datum/design/module/mod_drill
 	name = "Drill Module"
+	id = "mod_drill"
 	materials = list(
 		/datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/iron =SHEET_MATERIAL_AMOUNT,
@@ -2258,22 +2436,16 @@
 
 /datum/design/module/mod_orebag
 	name = "Ore Bag Module"
+	id = "mod_orebag"
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT * 1.5)
 	build_path = /obj/item/mod/module/orebag
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SUPPLY
 	)
 
-/datum/design/module/mod_candela_spool
-	name = "Candela Spool Module"
-	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 1.5)
-	build_path = /obj/item/mod/module/candela_spool
-	category = list(
-		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SUPPLY
-	)
-
 /datum/design/module/mod_organizer
 	name = "Organizer Module"
+	id = "mod_organizer"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2285,6 +2457,7 @@
 
 /datum/design/module/mod_pathfinder
 	name = "Pathfinder Module"
+	id = "mod_pathfinder"
 	materials = list(
 		/datum/material/uranium =HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2293,6 +2466,7 @@
 
 /datum/design/module/mod_dna_lock
 	name = "DNA Lock Module"
+	id = "mod_dna_lock"
 	materials = list(
 		/datum/material/diamond =SMALL_MATERIAL_AMOUNT*5,
 		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2301,6 +2475,7 @@
 
 /datum/design/module/mod_plasma_stabilizer
 	name = "Plasma Stabilizer Module"
+	id = "mod_plasma"
 	materials = list(
 		/datum/material/plasma =HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2309,6 +2484,7 @@
 
 /datum/design/module/mod_glove_translator
 	name = "Glove Translator Module"
+	id = "mod_sign_radio"
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 7.5,
 		/datum/material/glass =SMALL_MATERIAL_AMOUNT*5,
@@ -2317,6 +2493,7 @@
 
 /datum/design/module/mister_atmos
 	name = "Resin Mister Module"
+	id = "mod_mister_atmos"
 	materials = list(
 		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/titanium =HALF_SHEET_MATERIAL_AMOUNT * 1.5,
@@ -2328,6 +2505,7 @@
 
 /datum/design/module/mod_holster
 	name = "Holster Module"
+	id = "mod_holster"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT * 1.5,
 		/datum/material/glass =SMALL_MATERIAL_AMOUNT*5,
@@ -2339,6 +2517,7 @@
 
 /datum/design/module/mod_sonar
 	name = "Active Sonar Module"
+	id = "mod_sonar"
 	materials = list(
 		/datum/material/titanium = SMALL_MATERIAL_AMOUNT * 2.5,
 		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2352,6 +2531,7 @@
 
 /datum/design/module/projectile_dampener
 	name = "Projectile Dampener Module"
+	id = "mod_projectile_dampener"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/bluespace =SMALL_MATERIAL_AMOUNT*5,
@@ -2363,6 +2543,7 @@
 
 /datum/design/module/surgicalprocessor
 	name = "Surgical Processor Module"
+	id = "mod_surgicalprocessor"
 	materials = list(
 		/datum/material/titanium = SMALL_MATERIAL_AMOUNT * 2.5,
 		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2375,6 +2556,7 @@
 
 /datum/design/module/threadripper
 	name = "Thread Ripper Module"
+	id = "mod_threadripper"
 	materials = list(
 		/datum/material/titanium = SMALL_MATERIAL_AMOUNT * 2.5,
 		/datum/material/plastic =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2387,6 +2569,7 @@
 
 /datum/design/module/defibrillator
 	name = "Defibrillator Module"
+	id = "mod_defib"
 	materials = list(
 		/datum/material/titanium = SMALL_MATERIAL_AMOUNT * 2.5,
 		/datum/material/diamond =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2399,6 +2582,7 @@
 
 /datum/design/module/statusreadout
 	name = "Status Readout Module"
+	id = "mod_statusreadout"
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 3,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
@@ -2411,6 +2595,7 @@
 
 /datum/design/module/patienttransport
 	name = "Patient Transport Module"
+	id = "mod_patienttransport"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/bluespace =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2422,6 +2607,7 @@
 
 /datum/design/module/criminalcapture
 	name = "Criminal Capture Module"
+	id = "mod_criminalcapture"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/bluespace =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2433,6 +2619,7 @@
 
 /datum/design/module/mirage
 	name = "Mirage Grenade Dispenser Module"
+	id = "mod_mirage_grenade"
 	materials = list(
 		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/bluespace =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2445,6 +2632,7 @@
 //MODsuit bepis modules
 /datum/design/module/disposal
 	name = "Disposal Connector Module"
+	id = "mod_disposal"
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT *1.25,
 		/datum/material/titanium =HALF_SHEET_MATERIAL_AMOUNT,
@@ -2456,6 +2644,7 @@
 
 /datum/design/module/joint_torsion
 	name = "Joint Torsion Ratchet Module"
+	id = "mod_joint_torsion"
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/gold = SMALL_MATERIAL_AMOUNT*2.5,
@@ -2468,6 +2657,7 @@
 
 /datum/design/module/recycler
 	name = "Recycler Module"
+	id = "mod_recycler"
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
@@ -2480,6 +2670,7 @@
 
 /datum/design/module/shooting_assistant
 	name = "Shooting Assistant Module"
+	id = "mod_shooting"
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
 		/datum/material/silver = SMALL_MATERIAL_AMOUNT*2,
@@ -2494,6 +2685,7 @@
 //MODsuit anomalock modules
 /datum/design/module/mod_antigrav
 	name = "Anti-Gravity Module"
+	id = "mod_antigrav"
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT *1.25,
 		/datum/material/glass =SHEET_MATERIAL_AMOUNT,
@@ -2506,6 +2698,7 @@
 
 /datum/design/module/mod_teleporter
 	name = "Teleporter Module"
+	id = "mod_teleporter"
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT *1.25,
 		/datum/material/glass =SHEET_MATERIAL_AMOUNT,
@@ -2518,6 +2711,7 @@
 
 /datum/design/module/mod_kinesis
 	name = "Kinesis Module"
+	id = "mod_kinesis"
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT *1.25,
 		/datum/material/glass =SHEET_MATERIAL_AMOUNT,
@@ -2531,6 +2725,7 @@
 
 /datum/design/module/fishing_glove
 	name = "MOD Fishing Glove Module"
+	id = "mod_fishing"
 	materials = list(
 		/datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
@@ -2542,6 +2737,7 @@
 /datum/design/posisphere
 	name = "Positronic Sphere"
 	desc = "The latest in Artificial Pesterance."
+	id = "posisphere"
 	build_type = MECHFAB
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 0.85,
@@ -2549,7 +2745,7 @@
 		/datum/material/gold =SMALL_MATERIAL_AMOUNT * 2.5
 	)
 	construction_time = 7.5 SECONDS
-	build_path = /obj/item/brain_processor/positronic/sphere
+	build_path = /obj/item/mmi/posibrain/sphere
 	category = list(
 		RND_CATEGORY_MECHFAB_CYBORG + RND_SUBCATEGORY_MECHFAB_CYBORG_CONTROL_INTERFACES
 	)
@@ -2557,6 +2753,7 @@
 
 /datum/design/module/mister_janitor
 	name = "Cleaning Mister Module"
+	id = "mod_mister_janitor"
 	materials = list(
 		/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/titanium =HALF_SHEET_MATERIAL_AMOUNT * 1,

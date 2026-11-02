@@ -51,7 +51,7 @@
 	var/obj/effect/abstract/eyelid_effect/eyelid_left
 	var/obj/effect/abstract/eyelid_effect/eyelid_right
 
-	/// Glasses cannot be worn over these eyes.
+	/// Glasses cannot be worn over these eyes. Currently unused
 	var/no_glasses = FALSE
 	/// Native FOV that will be applied if a config is enabled
 	var/native_fov = NONE //BUBBER EDIT CHANGE - ORIGINAL: var/native_fov = FOV_90_DEGREES
@@ -148,9 +148,6 @@
 
 /obj/item/organ/eyes/on_mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
-	// Don't forget about the eyelids
-	organ_owner.vis_contents -= eyelid_left
-	organ_owner.vis_contents -= eyelid_right
 
 	if(ishuman(organ_owner))
 		var/mob/living/carbon/human/human_owner = organ_owner
@@ -558,9 +555,7 @@
 		. += wait_time
 		if (anim_times && !sync_blinking)
 			// Make sure that we're somewhat in sync with the other eye
-			var/offset_time = anim_times[i + 1] - wait_time
-			if(offset_time) // For some reason having time == 0 in this case breaks animate
-				animate(time = offset_time)
+			animate(time = anim_times[i + 1] - wait_time)
 		animate(alpha = 255, time = 0)
 		animate(time = BLINK_DURATION)
 		if (i != cycles)

@@ -234,7 +234,7 @@
 
 /obj/item/disk/holodisk/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/disk/holodisk))
-		return ..()
+		return NONE
 
 	var/obj/item/disk/holodisk/holodisk_original = tool
 

@@ -12,14 +12,13 @@
 
 /obj/machinery/atmospherics/components/binary/pump
 	icon_state = "pump_map-3"
-	name = "pressure pump"
+	name = "gas pump"
 	desc = "A pump that moves gas by pressure."
 	can_unwrench = TRUE
 	shift_underlay_only = FALSE
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "pump"
 	vent_movement = NONE
-	light_mask_on = TRUE
 	///Pressure that the pump will reach when on
 	var/target_pressure = ONE_ATMOSPHERE
 

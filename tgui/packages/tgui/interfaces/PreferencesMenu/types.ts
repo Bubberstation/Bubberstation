@@ -269,6 +269,7 @@ export type PreferencesMenuData = {
   selected_quirks: string[];
   selected_personalities: typePath[] | null;
   max_personalities: number;
+  mood_enabled: BooleanLike;
   species_disallowed_quirks: string[];
 
   antag_bans?: string[];

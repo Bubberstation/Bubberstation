@@ -1,5 +1,5 @@
 // This is a Bubber UI file
-import { type Antagonist, Category } from '../base';
+import { Antagonist, Category } from '../base';
 
 const HackedSynthetic: Antagonist = {
   key: 'hackedsynthetic',

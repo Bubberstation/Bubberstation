@@ -1,4 +1,5 @@
 import { Box, Flex, Stack } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
 
 export type Objective = {
   id: number;
@@ -17,7 +18,14 @@ export const ObjectiveElement = (props: ObjectiveElementProps) => {
   return (
     <Flex direction="column">
       <Flex.Item grow={false} basis="content">
-        <Box className="UplinkObjective__Titlebar" width="100%" height="100%">
+        <Box
+          className={classes([
+            'UplinkObjective__Titlebar',
+            'reputation-very-good',
+          ])}
+          width="100%"
+          height="100%"
+        >
           <Stack>
             <Stack.Item grow={1}>{name} </Stack.Item>
           </Stack>

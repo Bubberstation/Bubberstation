@@ -4,4 +4,5 @@
 	item = /obj/item/melee/baton/telescopic
 	cost = 2
 	surplus = 0
+	progression_minimum = 10 MINUTES
 	uplink_item_flags = NONE

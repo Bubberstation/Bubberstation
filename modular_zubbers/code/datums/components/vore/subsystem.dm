@@ -4,7 +4,7 @@ PROCESSING_SUBSYSTEM_DEF(vore)
 	wait = 2 SECONDS
 	ss_flags = SS_KEEP_TIMING
 	#ifdef VORE_TESTING_ALL_MOBS_ARE_VORE_MOBS
-	dependencies = list(/datum/controller/subsystem/atoms)
+	init_order = INIT_ORDER_ATOMS + 1
 	#endif
 
 /datum/controller/subsystem/processing/vore/Initialize()

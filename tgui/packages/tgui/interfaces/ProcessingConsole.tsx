@@ -22,7 +22,7 @@ type IconData = {
 
 type Alloy = {
   name: string;
-  path: string;
+  id: string;
 };
 
 type Data = {
@@ -110,11 +110,11 @@ const AlloySelection = (props: any) => {
     <Table>
       {alloys.map((alloy) => (
         <DisplayRow
-          key={alloy.path}
+          key={alloy.id}
           name={alloy.name}
-          icon={alloyIcons.find((icon) => icon.id === alloy.path)?.icon}
-          selected={selectedAlloy === alloy.path}
-          onSelect={() => act('setAlloy', { new_alloy: alloy.path })}
+          icon={alloyIcons.find((icon) => icon.id === alloy.id)?.icon}
+          selected={selectedAlloy === alloy.id}
+          onSelect={() => act('setAlloy', { value: alloy.id })}
         />
       ))}
     </Table>

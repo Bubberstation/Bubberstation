@@ -1,14 +1,12 @@
 /obj/machinery/atmospherics/components/binary/pressure_valve
 	icon_state = "pvalve_map-3"
-	name = "pressure gate"
+	name = "pressure valve"
 	desc = "An activable one way valve that let gas pass through if the pressure on the input side is higher than the set pressure."
 	can_unwrench = TRUE
 	shift_underlay_only = FALSE
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "pvalve"
 	use_power = NO_POWER_USE
-	light_mask_on = TRUE
-	light_mask_off = TRUE
 	///Amount of pressure needed before the valve for it to open
 	var/target_pressure = ONE_ATMOSPHERE
 	///Check if the gas is moving from one pipenet to the other
@@ -43,18 +41,12 @@
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/atmospherics/components/binary/pressure_valve/update_icon_nopipes()
-	var/new_icon_state
 	if(on && is_operational && is_gas_flowing)
-		new_icon_state = "pvalve_flow-[set_overlay_offset(piping_layer)]"
+		icon_state = "pvalve_flow-[set_overlay_offset(piping_layer)]"
 	else if(on && is_operational && !is_gas_flowing)
-		new_icon_state = "pvalve_on-[set_overlay_offset(piping_layer)]"
+		icon_state = "pvalve_on-[set_overlay_offset(piping_layer)]"
 	else
-		new_icon_state = "pvalve_off-[set_overlay_offset(piping_layer)]"
-
-	var/old_icon_state = icon_state
-	icon_state = new_icon_state
-	if(new_icon_state != old_icon_state)
-		update_appearance(UPDATE_OVERLAYS)
+		icon_state = "pvalve_off-[set_overlay_offset(piping_layer)]"
 
 /obj/machinery/atmospherics/components/binary/pressure_valve/process_atmos()
 

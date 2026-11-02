@@ -10,8 +10,6 @@ export type AppearanceDebugData = {
   mapRefHover: string;
   mapRefSelected: string;
   updateWarning: boolean;
-  forcedPlane: number;
-  backdropColor: string;
 };
 
 export enum AppearanceType {

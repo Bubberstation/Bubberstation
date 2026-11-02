@@ -36,7 +36,6 @@
 
 	job_flags = STATION_JOB_FLAGS
 	rpg_title = "Aeromancer"
-	tgui_icon = FA_ICON_FAN
 
 /datum/outfit/job/atmos
 	name = "Atmospheric Technician"
@@ -47,7 +46,7 @@
 	suit = /obj/item/clothing/suit/atmos_overalls
 	belt = /obj/item/storage/belt/utility/atmostech
 	ears = /obj/item/radio/headset/headset_eng
-	l_pocket = /obj/item/modular_computer/pda/crew/atmos
+	l_pocket = /obj/item/modular_computer/pda/atmos
 	r_pocket = /obj/item/analyzer
 
 	backpack = /obj/item/storage/backpack/industrial

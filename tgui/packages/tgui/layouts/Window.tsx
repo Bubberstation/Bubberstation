@@ -72,10 +72,8 @@ export function Window(props: Props) {
   const { scale } = config?.window || false;
 
   useEffect(() => {
-    let cancelled = false;
-
     if (!suspended && isReadyToRender) {
-      const updateGeometry = async () => {
+      const updateGeometry = () => {
         const options = {
           ...config.window,
           size: DEFAULT_SIZE,
@@ -87,10 +85,7 @@ export function Window(props: Props) {
         if (config.window?.key) {
           setWindowKey(config.window.key);
         }
-        await recallWindowGeometry(options);
-        if (cancelled) {
-          return;
-        }
+        recallWindowGeometry(options);
         Byond.winset(Byond.windowId, {
           'is-visible': true,
         });
@@ -107,10 +102,9 @@ export function Window(props: Props) {
       updateGeometry();
     }
     return () => {
-      cancelled = true;
       logger.log('unmounting');
     };
-  }, [isReadyToRender, suspended, width, height, scale]);
+  }, [isReadyToRender, width, height, scale]);
 
   // Determine when to show dimmer
   const showDimmer =

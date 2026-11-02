@@ -42,7 +42,35 @@
 
 // Wall frames
 
+/datum/design/camera_assembly/New()
+	. = ..()
+	build_type |= COLONY_FABRICATOR
+
+/datum/design/intercom_frame/New()
+	. = ..()
+	build_type |= COLONY_FABRICATOR
+
+/datum/design/light_switch_frame/New()
+	. = ..()
+	build_type |= COLONY_FABRICATOR
+
 /datum/design/ignition_control/New()
+	. = ..()
+	build_type |= COLONY_FABRICATOR
+
+/datum/design/sparker/New()
+	. = ..()
+	build_type |= COLONY_FABRICATOR
+
+/datum/design/newscaster_frame/New()
+	. = ..()
+	build_type |= COLONY_FABRICATOR
+
+/datum/design/status_display_frame/New()
+	. = ..()
+	build_type |= COLONY_FABRICATOR
+
+/datum/design/requests_console/New()
 	. = ..()
 	build_type |= COLONY_FABRICATOR
 
@@ -72,18 +100,18 @@
 	. = ..()
 	build_type |= COLONY_FABRICATOR
 
-/datum/design/material/rglass/New()
+/datum/design/rglass/New()
 	. = ..()
 	build_type |= COLONY_FABRICATOR
 
-/datum/design/alloy/plasteel_alloy/New()
+/datum/design/plasteel_alloy/New()
 	. = ..()
 	build_type |= COLONY_FABRICATOR
 
-/datum/design/alloy/plaglass/New()
+/datum/design/plaglass_alloy/New()
 	. = ..()
 	build_type |= COLONY_FABRICATOR
 
-/datum/design/alloy/plasmarglass/New()
+/datum/design/plasmarglass_alloy/New()
 	. = ..()
 	build_type |= COLONY_FABRICATOR

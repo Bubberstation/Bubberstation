@@ -12,7 +12,7 @@
 		//Aliens breathe in vaccuum
 		return 0
 
-	if(health <= crit_threshold)
+	if(health <= HEALTH_THRESHOLD_CRIT)
 		adjust_oxy_loss(2)
 
 	var/plasma_used = 0

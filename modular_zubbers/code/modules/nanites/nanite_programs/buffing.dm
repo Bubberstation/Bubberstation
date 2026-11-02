@@ -8,18 +8,21 @@
 
 /datum/nanite_program/nervous/enable_passive_effect()
 	. = ..()
-	MODIFY_PHYSIOLOGY(host_mob, PHYS_COEFF_STUN, 0.5)
+	if(ishuman(host_mob))
+		var/mob/living/carbon/human/H = host_mob
+		H.physiology.stun_mod *= 0.5
 
 /datum/nanite_program/nervous/disable_passive_effect()
 	. = ..()
-	MODIFY_PHYSIOLOGY(host_mob, PHYS_COEFF_STUN, 2)
+	if(ishuman(host_mob))
+		var/mob/living/carbon/human/H = host_mob
+		H.physiology.stun_mod *= 2
 
-/* - The damage procs and rework to physiology currently do not allow this. TODO: Datumize damage packets upstream
 /datum/nanite_program/dermal_armor
 	name = "Dermal Hardening"
 	desc = "The nanites form a mesh under the host's skin, protecting them from melee and bullet impacts. \
 			Each hit costs nanites two times to damage, but the more nanites you have, the more protection you get. \
-			50 nanites = 10% damage reduction, with each hit costing two times its damage in nanites. \
+			50 nanites = 1 flat armor, with each hit costing two times it's damage in nanites. \
 			Will not turn on with other dermal armor programs."
 	use_rate = 2
 	rogue_types = list(/datum/nanite_program/skin_decay)
@@ -156,6 +159,16 @@
 	host_mob.remove_filter(filter_name)
 	cleanup_timer = null
 
+/datum/nanite_program/dermal_armor/proc/update_damage_modifier(amount)
+	var/mob/living/carbon/human/humie = host_mob
+	var/valid_change = clamp(amount, 1, 30)
+	if(!humie)
+		stack_trace("A nanite program is running without a host mob present. Something's wrong.")
+		return
+	humie.physiology.flat_brute_mod += current_flat_mod
+	current_flat_mod = valid_change
+	humie.physiology.flat_brute_mod -= valid_change
+
 /datum/nanite_program/dermal_armor/refractive
 	name = "Dermal Refractive Surface"
 	desc = "The nanites form a membrane above the host's skin, reducing the effect of laser and energy impacts. \
@@ -164,7 +177,14 @@
 			Will not turn on with other dermal armor programs."
 	damage_type = BURN
 	rgb_color = list(255, 255, 0)
-*/
+
+/datum/nanite_program/dermal_armor/refractive/update_damage_modifier(mob/living/carbon/human/humie, amount)
+	if(!humie)
+		stack_trace("A nanite program is running without a host mob present. Something's wrong.")
+		return
+	humie.physiology.flat_burn_mod -= current_flat_mod
+	current_flat_mod = amount
+	humie.physiology.flat_burn_mod += amount
 
 /datum/nanite_program/coagulating
 	name = "Vein Repressurization"
@@ -174,11 +194,15 @@
 
 /datum/nanite_program/coagulating/enable_passive_effect()
 	. = ..()
-	MODIFY_PHYSIOLOGY(host_mob, PHYS_COEFF_BLEED, 0.5)
+	if(ishuman(host_mob))
+		var/mob/living/carbon/human/H = host_mob
+		H.physiology.bleed_mod *= 0.5
 
 /datum/nanite_program/coagulating/disable_passive_effect()
 	. = ..()
-	MODIFY_PHYSIOLOGY(host_mob, PHYS_COEFF_BLEED, 2)
+	if(ishuman(host_mob))
+		var/mob/living/carbon/human/H = host_mob
+		H.physiology.bleed_mod *= 2
 
 /datum/nanite_program/conductive
 	name = "Electric Conduction"

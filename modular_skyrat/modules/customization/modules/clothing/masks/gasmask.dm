@@ -214,7 +214,6 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/species/vox/mask.dmi'
 	worn_icon_vox = 'modular_skyrat/master_files/icons/mob/clothing/species/vox/mask.dmi'
 	worn_icon_better_vox = 'modular_skyrat/master_files/icons/mob/clothing/species/vox/mask.dmi'
-	has_filter = TRUE
-	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
-	visor_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
+	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS | GAS_FILTERING
+	visor_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS | GAS_FILTERING
 	starting_filter_type = /obj/item/gas_filter/vox

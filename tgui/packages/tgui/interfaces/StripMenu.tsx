@@ -113,11 +113,6 @@ const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
     text: 'Deactivate MOD',
   },
 
-  access_storage: {
-    icon: 'box-open',
-    text: 'Open',
-  },
-
   adjust_bridle: {
     icon: 'mask',
     text: 'Adjust bridle',

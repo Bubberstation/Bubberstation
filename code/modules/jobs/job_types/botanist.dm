@@ -37,7 +37,6 @@
 
 	job_flags = STATION_JOB_FLAGS
 	rpg_title = "Gardener"
-	tgui_icon = FA_ICON_SEEDLING
 
 /datum/outfit/job/botanist
 	name = "Botanist"
@@ -47,7 +46,7 @@
 	uniform = /obj/item/clothing/under/rank/civilian/hydroponics
 	suit = /obj/item/clothing/suit/apron
 	suit_store = /obj/item/plant_analyzer
-	belt = /obj/item/modular_computer/pda/crew/botanist
+	belt = /obj/item/modular_computer/pda/botanist
 	ears = /obj/item/radio/headset/headset_srv
 	gloves = /obj/item/clothing/gloves/botanic_leather
 

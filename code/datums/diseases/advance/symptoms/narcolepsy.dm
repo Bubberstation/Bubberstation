@@ -14,7 +14,7 @@
 	resistance = -2
 	stage_speed = -2
 	transmittable = 0
-	level = 4
+	level = 6
 	symptom_delay = 57.5
 	severity = 4
 	symptom_cure = /datum/reagent/medicine/ondansetron

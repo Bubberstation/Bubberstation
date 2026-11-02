@@ -87,8 +87,6 @@
 
 // Security HUD icon_state defines
 
-#define DEFAULT_HUDS_DMI 'modular_zubbers/icons/mob/huds/hud.dmi' // BUBBER EDIT: replaces the tgstation HUD file with the bubber specific one. original filepath: 'icons/mob/huds/hud.dmi'
-
 #define SECHUD_NO_ID "hudno_id"
 #define SECHUD_UNKNOWN "hudunknown"
 #define SECHUD_CENTCOM "hudcentcom"

@@ -76,8 +76,9 @@
 
 /datum/deathmatch_lobby/proc/find_spawns_and_start_delay(datum/lazy_template/source, list/atoms)
 	SIGNAL_HANDLER
-	for(var/obj/effect/landmark/deathmatch_player_spawn/spawn_point in atoms)
-		player_spawns += spawn_point
+	for(var/thing in atoms)
+		if(istype(thing, /obj/effect/landmark/deathmatch_player_spawn))
+			player_spawns += thing
 
 	UnregisterSignal(source, COMSIG_LAZY_TEMPLATE_LOADED)
 	map.template_in_use = FALSE
@@ -90,8 +91,8 @@
 		playing = FALSE
 		return FALSE
 
-	for(var/datum/deathmatch_modifier/modifier_path as anything in modifiers)
-		GLOB.deathmatch_game.modifiers[modifier_path].on_start_game(src)
+	for(var/modpath in modifiers)
+		GLOB.deathmatch_game.modifiers[modpath].on_start_game(src)
 
 	for (var/key in players)
 		var/mob/dead/observer/observer = players[key]["mob"]
@@ -118,8 +119,8 @@
 	announce(span_reallybig("GO!"))
 	if(length(modifiers))
 		var/list/modifier_names = list()
-		for(var/datum/deathmatch_modifier/modifier_path as anything in modifiers)
-			modifier_names += uppertext(initial(modifier_path.name))
+		for(var/datum/deathmatch_modifier/modifier as anything in modifiers)
+			modifier_names += uppertext(initial(modifier.name))
 		announce(span_boldnicegreen("THIS MATCH MODIFIERS: [english_list(modifier_names, and_text = " ,")]."))
 	return TRUE
 
@@ -204,8 +205,8 @@
 		var/mob/player_mob = get_mob_by_ckey(ckey)
 		player_mob.persistent_client.time_of_death = player_previous_death_times[ckey]["previous_time_of_death"]
 		//bubber edit end
-	for(var/datum/deathmatch_modifier/modifier_path as anything in modifiers)
-		GLOB.deathmatch_game.modifiers[modifier_path].on_end_game(src)
+	for(var/datum/deathmatch_modifier/modifier in modifiers)
+		GLOB.deathmatch_game.modifiers[modifier].on_end_game(src)
 
 	clear_reservation()
 	GLOB.deathmatch_game.remove_lobby(host)
@@ -336,8 +337,8 @@
 			continue
 		players[player_key]["loadout"] = loadouts[1]
 
-	for(var/datum/deathmatch_modifier/modifier_path as anything in modifiers)
-		GLOB.deathmatch_game.modifiers[modifier_path].on_map_changed(src)
+	for(var/deathmatch_mod in modifiers)
+		GLOB.deathmatch_game.modifiers[deathmatch_mod].on_map_changed(src)
 
 /datum/deathmatch_lobby/proc/clear_reservation()
 	if(isnull(location) || isnull(map))
@@ -406,8 +407,8 @@
 
 	if(length(modifiers))
 		var/list/mod_names = list()
-		for(var/datum/deathmatch_modifier/modifier_path as anything in modifiers)
-			mod_names += modifier_path::name
+		for(var/datum/deathmatch_modifier/modpath as anything in modifiers)
+			mod_names += modpath::name
 		data["active_mods"] = "Selected modifiers: [english_list(mod_names)]"
 
 	if(is_player && !isnull(players[user.ckey]["loadout"]))
@@ -518,13 +519,13 @@
 			return TRUE
 
 		if("toggle_modifier")
-			var/datum/deathmatch_modifier/modifier_path = text2path(params["modpath"])
-			if(!ispath(modifier_path))
+			var/datum/deathmatch_modifier/modpath = text2path(params["modpath"])
+			if(!ispath(modpath))
 				return TRUE
 			if(usr.ckey != host && !check_rights(R_ADMIN))
 				return TRUE
-			var/datum/deathmatch_modifier/chosen_modifier = GLOB.deathmatch_game.modifiers[modifier_path]
-			if(modifier_path in modifiers)
+			var/datum/deathmatch_modifier/chosen_modifier = GLOB.deathmatch_game.modifiers[modpath]
+			if(modpath in modifiers)
 				unselect_modifier(chosen_modifier)
 				return TRUE
 			if(chosen_modifier.selectable(src))
@@ -566,14 +567,14 @@
 	if(!mod_menu_open)
 		return modifier_list
 
-	for(var/datum/deathmatch_modifier/modifier_path as anything in GLOB.deathmatch_game.modifiers)
-		var/datum/deathmatch_modifier/mod = GLOB.deathmatch_game.modifiers[modifier_path]
+	for(var/modpath in GLOB.deathmatch_game.modifiers)
+		var/datum/deathmatch_modifier/mod = GLOB.deathmatch_game.modifiers[modpath]
 
 		UNTYPED_LIST_ADD(modifier_list, list(
 			"name" = mod.name,
 			"desc" = mod.description,
-			"modpath" = "[modifier_path]",
-			"selected" = (modifier_path in modifiers),
+			"modpath" = "[modpath]",
+			"selected" = (modpath in modifiers),
 			"selectable" = is_host && mod.selectable(src),
 		))
 

@@ -65,12 +65,9 @@
 		new_spawn.RegisterSignal(new_spawn, COMSIG_MOVABLE_USING_RADIO, TYPE_PROC_REF(/mob/living, on_using_radio))
 		ADD_TRAIT(new_spawn, TRAIT_SIXTHSENSE, TRAIT_GHOSTROLE)
 		ADD_TRAIT(new_spawn, TRAIT_FREE_GHOST, TRAIT_GHOSTROLE)
-		ADD_TRAIT(new_spawn, TRAIT_NOHUNGER, TRAIT_GHOSTROLE)
 		to_chat(new_spawn,span_warning("<b>Ghosting is free!</b>"))
-		var/datum/action/newactions = new /datum/action/toggle_dead_chat_mob()
-		newactions.Grant(new_spawn)
-		newactions = new /datum/action/cooldown/spell/return_back/ghostcafe()
-		newactions.Grant(new_spawn)
+		var/datum/action/toggle_dead_chat_mob/D = new(new_spawn)
+		D.Grant(new_spawn)
 
 /mob/living/proc/on_using_radio(atom/movable/talking_movable)
 	SIGNAL_HANDLER

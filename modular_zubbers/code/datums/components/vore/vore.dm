@@ -109,12 +109,14 @@
 	return ..()
 
 /datum/component/vore/proc/load_vore_prefs(mob/living/living_parent)
-	if(!living_parent.client)
+	if(living_parent.client)
+		// Used for when people infect a second mob with vore, like aghosting
+		var/datum/vore_preferences/vore_prefs = get_parent_vore_prefs()
+		vore_prefs?.reset_belly_layout_slot()
+		load_bellies_from_prefs(living_parent.client)
 		return
-	// Used for when people infect a second mob with vore, like aghosting
-	var/datum/vore_preferences/vore_prefs = get_parent_vore_prefs()
-	vore_prefs?.reset_belly_layout_slot()
-	load_bellies_from_prefs(living_parent.client)
+
+	return create_default_belly()
 
 /datum/component/vore/proc/get_parent_vore_prefs()
 	var/mob/living/living_parent = parent

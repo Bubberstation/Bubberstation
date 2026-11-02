@@ -12,11 +12,12 @@ type Data = {
   already_deconstructed: BooleanLike;
   recoverable_points: string;
   node_data: NodeData[];
+  research_point_id: string;
 };
 
 type NodeData = {
   node_name: string;
-  node_path: string;
+  node_id: string;
   node_hidden: BooleanLike;
 };
 
@@ -29,6 +30,7 @@ export const DestructiveAnalyzer = (props) => {
     item_icon,
     already_deconstructed,
     recoverable_points,
+    research_point_id,
     node_data = [],
   } = data;
   if (!server_connected) {
@@ -89,6 +91,7 @@ export const DestructiveAnalyzer = (props) => {
                 </>
               )}
               <Button.Confirm
+                content="Deconstruct"
                 icon="hammer"
                 tooltip={
                   already_deconstructed
@@ -96,11 +99,9 @@ export const DestructiveAnalyzer = (props) => {
                     : 'Destroys the object currently residing in the machine.'
                 }
                 onClick={() =>
-                  act('deconstruct')
+                  act('deconstruct', { deconstruct_id: research_point_id })
                 }
-              >
-                Deconstruct
-              </Button.Confirm>
+              />
             </>
           )}
           {node_data.map((node) => (
@@ -108,14 +109,14 @@ export const DestructiveAnalyzer = (props) => {
               icon="cash-register"
               mt={1}
               disabled={!node.node_hidden}
-              key={node.node_path}
+              key={node.node_id}
               tooltip={
                 node.node_hidden
                   ? 'Deconstruct this to research the selected node.'
                   : 'This node has already been researched.'
               }
               onClick={() =>
-                act('deconstruct', { deconstruct_path: node.node_path })
+                act('deconstruct', { deconstruct_id: node.node_id })
               }
             >
               {node.node_name}

@@ -38,7 +38,7 @@ export function TechNode(props: Props) {
   } = data;
   const { node, nodetails, nocontrols } = props;
   const {
-    path,
+    id,
     can_unlock,
     have_experiments_done,
     tier,
@@ -50,12 +50,12 @@ export function TechNode(props: Props) {
     name,
     description,
     costs,
-    unlocked_designs,
-    prerequisite_nodes,
+    design_ids,
+    prereq_ids,
     required_experiments,
     discount_experiments,
     discount_boosts,
-  } = node_cache[path];
+  } = node_cache[id];
   const [techwebRoute, setTechwebRoute] = useTechWebRoute();
 
   const expcompl = required_experiments.filter(
@@ -74,8 +74,8 @@ export function TechNode(props: Props) {
     </ProgressBar>
   );
 
-  const techcompl = prerequisite_nodes.filter(
-    (x) => nodes.find((y) => y.path === x)?.tier === 0,
+  const techcompl = prereq_ids.filter(
+    (x) => nodes.find((y) => y.id === x)?.tier === 0,
   ).length;
   const techProgress = (
     <ProgressBar
@@ -84,9 +84,9 @@ export function TechNode(props: Props) {
         average: [0.25, 0.5],
         bad: [-Infinity, 0.25],
       }}
-      value={techcompl / prerequisite_nodes.length}
+      value={techcompl / prereq_ids.length}
     >
-      Tech ({techcompl}/{prerequisite_nodes.length})
+      Tech ({techcompl}/{prereq_ids.length})
     </ProgressBar>
   );
 
@@ -118,7 +118,7 @@ export function TechNode(props: Props) {
                 <Button
                   icon="lightbulb"
                   disabled={!can_unlock || tier > 1 || queue_nodes.length > 0}
-                  onClick={() => act('researchNode', { node_path: path })}
+                  onClick={() => act('researchNode', { node_id: id })}
                 >
                   Research
                 </Button>
@@ -126,11 +126,11 @@ export function TechNode(props: Props) {
                 <Button
                   icon="trash"
                   color="bad"
-                  onClick={() => act('dequeueNode', { node_path: path })}
+                  onClick={() => act('dequeueNode', { node_id: id })}
                 >
                   Dequeue
                 </Button>
-              ) : path in queue_nodes && !enqueued_by_user ? (
+              ) : id in queue_nodes && !enqueued_by_user ? (
                 <Button icon="check" color="good">
                   Queued
                 </Button>
@@ -139,10 +139,10 @@ export function TechNode(props: Props) {
                   icon="lightbulb"
                   disabled={
                     !have_experiments_done ||
-                    path in queue_nodes ||
-                    techcompl < prerequisite_nodes.length
+                    id in queue_nodes ||
+                    techcompl < prereq_ids.length
                   }
-                  onClick={() => act('enqueueNode', { node_path: path })}
+                  onClick={() => act('enqueueNode', { node_id: id })}
                 >
                   Enqueue
                 </Button>
@@ -151,7 +151,7 @@ export function TechNode(props: Props) {
               <Button
                 icon="tasks"
                 onClick={() => {
-                  setTechwebRoute({ route: 'details', selectedNode: path });
+                  setTechwebRoute({ route: 'details', selectedNode: id });
                 }}
               >
                 Details
@@ -188,7 +188,7 @@ export function TechNode(props: Props) {
               </Stack.Item>
             );
           })}
-          {prerequisite_nodes.length > 0 && (
+          {prereq_ids.length > 0 && (
             <Stack.Item grow basis={0}>
               {techProgress}
             </Stack.Item>
@@ -204,7 +204,7 @@ export function TechNode(props: Props) {
         {description}
       </Box>
       <Box className="Techweb__NodeUnlockedDesigns" mb={2}>
-        {unlocked_designs.map((k, i) => (
+        {design_ids.map((k, i) => (
           <ImageButton
             key={k}
             className={`$Techweb__DesignIcon`}

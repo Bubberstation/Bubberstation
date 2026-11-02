@@ -71,7 +71,6 @@
 		fold_in(force = TRUE)
 	if(amount > 0)
 		to_chat(src, span_userdanger("The impact degrades your holochassis!"))
-	update_health_hud()
 	return amount
 
 /// Called when we take burn or brute damage, pass it to the shell instead

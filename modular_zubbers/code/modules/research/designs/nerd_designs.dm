@@ -1,6 +1,7 @@
 //Nerd
 /datum/design/nerd_suit
 	name = "D.O.T.A. Suit"
+	id = "nerd_suit"
 	build_type = PROTOLATHE
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 	build_path = /obj/item/clothing/suit/armor/nerd
@@ -17,8 +18,9 @@
 	)
 	construction_time = 100
 
-/datum/design/nerd_glasses
+/datum/design/nerd_glases
 	name = "Ultra Nerd Glasses"
+	id = "nerd_glases"
 	build_type = PROTOLATHE
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 	build_path = /obj/item/clothing/glasses/regular/hipster/nerd
@@ -37,6 +39,7 @@
 //Advanced Nerd
 /datum/design/fast_crowbar
 	name = "Physicist's Crowbar"
+	id = "fast_crowbar"
 	build_type = PROTOLATHE
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 	build_path = /obj/item/crowbar/large/heavy/science
@@ -53,6 +56,7 @@
 
 /datum/design/physgun
 	name = "Physics Manipulation Tool"
+	id = "physgun"
 	build_type = PROTOLATHE
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 	build_path = /obj/item/physic_manipulation_tool

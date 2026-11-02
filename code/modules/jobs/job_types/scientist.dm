@@ -34,7 +34,6 @@
 	job_flags = STATION_JOB_FLAGS
 
 	job_tone = "boom"
-	tgui_icon = FA_ICON_FLASK
 
 
 /datum/outfit/job/scientist
@@ -44,7 +43,7 @@
 	id_trim = /datum/id_trim/job/scientist
 	uniform = /obj/item/clothing/under/rank/rnd/scientist
 	suit = /obj/item/clothing/suit/toggle/labcoat/science
-	belt = /obj/item/modular_computer/pda/crew/science
+	belt = /obj/item/modular_computer/pda/science
 	ears = /obj/item/radio/headset/headset_sci
 	shoes = /obj/item/clothing/shoes/sneakers/white
 

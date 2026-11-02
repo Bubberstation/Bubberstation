@@ -38,7 +38,7 @@
 	if(controller.blackboard[BB_SLIME_HUNGER_LEVEL] == SLIME_HUNGER_STARVING && controller.blackboard[BB_SLIME_RABID])
 		return can_see(hunter, candidate, vision_range)
 
-	if(isalien(candidate) || ishuman(candidate))
+	if(islarva(candidate) || ismonkey(candidate) || ishuman(candidate) || isalienadult(candidate))
 		return can_see(hunter, candidate, vision_range)
 
 	return FALSE

@@ -86,8 +86,8 @@ PROTEAN_BODYPART_DEFINE(/obj/item/bodypart/chest/mutant/protean, LIMB_MAX_HP_COR
 
 /obj/item/bodypart/chest/mutant/protean
 	wing_types = list(
-		/obj/item/organ/wings/robotic,
-		/obj/item/organ/wings/robotic/virtual
+		/obj/item/organ/wings/functional/robotic,
+		/obj/item/organ/wings/functional/robotic/virtual
 		)
 
 // Limbs

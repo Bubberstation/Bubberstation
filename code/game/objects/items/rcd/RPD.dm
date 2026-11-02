@@ -23,7 +23,6 @@
 	desc = "A device used to rapidly pipe things."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rpd"
-	inhand_icon_state = "rpd"
 	worn_icon_state = "RPD"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
@@ -188,7 +187,6 @@
 
 			available_recipe += list(list(
 				"pipe_name" = info.name,
-				"pipe_desc" = info.desc,
 				"pipe_index" = i,
 				"previews" = info.get_preview(p_dir, info == recipe)
 			))

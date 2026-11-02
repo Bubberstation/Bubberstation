@@ -4,6 +4,7 @@
 	item = /obj/item/clothing/suit/armor/vest
 	cost = 1
 	uplink_item_flags = NONE
+	progression_minimum = 10 MINUTES
 
 /datum/uplink_item/suits/bulletproof_armor
 	name = "Bulletproof Armor Vest"
@@ -11,6 +12,7 @@
 	item = /obj/item/clothing/suit/armor/bulletproof
 	cost = 3
 	uplink_item_flags = NONE
+	progression_minimum = 15 MINUTES
 
 /datum/uplink_item/suits/swathelmet_traitor
 	name = "Syndicate Helmet"
@@ -18,3 +20,4 @@
 	item = /obj/item/clothing/head/helmet/swat
 	cost = 2
 	uplink_item_flags = NONE
+	progression_minimum = 10 MINUTES

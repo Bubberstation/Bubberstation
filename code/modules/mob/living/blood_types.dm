@@ -22,9 +22,10 @@
 
 /datum/blood_type/New()
 	. = ..()
+	id = name
 	compatible_types |= type_key()
-	id ||= name
-	desc ||= reagent_type::description
+	if (!desc)
+		desc = reagent_type::description
 
 /datum/blood_type/Destroy(force)
 	if(!force)
@@ -173,30 +174,22 @@
 	abstract_type = /datum/blood_type/human
 
 /datum/blood_type/human/a_minus
-	name = "A-"
-	compatible_types = list(
-		/datum/blood_type/human/a_minus,
-		/datum/blood_type/human/o_minus,
-	)
+	name = BLOOD_TYPE_A_MINUS
+	compatible_types = list(/datum/blood_type/human/a_minus, /datum/blood_type/human/o_minus)
 
 /datum/blood_type/human/a_plus
-	name = "A+"
-	compatible_types = list(
-		/datum/blood_type/human/a_minus,
-		/datum/blood_type/human/a_plus,
-		/datum/blood_type/human/o_minus,
-		/datum/blood_type/human/o_plus,
-	)
+	name = BLOOD_TYPE_A_PLUS
+	compatible_types = list(/datum/blood_type/human/a_minus, /datum/blood_type/human/a_plus, /datum/blood_type/human/o_minus, /datum/blood_type/human/o_plus)
 
 /datum/blood_type/human/b_minus
-	name = "B-"
+	name = BLOOD_TYPE_B_MINUS
 	compatible_types = list(
 		/datum/blood_type/human/b_minus,
 		/datum/blood_type/human/o_minus,
 	)
 
 /datum/blood_type/human/b_plus
-	name = "B+"
+	name = BLOOD_TYPE_B_PLUS
 	compatible_types = list(
 		/datum/blood_type/human/b_minus,
 		/datum/blood_type/human/b_plus,
@@ -205,7 +198,7 @@
 	)
 
 /datum/blood_type/human/ab_minus
-	name = "AB-"
+	name = BLOOD_TYPE_AB_MINUS
 	compatible_types = list(
 		/datum/blood_type/human/a_minus,
 		/datum/blood_type/human/b_minus,
@@ -214,7 +207,7 @@
 	)
 
 /datum/blood_type/human/ab_plus
-	name = "AB+"
+	name = BLOOD_TYPE_AB_PLUS
 	compatible_types = list(
 		/datum/blood_type/human/a_minus,
 		/datum/blood_type/human/a_plus,
@@ -227,45 +220,43 @@
 	)
 
 /datum/blood_type/human/o_minus
-	name = "O-"
+	name = BLOOD_TYPE_O_MINUS
 	compatible_types = list(
 		/datum/blood_type/human/o_minus,
 	)
 
 /datum/blood_type/human/o_plus
-	name = "O+"
+	name = BLOOD_TYPE_O_PLUS
 	compatible_types = list(
 		/datum/blood_type/human/o_minus,
 		/datum/blood_type/human/o_plus,
 	)
 
-/// Universal accepts all blood types, but not all blood types accept universal
-/datum/blood_type/universal
-	name = "U"
-	desc = /datum/blood_type/human::desc
+/datum/blood_type/human/universal
+	name = BLOOD_TYPE_UNIVERSAL
 
-/datum/blood_type/universal/New()
+/datum/blood_type/human/universal/New()
 	. = ..()
 	compatible_types = subtypesof(/datum/blood_type)
 
-/datum/blood_type/universal/vampire
-	name = "V"
+/datum/blood_type/human/universal/vampire
+	name = BLOOD_TYPE_VAMPIRE
 	dna_string = "Hemovore DNA"
 
 /datum/blood_type/animal
-	name = "Y-"
-	desc = /datum/blood_type/human::desc
+	name = BLOOD_TYPE_ANIMAL
+	desc = "Blood cells suspended in plasma, the most abundant of which being the hemoglobin-containing red blood cells."
 	dna_string = "Animal DNA"
 
 /datum/blood_type/lizard
-	name = "L"
+	name = BLOOD_TYPE_LIZARD
 	desc = "Green sulfhemoglobin subtype-based blood, which while less effective at transporting oxygen, \
 		is capable of withstanding much higher temperatures without breaking down or clotting."
 	dna_string = "Lizard DNA"
 	// color = BLOOD_COLOR_LIZARD //BUBBER EDIT REMOVAL
 
 /datum/blood_type/ethereal
-	name = "LE"
+	name = BLOOD_TYPE_ETHEREAL
 	dna_string = "Ethereal DNA"
 	color = /datum/reagent/consumable/liquidelectricity::color
 	reagent_type = /datum/reagent/consumable/liquidelectricity
@@ -286,7 +277,7 @@
 	blood.can_dry = FALSE
 
 /datum/blood_type/oil
-	name = "Oil"
+	name = BLOOD_TYPE_OIL
 	dna_string = "Oil"
 	color = BLOOD_COLOR_OIL
 	reagent_type = /datum/reagent/fuel/oil
@@ -315,11 +306,11 @@
 		blood.desc = /obj/effect/decal/cleanable/blood/oil::desc
 
 /datum/blood_type/meat // why does this exist
-	name = "MT-"
+	name = BLOOD_TYPE_MEAT
 	dna_string = "Meaty DNA"
 
 /datum/blood_type/xeno
-	name = "X*"
+	name = BLOOD_TYPE_XENO
 	desc = "An incredibly potent mineral acid, somehow capable of carrying oxygen."
 	dna_string = "Alien DNA"
 	color = BLOOD_COLOR_XENO
@@ -341,7 +332,7 @@
 
 /// April fool's blood for clowns
 /datum/blood_type/clown
-	name = "C"
+	name = BLOOD_TYPE_CLOWN
 	dna_string = "Clown DNA"
 	reagent_type = /datum/reagent/colorful_reagent
 	is_species_universal = TRUE
@@ -360,7 +351,7 @@
 
 /// Slimeperson blood, aka 'toxin' blood type
 /datum/blood_type/slime
-	name = "TOX"
+	name = BLOOD_TYPE_TOX
 	dna_string = "Slime DNA"
 	color = /datum/reagent/toxin/slimejelly::color
 	reagent_type = /datum/reagent/toxin/slimejelly
@@ -375,7 +366,7 @@
 
 /// Podpeople blood
 /datum/blood_type/water
-	name = "H2O"
+	name = BLOOD_TYPE_H2O
 	dna_string = "Plant DNA"
 	color = /datum/reagent/water::color
 	reagent_type = /datum/reagent/water
@@ -388,7 +379,7 @@
 
 /// Snail blood
 /datum/blood_type/snail
-	name = "S"
+	name = BLOOD_TYPE_SNAIL
 	dna_string = "Snail DNA"
 	reagent_type = /datum/reagent/lube
 	restoration_chem = /datum/reagent/silicon
@@ -406,13 +397,13 @@
 	abstract_type = /datum/blood_type/random_chemical
 
 /datum/blood_type/random_chemical/New(datum/reagent/reagent)
-	abstract_type = null
-	id = reagent
 	name = initial(reagent.name)
 	desc = initial(reagent.description)
+	. = ..()
+	id = type_key()
 	color = initial(reagent.color)
 	reagent_type = reagent
-	return ..()
+	abstract_type = null
 
 /datum/blood_type/random_chemical/type_key()
 	return reagent_type

@@ -42,14 +42,18 @@
 
 /datum/status_effect/slimeskin/on_apply()
 	owner.add_atom_colour(color_transition_filter("#3070CC", SATURATION_OVERRIDE), TEMPORARY_COLOUR_PRIORITY)
-	owner.damage_resistance += 10
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.damage_resistance += 10
 	owner.visible_message(span_warning("[owner] is suddenly covered in a strange, blue-ish gel!"),
 		span_notice("You are covered in a thick, rubbery gel."))
 	return ..()
 
 /datum/status_effect/slimeskin/on_remove()
 	owner.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
-	owner.damage_resistance -= 10
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.damage_resistance -= 10
 	owner.visible_message(span_warning("[owner]'s gel coating liquefies and dissolves away."),
 		span_notice("Your gel second-skin dissolves!"))
 
@@ -296,11 +300,15 @@
 	tick_interval = STATUS_EFFECT_NO_TICK
 
 /datum/status_effect/metalcookie/on_apply()
-	MODIFY_PHYSIOLOGY(owner, BRUTE, 0.9)
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.brute_mod *= 0.9
 	return ..()
 
 /datum/status_effect/metalcookie/on_remove()
-	MODIFY_PHYSIOLOGY(owner, BRUTE, 1 / 0.9)
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.brute_mod /= 0.9
 
 /datum/status_effect/sparkcookie
 	id = "sparkcookie"
@@ -308,13 +316,19 @@
 	alert_type = null
 	duration = 30 SECONDS
 	tick_interval = STATUS_EFFECT_NO_TICK
+	var/original_coeff
 
 /datum/status_effect/sparkcookie/on_apply()
-	ADD_TRAIT(owner, TRAIT_SHOCKIMMUNE, TRAIT_STATUS_EFFECT(id))
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		original_coeff = H.physiology.siemens_coeff
+		H.physiology.siemens_coeff = 0
 	return ..()
 
 /datum/status_effect/sparkcookie/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_SHOCKIMMUNE, TRAIT_STATUS_EFFECT(id))
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.siemens_coeff = original_coeff
 
 /datum/status_effect/toxincookie
 	id = "toxincookie"
@@ -437,11 +451,15 @@
 	tick_interval = STATUS_EFFECT_NO_TICK
 
 /datum/status_effect/adamantinecookie/on_apply()
-	MODIFY_PHYSIOLOGY(owner, BURN, 0.9)
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.burn_mod *= 0.9
 	return ..()
 
 /datum/status_effect/adamantinecookie/on_remove()
-	MODIFY_PHYSIOLOGY(owner, BURN, 1 / 0.9)
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.burn_mod /= 0.9
 
 ///////////////////////////////////////////////////////
 //////////////////STABILIZED EXTRACTS//////////////////
@@ -541,7 +559,7 @@
 
 	return ..()
 
-/datum/status_effect/stabilized/purple/get_examine_text(mob/examiner)
+/datum/status_effect/stabilized/purple/get_examine_text()
 	if(healed_last_tick)
 		return span_warning("[owner.p_They()] [owner.p_are()] regenerating slowly, purplish goo filling in small injuries!")
 
@@ -587,7 +605,7 @@
 	var/cooldown = 10
 	var/max_cooldown = 10
 
-/datum/status_effect/stabilized/yellow/get_examine_text(mob/examiner)
+/datum/status_effect/stabilized/yellow/get_examine_text()
 	return span_warning("Nearby electronics seem just a little more charged wherever [owner.p_they()] go[owner.p_es()].")
 
 /datum/status_effect/stabilized/yellow/tick(seconds_between_ticks)
@@ -634,7 +652,7 @@
 	REMOVE_TRAIT(owner, TRAIT_RESISTHEATHANDS, TRAIT_STATUS_EFFECT(id))
 	QDEL_NULL(fire)
 
-/datum/status_effect/stabilized/darkpurple/get_examine_text(mob/examiner)
+/datum/status_effect/stabilized/darkpurple/get_examine_text()
 	return span_notice("[owner.p_Their()] fingertips burn brightly!")
 
 /datum/status_effect/stabilized/darkblue
@@ -674,11 +692,15 @@
 	colour = SLIME_TYPE_SILVER
 
 /datum/status_effect/stabilized/silver/on_apply()
-	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_HUNGER_MOD, 0.8)
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.hunger_mod *= 0.8 //20% buff
 	return ..()
 
 /datum/status_effect/stabilized/silver/on_remove()
-	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_HUNGER_MOD, 1.25)
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.hunger_mod /= 0.8
 
 //Bluespace has an icon because it's kinda active.
 /atom/movable/screen/alert/status_effect/bluespaceslime
@@ -823,7 +845,7 @@
 	return ..()
 
 // Only occasionally give examiners a warning.
-/datum/status_effect/stabilized/green/get_examine_text(mob/examiner)
+/datum/status_effect/stabilized/green/get_examine_text()
 	if(prob(50))
 		return span_warning("[owner.p_They()] look[owner.p_s()] a bit green and gooey...")
 
@@ -931,7 +953,7 @@
 		qdel(linked_extract)
 	return ..()
 
-/datum/status_effect/stabilized/oil/get_examine_text(mob/examiner)
+/datum/status_effect/stabilized/oil/get_examine_text()
 	return span_warning("[owner.p_They()] smell[owner.p_s()] of sulfur and oil!")
 
 /// How much damage is dealt per healing done for the stabilized back.
@@ -970,7 +992,7 @@
 	to_chat(owner, span_boldnotice("You feel your hands melt around [draining]'s neck as you start to drain [draining.p_them()] of [draining.p_their()] life!"))
 	to_chat(draining, span_userdanger("[owner]'s hands melt around your neck as you can feel your life starting to drain away!"))
 
-/datum/status_effect/stabilized/black/get_examine_text(mob/examiner)
+/datum/status_effect/stabilized/black/get_examine_text()
 	var/mob/living/draining = draining_ref?.resolve()
 	if(!draining)
 		return null
@@ -1028,7 +1050,7 @@
 	id = "stabilizedadamantine"
 	colour = SLIME_TYPE_ADAMANTINE
 
-/datum/status_effect/stabilized/adamantine/get_examine_text(mob/examiner)
+/datum/status_effect/stabilized/adamantine/get_examine_text()
 	return span_warning("[owner.p_They()] [owner.p_have()] strange metallic coating on [owner.p_their()] skin.")
 
 /datum/status_effect/stabilized/gold
@@ -1061,11 +1083,15 @@
 		qdel(familiar)
 
 /datum/status_effect/stabilized/adamantine/on_apply()
-	owner.damage_resistance += 5
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.damage_resistance += 5
 	return ..()
 
 /datum/status_effect/stabilized/adamantine/on_remove()
-	owner.damage_resistance -= 5
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.damage_resistance -= 5
 
 /datum/status_effect/stabilized/rainbow
 	id = "stabilizedrainbow"

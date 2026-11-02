@@ -25,6 +25,7 @@
 	worn_icon_state = "tape_piece_worn"
 	inhand_icon_state = null
 	w_class = WEIGHT_CLASS_TINY
+	clothing_flags = INEDIBLE_CLOTHING
 	equip_delay_other = 4 SECONDS
 	strip_delay = 4 SECONDS
 	icon = 'icons/map_icons/clothing/mask.dmi'
@@ -37,9 +38,6 @@
 	var/harmful_strip = FALSE
 	///The ammount of damage dealt when the tape piece is ripped off of someone.
 	var/stripping_damage = 0
-
-/obj/item/clothing/mask/muzzle/tape/create_moth_snack()
-	return null
 
 /obj/item/clothing/mask/muzzle/tape/examine(mob/user)
 	. = ..()

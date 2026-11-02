@@ -19,19 +19,13 @@
 	if (CONFIG_GET(flag/disable_erp_preferences))
 		return
 
-	#ifndef TESTING
 	if(!client?.prefs?.read_preference(/datum/preference/toggle/erp/autocum) && !manual)
 		return
-	#endif
-
 	if(refractory_period > REALTIMEOFDAY)
 		return
 	refractory_period = REALTIMEOFDAY + 30 SECONDS
-
-	#ifndef TESTING
 	if(has_status_effect(/datum/status_effect/climax_cooldown) || !client?.prefs?.read_preference(/datum/preference/toggle/erp))
 		return
-	#endif
 
 	if(HAS_TRAIT(src, TRAIT_NEVERBONER) || has_status_effect(/datum/status_effect/climax_cooldown) || (!has_vagina() && !has_penis()))
 		visible_message(span_purple("[src] twitches, trying to cum, but with no result."), \

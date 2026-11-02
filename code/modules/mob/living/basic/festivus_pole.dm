@@ -40,7 +40,7 @@
 
 	death_message = "is hacked into pieces!"
 
-	physiology = list(STAMINA = 0)
+	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 0, OXY = 1)
 	ai_controller = /datum/ai_controller/basic_controller/festivus_pole
 
 /mob/living/basic/festivus/Initialize(mapload)

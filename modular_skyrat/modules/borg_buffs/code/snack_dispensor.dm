@@ -1,5 +1,6 @@
 /datum/design/borg_snack_dispenser
 	name = "Snack Dispenser Module"
+	id = "borg_upgrade_snacks"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/snack_dispenser
 	materials = list(

@@ -10,7 +10,7 @@
 	key = "wings"
 	color_src = USE_ONE_COLOR
 	recommended_species = list(SPECIES_HUMAN, SPECIES_SYNTH, SPECIES_FELINE, SPECIES_LIZARD, SPECIES_MAMMAL)
-	organ_type = /obj/item/organ/wings/custom
+	organ_type = /obj/item/organ/wings
 	relevent_layers = list(EXTERNAL_BEHIND, EXTERNAL_ADJACENT, EXTERNAL_FRONT)
 
 /datum/sprite_accessory/wings/is_hidden(mob/living/carbon/human/wearer)

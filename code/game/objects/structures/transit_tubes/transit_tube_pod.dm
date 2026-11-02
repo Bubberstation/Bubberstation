@@ -73,7 +73,8 @@
 		empty_pod()
 		return
 	if(!moving)
-		user.change_next_special_move(CLICK_CD_BREAKOUT)
+		user.changeNext_move(CLICK_CD_BREAKOUT)
+		user.last_special = world.time + CLICK_CD_BREAKOUT
 		to_chat(user, span_notice("You start trying to escape from the pod..."))
 		if(do_after(user, 1 MINUTES, target = src))
 			to_chat(user, span_notice("You manage to open the pod."))

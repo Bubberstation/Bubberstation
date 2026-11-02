@@ -394,7 +394,10 @@
 
 /obj/item/disk/design_disk/liberator
 	name = "illegal 3D printer design disk"
-	blueprints = list(/datum/design/liberator_gun)
+
+/obj/item/disk/design_disk/liberator/Initialize(mapload)
+	. = ..()
+	blueprints += new /datum/design/liberator_gun
 
 #undef DOORHICKEY_GUN_MIN_DAMAGE
 #undef DOORHICKEY_GUN_MAX_DAMAGE

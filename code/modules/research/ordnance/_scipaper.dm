@@ -200,9 +200,10 @@
 		return FALSE
 	if(!istype(explosion_record))
 		return FALSE
-	for(var/experiment_path, papers in techweb_to_check.published_papers)
-		for(var/datum/scientific_paper/explosive/paper in papers)
-			var/datum/data/tachyon_record/record_to_check = paper.explosion_record
+	var/list/published_papers = techweb_to_check.published_papers
+	for(var/experiment_path in published_papers)
+		for(var/datum/scientific_paper/explosive/papers in published_papers[experiment_path])
+			var/datum/data/tachyon_record/record_to_check = papers.explosion_record
 			if(explosion_record.explosion_identifier == record_to_check.explosion_identifier)
 				return FALSE
 	return ..()
@@ -241,14 +242,21 @@
 		return FALSE
 	if(!istype(compressor_record))
 		return FALSE
-	for(var/experiment_path, papers in techweb_to_check.published_papers)
-		for(var/datum/scientific_paper/gaseous/paper in papers)
-			if(compressor_record == paper.compressor_record)
+	var/list/published_papers = techweb_to_check.published_papers
+	for(var/experiment_path in published_papers)
+		for(var/datum/scientific_paper/gaseous/papers in published_papers[experiment_path])
+			if(compressor_record == papers.compressor_record)
 				return FALSE
-	return ..()
+	. = ..()
 
 /datum/scientific_paper/gaseous/set_experiment(ex_path = null, variable = null, data = null)
-	if(!ispath(ex_path, /datum/experiment/ordnance/gaseous) || !istype(data, /datum/data/compressor_record) || !variable)
+	var/invalid = FALSE
+
+	invalid = invalid || !ispath(ex_path, /datum/experiment/ordnance/gaseous)
+	invalid = invalid || !variable
+	invalid = invalid || !istype(data, /datum/data/compressor_record)
+
+	if(invalid)
 		experiment_path = null
 		tracked_variable = null
 		compressor_record = null
@@ -285,33 +293,29 @@
 	. = ..()
 	// Convey boosts to their associated nodes so that they can then be passed
 	// to techweb UIs as static data.
-	for(var/node_path, discount_amount in boostable_nodes)
-		var/datum/techweb_node/node = SSresearch.techweb_nodes[node_path]
-		LAZYSET(node.discount_boosts, TECHWEB_POINT_TYPE_GENERIC, discount_amount)
+	for(var/node_id in boostable_nodes)
+		var/datum/techweb_node/node = SSresearch.techweb_node_by_id(node_id)
+		node.discount_boosts[TECHWEB_POINT_TYPE_GENERIC] = boostable_nodes[node_id]
 
 /datum/scientific_partner/proc/purchase_boost(datum/techweb/purchasing_techweb, datum/techweb_node/node)
-	var/possible_boost = allowed_to_boost(purchasing_techweb, node.type)
+	var/possible_boost = allowed_to_boost(purchasing_techweb, node.id)
 	if(!possible_boost)
 		return FALSE
-	var/boost_amount = boostable_nodes[node.type]
-
-	purchasing_techweb.boost_techweb_node(node, list(TECHWEB_POINT_TYPE_GENERIC = boost_amount))
-	purchasing_techweb.scientific_cooperation[type] -= boost_amount * SCIENTIFIC_COOPERATION_PURCHASE_MULTIPLIER
-	if(possible_boost == SCIPAPER_ALREADY_BOUGHT) // Refund the original price
-		purchasing_techweb.adjust_points(TECHWEB_POINT_TYPE_GENERIC, boost_amount)
+	purchasing_techweb.boost_techweb_node(node, list(TECHWEB_POINT_TYPE_GENERIC = boostable_nodes[node.id]))
+	purchasing_techweb.scientific_cooperation[type] -= boostable_nodes[node.id] * SCIENTIFIC_COOPERATION_PURCHASE_MULTIPLIER
+	if(possible_boost == SCIPAPER_ALREADY_BOUGHT) /// Refund the original price
+		purchasing_techweb.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = boostable_nodes[node.id]))
 		return SCIPAPER_ALREADY_BOUGHT
 	return TRUE
 
-/datum/scientific_partner/proc/allowed_to_boost(datum/techweb/purchasing_techweb, node_path)
-	var/datum/techweb_node/boosting_node = SSresearch.techweb_nodes[node_path]
-	var/boost_amount = boostable_nodes[node_path]
-
-	if(purchasing_techweb.scientific_cooperation[type] < (boost_amount * SCIENTIFIC_COOPERATION_PURCHASE_MULTIPLIER)) // Too expensive
+/datum/scientific_partner/proc/allowed_to_boost(datum/techweb/purchasing_techweb, node_id)
+	var/datum/techweb_node/boosting_node = SSresearch.techweb_node_by_id(node_id)
+	if(purchasing_techweb.scientific_cooperation[type] < (boostable_nodes[node_id] * SCIENTIFIC_COOPERATION_PURCHASE_MULTIPLIER)) // Too expensive
 		return FALSE
-	if(purchasing_techweb.boosted_nodes[node_path] && (boosting_node.discount_boosts[TECHWEB_POINT_TYPE_GENERIC] >= boost_amount)) // Already bought or we have a bigger discount
+	if((boosting_node.discount_boosted) && (boosting_node.discount_boosts[TECHWEB_POINT_TYPE_GENERIC] >= boostable_nodes[node_id])) // Already bought or we have a bigger discount
 		return FALSE
-	if(purchasing_techweb.researched_nodes[node_path])
+	if(node_id in purchasing_techweb.researched_nodes)
 		return SCIPAPER_ALREADY_BOUGHT
-	if(!purchasing_techweb.get_available_nodes()[node_path]) // Not currently available
+	if(!(node_id in purchasing_techweb.get_available_nodes())) // Not currently available
 		return FALSE
 	return TRUE

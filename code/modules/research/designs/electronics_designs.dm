@@ -5,7 +5,8 @@
 
 /datum/design/intellicard
 	name = "Intellicard AI Transportation System"
-	desc = "Can be used to store AI units and transfer them between systems or networks."
+	desc = "Allows for the construction of an intellicard."
+	id = "intellicard"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold =SMALL_MATERIAL_AMOUNT * 2)
 	build_path = /obj/item/aicard
@@ -16,7 +17,8 @@
 
 /datum/design/paicard
 	name = "Personal Artificial Intelligence Card"
-	desc = "Can be activated to gain a companion AI."
+	desc = "Allows for the construction of a pAI Card."
+	id = "paicard"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/iron =SMALL_MATERIAL_AMOUNT*5)
 	build_path = /obj/item/pai_card
@@ -27,7 +29,8 @@
 
 /datum/design/ai_cam_upgrade
 	name = "AI Surveillance Software Update"
-	desc = "A software package that will allow an AI to 'hear' from its cameras via lip reading."
+	desc = "A software package that will allow an artificial intelligence to 'hear' from its cameras via lip reading."
+	id = "ai_cam_upgrade"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5,
@@ -45,7 +48,8 @@
 
 /datum/design/ai_power_transfer
 	name = "AI Power Transfer Update"
-	desc = "An software package that allows an AI charge an APC, regardless of connection status."
+	desc = "An upgrade package that lets an AI charge an APC from a distance"
+	id = "ai_power_upgrade"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5,
@@ -63,6 +67,7 @@
 /datum/design/tech_disk
 	name = "Technology Data Storage Disk"
 	desc = "Produce additional disks for storing technology data."
+	id = "tech_disk"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass =SMALL_MATERIAL_AMOUNT)
 	build_path = /obj/item/disk/tech_disk
@@ -74,6 +79,7 @@
 /datum/design/manipulator_task_disk
 	name = "Manipulator Task Disk"
 	desc = "Produce additional disks for storing manipulator tasks."
+	id = "manipulator_task_disk"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass =SMALL_MATERIAL_AMOUNT)
 	build_path = /obj/item/disk/manipulator

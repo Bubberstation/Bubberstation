@@ -121,7 +121,7 @@
 
 	time_until_stoppage--
 
-/datum/status_effect/heart_attack/get_examine_text(mob/examiner)
+/datum/status_effect/heart_attack/get_examine_text()
 	if(!time_until_stoppage <= ATTACK_STAGE_THREE)
 		return
 	var/mob/living/carbon/human/human_owner = owner

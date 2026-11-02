@@ -92,6 +92,8 @@
 	var/list/restricted_roles = list()
 	/// The species able to purchase this uplink item.
 	var/list/restricted_species = list()
+	/// The minimum amount of progression needed for this item to be added to uplinks.
+	var/progression_minimum = 0
 	/// The minimum number of joined players (so not observers) needed for this item to be added to uplinks.
 	var/population_minimum = 0
 	/// Whether this purchase is visible in the purchase log.

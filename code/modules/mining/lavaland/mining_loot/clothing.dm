@@ -33,7 +33,6 @@
 	RegisterSignal(user, COMSIG_LIVING_HEALTH_UPDATE, PROC_REF(check_health))
 	icon_state = "memento_mori_active"
 	active_owner = user
-	ADD_TRAIT(src, TRAIT_DANGEROUS_UNEQUIP, TRAIT_GENERIC)
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/mori()
 	icon_state = "memento_mori"
@@ -44,7 +43,6 @@
 	active_owner = null
 	to_chat(stored_owner, span_userdanger("You feel your life rapidly slipping away from you!"))
 	stored_owner.dust(just_ash = TRUE, drop_items = TRUE)
-	REMOVE_TRAIT(src, TRAIT_DANGEROUS_UNEQUIP, TRAIT_GENERIC)
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/check_health(mob/living/source)
 	SIGNAL_HANDLER
@@ -52,12 +50,12 @@
 	var/list/guardians = source.get_all_linked_holoparasites()
 	if (!length(guardians))
 		return
-	if (source.health <= source.dead_threshold)
+	if (source.health <= HEALTH_THRESHOLD_DEAD)
 		for (var/mob/guardian in guardians)
 			if(guardian.loc == src)
 				continue
 			consume_guardian(guardian)
-	else if (source.health > source.crit_threshold)
+	else if (source.health > HEALTH_THRESHOLD_CRIT)
 		for (var/mob/guardian in guardians)
 			if(guardian.loc != src)
 				continue

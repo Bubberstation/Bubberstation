@@ -8,7 +8,6 @@
 	can_unwrench = TRUE
 	construction_type = /obj/item/pipe/trinary/flippable
 	pipe_state = "mixer"
-	light_mask_on = TRUE
 
 	///Output pressure target
 	var/target_pressure = ONE_ATMOSPHERE

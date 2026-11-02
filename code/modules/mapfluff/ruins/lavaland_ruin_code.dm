@@ -3,7 +3,11 @@
 ///Wizard tower item
 /obj/item/disk/design_disk/knight_gear
 	name = "Magic Disk of Smithing"
-	blueprints = list(/datum/design/knight_armour, /datum/design/knight_helmet)
+
+/obj/item/disk/design_disk/knight_gear/Initialize(mapload)
+	. = ..()
+	blueprints += new /datum/design/knight_armour
+	blueprints += new /datum/design/knight_helmet
 
 //Free Golems
 
@@ -11,11 +15,15 @@
 	name = "Golem Creation Disk"
 	desc = "A gift from the Liberator."
 	icon_state = "datadisk1"
-	blueprints = list(/datum/design/golem_shell)
+
+/obj/item/disk/design_disk/golem_shell/Initialize(mapload)
+	. = ..()
+	blueprints += new /datum/design/golem_shell
 
 /datum/design/golem_shell
 	name = "Golem Shell Construction"
 	desc = "Allows for the construction of a Golem Shell."
+	id = "golem"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*20)
 	build_path = /obj/item/golem_shell

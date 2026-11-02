@@ -239,7 +239,6 @@ const CrewTableEntry = (props: CrewTableEntryProps) => {
     burndam,
     brutedam,
     area,
-    ref,
   } = sensor_data;
 
   return (
@@ -296,7 +295,7 @@ const CrewTableEntry = (props: CrewTableEntryProps) => {
           <Button
             onClick={() =>
               act('select_person', {
-                ref: ref,
+                name: name,
               })
             }
           >

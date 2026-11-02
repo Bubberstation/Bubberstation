@@ -20,12 +20,6 @@
 
 	COOLDOWN_START(src, party_cooldown, rand(PARTY_COOLDOWN_LENGTH_MIN, PARTY_COOLDOWN_LENGTH_MAX))
 
-	var/list/landing_turfs = list()
-	for(var/turf/open/floor/bar_turf in get_area_turfs(/area/station/service/bar, subtypes = TRUE))
-		landing_turfs += bar_turf
-	if(!length(landing_turfs))
-		return
-
 	var/pizza_type_to_spawn = pick(list(
 		/obj/item/pizzabox/margherita,
 		/obj/item/pizzabox/mushroom,
@@ -34,8 +28,9 @@
 		/obj/item/pizzabox/pineapple
 	))
 
+	var/area/bar_area = pick(GLOB.bar_areas)
 	podspawn(list(
-		"target" = pick(landing_turfs),
+		"target" = pick(bar_area.contents),
 		"path" = /obj/structure/closet/supplypod/centcompod,
 		"spawn" = list(
 			pizza_type_to_spawn,
@@ -155,7 +150,10 @@
 	show_in_report = TRUE
 	report_message = "Due to proximity to our supply station, the cargo shuttle will have a quicker flight time to your cargo department."
 	blacklist = list(/datum/station_trait/slow_shuttle)
-	trait_to_give = STATION_TRAIT_QUICK_SHUTTLE
+
+/datum/station_trait/quick_shuttle/on_round_start()
+	. = ..()
+	SSshuttle.supply.callTime *= 0.5
 
 /datum/station_trait/deathrattle_department
 	name = "deathrattled department"

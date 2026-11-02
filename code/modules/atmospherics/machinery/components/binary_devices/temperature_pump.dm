@@ -7,7 +7,6 @@
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "tpump"
 	vent_movement = NONE
-	light_mask_on = TRUE
 	///Percent of the heat delta to transfer
 	var/heat_transfer_rate = 0
 	///Maximum allowed transfer percentage
@@ -43,11 +42,7 @@
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/atmospherics/components/binary/temperature_pump/update_icon_nopipes()
-	var/new_icon_state = "tpump_[on && is_operational ? "on" : "off"]-[set_overlay_offset(piping_layer)]"
-	var/old_icon_state = icon_state
-	icon_state = new_icon_state
-	if(new_icon_state != old_icon_state)
-		update_appearance(UPDATE_OVERLAYS)
+	icon_state = "tpump_[on && is_operational ? "on" : "off"]-[set_overlay_offset(piping_layer)]"
 
 /obj/machinery/atmospherics/components/binary/temperature_pump/process_atmos()
 	if(!on || !is_operational)

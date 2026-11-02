@@ -134,14 +134,14 @@
 	viewers = list()
 	UnregisterSignal(remove_from, COMSIG_MOB_KEYDOWN)
 
-	if(isnull(remove_from))
+	if(isnull(owner))
 		return
-	SEND_SIGNAL(src, COMSIG_ACTION_REMOVED, remove_from)
-	SEND_SIGNAL(remove_from, COMSIG_MOB_REMOVED_ACTION, src)
-	UnregisterSignal(remove_from, COMSIG_QDELETING)
+	SEND_SIGNAL(src, COMSIG_ACTION_REMOVED, owner)
+	SEND_SIGNAL(owner, COMSIG_MOB_REMOVED_ACTION, src)
+	UnregisterSignal(owner, COMSIG_QDELETING)
 
 	// Clean up our check_flag signals
-	UnregisterSignal(remove_from, list(
+	UnregisterSignal(owner, list(
 		COMSIG_LIVING_SET_BODY_POSITION,
 		COMSIG_MOB_STATCHANGE,
 		COMSIG_MOVABLE_MOVED,
@@ -155,7 +155,7 @@
 		SIGNAL_REMOVETRAIT(TRAIT_MAGICALLY_PHASED),
 	))
 
-	if(target == remove_from)
+	if(target == owner)
 		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(clear_ref))
 	if (owner == remove_from)
 		owner = null

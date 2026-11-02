@@ -144,12 +144,12 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", /m
 			else
 				body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=observer;mob=[REF(player)]'>Make Ghost</A> | "
 
-			if(ishuman(player) && !HAS_TRAIT(player, TRAIT_LESSER_HUMANOID))
+			if(ishuman(player) && !ismonkey(player))
 				body += "<b>Human</b> | "
 			else
 				body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;mob=[REF(player)]'>Make Human</A> | "
 
-			if(HAS_TRAIT(player, TRAIT_LESSER_HUMANOID))
+			if(ismonkey(player))
 				body += "<b>Monkey</b> | "
 			else
 				body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=monkey;mob=[REF(player)]'>Make Monkey</A> | "

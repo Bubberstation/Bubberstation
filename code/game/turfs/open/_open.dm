@@ -231,17 +231,7 @@
 	if(old_loc && leave_footprints && !broken && !burnt && ishuman(arrived))
 		add_footprint(arrived, get_dir(old_loc, src))
 
-	transfer_occupant(arrived)
-
-/turf/open/initialize_occupant(atom/movable/occupant)
-	. = ..()
-	transfer_occupant(occupant)
-
-/// Moves an occupant through a configured connection to another z-level.
-/turf/open/proc/transfer_occupant(atom/movable/occupant)
-	if(!occupant || occupant.loc != src)
-		return
-	if(!destination_z || !destination_x || !destination_y || occupant.pulledby || occupant.currently_z_moving)
+	if(!destination_z || !destination_x || !destination_y || arrived.pulledby || arrived.currently_z_moving)
 		return
 
 	if(SSatoms.initialized == INITIALIZATION_INNEW_MAPLOAD) // we don't want to be transitioning atoms to another z-level while we are still in mapload
@@ -253,7 +243,7 @@
 	var/itercount = 0
 	while(DT.density || istype(DT.loc,/area/shuttle)) // Extend towards the center of the map, trying to look for a better place to arrive
 		if (itercount++ >= 100)
-			log_game("SPACE Z-TRANSIT ERROR: Could not find a safe place to land [occupant] within 100 iterations.")
+			log_game("SPACE Z-TRANSIT ERROR: Could not find a safe place to land [arrived] within 100 iterations.")
 			break
 		if (tx < 128)
 			tx++
@@ -265,9 +255,9 @@
 			ty--
 		DT = locate(tx, ty, destination_z)
 
-	occupant.zMove(null, DT, ZMOVE_ALLOW_BUCKLED)
+	arrived.zMove(null, DT, ZMOVE_ALLOW_BUCKLED)
 
-	var/atom/movable/current_pull = occupant.pulling
+	var/atom/movable/current_pull = arrived.pulling
 	while (current_pull)
 		var/turf/target_turf = get_step(current_pull.pulledby.loc, REVERSE_DIR(current_pull.pulledby.dir)) || current_pull.pulledby.loc
 		current_pull.zMove(null, target_turf, ZMOVE_ALLOW_BUCKLED)
@@ -363,11 +353,6 @@
 /turf/open/indestructible/honk/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
 	if(ismob(arrived))
-		playsound(src, sound, 50, TRUE)
-
-/turf/open/indestructible/honk/initialize_occupant(atom/movable/occupant)
-	. = ..()
-	if(ismob(occupant))
 		playsound(src, sound, 50, TRUE)
 
 /turf/open/indestructible/necropolis
@@ -538,11 +523,10 @@
 	return TRUE
 
 /turf/open/handle_slip(mob/living/slipper, knockdown_amount, obj/slippable, lube, paralyze_amount, daze_amount, force_drop)
-	if(!(lube & SLIP_IN_NOGRAV))
-		if(slipper.movement_type & MOVETYPES_NOT_TOUCHING_GROUND)
-			return FALSE
-		if(!has_gravity(src))
-			return FALSE
+	if(slipper.movement_type & MOVETYPES_NOT_TOUCHING_GROUND)
+		return FALSE
+	if(!has_gravity(src))
+		return FALSE
 
 	var/slide_distance = 4
 	if(lube & SLIDE_ICE)

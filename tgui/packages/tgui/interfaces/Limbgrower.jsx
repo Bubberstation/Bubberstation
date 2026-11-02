@@ -85,7 +85,7 @@ export const Limbgrower = (props) => {
                     color="good"
                     onClick={() =>
                       act('make_limb', {
-                        design_path: design.path,
+                        design_id: design.id,
                         active_tab: design.parent_category,
                       })
                     }

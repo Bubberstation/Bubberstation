@@ -152,7 +152,6 @@
 		/obj/item/shovel,
 		/obj/item/stack/cable_coil,
 		/obj/item/stack/marker_beacon,
-		/obj/item/stack/candela_beacon,
 		/obj/item/stack/medical,
 		/obj/item/stack/ore,
 		/obj/item/stack/sheet/animalhide,
@@ -168,7 +167,6 @@
 		/obj/item/wrench,
 		/obj/item/wormhole_jaunter,
 		/obj/item/skeleton_key,
-		/obj/item/crusher_trophy,
 	))
 
 ///Primitive mining belt

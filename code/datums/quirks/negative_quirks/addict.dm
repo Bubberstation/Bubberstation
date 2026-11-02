@@ -112,7 +112,6 @@
 	desc = "Sometimes you just really want a smoke. Probably not great for your lungs."
 	icon = FA_ICON_SMOKING
 	value = -4
-	process_interval = 5 MINUTES // BUBBER EDIT - Longer interval between forced nicotine addiction ticks
 	gain_text = span_danger("You could really go for a smoke right about now.")
 	lose_text = span_notice("You don't feel nearly as hooked to nicotine anymore.")
 	medical_record_text = "Patient is a current smoker."

@@ -225,7 +225,7 @@
 	desc = "An outdated sidearm rarely seen in use by some members of the CIN. A revolver-type design with a four-shell cylinder. That's right, shell. This one shoots twelve gauge."
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/rev12ga
 	projectile_damage_multiplier = 0.9
-	recoil = 1
+	recoil = SAWN_OFF_RECOIL
 	weapon_weight = WEAPON_MEDIUM
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/guns_32.dmi'
 	icon_state = "bobr"

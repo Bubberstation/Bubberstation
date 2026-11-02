@@ -52,8 +52,8 @@
 	var/brutemod = prefs.read_preference(/datum/preference/numeric/fragile_customization/brute)
 	var/burnmod = prefs.read_preference(/datum/preference/numeric/fragile_customization/burn)
 
-	MODIFY_PHYSIOLOGY(user, BRUTE, brutemod)
-	MODIFY_PHYSIOLOGY(user, BURN, burnmod)
+	user.physiology.brute_mod *= brutemod
+	user.physiology.burn_mod *= burnmod
 
 /datum/quirk/fragile/remove()
 	. = ..()
@@ -65,8 +65,8 @@
 	var/brutemod = prefs.read_preference(/datum/preference/numeric/fragile_customization/brute)
 	var/burnmod = prefs.read_preference(/datum/preference/numeric/fragile_customization/burn)
 	// will cause issues if the user changes this value before removal
-	MODIFY_PHYSIOLOGY(user, BRUTE, 1/brutemod)
-	MODIFY_PHYSIOLOGY(user, BURN, 1/burnmod)
+	user.physiology.brute_mod /= brutemod
+	user.physiology.burn_mod /= burnmod
 
 /datum/quirk/monophobia
 	name = "Monophobia"

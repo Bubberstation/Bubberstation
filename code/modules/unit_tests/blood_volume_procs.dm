@@ -88,16 +88,13 @@
 
 	dummy.reagents.add_reagent(/datum/reagent/medicine/salglu_solution, 10)
 	var/datum/reagent/medicine/salglu_solution/saline = dummy.reagents.has_reagent(/datum/reagent/medicine/salglu_solution)
-	dummy.set_blood_volume(SALINE_DILUTION_CAP)
+	dummy.set_blood_volume(saline.dilution_cap)
 
 	// Test if saline dilutes blood volume beyond the dilution cap.
-	TEST_ASSERT_EQUAL(dummy.get_blood_volume(apply_modifiers = TRUE), SALINE_DILUTION_CAP, "Saline goes above or below its dilution cap.")
-
-	var/datum/status_effect/stacking/saline_glucose_dilution/dilution = dummy.has_status_effect(/datum/status_effect/stacking/saline_glucose_dilution)
-	TEST_ASSERT_NOTNULL(dilution, "Saline did not apply its dilution effect when entering a mob")
+	TEST_ASSERT_EQUAL(dummy.get_blood_volume(apply_modifiers = TRUE), saline.dilution_cap, "Saline goes above or below its dilution cap.")
 
 	dummy.set_blood_volume(BLOOD_VOLUME_BAD)
-	var/expected_dilution = saline.volume * dilution.get_blood_multiplier()
+	var/expected_dilution = saline.volume * saline.dilution_per_unit
 	expected_final_volume = dummy.get_blood_volume() + expected_dilution
 
 	// Test if saline dilutes low blood volume properly.

@@ -19,8 +19,8 @@
 
 	/// What is the lowest amount of time we can set the timer to?
 	var/minimum_timer = SYNDIEBOMB_MIN_TIMER_SECONDS
-	/// What is the highest amount of time we can set the timer to? IN SECONDS
-	var/maximum_timer = 100 * 60 // 100 MINUTES // not using the MINUTES define because those are for deciseconds
+	/// What is the highest amount of time we can set the timer to?
+	var/maximum_timer = 100*60 // 100 MINUTES // not using the MINUTES define because those are for deciseconds
 	/// What is the default amount of time we set the timer to?
 	var/timer_set = SYNDIEBOMB_MIN_TIMER_SECONDS
 	/// Can we be unanchored?
@@ -28,29 +28,27 @@
 	/// Are the wires exposed?
 	var/open_panel = FALSE
 	/// Is the bomb counting down?
-	VAR_FINAL/active = FALSE
+	var/active = FALSE
 	/// What sound do we make as we beep down the timer?
 	var/beepsound = 'sound/items/timer.ogg'
 	/// Is the delay wire pulsed?
-	VAR_FINAL/delayedbig = FALSE
+	var/delayedbig = FALSE
 	/// Is the activation wire pulsed?
-	VAR_FINAL/delayedlittle = FALSE
+	var/delayedlittle = FALSE
 	/// Should we just tell the payload to explode now? Usually triggered by an event (like cutting the wrong wire)
-	VAR_FINAL/explode_now = FALSE
+	var/explode_now = FALSE
 	/// The timer for the bomb.
-	VAR_FINAL/detonation_timer
+	var/detonation_timer
 	/// When do we beep next?
-	VAR_FINAL/next_beep
+	var/next_beep
 	/// If TRUE, more boom wires are added based on the timer set.
 	var/add_boom_wires = TRUE
 	/// Reference to the bomb core inside the bomb, which is the part that actually explodes.
 	var/obj/item/bombcore/payload = /obj/item/bombcore/syndicate
 	/// The countdown that'll show up to ghosts regarding the bomb's timer.
-	VAR_FINAL/obj/effect/countdown/syndicatebomb/countdown
+	var/obj/effect/countdown/syndicatebomb/countdown
 	/// Whether the countdown is visible on examine
-	VAR_FINAL/examinable_countdown = TRUE
-	/// World.time that the bomb entered timestop, used to calculate how much time is left on the timer after timestop ends.
-	VAR_PRIVATE/timestop_start
+	var/examinable_countdown = TRUE
 
 /obj/machinery/syndicatebomb/proc/try_detonate(ignore_active = FALSE)
 	. = (payload in src) && (active || ignore_active)
@@ -110,7 +108,6 @@
 	update_appearance()
 	countdown = new(src)
 	end_processing()
-	RegisterSignal(src, COMSIG_ATOM_TIMESTOP_FREEZE, PROC_REF(on_timestop))
 
 /obj/machinery/syndicatebomb/Destroy()
 	QDEL_NULL(countdown)
@@ -133,28 +130,9 @@
 	icon_state = "[initial(icon_state)][active ? "-active" : "-inactive"][open_panel ? "-wires" : ""]"
 	return ..()
 
-/obj/machinery/syndicatebomb/proc/on_timestop(...)
-	SIGNAL_HANDLER
-	if(!active)
-		return
-	end_processing()
-	timestop_start = world.time
-	RegisterSignal(src, COMSIG_ATOM_TIMESTOP_UNFREEZE, PROC_REF(on_timestop_end))
-
-/obj/machinery/syndicatebomb/proc/on_timestop_end(...)
-	SIGNAL_HANDLER
-	UnregisterSignal(src, COMSIG_ATOM_TIMESTOP_UNFREEZE)
-	if(!active) // defused DURING timestop? badass
-		return
-	var/time_spent_in_timestop = world.time - timestop_start
-	next_beep += time_spent_in_timestop
-	detonation_timer += time_spent_in_timestop
-	begin_processing()
-	timestop_start = null
-
 /obj/machinery/syndicatebomb/proc/seconds_remaining()
 	if(active)
-		. = max(0, round((detonation_timer - (timestop_start || world.time)) / 10))
+		. = max(0, round((detonation_timer - world.time) / 10))
 
 	else
 		. = timer_set

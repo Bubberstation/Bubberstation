@@ -15,7 +15,7 @@
 	/// Opening message when someone gets converted
 	var/desc = "Oh My! What Do We Have Here?!!?!?!?"
 	/// Tgui icon used by this sect - https://fontawesome.com/icons/
-	var/tgui_icon = FA_ICON_BUG
+	var/tgui_icon = "bug"
 	/// holder for alignments.
 	var/alignment = ALIGNMENT_GOOD
 	/// Does this require something before being available as an option?
@@ -152,7 +152,7 @@
 	name = "Nanotrasen Approved God"
 	desc = "Your run-of-the-mill sect, there are no benefits or boons associated."
 	quote = "Nanotrasen Recommends!"
-	tgui_icon = FA_ICON_BIBLE
+	tgui_icon = "bible"
 
 /**** Mechanical God ****/
 
@@ -161,7 +161,7 @@
 	quote = "May you find peace in a metal shell."
 	desc = "Bibles now recharge cyborgs and heal robotic limbs if targeted, but they \
 	do not heal organic limbs. You can now sacrifice cells, with favor depending on their charge."
-	tgui_icon = FA_ICON_ROBOT
+	tgui_icon = "robot"
 	alignment = ALIGNMENT_NEUT
 	desired_items = list(/obj/item/stock_parts/power_store = "with battery charge")
 	rites_list = list(/datum/religion_rites/synthconversion, /datum/religion_rites/machine_blessing)
@@ -235,7 +235,7 @@
 	name = "Pyre God"
 	desc = "Sacrificing burning corpses with a lot of burn damage and candles grants you favor."
 	quote = "It must burn! The primal energy must be respected."
-	tgui_icon = FA_ICON_FIRE_ALT
+	tgui_icon = "fire-alt"
 	alignment = ALIGNMENT_NEUT
 	max_favor = 10000
 	desired_items = list(/obj/item/flashlight/flare/candle = "already lit")
@@ -267,10 +267,11 @@
 	name = "Greedy God"
 	quote = "Greed is good."
 	desc = "In the eyes of your mercantile deity, your wealth is your favor. Earn enough wealth to purchase some more business opportunities."
-	tgui_icon = FA_ICON_DOLLAR_SIGN
+	tgui_icon = "dollar-sign"
 	altar_icon_state = "convertaltar-yellow"
 	alignment = ALIGNMENT_EVIL //greed is not good wtf
 	rites_list = list(/datum/religion_rites/greed/vendatray, /datum/religion_rites/greed/custom_vending)
+	altar_icon_state = "convertaltar-yellow"
 
 /datum/religion_sect/greed/tool_examine(mob/living/holy_creature) //display money policy
 	return "In the eyes of [GLOB.deity], your wealth is your favor."
@@ -317,7 +318,7 @@
 	quote = "To feel the freedom, you must first understand captivity."
 	desc = "Incapacitate yourself in any way possible. Bad mutations, lost limbs, traumas, \
 		even addictions. You will learn the secrets of the universe from your defeated shell."
-	tgui_icon = FA_ICON_USER_INJURED
+	tgui_icon = "user-injured"
 	altar_icon_state = "convertaltar-burden"
 	alignment = ALIGNMENT_NEUT
 	candle_overlay = FALSE
@@ -390,7 +391,7 @@
 	if(suffocation_damage && !HAS_TRAIT(chaplain, TRAIT_NOBREATH))
 		transferred = TRUE
 		target.adjust_oxy_loss(-suffocation_damage)
-		chaplain.adjust_oxy_loss(suffocation_damage * burden_modifier)
+		chaplain.adjust_oxy_loss(suffocation_damage * burden_modifier, forced = TRUE)
 
 	var/cached_blood_volume = target.get_blood_volume()
 	if (cached_blood_volume < BLOOD_VOLUME_SAFE)
@@ -420,7 +421,7 @@
 	quote = "A good, honorable crusade against evil is required."
 	desc = "Your deity requires fair fights from you. You may not attack the unready, the just, or the innocent. \
 	You earn favor by getting others to join the crusade, and you may spend favor to announce a battle, bypassing some conditions to attack."
-	tgui_icon = FA_ICON_SCROLL
+	tgui_icon = "scroll"
 	altar_icon_state = "convertaltar-white"
 	alignment = ALIGNMENT_GOOD
 	rites_list = list(/datum/religion_rites/deaconize/crusader, /datum/religion_rites/forgive, /datum/religion_rites/summon_rules)
@@ -443,7 +444,7 @@
 	name = "Maintenance God"
 	quote = "Your kingdom in the darkness."
 	desc = "Sacrifice the organic slurry created from rats dipped in welding fuel to gain favor. Exchange favor to adapt to the maintenance shafts."
-	tgui_icon = FA_ICON_EYE
+	tgui_icon = "eye"
 	altar_icon_state = "convertaltar-maint"
 	alignment = ALIGNMENT_EVIL //while maint is more neutral in my eyes, the flavor of it kinda pertains to rotting and becoming corrupted by the maints
 	rites_list = list(/datum/religion_rites/maint_adaptation, /datum/religion_rites/adapted_eyes, /datum/religion_rites/adapted_food, /datum/religion_rites/ritual_totem)
@@ -485,7 +486,7 @@
 	name = "Sparring God"
 	quote = "Your next swing must be faster, neophyte. Steel your heart."
 	desc = "Spar other crewmembers to gain favor or other rewards. Exchange favor to steel yourself against real battles."
-	tgui_icon = FA_ICON_FIST_RAISED
+	tgui_icon = "fist-raised"
 	altar_icon_state = "convertaltar-orange"
 	alignment = ALIGNMENT_NEUT
 	rites_list = list(
@@ -514,7 +515,7 @@
 	name = "Festival God"
 	quote = "Everything follows a rhythm: the heartbeat of the universe!"
 	desc = "Make wonderful music! Sooth or serrate your friends and foes with the beat."
-	tgui_icon = FA_ICON_MUSIC
+	tgui_icon = "music"
 	altar_icon_state = "convertaltar-festival"
 	alignment = ALIGNMENT_GOOD
 	candle_overlay = FALSE

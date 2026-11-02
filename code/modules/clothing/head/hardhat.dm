@@ -217,14 +217,10 @@
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	visor_flags_cover = NONE
 	flags_inv = HIDEEARS|HIDEHAIR|HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
-	hair_mask = null
+	hair_mask = ""
 	transparent_protection = HIDEMASK|HIDEEYES
 	visor_flags_inv = NONE
 	visor_state = "weldvisor_atmos"
-
-/obj/item/clothing/head/utility/hardhat/welding/atmos/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_HEAD, /datum/bodypart_texture/mesh/firesuit)
 
 /obj/item/clothing/head/utility/hardhat/welding/atmos/worn_overlays(mutable_appearance/standing, isinhands, icon_file, bodyshape = NONE)
 	. = ..()
@@ -241,7 +237,7 @@
 	hat_type = "pumpkin"
 	clothing_flags = SNUG_FIT | STACKABLE_HELMET_EXEMPT
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
-	hair_mask = null
+	hair_mask = ""
 
 	armor_type = /datum/armor/none
 	light_range = 2 //luminosity when on
@@ -312,7 +308,7 @@
 	inhand_icon_state = null
 	hat_type = "reindeer"
 	flags_inv = 0
-	hair_mask = null
+	hair_mask = ""
 	armor_type = /datum/armor/none
 	light_range = 1 //luminosity when on
 	clothing_traits = null

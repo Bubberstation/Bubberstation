@@ -1,24 +1,25 @@
 /datum/techweb_node/syndicate_basic
+	id = TECHWEB_NODE_SYNDICATE_BASIC
 	display_name = "Illegal Technology"
 	description = "Dangerous research used to create dangerous objects."
-	node_flags = parent_type::node_flags | TECHWEB_NODE_HIDDEN
-	prerequisite_nodes = list(/datum/techweb_node/exp_tools, /datum/techweb_node/exotic_ammo)
-	unlocked_designs = list(
-		/datum/design/board/advanced_camera,
-		/datum/design/ai_cam_upgrade,
-		/datum/design/borg_syndicate_module,
-		/datum/design/donksoft_refill,
-		/datum/design/largecrossbow,
+	prereq_ids = list(TECHWEB_NODE_EXP_TOOLS, TECHWEB_NODE_EXOTIC_AMMO)
+	design_ids = list(
+		"advanced_camera",
+		"ai_cam_upgrade",
+		"borg_syndicate_module",
+		"donksoft_refill",
+		"largecrossbow",
 		/* BUBBER EDIT REMOVAL BEGIN
-		/datum/design/mag_autorifle,
-		/datum/design/mag_autorifle/ap_mag,
-		/datum/design/mag_autorifle/ic_mag,
+		"mag_autorifle",
+		"mag_autorifle_ap",
+		"mag_autorifle_ic",
 		*/// BUBBER EDIT REMOVAL END
-		/datum/design/rapidsyringe,
-		/datum/design/suppressor,
-		/datum/design/super_pointy_tape,
+		"rapidsyringe",
+		"suppressor",
+		"super_pointy_tape",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+	hidden = TRUE
 
 /datum/techweb_node/syndicate_basic/New() //Crappy way of making syndicate gear decon supported until there's another way.
 	. = ..()
@@ -37,11 +38,12 @@
 		required_items_to_unlock |= item.item //allows deconning to unlock.
 
 /datum/techweb_node/unregulated_bluespace
+	id = TECHWEB_NODE_UNREGULATED_BLUESPACE
 	display_name = "Unregulated Bluespace Research"
 	description = "Bluespace technology using unstable or unbalanced procedures, prone to damaging the fabric of bluespace. Outlawed by galactic conventions."
-	prerequisite_nodes = list(/datum/techweb_node/parts_bluespace, /datum/techweb_node/syndicate_basic)
-	unlocked_designs = list(
-		/datum/design/desynchronizer,
-		/datum/design/beamrifle,
+	prereq_ids = list(TECHWEB_NODE_PARTS_BLUESPACE, TECHWEB_NODE_SYNDICATE_BASIC)
+	design_ids = list(
+		"desynchronizer",
+		"beamrifle",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)

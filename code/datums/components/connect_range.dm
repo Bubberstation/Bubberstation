@@ -34,8 +34,8 @@
 	return ..()
 
 /datum/component/connect_range/InheritComponent(datum/component/component, original, atom/tracked, list/connections, range, works_in_containers)
-	// Both the signal names and their handlers must match.
-	if(!deep_compare_list(src.connections, connections))
+	// Not equivalent. Checks if they are not the same list via shallow comparison.
+	if(!compare_list(src.connections, connections))
 		stack_trace("connect_range component attached to [parent] tried to inherit another connect_range component with different connections")
 		return
 	if(src.tracked != tracked)
@@ -44,7 +44,6 @@
 		return
 	//Unregister the signals with the old settings.
 	unregister_signals(isturf(tracked) ? tracked : tracked.loc, turfs)
-	turfs = list()
 	src.range = range
 	src.works_in_containers = works_in_containers
 	//Re-register the signals with the new settings.
@@ -53,7 +52,6 @@
 /datum/component/connect_range/proc/set_tracked(atom/new_tracked)
 	if(tracked) //Unregister the signals from the old tracked and its surroundings
 		unregister_signals(isturf(tracked) ? tracked : tracked.loc, turfs)
-		turfs = list()
 		UnregisterSignal(tracked, list(
 			COMSIG_MOVABLE_MOVED,
 			COMSIG_QDELETING,
@@ -85,7 +83,10 @@
 			turfs = list()
 			return
 
-	// Reconcile subscriptions even on the same turf: the container may have changed.
+	//Only register/unregister turf signals if it's moved to a new turf.
+	if(current_turf == get_turf(old_loc))
+		unregister_signals(old_loc, null)
+		return
 	var/list/old_turfs = turfs
 	turfs = RANGE_TURFS(range, current_turf)
 	unregister_signals(old_loc, old_turfs - turfs)

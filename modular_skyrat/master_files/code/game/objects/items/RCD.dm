@@ -78,7 +78,7 @@
 	desc = "A modified RCD that has less storage than your usual NT RCD is and has less construction options and has lost the ability to deconstruct in favor of being more accessible for synthetic repairs. Reload using metal, glass, or plasteel."
 	icon = 'modular_skyrat/master_files/icons/obj/tools.dmi'
 	icon_state = "roborcd"
-	inhand_icon_state = "roborcd"
+	worn_icon_state = "RCD"
 	lefthand_file = 'modular_skyrat/modules/aesthetics/tools/tools_lefthand.dmi'
 	righthand_file = 'modular_skyrat/modules/aesthetics/tools/tools_righthand.dmi'
 	max_matter = 50
@@ -96,7 +96,7 @@
 	desc = "A modified RCD designed specifically for synthetic repairs."
 	icon = 'modular_skyrat/master_files/icons/obj/tools.dmi'
 	icon_state = "roborcd"
-	inhand_icon_state = "roborcd"
+	worn_icon_state = "RCD"
 	lefthand_file = 'modular_skyrat/modules/aesthetics/tools/tools_lefthand.dmi'
 	righthand_file = 'modular_skyrat/modules/aesthetics/tools/tools_righthand.dmi'
 	action_slots = NONE

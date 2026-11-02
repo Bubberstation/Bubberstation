@@ -33,7 +33,6 @@
 	)
 	rpg_title = "Merchantman"
 	job_flags = STATION_JOB_FLAGS
-	tgui_icon = FA_ICON_BOX
 
 
 /datum/outfit/job/cargo_tech
@@ -45,7 +44,7 @@
 	)
 	id_trim = /datum/id_trim/job/cargo_technician
 	uniform = /obj/item/clothing/under/rank/cargo/tech
-	belt = /obj/item/modular_computer/pda/crew/cargo
+	belt = /obj/item/modular_computer/pda/cargo
 	suit = /obj/item/clothing/suit/toggle/cargo_tech
 	ears = /obj/item/radio/headset/headset_cargo
 	l_hand = /obj/item/universal_scanner

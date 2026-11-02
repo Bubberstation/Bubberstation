@@ -16,7 +16,6 @@
 	flags_cover = HEADCOVERSEYES|EARS_COVERED
 	flags_inv = HIDEHAIR
 	dog_fashion = /datum/dog_fashion/head/helmet
-	resistance_flags = NONE
 
 /datum/armor/head_helmet
 	melee = 35

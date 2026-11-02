@@ -10,6 +10,7 @@ type Cost = {
 };
 
 type RemappedNode = NodeCache & {
+  id: string;
   costs: Cost[];
 };
 
@@ -47,9 +48,9 @@ function selectRemappedStaticData(data: TechWebData) {
       ...node,
       id: remapId(id),
       costs,
-      prerequisite_nodes: map(node.prerequisite_nodes || [], remapId),
-      unlocked_designs: map(node.unlocked_designs || [], remapId),
-      unlocked_nodes: map(node.unlocked_nodes || [], remapId),
+      prereq_ids: map(node.prereq_ids || [], remapId),
+      design_ids: map(node.design_ids || [], remapId),
+      unlock_ids: map(node.unlock_ids || [], remapId),
       required_experiments: node.required_experiments || [],
       discount_experiments: node.discount_experiments || [],
       discount_boosts: node.discount_boosts || [],

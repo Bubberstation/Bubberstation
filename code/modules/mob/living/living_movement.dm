@@ -176,10 +176,6 @@
 	return ..()
 
 /mob/living/keybind_face_direction(direction)
-	// BUBBER EDIT BEGIN - Allow rotating in chairs and whatnot
-	if(HAS_TRAIT_FROM(src, TRAIT_IMMOBILIZED, TIMESTOP_TRAIT))
-		return
 	if(IS_UNCONSCIOUS(src))
 		return
-	// BUBBER EDIT END
 	return ..()

@@ -1,16 +1,19 @@
-/obj/item/gun/energy/e_gun/stun/tacticool
+/obj/item/gun/energy/tacticool
 	name = "tacticool energy gun"
 	desc = "An older edition of a tactical energy gun, clearly having not been maintained very well. The weapon's cell seems to be stressed extremely by it's taser."
-	icon_state = "energytac"
-	icon = 'modular_zubbers/icons/obj/weapons/guns/energy.dmi'
+	icon_state = "tacegun"
+	icon = 'modular_zubbers/icons/obj/guns/tacticalenergygungrip.dmi'
+	inhand_icon_state = "energykill3"
 	ammo_x_offset = 2
-	ammo_type = list(/obj/item/ammo_casing/energy/electrode/sec/tacticool, /obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser)
+	ammo_type = list(/obj/item/ammo_casing/energy/electrode/sec/tacticool, /obj/item/ammo_casing/energy/disabler/tacticool, /obj/item/ammo_casing/energy/laser/tacticool)
 	w_class = WEIGHT_CLASS_BULKY
 
-
+/obj/item/ammo_casing/energy/disabler/tacticool
+	e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE)
 /obj/item/ammo_casing/energy/electrode/sec/tacticool
 	e_cost = LASER_SHOTS(2, STANDARD_CELL_CHARGE)
-
+/obj/item/ammo_casing/energy/laser/tacticool
+	e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE)
 
 /obj/item/gun/energy/tacticool/add_seclight_point()
 	AddComponent(/datum/component/seclite_attachable, \
@@ -18,10 +21,6 @@
 		light_overlay = "flight", \
 		overlay_x = 15, \
 		overlay_y = 10)
-
-/obj/item/gun/energy/e_gun/stun
-	icon_state = "energytac"
-	icon = 'modular_zubbers/icons/obj/weapons/guns/energy.dmi'
 
 /obj/item/gun/energy/e_gun/nuclear_smg
 	name = "advanced energy smg"

@@ -17,8 +17,6 @@ Passive gate is similar to the regular pump except:
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "passivegate"
 	use_power = NO_POWER_USE
-	light_mask_on = TRUE
-	light_mask_off = TRUE
 	///Set the target pressure the component should arrive to
 	var/target_pressure = ONE_ATMOSPHERE
 
@@ -51,11 +49,10 @@ Passive gate is similar to the regular pump except:
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/atmospherics/components/binary/passive_gate/update_icon_nopipes()
-	var/new_icon_state = "passgate_[on && is_operational ? "on" : "off"]-[set_overlay_offset(piping_layer)]"
-	var/old_icon_state = icon_state
-	icon_state = new_icon_state
-	if(new_icon_state != old_icon_state)
-		update_appearance(UPDATE_OVERLAYS)
+	cut_overlays()
+	icon_state = "passgate_off-[set_overlay_offset(piping_layer)]"
+	if(on)
+		add_overlay(get_pipe_image(icon, "passgate_on-[set_overlay_offset(piping_layer)]"))
 
 /obj/machinery/atmospherics/components/binary/passive_gate/process_atmos()
 	if(!on)

@@ -45,7 +45,6 @@
 		"Brig Officer",
 		"Prison Guard",
 	)
-	tgui_icon = FA_ICON_BARS
 
 // OUTFIT
 /datum/outfit/job/corrections_officer
@@ -64,7 +63,7 @@
 	messenger = /obj/item/storage/backpack/messenger/sec
 	head = /obj/item/clothing/head/beret/sec
 	box = /obj/item/storage/box/survival/security
-	belt = /obj/item/modular_computer/pda/crew/security
+	belt = /obj/item/modular_computer/pda/security
 
 	id_trim = /datum/id_trim/job/corrections_officer
 

@@ -4,8 +4,6 @@
 #define CRACK_DELAY_CHANCE 33
 #define CRACK_LENGTH_DEFAULT 8
 
-GLOBAL_LIST_EMPTY(weakpoints_spawned)
-
 /obj/effect/weakpoint
 	name = "weakpoint crack"
 	desc = "A suspicious crack runs along the ground."
@@ -14,7 +12,7 @@ GLOBAL_LIST_EMPTY(weakpoints_spawned)
 	base_icon_state = "weakpoint"
 	layer = ABOVE_NORMAL_TURF_LAYER
 	move_resist = INFINITY
-	alpha = 255
+	alpha = 0
 
 	/// The required strength of explosion for a weakpoint to propogate
 	var/required_strength = EXPLODE_LIGHT
@@ -36,8 +34,6 @@ GLOBAL_LIST_EMPTY(weakpoints_spawned)
 
 /obj/effect/weakpoint/Initialize(mapload)
 	. = ..()
-	GLOB.weakpoints_spawned += src
-	alpha = 0
 	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE, INVISIBILITY_OBSERVER, use_anchor = TRUE)
 	RegisterSignal(src, COMSIG_TURF_CHANGE, PROC_REF(turf_changed))
 	register_context()
@@ -97,10 +93,6 @@ GLOBAL_LIST_EMPTY(weakpoints_spawned)
 	. = ..()
 	. += span_notice("\The [src] could be repaired with a welder.")
 	. += span_warning("A strong enough explosion will cause [src] to expand.")
-
-/obj/effect/weakpoint/Destroy(force)
-	GLOB.weakpoints_spawned -= src
-	return ..()
 
 /**
  * Generates a list of turfs from the start location meandering along a randomized set of turns.

@@ -15,7 +15,7 @@
 	resistance = -1
 	stage_speed = -2
 	transmittable = 2
-	level = 5
+	level = 6
 	severity = 2
 	base_message_chance = 100
 	symptom_delay = 90
@@ -28,7 +28,6 @@
 	)
 	var/scramble_language = FALSE
 	var/datum/language/current_language
-	var/suppress_warning = FALSE
 
 /datum/symptom/voice_change/Start(datum/disease/advance/A)
 	. = ..()

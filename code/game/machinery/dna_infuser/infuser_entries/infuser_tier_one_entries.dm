@@ -44,7 +44,6 @@
 	)
 	output_organs = list(
 		/obj/item/organ/brain/carp,
-		/obj/item/organ/fangs/carp,
 		/obj/item/organ/heart/carp,
 		/obj/item/organ/lungs/carp,
 		/obj/item/organ/tongue/carp,
@@ -236,7 +235,6 @@
 	output_organs = list(
 		/obj/item/organ/eyes/stoat,
 		/obj/item/organ/ears/stoat,
-		/obj/item/organ/fangs/stoat,
 		/obj/item/organ/heart/stoat,
 		/obj/item/organ/tongue/stoat,
 		/obj/item/organ/snout/stoat,

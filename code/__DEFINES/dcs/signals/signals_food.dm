@@ -2,7 +2,7 @@
 //Food
 
 // Eating stuff
-/// From datum/component/edible/proc/TakeBite: (atom/owner, foodtypes)
+/// From datum/component/edible/proc/TakeBite: (atom/owner)
 #define COMSIG_LIVING_EAT_FOOD "food_bit"
 /// From datum/component/edible/proc/TakeBite: (mob/living/eater, mob/feeder, bitecount, bitesize)
 #define COMSIG_FOOD_EATEN "food_eaten"

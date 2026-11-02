@@ -30,8 +30,6 @@
 	var/mob/user = music_player
 	if(user.incapacitated)
 		return FALSE
-	if(user.get_item_by_slot(slot_flags) == src) //can't play while wearing the instrument
-		return FALSE
 	if(!Adjacent(user))
 		return FALSE
 	return TRUE
@@ -85,8 +83,6 @@
 	desc = "Makes all your shredding needs possible."
 	icon_state = "eguitar"
 	inhand_icon_state = "eguitar"
-	worn_icon = 'icons/mob/clothing/back.dmi'
-	slot_flags = ITEM_SLOT_BACK
 	force = 12
 	attack_verb_continuous = list("plays metal on", "shreds", "crashes", "smashes")
 	attack_verb_simple = list("play metal on", "shred", "crash", "smash")

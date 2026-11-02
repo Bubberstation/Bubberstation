@@ -11,6 +11,10 @@
 /datum/movespeed_modifier/monkey_temperature_speedmod
 	variable = TRUE
 
+/datum/movespeed_modifier/hunger
+	movetypes = GROUND|FLYING
+	variable = TRUE
+
 /datum/movespeed_modifier/golem_hunger
 	variable = TRUE
 

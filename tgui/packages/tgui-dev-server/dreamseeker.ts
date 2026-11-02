@@ -63,10 +63,7 @@ export class DreamSeeker {
       return instances;
     }
 
-    const command =
-      process.platform === 'win32'
-        ? 'netstat -ano | findstr TCP | findstr 0.0.0.0:0'
-        : "ss -tln | grep '0.0.0.0:\\*'";
+    const command = 'netstat -ano | findstr TCP | findstr 0.0.0.0:0';
 
     try {
       const { stdout } = await promisify(exec)(command, {

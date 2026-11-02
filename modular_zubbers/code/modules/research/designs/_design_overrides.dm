@@ -3,6 +3,12 @@
 /datum/design/board/aicore
 	build_type = IMPRINTER
 
+/datum/design/board/aiupload
+	build_type = IMPRINTER
+
+/datum/design/board/borgupload
+	build_type = IMPRINTER
+
 // NT and offstation mining Vendor separation
 
 /datum/design/board/mining_equipment_vendor

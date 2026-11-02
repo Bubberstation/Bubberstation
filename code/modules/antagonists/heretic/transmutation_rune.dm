@@ -69,15 +69,11 @@
 				var/list/req_type_list = req_type
 				var/list/req_text_list = list()
 				for(var/atom/possible_type as anything in req_type_list)
-					req_text_list += ritual.parse_required_item(possible_type, req_amount)
+					req_text_list += ritual.parse_required_item(possible_type)
 				ritual_requirements += english_list(req_text_list, and_text = "or")
 
 			else
-				ritual_requirements += ritual.parse_required_item(req_type, req_amount)
-
-		var/list/extra_requirements = ritual.get_extra_requirements()
-		if(length(extra_requirements))
-			ritual_requirements += extra_requirements
+				ritual_requirements += ritual.parse_required_item(req_type)
 
 		if(length(ritual_requirements))
 			ritual_info = "Requires: [english_list(ritual_requirements)]"

@@ -203,7 +203,9 @@
 	desc = "Three tacticool energy guns to express your individuality compared to all those other energy gun users!"
 	cost = CARGO_CRATE_VALUE * 8
 	contains = list(
-		/obj/item/gun/energy/e_gun/stun/tacticool = 3,
+		/obj/item/gun/energy/tacticool,
+		/obj/item/gun/energy/tacticool,
+		/obj/item/gun/energy/tacticool,
 	)
 
 /datum/supply_pack/security/armory/peacekeepers
@@ -214,16 +216,6 @@
 		/obj/item/gun/ballistic/shotgun/riot/sol,
 		/obj/item/gun/ballistic/shotgun/riot/sol,
 		/obj/item/gun/ballistic/shotgun/riot/sol,
-	)
-
-/datum/supply_pack/security/armory/peacekeepers_plus
-	name = "Riot Renoster Shotgun Crate"
-	desc = "Three less-lethal modified Renoster pump-action shotguns to restock your armories with."
-	cost = CARGO_CRATE_VALUE * 10
-	contains = list(
-		/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal,
-		/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal,
-		/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal,
 	)
 
 /datum/supply_pack/security/armory/hoshis

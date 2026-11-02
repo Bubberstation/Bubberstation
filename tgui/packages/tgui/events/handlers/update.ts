@@ -45,6 +45,9 @@ function resume(payload: UpdatePayload): void {
       return;
     }
 
+    Byond.winset(Byond.windowId, {
+      'is-visible': true,
+    });
     perf.mark('resume/finish');
 
     if (process.env.NODE_ENV !== 'production') {

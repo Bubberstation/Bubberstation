@@ -2,7 +2,6 @@ import { useState } from 'react';
 import {
   Box,
   Button,
-  Dropdown,
   Input,
   LabeledList,
   NoticeBox,
@@ -32,13 +31,7 @@ export const MedicalRecordView = (props) => {
   if (!foundRecord) return <NoticeBox>No record selected.</NoticeBox>;
 
   const { act, data } = useBackend<MedicalRecordData>();
-  const {
-    assigned_view,
-    physical_statuses,
-    mental_statuses,
-    station_z,
-    blood_types,
-  } = data;
+  const { assigned_view, physical_statuses, mental_statuses, station_z } = data;
 
   // const { min_age, max_age } = data; // ORIGINAL
   const { min_age, max_age, max_chrono_age } = data; // SKYRAT EDIT CHANGE - Chronological age
@@ -164,16 +157,10 @@ export const MedicalRecordView = (props) => {
               />
             </LabeledList.Item>
             <LabeledList.Item color="bad" label="Blood Type">
-              <Dropdown
-                selected={blood_type}
-                options={blood_types}
-                width="6rem"
-                onSelected={(value) =>
-                  act('set_blood_type', {
-                    crew_ref: crew_ref,
-                    blood_type: value,
-                  })
-                }
+              <EditableText
+                field="blood_type"
+                target_ref={crew_ref}
+                text={blood_type}
               />
             </LabeledList.Item>
             <LabeledList.Item

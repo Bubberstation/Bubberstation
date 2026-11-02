@@ -202,8 +202,7 @@
 		))
 	if(prob(30))
 		r_pocket = pick_weight(list(
-			/obj/item/stack/candela_beacon = 20,
-			/obj/item/stack/marker_beacon = 15,
+			/obj/item/stack/marker_beacon = 20,
 			/obj/item/stack/spacecash/c1000 = 7,
 			/obj/item/reagent_containers/hypospray/medipen/survival = 2,
 			/obj/item/borg/upgrade/modkit/damage = 1,

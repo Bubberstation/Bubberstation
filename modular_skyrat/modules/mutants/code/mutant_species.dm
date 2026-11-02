@@ -141,6 +141,9 @@
 /datum/species/mutant/infectious/check_roundstart_eligible()
 	return FALSE
 
+/datum/species/mutant/infectious/spec_stun(mob/living/carbon/human/H,amount)
+	. = min(20, amount)
+
 /// Start the cooldown to regenerate - 5 seconds after taking damage
 /datum/species/mutant/infectious/proc/queue_regeneration()
 	SIGNAL_HANDLER

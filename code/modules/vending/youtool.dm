@@ -21,7 +21,6 @@
 	)
 	contraband = list(
 		/obj/item/clothing/gloves/color/fyellow = 2,
-		/obj/item/boombox = 1,
 	)
 	premium = list(
 		/obj/item/storage/belt/utility = 2,

@@ -42,7 +42,6 @@
 /obj/item/clothing/suit/utility/fire/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/adjust_fishing_difficulty, 7)
-	AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_CHEST, /datum/bodypart_texture/mesh/firesuit)
 
 /datum/armor/utility_fire
 	melee = 15
@@ -104,15 +103,12 @@
 	equip_delay_other = 7 SECONDS
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	resistance_flags = NONE
-	/// Type of texture applied by this
-	var/texture_type = /datum/bodypart_texture/mesh/bombsuit
 
 /obj/item/clothing/head/utility/bomb_hood/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_dirt, "bomb_dirt")
 	AddElement(/datum/element/adjust_fishing_difficulty, 8)
 	AddComponent(/datum/component/hat_stabilizer, loose_hat = TRUE)
-	AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_HEAD, texture_type)
 
 /datum/armor/utility_bomb_hood
 	melee = 20
@@ -141,13 +137,10 @@
 	strip_delay = 7 SECONDS
 	equip_delay_other = 7 SECONDS
 	resistance_flags = NONE
-	/// Type of texture applied by this
-	var/texture_type = /datum/bodypart_texture/mesh/bombsuit
 
 /obj/item/clothing/suit/utility/bomb_suit/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/adjust_fishing_difficulty, 8)
-	AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_CHEST, texture_type)
 
 /datum/armor/utility_bomb_suit
 	melee = 20
@@ -161,23 +154,19 @@
 /obj/item/clothing/head/utility/bomb_hood/security
 	icon_state = "bombsuit_sec"
 	inhand_icon_state = null
-	texture_type = /datum/bodypart_texture/mesh/bombsuit_red
 
 /obj/item/clothing/suit/utility/bomb_suit/security
 	icon_state = "bombsuit_sec"
 	inhand_icon_state = null
 	allowed = list(/obj/item/gun/energy, /obj/item/melee/baton, /obj/item/restraints/handcuffs)
-	texture_type = /datum/bodypart_texture/mesh/bombsuit_red
 
 /obj/item/clothing/head/utility/bomb_hood/white
 	icon_state = "bombsuit_white"
 	inhand_icon_state = null
-	texture_type = /datum/bodypart_texture/mesh/bombsuit_white
 
 /obj/item/clothing/suit/utility/bomb_suit/white
 	icon_state = "bombsuit_white"
 	inhand_icon_state = null
-	texture_type = /datum/bodypart_texture/mesh/bombsuit_white
 
 /*
 * Radiation protection
@@ -201,7 +190,6 @@
 	AddComponent(/datum/component/hat_stabilizer, loose_hat = TRUE)
 	AddElement(/datum/element/radiation_protected_clothing)
 	AddComponent(/datum/component/clothing_dirt, "rad_dirt")
-	AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_HEAD, /datum/bodypart_texture/mesh/black)
 
 /datum/armor/utility_radiation
 	bio = 60
@@ -232,4 +220,3 @@
 	. = ..()
 	AddElement(/datum/element/radiation_protected_clothing)
 	AddElement(/datum/element/adjust_fishing_difficulty, 7)
-	AddElement(/datum/element/equipment_bodypart_texture, BODY_ZONE_CHEST, /datum/bodypart_texture/mesh/black)

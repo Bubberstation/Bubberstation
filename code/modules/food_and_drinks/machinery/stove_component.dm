@@ -49,6 +49,7 @@
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_ROBOT_SECONDARY, PROC_REF(on_attack_robot_secondary))
 	RegisterSignal(parent, COMSIG_ATOM_EXITED, PROC_REF(on_exited))
 	RegisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(on_overlay_update))
+	RegisterSignal(parent, COMSIG_OBJ_DECONSTRUCT, PROC_REF(on_deconstructed))
 	RegisterSignal(parent, COMSIG_ATOM_REQUESTING_CONTEXT_FROM_ITEM, PROC_REF(on_requesting_context))
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(parent, COMSIG_MACHINERY_REFRESH_PARTS, PROC_REF(on_refresh_parts))
@@ -58,7 +59,7 @@
 
 /datum/component/stove/UnregisterFromParent()
 	var/obj/machinery/real_parent = parent
-	if(container && !QDELING(parent))
+	if(!QDELING(parent))
 		container.forceMove(real_parent.drop_location())
 
 	if (particle_type)
@@ -66,6 +67,7 @@
 
 	UnregisterSignal(parent, list(
 		COMSIG_ATOM_ATTACK_HAND_SECONDARY,
+		COMSIG_OBJ_DECONSTRUCT,
 		COMSIG_ATOM_EXITED,
 		COMSIG_ATOM_REQUESTING_CONTEXT_FROM_ITEM,
 		COMSIG_ATOM_UPDATE_OVERLAYS,
@@ -159,6 +161,11 @@
 
 	if(gone == container)
 		remove_container()
+
+/datum/component/stove/proc/on_deconstructed(obj/machinery/source)
+	SIGNAL_HANDLER
+
+	container.forceMove(source.drop_location())
 
 /datum/component/stove/proc/on_overlay_update(obj/machinery/source, list/overlays)
 	SIGNAL_HANDLER

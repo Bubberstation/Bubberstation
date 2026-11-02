@@ -26,7 +26,6 @@
 	family_heirlooms = list(/obj/item/pickaxe/mini, /obj/item/shovel)
 	rpg_title = "Adventurer"
 	job_flags = STATION_JOB_FLAGS
-	tgui_icon = FA_ICON_DIGGING
 
 
 /datum/outfit/job/miner
@@ -41,10 +40,10 @@
 		/obj/item/knife/combat/survival = 1,
 		/obj/item/mining_voucher = 1,
 		/obj/item/suit_voucher = 1, //SKYRAT EDIT: Suit_Voucher is an addition
-		/obj/item/stack/candela_beacon/thirty = 1,
+		/obj/item/stack/marker_beacon/ten = 1,
 		/obj/item/t_scanner/adv_mining_scanner/lesser = 1,
 	)
-	belt = /obj/item/modular_computer/pda/crew/shaftminer
+	belt = /obj/item/modular_computer/pda/shaftminer
 	ears = /obj/item/radio/headset/headset_cargo/mining
 	gloves = /obj/item/clothing/gloves/color/black
 	shoes = /obj/item/clothing/shoes/workboots/mining
@@ -71,7 +70,7 @@
 		/obj/item/gun/energy/recharge/kinetic_accelerator = 1,
 		/obj/item/knife/combat/survival = 1,
 		/obj/item/mining_voucher = 1,
-		/obj/item/stack/candela_beacon/thirty = 1,
+		/obj/item/stack/marker_beacon/ten = 1,
 		/obj/item/t_scanner/adv_mining_scanner/lesser = 1,
 	)
 	glasses = /obj/item/clothing/glasses/meson
@@ -97,7 +96,7 @@
 		/obj/item/t_scanner/adv_mining_scanner/lesser = 1,
 	)
 	box = /obj/item/storage/box/survival/mining/bonus
-	l_pocket = /obj/item/modular_computer/pda/crew/shaftminer
+	l_pocket = /obj/item/modular_computer/pda/shaftminer
 	r_pocket = /obj/item/extinguisher/mini
 	belt = /obj/item/storage/belt/mining/healing
 	pda_slot = ITEM_SLOT_LPOCKET

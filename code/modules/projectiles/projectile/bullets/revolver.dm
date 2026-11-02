@@ -58,14 +58,14 @@
 
 /obj/projectile/bullet/c38/match/true
 	name = ".38 True Strike bullet"
-	damage = 20
-	ricochet_auto_aim_range = 4
+	damage = 15
+	ricochet_auto_aim_range = 3
 	ricochet_auto_aim_angle = 100
 	ricochet_incidence_leeway = 0
 	ricochet_shoots_firer = FALSE
 	shrapnel_type = null
 	embed_type = null
-	armour_penetration = 35
+	armour_penetration = 30
 
 // premium .38 ammo from cargo, weak against armor, lower base damage, but excellent at embedding and causing slice wounds at close range
 /obj/projectile/bullet/c38/dumdum

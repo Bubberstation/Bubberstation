@@ -15,7 +15,7 @@
 	resistance = 3
 	stage_speed = 2
 	transmittable = 1
-	level = 5
+	level = 4
 	severity = 1
 	symptom_delay = 27
 	symptom_cure = /datum/reagent/medicine/mannitol

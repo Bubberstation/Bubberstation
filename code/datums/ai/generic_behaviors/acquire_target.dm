@@ -229,28 +229,19 @@
 	if(!length(candidates))
 		candidates = on_no_candidates(controller, current_target, strategy, range)
 	candidates = include_current_target(controller, candidates, strategy, priority_strategy, current_target, range)
-	// Target sources can return shared lists so we Copy here
-	candidates = candidates?.Copy()
+	var/list/filtered = filter_candidates(controller, candidates, strategy, priority_strategy, current_target, range)
 	var/atom/target
-	while(length(candidates))
-		// A previous path search may have yielded, invalidating candidates or changing their priority.
-		var/list/filtered = filter_candidates(controller, candidates, strategy, priority_strategy, current_target, range)
-		if(!length(filtered))
-			break
+	while(length(filtered))
 		var/atom/candidate = pick_final_target(controller, filtered, priority_strategy, current_target)
 		if(isnull(candidate))
 			break
-		candidates -= candidate
+		filtered -= candidate
 		// get_path_to may sleep here  check abort flag after it returns.
-		var/can_reach = controller.can_reach_target(candidate, reach_distance, minimum_distance)
-		if(!async_still_valid())
-			return
-		// Reachability can yield too. only select or blacklist a target that still matches
-		if(!length(filter_candidates(controller, list(candidate), strategy, priority_strategy, current_target, range)))
-			continue
-		if(can_reach)
+		if(controller.can_reach_target(candidate, reach_distance, minimum_distance))
 			target = candidate
 			break
+		if(!async_still_valid())
+			return
 		controller.note_unreachable_target(candidate)
 	// If finish_action fired while we were sleeping, bail without touching anything.
 	if(!async_still_valid())

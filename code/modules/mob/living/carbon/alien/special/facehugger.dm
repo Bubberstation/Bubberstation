@@ -27,6 +27,7 @@
 	flags_cover = MASKCOVERSEYES | MASKCOVERSMOUTH
 	layer = MOB_LAYER
 	max_integrity = 100
+	item_flags = XENOMORPH_HOLDABLE
 	// SKYRAT EDIT ADDITION START
 	special_desc_requirement = EXAMINE_CHECK_JOB
 	special_desc_jobs = list("Scientist, Research Director")

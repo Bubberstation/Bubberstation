@@ -29,6 +29,7 @@
 	var/change_sprite = TRUE
 	w_class = WEIGHT_CLASS_TINY
 	lewd_slot_flags = LEWD_SLOT_ANUS | LEWD_SLOT_VAGINA
+	clothing_flags = INEDIBLE_CLOTHING
 
 /// Create an assoc list of designs for the radial color/design menu
 /obj/item/clothing/sextoy/dildo/proc/populate_dildo_designs()
@@ -62,9 +63,6 @@
 	update_icon()
 	if(!length(dildo_designs))
 		populate_dildo_designs()
-
-/obj/item/clothing/sextoy/dildo/create_moth_snack()
-	return null
 
 /obj/item/clothing/sextoy/dildo/update_icon_state()
 	. = ..()

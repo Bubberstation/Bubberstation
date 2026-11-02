@@ -15,7 +15,6 @@ import {
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { IconDisplay } from './LootPanel/IconDisplay';
-
 type Data = {
   pet_name: string | null;
   pet_specie: string;
@@ -186,7 +185,7 @@ export const PetBuilder = (props) => {
                 setSelectedGender={setSelectedGender}
               />
               <Flex>
-                <Flex.Item width="80px">
+                <Flex.Item width="70px">
                   <CarrierSelector
                     selectedCarrier={selectedCarrier}
                     carrier_options={carrier_options}
@@ -400,7 +399,7 @@ const CarrierSelector = ({
   setSelectedCarrier,
 }: any) => (
   <Flex grow>
-    <Flex.Item width="100%">
+    <Flex.Item width="30%">
       <Stack vertical>
         <Stack.Item>
           <Image
@@ -413,7 +412,7 @@ const CarrierSelector = ({
         </Stack.Item>
         <Stack.Item>
           <Dropdown
-            width="80px"
+            width="70px"
             selected={selectedCarrier?.carrier_color}
             options={carrier_options.map(
               (carrier: any) => carrier.carrier_color,

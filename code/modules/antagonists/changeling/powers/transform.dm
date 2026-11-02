@@ -144,14 +144,12 @@
 	var/icon/cached_flat_icon
 	/// HUD job icon of the ID
 	var/hud_icon
-	///HUD job icon state of the ID
-	var/hud_icon_state
 
 /obj/item/changeling/id/equipped(mob/user, slot, initial)
 	. = ..()
 	if(!hud_icon)
 		return
-	user.set_hud_image_state(ID_HUD, hud_icon, hud_icon_state)
+	user.set_hud_image_state(ID_HUD, hud_icon)
 
 /**
  * Returns cached flat icon of the ID, creates one if there is not one already cached

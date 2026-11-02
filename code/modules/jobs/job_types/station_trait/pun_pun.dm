@@ -24,8 +24,7 @@
 	)
 	rpg_title = "Homunculus"
 	allow_bureaucratic_error = FALSE
-	job_flags = (STATION_JOB_FLAGS|STATION_TRAIT_JOB_FLAGS) &~ JOB_ASSIGN_QUIRKS
-	tgui_icon = FA_ICON_PAW
+	job_flags = (STATION_JOB_FLAGS|STATION_TRAIT_JOB_FLAGS)&~JOB_ASSIGN_QUIRKS
 
 /datum/job/pun_pun/get_spawn_mob(client/player_client, atom/spawn_point)
 	if (!player_client)

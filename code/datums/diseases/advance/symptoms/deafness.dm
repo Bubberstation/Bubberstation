@@ -25,7 +25,6 @@
 		"Stealth 4" = "The symptom remains hidden until active.",
 	)
 	var/causes_permanent_deafness = FALSE
-	var/suppress_warning = FALSE
 
 /datum/symptom/deafness/Start(datum/disease/advance/A)
 	. = ..()

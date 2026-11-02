@@ -5,8 +5,7 @@ import type { VIEWMODE } from './constants';
 export type Antagonist = Observable & {
   antag: string;
   antag_group: string;
-  icon: string;
-  icon_state: string;
+  antag_icon: string;
 };
 
 export type AntagGroup = [string, Antagonist[]];
@@ -33,12 +32,9 @@ export type Observable = {
   extra: string;
   health: number;
   icon: string;
-  icon_state: string;
   mind_icon: string;
-  mind_icon_state: string;
   job: string;
   mind_job: string;
-  mind_job_icon: string;
   name: string;
   orbiters: number;
   ckey: string;

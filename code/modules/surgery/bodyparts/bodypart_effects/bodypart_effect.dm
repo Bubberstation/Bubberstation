@@ -3,7 +3,6 @@
 	id = "bodypart_effect"
 	duration = STATUS_EFFECT_PERMANENT
 	processing_speed = STATUS_EFFECT_NORMAL_PROCESS
-	on_remove_on_mob_delete = TRUE
 
 	/// List of bodyparts contributing to this effect
 	var/list/bodyparts = list()
@@ -22,7 +21,8 @@
 
 	bodyparts.Add(bodypart)
 
-	check_active()
+	if(!is_active && bodyparts.len >= minimum_bodyparts)
+		activate()
 
 /// Remove a bodypart from the effect. Deleting = TRUE is used during clean-up phase
 /datum/status_effect/grouped/bodypart_effect/proc/remove_bodypart(mob/living/carbon/old_owner, obj/item/bodypart/bodypart, deleting)
@@ -36,23 +36,8 @@
 	if(bodyparts.len == 0 && !QDELETED(old_owner))
 		qdel(src)
 
-	else
-		check_active()
-
-/// Checks if we should be active or not
-/datum/status_effect/grouped/bodypart_effect/proc/should_activate()
-	return bodyparts.len >= minimum_bodyparts
-
-/datum/status_effect/grouped/bodypart_effect/proc/check_active(...)
-	SIGNAL_HANDLER
-
-	if(is_active)
-		if(!should_activate())
-			deactivate()
-
-	else
-		if(should_activate())
-			activate()
+	else if(is_active && bodyparts.len < minimum_bodyparts)
+		deactivate()
 
 /// Signal called when a bodypart is removed
 /datum/status_effect/grouped/bodypart_effect/proc/on_bodypart_removed(obj/item/bodypart/bodypart, special)
@@ -81,15 +66,10 @@
 
 	is_active = FALSE
 
-/datum/status_effect/grouped/bodypart_effect/on_remove()
-	. = ..()
-	if(is_active)
-		deactivate()
+/// Clean up all references and self-destruct
+/datum/status_effect/grouped/bodypart_effect/Destroy()
+	deactivate()
 	for(var/obj/item/bodypart/bodypart as anything in bodyparts)
 		remove_bodypart(bodypart.owner, bodypart, deleting = TRUE)
 
-// This should be redundant given on_remove, but there are a few edge cases where it gets skipped, so this is a safety net
-/datum/status_effect/grouped/bodypart_effect/Destroy()
-	for(var/obj/item/bodypart/bodypart as anything in bodyparts)
-		remove_bodypart(bodypart.owner, bodypart, deleting = TRUE)
 	return ..()

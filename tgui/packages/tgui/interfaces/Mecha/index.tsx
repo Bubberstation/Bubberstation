@@ -10,7 +10,6 @@ import {
 import { formatSiUnit } from 'tgui-core/format';
 
 import { useBackend } from '../../backend';
-import { useSharedState } from '../../backend';
 import { Window } from '../../layouts';
 import { logger } from '../../logging';
 import { AccessConfig } from '../common/AccessConfig';
@@ -20,15 +19,8 @@ import { ModulesPane } from './ModulesPane';
 
 export const Mecha = (props) => {
   const { data } = useBackend<MainData>();
-  const [showModuleList, setShowModuleList] = useSharedState(
-    'showModuleList',
-    true,
-  );
-  const mainWidth = 400;
-  const equipmentWidth = 400;
-  const windowWidth = mainWidth + (showModuleList ? equipmentWidth : 0);
   return (
-    <Window theme={data.ui_theme} width={windowWidth} height={560}>
+    <Window theme={data.ui_theme} width={800} height={560}>
       <Window.Content>
         <Content />
       </Window.Content>
@@ -55,7 +47,7 @@ export const Content = (props) => {
   return (
     <Stack fill>
       <Stack.Item grow={1}>
-        <Stack vertical fill minWidth='270px'>
+        <Stack vertical fill>
           <Stack.Item grow overflow="hidden">
             <Section
               fill

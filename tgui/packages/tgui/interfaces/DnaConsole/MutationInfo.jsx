@@ -16,7 +16,6 @@ import {
   CHROMOSOME_USED,
   MUT_COLORS,
   MUT_EXTRA,
-  MUT_OTHER,
 } from './constants';
 
 /**
@@ -179,11 +178,7 @@ export const MutationInfo = (props) => {
                   <Stack.Item>
                     <Button
                       icon="syringe"
-                      disabled={
-                        !isInjectorReady ||
-                        !mutation.Active ||
-                        mutation.Class === MUT_OTHER
-                      }
+                      disabled={!isInjectorReady || !mutation.Active}
                       onClick={() =>
                         act('print_injector', {
                           mutref: mutation.ByondRef,
@@ -198,11 +193,7 @@ export const MutationInfo = (props) => {
                   <Stack.Item>
                     <Button
                       icon="syringe"
-                      disabled={
-                        !isInjectorReady ||
-                        !mutation.Active ||
-                        mutation.Class === MUT_OTHER
-                      }
+                      disabled={!isInjectorReady || !mutation.Active}
                       onClick={() =>
                         act('print_injector', {
                           mutref: mutation.ByondRef,
@@ -239,11 +230,7 @@ export const MutationInfo = (props) => {
               <Stack.Item>
                 <Button
                   icon="save"
-                  disabled={
-                    savedToConsole ||
-                    !mutation.Active ||
-                    mutation.Class === MUT_OTHER
-                  }
+                  disabled={savedToConsole || !mutation.Active}
                   content="Save to Console"
                   onClick={() =>
                     act('save_console', {
@@ -263,8 +250,7 @@ export const MutationInfo = (props) => {
                     !hasDisk ||
                     diskCapacity <= 0 ||
                     diskReadOnly ||
-                    !mutation.Active ||
-                    mutation.Class === MUT_OTHER
+                    !mutation.Active
                   }
                   content="Save to Disk"
                   onClick={() =>

@@ -1,6 +1,7 @@
 /datum/design/integrated_circuit
 	name = "Integrated Circuit"
 	desc = "The foundation of all circuits. All Circuitry go onto this."
+	id = "integrated_circuit"
 	build_path = /obj/item/integrated_circuit
 	build_type = COMPONENT_PRINTER
 	category = list(
@@ -12,6 +13,7 @@
 /datum/design/circuit_multitool
 	name = "Circuit Multitool"
 	desc = "A circuit multitool to mark entities and load them into."
+	id = "circuit_multitool"
 	build_path = /obj/item/multitool/circuit
 	build_type = COMPONENT_PRINTER
 	category = list(
@@ -23,6 +25,7 @@
 /datum/design/usb_cable
 	name = "USB Cable"
 	desc = "A cable that allows certain shells to connect to nearby computers and machines."
+	id = "usb_cable"
 	build_path = /obj/item/usb_cable
 	build_type = COMPONENT_PRINTER
 	category = list(
@@ -33,7 +36,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/component
-	abstract_type = /datum/design/component
+	name = "Component ( NULL ENTRY )"
 	desc = "A component that goes into an integrated circuit."
 	build_type = COMPONENT_PRINTER
 	materials = list(/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT)
@@ -50,6 +53,7 @@
 
 /datum/design/component/module
 	name = "Module Component"
+	id = "comp_module"
 	build_path = /obj/item/circuit_component/module
 	category = list(
 		//This one is just a wrapper to make things a bit tidier so it doesn't belong in any specific subcategory

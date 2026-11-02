@@ -48,7 +48,9 @@
 	for(var/obj/item/bodypart as anything in owner.get_bodyparts())
 		texture_limb(owner, bodypart)
 
-	MODIFY_PHYSIOLOGY(owner, BRUTE, brute_mod)
+	if(ishuman(owner))
+		var/mob/living/carbon/human/human = owner
+		human.physiology.brute_mod *= brute_mod
 
 	//your underwear is belong to us
 	if(ishuman(owner))
@@ -69,7 +71,9 @@
 	qdel(owner.GetComponent(/datum/component/planet_allergy))
 	qdel(owner.GetComponent(/datum/component/debris_bleeder))
 
-	MODIFY_PHYSIOLOGY(owner, BRUTE, 1 / brute_mod)
+	if(ishuman(owner))
+		var/mob/living/carbon/human/human = owner
+		human.physiology.brute_mod /= brute_mod
 
 	for(var/obj/item/bodypart/bodypart as anything in owner.get_bodyparts())
 		untexture_limb(owner, bodypart)

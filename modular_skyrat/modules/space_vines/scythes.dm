@@ -69,6 +69,7 @@
 /datum/design/scythe
 	name = "Scythe (Tier 1)"
 	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."
+	id = "scythet1"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
@@ -82,6 +83,7 @@
 
 /datum/design/scythe/tier2
 	name = "Scythe (Tier 2)"
+	id = "scythet2"
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
@@ -89,21 +91,23 @@
 	build_path = /obj/item/scythe/tier2
 
 /datum/techweb_node/scythe_t1
+	id = TECHWEB_NODE_SCYTHE_1
 	display_name = "Scythe (Tier 1)"
 	description = "Culling tools"
-	prerequisite_nodes = list(/datum/techweb_node/exp_tools, /datum/techweb_node/chem_synthesis, /datum/techweb_node/botany_equip)
-	unlocked_designs = list(
-		/datum/design/scythe,
+	prereq_ids = list(TECHWEB_NODE_EXP_TOOLS, TECHWEB_NODE_CHEM_SYNTHESIS, TECHWEB_NODE_BOTANY_EQUIP)
+	design_ids = list(
+		"scythet1",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	discount_experiments = list(/datum/experiment/scanning/random/plants/wild = TECHWEB_TIER_1_POINTS)
 
 /datum/techweb_node/scythe_t2
+	id = TECHWEB_NODE_SCYTHE_2
 	display_name = "Scythe (Tier 2)"
 	description = "Culling tools"
-	prerequisite_nodes = list(/datum/techweb_node/scythe_t1)
-	unlocked_designs = list(
-		/datum/design/scythe/tier2,
+	prereq_ids = list(TECHWEB_NODE_SCYTHE_1)
+	design_ids = list(
+		"scythet2",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	discount_experiments = list(/datum/experiment/scanning/random/plants/wild = TECHWEB_TIER_2_POINTS)

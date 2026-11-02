@@ -27,7 +27,6 @@ export type ServerState = {
   roundId: string;
   mapName: string;
   mapFeedbackLink: string | null;
-  mapWebmap: string | null;
   serverTime: string;
   shiftTime: string;
   timeDilation: string;
@@ -217,14 +216,6 @@ function Details({ serverState }: { serverState: ServerState }) {
           </span>
         ) : (
           serverState.mapName || 'Loading...'
-        )}
-        {!!serverState.mapWebmap && (
-          <span
-            className="escape-menu__details-link"
-            onClick={() => Byond.command(`.url ${serverState.mapWebmap}`)}
-          >
-            {` (Open Map)`}
-          </span>
         )}
       </div>
       <div>Time Dilation: {serverState.timeDilation}%</div>

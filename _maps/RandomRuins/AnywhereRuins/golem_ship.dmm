@@ -8,12 +8,6 @@
 /obj/item/pen/blue{
 	pixel_x = -5
 	},
-/obj/machinery/button/door{
-	pixel_y = 7;
-	id = "golemship";
-	name = "shutter button";
-	desc = "The shutter control switch for the main research vessel."
-	},
 /turf/open/floor/mineral/titanium/purple,
 /area/ruin/powered/golem_ship)
 "aU" = (
@@ -145,13 +139,6 @@
 /obj/machinery/reagentgrinder,
 /turf/open/floor/mineral/titanium/purple,
 /area/ruin/powered/golem_ship)
-"ge" = (
-/obj/effect/spawner/structure/window/reinforced/shuttle,
-/obj/machinery/door/poddoor/preopen{
-	id = "golemship_bedroom"
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/golem_ship)
 "gv" = (
 /obj/structure/closet,
 /obj/item/storage/bag/ore,
@@ -198,9 +185,6 @@
 /area/ruin/powered/golem_ship)
 "lF" = (
 /obj/effect/spawner/structure/window/reinforced/shuttle,
-/obj/machinery/door/poddoor/preopen{
-	id = "golemship"
-	},
 /turf/open/floor/plating,
 /area/ruin/powered/golem_ship)
 "lH" = (
@@ -210,9 +194,6 @@
 /obj/item/chair/wood{
 	pixel_x = 4;
 	pixel_y = -8
-	},
-/obj/machinery/button/door/directional/south{
-	id = "golemship_bedroom"
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/golem_ship)
@@ -649,7 +630,6 @@
 /obj/item/fishing_rod,
 /obj/item/fishing_rod,
 /obj/item/fishing_rod,
-/obj/item/storage/box/lights/tubes,
 /turf/open/floor/mineral/titanium/purple,
 /area/ruin/powered/golem_ship)
 "LN" = (
@@ -838,8 +818,8 @@
 (1,1,1) = {"
 wN
 Df
-ge
-ge
+lF
+lF
 Df
 wN
 wN
@@ -858,7 +838,7 @@ Df
 Df
 WL
 Ro
-ge
+lF
 wN
 wN
 lF
@@ -876,7 +856,7 @@ Df
 bu
 ET
 tY
-ge
+lF
 wN
 wN
 Df
@@ -890,13 +870,13 @@ Df
 wN
 "}
 (4,1,1) = {"
-ge
+lF
 cp
 cN
 lH
 Df
-ge
-ge
+lF
+lF
 Df
 WM
 sS
@@ -908,7 +888,7 @@ lF
 wN
 "}
 (5,1,1) = {"
-ge
+lF
 Pe
 fk
 fk
@@ -931,8 +911,8 @@ gz
 aU
 Pa
 Df
-ge
-ge
+lF
+lF
 Df
 LN
 sS
@@ -964,7 +944,7 @@ wN
 (8,1,1) = {"
 Df
 Df
-ge
+lF
 Df
 Df
 wN

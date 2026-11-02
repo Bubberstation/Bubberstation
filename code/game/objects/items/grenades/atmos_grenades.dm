@@ -1,7 +1,6 @@
 /obj/item/grenade/gas_crystal
-	name = "gas crystal"
-	desc = "Some kind of crystal."
-	abstract_type = /obj/item/grenade/gas_crystal
+	desc = "Some kind of crystal, this shouldn't spawn"
+	name = "Gas Crystal"
 	icon = 'icons/obj/weapons/grenade.dmi'
 	icon_state = "bluefrag"
 	inhand_icon_state = "flashbang"
@@ -25,8 +24,8 @@
 	addtimer(CALLBACK(src, PROC_REF(detonate)), isnull(delayoverride)? det_time : delayoverride)
 
 /obj/item/grenade/gas_crystal/healium_crystal
-	name = "\improper Healium crystal"
-	desc = "A crystal made from the Healium gas. It's cold to the touch."
+	name = "Healium crystal"
+	desc = "A crystal made from the Healium gas, it's cold to the touch."
 	icon_state = "healium_crystal"
 	///Range of the grenade that will cool down and affect mobs
 	var/fix_range = 7
@@ -48,8 +47,8 @@
 	qdel(src)
 
 /obj/item/grenade/gas_crystal/proto_nitrate_crystal
-	name = "\improper Proto-Nitrate crystal"
-	desc = "A crystal made from the Proto-Nitrate gas. It feels lighter than you'd expect."
+	name = "Proto Nitrate crystal"
+	desc = "A crystal made from the Proto Nitrate gas, you can see the liquid gases inside."
 	icon_state = "proto_nitrate_crystal"
 	///Range of the grenade air refilling
 	var/refill_range = 5
@@ -74,8 +73,8 @@
 	qdel(src)
 
 /obj/item/grenade/gas_crystal/nitrous_oxide_crystal
-	name = "\improper N2O crystal"
-	desc = "A crystal made from Nitrous Oxide gas. Looking at it makes you feel sleepy."
+	name = "N2O crystal"
+	desc = "A crystal made from the N2O gas, you can see the liquid gases inside."
 	icon_state = "n2o_crystal"
 	///Range of the grenade air refilling
 	var/fill_range = 1
@@ -99,7 +98,7 @@
 
 /obj/item/grenade/gas_crystal/crystal_foam
 	name = "crystal foam"
-	desc = "A crystal with a foggy inside."
+	desc = "A crystal with a foggy inside"
 	icon_state = "crystal_foam"
 	var/breach_range = 7
 

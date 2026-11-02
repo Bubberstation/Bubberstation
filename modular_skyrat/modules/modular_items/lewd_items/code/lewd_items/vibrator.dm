@@ -34,6 +34,7 @@
 	/// Static list of designs of the toy, used for the color selection radial menu
 	var/static/list/vibrator_designs
 	w_class = WEIGHT_CLASS_TINY
+	clothing_flags = INEDIBLE_CLOTHING
 
 //create radial menu
 /obj/item/clothing/sextoy/vibrator/proc/populate_vibrator_designs()
@@ -78,9 +79,6 @@
 	QDEL_NULL(soundloop2)
 	QDEL_NULL(soundloop3)
 	return ..()
-
-/obj/item/clothing/sextoy/vibrator/create_moth_snack()
-	return null
 
 /obj/item/clothing/sextoy/vibrator/update_icon_state()
 	. = ..()

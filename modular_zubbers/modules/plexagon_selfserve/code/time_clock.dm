@@ -7,7 +7,6 @@
 	starting_programs = list(
 		/datum/computer_file/program/crew_self_serve,
 	)
-	connectable = FALSE
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/modular_computer/preset/time_clock, 28)
 

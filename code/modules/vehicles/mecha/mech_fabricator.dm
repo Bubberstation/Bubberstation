@@ -49,7 +49,7 @@
 	var/datum/remote_materials/rmat
 
 	/// All designs in the techweb that can be fabricated by this machine, since the last update.
-	var/list/cached_designs
+	var/list/datum/design/cached_designs
 
 	/// Looping sound for printing items
 	var/datum/looping_sound/lathe_print/print_sound
@@ -155,15 +155,16 @@
  * Updates the `final_sets` and `buildable_parts` for the current mecha fabricator.
  */
 /obj/machinery/mecha_part_fabricator/proc/update_menu_tech()
-	var/previous_design_count = length(cached_designs)
+	var/previous_design_count = cached_designs.len
 
 	cached_designs.Cut()
-	for(var/design_path in stored_research.researched_designs)
-		var/datum/design/design = SSresearch.techweb_designs[design_path]
-		if(design.build_type & MECHFAB)
-			cached_designs |= design_path
+	for(var/v in stored_research.researched_designs)
+		var/datum/design/design = SSresearch.techweb_design_by_id(v)
 
-	var/design_delta = length(cached_designs) - previous_design_count
+		if(design.build_type & MECHFAB)
+			cached_designs |= design
+
+	var/design_delta = cached_designs.len - previous_design_count
 
 	if(design_delta > 0)
 		say("Received [design_delta] new design[design_delta == 1 ? "" : "s"].")
@@ -223,7 +224,7 @@
  * * user_data - ID_DATA(user), see the proc on SSid_access
  */
 /obj/machinery/mecha_part_fabricator/proc/build_part(datum/design/D, verbose = TRUE, alist/user_data)
-	if(!D || LAZYLEN(D.reagents_list))
+	if(!D || length(D.reagents_list))
 		return FALSE
 
 	var/datum/material_container/materials = rmat.mat_container
@@ -360,21 +361,20 @@
 	var/datum/asset/spritesheet_batched/research_designs/spritesheet = get_asset_datum(/datum/asset/spritesheet_batched/research_designs)
 	var/size32x32 = "[spritesheet.name]32x32"
 
-	for(var/design_path in cached_designs)
-		var/datum/design/design = SSresearch.techweb_designs[design_path]
+	for(var/datum/design/design in cached_designs)
 		var/cost = list()
 		var/list/materials = design.materials
 		for(var/datum/material/mat in materials)
 			cost[mat.name] = OPTIMAL_COST(materials[mat] * component_coeff)
 
-		var/icon_size = spritesheet.icon_size_id(design.asset_id)
-		designs[design.type] = list(
+		var/icon_size = spritesheet.icon_size_id(design.id)
+		designs[design.id] = list(
 			"name" = design.name,
 			"desc" = design.get_description(),
 			"cost" = cost,
-			"path" = design.type,
+			"id" = design.id,
 			"categories" = design.category,
-			"icon" = "[icon_size == size32x32 ? "" : "[icon_size] "][design.asset_id]",
+			"icon" = "[icon_size == size32x32 ? "" : "[icon_size] "][design.id]",
 			"constructionTime" = get_construction_time_w_coeff(design.construction_time)
 		)
 
@@ -392,7 +392,7 @@
 	if(being_built)
 		data["queue"] += list(list(
 			"jobId" = top_job_id,
-			"designPath" = being_built.type,
+			"designId" = being_built.id,
 			"processing" = TRUE,
 			"timeLeft" = (build_finish - world.time)
 		))
@@ -405,7 +405,7 @@
 
 		data["queue"] += list(list(
 			"jobId" = top_job_id + offset,
-			"designPath" = design.type,
+			"designId" = design.id,
 			"processing" = FALSE,
 			"timeLeft" = get_construction_time_w_coeff(design.construction_time) / 10
 		))
@@ -414,28 +414,31 @@
 
 /obj/machinery/mecha_part_fabricator/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
+
 	if(.)
 		return
+
+	. = TRUE
 
 	switch(action)
 		if("build")
 			if(!rmat.can_use_resource(user_data = ID_DATA(usr)))
 				return
+			var/designs = params["designs"]
 
-			var/list/designs = params["designs"]
 			if(!islist(designs))
 				return
 
-			for(var/design_path in designs)
-				design_path = text2path(design_path)
-				if(!stored_research.researched_designs[design_path])
+			for(var/design_id in designs)
+				if(!istext(design_id))
 					continue
 
-				var/datum/design/design = SSresearch.techweb_designs[design_path]
-				if(!istype(design))
+				if(!stored_research.researched_designs.Find(design_id))
 					continue
 
-				if(!(design.build_type & MECHFAB))
+				var/datum/design/design = SSresearch.techweb_design_by_id(design_id)
+
+				if(!(design.build_type & MECHFAB) || design.id != design_id)
 					continue
 
 				add_to_queue(design, ID_DATA(usr))
@@ -449,18 +452,20 @@
 				if(!being_built)
 					begin_processing()
 
-			return TRUE
+			return
 
 		if("del_queue_part")
 			// Delete a specific from the queue
 			var/index = text2num(params["index"])
 			remove_from_queue(index)
-			return TRUE
+
+			return
 
 		if("clear_queue")
 			// Delete everything from queue
 			queue.Cut()
-			return TRUE
+
+			return
 
 		if("build_queue")
 			// Build everything in queue
@@ -468,21 +473,26 @@
 				return
 
 			process_queue = TRUE
+
 			if(!being_built)
 				begin_processing()
-			return TRUE
+
+			return
 
 		if("stop_queue")
 			// Pause queue building. Also known as stop.
 			process_queue = FALSE
-			return TRUE
+
+			return
 
 		if("remove_mat")
 			var/datum/material/material = locate(params["ref"])
 			var/amount = text2num(params["amount"])
 			// SAFETY: eject_sheets checks for valid mats
 			rmat.eject_sheets(material, amount, user_data = ID_DATA(usr))
-			return TRUE
+			return
+
+	return FALSE
 
 /obj/machinery/mecha_part_fabricator/proc/AfterMaterialInsert(item_inserted, id_inserted, amount_inserted)
 	var/datum/material/M = id_inserted

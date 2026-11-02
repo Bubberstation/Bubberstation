@@ -1,7 +1,7 @@
 /obj/item/mod/control/pre_equipped/protean
 	name = "\improper Protean modsuit"
 	desc = "The modsuit unit of a Protean, allowing them to retract into it, or to deploy a suit that protects against various environments."
-	theme = /datum/mod_theme/standard // Standard theme. TODO: Can be changed with standard mod armors
+	theme = /datum/mod_theme // Standard theme. TODO: Can be changed with standard mod armors
 
 	applied_core = /obj/item/mod/core/protean
 	applied_cell = null // Goes off stomach
@@ -21,7 +21,6 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, "protean")
 	AddElement(/datum/element/strippable/protean, GLOB.strippable_human_items)
-	make_indestructible()
 
 /obj/item/mod/control/pre_equipped/protean/Destroy()
 	var/obj/item/mod/core/protean/p_core = core
@@ -63,14 +62,6 @@
 		if(HAS_TRAIT(src, TRAIT_NODROP))
 			REMOVE_TRAIT(src, TRAIT_NODROP, "protean")
 		wearer.dropItemToGround(src, TRUE, TRUE, TRUE)
-
-/// makes the MOD suit and its parts indestructible. This is done because a lot of stuff 
-/// overwrites the resistance flags but we REALLY need the protean MOD suit to be 
-/// indestructible or else fun and exotic bugs happen
-/obj/item/mod/control/pre_equipped/protean/proc/make_indestructible()
-	for (var/part in mod_parts)
-		var/datum/mod_part/modsuit_part = mod_parts[part]
-		modsuit_part.part_item.resistance_flags |= LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | INDESTRUCTIBLE
 
 /// Proteans can lock themselves on people.
 /obj/item/mod/control/pre_equipped/protean/proc/toggle_lock(forced = FALSE)

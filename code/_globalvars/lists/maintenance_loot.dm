@@ -99,11 +99,6 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/clothing/suit/hazardvest = 1,
 		/obj/item/clothing/suit/toggle/labcoat = 1,
 		/obj/item/clothing/under/color/grey = 1,
-		/obj/item/clothing/suit/pillow_suit = 1,
-		/obj/item/clothing/head/pillow_hood = 1,
-		/obj/item/shield/mattress = 1,
-		/obj/item/spear/pillow = 1,
-		/obj/item/pillow/random = 1,
 		/obj/item/radio/headset = 1,
 		/obj/item/storage/backpack = 1,
 		/obj/item/storage/belt/fannypack = 1,
@@ -201,7 +196,7 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		) = 8,
 
 	list(//strange objects
-		/obj/item/assembly/relic = 5,
+		/obj/item/relic = 5,
 		) = 8,
 
 	list(//construction and crafting

@@ -275,18 +275,18 @@ Difficulty: Hard
 	set_varspeed(move_to_delay)
 	handle_automated_action() // need to recheck movement otherwise move_to_delay won't update until the next checking aka will be wrong speed for a bit
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/on_damage_loss_changed(amount, updating_health, forced, damage_type)
+/mob/living/simple_animal/hostile/megafauna/bubblegum/adjust_brute_loss(amount, updating_health = TRUE, forced = FALSE, required_bodytype)
 	. = ..()
 	anger_modifier = clamp(((maxHealth - health)/60),0,20)
 	enrage_time = initial(enrage_time) * clamp(anger_modifier / 20, 0.5, 1)
 	if(hallucination_charge)
 		hallucination_charge.enraged = BUBBLEGUM_SMASH
-	if(amount > 0 && prob(25))
-		var/obj/effect/decal/cleanable/blood/gibs/bubblegum/gibs = new (loc)
+	if(. > 0 && prob(25))
+		var/obj/effect/decal/cleanable/blood/gibs/bubblegum/B = new /obj/effect/decal/cleanable/blood/gibs/bubblegum(loc)
 		if(prob(40))
-			step(gibs, pick(GLOB.cardinals))
+			step(B, pick(GLOB.cardinals))
 		else
-			gibs.setDir(pick(GLOB.cardinals))
+			B.setDir(pick(GLOB.cardinals))
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/death(gibbed)
 	. = ..()
@@ -344,18 +344,8 @@ Difficulty: Hard
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination/Life(seconds_per_tick = SSMOBS_DT)
 	return
 
-// Prevents damage, period. These are hallucinations/afterimages/whatever and should delete on their own.
-/mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination/can_adjust_brute_loss(amount, forced, required_bodytype)
-	return FALSE
-
-/mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination/can_adjust_fire_loss(amount, forced, required_bodytype)
-	return FALSE
-
-/mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination/can_adjust_tox_loss(amount, forced, required_bodytype)
-	return FALSE
-
-/mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination/can_adjust_oxy_loss(amount, forced, required_bodytype)
-	return FALSE
+/mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination/adjust_brute_loss(amount, updating_health = TRUE, forced = FALSE, required_bodytype)
+	return
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination/OpenFire()
 	return

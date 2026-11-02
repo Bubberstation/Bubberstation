@@ -3,14 +3,12 @@ import {
   Box,
   Button,
   ColorBox,
-  Icon,
   ImageButton,
   LabeledList,
   Section,
   Stack,
   StyleableSection,
   Tabs,
-  Tooltip,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 import { capitalizeAll } from 'tgui-core/string';
@@ -65,7 +63,6 @@ type Category = {
 
 type Recipe = {
   pipe_index: number;
-  pipe_desc: string | null;
   pipe_name: string;
   previews: Preview[];
 };
@@ -225,20 +222,6 @@ function LayerSelect(props) {
   );
 }
 
-function getRecipeTooltip(recipe: Recipe) {
-  if (!recipe.pipe_desc) return null;
-
-  const recipe_desc_br_separated = recipe.pipe_desc.split('<br>');
-
-  return (
-    <Stack fontSize="0.9rem" vertical>
-      {recipe_desc_br_separated.map((line, index) => (
-        <Stack.Item key={index}>{line}</Stack.Item>
-      ))}
-    </Stack>
-  );
-}
-
 type RecipeRowProps = {
   recipe: Recipe;
   shownCategory: Category;
@@ -256,20 +239,7 @@ function RecipeRow(props: RecipeRowProps) {
         fontWeight: 'normal',
         textAlign: 'right',
       }}
-      title={
-        recipe.pipe_desc ? (
-          <Stack justify="end">
-            <Stack.Item>
-              <Tooltip content={getRecipeTooltip(recipe)}>
-                <Icon name="info-circle" />
-              </Tooltip>
-            </Stack.Item>
-            <Stack.Item>{recipe.pipe_name}</Stack.Item>
-          </Stack>
-        ) : (
-          recipe.pipe_name
-        )
-      }
+      title={recipe.pipe_name}
       titleStyle={{
         borderBottom: '1px solid var(--color-border)',
         padding: 0,

@@ -2,16 +2,11 @@
  * Command
  */
 
-/obj/item/modular_computer/pda/crew
-	///The region that could paint this PDA.
-	var/painting_region = null
-
-/obj/item/modular_computer/pda/crew/heads
-	icon_state = "/obj/item/modular_computer/pda/crew/heads"
+/obj/item/modular_computer/pda/heads
+	icon_state = "/obj/item/modular_computer/pda/heads"
 	greyscale_config = /datum/greyscale_config/tablet/head
 	greyscale_colors = "#67A364#a92323"
 	max_capacity = parent_type::max_capacity * 2
-	painting_region = null
 	/// Fax type for a relevant head's tp connect their PDA to (for use with fax notification app)
 	var/fax_type = null
 
@@ -23,7 +18,7 @@
 		/datum/computer_file/program/faxbond,
 	)
 
-/obj/item/modular_computer/pda/crew/heads/Initialize(mapload)
+/obj/item/modular_computer/pda/heads/Initialize(mapload)
 	. = ..()
 	for(var/programs in head_programs)
 		var/datum/computer_file/program/program_type = new programs
@@ -35,55 +30,51 @@
 		var/obj/machinery/fax/heads_fax = length(faxes_list) ? pick(faxes_list) : null //there really shouldnt be more than one
 		fax_notifier.connect_fax(heads_fax)
 
-/obj/item/modular_computer/pda/crew/heads/captain
+/obj/item/modular_computer/pda/heads/captain
 	name = "captain PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/heads/captain"
+	icon_state = "/obj/item/modular_computer/pda/heads/captain"
 	greyscale_config = /datum/greyscale_config/tablet/captain
 	greyscale_colors = "#2C7CB2#FF0000#FFFFFF#FFD55B"
-	painting_region = REGION_COMMAND
 	inserted_item = /obj/item/pen/fountain/captain
 	fax_type = /obj/machinery/fax/heads/captain
 
-/obj/item/modular_computer/pda/crew/heads/captain/Initialize(mapload)
+/obj/item/modular_computer/pda/heads/captain/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_TABLET_CHECK_DETONATE, PROC_REF(tab_no_detonate))
 	for(var/datum/computer_file/program/messenger/messenger_app in stored_files)
 		messenger_app.spam_mode = TRUE
 
-/obj/item/modular_computer/pda/crew/heads/captain/proc/tab_no_detonate()
+/obj/item/modular_computer/pda/heads/captain/proc/tab_no_detonate()
 	SIGNAL_HANDLER
 	return COMPONENT_TABLET_NO_DETONATE
 
-/obj/item/modular_computer/pda/crew/heads/hop
+/obj/item/modular_computer/pda/heads/hop
 	name = "head of personnel PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/heads/hop"
+	icon_state = "/obj/item/modular_computer/pda/heads/hop"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick/head
 	greyscale_colors = "#374f7e#a52f29#a52f29"
-	painting_region = REGION_COMMAND
 	fax_type = /obj/machinery/fax/heads/hop
 	starting_programs = list(
 		/datum/computer_file/program/records/security,
 		/datum/computer_file/program/job_management,
 	)
 
-/obj/item/modular_computer/pda/crew/heads/hos
+/obj/item/modular_computer/pda/heads/hos
 	name = "head of security PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/heads/hos"
+	icon_state = "/obj/item/modular_computer/pda/heads/hos"
 	greyscale_config = /datum/greyscale_config/tablet/head
 	greyscale_colors = "#EA3232#0000CC"
-	painting_region = REGION_COMMAND
 	inserted_item = /obj/item/pen/red/security
 	fax_type = /obj/machinery/fax/heads/hos
 	starting_programs = list(
 		/datum/computer_file/program/records/security,
 	)
 
-/obj/item/modular_computer/pda/crew/heads/ce
+/obj/item/modular_computer/pda/heads/ce
 	name = "chief engineer PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/heads/ce"
+	icon_state = "/obj/item/modular_computer/pda/heads/ce"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick/head
 	greyscale_colors = "#D99A2E#69DBF3#FAFAFA"
-	painting_region = REGION_COMMAND
 	fax_type = /obj/machinery/fax/heads/ce
 	starting_programs = list(
 		/datum/computer_file/program/atmosscan,
@@ -91,24 +82,22 @@
 		/datum/computer_file/program/supermatter_monitor,
 	)
 
-/obj/item/modular_computer/pda/crew/heads/cmo
+/obj/item/modular_computer/pda/heads/cmo
 	name = "chief medical officer PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/heads/cmo"
+	icon_state = "/obj/item/modular_computer/pda/heads/cmo"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick/head
 	greyscale_colors = "#FAFAFA#000099#3F96CC"
-	painting_region = REGION_COMMAND
 	fax_type = /obj/machinery/fax/heads/cmo
 	starting_programs = list(
 		/datum/computer_file/program/maintenance/phys_scanner,
 		/datum/computer_file/program/records/medical,
 	)
 
-/obj/item/modular_computer/pda/crew/heads/rd
+/obj/item/modular_computer/pda/heads/rd
 	name = "research director PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/heads/rd"
+	icon_state = "/obj/item/modular_computer/pda/heads/rd"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick/head
 	greyscale_colors = "#FAFAFA#000099#B347BC"
-	painting_region = REGION_COMMAND
 	inserted_item = /obj/item/pen/fountain
 	fax_type = /obj/machinery/fax/heads/rd
 	starting_programs = list(
@@ -117,12 +106,11 @@
 		/datum/computer_file/program/signal_commander,
 	)
 
-/obj/item/modular_computer/pda/crew/heads/quartermaster
+/obj/item/modular_computer/pda/heads/quartermaster
 	name = "quartermaster PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/heads/quartermaster"
+	icon_state = "/obj/item/modular_computer/pda/heads/quartermaster"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick/head
 	greyscale_colors = "#c4b787#18191e#8b4c31"
-	painting_region = REGION_COMMAND
 	inserted_item = /obj/item/pen/survival
 	stored_paper = 20
 	fax_type = /obj/machinery/fax/heads/qm
@@ -135,33 +123,30 @@
  * Security
  */
 
-/obj/item/modular_computer/pda/crew/security
+/obj/item/modular_computer/pda/security
 	name = "security PDA"
 	greyscale_colors = "#EA3232#0000cc"
 	inserted_item = /obj/item/pen/red/security
-	painting_region = REGION_SECURITY
 	starting_programs = list(
 		/datum/computer_file/program/records/security,
 		/datum/computer_file/program/robocontrol,
 	)
 
-/obj/item/modular_computer/pda/crew/detective
+/obj/item/modular_computer/pda/detective
 	name = "detective PDA"
 	greyscale_colors = "#805A2F#990202"
 	inserted_item = /obj/item/pen/red/security
-	painting_region = REGION_SECURITY
 	starting_programs = list(
 		/datum/computer_file/program/records/security,
 		/datum/computer_file/program/robocontrol,
 	)
 
-/obj/item/modular_computer/pda/crew/warden
+/obj/item/modular_computer/pda/warden
 	name = "warden PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/warden"
+	icon_state = "/obj/item/modular_computer/pda/warden"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_double
 	greyscale_colors = "#EA3232#0000CC#363636"
 	inserted_item = /obj/item/pen/red/security
-	painting_region = REGION_SECURITY
 	starting_programs = list(
 		/datum/computer_file/program/records/security,
 		/datum/computer_file/program/robocontrol,
@@ -172,24 +157,22 @@
  * Engineering
  */
 
-/obj/item/modular_computer/pda/crew/engineering
+/obj/item/modular_computer/pda/engineering
 	name = "engineering PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/engineering"
+	icon_state = "/obj/item/modular_computer/pda/engineering"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#D99A2E#69DBF3#E3DF3D"
-	painting_region = REGION_ENGINEERING
 	starting_programs = list(
 		/datum/computer_file/program/alarm_monitor,
 		/datum/computer_file/program/atmosscan,
 		/datum/computer_file/program/supermatter_monitor,
 	)
 
-/obj/item/modular_computer/pda/crew/atmos
+/obj/item/modular_computer/pda/atmos
 	name = "atmospherics PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/atmos"
+	icon_state = "/obj/item/modular_computer/pda/atmos"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#EEDC43#00E5DA#727272"
-	painting_region = REGION_ENGINEERING
 	starting_programs = list(
 		/datum/computer_file/program/alarm_monitor,
 		/datum/computer_file/program/atmosscan,
@@ -200,12 +183,11 @@
  * Science
  */
 
-/obj/item/modular_computer/pda/crew/science
+/obj/item/modular_computer/pda/science
 	name = "scientist PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/science"
+	icon_state = "/obj/item/modular_computer/pda/science"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#FAFAFA#000099#B347BC"
-	painting_region = REGION_RESEARCH
 	starting_programs = list(
 		/datum/computer_file/program/atmosscan,
 		/datum/computer_file/program/science,
@@ -213,24 +195,22 @@
 		/datum/computer_file/program/signal_commander,
 	)
 
-/obj/item/modular_computer/pda/crew/roboticist
+/obj/item/modular_computer/pda/roboticist
 	name = "roboticist PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/roboticist"
+	icon_state = "/obj/item/modular_computer/pda/roboticist"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_double
 	greyscale_colors = "#484848#0099CC#D94927"
-	painting_region = REGION_RESEARCH
 	starting_programs = list(
 		/datum/computer_file/program/science,
 		/datum/computer_file/program/robocontrol,
 		/datum/computer_file/program/borg_monitor,
 	)
 
-/obj/item/modular_computer/pda/crew/geneticist
+/obj/item/modular_computer/pda/geneticist
 	name = "geneticist PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/geneticist"
+	icon_state = "/obj/item/modular_computer/pda/geneticist"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_double
 	greyscale_colors = "#FAFAFA#000099#0097CA"
-	painting_region = REGION_RESEARCH
 	starting_programs = list(
 		/datum/computer_file/program/records/medical,
 	)
@@ -239,41 +219,37 @@
  * Medical
  */
 
-/obj/item/modular_computer/pda/crew/medical
+/obj/item/modular_computer/pda/medical
 	name = "medical PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/medical"
+	icon_state = "/obj/item/modular_computer/pda/medical"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#FAFAFA#000099#3F96CC"
-	painting_region = REGION_MEDBAY
 	starting_programs = list(
 		/datum/computer_file/program/records/medical,
 		/datum/computer_file/program/robocontrol,
 	)
 
-/obj/item/modular_computer/pda/crew/medical/paramedic
+/obj/item/modular_computer/pda/medical/paramedic
 	name = "paramedic PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/medical/paramedic"
+	icon_state = "/obj/item/modular_computer/pda/medical/paramedic"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_double
 	greyscale_colors = "#28334D#000099#3F96CC"
-	painting_region = REGION_MEDBAY
 	starting_programs = list(
 		/datum/computer_file/program/records/medical,
 		/datum/computer_file/program/radar/lifeline,
 	)
 
-/obj/item/modular_computer/pda/crew/chemist
+/obj/item/modular_computer/pda/chemist
 	name = "chemist PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/chemist"
+	icon_state = "/obj/item/modular_computer/pda/chemist"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#FAFAFA#355FAC#EA6400"
-	painting_region = REGION_MEDBAY
 
-/obj/item/modular_computer/pda/crew/coroner
+/obj/item/modular_computer/pda/coroner
 	name = "coroner PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/coroner"
+	icon_state = "/obj/item/modular_computer/pda/coroner"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#FAFAFA#000099#1f2026"
-	painting_region = REGION_MEDBAY
 	starting_programs = list(
 		/datum/computer_file/program/records/medical,
 	)
@@ -282,11 +258,10 @@
  * Supply
  */
 
-/obj/item/modular_computer/pda/crew/cargo
+/obj/item/modular_computer/pda/cargo
 	name = "cargo technician PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/cargo"
+	icon_state = "/obj/item/modular_computer/pda/cargo"
 	greyscale_colors = "#8b4c31#2c2e32"
-	painting_region = REGION_SUPPLY
 	stored_paper = 20
 	starting_programs = list(
 		/datum/computer_file/program/shipping,
@@ -295,22 +270,20 @@
 		/datum/computer_file/program/restock_tracker,
 	)
 
-/obj/item/modular_computer/pda/crew/shaftminer
+/obj/item/modular_computer/pda/shaftminer
 	name = "shaft miner PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/shaftminer"
+	icon_state = "/obj/item/modular_computer/pda/shaftminer"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#927444#8b4c31#4c202d"
-	painting_region = REGION_SUPPLY
 	starting_programs = list(
 		/datum/computer_file/program/skill_tracker,
 		/datum/computer_file/program/raptordex,
 	)
 
-/obj/item/modular_computer/pda/crew/bitrunner
+/obj/item/modular_computer/pda/bitrunner
 	name = "bit runner PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/bitrunner"
+	icon_state = "/obj/item/modular_computer/pda/bitrunner"
 	greyscale_colors = "#D6B328#6BC906"
-	painting_region = REGION_SUPPLY
 	starting_programs = list(
 		/datum/computer_file/program/arcade,
 		/datum/computer_file/program/skill_tracker,
@@ -320,62 +293,56 @@
  * Service
  */
 
-/obj/item/modular_computer/pda/crew/janitor
+/obj/item/modular_computer/pda/janitor
 	name = "janitor PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/janitor"
+	icon_state = "/obj/item/modular_computer/pda/janitor"
 	greyscale_colors = "#933ea8#235AB2"
-	painting_region = REGION_GENERAL
 	starting_programs = list(
 		/datum/computer_file/program/skill_tracker,
 		/datum/computer_file/program/radar/custodial_locator,
 	)
 
-/obj/item/modular_computer/pda/crew/chaplain
+/obj/item/modular_computer/pda/chaplain
 	name = "chaplain PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/chaplain"
+	icon_state = "/obj/item/modular_computer/pda/chaplain"
 	greyscale_config = /datum/greyscale_config/tablet/chaplain
 	greyscale_colors = "#333333#D11818"
-	painting_region = REGION_GENERAL
 
-/obj/item/modular_computer/pda/crew/lawyer
+/obj/item/modular_computer/pda/lawyer
 	name = "lawyer PDA"
 	greyscale_colors = "#4C76C8#FFE243"
 	inserted_item = /obj/item/pen/fountain
-	painting_region = REGION_GENERAL
 	starting_programs = list(
 		/datum/computer_file/program/records/security,
 		/datum/computer_file/program/faxbond, //BUBBER EDIT - Lawyers too shall have a taste of bureaucracy
 	)
 
-/obj/item/modular_computer/pda/crew/lawyer/Initialize(mapload)
+/obj/item/modular_computer/pda/lawyer/Initialize(mapload)
 	. = ..()
 	for(var/datum/computer_file/program/messenger/messenger_app in stored_files)
 		messenger_app.spam_mode = TRUE
 
-/obj/item/modular_computer/pda/crew/botanist
+/obj/item/modular_computer/pda/botanist
 	name = "botanist PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/botanist"
+	icon_state = "/obj/item/modular_computer/pda/botanist"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#50E193#E26F41#71A7CA"
-	painting_region = REGION_GENERAL
 	starting_programs = list(
 		/datum/computer_file/program/botanical_encyclopedia
 	)
 
-/obj/item/modular_computer/pda/crew/cook
+/obj/item/modular_computer/pda/cook
 	name = "cook PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/botanist"
+	icon_state = "/obj/item/modular_computer/pda/botanist"
 	greyscale_colors = "#FAFAFA#A92323"
-	painting_region = REGION_GENERAL
 
-/obj/item/modular_computer/pda/crew/bar
+/obj/item/modular_computer/pda/bar
 	name = "bartender PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/bar"
+	icon_state = "/obj/item/modular_computer/pda/bar"
 	greyscale_colors = "#333333#C7C7C7"
 	inserted_item = /obj/item/pen/fountain
-	painting_region = REGION_GENERAL
 
-/obj/item/modular_computer/pda/crew/clown
+/obj/item/modular_computer/pda/clown
 	name = "clown PDA"
 	icon = 'icons/obj/devices/modular_pda.dmi'
 	icon_state = "pda-clown"
@@ -383,10 +350,9 @@
 	inserted_disk = /obj/item/disk/computer/virus/clown
 	greyscale_config = null
 	greyscale_colors = null
-	painting_region = REGION_GENERAL
 	inserted_item = /obj/item/toy/crayon/rainbow
 
-/obj/item/modular_computer/pda/crew/clown/Initialize(mapload)
+/obj/item/modular_computer/pda/clown/Initialize(mapload)
 	. = ..()
 	AddComponent(\
 		/datum/component/slippery,\
@@ -399,7 +365,7 @@
 	AddComponent(/datum/component/wearertargeting/sitcomlaughter, CALLBACK(src, PROC_REF(after_sitcom_laugh)))
 
 /// Returns whether the PDA can slip or not, if we have a wearer then check if they are in a position to slip someone.
-/obj/item/modular_computer/pda/crew/clown/proc/try_slip(mob/living/slipper, mob/living/slippee)
+/obj/item/modular_computer/pda/clown/proc/try_slip(mob/living/slipper, mob/living/slippee)
 	if(isnull(slipper))
 		return TRUE
 	if(!istype(slipper.get_item_by_slot(ITEM_SLOT_FEET), /obj/item/clothing/shoes/clown_shoes))
@@ -407,39 +373,38 @@
 		return FALSE
 	return TRUE
 
-/obj/item/modular_computer/pda/crew/clown/update_overlays()
+/obj/item/modular_computer/pda/clown/update_overlays()
 	. = ..()
 	. += mutable_appearance(icon, "pda_stripe_clown") // clowns have eyes that go over their screen, so it needs to be compiled last
 
-/obj/item/modular_computer/pda/crew/clown/proc/AfterSlip(mob/living/carbon/human/M)
+/obj/item/modular_computer/pda/clown/proc/AfterSlip(mob/living/carbon/human/M)
 	if (istype(M) && (M.real_name != saved_identification))
 		var/obj/item/disk/computer/virus/clown/cart = inserted_disk
 		if(istype(cart) && cart.charges < 5)
 			cart.charges++
 			playsound(src,'sound/machines/ping.ogg',30,TRUE)
 
-/obj/item/modular_computer/pda/crew/clown/proc/after_sitcom_laugh(mob/victim)
+/obj/item/modular_computer/pda/clown/proc/after_sitcom_laugh(mob/victim)
 	victim.visible_message("[src] lets out a burst of laughter!")
 
-/obj/item/modular_computer/pda/crew/mime
+/obj/item/modular_computer/pda/mime
 	name = "mime PDA"
 	inserted_disk = /obj/item/disk/computer/virus/mime
-	icon_state = "/obj/item/modular_computer/pda/crew/mime"
+	icon_state = "/obj/item/modular_computer/pda/mime"
 	greyscale_config = /datum/greyscale_config/tablet/mime
 	greyscale_colors = "#FAFAFA#EA3232"
 	inserted_item = /obj/item/toy/crayon/mime
-	painting_region = REGION_GENERAL
 	starting_programs = list(
 		/datum/computer_file/program/emojipedia,
 	)
 
-/obj/item/modular_computer/pda/crew/mime/Initialize(mapload)
+/obj/item/modular_computer/pda/mime/Initialize(mapload)
 	. = ..()
 	for(var/datum/computer_file/program/messenger/msg in stored_files)
 		msg.mime_mode = TRUE
 		msg.alert_silenced = TRUE
 
-/obj/item/modular_computer/pda/crew/curator
+/obj/item/modular_computer/pda/curator
 	name = "curator PDA"
 	desc = "A small experimental microcomputer."
 	icon = 'icons/obj/devices/modular_pda.dmi'
@@ -449,24 +414,24 @@
 	greyscale_colors = null
 	inserted_item = /obj/item/pen/fountain
 	long_ranged = TRUE
-	painting_region = REGION_GENERAL
 	starting_programs = list(
 		/datum/computer_file/program/emojipedia,
 		/datum/computer_file/program/newscaster,
 		/datum/computer_file/program/portrait_printer,
 	)
 
-/obj/item/modular_computer/pda/crew/curator/Initialize(mapload)
+/* // SKYRAT EDIT REMOVAL BEGIN - Mutes the Curator's ringer on spawn
+/obj/item/modular_computer/pda/curator/Initialize(mapload)
 	. = ..()
 	for(var/datum/computer_file/program/messenger/msg in stored_files)
 		msg.alert_silenced = TRUE
+*/ // SKYRAT EDIT REMOVAL END
 
-/obj/item/modular_computer/pda/crew/psychologist
+/obj/item/modular_computer/pda/psychologist
 	name = "psychologist PDA"
-	icon_state = "/obj/item/modular_computer/pda/crew/psychologist"
+	icon_state = "/obj/item/modular_computer/pda/psychologist"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#333333#000099#3F96CC"
-	painting_region = REGION_GENERAL
 	starting_programs = list(
 		/datum/computer_file/program/records/medical,
 		/datum/computer_file/program/robocontrol,
@@ -475,10 +440,9 @@
 /**
  * No Department/Station Trait
  */
-/obj/item/modular_computer/pda/crew/assistant
+/obj/item/modular_computer/pda/assistant
 	name = "assistant PDA"
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
-	painting_region = REGION_GENERAL
 	starting_programs = list(
 		/datum/computer_file/program/bounty_board,
 	)

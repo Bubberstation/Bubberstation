@@ -111,7 +111,7 @@
 
 		if("setAlloy")
 			processing_machine.selected_material = null
-			processing_machine.selected_alloy = text2path(params["new_alloy"])
+			processing_machine.selected_alloy = params["value"]
 			return TRUE
 
 		if("toggle")
@@ -157,7 +157,8 @@
 		MATCONTAINER_EXAMINE, \
 		allowed_items = accepted_type \
 	)
-	GLOB.autounlock_techwebs[/datum/techweb/autounlocking/smelter] ||= new /datum/techweb/autounlocking/smelter()
+	if(!GLOB.autounlock_techwebs[/datum/techweb/autounlocking/smelter])
+		GLOB.autounlock_techwebs[/datum/techweb/autounlocking/smelter] = new /datum/techweb/autounlocking/smelter
 	stored_research = GLOB.autounlock_techwebs[/datum/techweb/autounlocking/smelter]
 	selected_material = SSmaterials.get_material(/datum/material/iron)
 
@@ -180,22 +181,24 @@
 /obj/machinery/mineral/processing_unit/ui_static_data()
 	var/list/data = list()
 
-	data["materialIcons"] = list()
 	for(var/datum/material/material as anything in materials.materials)
 		var/obj/display = initial(material.sheet_type)
-		data["materialIcons"] += list(list(
-			"id" = REF(material),
-			"icon" = icon2base64(icon(initial(display.icon), icon_state = initial(display.icon_state), frame = 1)),
-		))
+		data["materialIcons"] += list(
+			list(
+				"id" = REF(material),
+				"icon" = icon2base64(icon(initial(display.icon), icon_state = initial(display.icon_state), frame = 1)),
+				)
+			)
 
-	data["alloyIcons"] = list()
-	for(var/design_path in stored_research.researched_designs)
-		var/datum/design/design = SSresearch.techweb_designs[design_path]
-		var/obj/display = design.build_path
-		data["alloyIcons"] += list(list(
-			"id" = "[design_path]",
-			"icon" = icon2base64(icon(display::icon, display::icon_state, frame = 1)),
-		))
+	for(var/research in stored_research.researched_designs)
+		var/datum/design/design = SSresearch.techweb_design_by_id(research)
+		var/obj/display = initial(design.build_path)
+		data["alloyIcons"] += list(
+			list(
+				"id" = design.id,
+				"icon" = icon2base64(icon(initial(display.icon), icon_state = initial(display.icon_state), frame = 1)),
+				)
+			)
 
 	data += materials.ui_static_data()
 
@@ -208,12 +211,14 @@
 	data["selectedMaterial"] = selected_material?.name
 
 	data["alloys"] = list()
-	for(var/design_path in stored_research.researched_designs)
-		var/datum/design/design = SSresearch.techweb_designs[design_path]
-		data["alloys"] += list(list(
-			"name" = design.name,
-			"path" = design_path,
-		))
+	for(var/research in stored_research.researched_designs)
+		var/datum/design/design = SSresearch.techweb_design_by_id(research)
+		data["alloys"] += list(
+			list(
+				"name" = design.name,
+				"id" = design.id,
+				)
+			)
 	data["selectedAlloy"] = selected_alloy
 
 	data["state"] = on
@@ -247,12 +252,13 @@
 		materials.retrieve_stack(sheets_to_remove, mat, out)
 
 /obj/machinery/mineral/processing_unit/proc/smelt_alloy(seconds_per_tick = 2)
-	if(!stored_research.researched_designs[selected_alloy]) //check if it's a valid design
+	var/datum/design/alloy = stored_research.isDesignResearchedID(selected_alloy) //check if it's a valid design
+	if(!alloy)
 		on = FALSE
 		return
-	var/datum/design/alloy = SSresearch.techweb_designs[selected_alloy]
 
 	var/amount = can_smelt(alloy, seconds_per_tick)
+
 	if(!amount)
 		on = FALSE
 		return

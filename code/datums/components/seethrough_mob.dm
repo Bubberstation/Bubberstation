@@ -43,9 +43,6 @@
 	action.Grant(parent)
 
 /datum/component/seethrough_mob/Destroy(force)
-	if(trickery_image)
-		var/mob/fool = parent
-		clear_image(trickery_image, fool.client)
 	QDEL_NULL(render_source_atom)
 	return ..()
 
@@ -54,10 +51,6 @@
 	SIGNAL_HANDLER
 
 	var/mob/fool = parent
-	// Finish the previous fade
-	if(trickery_image)
-		clear_image(trickery_image, fool.client)
-		is_active = TRUE
 	var/datum/hud/our_hud = fool.hud_used
 	for(var/atom/movable/screen/plane_master/seethrough as anything in our_hud.get_true_plane_masters(SEETHROUGH_PLANE))
 		seethrough.unhide_plane(fool)
@@ -96,16 +89,10 @@
 
 ///Remove the image and the trick atom
 /datum/component/seethrough_mob/proc/clear_image(image/removee, client/remove_from)
-	remove_from?.images -= removee
-	// A previous fade may finish after a new appearance has taken its place.
-	if(removee != trickery_image)
-		return
 	var/atom/movable/atom_parent = parent
 	atom_parent.vis_contents -= render_source_atom
 	atom_parent.render_target = initial_render_target_value
-	initial_render_target_value = null
-	trickery_image = null
-	is_active = FALSE
+	remove_from?.images -= removee
 
 ///Effect is disabled when they log out because client gets deleted
 /datum/component/seethrough_mob/proc/on_client_disconnect()

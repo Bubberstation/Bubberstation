@@ -24,7 +24,7 @@
 	faction = list(FACTION_CAT, ROLE_SYNDICATE)
 	gold_core_spawnable = NO_SPAWN
 	// it's clad in blood-red armor
-	physiology = list(BRUTE = 0.8, BURN = 0.9, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
+	damage_coeff = list(BRUTE = 0.8, BURN = 0.9, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	habitable_atmos = list("min_oxy" = 0, "max_oxy" = 0, "min_plas" = 0, "max_plas" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minimum_survivable_temperature = -1
 	maximum_survivable_temperature = INFINITY

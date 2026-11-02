@@ -8,9 +8,7 @@
 /// How many boulders can a single ore vent have on its tile before it stops producing more?
 #define MAX_BOULDERS_PER_VENT 10
 /// Time multiplier
-#define INNATE_BOULDER_SPEED_MULTIPLIER 3
-/// Multiplier for mineral amt in boulders when a vent is boosted by the Candela network
-#define BOULDER_MAT_MULT_BOOSTED 1.33
+#define INATE_BOULDER_SPEED_MULTIPLIER 3
 
 // Vent type
 /// Large vents, giving large boulders.
@@ -29,14 +27,14 @@
 #define GIBTONITE_QUALITY_LOW 1
 
 // Timers for the ore vents to perform wave defense.
-/// Number of waves players will need to defeat for a small vent.
-#define WAVE_DURATION_SMALL 5
-/// Number of waves players will need to defeat for a medium vent.
-#define WAVE_DURATION_MEDIUM 10
-/// Number of waves players will need to defeat for a large vent.
-#define WAVE_DURATION_LARGE 15
-/// Duration for wave defense for the tarkon emergency engines. BUBBER EDIT
-#define WAVE_DURATION_TARKON 12 // THIS IS A BUBBER EDIT BECAUSE TARKON IS US
+/// Duration for wave defense for a small vent.
+#define WAVE_DURATION_SMALL 60 SECONDS
+/// Duration for wave defense for a medium vent.
+#define WAVE_DURATION_MEDIUM 90 SECONDS
+/// Duration for wave defense for a large vent.
+#define WAVE_DURATION_LARGE 150 SECONDS
+/// Duration for wave defense for the tarkon emergency engines.
+#define WAVE_DURATION_TARKON 120 SECONDS
 
 /// Lifetime of a boulder platform in seconds when spawned in lava/plasma.
 #define PLATFORM_LIFE_DEFAULT 10 SECONDS
@@ -52,11 +50,6 @@
 // String defines to use with CaveGenerator presets for what ore breakdown to use.
 #define OREGEN_PRESET_LAVALAND "lavaland"
 #define OREGEN_PRESET_TRIPLE_Z "triple_z"
-
-/// When assigned, spawners will continue to spawn a mob repeatedly until reaching max_spawned. New mobs will be spawned regardless of how many exist under that cap.
-#define SPAWN_CONTINUOUS_BEHAVIOR "continuous"
-/// When assigned, spawners will spawn a group of mobs as defined by max_spawn_per_attempt, and will only spawn a new wave after
-#define SPAWN_BY_WAVE_BEHAVIOR "complete_wave"
 
 // Ore vein types
 /// Round ore cluster
@@ -75,11 +68,3 @@
 #define ACTION_MULTIPLIER_PER_VENT_VALUE 0.1
 /// Permanent style multiplier modifier earned from killing a megafauna.
 #define ACTION_MULTIPLIER_MAJOR_KILL 0.1
-
-/// Maximum distance between Candela beacons
-#define MINING_BEACON_MAX_REACH 9
-// Different Candela network power states
-/// Connected to a regular ore vent
-#define CANDELA_NETWORK_POWERED (1<<0)
-/// Connected to a roundstart ore vent, boosting boulder rates
-#define CANDELA_NETWORK_BOOSTED (1<<1)

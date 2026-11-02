@@ -15,7 +15,9 @@
 /datum/status_effect/bioware/heart/threaded_veins
 
 /datum/status_effect/bioware/heart/threaded_veins/bioware_gained()
-	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_BLEED, 0.25)
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.physiology.bleed_mod *= 0.25
 
 /datum/status_effect/bioware/heart/threaded_veins/bioware_lost()
-	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_BLEED, 4)
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.physiology.bleed_mod *= 4

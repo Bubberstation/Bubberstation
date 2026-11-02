@@ -11,7 +11,7 @@
 	icon_dead = "blobbernaut_dead"
 	health = BLOBMOB_BLOBBERNAUT_HEALTH
 	maxHealth = BLOBMOB_BLOBBERNAUT_HEALTH
-	physiology = list(BRUTE = 0.5, STAMINA = 0)
+	damage_coeff = list(BRUTE = 0.5, BURN = 1, TOX = 1, STAMINA = 0, OXY = 1)
 	melee_damage_lower = BLOBMOB_BLOBBERNAUT_DMG_SOLO_LOWER
 	melee_damage_upper = BLOBMOB_BLOBBERNAUT_DMG_SOLO_UPPER
 	melee_attack_cooldown = CLICK_CD_MELEE

@@ -38,7 +38,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 
 /datum/gas_recipe/crystallizer/hypern_crystalium
 	id = "hyper_crystalium"
-	name = "Hyper-Noblium Crystal"
+	name = "Hypernoblium Crystal"
 	min_temp = 3
 	max_temp = 250
 	energy_release = -250000
@@ -47,7 +47,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 
 /datum/gas_recipe/crystallizer/metallic_hydrogen
 	id = "metal_h"
-	name = "Metallic Hydrogen"
+	name = "Metallic hydrogen"
 	min_temp = 50000
 	max_temp = 150000
 	energy_release = -2500000
@@ -56,7 +56,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 
 /datum/gas_recipe/crystallizer/healium_grenade
 	id = "healium_g"
-	name = "Healium Crystal"
+	name = "Healium crystal"
 	min_temp = 200
 	max_temp = 400
 	energy_release = -2000000
@@ -65,7 +65,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 
 /datum/gas_recipe/crystallizer/proto_nitrate_grenade
 	id = "proto_nitrate_g"
-	name = "Proto-Nitrate Crystal"
+	name = "Proto nitrate crystal"
 	min_temp = 200
 	max_temp = 400
 	energy_release = 1500000
@@ -74,7 +74,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 
 /datum/gas_recipe/crystallizer/hot_ice
 	id = "hot_ice"
-	name = "Hot Ice"
+	name = "Hot ice"
 	min_temp = 15
 	max_temp = 35
 	energy_release = -3000000
@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 
 /datum/gas_recipe/crystallizer/ammonia_crystal
 	id = "ammonia_crystal"
-	name = "Ammonia Crystal"
+	name = "Ammonia crystal"
 	min_temp = 200
 	max_temp = 240
 	energy_release = 950000
@@ -92,7 +92,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 
 /datum/gas_recipe/crystallizer/shard
 	id = "crystal_shard"
-	name = "Supermatter Crystal Shard"
+	name = "Supermatter crystal shard"
 	min_temp = 10
 	max_temp = 20
 	energy_release = 3500000
@@ -102,7 +102,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 
 /datum/gas_recipe/crystallizer/n2o_crystal
 	id = "n2o_crystal"
-	name = "Nitrous Oxide Crystal"
+	name = "Nitrous oxide crystal"
 	min_temp = 50
 	max_temp = 350
 	energy_release = 3500000
@@ -120,7 +120,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 
 /datum/gas_recipe/crystallizer/plasma_sheet
 	id = "plasma_sheet"
-	name = "Solidified Plasma"
+	name = "Plasma sheet"
 	min_temp = 10
 	max_temp = 20
 	energy_release = 3500000
@@ -138,7 +138,7 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 
 /datum/gas_recipe/crystallizer/zaukerite
 	id = "zaukerite"
-	name = "Solidified Zauker"
+	name = "Zaukerite sheet"
 	min_temp = 5
 	max_temp = 20
 	energy_release = 2900000
@@ -147,35 +147,35 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 
 /datum/gas_recipe/crystallizer/fuel_pellet
 	id = "fuel_basic"
-	name = "Standard Fuel Pellet"
+	name = "standard fuel pellet"
 	energy_release = -6000000
 	requirements = list(/datum/gas/oxygen = 50, /datum/gas/plasma = 100)
 	products = list(/obj/item/fuel_pellet = 1)
 
 /datum/gas_recipe/crystallizer/fuel_pellet_advanced
 	id = "fuel_advanced"
-	name = "Advanced Fuel Pellet"
+	name = "advanced fuel pellet"
 	energy_release = -6000000
 	requirements = list(/datum/gas/tritium = 100, /datum/gas/hydrogen = 100)
 	products = list(/obj/item/fuel_pellet/advanced = 1)
 
 /datum/gas_recipe/crystallizer/fuel_pellet_exotic
 	id = "fuel_exotic"
-	name = "Exotic Fuel Pellet"
+	name = "exotic fuel pellet"
 	energy_release = -6000000
 	requirements = list(/datum/gas/hypernoblium = 100, /datum/gas/nitrium = 100)
 	products = list(/obj/item/fuel_pellet/exotic = 1)
 
 /datum/gas_recipe/crystallizer/crystal_foam
 	id = "crystal_foam"
-	name = "Foam Crystal"
+	name = "Crystal foam grenade"
 	energy_release = 140000
 	requirements = list(/datum/gas/carbon_dioxide = 150, /datum/gas/nitrous_oxide = 100, /datum/gas/water_vapor = 25)
 	products = list(/obj/item/grenade/gas_crystal/crystal_foam = 1)
 
 /datum/gas_recipe/crystallizer/crystallized_nitrium
 	id = "crystallized_nitrium"
-	name = "Nitrium Crystal"
+	name = "Nitrium crystal"
 	min_temp = 10
 	max_temp = 25
 	energy_release = -45000

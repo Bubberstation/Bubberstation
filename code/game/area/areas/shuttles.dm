@@ -130,6 +130,7 @@
 		var/atom/movable/screen/splash/Spl = new(null, null, boarder.client, TRUE)
 		Spl.fade(TRUE)
 		boarder.playsound_local(get_turf(boarder), 'sound/announcer/ApproachingTG.ogg', 25)
+	boarder.update_parallax_teleport()
 
 /area/shuttle/pod_1
 	name = "Escape Pod One"
@@ -194,9 +195,6 @@
 
 /area/shuttle/escape/tombstone
 	ambience_index = AMBIENCE_SPOOKY
-
-/area/shuttle/escape/xenobio
-	name = "Escape Shuttle Xenobiology"
 
 /area/shuttle/transport
 	name = "Transport Shuttle"

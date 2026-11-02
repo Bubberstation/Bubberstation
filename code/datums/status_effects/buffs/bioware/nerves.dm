@@ -15,9 +15,11 @@
 /datum/status_effect/bioware/nerves/spliced
 
 /datum/status_effect/bioware/nerves/spliced/bioware_gained()
-	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_STUN, 0.5)
-	MODIFY_PHYSIOLOGY(owner, STAMINA, 0.8)
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.physiology.stun_mod *= 0.5
+	human_owner.physiology.stamina_mod *= 0.8
 
 /datum/status_effect/bioware/nerves/spliced/bioware_lost()
-	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_STUN, 2)
-	MODIFY_PHYSIOLOGY(owner, STAMINA, 1.25)
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.physiology.stun_mod *= 2
+	human_owner.physiology.stamina_mod *= 1.25

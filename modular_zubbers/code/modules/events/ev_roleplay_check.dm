@@ -8,6 +8,35 @@ GLOBAL_LIST_EMPTY(dorms_areas)
 /datum/weather/proc/engaged_roleplay_filter(area/engaged_roleplay_area)
 	return FALSE
 
+/datum/weather/rad_storm/engaged_roleplay_filter(area/engaged_roleplay_area)
+	if(!is_type_in_list(engaged_roleplay_area, GLOB.dorms_areas))
+		return FALSE
+
+	for(var/mob/living/carbon/human/roleplayer in engaged_roleplay_area.contents)
+		if(engaged_role_play_check(player = roleplayer, station = FALSE, dorms = TRUE))
+			return TRUE
+
+	return FALSE
+
+/datum/weather/rad_storm/send_alert(alert_msg, alert_sfx, alert_sfx_vol = 100)
+	for(var/area/impacted_area as anything in impacted_areas)
+		for(var/mob/living/player in impacted_area.contents)
+			if(!can_get_alert(player))
+				continue
+			if(alert_msg)
+				to_chat(player, alert_msg)
+
+	if(!alert_sfx)
+		return
+
+	for(var/z_level in impacted_z_levels)
+		for(var/mob/player as anything in SSmobs.clients_by_zlevel[z_level])
+			if(!can_get_alert(player))
+				continue
+			if(alert_sfx)
+				player.stop_sound_channel(CHANNEL_WEATHER)
+				SEND_SOUND(player, sound(alert_sfx, channel = CHANNEL_WEATHER, volume = alert_sfx_vol))
+
 /**
  * Checks if a player meets certain conditions to exclude them from event selection.
  */

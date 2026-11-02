@@ -308,7 +308,6 @@
 	if(!can_hit_with_hand(taker, offerer))
 		return
 
-	offerer.client?.give_award(/datum/award/achievement/misc/spicy_handshake, offerer)
 	INVOKE_ASYNC(src, PROC_REF(do_hand_hit), source, taker, offerer)
 	return COMPONENT_OFFER_INTERRUPT
 

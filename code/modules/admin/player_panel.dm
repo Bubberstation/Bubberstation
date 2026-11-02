@@ -237,7 +237,7 @@
 				if(iscarbon(M)) //Carbon stuff
 					if(ishuman(M) && M.job)
 						M_job = M.job
-					else if(HAS_TRAIT(M, TRAIT_LESSER_HUMANOID))
+					else if(ismonkey(M))
 						M_job = "Monkey"
 					else if(isalien(M)) //aliens
 						if(islarva(M))

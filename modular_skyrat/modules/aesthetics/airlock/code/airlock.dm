@@ -149,7 +149,7 @@
 	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/station/security2.dmi'
 
 /obj/machinery/door/airlock/security/old
-	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/station/security.dmi'
+	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/station/security2.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_sec/old
 
 /obj/machinery/door/airlock/security/old/glass
@@ -400,10 +400,10 @@
 	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/station/command.dmi'
 
 /obj/structure/door_assembly/door_assembly_sec
-	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/station/security2.dmi'
+	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/station/security.dmi'
 
 /obj/structure/door_assembly/door_assembly_sec/old
-	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/station/security.dmi'
+	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/station/security2.dmi'
 
 /obj/structure/door_assembly/door_assembly_eng
 	icon = 'modular_skyrat/modules/aesthetics/airlock/icons/airlocks/station/engineering.dmi'

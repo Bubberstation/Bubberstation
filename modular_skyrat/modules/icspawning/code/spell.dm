@@ -25,12 +25,9 @@
 
 	qdel(user)
 
+
 	// Get them back to their regular name.
 	ghost.set_ghost_appearance()
 	if(ghost.client && ghost.client.prefs)
 		ghost.deadchat_name = ghost.client.prefs?.read_preference(/datum/preference/name/real_name)
 
-/datum/action/cooldown/spell/return_back/ghostcafe
-	name = "Leave Cafe"
-	desc = "Leave the Cafe to observe the round."
-	invocation_type = INVOCATION_NONE
