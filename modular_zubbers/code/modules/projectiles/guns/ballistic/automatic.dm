@@ -1,7 +1,7 @@
 /obj/item/gun/ballistic/automatic/wt550
 	can_suppress = FALSE
 	can_be_sawn_off = TRUE
-/obj/item/gun/ballistic/automatic/wt550/sawoff(mob/user)
+/obj/item/gun/ballistic/automatic/wt550/do_sawoff(mob/user)
 	. = ..()
 	if(.)
 		desc = "why would you do this"
@@ -9,7 +9,7 @@
 		w_class = WEIGHT_CLASS_NORMAL
 		spread = 10
 		dual_wield_spread = 20
-		recoil = SAWN_OFF_RECOIL
+		recoil = 1
 		update_appearance()
 
 /obj/item/gun/ballistic/automatic/wt550/add_bayonet_point()

@@ -16,7 +16,6 @@
 
 /datum/design/tongue/snail
 	name = "Snail Tongue"
-	id = "snailtongue"
 	build_path = /obj/item/organ/tongue/snail
 	category = list(
 		SPECIES_SNAIL,
@@ -25,7 +24,6 @@
 
 /datum/design/liver/snail
 	name = "Snail Liver"
-	id = "snailliver"
 	build_path = /obj/item/organ/liver/snail
 	category = list(
 		SPECIES_SNAIL,
@@ -34,7 +32,6 @@
 
 /datum/design/heart/snail
 	name = "Snail Heart"
-	id = "snailheart"
 	build_path = /obj/item/organ/heart/snail
 	category = list(
 		SPECIES_SNAIL,

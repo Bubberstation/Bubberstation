@@ -474,7 +474,6 @@
 
 /datum/design/deforest_medical
 	name = "Satchel Medical Bag"
-	id = "satchel_medical"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 6,
@@ -490,7 +489,6 @@
 
 /datum/design/deforest_technician
 	name = "Medical Technician Bag"
-	id = "satchel_tech"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 6,
@@ -506,7 +504,6 @@
 
 /datum/design/deforest_surgical
 	name = "First Responder Surgical Bag"
-	id = "satchel_surgical"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 6,
@@ -521,9 +518,9 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/techweb_node/medbay_equip_adv/New()
-	design_ids += list(
-		"satchel_medical",
-		"satchel_tech",
-		"satchel_surgical",
+	unlocked_designs += list(
+		/datum/design/deforest_medical,
+		/datum/design/deforest_technician,
+		/datum/design/deforest_surgical,
 	)
 	return ..()

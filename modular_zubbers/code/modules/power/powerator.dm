@@ -28,7 +28,6 @@
 /datum/design/board/powerator
 	name = "Machine Design (Powerator)"
 	desc = "Allows for the construction of circuit boards used to build a powerator."
-	id = "powerator"
 	build_path = /obj/item/circuitboard/machine/powerator
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
@@ -36,15 +35,13 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/techweb_node/powerator
-	id = TECHWEB_NODE_POWERATOR
 	display_name = "Powerator"
 	description = "We've been saved by it in the past, we should send some power ourselves!"
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
-	hidden = TRUE
-	experimental = TRUE
-	prereq_ids = list(TECHWEB_NODE_PARTS_ADV)
-	design_ids = list(
-		"powerator",
+	node_flags = TECHWEB_NODE_HIDDEN | TECHWEB_NODE_EXPERIMENTAL
+	prerequisite_nodes = list(/datum/techweb_node/parts_adv)
+	unlocked_designs = list(
+		/datum/design/board/powerator,
 	)
 
 /obj/machinery/powerator
