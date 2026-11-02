@@ -66,7 +66,7 @@ GLOBAL_DATUM_INIT(vore_cryopod, /obj/machinery/cryopod/quiet/vore, new /obj/mach
 	for(var/obj/item/item_content as anything in L)
 		if(!istype(item_content) || HAS_TRAIT(item_content, TRAIT_NODROP))
 			continue
-		if(issilicon(L) && istype(item_content, /obj/item/mmi))
+		if(issilicon(L) && istype(item_content, /obj/item/brain_processor))
 			continue
 		qdel(item_content)
 

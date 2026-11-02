@@ -247,8 +247,7 @@
 /datum/antagonist/bloodsucker/on_removal()
 	free_all_ghouls()
 	if(!owner?.current)
-		return
-	unregister_sol_signals()
+		return ..()
 	if(is_head(owner.current))
 		cleanup_talking_head()
 	if(ishuman(owner.current))
