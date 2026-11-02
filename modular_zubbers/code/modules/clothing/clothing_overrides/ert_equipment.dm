@@ -46,7 +46,7 @@
 	additional_modules = /obj/item/mod/module/shooting_assistant/ert
 
 /obj/item/mod/control/pre_equipped/responsory/engineer
-	additional_modules = list(/obj/item/mod/module/holster, /obj/item/mod/module/status_readout/operational, /obj/item/mod/module/holster)
+	additional_modules = list(/obj/item/mod/module/holster, /obj/item/mod/module/status_readout/operational)
 
 /obj/item/mod/control/pre_equipped/responsory/engineer/alert
 	additional_modules = /obj/item/mod/module/shooting_assistant/ert
