@@ -1,3 +1,6 @@
+
+// MOB Equipment
+
 /datum/outfit/centcom/ert/commander
 	l_hand = /obj/item/gun/energy/e_gun/stun
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/guard/medical
@@ -22,7 +25,7 @@
 	l_hand = /obj/item/gun/energy/e_gun/stun
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/guard/medical
 
-///  MOD EQUIPMENT
+///  MOD Equipment
 
 /obj/item/mod/control/pre_equipped/responsory/commander
 	additional_modules = list(/obj/item/mod/module/shooting_assistant/ert, /obj/item/mod/module/holster, /obj/item/mod/module/status_readout/operational)
@@ -37,7 +40,7 @@
 	additional_modules = /obj/item/mod/module/shooting_assistant/ert
 
 /obj/item/mod/control/pre_equipped/responsory/engineer
-	additional_modules = list(/obj/item/mod/module/holster, /obj/item/mod/module/status_readout/operational)
+	additional_modules = list(/obj/item/mod/module/holster, /obj/item/mod/module/status_readout/operational, /obj/item/mod/module/holster)
 
 /obj/item/mod/control/pre_equipped/responsory/engineer/alert
 	additional_modules = /obj/item/mod/module/shooting_assistant/ert
