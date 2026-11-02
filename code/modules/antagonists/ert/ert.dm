@@ -31,7 +31,7 @@
 /datum/antagonist/ert/on_gain()
 	// BUBBER EDIT CHANGE BEGIN - ERT NAMES - ORIGINAL: if(random_names) update_name()
 	var/chosen_alias = owner.current.client?.prefs?.read_preference(/datum/preference/name/emergency)
-	if(random_names || !chosen_alias)
+	if(random_names)
 		update_name()
 	else
 		owner.current.fully_replace_character_name(owner.current.real_name, "[role] [chosen_alias]")
