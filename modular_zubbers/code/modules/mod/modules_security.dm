@@ -30,4 +30,4 @@
 
 /obj/item/mod/module/jetpack/ert
 	complexity = 0
-	removable = false
+	removable = FALSE
