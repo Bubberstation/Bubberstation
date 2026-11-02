@@ -47,8 +47,18 @@
 	max_ammo = 7
 
 /obj/item/ammo_box/magazine/internal/shot/less_lethal/is_compatible_round(obj/item/ammo_casing/new_round)
-	if(istype(new_round, /obj/item/ammo_casing/shotgun/beanbag) || istype(new_round, /obj/item/ammo_casing/shotgun/incapacitate) || istype(new_round, /obj/item/ammo_casing/shotgun/rubbershot))
-		return TRUE
-	return FALSE
+	// exact types only, so a lethal subtype of an allowed shell can't sneak in
+	var/static/list/allowed_rounds = typecacheof(list(
+		/obj/item/ammo_casing/shotgun/antitide,
+		/obj/item/ammo_casing/shotgun/beanbag,
+		/obj/item/ammo_casing/shotgun/beehive,
+		/obj/item/ammo_casing/shotgun/breacher,
+		/obj/item/ammo_casing/shotgun/frangible,
+		/obj/item/ammo_casing/shotgun/honkshot,
+		/obj/item/ammo_casing/shotgun/incapacitate,
+		/obj/item/ammo_casing/shotgun/rubbershot,
+		/obj/item/ammo_casing/shotgun/stunslug,
+	), only_root_path = TRUE)
+	return !!is_type_in_typecache(new_round, allowed_rounds)
 
 //10mm Stuff

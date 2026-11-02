@@ -217,8 +217,8 @@
 	)
 
 /datum/supply_pack/security/armory/peacekeepers_plus
-	name = "Riot Renoster Shotgun Crate"
-	desc = "Three less-lethal modified Renoster pump-action shotguns to restock your armories with."
+	name = "Ystervark LTL Shotgun Crate"
+	desc = "Three Ystervark less-lethal pump-action shotguns to restock your armories with."
 	cost = CARGO_CRATE_VALUE * 10
 	contains = list(
 		/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal,
