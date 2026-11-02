@@ -129,6 +129,7 @@
 
 /datum/heretic_knowledge/limited_amount/flesh_ghoul
 	name = "Imperfect Ritual"
+	var/list/datum/weakref/ghoul_sign_language_components
 	desc = "Enchant a corpse into a Voiceless Dead. \
 		The corpse does not need to have a soul.<br>\
 		Voiceless Dead are mute ghouls and only have 50 health, but can use Bloody Blades effectively. \
@@ -206,13 +207,23 @@
 /datum/heretic_knowledge/limited_amount/flesh_ghoul/proc/apply_to_ghoul(mob/living/ghoul)
 	LAZYADD(created_items, WEAKREF(ghoul))
 	ADD_TRAIT(ghoul, TRAIT_MUTE, MAGIC_TRAIT)
-	ghoul.AddComponent(/datum/component/sign_language) // BUBBER EDIT - Communication, but still voiceless
+// BUBBER EDIT START - add sign language when ghoul is created and saves it for when its deconverted
+	if (!ghoul.GetComponent(/datum/component/sign_language))
+		var/datum/component/sign_language/sign_language = ghoul.AddComponent(/datum/component/sign_language)
+		if (sign_language)
+			LAZYADD(ghoul_sign_language_components, WEAKREF(sign_language))
+// BUBBER EDIT END
 
 /// Callback for the ghoul status effect - Tracks all of our ghouls and applies effects
 /datum/heretic_knowledge/limited_amount/flesh_ghoul/proc/remove_from_ghoul(mob/living/ghoul)
 	LAZYREMOVE(created_items, WEAKREF(ghoul))
 	REMOVE_TRAIT(ghoul, TRAIT_MUTE, MAGIC_TRAIT)
-	qdel(ghoul.GetComponent(/datum/component/sign_language)) // BUBBER EDIT - Communication, but still voiceless
+// BUBBER EDIT START - remove sign language when ghoul is deconverted but keep it if the victim had it before
+	var/datum/component/sign_language/sign_language = ghoul.GetComponent(/datum/component/sign_language)
+	if (sign_language && WEAKREF(sign_language) in ghoul_sign_language_components)
+		LAZYREMOVE(ghoul_sign_language_components, WEAKREF(sign_language))
+		qdel(sign_language)
+// BUBBER EDIT END
 
 /datum/heretic_knowledge/spell/flesh_surgery
 	name = "Knitting of Flesh"
