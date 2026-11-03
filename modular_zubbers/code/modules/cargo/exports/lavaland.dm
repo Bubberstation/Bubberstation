@@ -1,28 +1,27 @@
 // Gibtonite Exportable based on quality
 
 /datum/export/gibtonite
-	cost = CARGO_CRATE_VALUE * 10
-	unit_name = "gibtonite chunk"
-	export_types = list(/obj/item/gibtonite)
-	var/gibtonite_quality
+    abstract_type = /datum/export/gibtonite
+    export_types = list(/obj/item/gibtonite)
+    var/quality
 
-/datum/export/gibtonite/total_printout(datum/export_report/ex, notes = TRUE) //in the unlikely case a miner feels like selling megafauna loot
-	. = ..()
-	if(. && notes)
-		switch(gibtonite_quality)
-			if(GIBTONITE_QUALITY_HIGH)
-				. += " (Grade A Shipment) On behalf of the Nanotrasen RnD division: Thank you for your hard work."
-			if(GIBTONITE_QUALITY_MEDIUM)
-				. += " (Grade B Shipment)"
-			if(GIBTONITE_QUALITY_LOW)
-				. += " (Grade C Shipment)"
+/datum/export/gibtonite/applies_to(obj/item/gibtonite/exported_item, apply_elastic = TRUE, export_markets)
+    if(!..())
+        return FALSE
+    return exported_item.quality == quality
 
-/datum/export/gibtonite/get_base_cost(obj/item/gibtonite/bombrock)
-	gibtonite_quality = bombrock.quality
-	switch(bombrock.quality)
-		if(GIBTONITE_QUALITY_HIGH)
-			return CARGO_CRATE_VALUE * 20
-		if(GIBTONITE_QUALITY_MEDIUM)
-			return CARGO_CRATE_VALUE * 10
-		if(GIBTONITE_QUALITY_LOW)
-			return CARGO_CRATE_VALUE * 5
+/datum/export/gibtonite/high
+    cost = CARGO_CRATE_VALUE * 20
+    unit_name = "grade A gibtonite chunk"
+    message = "On behalf of the Nanotrasen RnD division: Thank you for your hard work"
+    quality = GIBTONITE_QUALITY_HIGH
+
+/datum/export/gibtonite/medium
+    cost = CARGO_CRATE_VALUE * 10
+    unit_name = "grade B gibtonite chunk"
+    quality = GIBTONITE_QUALITY_MEDIUM
+
+/datum/export/gibtonite/low
+    cost = CARGO_CRATE_VALUE * 5
+    unit_name = "grade C gibtonite chunk"
+    quality = GIBTONITE_QUALITY_LOW
