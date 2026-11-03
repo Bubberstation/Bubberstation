@@ -39,7 +39,7 @@
 /datum/supply_pack/goody/renoster_shotgun_lesslethal
 	name = "Ystervark LTL Shotgun Single-Pack"
 	desc = "The police refit of the Renoster, modified to only fire less-lethal rounds."
-	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/rubber)
+	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/bean)
 	access_view = ACCESS_WEAPONS
 	cost = PAYCHECK_COMMAND * 8 //Even cheaper because its only less lethal
 

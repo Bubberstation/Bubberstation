@@ -54,6 +54,7 @@
 		/obj/item/ammo_casing/shotgun/breacher,
 		/obj/item/ammo_casing/shotgun/frangible,
 		/obj/item/ammo_casing/shotgun/honkshot,
+		/obj/item/ammo_casing/shotgun/hunter,
 		/obj/item/ammo_casing/shotgun/incapacitate,
 		/obj/item/ammo_casing/shotgun/rubbershot,
 		/obj/item/ammo_casing/shotgun/stunslug,

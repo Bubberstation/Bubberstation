@@ -218,12 +218,11 @@
 
 /datum/supply_pack/security/armory/peacekeepers_plus
 	name = "Ystervark LTL Shotgun Crate"
-	desc = "Three Ystervark less-lethal pump-action shotguns to restock your armories with."
+	desc = "Three Ystervark less-lethal pump-action shotguns to restock your armories with, each with a box of beanbag slugs."
 	cost = CARGO_CRATE_VALUE * 10
 	contains = list(
-		/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal,
-		/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal,
-		/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal,
+		/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal = 3,
+		/obj/item/ammo_box/advanced/s12gauge/bean = 3,
 	)
 
 /datum/supply_pack/security/armory/hoshis
