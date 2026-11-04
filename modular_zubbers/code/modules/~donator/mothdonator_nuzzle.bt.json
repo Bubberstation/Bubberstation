@@ -1,0 +1,55 @@
+{
+	"dm_type": "/datum/bt_node/subtree/pet_command/nuzzle",
+	"type": "selector",
+	"children": [
+		{
+			"type": "decorator",
+			"decorator": "/datum/bt_node/decorator/bb_key_set",
+			"vars": {
+				"key": "BB_CURRENT_PET_TARGET",
+				"observer_abort": "BT_ABORT_BOTH"
+			},
+			"child": {
+				"type": "sequence",
+				"children": [
+					{
+						"type": "leaf",
+						"behavior": "/datum/bt_node/ai_behavior/move_to_target",
+						"vars": {
+							"target_key": "BB_CURRENT_PET_TARGET",
+							"required_dist": 1,
+							"finish_on_arrival": true
+						}
+					},
+					{
+						"type": "leaf",
+						"behavior": "/datum/bt_node/ai_behavior/nuzzle_target",
+						"vars": {
+							"target_key": "BB_CURRENT_PET_TARGET"
+						}
+					},
+					{
+						"type": "leaf",
+						"behavior": "/datum/bt_node/ai_behavior/clear_pet_command"
+					}
+				]
+			}
+		},
+		{
+			"type": "sequence",
+			"children": [
+				{
+					"type": "leaf",
+					"behavior": "/datum/bt_node/ai_behavior/nuzzle_give_up",
+					"vars": {
+						"target_key": "BB_CURRENT_PET_TARGET"
+					}
+				},
+				{
+					"type": "leaf",
+					"behavior": "/datum/bt_node/ai_behavior/clear_pet_command"
+				}
+			]
+		}
+	]
+}
