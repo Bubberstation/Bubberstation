@@ -216,6 +216,16 @@
 		/obj/item/gun/ballistic/shotgun/riot/sol,
 	)
 
+/datum/supply_pack/security/armory/peacekeepers_plus
+	name = "Riot Renoster Shotgun Crate"
+	desc = "Three less-lethal modified Renoster pump-action shotguns to restock your armories with."
+	cost = CARGO_CRATE_VALUE * 10
+	contains = list(
+		/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal,
+		/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal,
+		/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal,
+	)
+
 /datum/supply_pack/security/armory/hoshis
 	name = "Hoshi Modular Laser Carbine crate"
 	desc = "This crate includes 3 of Terra's newest addition to their armories, produced by... 'Saibasan'. These modular weapons have multiple fire modes that can be switched to, and an onboard AI."
@@ -253,3 +263,15 @@
 		/obj/item/gun/grenadelauncher,
 		/obj/item/storage/box/flashbangs,
 	)
+
+/datum/supply_pack/security/armory/antimatcrate
+	name = "Wylom Anti-Material Rifle Crate"
+	desc = "Do you have a hard target that you need dead? That ion gun not stopping the bad guy with a mech? Buy this to aquire a singular Wylom, with two spare magazines."
+	cost = 7500
+	contains = list(
+		/obj/item/gun/ballistic/automatic/wylom,
+		/obj/item/ammo_box/magazine/wylom,
+		/obj/item/ammo_box/magazine/wylom,
+	)
+	crate_name = "AMR Crate"
+	access_view = ACCESS_ARMORY

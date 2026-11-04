@@ -1,7 +1,6 @@
 /datum/design/empathic_sensor
 	name = "Empathic sensor implant"
 	desc = "An implant which allows one to intuit the thoughts of some."
-	id = "ci_empathic_sensor"
 	build_type = PROTOLATHE | MECHFAB
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 6,
@@ -21,7 +20,6 @@
 /datum/design/internal_wound_scanner
 	name = "Internal Wound Analyzer Chip"
 	desc = "A brain implanted wound analyzing chip"
-	id = "wound_scanner_internal"
 	build_type = PROTOLATHE | MECHFAB
 	materials = list(
 		/datum/material/iron =SHEET_MATERIAL_AMOUNT * 1.5,
@@ -39,7 +37,6 @@
 
 /datum/design/surgical_processor
 	name = "Surgical Processor"
-	id = "surgical_processor"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5,
@@ -56,7 +53,6 @@
 /datum/design/defibrillator
 	name = "Defibrillator"
 	desc = "A portable defibrillator, used for resuscitating recently deceased crew."
-	id = "defibrillator"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/defibrillator
 	materials = list(

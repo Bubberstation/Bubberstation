@@ -28,7 +28,7 @@
 		on_gain_limb(src, bodypart, special = FALSE)
 
 	human_holder.blood_volume_normal = BLOOD_VOLUME_OVERSIZED
-	human_holder.physiology.hunger_mod *= OVERSIZED_HUNGER_MOD
+	MODIFY_PHYSIOLOGY(human_holder, PHYS_COEFF_HUNGER_MOD, OVERSIZED_HUNGER_MOD)
 	human_holder.add_movespeed_modifier(/datum/movespeed_modifier/oversized)
 	var/obj/item/organ/stomach/stomach = human_holder.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(stomach)
@@ -66,7 +66,7 @@
 	UnregisterSignal(human_holder, COMSIG_CARBON_POST_ATTACH_LIMB)
 
 	human_holder.blood_volume_normal = BLOOD_VOLUME_NORMAL
-	human_holder.physiology.hunger_mod /= OVERSIZED_HUNGER_MOD
+	MODIFY_PHYSIOLOGY(human_holder, PHYS_COEFF_HUNGER_MOD, 1/OVERSIZED_HUNGER_MOD)
 	human_holder.remove_movespeed_modifier(/datum/movespeed_modifier/oversized)
 
 	// Remove the self-view action

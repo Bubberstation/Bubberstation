@@ -1,6 +1,5 @@
 /datum/design/borg_upgrade_shrink
 	name = "Shrink Module"
-	id = "borg_upgrade_shrink"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/shrink
 	materials = list(
@@ -14,7 +13,6 @@
 
 /datum/design/borg_upgrade_surgicaltools
 	name = "Advanced Surgical Tools Module"
-	id = "borg_upgrade_surgicaltools"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/surgerytools
 	materials = list(
@@ -33,7 +31,6 @@
 
 /datum/design/affection_module
 	name = "Affection Module"
-	id = "affection_module"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/affectionmodule
 	materials = list(
@@ -47,7 +44,6 @@
 
 /datum/design/advanced_materials
 	name = "Advanced Materials Module"
-	id = "advanced_materials"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/advanced_materials
 	materials = list(
@@ -63,7 +59,6 @@
 
 /datum/design/borg_shapeshifter_module
 	name = "Shapeshifting Module"
-	id = "borg_shapeshifter_module"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/borg_shapeshifter
 	materials = list(
@@ -78,7 +73,6 @@
 
 /datum/design/borg_upgrade_welding
 	name = "Welding Module"
-	id = "borg_upgrade_welding"
 	construction_time = 6 SECONDS
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/welder

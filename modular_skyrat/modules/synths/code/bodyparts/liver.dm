@@ -32,7 +32,6 @@
 /datum/design/synth_liver
 	name = "Reagent Processing Unit"
 	desc = "An electronic device that processes the beneficial chemicals for the synthetic user."
-	id = "synth_liver"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(

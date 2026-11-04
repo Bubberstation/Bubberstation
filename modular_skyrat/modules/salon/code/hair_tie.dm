@@ -136,7 +136,6 @@
 
 /datum/design/plastic_hair_tie
 	name = "Plastic Hair Tie"
-	id = "plastic_hair_tie"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE | COLONY_FABRICATOR
 	materials = list(
 		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT,

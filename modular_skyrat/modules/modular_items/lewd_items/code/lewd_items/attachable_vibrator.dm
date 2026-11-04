@@ -17,7 +17,6 @@
 	lefthand_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_inhands/lewd_inhand_left.dmi'
 	righthand_file = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_inhands/lewd_inhand_right.dmi'
 	lewd_slot_flags = LEWD_SLOT_PENIS | LEWD_SLOT_VAGINA | LEWD_SLOT_NIPPLES | LEWD_SLOT_ANUS
-	clothing_flags = INEDIBLE_CLOTHING
 	/// Is the toy currently on
 	var/toy_on = FALSE
 	/// The current color of the toy, affects sprite
@@ -94,6 +93,9 @@
 	. = ..()
 	icon_state = "[base_icon_state]_[current_color]_[vibration_mode]"
 	inhand_icon_state = "[base_icon_state]_[current_color]"
+
+/obj/item/clothing/sextoy/eggvib/create_moth_snack()
+	return null
 
 /// Toggles between vibration modes seuentially
 /obj/item/clothing/sextoy/eggvib/proc/toggle_mode()

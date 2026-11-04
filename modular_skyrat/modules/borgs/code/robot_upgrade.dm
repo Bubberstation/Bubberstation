@@ -120,7 +120,6 @@
 */
 /datum/design/borg_upgrade_clamp
 	name = "Improved Integrated Hydraulic Clamp Module"
-	id = "borg_upgrade_clamp"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/better_clamp
 	materials = list(
@@ -149,7 +148,6 @@
 
 /datum/design/borg_upgrade_cargo_tele
 	name = "Cargo teleporter module"
-	id = "borg_upgrade_cargo_tele"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/cargo_tele
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 5, /datum/material/uranium = SMALL_MATERIAL_AMOUNT * 5)
@@ -172,7 +170,6 @@
 
 /datum/design/borg_upgrade_forging
 	name = "Forging module"
-	id = "borg_upgrade_forging"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/forging
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/uranium = SMALL_MATERIAL_AMOUNT * 5)
@@ -203,7 +200,6 @@
 
 /datum/design/borg_upgrade_artistic
 	name = "Artistic module"
-	id = "borg_upgrade_artistic"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/artistic
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2,
