@@ -219,7 +219,7 @@
 /datum/supply_pack/security/armory/peacekeepers
 	name = "Renoster Shotgun Crate"
 	desc = "Three Renoster pump-action shotguns to add to your armory."
-	cost = CARGO_CRATE_VALUE * 20
+	cost = CARGO_CRATE_VALUE * 18
 	contains = list(
 		/obj/item/gun/ballistic/shotgun/riot/sol,
 		/obj/item/gun/ballistic/shotgun/riot/sol,
