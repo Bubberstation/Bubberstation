@@ -109,7 +109,7 @@ GAME_VERB_HIDDEN(/client, hotkeys_help, "Hotkeys Help")
 
 	GLOB.hotkeys_tgui.ui_interact(mob)
 
-GAME_VERB(/client, emote_panel, "Emote Panel", "IC") // BUBBER EDIT - Make emote panel accessible again
+GAME_VERB(/client, emote_panel, "Emote Panel", "IC") // BUBBER EDIT CHANGE - PREVIOUS: GAME_VERB_HIDDEN(/client, emote_panel, "Emote Panel")
 
 	if(!isliving(mob))
 		to_chat(mob, span_notice("You can only use this while you're alive!"))
