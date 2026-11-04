@@ -25,7 +25,7 @@
 /datum/supply_pack/goody/nt_shotgun
 	name = "Nanotrasen Woodstock Shotgun"
 	desc = "A classic shotgun used by hunters, police and frontiersmen alike, now at an affordable price."
-	cost = PAYCHECK_COMMAND * 12 //Worse renoster, let's make it a tad cheaper
+	cost = PAYCHECK_COMMAND * 9
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/gun/ballistic/shotgun/riot, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/hunter)
 
@@ -34,7 +34,7 @@
 	desc = "A common modern shotgun used by Terran Government Police."
 	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/rubber)
 	access_view = ACCESS_WEAPONS
-	cost = PAYCHECK_COMMAND * 14 //I'd say it's at odds with the combat shotgun, sustain vs burst and such, but since ss13 favours burst I'll make it a tad cheaper.
+	cost = PAYCHECK_COMMAND * 18 //renosters are a straight upgrade vs. woodstocks, this needs to be significantly more expensive
 
 /datum/supply_pack/goody/renoster_shotgun_lesslethal
 	name = "Riot Renoster Shotgun Single-Pack"
@@ -44,7 +44,8 @@
 	cost = PAYCHECK_COMMAND * 8 //Even cheaper because its only less lethal
 
 /datum/supply_pack/goody/double_barrel
-	cost = PAYCHECK_COMMAND * 10 //1400 is too much considering the combat shotgun is 1500 for 1
+	desc = "Lost your beloved bunny to a demonic invasion? Clown broke in and stole your beloved gun? Nanotrasen has you covered."
+	cost = PAYCHECK_COMMAND * 7 //1400 is too much considering the combat shotgun is 1500 for 1
 	access_view = ACCESS_WEAPONS
 
 /datum/supply_pack/goody/plasma_marksman

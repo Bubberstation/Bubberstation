@@ -42,6 +42,7 @@
 	guns = list(
 		/obj/item/gun/ballistic/shotgun/riot,
 		/obj/item/gun/ballistic/shotgun/riot,
+		/obj/item/gun/ballistic/shotgun/riot,
 		/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal,
 		/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal,
 		/obj/item/gun/ballistic/bow/security,
