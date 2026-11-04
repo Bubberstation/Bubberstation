@@ -195,8 +195,7 @@
 	desc = "A heads-up display used by engineering and mining staff to see basic structural and terrain layouts through walls, regardless of lighting conditions. This HUD has been fitted inside of a pair of sunglasses."
 	icon_state = "aviator_meson"
 	flash_protect = FLASH_PROTECTION_NONE
-	clothing_traits = list(TRAIT_MADNESS_IMMUNE)
-	vision_flags = SEE_TURFS
+	clothing_traits = list(TRAIT_MADNESS_IMMUNE, TRAIT_MESON_VISION)
 	color_cutoffs = list(5, 15, 5)
 	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
 	custom_materials = list(
@@ -285,7 +284,7 @@
 /obj/item/clothing/glasses/hud/ar/projector/meson
 	name = "retinal projector meson HUD"
 	icon_state = "projector_meson"
-	vision_flags = SEE_TURFS
+	clothing_traits = list(TRAIT_MADNESS_IMMUNE, TRAIT_MESON_VISION)
 	color_cutoffs = list(10, 30, 10)
 	custom_materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 7,

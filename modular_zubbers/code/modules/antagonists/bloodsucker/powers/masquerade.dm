@@ -56,7 +56,6 @@
 	if(eyes)
 		eyes.flash_protect = initial(eyes.flash_protect)
 		eyes.color_cutoffs = initial(eyes.color_cutoffs)
-		eyes.sight_flags = initial(eyes.sight_flags)
 		user.update_sight()
 	return TRUE
 
@@ -87,7 +86,7 @@
 	if(eyes)
 		eyes.flash_protect = max(initial(eyes.flash_protect) - 1, FLASH_PROTECTION_SENSITIVE)
 		eyes.color_cutoffs = BLOODSUCKER_SIGHT_COLOR_CUTOFF
-		eyes.sight_flags = SEE_MOBS
+		eyes.organ_traits = list(TRAIT_THERMAL_VISION)
 		user.update_sight()
 	to_chat(user, span_notice("Your heart beats one final time, while your skin dries out and your icy pallor returns."))
 

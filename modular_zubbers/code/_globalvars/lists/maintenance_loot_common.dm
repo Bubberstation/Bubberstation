@@ -739,7 +739,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/storage/box/gum/happiness = 200,
 		/obj/item/storage/box/gum/nicotine = 50,
 		/obj/item/storage/box/gum/wake_up = 25,
-		/obj/item/storage/box/ingredients/random = 100,
+		/obj/item/storage/box/ingredients/wildcard = 100,
 		/obj/item/storage/box/mothic_cans_sauces = 50,
 		/obj/item/storage/box/mothic_goods = 50,
 		/obj/item/storage/box/mothic_rations = 50,
