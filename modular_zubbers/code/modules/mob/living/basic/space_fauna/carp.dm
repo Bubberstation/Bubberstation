@@ -33,8 +33,7 @@
 
 	var/is_anomaly_containable = FALSE
 	var/anomaly_destabilize_threshhold = 0.5
-	var/anomaly_type = /obj/item/assembly/signaler/anomaly/dimension
-
+	var/anomaly_type = /obj/item/assembly/signaler/anomaly/dimensional
 /mob/living/basic/carp/metacarp/Initialize(mapload)
 	.  ..()
 	spawn_carp_after_delay()
