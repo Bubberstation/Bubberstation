@@ -432,7 +432,25 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 		return
 	if(ispath(item_path, /obj/item/mob_holder))
 		return
+	// This data is built on demand, and a client can ask for it at any time, including while the map
+	// is still loading. In that window SSatoms.initialized is INITIALIZATION_INSSATOMS and atom/New()
+	// skips InitAtom entirely, so the probe would never run setup_reskins(), we would find no
+	// component, and the "no skins" answer would be cached in the preferences asset for the whole
+	// round. Force the probe to initialize, the same way SSearly_assets does for the other preference
+	// menu assets, so detection no longer depends on when the menu is first opened.
+
+	// Records that the bad window was actually hit, once per round so a full loadout's worth of items
+	// can't spam the log. If this never appears in a round's runtimes, the race is not happening and
+	// the forced initialization below is only insurance.
+	var/static/logged_early_detection = FALSE
+	if(!logged_early_detection && SSatoms.initialized == INITIALIZATION_INSSATOMS)
+		logged_early_detection = TRUE
+		stack_trace("Loadout reskin detection ran before SSatoms finished initializing, so the \
+			preferences asset was built early. Detection is forced through regardless. Logged once per round.")
+	var/init_source = "[type] reskin detection"
+	SSatoms.set_tracked_initalized(INITIALIZATION_INNEW_REGULAR, init_source)
 	var/obj/item/probe = new item_path(null)
+	SSatoms.clear_tracked_initalize(init_source)
 	// Some items delete themselves during Initialize (a lewd NIFSoft datadisk does exactly this when
 	// the lewd content config is off), and new() still hands back the reference. Touching it would
 	// runtime, and qdel'ing it a second time would throw.
