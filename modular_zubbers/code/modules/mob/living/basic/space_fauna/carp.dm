@@ -33,7 +33,7 @@
 
 	var/is_anomaly_containable = FALSE
 	var/anomaly_destabilize_threshhold = 0.5
-	var/obj/item/assembly/signaler/anomaly/anomaly_type = /obj/item/assembly/signaler/anomaly/dimension
+	var/anomaly_type = /obj/item/assembly/signaler/anomaly/dimension
 
 /mob/living/basic/carp/metacarp/Initialize(mapload)
 	.  ..()
