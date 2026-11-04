@@ -130,10 +130,11 @@
 	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.8, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/engineering/update_extras(mob/living/wearer)
-	vision_flags = display_active ? SEE_TURFS : NONE
+	ADD_TRAIT(wearer, TRAIT_MESON_VISION, REF(src))
 	wearer.update_sight()
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/engineering/clear_extras(mob/living/wearer)
+	REMOVE_TRAIT(wearer, TRAIT_MESON_VISION, REF(src))
 	wearer.update_sight()
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/service
@@ -229,7 +230,6 @@
 	wearer.remove_status_effect(/datum/status_effect/agent_pinpointer/executive/booze)
 	wearer.remove_status_effect(/datum/status_effect/agent_pinpointer/executive/fortune)
 
-	vision_flags = NONE
 	color_cutoffs = null
 	REMOVE_TRAIT(wearer, TRAIT_THERMAL_VISION, REF(src))
 	qdel(wearer.GetComponent(/datum/component/money_sense/customs))
@@ -239,7 +239,7 @@
 
 	switch(mode)
 		if(EXECUTIVE_MODE_MESON)
-			vision_flags = SEE_TURFS
+			ADD_TRAIT(wearer, TRAIT_MESON_VISION, REF(src))
 			color_cutoffs = list(5, 15, 5)
 		if(EXECUTIVE_MODE_BOOZE)
 			wearer.apply_status_effect(/datum/status_effect/agent_pinpointer/executive/booze)
@@ -254,9 +254,9 @@
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/command/clear_extras(mob/living/wearer)
 	wearer.remove_status_effect(/datum/status_effect/agent_pinpointer/executive/booze)
 	wearer.remove_status_effect(/datum/status_effect/agent_pinpointer/executive/fortune)
-	vision_flags = NONE
 	color_cutoffs = null
 	REMOVE_TRAIT(wearer, TRAIT_THERMAL_VISION, REF(src))
+	REMOVE_TRAIT(wearer, TRAIT_MESON_VISION, REF(src))
 	qdel(wearer.GetComponent(/datum/component/money_sense/customs))
 	wearer.update_sight()
 
