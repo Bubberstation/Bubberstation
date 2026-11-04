@@ -45,7 +45,7 @@
 		restricted_roles |= JOB_ASSISTANT
 	return blacklist
 
-/datum/round_event_control/antagonist/can_spawn_event(players_amt, allow_magic = FALSE, popchecks = TRUE)
+/datum/round_event_control/antagonist/can_spawn_event(players_amt, allow_magic = FALSE, log_for_admins = FALSE, popchecks = TRUE)
 	. = ..()
 	if(!.)
 		return

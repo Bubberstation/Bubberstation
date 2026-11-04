@@ -50,7 +50,7 @@
 	remove_occurence()
 	var/players_amt = SSgamemode.active_crew //Makes events based on active crew instead of active players.
 	///If we can't spawn the scheduled event, refund it.
-	if(!ignores_checks && !event.can_spawn_event(players_amt)) //FALSE argument to ignore popchecks, to prevent scheduled events from failing from people dying/cryoing etc.
+	if(!ignores_checks && !event.can_spawn_event(players_amt, log_for_admins = TRUE)) //FALSE argument to ignore popchecks, to prevent scheduled events from failing from people dying/cryoing etc.
 		message_admins("Scheduled Event: [event] was unable to run and has been refunded.")
 		log_admin("Scheduled Event: [event] was unable to run and has been refunded.")
 

@@ -15,7 +15,7 @@
 		/datum/event_admin_setup/listed_options/weather_thunder,
 	)
 
-/datum/round_event_control/anomaly/anomaly_weather/can_spawn_event(players_amt, allow_magic = FALSE)
+/datum/round_event_control/anomaly/anomaly_weather/can_spawn_event(players_amt, allow_magic = FALSE, log_for_admins = FALSE)
 	// weathers have some funky global state that may break if multiple are running. better safe than sorry.
 	return ..() && !length(SSweather.processing)
 

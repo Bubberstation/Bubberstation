@@ -11,7 +11,7 @@
 	min_wizard_trigger_potency = 6
 	max_wizard_trigger_potency = 7
 
-/datum/round_event_control/nightmare/can_spawn_event(players_amt, allow_magic = FALSE)
+/datum/round_event_control/nightmare/can_spawn_event(players_amt, allow_magic = FALSE, log_for_admins = FALSE)
 	. = ..()
 	if(!.)
 		return FALSE

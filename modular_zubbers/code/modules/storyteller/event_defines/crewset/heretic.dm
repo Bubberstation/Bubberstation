@@ -21,7 +21,7 @@
 	name = "Midround Acolytes"
 	roundstart = FALSE
 
-/datum/round_event_control/antagonist/solo/heretic/midround/can_spawn_event(players_amt, allow_magic, popchecks)
+/datum/round_event_control/antagonist/solo/heretic/midround/can_spawn_event(players_amt, allow_magic, log_for_admins = FALSE, popchecks)
 	. = ..()
 	if (!.)
 		return FALSE

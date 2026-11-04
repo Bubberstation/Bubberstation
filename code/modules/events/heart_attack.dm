@@ -12,7 +12,7 @@
 	///Candidates for receiving a healthy dose of heart disease
 	var/list/heart_attack_candidates = list()
 
-/datum/round_event_control/heart_attack/can_spawn_event(players_amt, allow_magic = FALSE)
+/datum/round_event_control/heart_attack/can_spawn_event(players_amt, allow_magic = FALSE, log_for_admins = FALSE)
 	. = ..()
 	if(!.)
 		return .

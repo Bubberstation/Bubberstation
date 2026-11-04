@@ -15,7 +15,7 @@
 	if(max_occurrences > 0)
 		max_occurrences += rand(-1, 1)
 
-/datum/round_event_control/dynamic_tweak/can_spawn_event(players_amt, allow_magic)
+/datum/round_event_control/dynamic_tweak/can_spawn_event(players_amt, allow_magic, log_for_admins = FALSE)
 	return ..() && SSdynamic.antag_events_enabled && !EMERGENCY_PAST_POINT_OF_NO_RETURN
 
 /datum/round_event/dynamic_tweak
