@@ -149,16 +149,16 @@
 	digi_icon_state = "boxers_stripe_threecolor"
 	greyscale_colors = "#D62626#EEEEEE#2E26D6"
 
+/datum/sprite_accessory/clothing/underwear/female_lace
+	name = "Lace Bikini"
+	icon_state = "female_lace"
+	gender = FEMALE
+
 /* BUBBER EDIT REMOVAL START - Underwear and bra split
 //FEMALE UNDERWEAR
 /datum/sprite_accessory/clothing/underwear/female_bikini
 	name = "Bikini"
 	icon_state = "female_bikini"
-	gender = FEMALE
-
-/datum/sprite_accessory/clothing/underwear/female_lace
-	name = "Lace Bikini"
-	icon_state = "female_lace"
 	gender = FEMALE
 
 /datum/sprite_accessory/clothing/underwear/female_bralette
@@ -456,12 +456,13 @@
 	icon_state = "whiteshortsleeve"
 	gender = NEUTER
 
-/* BUBBER EDIT REMOVAL START - Underwear and bra split
+
 /datum/sprite_accessory/clothing/undershirt/sports_bra
 	name = "Sports Bra"
 	icon_state = "sports_bra"
 	gender = NEUTER
 
+/* BUBBER EDIT REMOVAL START - Underwear and bra split
 /datum/sprite_accessory/clothing/undershirt/sports_bra2
 	name = "Sports Bra (Alt)"
 	icon_state = "sports_bra_alt"
