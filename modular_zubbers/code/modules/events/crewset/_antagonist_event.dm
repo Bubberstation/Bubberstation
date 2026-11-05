@@ -130,11 +130,24 @@
 	restricted_roles = cast_control.restricted_roles
 
 /datum/round_event/antagonist/proc/candidate_setup(datum/round_event_control/antagonist/cast_control)
-	var/list/candidates = cast_control.get_candidates()
+	var/list/possible_candidates = cast_control.get_candidates()
+	var/do_prompt = should_prompt_candidates(cast_control)
+	if(do_prompt)
+		possible_candidates = prompt_candidates(cast_control, possible_candidates)
+
+	if(!length(possible_candidates))
+		if(do_prompt)
+			message_admins(span_yellowteamradio("Nobody accepted the [cast_control.name] prompt."))
+			log_game("Nobody accepted the [cast_control.name] antagonist prompt.")
+			return
+		message_admins(span_yellowteamradio("[cast_control.name] failed to find any candidates!"))
+		log_game("[cast_control.name] failed to find any candidates!")
+		return
+
 	for(var/i in 1 to antag_count)
-		if(!candidates.len)
+		if(!length(possible_candidates)) //All out of options.
 			break
-		var/mob/candidate = pick_n_take(candidates)
+		var/mob/candidate = pick_n_take(possible_candidates)
 		setup_minds += candidate.mind
 		candidate_roles_setup(candidate)
 
