@@ -41,7 +41,10 @@
 		capacity for modification to satiate even the most overfunded of \
 		peacekeeper forces. Inevitably, the weapon made its way into civilian \
 		markets alongside its sale to several military branches that also \
-		saw value in having a heavy shotgun."
+		saw value in having a heavy shotgun. \n\n A recent development are \
+		renegotiated trade deals with the production company, leading Nanotrasen to \
+		desire a return to their in-house built 'woodstock' pattern \
+		shotguns."
 
 /obj/item/gun/ballistic/shotgun/riot/sol/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_CARWO)
@@ -85,7 +88,7 @@
 	worn_icon_state = "renosterlesslethal"
 	inhand_icon_state = "renosterlesslethal"
 	examine_lore = "The Ystervark is a Renoster rebuilt by Carwo for crowd control contracts. \
-		The receiver is restricted to less-lethal and hunting loads, and the \
+		The receiver is restricted to less-lethal and breaching loads, and the \
 		unthreaded barrel will not take muzzle attachments. The orange \
 		furniture is there so nobody mistakes it for the military model. \
 		Police departments and station security buy it for one reason: a \
