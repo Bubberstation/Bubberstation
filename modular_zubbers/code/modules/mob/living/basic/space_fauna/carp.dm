@@ -34,8 +34,9 @@
 	var/is_anomaly_containable = FALSE
 	var/anomaly_destabilize_threshhold = 0.5
 	var/anomaly_type = /obj/item/assembly/signaler/anomaly/dimensional
+
 /mob/living/basic/carp/metacarp/Initialize(mapload)
-	.  ..()
+	. = ..()
 	spawn_carp_after_delay()
 
 /mob/living/basic/carp/metacarp/revive(full_heal_flags = NONE, excess_healing = 0, force_grab_ghost = FALSE)
