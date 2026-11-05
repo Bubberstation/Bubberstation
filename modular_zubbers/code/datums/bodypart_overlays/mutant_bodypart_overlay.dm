@@ -75,6 +75,9 @@
 	if(alpha != ALPHA_OPAQUE)
 		. += "[alpha]"
 
+	if(limb?.owner)
+		. += limb.owner.get_custom_shading_key()
+
 	if(emissive_eligibility_by_color_index)
 		for(var/emissive_boolean in emissive_eligibility_by_color_index)
 			. += emissive_boolean
@@ -190,20 +193,30 @@
 
 		var/image/overlay = overlays[index_to_color]
 
+		var/layer_color
 		switch(sprite_datum.color_src)
 			if(USE_ONE_COLOR)
-				overlay.color = islist(draw_color) ? draw_color[i] : draw_color
+				layer_color = islist(draw_color) ? draw_color[i] : draw_color
 
 			if(USE_MATRIXED_COLORS)
 				if (i > length(draw_color))
-					overlay.color = islist(draw_color) ? draw_color[length(draw_color)] : draw_color
+					layer_color = islist(draw_color) ? draw_color[length(draw_color)] : draw_color
 				else
-					overlay.color = islist(draw_color) ? draw_color[i] : draw_color
+					layer_color = islist(draw_color) ? draw_color[i] : draw_color
 				i++
 
 			else
-				overlay.color = limb?.color
+				layer_color = limb?.color
 
+		// Custom shading, only for greyscale layers and never on husks
+		if(sprite_datum.color_src && limb?.owner && !limb.is_husked)
+			layer_color = limb.owner.get_custom_shading(layer_color)
+			// Color matrices on these overlays do not render reliably, so the shading is baked into the icon instead
+			if(islist(layer_color))
+				overlay.icon = get_custom_shaded_icon(overlay.icon, overlay.icon_state, layer_color)
+				layer_color = null
+
+		overlay.color = layer_color
 		overlay.alpha = alpha
 
 /**
