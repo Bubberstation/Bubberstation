@@ -439,13 +439,14 @@
 
 /datum/voucher_set/security/sidearm/pocketrevolver
 	name = "Protector Revolver"
-	description = "A standard issue revolver for Nanotrasen security forces. Comes with two speedloaders of ammunition."
+	description = "A standard issue revolver for Nanotrasen security forces. Comes with two speedloaders of ammunition as well as a murphy magazine to rapidly top up the speedloaders."
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "niimpocketrevolver_sec"
 	set_items = list(
 		/obj/item/gun/ballistic/revolver/protector_revolver,
 		/obj/item/ammo_box/speedloader/security,
 		/obj/item/ammo_box/speedloader/security,
+		/obj/item/ammo_box/magazine/security,
 		)
 
 /datum/voucher_set/security/sidearm/laserpistol
