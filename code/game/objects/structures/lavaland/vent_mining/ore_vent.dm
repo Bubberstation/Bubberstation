@@ -283,12 +283,14 @@
  * Called after the vent has been tapped by a scanning device.
  * Will summon a number of waves of mobs, ending in the vent being tapped after the final wave.
  */
+
+// BUBBER EDIT START at SPAWN_TIME. ORIGINAL NUMBER IS 7.5
 /obj/structure/ore_vent/proc/start_wave_defense()
 	AddComponent(\
 		/datum/component/spawner, \
 		spawn_types = defending_mobs, \
-		spawn_time = 7.5 SECONDS, \
-		max_spawned = 10, \
+		spawn_time = 10 SECONDS, \
+		max_spawned = 5, \
 		max_spawn_per_attempt = round(boulder_size/5), \
 		max_spawn_types_per_attempt = 2, \
 		spawn_text = "emerges to assault", \
@@ -302,6 +304,7 @@
 		spawn_windup = 0.9 SECONDS, \
 		linked_mob = node, \
 	)
+// BUBBER EDIT END AT MAX_SPAWNED, ORIGINAL NUMBER 10
 	COOLDOWN_START(src, wave_cooldown, INFINITY)
 	RegisterSignal(src, COMSIG_VENT_WAVE_CONCLUDED, PROC_REF(handle_wave_conclusion))
 	update_appearance(UPDATE_ICON_STATE)
