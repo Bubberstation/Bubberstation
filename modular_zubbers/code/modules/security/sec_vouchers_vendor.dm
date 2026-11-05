@@ -449,7 +449,7 @@
 		)
 
 /datum/voucher_set/security/sidearm/laserpistol
-	name = "Type 5/C laser Pistol"
+	name = "Type 5/C Laser Pistol"
 	description = "A compact version of a laser rifle, sacrifices some stopping power and capacity compared to a full-scale rifle, but gaining carriability and faster charging."
 	icon = 'icons/obj/weapons/guns/energy.dmi'
 	icon_state = "laser_pistol"
