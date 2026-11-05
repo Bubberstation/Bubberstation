@@ -1,5 +1,5 @@
 /obj/machinery/power/rtg/portable
-	name = "radioisotope thermoelectric generator"
+	name = "radioisotope thermoelectric generator (RTG)"
 	desc = "The ultimate in 'middle of nowhere' power generation. Unlike standard RTGs, this particular \
 		design of generator has forgone the heavy radiation shielding that most RTG designs include. \
 		In better news, these tend to be pretty good with making a passable trickle of power for any \
@@ -30,7 +30,7 @@
 
 // Item for creating the arc furnace or carrying it around
 /obj/item/flatpacked_machine/rtg
-	name = "flat-packed radioisotope thermoelectric generator"
+	name = "flat-packed radioisotope thermoelectric generator (RTG)"
 	icon_state = "rtg_packed"
 	type_to_deploy = /obj/machinery/power/rtg/portable
 	custom_materials = list(
