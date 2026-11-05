@@ -10,7 +10,14 @@
 	new /obj/item/aquarium_prop/seaweed(src)
 
 	//They should last a whole shift with this much food unless
-	reagents.add_reagent(/datum/reagent/consumable/nutriment, 25)
+	reagents.add_reagent(/datum/reagent/consumable/nutriment, 50)
+
+/obj/structure/aquarium/bioelec_gen/prefilled/engine_ready
+
+/obj/structure/aquarium/bioelec_gen/prefilled/engine_ready/Initialize(mapload)
+	. = ..()
+	for(var/i = 0; i < 4; i ++)
+		new /obj/item/fish/jumpercable/(src)
 
 /obj/item/fish/jumpercable/karl
 	name = "Karl"
@@ -32,7 +39,6 @@
 
 /obj/item/fish/jumpercable/karl/frank
 	name = "Frank"
-
 
 /obj/item/storage/fish_case/syndicate/persistence
 	name = "ominous fish case"
