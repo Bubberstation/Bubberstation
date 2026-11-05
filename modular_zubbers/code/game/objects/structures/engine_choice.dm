@@ -205,6 +205,7 @@
 	new /obj/machinery/power/supermatter_crystal/engine(center_turf)
 
 //Eels Engine
+// This probably needs to be nerfed -- or replaced, if there exists some other power source that can be trivially spawned in and doesn't need upkeep
 /obj/machinery/engine_choice/proc/merge_eels(turf/center_turf)
 	var/obj/fishtank = new /obj/structure/aquarium/bioelec_gen/prefilled/engine_ready(center_turf)
 
