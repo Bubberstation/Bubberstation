@@ -365,7 +365,7 @@
 /// befitting for a death such as this.
 /datum/brain_trauma/severe/death_consequences/proc/and_so_your_story_ends()
 	var/mob/dead/observer/owner_ghost = owner.get_ghost()
-	var/mob/living/carbon/human/notnullowner = owner_ghost.mind?.current //dont ask me why but it doesnt work any other way and i tried other ways
+	var/mob/living/carbon/human/notnullowner = owner_ghost?.mind?.current //dont ask me why but it doesnt work any other way and i tried other ways
 	// this is a sufficiently dramatic event for some dramatic to_chats
 	var/visible_message
 	var/self_message
@@ -386,7 +386,7 @@
 		self_message = span_revendanger("Your mind suddenly clouds, and you lose control of all thought and function. You try to squeeze your eyes shut, but you forget \
 		where they are only a split second later. You drift away from yourself, further and further, until it's impossible to return...")
 
-	if(isnull(owner_ghost))
+	if(isnull(owner_ghost) || isnull(notnullowner))
 		return
 	owner.ghostize()
 	owner_ghost.stay_dead()
