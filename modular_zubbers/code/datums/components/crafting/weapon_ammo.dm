@@ -24,6 +24,7 @@
 
 /datum/crafting_recipe/improvised_shell_box
 	name = "Improvised Shell Box"
+	desc = "Pry the chip out of an empty shotgun shell box so it takes improvised shells."
 	result = /obj/item/ammo_box/advanced/s12gauge/junk/empty
 	reqs = list(
 		/obj/item/ammo_box/advanced/s12gauge = 1,
@@ -33,6 +34,7 @@
 		/obj/item/ammo_box/advanced/s12gauge/junk/empty,
 	)
 	tool_behaviors = list(TOOL_SCREWDRIVER)
+	steps = list("Any empty shotgun shell box works, not just slug boxes")
 	time = 2 SECONDS
 	category = CAT_WEAPON_AMMO
 	// the box you started with decides the materials, so there's no fixed value to match

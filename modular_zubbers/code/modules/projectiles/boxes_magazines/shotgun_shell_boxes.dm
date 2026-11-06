@@ -47,7 +47,7 @@
 	ammo_type = /obj/item/ammo_casing/shotgun/buckshot/milspec
 
 /obj/item/ammo_box/advanced/s12gauge/executioner
-	name = "Expanding Slug ammo box"
+	name = "Executioner Slug ammo box"
 	desc = "A box of 7 slugs, you can't make out a manufacturer, but the badass skull on the box tells you they're pretty serious."
 	icon_state = "executioner"
 	ammo_type = /obj/item/ammo_casing/shotgun/executioner
