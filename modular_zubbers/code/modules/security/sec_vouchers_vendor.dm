@@ -19,6 +19,10 @@
 	name = "security utility voucher"
 	icon_state = "security_voucher_utility"
 
+/obj/item/security_voucher/sidearm
+	name = "security sidearm voucher"
+	icon_state = "security_voucher_sidearm"
+
 #define HOS_PRIMARY_MARKINGS " This one's markings indicate that it was issued to the Head of Security."
 
 /proc/retarget_hos_primary_objectives(obj/item/weapon_path, objective_name)
@@ -228,25 +232,30 @@
 	. = ..()
 	AddElement(/datum/element/voucher_redeemer, /obj/item/security_voucher/primary, /datum/voucher_set/security/primary)
 	AddElement(/datum/element/voucher_redeemer, /obj/item/security_voucher/utility, /datum/voucher_set/security/utility)
+	AddElement(/datum/element/voucher_redeemer, /obj/item/security_voucher/sidearm, /datum/voucher_set/security/sidearm)
 
 /obj/machinery/rnd/production/techfab/Initialize(mapload)
 	. = ..()
 
 	AddElement(/datum/element/voucher_redeemer, /obj/item/security_voucher/primary, /datum/voucher_set/security/primary)
 	AddElement(/datum/element/voucher_redeemer, /obj/item/security_voucher/utility, /datum/voucher_set/security/utility)
+	AddElement(/datum/element/voucher_redeemer, /obj/item/security_voucher/sidearm, /datum/voucher_set/security/sidearm)
 
 /obj/machinery/rnd/production/protolathe/Initialize(mapload)
 	. = ..()
 
 	AddElement(/datum/element/voucher_redeemer, /obj/item/security_voucher/primary, /datum/voucher_set/security/primary)
 	AddElement(/datum/element/voucher_redeemer, /obj/item/security_voucher/utility, /datum/voucher_set/security/utility)
+	AddElement(/datum/element/voucher_redeemer, /obj/item/security_voucher/sidearm, /datum/voucher_set/security/sidearm)
 
 /datum/voucher_set/security
 	blackbox_key = "security_voucher_redeemed"
 
 /datum/voucher_set/security/primary
-
 /datum/voucher_set/security/utility
+/datum/voucher_set/security/sidearm
+
+// Primary vouchers
 
 /datum/voucher_set/security/primary/disabler
 	name = "Disabler"
@@ -331,6 +340,8 @@
 		/obj/item/ammo_box/magazine/recharge/ntusp,
 		)
 
+// Utility vouchers
+
 /datum/voucher_set/security/utility/sec_projector
 	name = "Security Holobarrier Projector"
 	description = "A holographic projector that creates holographic security barriers along with holographic handcuffs."
@@ -414,3 +425,35 @@
 		/datum/computer_file/program/records/security,
 		/datum/computer_file/program/secureye,
 	)
+
+// Sidearm vouchers
+
+/datum/voucher_set/security/sidearm/murphy
+	name = "'Murphy' Service Pistol"
+	description = "A standard issue pistol for Nanotrasen security forces. Comes with two magazines of ammunition, a revolutionary quick-reload system."
+	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/gunsets.dmi'
+	icon_state = "guncase"
+	set_items = list(
+		/obj/item/storage/toolbox/guncase/skyrat/pistol/sec_glock
+		)
+
+/datum/voucher_set/security/sidearm/pocketrevolver
+	name = "Protector Revolver"
+	description = "A standard issue revolver for Nanotrasen security forces. Comes with two speedloaders of ammunition as well as a murphy magazine to rapidly top up the speedloaders."
+	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
+	icon_state = "niimpocketrevolver_sec"
+	set_items = list(
+		/obj/item/gun/ballistic/revolver/protector_revolver,
+		/obj/item/ammo_box/speedloader/security,
+		/obj/item/ammo_box/speedloader/security,
+		/obj/item/ammo_box/magazine/security,
+		)
+
+/datum/voucher_set/security/sidearm/laserpistol
+	name = "Type 5/C Laser Pistol"
+	description = "A compact version of a laser rifle, sacrifices some stopping power and capacity compared to a full-scale rifle, but gaining carriability and faster charging."
+	icon = 'icons/obj/weapons/guns/energy.dmi'
+	icon_state = "laser_pistol"
+	set_items = list(
+		/obj/item/gun/energy/laser/pistol,
+		)
