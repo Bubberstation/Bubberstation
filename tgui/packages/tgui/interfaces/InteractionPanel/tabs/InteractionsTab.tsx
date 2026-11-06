@@ -18,8 +18,6 @@ type Interaction = {
   descriptions: Record<string, string>;
   colors: Record<string, string>;
   self: string;
-  ref_self: string;
-  ref_user: string;
   block_interact: BooleanLike;
 };
 
@@ -35,8 +33,6 @@ export const InteractionsTab = (props: InteractionsTabProps) => {
     interactions = {},
     descriptions = {},
     colors = {},
-    ref_self,
-    ref_user,
     block_interact,
   } = data;
   const { searchText, showCategories } = props;
@@ -60,8 +56,6 @@ export const InteractionsTab = (props: InteractionsTabProps) => {
         onClick={() =>
           act('interact', {
             interaction: interaction,
-            selfref: ref_self,
-            userref: ref_user,
           })
         }
       >

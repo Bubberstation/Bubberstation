@@ -8,8 +8,6 @@ type LewdSlot = {
   name: string;
   item_name: string;
   lewd_slots: LewdSlot[];
-  ref_self: string;
-  ref_user: string;
 };
 
 type LewdItemsTabPropsData = {
@@ -18,7 +16,7 @@ type LewdItemsTabPropsData = {
 
 export const LewdItemsTab = (props: LewdItemsTabPropsData) => {
   const { act, data } = useBackend<LewdSlot>();
-  const { lewd_slots = [], ref_self, ref_user } = data;
+  const { lewd_slots = [] } = data;
   const { searchText } = props;
   const searchLower = searchText.toLowerCase();
 
@@ -40,8 +38,6 @@ export const LewdItemsTab = (props: LewdItemsTabPropsData) => {
                   onClick={() =>
                     act('remove_lewd_item', {
                       item_slot: slot.name,
-                      selfref: ref_self,
-                      userref: ref_user,
                     })
                   }
                   color="pink"
