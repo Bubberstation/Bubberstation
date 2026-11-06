@@ -121,5 +121,5 @@ GAME_VERB(/client, emote_panel, "Emote Panel", "IC") // BUBBER EDIT CHANGE - PRE
 
 // BUBBER EDIT ADDITION - Add back missing print levels IC button
 GAME_VERB(/client, view_skills, "View Skills", "IC")
-	mind?.print_levels(src)
+	mob.mind?.print_levels(src)
 // BUBBER EDIT END
