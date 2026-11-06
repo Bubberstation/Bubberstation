@@ -71,13 +71,13 @@ GLOBAL_LIST_INIT(szot_case_blurbs, list(
 	var/case_locked = TRUE
 	/// Has a weapon been picked from the case yet
 	var/gun_chosen = FALSE
-	/// Guns offered by the case, associated to the magazine that comes with them (null for the Bobr, it gets shell boxes instead)
 	/// Whether the lock has been forced open
 	var/lock_broken = FALSE
 	/// Cosmetic damage tally. The case is genuinely indestructible, so nothing here is real integrity;
 	/// it exists so the case can complain convincingly and so the lock has something to give way to.
 	var/scuffing = 0
 
+	/// Guns offered by the case, associated to the magazine that comes with them
 	var/static/list/weapon_choices = list(
 		/obj/item/gun/ballistic/automatic/lanca/jastrzab = /obj/item/ammo_box/magazine/lanca/extended,
 		/obj/item/gun/ballistic/revolver/aniolek = null,
@@ -261,8 +261,6 @@ GLOBAL_LIST_INIT(szot_case_blurbs, list(
 		return
 	else if(ispath(picked_gun, /obj/item/minespawner/straznik))
 		unpack_mines()
-	else
-		unpack_shells()
 
 	balloon_alert(user, "case unpacked")
 	atom_storage.show_contents(user)
@@ -279,44 +277,6 @@ GLOBAL_LIST_INIT(szot_case_blurbs, list(
 		new /obj/item/ammo_box/c310_cargo_box/piercing(src)
 	else
 		new /obj/item/ammo_box/c310_cargo_box(src)
-
-/// The Bobr feeds from shell boxes instead of magazines. One guaranteed beanbag box,
-/// one box of workhorse lethals, and one surprise from the bottom of the crate.
-/obj/item/storage/toolbox/guncase/skyrat/szot_warstory/proc/unpack_shells()
-	new /obj/item/ammo_box/advanced/s12gauge/bean(src)
-
-	var/workhorse_box = pick_weight(list(
-		/obj/item/ammo_box/advanced/s12gauge/buckshot = 5,
-		/obj/item/ammo_box/advanced/s12gauge = 5,
-		/obj/item/ammo_box/advanced/s12gauge/hunter = 2,
-		/obj/item/ammo_box/advanced/s12gauge/frangible = 1,
-		/obj/item/ammo_box/advanced/s12gauge/flechette = 1,
-	))
-	new workhorse_box(src)
-
-	var/sleeper_box = pick_weight(list(
-		/obj/item/ammo_box/advanced/s12gauge/buckshot = 6,
-		/obj/item/ammo_box/advanced/s12gauge = 4,
-		/obj/item/ammo_box/advanced/s12gauge/flechette = 3,
-		/obj/item/ammo_box/advanced/s12gauge/honkshot = 2,
-		/obj/item/ammo_box/advanced/s12gauge/incendiary = 2,
-		/obj/item/ammo_box/advanced/s12gauge/dragonsbreath = 2,
-		/obj/item/ammo_box/advanced/s12gauge/laser = 2,
-		/obj/item/ammo_box/advanced/s12gauge/pulse = 2,
-	))
-	new sleeper_box(src)
-
-// Donk Co's contribution to the 12 gauge arms race, boxed for your convenience
-
-/obj/item/ammo_box/advanced/s12gauge/donk
-	name = "\improper Donk Spike ammo box"
-	desc = "A box of 7 'Donk Spike' shells. Each shell holds a fistful of plastic flechettes nobody else wanted. Looks like a donk-pocket! \
-		Eat and/or microwave at your own risk. Donk Co assumes no liability for damaged teeth or bodily tissue."
-	icon = 'modular_zubbers/icons/obj/donk_shotbox.dmi'
-	icon_state = "donk"
-	ammo_type = /obj/item/ammo_casing/shotgun/flechette/donk
-	// must match /datum/design/advancedgaugeboxes_donk exactly or the design_mats unit test fails
-	custom_materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 35, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 10)
 
 #undef ANIOLEK_ARMOR_PIERCING_CHANCE
 #undef SZOT_CASE_SPARE_MAGAZINES

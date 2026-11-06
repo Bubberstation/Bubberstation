@@ -12,7 +12,7 @@
 
 /obj/item/ammo_box/advanced/s12gauge/laser
 	name = "Scatterlaser ammo box"
-	desc = "A box of 7 laser shells. Fires highly lethal laser shell."
+	desc = "A box of 7 laser shells. These fire highly lethal laser shots."
 	icon_state = "laser"
 	ammo_type = /obj/item/ammo_casing/shotgun/scatterlaser
 
@@ -48,7 +48,7 @@
 
 /obj/item/ammo_box/advanced/s12gauge/dragonsbreath
 	name = "Dragon's breath ammo box"
-	desc = "A box of 7 Dragon's breath shells. Each shell contains plasma inside to create a massive trailing flame, excel at collateral damage."
+	desc = "A box of 7 Dragon's breath shells. Each shell contains plasma that creates a massive trailing flame, excellent at collateral damage."
 	icon_state = "dragonsbreath"
 	ammo_type = /obj/item/ammo_casing/shotgun/dragonsbreath
 
@@ -66,20 +66,25 @@
 
 /obj/item/ammo_box/advanced/s12gauge/frangible
 	name = "Frangible Slug ammo box"
-	desc = "A box of 7 Frangible slug. It's able to punches through windows, airlocks whatever with ease. Less-than-effective against people"
+	desc = "A box of 7 frangible slugs. These punch through windows and airlocks with ease, but are less effective against people."
 	icon_state = "fslug"
 	ammo_type = /obj/item/ammo_casing/shotgun/frangible
 
-//The one below here has a destruction damage of 200, it two shot most mech, use the one above
 /obj/item/ammo_box/advanced/s12gauge/breaching
 	name = "Breaching Slug ammo box"
-	desc = "A box of 7 Breaching slug. It's able to punches through- quite literally anything with ease."
-	icon_state = "fslug"
-	ammo_type = /obj/item/ammo_casing/shotgun/frangible
+	desc = "A box of 7 breaching slugs. These punch through quite literally anything with ease."
+	icon_state = "breacher"
+	ammo_type = /obj/item/ammo_casing/shotgun/breacher
 
 //This is intended for ERT! Have fun with it
 /obj/item/ammo_box/advanced/s12gauge/pulse
 	name = "Pulse Slug ammo box"
-	desc = "A box of 7 Pulse slug. It's able to punches through structures and anything behind it."
+	desc = "A box of 7 pulse slugs. These punch through structures and anything behind them."
 	icon_state = "pulse"
 	ammo_type = /obj/item/ammo_casing/shotgun/pulseslug
+
+/obj/item/ammo_box/advanced/s12gauge/antitide
+	name = "Stardust ammo box"
+	desc = "A box of 7 stardust shells. You aren't sure why they're called that."
+	icon_state = "antitide"
+	ammo_type = /obj/item/ammo_casing/shotgun/antitide

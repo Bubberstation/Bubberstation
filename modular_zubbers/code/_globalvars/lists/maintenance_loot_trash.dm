@@ -26,6 +26,7 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 	list(
 		/obj/item/ammo_casing/spent = 25,
 		/obj/item/ammo_casing/shotgun/buckshot/spent = 25,
+		/obj/item/ammo_box/advanced/s12gauge/spent_buckshot = 5,
 		/obj/item/broken_bottle = 50,
 		/obj/item/grown/bananapeel = 50,
 		/obj/item/grown/corncob = 25,

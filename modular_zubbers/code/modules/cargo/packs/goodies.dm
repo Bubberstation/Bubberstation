@@ -285,3 +285,8 @@
 	cost = PAYCHECK_COMMAND * 1.5
 	contains = list(/obj/item/ammo_box/magazine/lanca)
 
+/datum/supply_pack/goody/spent_buckshot
+	name = "Spent Buckshot Single-Pack"
+	desc = "A box of 7 spent buckshot shells, sealed and shipped like they're brand new."
+	cost = PAYCHECK_LOWER
+	contains = list(/obj/item/ammo_box/advanced/s12gauge/spent_buckshot)

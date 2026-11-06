@@ -26,9 +26,6 @@
 /obj/item/ammo_casing/shotgun/techshell
 	can_be_printed = FALSE // techshell... casing! so not really usable on its own but if you're gonna make these go raid a seclathe.
 
-/obj/item/ammo_casing/shotgun/improvised
-	can_be_printed = FALSE // this is literally made out of scrap why would you use this if you have a perfectly good ammolathe
-
 /obj/item/ammo_casing/shotgun/dart/bioterror
 	can_be_printed = FALSE // PRELOADED WITH TERROR CHEMS MAYBE LET'S NOT
 
