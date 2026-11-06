@@ -37,9 +37,9 @@
 	cost = PAYCHECK_COMMAND * 18 //renosters are a straight upgrade vs. woodstocks, this needs to be significantly more expensive
 
 /datum/supply_pack/goody/renoster_shotgun_lesslethal
-	name = "Riot Renoster Shotgun Single-Pack"
-	desc = "A common modern shotgun used by Terran Government Police, modified to only fire less-lethal rounds. Accessories not included."
-	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal)
+	name = "Ystervark LTL Shotgun Single-Pack"
+	desc = "The police refit of the Renoster, modified to only fire less-lethal rounds."
+	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/bean)
 	access_view = ACCESS_WEAPONS
 	cost = PAYCHECK_COMMAND * 8 //Even cheaper because its only less lethal
 

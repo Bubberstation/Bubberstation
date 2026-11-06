@@ -34,6 +34,18 @@
 
 	fire_delay = 8
 
+	// shown on examine_more, subtypes with a different role swap this out
+	var/examine_lore = "The Renoster was designed at its core as a police shotgun. \
+		As consequence, it holds all the qualities a police force would want \
+		in one. Large shell capacity, sturdy frame, while holding enough \
+		capacity for modification to satiate even the most overfunded of \
+		peacekeeper forces. Inevitably, the weapon made its way into civilian \
+		markets alongside its sale to several military branches that also \
+		saw value in having a heavy shotgun. \n\n A recent development are \
+		renegotiated trade deals with the production company, leading Nanotrasen to \
+		desire a return to their in-house built 'woodstock' pattern \
+		shotguns."
+
 /obj/item/gun/ballistic/shotgun/riot/sol/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_CARWO)
 
@@ -44,16 +56,7 @@
 /obj/item/gun/ballistic/shotgun/riot/sol/examine_more(mob/user)
 	. = ..()
 
-	. += "The Renoster was designed at its core as a police shotgun. \
-		As consequence, it holds all the qualities a police force would want \
-		in one. Large shell capacity, sturdy frame, while holding enough \
-		capacity for modification to satiate even the most overfunded of \
-		peacekeeper forces. Inevitably, the weapon made its way into civilian \
-		markets alongside its sale to several military branches that also \
-		saw value in having a heavy shotgun. \n\n A recent development are \
-		renegotiated trade deals with the production company, leading Nanotrasen to \
-		desire a return to their in-house built 'woodstock' pattern \
-		shotguns."
+	. += examine_lore
 
 	return .
 
@@ -76,12 +79,19 @@
 // Shotgun but it doesn't kill people (sometimes)
 
 /obj/item/gun/ballistic/shotgun/riot/sol/lesslethal
-	name = "\improper Riot Renoster Shotgun"
-	desc = "A modified version of the Renoster shotgun, this one only holds beanbag and rubber rounds. The barrel lacks the threading of the military version and cannot fit muzzle attachments."
+	name = "\improper Ystervark LTL Shotgun"
+	desc = "A police refit of the Renoster shotgun in safety orange, this one only holds rounds deemed sufficiently unexciting. The barrel lacks the threading of the military version and cannot fit muzzle attachments."
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/shot/less_lethal
 	can_suppress = FALSE
 
 	icon_state = "renosterlesslethal"
 	worn_icon_state = "renosterlesslethal"
 	inhand_icon_state = "renosterlesslethal"
+	examine_lore = "The Ystervark is a Renoster rebuilt by Carwo for crowd control contracts. \
+		The receiver is restricted to less-lethal and breaching loads, and the \
+		unthreaded barrel will not take muzzle attachments. The orange \
+		furniture is there so nobody mistakes it for the military model. \
+		Police departments and station security buy it for one reason: a \
+		riot gun that cannot be loaded with buckshot is a riot gun that \
+		does not end up on the evening news."
 
