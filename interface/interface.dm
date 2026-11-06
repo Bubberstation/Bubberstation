@@ -118,3 +118,8 @@ GAME_VERB(/client, emote_panel, "Emote Panel", "IC") // BUBBER EDIT CHANGE - PRE
 	if(!GLOB.emote_panel)
 		GLOB.emote_panel = new /datum/emote_panel()
 	GLOB.emote_panel.ui_interact(mob)
+
+// BUBBER EDIT ADDITION - Add back missing print levels IC button
+GAME_VERB(/client, view_skills, "View Skills", "IC")
+	mind?.print_levels(src)
+// BUBBER EDIT END
