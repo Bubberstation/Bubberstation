@@ -197,7 +197,7 @@
 	MODIFY_PHYSIOLOGY(loser, STAMINA, 4)
 
 	// already lost the limb shit
-
+	//BUH
 /datum/species/lycan/proc/on_baned(mob/living/carbon/human/baned, obj/source, mob/user)
 	SIGNAL_HANDLER
 
