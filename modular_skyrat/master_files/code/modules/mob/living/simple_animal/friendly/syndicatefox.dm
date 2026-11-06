@@ -12,7 +12,6 @@
 	icon_living = "syndifox"
 	icon_dead = "syndifox_dead"
 	speak_emote = list("geckers", "barks")
-	can_be_held = FALSE
 	butcher_results = list(/obj/item/food/meat/slab = 3)
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
@@ -31,3 +30,7 @@
 	faction = list(ROLE_SYNDICATE)
 	death_message = "beeps, its mechanical parts hissing before the chassis collapses in a loud thud."
 	gold_core_spawnable = FRIENDLY_SPAWN
+
+/mob/living/basic/pet/syndifox/Initialize(mapload)
+	. = ..()
+	RemoveElement(/datum/element/can_be_held)

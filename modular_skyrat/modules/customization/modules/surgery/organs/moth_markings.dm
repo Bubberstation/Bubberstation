@@ -14,8 +14,9 @@
 
 /datum/bodypart_overlay/mutant/moth_markings
 	feature_key = FEATURE_MOTH_MARKINGS
-	layers = EXTERNAL_FRONT | EXTERNAL_ADJACENT | EXTERNAL_BEHIND
+	layers = list(EXTERNAL_FRONT = BODY_FRONT_LAYER, EXTERNAL_ADJACENT = BODY_ADJ_LAYER, EXTERNAL_BEHIND = BODY_BEHIND_LAYER)
 	color_source = ORGAN_COLOR_OVERRIDE
+	offset_location = ENTIRE_BODY
 
 /datum/bodypart_overlay/mutant/moth_markings/override_color(rgb_value)
 	return draw_color

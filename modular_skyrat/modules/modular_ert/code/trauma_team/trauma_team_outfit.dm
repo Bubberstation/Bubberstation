@@ -44,9 +44,9 @@
 
 /obj/item/storage/box/medicells/PopulateContents()
 	. = ..()
-	new /obj/item/weaponcell/medical/brute(src)
-	new /obj/item/weaponcell/medical/burn(src)
-	new /obj/item/weaponcell/medical/toxin/tier_2(src)
+	new /obj/item/weaponcell/medical/tier_1/brute(src)
+	new /obj/item/weaponcell/medical/tier_1/burn(src)
+	new /obj/item/weaponcell/medical/tier_2/toxin(src)
 	new /obj/item/weaponcell/medical/utility/temperature(src)
 	new /obj/item/weaponcell/medical/utility/bed(src)
 

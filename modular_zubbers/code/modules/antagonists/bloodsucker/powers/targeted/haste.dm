@@ -10,6 +10,7 @@
 	button_icon_state = "power_speed"
 	prefire_message = "You prepare to dash!"
 	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
+	bloodsucker_check_flags = parent_type::bloodsucker_check_flags & ~BP_CANT_USE_IN_FRENZY
 	bloodcost = 6
 	cooldown_time = 12 SECONDS
 	target_range = 5

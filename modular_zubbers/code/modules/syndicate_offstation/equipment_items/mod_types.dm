@@ -60,7 +60,7 @@
 		A tag on the core reads 'This is the most expensive piece of equipment you'll ever handle in your life, \
 		do NOT lose it.' -Ruggero"
 	default_skin = "daimyo"
-	hardlight_theme = CONTRACTOR_RED
+	hardlight_color = CONTRACTOR_RED
 	armor_type = /datum/armor/mod_theme_daimyo
 	resistance_flags = FIRE_PROOF|ACID_PROOF|LAVA_PROOF
 	atom_flags = PREVENT_CONTENTS_EXPLOSION_1

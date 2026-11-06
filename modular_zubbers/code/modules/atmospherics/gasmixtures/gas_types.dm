@@ -1,11 +1,11 @@
 /datum/gas/tritium
-	purchaseable = TRUE
+	cargo_flags = GAS_DANGEROUS | GAS_EXPORTABLE | GAS_PURCHASABLE
 
 /datum/gas/goblin
 	id = GAS_GOBLIN
 	specific_heat = 2
 	name = "G-081-N"
-	dangerous = TRUE
+	cargo_flags = GAS_DANGEROUS
 	gas_overlay = "miasma_old"
 	moles_visible = MOLES_GAS_VISIBLE
 	fusion_power = 30

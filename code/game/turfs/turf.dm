@@ -57,9 +57,6 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	///Icon-smoothing variable to map a diagonal wall corner with a fixed underlay.
 	var/list/fixed_underlay = null
 
-	///Lumcount added by sources other than lighting datum objects, such as the overlay lighting component.
-	var/dynamic_lumcount = 0
-
 	///Bool, whether this turf will always be illuminated no matter what area it is in
 	///Makes it look blue, be warned
 	var/space_lit = FALSE
@@ -117,6 +114,13 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	var/skip_minimap_rendering = FALSE
 
 
+/// ChangeTurf passes the old signal tables here so initialization can update them directly.
+/// In particular, occupant initialization can move or delete existing contents before New() returns.
+/turf/New(loc, list/inherited_listen_lookup, list/inherited_signal_procs)
+	_listen_lookup = inherited_listen_lookup
+	_signal_procs = inherited_signal_procs
+	. = ..(loc)
+
 /turf/vv_edit_var(var_name, new_value)
 	var/static/list/banned_edits = list(NAMEOF_STATIC(src, x), NAMEOF_STATIC(src, y), NAMEOF_STATIC(src, z))
 	if(var_name in banned_edits)
@@ -165,7 +169,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		QUEUE_SMOOTH(src)
 
 	for(var/atom/movable/content as anything in src)
-		Entered(content, null)
+		initialize_occupant(content)
 
 	var/area/our_area = loc
 	if(!our_area.area_has_base_lighting && space_lit) //Only provide your own lighting if the area doesn't for you
@@ -188,6 +192,12 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		set_custom_materials(custom_materials)
 
 	return INITIALIZE_HINT_NORMAL
+
+/// Applies this turf to an existing occupant during Initialize(), without announcing movement.
+/// Call the parent first so the occupant can update turf-dependent state before subtype effects run.
+/turf/proc/initialize_occupant(atom/movable/occupant)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(occupant, COMSIG_MOVABLE_TURF_INITIALIZING, src)
 
 /// Initializes our adjacent turfs. If you want to avoid this, do not override it, instead set init_air to FALSE
 /turf/proc/Initalize_Atmos(time)
@@ -224,11 +234,12 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		vis_contents.Cut()
 
 /// WARNING WARNING
-/// Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
+/// Turfs DO NOT lose their external signal connections when they get replaced, REMEMBER THIS
 /// It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
-/// We do it because moving signals over was needlessly expensive, and bloated a very commonly used bit of code
+/// We do it to avoid unregistering and re-registering every signal in a very commonly used bit of code
+/// Signals registered by the turf on itself are cleared so the new type can register its own
 /turf/_clear_signal_refs()
-	return
+	UnregisterSignal(src, _signal_procs?[src])
 
 /turf/attack_hand(mob/user, list/modifiers)
 	. = ..()
@@ -388,37 +399,36 @@ GLOBAL_LIST_EMPTY(station_turfs)
 			falling_mov.pulledby.stop_pulling()
 	return TRUE
 
-/turf/proc/handleRCL(obj/item/rcl/C, mob/user)
-	if(C.loaded)
-		for(var/obj/structure/pipe_cleaner/LC in src)
-			if(!LC.d1 || !LC.d2)
-				LC.handlecable(C, user)
-				return
-		C.loaded.place_turf(src, user)
-		if(C.wiring_gui_menu)
-			C.wiringGuiUpdate(user)
-		C.is_empty(user)
+/turf/proc/handleRCL(obj/item/rcl/rapid_layer, mob/user)
+	if(!rapid_layer.loaded)
+		return
+	lay_pipe_cleaner(rapid_layer.loaded, user)
+	if(rapid_layer.wiring_gui_menu)
+		rapid_layer.wiringGuiUpdate(user)
+	rapid_layer.is_empty(user)
 
-/turf/attackby(obj/item/C, mob/user, list/modifiers, list/attack_modifiers)
-	if(..())
-		return TRUE
-	if(can_lay_cable() && istype(C, /obj/item/stack/cable_coil))
-		var/obj/item/stack/cable_coil/coil = C
+/turf/proc/lay_pipe_cleaner(obj/item/stack/pipe_cleaner_coil/coil, user)
+	for(var/obj/structure/pipe_cleaner/lain_cable in src)
+		if(!lain_cable.d1 || !lain_cable.d2)
+			lain_cable.item_interaction(user, coil)
+			return
+	coil.place_turf(src, user)
+
+/turf/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(can_lay_cable() && istype(tool, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/coil = tool
 		coil.place_turf(src, user)
-		return TRUE
-	else if(can_have_cabling() && istype(C, /obj/item/stack/pipe_cleaner_coil))
-		var/obj/item/stack/pipe_cleaner_coil/coil = C
-		for(var/obj/structure/pipe_cleaner/LC in src)
-			if(!LC.d1 || !LC.d2)
-				LC.attackby(C, user)
-				return
-		coil.place_turf(src, user)
-		return TRUE
+		return ITEM_INTERACT_SUCCESS
 
-	else if(istype(C, /obj/item/rcl))
-		handleRCL(C, user)
+	if(can_have_cabling() && istype(tool, /obj/item/stack/pipe_cleaner_coil))
+		lay_pipe_cleaner(tool, user)
+		return ITEM_INTERACT_SUCCESS
 
-	return FALSE
+	if(istype(tool, /obj/item/rcl))
+		handleRCL(tool, user)
+		return ITEM_INTERACT_SUCCESS
+
+	return NONE
 
 //There's a lot of QDELETED() calls here if someone can figure out how to optimize this but not runtime when something gets deleted by a Bump/CanPass/Cross call, lemme know or go ahead and fix this mess - kevinz000
 /turf/Enter(atom/movable/mover)
@@ -519,10 +529,9 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	if(L && (L.flags_1 & INITIALIZED_1))
 		qdel(L)
 
-/turf/proc/Bless()
-	if(locate(/obj/effect/blessing) in src)
-		return
-	new /obj/effect/blessing(src)
+/turf/proc/bless_turf(invisible = FALSE)
+	if(!HAS_TRAIT(src, TRAIT_TURF_BLESSED))
+		AddElement(/datum/element/blessed_turf, invisible)
 
 //////////////////////////////
 //Distance procs
@@ -636,10 +645,12 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /// Check if the heretic is strong enough to rust this turf, and if so, rusts the turf with an added visual effect.
 /turf/rust_heretic_act(rust_strength = RUST_RESISTANCE_BASIC)
 	if((rust_strength < rust_resistance))
-		return
+		return FALSE
 
 	if (rust_turf(magic = TRUE))
 		new /obj/effect/glowing_rune(src)
+		return TRUE
+	return FALSE
 
 /// Override this to change behaviour when being rusted
 /turf/proc/rust_turf(magic = FALSE)

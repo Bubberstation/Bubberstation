@@ -313,8 +313,3 @@
 /area/ruin/space/has_grav/bubbers/dauntless_space/sec/prison/shower
 	name = "Prison Showers"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
-
-/datum/weather/rad_storm/New()
-	. = ..()
-	protected_areas += /area/ruin/space/has_grav/bubbers/dauntless
-	protected_areas += /area/ruin/space/has_grav/bubbers/dauntless_space

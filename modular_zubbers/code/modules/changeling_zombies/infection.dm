@@ -2,7 +2,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 
 /proc/can_become_changeling_zombie(datum/parent)
 
-	if(!ishuman(parent) || HAS_TRAIT(parent,TRAIT_NO_ZOMBIFY) || HAS_TRAIT(parent,TRAIT_GENELESS))
+	if(!ishuman(parent) || HAS_TRAIT(parent,TRAIT_NEVER_CONSIDERED_ALIVE) || HAS_TRAIT(parent,TRAIT_GENELESS))
 		return FALSE
 
 	var/mob/living/carbon/human/host = parent
@@ -212,7 +212,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 			TRAIT_RESISTLOWPRESSURE,
 			TRAIT_NOHUNGER,
 			TRAIT_NOBREATH,
-			TRAIT_NO_ZOMBIFY,
+			TRAIT_NEVER_CONSIDERED_ALIVE,
 			TRAIT_THERMAL_VISION,
 			TRAIT_NEARSIGHTED_CORRECTED,
 			TRAIT_TUMOR_SUPPRESSED,

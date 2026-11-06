@@ -1,5 +1,6 @@
 /datum/species/skrell
 	name = "Skrell"
+	plural_form = "Skrell"
 	id = SPECIES_SKRELL
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,

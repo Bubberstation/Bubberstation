@@ -27,7 +27,7 @@
 /datum/component/status_indicator/proc/is_stunned()
 	if(!indicator_fakeouts() && \
 	HAS_TRAIT_FROM(attached_mob, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(STAT_TRAIT)) || \
-	HAS_TRAIT(attached_mob, TRAIT_CRITICAL_CONDITION) || \
+	IS_CRITICAL(attached_mob) || \
 	HAS_TRAIT_FROM(attached_mob, TRAIT_IMMOBILIZED, TRAIT_STATUS_EFFECT(STAT_TRAIT)) || \
 	HAS_TRAIT_FROM(attached_mob, TRAIT_IMMOBILIZED, CHOKEHOLD_TRAIT) || \
 	HAS_TRAIT_FROM(attached_mob, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(STAT_TRAIT)) || \
@@ -41,7 +41,7 @@
 	attached_mob.IsParalyzed() || \
 	HAS_TRAIT_FROM(attached_mob, TRAIT_FLOORED, CHOKEHOLD_TRAIT) || \
 	HAS_TRAIT_FROM(attached_mob, TRAIT_IMMOBILIZED, TRAIT_STATUS_EFFECT(STAT_TRAIT)) || \
-	HAS_TRAIT(attached_mob, TRAIT_CRITICAL_CONDITION) || \
+	IS_CRITICAL(attached_mob) || \
 	HAS_TRAIT_FROM(attached_mob, TRAIT_INCAPACITATED, STAMINA))
 		return TRUE
 

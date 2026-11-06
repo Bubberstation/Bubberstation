@@ -26,7 +26,7 @@
 			return
 
 		loc.balloon_alert(user, "magnified!")
-		user.mind.adjust_experience(/datum/skill/research, 5)
+		user.mind?.adjust_experience(/datum/skill/research, 5)
 		spawn_magnified(magnified_number)
 		return
 

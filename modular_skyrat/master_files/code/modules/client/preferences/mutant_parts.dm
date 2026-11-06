@@ -48,12 +48,16 @@
 	category = PREFERENCE_CATEGORY_CHARACTER_BASICS
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "mutant_colors_color"
+	priority = PREFERENCE_PRIORITY_BODYPARTS  //Bubber edit: Ensures mutant colors are applied with body part updates
 	check_mode = TRICOLOR_NO_CHECK
 
 /datum/preference/tri_color/mutant_colors/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features[FEATURE_MUTANT_COLOR] = sanitize_hexcolor(value[1])
 	target.dna.features[FEATURE_MUTANT_COLOR_TWO] = sanitize_hexcolor(value[2])
 	target.dna.features[FEATURE_MUTANT_COLOR_THREE] = sanitize_hexcolor(value[3])
+	if(istype(target.dna.species, /datum/species/abductor)) //bubber edit: Apply body part updates for abductors after setting mutant colors.
+		for(var/obj/item/bodypart/part as anything in target.get_bodyparts()) //bubber edit: Apply body part updates for abductors after setting mutant colors.
+			part.add_color_override(sanitize_hexcolor(value[1]), LIMB_COLOR_AYYLMAO + 1) //bubber edit: Apply body part updates for abductors after setting mutant colors.
 
 /datum/preference/toggle/eye_emissives
 	savefile_key = "eye_emissives"
@@ -858,7 +862,7 @@
 	savefile_key = "feature_pod_hair"
 	main_feature_name = "Hairstyle"
 	category = PREFERENCE_CATEGORY_FEATURES
-	relevant_mutant_bodypart = "pod_hair"
+	relevant_mutant_bodypart = FEATURE_POD_HAIR
 	default_accessory_type = /datum/sprite_accessory/pod_hair/ivy
 	should_generate_icons = TRUE
 	generate_icons = TRUE
@@ -871,8 +875,8 @@
 	var/datum/universal_icon/pod_head = uni_icon('icons/mob/human/bodyparts_greyscale.dmi', "pod_head_m")
 	pod_head.blend_color(COLOR_GREEN, ICON_MULTIPLY)
 
-	var/datum/universal_icon/icon_adj = uni_icon(pod_hair.icon, "m_pod_hair_[pod_hair.icon_state]_FRONT_OVER_HAIR")
-	var/datum/universal_icon/icon_front = uni_icon(pod_hair.icon, "m_pod_hair_[pod_hair.icon_state]_FRONT_OVER")
+	var/datum/universal_icon/icon_adj = uni_icon(pod_hair.icon, "m_pod_hair_[pod_hair.icon_state]_ADJ")
+	var/datum/universal_icon/icon_front = uni_icon(pod_hair.icon, "m_pod_hair_[pod_hair.icon_state]_FRONT")
 	icon_front.blend_color(COLOR_MAGENTA, ICON_MULTIPLY)
 	icon_adj.blend_color(COLOR_VIBRANT_LIME, ICON_MULTIPLY)
 	icon_adj.blend_icon(icon_front, ICON_OVERLAY)

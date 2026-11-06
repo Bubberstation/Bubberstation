@@ -33,6 +33,13 @@
 
 ///Show the distance and direction of a scanned target
 /datum/status_effect/agent_pinpointer/proc/point_to_target()
+	// BUBBER EDIT ADDITION BEGIN - guard against a mid-tick removal race
+	// tick() can fire after remove_status_effect() has already nulled linked_alert (on_remove sets it null),
+	// if the effect is applied/removed rapidly - which our executive HUDsunglasses mode-cycling does far
+	// more aggressively than any other consumer of this base class. Fail soft instead of runtime-ing.
+	if(!linked_alert)
+		return
+	// BUBBER EDIT ADDITION END
 	if(!scan_target)
 		linked_alert.icon_state = "pinonnull"
 		return

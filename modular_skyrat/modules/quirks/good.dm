@@ -117,7 +117,7 @@
 	gain_text = span_notice("There is a forge smouldering inside of you.")
 	lose_text = span_danger("Somehow, you've lost your ability to breathe fire.")
 	medical_record_text = "Patients possess a fire breathing gland commonly found in lizard folk."
-	icon = FA_ICON_FIRE
+	icon = FA_ICON_FIRE_ALT
 
 /datum/quirk/sparkle_aspect
 	name = "Sparkle aspect (Emotes)"

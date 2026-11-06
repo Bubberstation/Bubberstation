@@ -11,7 +11,11 @@
 	greyscale_config_inhand_left = /datum/greyscale_config/sneakers/inhand_left
 	greyscale_config_inhand_right = /datum/greyscale_config/sneakers/inhand_right
 	greyscale_colors = "#2d2d33#ffffff"
-	// supports_variations_flags = CLOTHING_DIGITIGRADE_MASK // BUBBER EDIT - We have sprites for this
+	/* BUBBER EDIT REMOVAL
+	supports_variations_flags = CLOTHING_DIGITIGRADE_MASK
+	bodyshapes_with_variations = BODYSHAPE_DIGITIGRADE
+	*/
+
 	flags_1 = IS_PLAYER_COLORABLE_1
 	greyscale_config_worn_digi = /datum/greyscale_config/sneakers/worn/digi //SKYRAT EDIT ADDITION - DigiGreyscale
 	interaction_flags_mouse_drop = NEED_HANDS
@@ -157,16 +161,11 @@
 		return
 	return ..()
 
-/obj/item/clothing/shoes/sneakers/orange/pre_attack(atom/movable/attacking_movable, mob/living/user, list/modifiers, list/attack_modifiers)
-	if(attached_cuffs || attacking_movable.type != /obj/item/restraints/handcuffs)
+/obj/item/clothing/shoes/sneakers/orange/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	if(attached_cuffs || tool.type != /obj/item/restraints/handcuffs) 	// Note: not using istype here because we want to ignore all subtypes
 		return ..()
-	attacking_movable.forceMove(src)
-	return TRUE
-
-/obj/item/clothing/shoes/sneakers/orange/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
-	if(attached_cuffs || attacking_item.type != /obj/item/restraints/handcuffs) 	// Note: not using istype here because we want to ignore all subtypes
-		return ..()
-	attacking_item.forceMove(src)
+	tool.forceMove(src)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/clothing/shoes/sneakers/orange/can_mob_unequip(mob/user)
 	if(user.get_item_by_slot(slot_flags) == src && attached_cuffs)

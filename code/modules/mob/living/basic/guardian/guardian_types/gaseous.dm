@@ -3,7 +3,7 @@
 	guardian_type = GUARDIAN_GASEOUS
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 0, OXY = 0)
+	physiology = list(OXY = 0, STAMINA = 0)
 	range = 7
 	playstyle_string = span_holoparasite("As a <b>gaseous</b> type, you have only light damage resistance, but you can expel gas in an area. In addition, your punches cause sparks, and you make your summoner inflammable.")
 	creator_name = "Gaseous"
@@ -159,7 +159,7 @@
 
 	var/datum/gas_mixture/mix_to_spawn = new()
 	mix_to_spawn.add_gas(active_gas)
-	mix_to_spawn.gases[active_gas][MOLES] = possible_gases[active_gas] * seconds_per_tick
+	mix_to_spawn.moles[active_gas] = possible_gases[active_gas] * seconds_per_tick
 	mix_to_spawn.temperature = T20C
 	var/turf/open/our_turf = get_turf(owner)
 	our_turf.assume_air(mix_to_spawn)

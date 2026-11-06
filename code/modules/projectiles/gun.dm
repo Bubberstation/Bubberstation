@@ -63,7 +63,7 @@
 	var/fire_cd = 0
 	var/weapon_weight = WEAPON_LIGHT
 	///Can we hold up our target with this? Default to yes
-	var/can_hold_up = FALSE // SKYRAT EDIT - DISABLED ORIGINAL: TRUE
+	var/can_hold_up = TRUE
 	/// If TRUE, and we aim at ourselves, it will initiate a do after to fire at ourselves.
 	/// If FALSE it will just try to fire at ourselves straight up.
 	var/doafter_self_shoot = TRUE
@@ -200,7 +200,7 @@
 			if(pin.pin_removable)
 				. += span_info("[pin] looks like [pin.p_they()] could be removed with some <b>tools</b>.")
 			else
-				. += span_info("[pin] looks like [pin.p_theyre()] firmly locked in, [pin.p_they()] looks impossible to remove.")
+				. += span_info("[pin] looks like [pin.p_theyre()] firmly locked in, [pin.p_they()] look[pin.p_s()] impossible to remove.")
 		else
 			. += "It doesn't have a <b>firing pin</b> installed, and won't fire."
 
@@ -304,7 +304,7 @@
 	if(!isliving(loc))
 		return ..()
 	var/mob/living/holder = loc
-	if(holder.is_holding(src) && holder.stat < UNCONSCIOUS)
+	if(holder.is_holding(src) && !IS_UNCONSCIOUS(holder))
 		to_chat(holder, span_boldwarning("[src] breaks down!"))
 		holder.playsound_local(get_turf(src), 'sound/items/weapons/smash.ogg', 50, TRUE)
 	return ..()
@@ -356,7 +356,7 @@
 	return fired
 
 /obj/item/gun/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
-	if(user.combat_mode && isliving(interacting_with))
+	if(user.combat_mode && isliving(interacting_with) && get_dist(user, interacting_with) < 2) //Bubber edit - ORIGINAL: if(user.combat_mode && isliving(interacting_with)) - distance check so you can hold up in combat mode
 		return ITEM_INTERACT_SKIP_TO_ATTACK // Gun bash / bayonet attack
 
 	if(!can_hold_up || !isliving(interacting_with))

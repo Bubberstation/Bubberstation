@@ -141,6 +141,10 @@
 	required_slots = list(ITEM_SLOT_OCLOTHING)
 	overlay_state_inactive = "module_remote_overlay"
 	overlay_icon_file = 'modular_zubbers/icons/mob/clothing/modsuit/mod_modules.dmi'
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT *3 ,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.5,
+	)
 
 /obj/item/mod/module/remote_control/Initialize(mapload)
 	. = ..()

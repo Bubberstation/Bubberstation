@@ -28,5 +28,5 @@ GLOBAL_LIST_INIT(arcade_prize_pool_special, list(
 	/obj/item/storage/backpack/meat = 5,
 	/obj/item/storage/box/fireworks = 5,
 	/obj/item/storage/toolbox/haunted = 5,
-	/obj/item/ai_module/toy_ai = 5
+	/obj/item/ai_module/law/toy_ai = 5
 ))

@@ -16,7 +16,7 @@
 	var/ritual_effect = /obj/effect/particle_effect/sparks
 
 	/// the time it takes to process each stage of the ritual
-	var/ritual_time = 5 SECONDS
+	var/ritual_time = 2 SECONDS
 
 	/// whether the ritual is in use
 	var/in_use = FALSE

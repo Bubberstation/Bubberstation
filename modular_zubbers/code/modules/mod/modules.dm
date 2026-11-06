@@ -10,6 +10,10 @@
 	//Ckey of the original wearer
 	var/wearer_key
 	cooldown_time = 30 SECONDS
+	custom_materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/diamond = SMALL_MATERIAL_AMOUNT * 5,
+	)
 
 /obj/item/mod/module/mind_swap/on_select()
 	if(!mod.ai_assistant)

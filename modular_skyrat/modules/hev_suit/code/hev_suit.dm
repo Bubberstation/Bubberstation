@@ -90,7 +90,7 @@
 	var/activating = FALSE
 
 	///Defines the current user (duh), current helmet, internals tank and built-in radio.
-	var/mob/living/carbon/current_user
+	var/mob/living/carbon/human/current_user
 	var/obj/item/clothing/head/helmet/space/hev_suit/current_helmet
 	var/obj/item/tank/internals/current_internals_tank
 	var/obj/item/radio/internal_radio

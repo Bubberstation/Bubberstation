@@ -16,6 +16,7 @@
 	var/zipped = FALSE
 	/// Whether alt-clicking this coat zips/unzips it
 	var/can_altclick_zip = TRUE
+	auto_deploy_hood_on_outfit_equip = FALSE
 
 /datum/armor/hooded_wintercoat
 	bio = 10
@@ -544,7 +545,7 @@
 /datum/armor/wintercoat_engineering
 	fire = 20
 
-/obj/item/clothing/suit/hooded/wintercoat/engineering/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
+/obj/item/clothing/suit/hooded/wintercoat/engineering/worn_overlays(mutable_appearance/standing, isinhands, icon_file, bodyshape = NONE)
 	. = ..()
 	if(!isinhands)
 		. += emissive_appearance(icon_file, "[icon_state]-emissive", src, alpha = src.alpha, effect_type = EMISSIVE_SPECULAR)
@@ -557,7 +558,7 @@
 /datum/armor/winterhood_engineering
 	fire = 20
 
-/obj/item/clothing/head/hooded/winterhood/engineering/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
+/obj/item/clothing/head/hooded/winterhood/engineering/worn_overlays(mutable_appearance/standing, isinhands, icon_file, bodyshape = NONE)
 	. = ..()
 	if(!isinhands)
 		. += emissive_appearance(icon_file, "[icon_state]-emissive", src, alpha = src.alpha, effect_type = EMISSIVE_SPECULAR)
@@ -760,7 +761,7 @@
 	hood_down_overlay_suffix = ""
 	hood_up_affix = "_t"
 
-/obj/item/clothing/suit/hooded/wintercoat/zipup/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
+/obj/item/clothing/suit/hooded/wintercoat/zipup/worn_overlays(mutable_appearance/standing, isinhands, icon_file, bodyshape = NONE)
 	. = ..()
 	if(isinhands || (hood && hood.loc != src))
 		return

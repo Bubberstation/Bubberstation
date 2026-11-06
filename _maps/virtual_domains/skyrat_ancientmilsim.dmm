@@ -504,9 +504,7 @@
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_toilet)
 "no" = (
-/obj/effect/spawner/structure/window/survival_pod,
-/obj/machinery/door/poddoor/shutters/preopen,
-/obj/effect/mapping_helpers/damaged_window,
+/obj/structure/table/reinforced,
 /turf/open/floor/iron/dark/smooth_large,
 /area/virtual_domain/ancient_milsim/carrier)
 "nu" = (
@@ -598,16 +596,6 @@
 /area/virtual_domain/ancient_milsim/snpc_toilet)
 "oU" = (
 /obj/structure/chair/comfy/shuttle,
-/obj/machinery/computer{
-	dir = 1;
-	name = "vehicle console";
-	icon_screen = "shuttle";
-	icon = 'modular_nova/modules/advanced_shuttles/icons/computer.dmi';
-	icon_state = "intercom";
-	desc = "An armored vehicle control computer. Doesn't work anymore... who would've thought.";
-	density = 0;
-	pixel_y = -32
-	},
 /turf/open/floor/iron/dark,
 /area/virtual_domain/ancient_milsim/carrier)
 "pn" = (
@@ -856,6 +844,12 @@
 /obj/machinery/health_station/directional/west,
 /turf/open/floor/iron/dark,
 /area/virtual_domain/ancient_milsim/carrier)
+"vn" = (
+/obj/effect/spawner/structure/window/survival_pod,
+/obj/effect/mapping_helpers/damaged_window,
+/obj/machinery/door/poddoor/shutters/preopen,
+/turf/open/misc/grass/planet/ancient_milsim,
+/area/virtual_domain/ancient_milsim/snpc_ground)
 "vr" = (
 /obj/item/storage/backpack/duffelbag/syndie/c4,
 /turf/open/floor/plating,
@@ -1379,9 +1373,8 @@
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_garage)
 "Hn" = (
-/obj/machinery/camera/directional/north{
-	status = 0
-	},
+/obj/effect/spawner/structure/window/survival_pod,
+/obj/machinery/door/poddoor/shutters/preopen,
 /turf/open/misc/grass/planet/ancient_milsim,
 /area/virtual_domain/ancient_milsim/snpc_ground)
 "Hq" = (
@@ -1551,10 +1544,10 @@
 /area/virtual_domain/ancient_milsim/loot_camp)
 "Mq" = (
 /obj/effect/baseturf_helper/virtual_domain/ancient_milsim,
-/turf/closed/wall/mineral/titanium/survival,
+/turf/closed/wall/mineral/plastitanium/darkpod,
 /area/virtual_domain/ancient_milsim/carrier)
 "Mv" = (
-/turf/closed/wall/mineral/titanium/survival,
+/turf/closed/wall/mineral/plastitanium/darkpod,
 /area/virtual_domain/ancient_milsim/carrier)
 "My" = (
 /obj/structure/table,
@@ -1681,6 +1674,12 @@
 /obj/structure/sign/poster/random/directional/west,
 /turf/open/floor/iron,
 /area/virtual_domain/ancient_milsim/snpc_hallway)
+"Pz" = (
+/obj/effect/spawner/structure/window/survival_pod,
+/obj/machinery/door/poddoor/shutters/preopen,
+/obj/effect/mapping_helpers/damaged_window,
+/turf/open/misc/grass/planet/ancient_milsim,
+/area/virtual_domain/ancient_milsim/carrier)
 "PE" = (
 /obj/machinery/door/puzzle/keycard/yellow_required,
 /turf/open/floor/iron/smooth_large,
@@ -1756,6 +1755,9 @@
 	},
 /turf/open/floor/iron/dark,
 /area/virtual_domain/ancient_milsim/carrier)
+"Rm" = (
+/turf/closed/wall/mineral/plastitanium/darkpod,
+/area/virtual_domain/ancient_milsim/snpc_ground)
 "Rn" = (
 /obj/structure/curtain/cloth{
 	color = "#556B2F"
@@ -1932,6 +1934,11 @@
 /obj/item/ammo_box/magazine/wylom,
 /turf/open/misc/grass/planet/ancient_milsim,
 /area/virtual_domain/ancient_milsim/loot_camp)
+"Vv" = (
+/obj/effect/spawner/structure/window/survival_pod,
+/obj/machinery/door/poddoor/shutters/preopen,
+/turf/open/misc/grass/planet/ancient_milsim,
+/area/virtual_domain/ancient_milsim/carrier)
 "VA" = (
 /turf/open/floor/iron/smooth_corner{
 	dir = 4
@@ -2033,6 +2040,13 @@
 /mob/living/basic/mining/mook/worker/bard,
 /turf/open/floor/grass/fairy,
 /area/virtual_domain/protected_space/ancient_milsim)
+"Yq" = (
+/obj/structure/showcase/fake_cafe_console{
+	dir = 1;
+	name = "vehicle controls"
+	},
+/turf/open/floor/iron/dark/smooth_large,
+/area/virtual_domain/ancient_milsim/carrier)
 "Yx" = (
 /obj/structure/sign/departments/science/directional/north,
 /obj/effect/baseturf_helper/virtual_domain/ancient_milsim,
@@ -2438,9 +2452,9 @@ Mv
 Mv
 Mv
 Mv
+Vv
 Mv
-Mv
-JG
+Rm
 qn
 qn
 qn
@@ -2497,8 +2511,8 @@ vf
 Mv
 aR
 oU
-Mv
-Cd
+Yq
+vn
 Cd
 Cd
 JG
@@ -2556,7 +2570,7 @@ EB
 RP
 ol
 no
-Cd
+vn
 Cd
 Cd
 JG
@@ -2613,7 +2627,7 @@ qn
 Mv
 RZ
 oU
-Mv
+Yq
 Hn
 Cd
 Cd
@@ -2670,9 +2684,9 @@ qn
 FX
 qn
 qn
+Pz
 Mv
-Mv
-Cd
+Rm
 JG
 qn
 qn

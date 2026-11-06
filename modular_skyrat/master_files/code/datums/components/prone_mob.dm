@@ -11,7 +11,7 @@
 	if(hand_blocking)
 		parent.add_traits(list(TRAIT_HANDS_BLOCKED), type)
 	parent.add_traits(list(TRAIT_PRONE, TRAIT_FLOORED, TRAIT_NO_THROWING, TRAIT_IGNORE_ELEVATION), type)
-	passtable_on(parent, type)
+	ADD_TRAIT(parent, TRAIT_PASSTABLE, type)
 	source.layer = PROJECTILE_HIT_THRESHHOLD_LAYER
 
 /datum/component/prone_mob/RegisterWithParent()
@@ -28,6 +28,6 @@
 	SIGNAL_HANDLER
 	source = parent
 	parent.remove_traits(list(TRAIT_PRONE, TRAIT_FLOORED, TRAIT_NO_THROWING, TRAIT_HANDS_BLOCKED, TRAIT_IGNORE_ELEVATION), type)
-	passtable_off(parent, type)
+	REMOVE_TRAIT(parent, TRAIT_PASSTABLE, type)
 	source.layer = MOB_LAYER
 	qdel(src)

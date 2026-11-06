@@ -10,6 +10,10 @@
 	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
 	overrides_sprite_datum_organ_type = TRUE
 	bodypart_overlay = /datum/bodypart_overlay/mutant/ears
+	custom_materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 
 /obj/item/organ/ears/synth/emp_act(severity)
 	. = ..()
@@ -31,7 +35,6 @@
 /datum/design/synth_ears
 	name = "Auditory Sensors"
 	desc = "A pair of microphones intended to be installed in an IPC or Synthetics head, that grant the ability to hear."
-	id = "synth_ears"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(

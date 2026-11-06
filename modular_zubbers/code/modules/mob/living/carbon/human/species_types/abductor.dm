@@ -1,7 +1,8 @@
 /datum/species/abductor/lesser
 	id = SPECIES_ABDUCTOR_STATION
+	can_have_genitals = TRUE // BUBBER EDIT: Lets abductors have genitals.
 	inherent_traits = list(
-		TRAIT_NO_UNDERWEAR,
+		//TRAIT_NO_UNDERWEAR, -- BUBBER EDIT: LET THEM HAVE UNDERWEAR!!!
 		TRAIT_NOBREATH,
 		TRAIT_NOHUNGER,
 		TRAIT_VIRUSIMMUNE,

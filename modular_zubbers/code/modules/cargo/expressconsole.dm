@@ -26,6 +26,7 @@
 	name = "Tarkon Express Supply Console"
 	build_path = /obj/machinery/computer/cargo/express/interdyne/tarkon
 	contraband = TRUE
+	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT)
 
 /obj/machinery/computer/cargo/express/interdyne/tarkon
 	name = "tarkon express supply console"

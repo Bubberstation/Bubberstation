@@ -40,7 +40,7 @@
 			return
 
 		locate_farm = new(get_turf(atom_parent))
-		user.mind.adjust_experience(/datum/skill/primitive, 5)
+		user.mind?.adjust_experience(/datum/skill/primitive, 5)
 		locate_farm.pixel_x = pixel_shift[1]
 		locate_farm.pixel_y = pixel_shift[2]
 		locate_farm.layer = atom_parent.layer + 0.1
@@ -155,7 +155,7 @@
 
 	COOLDOWN_START(src, harvest_timer, harvest_cooldown)
 	create_harvest()
-	user.mind.adjust_experience(/datum/skill/primitive, 5)
+	user.mind?.adjust_experience(/datum/skill/primitive, 5)
 	update_appearance()
 	return ..()
 
@@ -174,13 +174,13 @@
 
 		COOLDOWN_START(src, harvest_timer, harvest_cooldown)
 		create_harvest(attacking_item, user)
-		user.mind.adjust_experience(/datum/skill/primitive, 15)
+		user.mind?.adjust_experience(/datum/skill/primitive, 15)
 		update_appearance()
 		return
 
 	//if its fertilizer, boost our level
 	else if(istype(attacking_item, /obj/item/stack/worm_fertilizer))
-		user.mind.adjust_experience(/datum/skill/primitive, 5)
+		user.mind?.adjust_experience(/datum/skill/primitive, 5)
 		if(farm_level >= SKILL_LEVEL_LEGENDARY)
 			balloon_alert(user, "farm already max level!")
 			return
@@ -195,7 +195,7 @@
 
 	//if its worms, increase our worms
 	else if(istype(attacking_item, /obj/item/food/bait/worm))
-		user.mind.adjust_experience(/datum/skill/primitive, 5)
+		user.mind?.adjust_experience(/datum/skill/primitive, 5)
 		if(stored_worms >= 5)
 			balloon_alert(user, "plant already full on worms!")
 			return

@@ -162,6 +162,7 @@
 
 	UNSETEMPTY(turf_blacklist)
 	parsed.turf_blacklist = turf_blacklist
+	parsed.turf_blacklist += SSautomapper.turf_blacklists // BUBBER EDIT - Respect automapper
 	if(!parsed.load(
 		T.x,
 		T.y,

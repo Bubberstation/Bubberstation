@@ -42,6 +42,14 @@
 	)
 	rpg_title = "Code Whisperer"
 	job_flags = STATION_JOB_FLAGS
+	alt_titles = list(
+		"Telecomms Specialist",
+		"Wireless Operator",
+		"Network Engineer",
+		"Sysadmin",
+		"Tram Technician",
+	)
+	tgui_icon = FA_ICON_RADIO
 
 /obj/effect/landmark/start/telecomms_specialist
 	name = "Telecomms Specialist"
@@ -60,7 +68,7 @@
 	ears = /obj/item/radio/headset/headset_eng
 	head = /obj/item/clothing/head/utility/hardhat/dblue
 	shoes = /obj/item/clothing/shoes/laceup
-	l_pocket = /obj/item/modular_computer/pda/telecomms
+	l_pocket = /obj/item/modular_computer/pda/crew/telecomms
 	r_pocket = /obj/item/holosign_creator/atmos
 
 	backpack = /obj/item/storage/backpack/industrial
@@ -76,7 +84,7 @@
 		/obj/item/paper/monitorkey,
 	)
 
-/obj/item/modular_computer/pda/telecomms
+/obj/item/modular_computer/pda/crew/telecomms
 	name = "telecomms PDA"
 	icon_state = "/obj/item/modular_computer/pda/telecomms"
 	greyscale_config = /datum/greyscale_config/tablet/stripe_split

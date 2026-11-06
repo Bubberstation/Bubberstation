@@ -104,4 +104,3 @@
 
 // same as a regular hivelord minus the idle walking
 /datum/ai_controller/basic_controller/hivelord/no_wander
-	idle_behavior = null

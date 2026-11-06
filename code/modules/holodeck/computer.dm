@@ -32,6 +32,7 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 /obj/machinery/computer/holodeck
 	name = "holodeck control console"
 	desc = "A computer used to control a nearby holodeck."
+	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/holodeck")
 	icon_screen = "holocontrol"
 
 	//new vars
@@ -223,8 +224,12 @@ GLOBAL_LIST_INIT(typecache_holodeck_linked_floorcheck_ok, typecacheof(list(/turf
 	template.load(bottom_left) //this is what actually loads the holodeck simulation into the map
 
 	if(template.restricted)
-		usr.log_message("loaded a restricted Holodeck program: [program].", LOG_GAME)
-		message_admins("[ADMIN_LOOKUPFLW(usr)] loaded a restricted Holodeck program: [program].")
+		if(usr)
+			usr.log_message("loaded a restricted Holodeck program: [program].", LOG_GAME)
+			message_admins("[ADMIN_LOOKUPFLW(usr)] loaded a restricted Holodeck program: [program].")
+		else
+			log_game("loaded a restricted Holodeck program: [program].")
+			message_admins("loaded a restricted Holodeck program: [program].")
 
 	spawned = template.created_atoms //populate the spawned list with the atoms belonging to the holodeck
 

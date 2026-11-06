@@ -12,9 +12,9 @@
 	light_power = 0.8
 	light_color = "#99ccff"
 	pass_flags = PASSMOB | PASSFLAPS
-	status_flags = (CANPUSH | CANSTUN)
+	status_flags = CANSTUN
 	ai_controller = /datum/ai_controller/basic_controller/bot/medbot
-	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 6.3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2.5)
 
 	req_one_access = list(ACCESS_ROBOTICS, ACCESS_MEDICAL)
 	radio_key = /obj/item/encryptionkey/headset_med
@@ -168,6 +168,13 @@
 		name += ", PhD."
 
 	return INITIALIZE_HINT_LATELOAD
+
+/mob/living/basic/bot/medbot/Destroy()
+	if(!ispath(health_analyzer))
+		QDEL_NULL(health_analyzer)
+	if(!ispath(medkit_type))
+		QDEL_NULL(medkit_type)
+	return ..()
 
 /mob/living/basic/bot/medbot/LateInitialize()
 	if(!CONFIG_GET(flag/no_default_techweb_link) && !linked_techweb)

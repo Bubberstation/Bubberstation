@@ -24,21 +24,36 @@
 
 /datum/supply_pack/goody/nt_shotgun
 	name = "Nanotrasen Woodstock Shotgun"
-	desc = "A classic shotgun used by hunters, police and frontiersmen alike, now at an affordable price."
-	cost = PAYCHECK_COMMAND * 12 //Worse renoster, let's make it a tad cheaper
+	desc = "A classic shotgun used by hunters, police and frontiersmen alike, now at an affordable price. Accessories not included."
+	cost = PAYCHECK_COMMAND * 10
 	access_view = ACCESS_WEAPONS
-	contains = list(/obj/item/gun/ballistic/shotgun/riot, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/hunter)
+	contains = list(/obj/item/gun/ballistic/shotgun/riot)
 
 /datum/supply_pack/goody/renoster_shotgun
 	name = "Renoster Shotgun Single-Pack"
-	desc = "A common modern shotgun used by Terran Government Police."
-	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/rubber)
+	desc = "A common modern shotgun used by Terran Government Police. Accessories not included."
+	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol)
 	access_view = ACCESS_WEAPONS
-	cost = PAYCHECK_COMMAND * 14 //I'd say it's at odds with the combat shotgun, sustain vs burst and such, but since ss13 favours burst I'll make it a tad cheaper.
+	cost = PAYCHECK_COMMAND * 18 //renosters are a straight upgrade vs. woodstocks, this needs to be significantly more expensive
+
+/datum/supply_pack/goody/renoster_shotgun_lesslethal
+	name = "Riot Renoster Shotgun Single-Pack"
+	desc = "A common modern shotgun used by Terran Government Police, modified to only fire less-lethal rounds. Accessories not included."
+	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal)
+	access_view = ACCESS_WEAPONS
+	cost = PAYCHECK_COMMAND * 8 //Even cheaper because its only less lethal
 
 /datum/supply_pack/goody/double_barrel
-	cost = PAYCHECK_COMMAND * 10 //1400 is too much considering the combat shotgun is 1500 for 1
+	desc = "Lost your beloved bunny to a demonic invasion? Clown broke in and stole your beloved gun? Nanotrasen has you covered. Accessories not included."
+	cost = PAYCHECK_COMMAND * 7 //1400 is too much considering the combat shotgun is 1500 for 1
 	access_view = ACCESS_WEAPONS
+
+/datum/supply_pack/goody/shotgun_addons
+	name = "Shotgun Accessories Pack"
+	desc = "When we say 'accessories not included' about our shotguns, we're talking about these. Buy yours today!"
+	cost = PAYCHECK_COMMAND
+	contains = list(/obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/rubber)
+
 
 /datum/supply_pack/goody/plasma_marksman
 	name = "Gwiazda Plasma Sharpshooters Single-pack"
@@ -123,8 +138,8 @@
 
 /datum/supply_pack/goody/shotgun_revolver
 	name = "Bóbr 12 GA Revolver Single-Pack"
-	desc = "Contains 1 civilian-modified Bóbr revolver, chambered in 12 gauge. For when you really want the power of a shotgun in the palm of your hand. Comes with a box of beanbag shells."
-	contains = list(/obj/item/gun/ballistic/revolver/shotgun_revolver/civvie = 1,
+	desc = "Contains 1 Bóbr revolver, chambered in 12 gauge. For when you really want the power of a shotgun in the palm of your hand. Comes with a box of beanbag shells."
+	contains = list(/obj/item/gun/ballistic/revolver/shotgun_revolver = 1,
 	/obj/item/ammo_box/advanced/s12gauge/bean = 1)
 	access_view = ACCESS_WEAPONS
 	cost = PAYCHECK_COMMAND * 20
@@ -191,7 +206,7 @@
 	desc = "Contains one tacticool energy gun, for all your operator needs."
 	cost = PAYCHECK_COMMAND * 6
 	access_view = ACCESS_WEAPONS
-	contains = list(/obj/item/gun/energy/tacticool)
+	contains = list(/obj/item/gun/energy/e_gun/stun/tacticool)
 
 /datum/supply_pack/goody/seclite_implant
 	name = "Seclite Implant"
@@ -251,9 +266,22 @@
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/ammo_box/c310_cargo_box)
 
+/datum/supply_pack/goody/riflecrate
+	name = "Lanca Battle Rifle Single-Order"
+	desc = "Need some more reliable firepower than the standard Sakhno? Look no further than these bad boys. Featuring a more modern semi-automatic action, these bad babies will be sure to make anyone regret messing with you. Don't mind the fees..."
+	cost = 2500
+	contains = list(
+		/obj/item/gun/ballistic/automatic/lanca,
+		/obj/item/ammo_box/magazine/lanca,
+		/obj/item/ammo_box/magazine/lanca,
+	)
+	crate_type = /obj/structure/closet/crate/secure/weapon
+	crate_name = "Battle Rifle Crate"
+	access_view = ACCESS_WEAPONS
+
 /datum/supply_pack/goody/lancamag
 	name = "Lanca Magazine Single-Pack"
 	desc = "Contains a single Lanca rifle magazine"
 	cost = PAYCHECK_COMMAND * 1.5
 	contains = list(/obj/item/ammo_box/magazine/lanca)
-	order_flags = ORDER_CONTRABAND
+

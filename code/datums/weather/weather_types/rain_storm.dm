@@ -6,12 +6,18 @@
 	min_severity = 30
 
 	telegraph_message = span_danger("Thunder rumbles far above. You hear droplets drumming against the canopy.")
+	telegraph_overlay = "rain_low"
 	telegraph_duration = 30 SECONDS
 
 	weather_message = span_userdanger("<i>Rain pours down around you!</i>")
+	weather_overlay = "rain_high"
 
 	end_message = span_bolddanger("The downpour gradually slows to a light shower.")
+	end_overlay = "rain_low"
 	end_duration = 30 SECONDS
+
+	// Don't display overlays when using particle weather
+	overlay_planes = list(WEATHER_PLANE)
 
 	weather_duration_lower = 3 MINUTES
 	weather_duration_upper = 5 MINUTES
@@ -33,7 +39,7 @@
 		return
 
 	// Non-water rain gets colored into their reagent's color
-	for (var/list/holder_list as anything in weather_objects)
+	for (var/_z_level, holder_list in weather_objects)
 		for (var/obj/effect/abstract/weather_holder/holder as anything in holder_list)
 			holder.particles.color = weather_color
 

@@ -105,8 +105,6 @@
 		return ITEM_INTERACT_BLOCKING
 	else
 		. = attackby(tongs_contents, user)
-		if(tool.contents.len == 0)
-			tool.icon_state = "tong_empty"
 
 /// Fishing source for fishing out of basins that have been upgraded, contains saltwater fish (lizard fish fall under this too!)
 /datum/fish_source/water_basin

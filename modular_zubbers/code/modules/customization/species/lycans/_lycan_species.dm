@@ -83,38 +83,38 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_ROBOT,
-			SPECIES_PERK_NAME = "Inorganic rejection",
+			SPECIES_PERK_NAME = "Inorganic Rejection",
 			SPECIES_PERK_DESC = "The curse afflicting the cursekin prevents their bodies from being augmented with cybernetic organs \
 			or implants."
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_CLOUD_MOON,
-			SPECIES_PERK_NAME = "Silver weakness",
+			SPECIES_PERK_NAME = "Silver Weakness",
 			SPECIES_PERK_DESC = "You are burnt by silver, including silver weaponry."
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_GUN,
-			SPECIES_PERK_NAME = "Chunky fingers",
+			SPECIES_PERK_NAME = "Chunky Fingers",
 			SPECIES_PERK_DESC = "While in Lycan form, you cannot use guns without special trigger-guards, nor batons.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_SHIRT,
-			SPECIES_PERK_NAME = "Unclothable",
+			SPECIES_PERK_NAME = "Unclotheable",
 			SPECIES_PERK_DESC = "While in Lycan form, you drop all your clothing to the floor.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_MOON,
-			SPECIES_PERK_NAME = "Lycan strength",
+			SPECIES_PERK_NAME = "Lycan Strength",
 			SPECIES_PERK_DESC = "While in Lycan form, your claws deal significant damage - about circular saw level.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_SHIELD,
-			SPECIES_PERK_NAME = "Lycan resilience",
+			SPECIES_PERK_NAME = "Lycan Resilience",
 			SPECIES_PERK_DESC = "While in Lycan form, you take 50% less brute and 20% less burn.",
 		),
 	)
@@ -139,7 +139,7 @@
 
 /datum/species/lycan/proc/handle_gaian_physique(mob/living/carbon/human/gainer)
 	stunmod = 0.5
-	gainer.physiology.stamina_mod *= 0.25
+	MODIFY_PHYSIOLOGY(gainer, STAMINA, 0.25)
 
 	var/obj/item/bodypart/arm/l_arm = gainer.get_bodypart(BODY_ZONE_L_ARM)
 	var/obj/item/bodypart/arm/r_arm = gainer.get_bodypart(BODY_ZONE_R_ARM)
@@ -190,7 +190,7 @@
 	if (claws_action)
 		qdel(claws_action)
 
-	loser.physiology.stamina_mod *= 4
+	MODIFY_PHYSIOLOGY(loser, STAMINA, 4)
 
 	// already lost the limb shit
 

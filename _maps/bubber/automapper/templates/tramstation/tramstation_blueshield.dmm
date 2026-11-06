@@ -109,11 +109,8 @@
 /obj/machinery/keycard_auth/wall_mounted/directional/north{
 	pixel_x = 26
 	},
-/obj/item/radio/intercom/command/directional/east,
-/obj/structure/bed/dogbed/renault,
-/mob/living/basic/pet/fox/renault,
-/turf/open/floor/wood,
-/area/station/command/heads_quarters/captain)
+/turf/template_noop,
+/area/template_noop)
 "r" = (
 /obj/structure/closet/secure_closet/tac{
 	req_access = list("captain")
@@ -287,8 +284,10 @@
 	name = "Captain's Requests Console";
 	department = "Captain's Desk"
 	},
-/turf/template_noop,
-/area/template_noop)
+/obj/structure/bed/dogbed/renault,
+/mob/living/basic/pet/fox/renault,
+/turf/open/floor/wood,
+/area/station/command/heads_quarters/captain)
 "L" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,

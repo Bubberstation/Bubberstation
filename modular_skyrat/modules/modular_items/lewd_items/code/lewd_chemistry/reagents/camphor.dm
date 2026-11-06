@@ -91,3 +91,5 @@
 	required_temp = 400
 	mix_message = "The mixture boils off a yellow, smelly vapor..."
 	erp_reaction = TRUE
+	reaction_tags = REACTION_TAG_CHEMICAL | REACTION_TAG_DRUG | REACTION_TAG_EASY
+

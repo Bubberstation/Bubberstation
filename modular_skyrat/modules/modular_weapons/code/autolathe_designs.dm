@@ -6,11 +6,8 @@
 
 /datum/design/c46x30mm
 	name = "4.6x30mm Bullet"
-	id = "c46x30mm"
 	build_type = AUTOLATHE
-	materials = list(
-		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 7.5,
-	)
+	materials = AMMO_MATS_BASIC
 	build_path = /obj/item/ammo_casing/c46x30mm
 	category = list(
 		RND_CATEGORY_HACKED,
@@ -21,11 +18,8 @@
 
 /datum/design/c45_lethal
 	name = ".45 Bullet"
-	id = "c45_lethal"
 	build_type = AUTOLATHE
-	materials = list(
-		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 7.5,
-	)
+	materials = AMMO_MATS_BASIC
 	build_path = /obj/item/ammo_casing/c45
 	category = list(
 		RND_CATEGORY_HACKED,

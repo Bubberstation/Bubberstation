@@ -37,7 +37,7 @@
 					"Preservation: You must protect the critical systems and infrastructure of Port Tarkon."
 	)
 
-/obj/item/ai_module/core/full/tarkon
+/obj/item/ai_module/law/core/full/tarkon
 	name = "Port Tarkon Core AI Module"
 	law_id = "tarkon"
 
@@ -47,6 +47,7 @@
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
 	icon_state = "module_tarkon"
 	new_model = /obj/item/robot_model/tarkon
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/robot_model/tarkon
 	name = "Port Tarkon Prototype"
@@ -144,8 +145,8 @@
 	req_access = list(ACCESS_TARKON)
 
 /mob/living/silicon/robot/model/tarkon/Initialize(mapload)
-	laws = new /datum/ai_laws/tarkon
-	laws.associate(src)
+	replace_law_set(/datum/ai_laws/tarkon)
+	//TODO DRACLION UPSTREAM
 	. = ..()
 
 	/// MODULES ///
@@ -184,6 +185,7 @@
 		/obj/item/healthanalyzer,
 		/obj/item/blood_filter
 						)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/borg/upgrade/tarkon/tarkon_engineering
 	name = "Tarkon Engineering Module"
@@ -221,6 +223,7 @@
 		/obj/item/multitool/cyborg,
 		/obj/item/lightreplacer
 	)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/borg/upgrade/tarkon/tarkon_security
 	name = "Tarkon Security Module"
@@ -236,6 +239,7 @@
 		/obj/item/borg/projectile_dampen,
 		/obj/item/gun/energy/laser/cyborg // The nature of tarkon requires a gun.
 						)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/borg/upgrade/tarkon/tarkon_cargo
 	name = "Tarkon Cargo Module"
@@ -272,6 +276,7 @@
 		/obj/item/pickaxe/drill,
 		/obj/item/storage/bag/ore/cyborg
 		)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/borg/upgrade/tarkon/tarkon_research
 	name = "Tarkon Research Module"
@@ -288,6 +293,7 @@
 				/obj/item/experi_scanner/bluespace,
 				/obj/item/storage/bag/xenoarch/adv
 				)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/borg/upgrade/tarkon/tarkon_service // Lesser used on tarkon things like chef upgrades, and janitorial. Might get subdivided further since my GOD theres alot here
 	name = "Tarkon Service Module"
@@ -328,6 +334,7 @@
 		/obj/item/plant_analyzer,
 		/obj/item/storage/bag/plants
 		)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/borg/upgrade/tarkon/tarkon_janitor
 	name = "Tarkon Janitorial Module"
@@ -350,6 +357,7 @@
 		/obj/item/storage/bag/trash,
 		/obj/item/mop
 		)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 ///Prevents tarkon borgs from taking too many tarkon upgrades.
 /obj/item/borg/upgrade/tarkon/action(mob/living/silicon/robot/borg, mob/user)
@@ -361,134 +369,3 @@
 		to_chat(user, span_danger("Warning: The borg's components cannot handle any more upgrades."))
 		return FALSE
 	return ..()
-
-	/// EXOFAB DATUMS ///
-
-/datum/design/borg_upgrade_tarkon_main
-	name = "Cyborg Module Unlocker (Tarkon)"
-	id = "borg_upgrade_tarkon_main"
-	desc = "Allows a cyborg to transform into the experimental Port Tarkon cyborg type."
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/transform/tarkon
-	materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
-		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, // Prices TBD
-		/datum/material/plasma = SHEET_MATERIAL_AMOUNT,
-		/datum/material/gold = SMALL_MATERIAL_AMOUNT * 5,
-	)
-	construction_time = 40
-	category = list(
-		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_TARKON
-	)
-
-/datum/design/borg_upgrade_tarkon_medical
-	name = "Port Tarkon Medical Upgrades"
-	id = "borg_upgrade_tarkon_medical"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/tarkon/tarkon_medical
-	materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
-		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, // Prices TBD
-		/datum/material/plasma = SHEET_MATERIAL_AMOUNT,
-		/datum/material/gold = SMALL_MATERIAL_AMOUNT * 5,
-	)
-	construction_time = 40
-	category = list(
-		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_TARKON
-	)
-
-/datum/design/borg_upgrade_tarkon_engineering
-	name = "Port Tarkon Engineering Upgrades"
-	id = "borg_upgrade_tarkon_engineering"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/tarkon/tarkon_engineering
-	materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
-		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, // Prices TBD
-		/datum/material/plasma = SHEET_MATERIAL_AMOUNT,
-		/datum/material/gold = SMALL_MATERIAL_AMOUNT * 5,
-	)
-	construction_time = 40
-	category = list(
-		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_TARKON
-	)
-
-/datum/design/borg_upgrade_tarkon_security
-	name = "Port Tarkon Security Upgrades"
-	id = "borg_upgrade_tarkon_security"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/tarkon/tarkon_security
-	materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
-		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, // Prices TBD
-		/datum/material/plasma = SHEET_MATERIAL_AMOUNT,
-		/datum/material/gold = SMALL_MATERIAL_AMOUNT * 5,
-	)
-	construction_time = 40
-	category = list(
-		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_TARKON
-	)
-
-/datum/design/borg_upgrade_tarkon_cargo
-	name = "Port Tarkon Cargo Upgrades"
-	id = "borg_upgrade_tarkon_cargo"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/tarkon/tarkon_cargo
-	materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
-		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, // Prices TBD
-		/datum/material/plasma = SHEET_MATERIAL_AMOUNT,
-		/datum/material/gold = SMALL_MATERIAL_AMOUNT * 5,
-	)
-	construction_time = 40
-	category = list(
-		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_TARKON
-	)
-
-/datum/design/borg_upgrade_tarkon_research
-	name = "Port Tarkon Research Upgrades"
-	id = "borg_upgrade_tarkon_research"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/tarkon/tarkon_research
-	materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
-		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, // Prices TBD
-		/datum/material/plasma = SHEET_MATERIAL_AMOUNT,
-		/datum/material/gold = SMALL_MATERIAL_AMOUNT * 5,
-	)
-	construction_time = 40
-	category = list(
-		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_TARKON
-	)
-
-/datum/design/borg_upgrade_tarkon_service
-	name = "Port Tarkon Service Upgrades"
-	id = "borg_upgrade_tarkon_service"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/tarkon/tarkon_service
-	materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
-		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, // Prices TBD
-		/datum/material/plasma = SHEET_MATERIAL_AMOUNT,
-		/datum/material/gold = SMALL_MATERIAL_AMOUNT * 5,
-	)
-	construction_time = 40
-	category = list(
-		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_TARKON
-	)
-
-/datum/design/borg_upgrade_tarkon_janitor
-	name = "Port Tarkon Janitorial Upgrades"
-	id = "borg_upgrade_tarkon_janitor"
-	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/tarkon/tarkon_janitor
-	materials = list(
-		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5,
-		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, // Prices TBD
-		/datum/material/plasma = SHEET_MATERIAL_AMOUNT,
-		/datum/material/gold = SMALL_MATERIAL_AMOUNT * 5,
-	)
-	construction_time = 40
-	category = list(
-		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_TARKON
-	)

@@ -59,6 +59,10 @@ GLOBAL_LIST_INIT(invalid_heirloom_types, typecacheof(list(
 		living_owner.balloon_alert(living_owner, "no held item!")
 		return FALSE
 
+	if (HAS_TRAIT(held_item, TRAIT_NODROP))
+		living_owner.balloon_alert(living_owner, "item must be droppable!")
+		return FALSE
+
 	if (GLOB.invalid_heirloom_types[held_item.type])
 		living_owner.balloon_alert(living_owner, "invalid item type!")
 		return FALSE

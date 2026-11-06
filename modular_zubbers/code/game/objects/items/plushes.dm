@@ -1,3 +1,13 @@
+/obj/item/toy/plush/attack_self(mob/user)
+	. = ..()
+	if(stuffed)
+		if(HAS_TRAIT(user, TRAIT_MONOPHOBIA))
+			to_chat(user, span_notice("You feel your heart warm up... You don't feel so alone."))
+
+	else
+		if(HAS_TRAIT(user, TRAIT_MONOPHOBIA))
+			to_chat(user, span_warning("You remember that even stitched companions can't stop the solitude building up inside your heart..."))
+
 /obj/item/toy/plush/chaotic_toaster
 	name = "Chaotic toaster"
 	desc = "You arent sure if this plushie want a hug, or harvest your organs, or both."
@@ -621,7 +631,7 @@
 	if(.)
 		return
 
-	if(usr.stat != CONSCIOUS || HAS_TRAIT(usr, TRAIT_HANDS_BLOCKED))
+	if(!IS_UNCONSCIOUS_OR_CRIT(usr) || HAS_TRAIT(usr, TRAIT_HANDS_BLOCKED))
 		return
 
 	switch(action)
@@ -879,6 +889,14 @@
 	icon_state = "milky"
 	inhand_icon_state = "milky"
 
+/obj/item/toy/plush/fox_protogen
+	name = "\improper Silly Protogen plushie"
+	desc = "A silly looking fox protogen made to be extremly squishable with folding tails, the inside being fluffier then the outside, seems to pair wonderfully with the Suspicious Protogen Plushie."
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "foxproot"
+	gender = FEMALE
+	squeak_override = list('modular_zubbers/code/modules/emotes/sound/voice/foxgecker.ogg' = 1)
+
 //Plush for Slicerv
 /obj/item/toy/plush/tangerine
 	name = "\improper Citrus teshari plushie"
@@ -1071,3 +1089,14 @@
 	. = proxy.attack(target, user)
 	playsound(user, 'modular_skyrat/modules/emotes/sound/emotes/dwoop.ogg', 50, TRUE)
 	qdel(proxy)
+
+// Plush for Sharkoink
+/obj/item/toy/plush/myra
+	name = "\improper Noble dragon-shark plushie"
+	desc = "Here to relieve you of your worries <b>and</b> your job!"
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "myra" // sprited by xPokee
+	attack_verb_simple = list("attack", "lay down the law to", "prbts!")
+	attack_verb_continuous = list("attacks", "lays down the law to", "prbts!")
+	squeak_override = list('modular_zubbers/code/modules/emotes/sound/voice/prbt.ogg' = 1)
+	gender = FEMALE

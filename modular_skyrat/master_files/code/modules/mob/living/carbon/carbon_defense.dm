@@ -14,7 +14,7 @@
 			target.unwag_tail()
 			return
 	if(zone_selected == BODY_ZONE_PRECISE_GROIN && target.dir == src.dir)
-		if(HAS_TRAIT(target, TRAIT_PERSONALSPACE) && (target.stat != UNCONSCIOUS) && (!target.handcuffed)) //You need to be conscious and uncuffed to use Personal Space
+		if(HAS_TRAIT(target, TRAIT_PERSONALSPACE) && (!IS_UNCONSCIOUS_OR_CRIT(target)) && (!target.handcuffed)) //You need to be conscious and uncuffed to use Personal Space
 			if(target.combat_mode && (!HAS_TRAIT(target, TRAIT_PACIFISM))) //Being pacified prevents violent counters
 				var/obj/item/bodypart/affecting = src.get_bodypart(BODY_ZONE_HEAD)
 				if(affecting?.receive_damage(PERSONAL_SPACE_DAMAGE))

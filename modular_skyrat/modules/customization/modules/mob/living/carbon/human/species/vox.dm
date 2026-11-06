@@ -15,7 +15,6 @@
 	mutantlungs = /obj/item/organ/lungs/nitrogen/vox
 	mutantbrain = /obj/item/organ/brain/cybernetic/cortical/vox
 	mutanteyes = /obj/item/organ/eyes/vox
-	breathid = "n2"
 	mutant_bodyparts = list()
 	payday_modifier = 1.0
 	outfit_important_for_life = /datum/outfit/vox

@@ -6,6 +6,14 @@
 	type_to_generate = /datum/loadout_item/toys
 	tab_order = /datum/loadout_category/head::tab_order + 13
 
+/datum/loadout_item/toys/foam_baton
+	name = "Foam Force Baton"
+	item_path = /obj/item/foam_baton
+
+/datum/loadout_item/toys/foam_sword
+	name = "Foam Force Claymore"
+	item_path = /obj/item/foam_baton/sword
+
 /datum/loadout_item/toys/plush
 	group = "Plushies"
 	abstract_type = /datum/loadout_item/toys/plush
@@ -147,6 +155,10 @@
 	name = "Milky Plushie"
 	item_path = /obj/item/toy/plush/expie/milky
 
+/datum/loadout_item/toys/plush/fox_protogen
+	name = "Silly Protogen Plushie"
+	item_path = /obj/item/toy/plush/fox_protogen
+
 /datum/loadout_item/toys/plush/tangerine
 	name = "Citrus Teshari Plushie"
 	item_path = /obj/item/toy/plush/tangerine
@@ -154,6 +166,10 @@
 /datum/loadout_item/toys/plush/blue_synth
 	name = "Blue Synth Plushie"
 	item_path = /obj/item/toy/plush/blue_synth
+
+/datum/loadout_item/toys/plush/myra
+	name = "Noble Dragon-Shark Plushie"
+	item_path = /obj/item/toy/plush/myra
 
 /*
 *	SEX TOYS AND OTHER STUFF THAT NEEDS PREFS TO USE (otherwise fails to render on the character preview)

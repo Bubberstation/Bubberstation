@@ -104,7 +104,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "ao" = (
 /obj/structure/fireplace,
@@ -234,16 +234,15 @@
 /turf/open/floor/catwalk_floor/wood_smooth,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "aC" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
 	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/computer/arcade/orion_trail{
+	dir = 8
 	},
-/obj/structure/sign/warning/biohazard/directional/west,
-/obj/structure/lattice/catwalk/mining,
-/turf/open/floor/engine/hull/icebox,
-/area/icemoon/underground/explored)
+/turf/open/floor/wood/tile,
+/area/ruin/space/has_grav/bubbers/persistance/sec/interrogation)
 "aD" = (
 /obj/machinery/biogenerator,
 /obj/machinery/door/firedoor/heavy,
@@ -345,25 +344,15 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "aM" = (
-/obj/machinery/airalarm/directional/north,
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
-/obj/structure/easel,
-/obj/item/canvas/twentyfour_twentyfour{
-	pixel_x = 3;
-	pixel_y = 11
-	},
-/obj/item/paint_palette,
-/obj/item/paint/anycolor{
-	pixel_x = 12;
-	pixel_y = 12
-	},
-/obj/machinery/camera/autoname/directional/east{
-	network = list("persistence_ext");
-	name = "persistence exterior east"
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+/obj/structure/cable,
+/obj/effect/mapping_helpers/apc/syndicate_access,
+/obj/effect/mapping_helpers/apc/cut_AI_wire,
+/obj/effect/mapping_helpers/apc/full_charge,
+/obj/machinery/power/apc/auto_name/directional/east,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
+/obj/machinery/bookbinder,
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
 "aP" = (
@@ -470,7 +459,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "aZ" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
@@ -752,19 +741,9 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/sci/ordnance)
 "bC" = (
-/obj/structure/lattice/catwalk/mining,
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "Syndibitrunningconveyor"
-	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/turf/open/floor/engine/hull/icebox,
-/area/icemoon/underground/explored)
+/obj/structure/table/reinforced/plastitaniumglass,
+/turf/open/floor/glass/reinforced/plasma,
+/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
 "bD" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 6
@@ -935,18 +914,22 @@
 /obj/structure/emergency_shield/cult/weak{
 	name = "Energy Shield"
 	},
-/obj/machinery/camera/autoname/directional/west{
-	name = "Persistence Exterior West";
+/obj/machinery/porta_turret/syndicate{
+	dir = 1
+	},
+/obj/machinery/camera/autoname/directional/south{
+	name = "Persistence Exterior South";
 	network = list("persistence_ext")
 	},
-/turf/open/lava/plasma/ice_moon,
+/obj/effect/turf_decal/weather/snow,
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "bV" = (
 /obj/effect/turf_decal/stripes/red/corner{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "bW" = (
 /obj/structure/cable,
@@ -1762,7 +1745,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "dF" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/line{
@@ -2068,13 +2051,11 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/brigentrance)
 "et" = (
-/obj/machinery/porta_turret/syndicate{
-	dir = 8;
-	pixel_x = 32;
-	pixel_y = -32
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
 	},
-/turf/open/lava/plasma/ice_moon,
-/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
+/turf/open/floor/carpet/royalblack,
+/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
 "eu" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/structure/sign/poster/contraband/blasto_detergent/directional/east,
@@ -2159,7 +2140,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "eF" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -2450,8 +2431,9 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/utilities)
 "fx" = (
+/obj/structure/sign/poster/contraband/gorlex_recruitment/directional/north,
 /turf/closed/wall/r_wall/plastitanium/syndicate/cruiser,
-/area/icemoon/underground/explored)
+/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
 "fy" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
@@ -2465,7 +2447,10 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/morale)
 "fA" = (
-/obj/structure/chair/sofa/corp,
+/obj/machinery/light/directional/south,
+/obj/structure/chair/sofa/corp{
+	dir = 1
+	},
 /turf/open/floor/glass/reinforced/plasma,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
 "fB" = (
@@ -2763,7 +2748,7 @@
 	dir = 4
 	},
 /obj/machinery/disposal/bin,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "gh" = (
 /obj/structure/filingcabinet/white,
@@ -2889,16 +2874,12 @@
 /obj/structure/emergency_shield/cult/weak{
 	name = "Energy Shield"
 	},
-/obj/machinery/camera/autoname/directional/east{
-	network = list("persistence_ext");
-	name = "persistence exterior east"
+/obj/structure/lattice/catwalk/mining,
+/obj/machinery/conveyor{
+	dir = 8
 	},
-/obj/machinery/porta_turret/syndicate{
-	dir = 8;
-	pixel_x = 32;
-	faction = list("Syndicate","neutral")
-	},
-/turf/open/lava/plasma/ice_moon,
+/obj/effect/turf_decal/weather/snow,
+/turf/open/floor/engine/hull/icebox,
 /area/icemoon/underground/explored)
 "gs" = (
 /obj/structure/window/reinforced/survival_pod/spawner/directional/north,
@@ -3227,7 +3208,7 @@
 "hj" = (
 /obj/effect/turf_decal/stripes/red/line,
 /obj/machinery/light/cold/directional/north,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "hk" = (
 /obj/effect/turf_decal/siding/wood{
@@ -3378,7 +3359,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "hB" = (
 /obj/structure/chair/sofa/bench{
@@ -3688,10 +3669,11 @@
 	name = "Energy Shield"
 	},
 /obj/structure/lattice/catwalk/mining,
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "Syndibitrunningconveyor"
+/obj/structure/disposalpipe/trunk{
+	dir = 8
 	},
+/obj/structure/disposaloutlet,
+/obj/effect/turf_decal/weather/snow,
 /turf/open/floor/engine/hull/icebox,
 /area/icemoon/underground/explored)
 "in" = (
@@ -3975,8 +3957,8 @@
 /turf/closed/wall/r_wall/plastitanium/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/cargo/drone)
 "iX" = (
-/obj/machinery/camera/autoname/directional/south{
-	name = "Persistence Exterior South";
+/obj/machinery/camera/autoname/directional/north{
+	name = "Persistence Exterior North";
 	network = list("persistence_ext")
 	},
 /obj/structure/emergency_shield/cult/weak{
@@ -3986,8 +3968,7 @@
 	name = "Energy Shield"
 	},
 /obj/machinery/porta_turret/syndicate{
-	dir = 8;
-	pixel_x = -32
+	dir = 6
 	},
 /obj/effect/turf_decal/weather/snow,
 /turf/open/floor/engine/hull/icebox,
@@ -4626,9 +4607,18 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service/janitorial)
 "kb" = (
-/obj/structure/sign/poster/contraband/gorlex_recruitment/directional/north,
-/turf/closed/wall/r_wall/plastitanium/syndicate/cruiser,
-/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
+/obj/machinery/porta_turret/syndicate{
+	dir = 8
+	},
+/obj/effect/turf_decal/weather/snow,
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/turf/open/floor/engine/hull/icebox,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "kc" = (
 /turf/closed/wall/r_wall/plastitanium/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
@@ -4662,7 +4652,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "kh" = (
 /obj/effect/turf_decal/siding/wideplating/terracotta{
@@ -4756,12 +4746,16 @@
 /turf/open/floor/plating/elevatorshaft,
 /area/ruin/space/has_grav/bubbers/persistance/command/bridge)
 "ks" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/door/firedoor/heavy,
+/obj/machinery/door/airlock/public/glass{
+	name = "Recreation"
+	},
 /obj/structure/cable,
-/turf/open/floor/carpet/royalblack,
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
+/turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
 "kt" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
@@ -5142,7 +5136,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "li" = (
 /obj/effect/turf_decal/trimline/blue/filled/warning{
@@ -5235,7 +5229,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "lr" = (
 /obj/machinery/vending/wallmed/directional/east,
@@ -5439,12 +5433,8 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "lL" = (
-/obj/effect/turf_decal/siding/white/end{
-	dir = 8
-	},
-/obj/machinery/light/directional/west,
-/turf/open/floor/iron/freezer,
-/area/ruin/space/has_grav/bubbers/persistance/command/admiral)
+/turf/closed/wall/r_wall/plastitanium/syndicate/nodiagonal,
+/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
 "lM" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -5527,22 +5517,11 @@
 	},
 /area/ruin/space/has_grav/bubbers/persistance/med)
 "lU" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
+/obj/structure/chair/sofa/corp/corner{
+	dir = 4
 	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/machinery/porta_turret/syndicate{
-	dir = 8;
-	pixel_x = 32
-	},
-/obj/machinery/camera/autoname/directional/east{
-	network = list("persistence_ext");
-	name = "persistence exterior east"
-	},
-/turf/open/lava/plasma/ice_moon,
-/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
+/turf/open/floor/glass/reinforced/plasma,
+/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
 "lV" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -5584,7 +5563,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "lZ" = (
 /obj/effect/spawner/xmastree,
@@ -5717,7 +5696,15 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "mm" = (
-/turf/closed/wall/r_wall/plastitanium/syndicate/cruiser,
+/obj/machinery/firealarm/directional/east,
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/wood/fifty{
+	pixel_x = -7;
+	pixel_y = 2
+	},
+/obj/item/storage/crayons,
+/obj/item/storage/crayons,
+/turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
 "mn" = (
 /obj/machinery/digital_clock/directional/south,
@@ -6060,8 +6047,11 @@
 	},
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "mV" = (
-/turf/closed/wall/r_wall/plastitanium/syndicate/cruiser,
-/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plating/elevatorshaft,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "mX" = (
 /obj/machinery/airalarm/directional/west,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
@@ -6158,21 +6148,29 @@
 /turf/open/floor/wood/parquet,
 /area/ruin/space/has_grav/bubbers/persistance/service/gym)
 "ni" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 6
+/obj/machinery/camera/autoname/directional/south{
+	name = "Persistence Exterior South";
+	network = list("persistence_ext")
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/turf/open/floor/carpet/royalblack,
-/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/effect/turf_decal/weather/snow,
+/obj/machinery/porta_turret/syndicate{
+	dir = 5
+	},
+/turf/open/floor/engine/hull/icebox,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "nj" = (
 /obj/machinery/light/directional/south,
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "nl" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
@@ -6262,7 +6260,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "nw" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark,
@@ -6348,7 +6346,7 @@
 /obj/item/clothing/shoes/magboots/syndie{
 	pixel_y = 8
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "nC" = (
 /obj/structure/cable,
@@ -6831,7 +6829,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/red/line,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "ot" = (
 /obj/structure/cable,
@@ -6926,17 +6924,20 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "oG" = (
-/obj/structure/cable,
-/obj/effect/mapping_helpers/apc/syndicate_access,
-/obj/effect/mapping_helpers/apc/cut_AI_wire,
-/obj/effect/mapping_helpers/apc/full_charge,
-/obj/machinery/power/apc/auto_name/directional/east,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+/obj/effect/turf_decal/trimline/dark_red/filled/line{
 	dir = 8
 	},
-/obj/machinery/bookbinder,
-/turf/open/floor/wood/tile,
-/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
+/obj/effect/turf_decal/trimline/dark/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/dark/corner{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "oH" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/effect/turf_decal/delivery/blue,
@@ -7024,27 +7025,6 @@
 /obj/machinery/firealarm/directional/north,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
-"oS" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/duct,
-/obj/effect/turf_decal/trimline/dark/filled/line{
-	alpha = 160;
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/neutral/line{
-	color = "#1dc251";
-	alpha = 200;
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/iron/white/smooth_edge{
-	dir = 4
-	},
-/area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
 "oT" = (
 /obj/machinery/light/directional/south,
 /obj/machinery/computer/piratepad_control/syndiepad{
@@ -7299,21 +7279,17 @@
 /turf/open/floor/noslip,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/utilities)
 "pq" = (
-/obj/machinery/porta_turret/syndicate{
-	dir = 8;
-	pixel_y = 32
-	},
 /obj/structure/emergency_shield/cult/weak{
 	name = "Energy Shield"
 	},
 /obj/structure/emergency_shield/cult/weak{
 	name = "Energy Shield"
 	},
-/obj/machinery/camera/autoname/directional/north{
-	name = "Persistence Exterior North";
+/obj/machinery/camera/autoname/directional/west{
+	name = "Persistence Exterior West";
 	network = list("persistence_ext")
 	},
-/turf/open/lava/plasma/ice_moon,
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "ps" = (
 /obj/machinery/duct,
@@ -7559,11 +7535,18 @@
 /turf/closed/wall/r_wall/plastitanium/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service/salon)
 "pO" = (
-/obj/effect/turf_decal/siding/wood{
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/sign/warning/biohazard/directional/west,
+/obj/machinery/conveyor{
 	dir = 8
 	},
-/turf/open/floor/carpet/royalblack,
-/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
+/turf/open/floor/engine/hull/icebox,
+/area/icemoon/underground/explored)
 "pP" = (
 /obj/machinery/dryer{
 	pixel_y = -26
@@ -7745,10 +7728,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
-"qj" = (
-/obj/structure/flora/rock/style_random,
-/turf/closed/mineral/random/snow/underground,
-/area/icemoon/underground/explored)
 "ql" = (
 /obj/effect/turf_decal/trimline/dark/filled/line{
 	alpha = 160;
@@ -8056,7 +8035,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "qN" = (
 /obj/machinery/power/portagrav,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "qO" = (
 /obj/structure/cable,
@@ -8078,7 +8057,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 4
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "qR" = (
 /turf/closed/wall/r_wall/plastitanium/syndicate/cruiser,
@@ -8133,17 +8112,14 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service/freezer)
 "qX" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 4
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
 	},
-/obj/effect/turf_decal/trimline/dark_red/filled/corner{
-	dir = 1
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
 	},
-/obj/effect/turf_decal/trimline/dark/corner{
-	dir = 1
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
+/turf/open/floor/engine/hull/icebox,
+/area/icemoon/underground/explored)
 "qZ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 8
@@ -8304,7 +8280,7 @@
 "rm" = (
 /obj/structure/sign/warning/gas_mask/directional/south,
 /obj/machinery/light/directional/south,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "rp" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
@@ -8431,15 +8407,11 @@
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/gas)
 "rH" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/obj/structure/cable,
-/obj/structure/rack/gunrack,
-/obj/structure/sign/poster/contraband/energy_swords/directional/west,
-/obj/structure/disposalpipe/segment,
-/obj/item/gun/chem,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/has_grav/bubbers/persistance/sec/armory)
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/plating/elevatorshaft,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "rI" = (
 /obj/machinery/reagentgrinder{
 	pixel_y = 19;
@@ -8845,13 +8817,16 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "sr" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/lighter/skull,
-/turf/open/floor/glass/reinforced/plasma,
-/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
+/obj/effect/turf_decal/trimline/dark/line,
+/obj/machinery/light/directional/north,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/plating/elevatorshaft,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "ss" = (
 /obj/machinery/processor/slime,
 /obj/effect/turf_decal/trimline/dark/filled/end{
@@ -8938,10 +8913,6 @@
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/persistance/service/lockers)
-"sA" = (
-/obj/structure/flora/scrap,
-/turf/open/lava/plasma/ice_moon,
-/area/icemoon/underground/explored)
 "sB" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/machinery/smartfridge/disks{
@@ -9077,18 +9048,29 @@
 /obj/structure/cable,
 /obj/structure/frame/machine/secured,
 /obj/item/circuitboard/machine/protolathe/interdyne,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "sS" = (
 /obj/machinery/bluespace_miner,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/mining)
 "sT" = (
-/obj/structure/chair/sofa/corp{
-	dir = 4
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
 	},
-/turf/open/floor/glass/reinforced/plasma,
-/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/machinery/camera/autoname/directional/east{
+	network = list("persistence_ext");
+	name = "persistence exterior east"
+	},
+/obj/effect/turf_decal/weather/snow,
+/obj/machinery/porta_turret/syndicate{
+	dir = 8
+	},
+/turf/open/floor/engine/hull/icebox,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "sW" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
 	dir = 4
@@ -9134,7 +9116,7 @@
 /obj/effect/turf_decal/stripes/red/corner{
 	dir = 8
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "ta" = (
 /obj/effect/turf_decal/siding/dark{
@@ -9164,8 +9146,8 @@
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "td" = (
-/obj/structure/chair/sofa/corp/left{
-	dir = 2
+/obj/structure/chair/sofa/corp/right{
+	dir = 1
 	},
 /turf/open/floor/glass/reinforced/plasma,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
@@ -9181,7 +9163,7 @@
 /obj/machinery/airalarm/directional/north,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/effect/turf_decal/stripes/red/line,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "tg" = (
 /turf/closed/wall/r_wall/plastitanium/syndicate/cruiser,
@@ -9244,7 +9226,7 @@
 	pixel_y = -24;
 	pixel_x = -8
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "to" = (
 /obj/structure/window/reinforced/tinted/spawner/directional/south,
@@ -9377,7 +9359,7 @@
 	dir = 1
 	},
 /obj/item/flatpacked_machine,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "tC" = (
 /obj/effect/turf_decal/vg_decals/numbers/four,
@@ -9511,15 +9493,11 @@
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/persistance/command/admiral)
 "tO" = (
-/obj/effect/turf_decal/siding/white{
+/obj/machinery/porta_turret/syndicate{
 	dir = 5
 	},
-/obj/machinery/shower/directional/south,
-/obj/effect/turf_decal/siding/white/corner{
-	dir = 8
-	},
-/turf/open/floor/iron/freezer,
-/area/ruin/space/has_grav/bubbers/persistance/command/admiral)
+/turf/open/floor/engine/hull/icebox,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "tP" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -9719,14 +9697,11 @@
 	name = "decorative panel"
 	},
 /obj/structure/marker_beacon/fuchsia,
-/obj/item/ai_module/reset/purge{
-	pixel_y = 8
-	},
-/obj/item/ai_module/core/full/persistence{
+/obj/item/ai_module/law/core/full/persistence{
 	pixel_y = 4;
 	pixel_x = -2
 	},
-/obj/item/ai_module/supplied/freeform{
+/obj/item/ai_module/law/supplied/freeform{
 	pixel_y = -1;
 	pixel_x = -4
 	},
@@ -9797,8 +9772,29 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "uo" = (
-/turf/closed/wall/r_wall/plastitanium/syndicate/nodiagonal,
-/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
+/obj/effect/turf_decal/trimline/dark_red/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/dark/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/dark_red/filled/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/dark/corner{
+	dir = 8
+	},
+/obj/structure/railing/corner/end/flip{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "uq" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark/end{
 	dir = 8
@@ -10104,6 +10100,10 @@
 "uT" = (
 /turf/closed/wall/r_wall/plastitanium/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/gas)
+"uU" = (
+/obj/effect/turf_decal/weather/snow,
+/turf/open/floor/engine/hull/icebox,
+/area/icemoon/underground/explored)
 "uW" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 4
@@ -10450,7 +10450,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "vK" = (
 /obj/structure/cable,
@@ -10720,11 +10720,11 @@
 /area/ruin/space/has_grav/bubbers/persistance/med)
 "wg" = (
 /obj/effect/turf_decal/siding/wood{
-	dir = 5
+	dir = 6
 	},
-/obj/structure/fireplace,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
 "wh" = (
@@ -10811,7 +10811,7 @@
 	dir = 5
 	},
 /obj/machinery/portable_atmospherics/pump,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "ws" = (
 /obj/structure/table/reinforced/plastitaniumglass,
@@ -10829,22 +10829,16 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/persistance/med/treatment)
 "wt" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/machinery/porta_turret/syndicate{
-	dir = 8;
-	pixel_y = -32
-	},
-/obj/machinery/camera/autoname/directional/south{
-	name = "Persistence Exterior South";
-	network = list("persistence_ext")
-	},
-/turf/open/lava/plasma/ice_moon,
-/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/structure/cable,
+/obj/structure/rack/gunrack,
+/obj/structure/sign/poster/contraband/energy_swords/directional/west,
+/obj/structure/disposalpipe/segment,
+/obj/item/gun/chem,
+/obj/item/gun/ballistic/automatic/smartgun,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/bubbers/persistance/sec/armory)
 "wu" = (
 /obj/structure/table/reinforced/plastitaniumglass,
 /obj/item/stock_parts/power_store/cell/high{
@@ -11242,8 +11236,14 @@
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "xk" = (
-/turf/closed/wall/r_wall/plastitanium/syndicate/nodiagonal,
-/area/icemoon/underground/explored)
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/structure/fireplace,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/carpet/royalblack,
+/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
 "xl" = (
 /turf/closed/wall/r_wall/plastitanium/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/sec/brigentrance)
@@ -11423,7 +11423,7 @@
 /obj/item/storage/toolbox/syndicate{
 	pixel_y = 5
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "xE" = (
 /obj/machinery/duct,
@@ -12024,7 +12024,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "yI" = (
 /obj/structure/frame/machine/secured,
@@ -12124,14 +12124,16 @@
 /obj/structure/emergency_shield/cult/weak{
 	name = "Energy Shield"
 	},
-/obj/structure/sign/warning/chem_diamond/directional/west,
-/obj/structure/lattice/catwalk/mining,
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "Syndibitrunningconveyor"
+/obj/machinery/camera/autoname/directional/west{
+	name = "Persistence Exterior West";
+	network = list("persistence_ext")
 	},
+/obj/machinery/porta_turret/syndicate{
+	dir = 4
+	},
+/obj/effect/turf_decal/weather/snow,
 /turf/open/floor/engine/hull/icebox,
-/area/icemoon/underground/explored)
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "yV" = (
 /obj/structure/chair/pew/left{
 	dir = 8
@@ -12163,16 +12165,12 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/red/corner,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "za" = (
-/obj/machinery/porta_turret/syndicate{
-	dir = 8;
-	pixel_x = -32;
-	pixel_y = -32
-	},
-/turf/open/lava/plasma/ice_moon,
-/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
+/obj/machinery/duct,
+/turf/closed/wall/r_wall/plastitanium/syndicate/nodiagonal,
+/area/ruin/space/has_grav/bubbers/persistance/command/admiral)
 "zd" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 6
@@ -12397,7 +12395,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "zt" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
@@ -12434,7 +12432,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "zv" = (
 /obj/structure/disposalpipe/segment{
@@ -12577,12 +12575,10 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/persistance/med/viro)
 "zK" = (
-/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
-/obj/structure/cable,
-/obj/machinery/door/poddoor{
-	id = "prison_shutters"
+/obj/structure/chair/sofa/corp{
+	dir = 4
 	},
-/turf/open/floor/plating/reinforced,
+/turf/open/floor/glass/reinforced/plasma,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
 "zL" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/line{
@@ -12649,7 +12645,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "zS" = (
 /obj/machinery/hydroponics/constructable,
@@ -12781,7 +12777,7 @@
 	id = "syndiengi_w";
 	name = "engineering window polarization"
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Ah" = (
 /obj/effect/turf_decal/trimline/dark/filled/line{
@@ -12919,7 +12915,7 @@
 /obj/structure/disposalpipe/junction{
 	dir = 4
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "AC" = (
 /obj/structure/cable,
@@ -13079,10 +13075,10 @@
 /turf/open/floor/circuit/telecomms,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "AQ" = (
+/obj/machinery/firealarm/directional/south,
 /obj/effect/turf_decal/siding/wood{
-	dir = 9
+	dir = 10
 	},
-/obj/structure/cable,
 /turf/open/floor/carpet/royalblack,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
 "AT" = (
@@ -13180,7 +13176,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Bc" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
@@ -13370,16 +13366,20 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
 "Bu" = (
-/obj/effect/turf_decal/trimline/dark_red/filled/warning,
-/obj/effect/turf_decal/trimline/dark_red/filled/warning{
-	dir = 1
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
 	},
-/obj/effect/turf_decal/trimline/dark/warning,
-/obj/effect/turf_decal/trimline/dark/warning{
-	dir = 1
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
 	},
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
+/obj/machinery/camera/autoname/directional/north{
+	name = "Persistence Exterior North";
+	network = list("persistence_ext")
+	},
+/obj/effect/turf_decal/weather/snow,
+/obj/machinery/porta_turret/syndicate,
+/turf/open/floor/engine/hull/icebox,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "Bv" = (
 /obj/machinery/light/directional/west,
 /obj/machinery/doppler_array{
@@ -13491,14 +13491,25 @@
 /obj/machinery/atmospherics/components/binary/pump/off/general/visible/layer2{
 	dir = 1
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "BE" = (
-/obj/structure/chair/sofa/corp/right{
-	dir = 1
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
 	},
-/turf/open/floor/glass/reinforced/plasma,
-/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/machinery/camera/autoname/directional/east{
+	network = list("persistence_ext");
+	name = "persistence exterior east"
+	},
+/obj/machinery/porta_turret/syndicate{
+	dir = 8
+	},
+/obj/effect/turf_decal/weather/snow,
+/turf/open/floor/engine/hull/icebox,
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "BF" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -13735,7 +13746,7 @@
 /obj/effect/turf_decal/stripes/red/corner{
 	dir = 8
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Cd" = (
 /obj/structure/disposalpipe/segment,
@@ -13971,11 +13982,17 @@
 /turf/open/floor/engine/hull/icebox,
 /area/icemoon/underground/explored)
 "Cy" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
 	},
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 8
+/obj/effect/mapping_helpers/apc/full_charge,
+/obj/effect/mapping_helpers/apc/cut_AI_wire,
+/obj/effect/mapping_helpers/apc/syndicate_access,
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/east,
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/storage/toolbox/syndicate{
+	pixel_y = 5
 	},
 /turf/open/floor/iron/colony/bolts,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
@@ -14030,12 +14047,13 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
 "CG" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 6
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/iron/colony/bolts,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "CH" = (
@@ -14144,7 +14162,7 @@
 	dir = 8
 	},
 /obj/machinery/light/cold/directional/north,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "CR" = (
 /obj/machinery/light/directional/north,
@@ -14293,7 +14311,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "Dd" = (
 /turf/closed/wall/r_wall/plastitanium/syndicate/cruiser,
@@ -14305,7 +14323,10 @@
 /obj/structure/emergency_shield/cult/weak{
 	name = "Energy Shield"
 	},
-/obj/structure/sign/warning/docking/directional/west,
+/obj/structure/lattice/catwalk/mining,
+/obj/machinery/conveyor{
+	dir = 8
+	},
 /turf/open/floor/engine/hull/icebox,
 /area/icemoon/underground/explored)
 "Dg" = (
@@ -14629,8 +14650,19 @@
 /turf/open/floor/iron/white/smooth_half,
 /area/ruin/space/has_grav/bubbers/persistance/sci/xenobio)
 "DN" = (
-/turf/closed/wall/r_wall/plastitanium/syndicate/cruiser,
-/area/ruin/space/has_grav/bubbers/persistance/service/dorms/science)
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/machinery/camera/autoname/directional/east{
+	network = list("persistence_ext");
+	name = "persistence exterior east"
+	},
+/obj/effect/turf_decal/weather/snow,
+/turf/open/floor/engine/hull/icebox,
+/area/ruin/space/has_grav/bubbers/persistance/command/vault)
 "DO" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -14646,7 +14678,7 @@
 	},
 /obj/machinery/incident_display/delam/directional/north,
 /obj/structure/frame/machine/secured,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "DS" = (
 /obj/effect/turf_decal/stripes/red/full,
@@ -14777,11 +14809,23 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Ed" = (
-/obj/machinery/porta_turret/syndicate{
-	dir = 5
+/obj/effect/turf_decal/trimline/dark_red/filled/corner{
+	dir = 4
 	},
-/turf/closed/wall/r_wall/plastitanium/syndicate/cruiser,
-/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
+/obj/effect/turf_decal/trimline/dark/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/dark_red/corner{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Ef" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 4;
@@ -14797,26 +14841,39 @@
 /turf/open/floor/carpet/green,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "Eh" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/turf/open/floor/glass/reinforced/plasma,
-/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
+/obj/structure/closet/secure_closet/dauntless/munitions_locker,
+/obj/item/ammo_box/magazine/m45,
+/obj/item/ammo_box/magazine/m45,
+/obj/item/ammo_box/magazine/m45,
+/obj/item/ammo_box/magazine/m45,
+/obj/machinery/light/directional/east,
+/obj/machinery/button/door/directional/north{
+	name = "Armory Shutters";
+	id = "armory_s2";
+	req_access = list("syndicate_leader");
+	pixel_x = 24;
+	pixel_y = 0
+	},
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/smartgun,
+/obj/item/ammo_box/magazine/smartgun,
+/obj/item/ammo_box/magazine/smartgun,
+/obj/item/ammo_box/magazine/smartgun,
+/obj/item/ammo_box/magazine/smartgun,
+/turf/open/floor/iron/dark/smooth_large,
+/area/ruin/space/has_grav/bubbers/persistance/sec/armory)
 "Ej" = (
 /obj/machinery/airalarm/directional/east,
 /turf/closed/wall/r_wall/plastitanium/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/science)
 "Ek" = (
-/obj/effect/turf_decal/trimline/dark_red/filled/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/dark/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/dark_red{
-	dir = 1
-	},
 /obj/effect/turf_decal/trimline/dark_red/filled/shrink_ccw,
 /obj/effect/turf_decal/trimline/dark/line,
-/obj/machinery/light/directional/north,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "El" = (
@@ -14938,7 +14995,7 @@
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "Ev" = (
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Ew" = (
 /obj/structure/table,
@@ -14978,7 +15035,7 @@
 	name = "Turbine Window Polarization";
 	id = "burnchamberbed_w"
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "EB" = (
 /obj/machinery/digital_clock/directional/west,
@@ -15131,7 +15188,7 @@
 /obj/item/pipe_dispenser{
 	pixel_x = -3
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "EM" = (
 /obj/structure/cable,
@@ -15330,6 +15387,23 @@
 /obj/machinery/firealarm/directional/north,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
+"Fb" = (
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/effect/turf_decal/weather/snow,
+/obj/machinery/camera/autoname/directional/south{
+	name = "Persistence Exterior South";
+	network = list("persistence_ext")
+	},
+/obj/machinery/porta_turret/syndicate{
+	dir = 9
+	},
+/turf/open/floor/engine/hull/icebox,
+/area/icemoon/underground/explored)
 "Fc" = (
 /obj/structure/emergency_shield/cult/weak{
 	name = "Energy Shield"
@@ -15338,8 +15412,7 @@
 	name = "Energy Shield"
 	},
 /obj/machinery/conveyor{
-	dir = 8;
-	id = "Syndibitrunningconveyor"
+	dir = 8
 	},
 /obj/structure/lattice/catwalk/mining,
 /turf/open/floor/engine/hull/icebox,
@@ -15439,7 +15512,7 @@
 	pixel_x = 1;
 	pixel_y = -2
 	},
-/obj/item/mmi/syndie{
+/obj/item/brain_processor/organic/syndie{
 	pixel_x = -1;
 	pixel_y = 18
 	},
@@ -15585,11 +15658,26 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "FC" = (
-/obj/machinery/firealarm/directional/south,
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
+/obj/machinery/airalarm/directional/north,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/obj/structure/easel,
+/obj/item/canvas/twentyfour_twentyfour{
+	pixel_x = 3;
+	pixel_y = 11
 	},
-/turf/open/floor/carpet/royalblack,
+/obj/item/paint_palette,
+/obj/item/paint/anycolor{
+	pixel_x = 12;
+	pixel_y = 12
+	},
+/obj/machinery/camera/autoname/directional/east{
+	network = list("persistence_ext");
+	name = "persistence exterior east"
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
 "FD" = (
 /obj/effect/turf_decal/vg_decals/numbers/six,
@@ -15660,17 +15748,17 @@
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/persistance/service/diner)
 "FJ" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
+/obj/effect/turf_decal/weather/snow,
+/obj/machinery/porta_turret/syndicate{
+	dir = 9
 	},
 /obj/structure/emergency_shield/cult/weak{
 	name = "Energy Shield"
 	},
-/obj/machinery/camera/autoname/directional/east{
-	network = list("persistence_ext");
-	name = "persistence exterior east"
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
 	},
-/turf/open/lava/plasma/ice_moon,
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "FK" = (
 /obj/effect/overlay/water,
@@ -16119,17 +16207,18 @@
 /turf/open/floor/iron/dark/herringbone,
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "GM" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/door/firedoor/heavy,
-/obj/machinery/door/airlock/public/glass{
-	name = "Recreation"
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
 	},
-/obj/structure/cable,
-/obj/effect/mapping_helpers/airlock/cutaiwire,
-/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
-/turf/open/floor/catwalk_floor/iron_dark,
-/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/structure/sign/warning/docking/directional/west,
+/obj/machinery/conveyor{
+	dir = 8
+	},
+/turf/open/floor/engine/hull/icebox,
+/area/icemoon/underground/explored)
 "GO" = (
 /obj/machinery/airalarm/directional/west,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
@@ -16340,15 +16429,7 @@
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/bubbers/persistance/service/sauna)
 "Hn" = (
-/obj/machinery/firealarm/directional/east,
-/obj/structure/rack,
-/obj/item/stack/sheet/mineral/wood/fifty{
-	pixel_x = -7;
-	pixel_y = 2
-	},
-/obj/item/storage/crayons,
-/obj/item/storage/crayons,
-/turf/open/floor/wood/tile,
+/turf/closed/wall/r_wall/plastitanium/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
 "Hp" = (
 /turf/open/floor/iron/dark/textured_large,
@@ -16544,31 +16625,15 @@
 /turf/closed/wall/r_wall/plastitanium/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/command/admiral)
 "HJ" = (
-/obj/effect/turf_decal/trimline/dark_red/filled/line{
+/obj/machinery/shower/directional/south,
+/obj/structure/drain{
+	pixel_y = -2
+	},
+/obj/effect/turf_decal/siding/white/end{
 	dir = 1
 	},
-/obj/effect/turf_decal/trimline/dark/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/dark_red{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/dark_red/filled/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/dark/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/dark_red/filled/corner,
-/obj/effect/turf_decal/trimline/dark/corner,
-/obj/structure/railing/corner/end/flip{
-	dir = 8
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
+/turf/open/floor/iron/freezer,
+/area/ruin/space/has_grav/bubbers/persistance/command/admiral)
 "HK" = (
 /obj/effect/turf_decal/tile/dark_red/half{
 	dir = 4
@@ -16830,29 +16895,18 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/persistance/med)
 "Ii" = (
-/obj/effect/turf_decal/trimline/dark_red/filled/corner{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/dark/corner{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/dark_red/corner{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/dark_red/filled/corner{
+/obj/structure/lattice/catwalk/mining,
+/obj/machinery/conveyor{
 	dir = 8
 	},
-/obj/effect/turf_decal/trimline/dark/corner{
-	dir = 8
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
 	},
-/obj/structure/railing{
-	dir = 8
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
 	},
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
+/turf/open/floor/engine/hull/icebox,
+/area/icemoon/underground/explored)
 "Ij" = (
 /obj/structure/cable,
 /obj/machinery/duct,
@@ -16989,7 +17043,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/red/corner,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Ix" = (
 /obj/structure/cable,
@@ -17065,7 +17119,7 @@
 /obj/structure/closet/firecloset/wall{
 	pixel_y = 32
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "IC" = (
 /obj/structure/table/reinforced/plastitaniumglass,
@@ -17133,7 +17187,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "II" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -17257,13 +17311,20 @@
 /obj/structure/emergency_shield/cult/weak{
 	name = "Energy Shield"
 	},
+/obj/machinery/porta_turret/syndicate{
+	dir = 8;
+	pixel_x = -32
+	},
+/obj/machinery/camera/autoname/directional/west{
+	name = "Persistence Exterior West";
+	network = list("persistence_ext")
+	},
 /obj/structure/lattice/catwalk/mining,
-/obj/structure/disposalpipe/trunk{
+/obj/machinery/conveyor{
 	dir = 8
 	},
-/obj/structure/disposaloutlet,
 /turf/open/floor/engine/hull/icebox,
-/area/icemoon/underground/explored)
+/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "IX" = (
 /obj/structure/closet/generic/wall{
 	pixel_y = 32
@@ -17406,7 +17467,7 @@
 	pixel_y = -24;
 	pixel_x = 8
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Jp" = (
 /obj/structure/table/reinforced/plastitaniumglass,
@@ -17641,7 +17702,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/hydro)
 "JS" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "JT" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark/end{
@@ -17758,7 +17819,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 4
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Kk" = (
 /obj/machinery/door/firedoor/heavy,
@@ -17835,8 +17896,14 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Ky" = (
+/obj/machinery/button/door/directional/north{
+	id = "prison_shutters";
+	name = "Library windows";
+	req_access = list("syndicate");
+	pixel_y = -32
+	},
 /obj/structure/chair/sofa/corp/corner{
-	dir = 4
+	dir = 1
 	},
 /turf/open/floor/glass/reinforced/plasma,
 /area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
@@ -17878,15 +17945,12 @@
 /obj/structure/emergency_shield/cult/weak{
 	name = "Energy Shield"
 	},
-/obj/machinery/porta_turret/syndicate{
-	dir = 8;
-	pixel_x = -32
+/obj/machinery/camera/autoname/directional/east{
+	network = list("persistence_ext");
+	name = "persistence exterior east"
 	},
-/obj/machinery/camera/autoname/directional/west{
-	name = "Persistence Exterior West";
-	network = list("persistence_ext")
-	},
-/turf/open/lava/plasma/ice_moon,
+/obj/effect/turf_decal/weather/snow,
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "KD" = (
 /obj/effect/turf_decal/siding/wood{
@@ -17967,9 +18031,10 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "KS" = (
-/obj/effect/turf_decal/bot_red,
-/obj/effect/turf_decal/box/red,
-/turf/open/floor/iron/dark/textured_large,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "KT" = (
 /obj/machinery/disposal/bin,
@@ -18122,7 +18187,7 @@
 /obj/effect/mapping_helpers/apc/cut_AI_wire,
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/red/line,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Lh" = (
 /obj/effect/turf_decal/trimline/dark/filled/line{
@@ -18434,20 +18499,12 @@
 	name = "Energy Shield"
 	},
 /obj/machinery/conveyor{
-	dir = 8;
-	id = "Syndibitrunningconveyor"
+	dir = 8
 	},
 /obj/structure/lattice/catwalk/mining,
-/obj/machinery/porta_turret/syndicate{
-	dir = 8;
-	pixel_y = 32
-	},
-/obj/machinery/camera/autoname/directional/north{
-	name = "Persistence Exterior North";
-	network = list("persistence_ext")
-	},
+/obj/effect/turf_decal/weather/snow,
 /turf/open/floor/engine/hull/icebox,
-/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
+/area/icemoon/underground/explored)
 "LN" = (
 /obj/structure/cable,
 /obj/machinery/mech_bay_recharge_port{
@@ -18501,17 +18558,12 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/persistance/med)
 "LS" = (
-/obj/machinery/button/door/directional/north{
-	id = "prison_shutters";
-	name = "Library windows";
-	req_access = list("syndicate");
-	pixel_y = -32
-	},
-/obj/structure/chair/sofa/corp/corner{
+/obj/effect/turf_decal/trimline/dark/warning,
+/obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/turf/open/floor/glass/reinforced/plasma,
-/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
+/turf/open/floor/plating/elevatorshaft,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "LT" = (
 /obj/machinery/door/window/survival_pod/left/directional/west{
 	req_access = list("syndicate");
@@ -18584,6 +18636,9 @@
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 6
 	},
 /turf/open/floor/iron/colony/bolts,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
@@ -18811,7 +18866,7 @@
 /obj/structure/flatpack_cart,
 /obj/structure/sign/departments/telecomms/alt/directional/east,
 /obj/machinery/light/directional/south,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "MA" = (
 /obj/structure/closet/secure_closet/interdynefob/brig_officer_locker,
@@ -18939,19 +18994,14 @@
 /obj/structure/emergency_shield/cult/weak{
 	name = "Energy Shield"
 	},
-/obj/machinery/porta_turret/syndicate{
-	dir = 8;
-	pixel_x = -32
-	},
-/obj/machinery/camera/autoname/directional/west{
-	name = "Persistence Exterior West";
+/obj/machinery/camera/autoname/directional/north{
+	name = "Persistence Exterior North";
 	network = list("persistence_ext")
 	},
-/obj/structure/lattice/catwalk/mining,
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "Syndibitrunningconveyor"
+/obj/machinery/porta_turret/syndicate{
+	dir = 4
 	},
+/obj/effect/turf_decal/weather/snow,
 /turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "MQ" = (
@@ -18966,7 +19016,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "MR" = (
 /obj/effect/turf_decal/stripes/red/line,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "MS" = (
 /obj/effect/spawner/random/exotic/syndie,
@@ -19483,12 +19533,18 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/persistance/sci/ordnance)
 "NX" = (
-/obj/machinery/light/directional/south,
-/obj/structure/chair/sofa/corp{
-	dir = 1
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
 	},
-/turf/open/floor/glass/reinforced/plasma,
-/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/effect/turf_decal/weather/snow,
+/obj/machinery/porta_turret/syndicate{
+	dir = 10
+	},
+/turf/open/floor/engine/hull/icebox,
+/area/ruin/space/has_grav/bubbers/persistance/command/vault)
 "NY" = (
 /obj/structure/chair/pew/right,
 /obj/effect/turf_decal/tile/neutral/half{
@@ -20033,23 +20089,12 @@
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/bubbers/persistance/service/lockers)
 "Pd" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
 	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/machinery/camera/autoname/directional/east{
-	network = list("persistence_ext");
-	name = "persistence exterior east"
-	},
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "Syndibitrunningconveyor"
-	},
-/obj/structure/lattice/catwalk/mining,
-/turf/open/floor/engine/hull/icebox,
-/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
+/obj/structure/cable,
+/turf/open/floor/carpet/royalblack,
+/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
 "Pe" = (
 /obj/machinery/computer/cryopod/cybersun/directional/west,
 /obj/structure/table,
@@ -20236,7 +20281,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Pz" = (
 /turf/closed/wall/r_wall/plastitanium/syndicate/cruiser,
@@ -20414,7 +20459,7 @@
 	},
 /obj/machinery/light_switch/directional/west,
 /obj/machinery/autolathe/hacked,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "PR" = (
 /obj/effect/turf_decal/siding/wideplating/terracotta,
@@ -20448,19 +20493,13 @@
 /turf/open/floor/carpet/purple,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/janitor)
 "PV" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
 	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/effect/turf_decal/weather/snow,
-/obj/machinery/camera/autoname/directional/south{
-	name = "Persistence Exterior South";
-	network = list("persistence_ext")
-	},
-/turf/open/floor/engine/hull/icebox,
-/area/icemoon/underground/explored)
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/carpet/royalblack,
+/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
 "PW" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -20605,20 +20644,18 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sec/armory)
 "Qq" = (
-/obj/structure/drain,
-/obj/machinery/door/window/survival_pod/left/directional/north{
-	pixel_y = 4
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
 	},
-/obj/machinery/duct,
-/obj/effect/turf_decal/siding/white/corner{
-	dir = 1
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
 	},
-/obj/structure/mirror/directional/east,
-/obj/effect/turf_decal/siding/white{
-	dir = 4
+/obj/structure/sign/warning/chem_diamond/directional/west,
+/obj/machinery/conveyor{
+	dir = 8
 	},
-/turf/open/floor/iron/freezer,
-/area/ruin/space/has_grav/bubbers/persistance/command/admiral)
+/turf/open/floor/engine/hull/icebox,
+/area/icemoon/underground/explored)
 "Qs" = (
 /obj/structure/kitchenspike,
 /obj/item/knife/butcher,
@@ -20642,7 +20679,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Qv" = (
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
@@ -20803,13 +20840,19 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/bubbers/persistance/sci/robotics)
 "QI" = (
-/obj/machinery/porta_turret/syndicate{
-	dir = 8;
-	pixel_y = -32;
-	pixel_x = 32
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
 	},
-/turf/open/lava/plasma/ice_moon,
-/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
+/obj/structure/emergency_shield/cult/weak{
+	name = "Energy Shield"
+	},
+/obj/machinery/camera/autoname/directional/north{
+	name = "Persistence Exterior North";
+	network = list("persistence_ext")
+	},
+/obj/effect/turf_decal/weather/snow,
+/turf/open/floor/engine/hull/icebox,
+/area/ruin/space/has_grav/bubbers/persistance/command/vault)
 "QM" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -20968,19 +21011,14 @@
 /obj/structure/emergency_shield/cult/weak{
 	name = "Energy Shield"
 	},
-/obj/machinery/porta_turret/syndicate{
-	dir = 8;
-	pixel_x = -32
-	},
-/obj/machinery/camera/autoname/directional/west{
-	name = "Persistence Exterior West";
+/obj/machinery/camera/autoname/directional/south{
+	name = "Persistence Exterior South";
 	network = list("persistence_ext")
 	},
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "Syndibitrunningconveyor"
+/obj/effect/turf_decal/weather/snow,
+/obj/machinery/porta_turret/syndicate{
+	dir = 1
 	},
-/obj/structure/lattice/catwalk/mining,
 /turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "Rh" = (
@@ -21211,27 +21249,11 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/mining)
 "RG" = (
-/obj/structure/closet/secure_closet/dauntless/munitions_locker,
-/obj/item/ammo_box/magazine/m45,
-/obj/item/ammo_box/magazine/m45,
-/obj/item/ammo_box/magazine/m45,
-/obj/item/ammo_box/magazine/m45,
-/obj/machinery/light/directional/east,
-/obj/machinery/button/door/directional/north{
-	name = "Armory Shutters";
-	id = "armory_s2";
-	req_access = list("syndicate_leader");
-	pixel_x = 24;
-	pixel_y = 0
+/obj/structure/chair/sofa/corp/left{
+	dir = 2
 	},
-/obj/item/ammo_box/magazine/m10mm,
-/obj/item/ammo_box/magazine/m10mm,
-/obj/item/ammo_box/magazine/m10mm,
-/obj/item/ammo_box/magazine/m10mm,
-/obj/item/ammo_box/magazine/m10mm,
-/obj/item/ammo_box/magazine/m10mm,
-/turf/open/floor/iron/dark/smooth_large,
-/area/ruin/space/has_grav/bubbers/persistance/sec/armory)
+/turf/open/floor/glass/reinforced/plasma,
+/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
 "RH" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -21259,23 +21281,9 @@
 /turf/open/floor/engine/n2o,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/gas)
 "RJ" = (
-/obj/effect/turf_decal/trimline/dark_red/filled/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/dark/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/dark_red/filled/corner{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/dark/corner{
-	dir = 4
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/bubbers/persistance/cargo)
+/obj/structure/chair/sofa/corp,
+/turf/open/floor/glass/reinforced/plasma,
+/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
 "RL" = (
 /obj/machinery/firealarm/directional/south,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -21437,7 +21445,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "RX" = (
 /obj/machinery/computer/crew/syndie{
@@ -21509,7 +21517,7 @@
 /obj/effect/turf_decal/stripes/red/corner{
 	dir = 4
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Sj" = (
 /obj/structure/marker_beacon/burgundy,
@@ -21519,18 +21527,13 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/persistance/sec/holding)
 "Sk" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
+/obj/structure/mirror/directional/east,
+/obj/structure/sink/directional/south,
+/obj/effect/turf_decal/siding/white{
+	dir = 5
 	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/machinery/camera/autoname/directional/north{
-	name = "Persistence Exterior North";
-	network = list("persistence_ext")
-	},
-/turf/open/lava/plasma/ice_moon,
-/area/ruin/space/has_grav/bubbers/persistance/command/vault)
+/turf/open/floor/iron/freezer,
+/area/ruin/space/has_grav/bubbers/persistance/command/admiral)
 "Sm" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -21614,7 +21617,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "Sx" = (
 /obj/structure/marker_beacon/teal,
@@ -21679,7 +21682,7 @@
 	name = "Vault Bolt Control";
 	req_access = list("syndicate")
 	},
-/obj/structure/closet/crate/goldcrate,
+/obj/structure/closet/crate/goldcrate/stocked,
 /obj/item/stack/spacecash/c10000,
 /obj/item/language_manual/codespeak_manual/unlimited,
 /obj/effect/turf_decal/siding/wideplating_new/dark{
@@ -21720,7 +21723,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "SM" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/shrink_ccw{
@@ -21784,7 +21787,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 6
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "ST" = (
 /turf/closed/wall/r_wall/plastitanium/syndicate/cruiser,
@@ -21811,7 +21814,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "SY" = (
 /obj/structure/table/wood/fancy,
@@ -21830,7 +21833,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Ta" = (
 /obj/structure/cable,
@@ -21892,7 +21895,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Th" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
@@ -22085,7 +22088,7 @@
 	},
 /obj/structure/cable,
 /obj/structure/sign/warning/fire/directional/south,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "TO" = (
 /obj/machinery/duct,
@@ -22101,7 +22104,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/lockers)
 "TP" = (
 /obj/effect/turf_decal/stripes/red/corner,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "TQ" = (
 /obj/effect/turf_decal/trimline/purple/line{
@@ -22260,7 +22263,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/lounge)
 "Ue" = (
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/mmi/posibrain/sphere{
+/obj/item/brain_processor/positronic/sphere{
 	pixel_x = 7;
 	pixel_y = 11
 	},
@@ -22287,7 +22290,7 @@
 /obj/structure/extinguisher_cabinet/directional/north,
 /obj/effect/turf_decal/stripes/red/line,
 /obj/machinery/light/cold/directional/north,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Uh" = (
 /obj/machinery/door/airlock/hatch{
@@ -22311,7 +22314,7 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Uk" = (
 /obj/structure/flora/rock/icy/style_random,
@@ -22518,22 +22521,13 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "UG" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
+/obj/effect/turf_decal/trimline/dark/line,
+/obj/machinery/light/directional/north,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
 	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/machinery/porta_turret/syndicate{
-	dir = 5
-	},
-/obj/machinery/camera/autoname/directional/south{
-	name = "Persistence Exterior South";
-	network = list("persistence_ext")
-	},
-/obj/effect/turf_decal/weather/snow,
-/turf/open/floor/engine/hull/icebox,
-/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
+/turf/open/floor/plating/elevatorshaft,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "UH" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
 /obj/machinery/atmospherics/pipe/layer_manifold/pink{
@@ -22561,21 +22555,27 @@
 /turf/closed/wall/r_wall/plastitanium/syndicate/nodiagonal,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "UM" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/duct,
+/obj/effect/turf_decal/trimline/dark/filled/line{
+	alpha = 160;
+	dir = 4
 	},
-/obj/structure/disposalpipe/segment,
-/obj/effect/mapping_helpers/apc/full_charge,
-/obj/effect/mapping_helpers/apc/cut_AI_wire,
-/obj/effect/mapping_helpers/apc/syndicate_access,
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/neutral/line{
+	color = "#1dc251";
+	alpha = 200;
+	dir = 4
+	},
 /obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/east,
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/storage/toolbox/syndicate{
-	pixel_y = 5
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/iron/white/smooth_edge{
+	dir = 4
 	},
-/turf/open/floor/iron/colony/bolts,
-/area/ruin/space/has_grav/bubbers/persistance/evac)
+/area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
 "UN" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
 /obj/machinery/door/poddoor{
@@ -22693,7 +22693,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/lounge)
 "UZ" = (
 /obj/structure/reagent_dispensers/fueltank/large,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Vb" = (
 /obj/machinery/button/door/directional/north{
@@ -22719,15 +22719,10 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/bubbers/persistance/service/sauna)
 "Vc" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 6
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/obj/machinery/computer/arcade/orion_trail{
-	dir = 8
-	},
-/turf/open/floor/wood/tile,
-/area/ruin/space/has_grav/bubbers/persistance/sec/interrogation)
+/obj/effect/turf_decal/trimline/dark_red/filled/warning,
+/obj/effect/turf_decal/trimline/dark/warning,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Ve" = (
 /obj/structure/fake_stairs/directional/north,
 /obj/structure/fake_stairs/directional/north,
@@ -22956,7 +22951,7 @@
 "Vu" = (
 /obj/machinery/light/cold/directional/north,
 /obj/machinery/power/floodlight,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Vv" = (
 /obj/effect/turf_decal/stripes/line{
@@ -22999,18 +22994,10 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/bubbers/persistance/service)
 "Vz" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/machinery/camera/autoname/directional/east{
-	network = list("persistence_ext");
-	name = "persistence exterior east"
-	},
-/turf/open/lava/plasma/ice_moon,
-/area/ruin/space/has_grav/bubbers/persistance/command/vault)
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/lighter/skull,
+/turf/open/floor/glass/reinforced/plasma,
+/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
 "VA" = (
 /obj/machinery/hydroponics/constructable,
 /obj/machinery/door/window/survival_pod/left/directional/east{
@@ -23047,19 +23034,9 @@
 /turf/open/floor/carpet/black,
 /area/ruin/space/has_grav/bubbers/persistance/command/bridge)
 "VE" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/machinery/porta_turret/syndicate{
-	dir = 8;
-	pixel_x = 32;
-	pixel_y = 32
-	},
-/turf/open/lava/plasma/ice_moon,
-/area/ruin/space/has_grav/bubbers/persistance/command/vault)
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/elevatorshaft,
+/area/ruin/space/has_grav/bubbers/persistance/cargo)
 "VG" = (
 /obj/structure/mirror/directional/east,
 /obj/structure/chair/comfy/barber_chair{
@@ -23344,7 +23321,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/light/directional/south,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Wp" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/line{
@@ -23428,7 +23405,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/structure/cable,
 /obj/machinery/space_heater,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering/atmospherics)
 "WB" = (
 /obj/structure/cable,
@@ -23576,7 +23553,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 5
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "WS" = (
 /obj/machinery/suit_storage_unit/industrial/loader,
@@ -23932,7 +23909,7 @@
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "Xt" = (
 /obj/structure/reagent_dispensers/watertank/high,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "Xz" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
@@ -23955,23 +23932,13 @@
 /turf/closed/wall/r_wall/plastitanium/syndicate/cruiser,
 /area/ruin/space/has_grav/bubbers/persistance/evac)
 "XC" = (
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
+/obj/structure/cable,
+/obj/machinery/door/poddoor{
+	id = "prison_shutters"
 	},
-/obj/structure/emergency_shield/cult/weak{
-	name = "Energy Shield"
-	},
-/obj/machinery/porta_turret/syndicate{
-	dir = 8;
-	pixel_x = 32;
-	faction = list("Syndicate","neutral")
-	},
-/obj/machinery/camera/autoname/directional/east{
-	network = list("persistence_ext");
-	name = "persistence exterior east"
-	},
-/turf/open/lava/plasma/ice_moon,
-/area/ruin/space/has_grav/bubbers/dauntless/command/vault)
+/turf/open/floor/plating/reinforced,
+/area/ruin/space/has_grav/bubbers/persistance/sec/prison/rec)
 "XD" = (
 /obj/machinery/airalarm/directional/south,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
@@ -24027,7 +23994,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 4
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "XJ" = (
 /obj/structure/fans/tiny/forcefield{
@@ -24130,7 +24097,7 @@
 	pixel_x = -1;
 	pixel_y = 16
 	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "XS" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark,
@@ -24270,22 +24237,21 @@
 /turf/open/floor/circuit/red/anim,
 /area/ruin/space/has_grav/bubbers/persistance/command/vault)
 "Yg" = (
-/obj/machinery/porta_turret/syndicate{
-	dir = 8;
-	pixel_y = 32;
-	pixel_x = -32
-	},
-/obj/machinery/camera/autoname/directional/north{
-	name = "Persistence Exterior North";
-	network = list("persistence_ext")
-	},
 /obj/structure/emergency_shield/cult/weak{
 	name = "Energy Shield"
 	},
 /obj/structure/emergency_shield/cult/weak{
 	name = "Energy Shield"
 	},
-/turf/open/lava/plasma/ice_moon,
+/obj/machinery/camera/autoname/directional/east{
+	network = list("persistence_ext");
+	name = "persistence exterior east"
+	},
+/obj/machinery/conveyor{
+	dir = 8
+	},
+/obj/structure/lattice/catwalk/mining,
+/turf/open/floor/engine/hull/icebox,
 /area/ruin/space/has_grav/bubbers/dauntless/command/vault)
 "Yh" = (
 /obj/effect/turf_decal/stripes/line{
@@ -24548,18 +24514,8 @@
 	},
 /area/ruin/space/has_grav/bubbers/persistance/service/kitchen)
 "YG" = (
-/obj/effect/turf_decal/trimline/dark_red/filled/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/dark/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/dark_red{
-	dir = 1
-	},
 /obj/effect/turf_decal/trimline/dark_red/filled/line,
 /obj/effect/turf_decal/trimline/dark/line,
-/obj/machinery/light/directional/north,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/bubbers/persistance/cargo)
 "YH" = (
@@ -24586,7 +24542,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/pod/dark,
+/turf/open/floor/mineral/plastitanium/pod/dark,
 /area/ruin/space/has_grav/bubbers/persistance/engineering)
 "YM" = (
 /obj/machinery/photocopier/gratis,
@@ -24927,13 +24883,17 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/engineering)
 "Zs" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 9
-	},
-/obj/structure/window/reinforced/survival_pod/spawner/directional/north{
+/obj/machinery/door/window/survival_pod/left/directional/north{
 	pixel_y = 4
 	},
-/obj/structure/sink/directional/east,
+/obj/machinery/duct,
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4
+	},
+/obj/machinery/light/directional/west,
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/bubbers/persistance/command/admiral)
 "Zv" = (
@@ -25246,148 +25206,80 @@
 /area/ruin/space/has_grav/bubbers/persistance/service/dorms/brig)
 
 (1,1,1) = {"
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
 mc
 mc
 "}
 (2,1,1) = {"
-mc
-mc
-mc
-mc
-mc
-mc
-Fk
 Fk
 uQ
-uQ
-uQ
-uQ
-uQ
-Pq
-Pq
-Pq
-uQ
-uQ
-uQ
-Fk
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-Pq
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-pl
-uQ
-uQ
-uQ
-uQ
-Pq
-Pq
-Pq
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-sA
-sA
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-Pq
-mc
-mc
-mc
-mc
-mc
-"}
-(3,1,1) = {"
-mc
-mc
 uQ
 uQ
 uQ
@@ -25415,20 +25307,20 @@ uQ
 uQ
 uQ
 uQ
-gr
-VT
+BE
+Lr
 nc
 nc
 nc
-nc
-XC
+Lr
+sT
 uQ
 uQ
 uQ
 uQ
 uQ
-XC
-uQ
+BE
+uU
 nc
 nc
 nc
@@ -25453,11 +25345,13 @@ uQ
 uQ
 uQ
 uQ
+uQ
+mc
 mc
 "}
-(4,1,1) = {"
-mc
-mc
+(3,1,1) = {"
+uQ
+uQ
 uQ
 uQ
 uQ
@@ -25477,27 +25371,27 @@ uQ
 uQ
 uQ
 uQ
+Fk
 uQ
 uQ
-uQ
-et
-Pd
+kb
+Yg
 Fc
 cO
 Fc
-fx
+on
 Qy
 Qy
 Qy
 Qy
 Qy
-tg
+Xp
 Fc
 Fc
 Nq
 Fc
-bC
-Tm
+Ii
+gz
 eR
 eR
 eR
@@ -25506,41 +25400,43 @@ eR
 eR
 Tm
 Tm
-Tm
+gz
 oW
 Fc
 Fc
 Cx
 Fc
 Fc
-lU
+sT
 uQ
 av
 nc
 nc
 nc
 nc
-Vz
-VE
+DN
+NX
+uQ
 uQ
 mc
+mc
 "}
-(5,1,1) = {"
-mc
-mc
+(4,1,1) = {"
+uQ
+uQ
 uQ
 uQ
 uQ
 uQ
 uQ
 nc
-RQ
+jr
 RQ
 hs
 hs
 hs
 RQ
-RQ
+jr
 VT
 nc
 Lr
@@ -25583,24 +25479,26 @@ Gd
 Gd
 Gd
 Gd
-rt
+Gd
 uQ
-rt
+Gd
 Bk
 rt
 Bk
 rt
-rt
-Sk
+Gd
+QI
 uQ
+uQ
+mc
 mc
 "}
-(6,1,1) = {"
-mc
-mc
+(5,1,1) = {"
 uQ
-QI
+uQ
+uQ
 FJ
+KC
 nc
 nc
 nc
@@ -25615,7 +25513,7 @@ PN
 qr
 qr
 qr
-DN
+PN
 uQ
 uQ
 uQ
@@ -25663,18 +25561,20 @@ Ex
 Bk
 nc
 uQ
+uQ
+mc
 mc
 "}
-(7,1,1) = {"
-mc
+(6,1,1) = {"
+uQ
 Pq
 uQ
-nc
-mm
-zK
-zK
-zK
-uo
+Lr
+lL
+XC
+XC
+XC
+lL
 VK
 KW
 Bd
@@ -25733,18 +25633,20 @@ sR
 Bk
 nc
 uQ
+uQ
+mc
 mc
 "}
-(8,1,1) = {"
-mc
+(7,1,1) = {"
+uQ
 Pq
 uQ
 nc
+XC
+lU
 zK
 Ky
-sT
-LS
-mm
+Hn
 GJ
 Ss
 KD
@@ -25803,18 +25705,20 @@ WA
 Bk
 Fy
 uQ
+uQ
+mc
 mc
 "}
-(9,1,1) = {"
-mc
+(8,1,1) = {"
+uQ
 uQ
 uQ
 nc
-zK
+XC
+RJ
+Vz
 fA
-sr
-NX
-mm
+Hn
 BI
 Eo
 Eo
@@ -25828,7 +25732,7 @@ ZF
 PN
 ib
 LX
-Cy
+CG
 Mw
 Vq
 gD
@@ -25873,18 +25777,20 @@ aL
 Bk
 Ye
 uQ
+uQ
+mc
 mc
 "}
-(10,1,1) = {"
-mc
-mc
+(9,1,1) = {"
+Fk
+uQ
 uQ
 nc
-zK
+XC
+RG
+bC
 td
-Eh
-BE
-mm
+Hn
 DB
 PA
 yz
@@ -25897,8 +25803,8 @@ DO
 Nv
 XB
 lz
-CG
-UM
+cg
+Cy
 dk
 on
 Fp
@@ -25943,18 +25849,20 @@ rt
 rt
 Fy
 uQ
+uQ
+mc
 mc
 "}
-(11,1,1) = {"
-mc
-mc
+(10,1,1) = {"
+uQ
+uQ
 uQ
 nc
-zK
+XC
+Pd
+et
 AQ
-pO
-FC
-mm
+Hn
 DB
 Lt
 Fx
@@ -26013,18 +25921,20 @@ qD
 rt
 nc
 uQ
+uQ
+mc
 mc
 "}
-(12,1,1) = {"
-mc
-mc
+(11,1,1) = {"
+uQ
+uQ
 uQ
 nc
-mm
+Hn
+xk
+PV
 wg
 ks
-ni
-GM
 cI
 kh
 SY
@@ -26083,18 +25993,20 @@ wE
 rt
 nc
 uQ
+uQ
+mc
 mc
 "}
-(13,1,1) = {"
-mc
+(12,1,1) = {"
+uQ
 Fk
 uQ
 nc
+Hn
+FC
 mm
 aM
 Hn
-oG
-mm
 fX
 JT
 lR
@@ -26153,18 +26065,20 @@ XN
 rt
 nc
 uQ
+uQ
+mc
 mc
 "}
-(14,1,1) = {"
-mc
+(13,1,1) = {"
+uQ
 Fk
 uQ
 nc
-mm
-kb
-mm
-mm
-mm
+Hn
+fx
+Hn
+Hn
+Hn
 jr
 mg
 jr
@@ -26223,12 +26137,14 @@ ng
 rt
 nc
 uQ
+uQ
+mc
 mc
 "}
-(15,1,1) = {"
-mc
+(14,1,1) = {"
 uQ
-PV
+uQ
+Fb
 RQ
 RQ
 Dt
@@ -26293,12 +26209,14 @@ yw
 rt
 nc
 uQ
+uQ
+mc
 mc
 "}
-(16,1,1) = {"
-mc
+(15,1,1) = {"
+uQ
 nc
-Ed
+jr
 jr
 cR
 Vt
@@ -26363,10 +26281,12 @@ rd
 rt
 Fy
 uQ
+uQ
+mc
 mc
 "}
-(17,1,1) = {"
-mc
+(16,1,1) = {"
+uQ
 IV
 hs
 xs
@@ -26433,10 +26353,12 @@ qD
 rt
 Ye
 uQ
+uQ
+mc
 mc
 "}
-(18,1,1) = {"
-mc
+(17,1,1) = {"
+uQ
 nc
 RQ
 RQ
@@ -26503,10 +26425,12 @@ ng
 rt
 Fy
 uQ
+uQ
+mc
 mc
 "}
-(19,1,1) = {"
-mc
+(18,1,1) = {"
+uQ
 Uk
 hs
 xs
@@ -26571,14 +26495,16 @@ Iu
 Iu
 ng
 rt
-FE
+nc
+uQ
 uQ
 mc
-"}
-(20,1,1) = {"
 mc
+"}
+(19,1,1) = {"
+uQ
 Uk
-RQ
+jr
 jr
 wz
 xh
@@ -26641,14 +26567,16 @@ Iu
 Iu
 ng
 rt
-FE
+nc
 uQ
+uQ
+mc
 mc
 "}
-(21,1,1) = {"
-mc
+(20,1,1) = {"
 uQ
-iX
+uQ
+ni
 RQ
 iA
 RQ
@@ -26710,13 +26638,15 @@ Iu
 Iu
 Iu
 qD
-mV
-FE
+rt
+nc
+uQ
 uQ
 mc
-"}
-(22,1,1) = {"
 mc
+"}
+(21,1,1) = {"
+uQ
 uQ
 uQ
 nc
@@ -26756,7 +26686,7 @@ dR
 Nb
 FM
 HI
-HI
+za
 HI
 HI
 CQ
@@ -26783,10 +26713,12 @@ sH
 Gd
 nc
 uQ
+uQ
+mc
 mc
 "}
-(23,1,1) = {"
-mc
+(22,1,1) = {"
+uQ
 uQ
 uQ
 nc
@@ -26825,7 +26757,7 @@ La
 FP
 GD
 Pz
-lL
+HJ
 Zs
 pP
 HI
@@ -26850,13 +26782,15 @@ Gg
 RY
 Mp
 Mp
-xk
+Mp
 nc
 uQ
+uQ
+mc
 mc
 "}
-(24,1,1) = {"
-mc
+(23,1,1) = {"
+Fk
 uQ
 uQ
 DK
@@ -26895,8 +26829,8 @@ Ou
 Ou
 SQ
 jL
-tO
-Qq
+HI
+Sk
 TZ
 HI
 HI
@@ -26923,10 +26857,12 @@ VZ
 vt
 uQ
 uQ
+uQ
+mc
 mc
 "}
-(25,1,1) = {"
-mc
+(24,1,1) = {"
+uQ
 Pq
 uQ
 nc
@@ -26993,10 +26929,12 @@ Om
 oY
 uQ
 uQ
+uQ
+mc
 mc
 "}
-(26,1,1) = {"
-mc
+(25,1,1) = {"
+uQ
 uQ
 uQ
 nc
@@ -27063,10 +27001,12 @@ JR
 An
 uQ
 uQ
+uQ
+mc
 mc
 "}
-(27,1,1) = {"
-mc
+(26,1,1) = {"
+uQ
 uQ
 uQ
 nc
@@ -27100,8 +27040,8 @@ Gx
 lK
 rS
 jJ
-Ou
-Ou
+jL
+jL
 gh
 yr
 xA
@@ -27133,10 +27073,12 @@ Mp
 Mp
 nc
 uQ
+uQ
+mc
 mc
 "}
-(28,1,1) = {"
-mc
+(27,1,1) = {"
+uQ
 Pq
 uQ
 nc
@@ -27204,9 +27146,11 @@ JM
 nc
 uQ
 mc
-"}
-(29,1,1) = {"
 mc
+mc
+"}
+(28,1,1) = {"
+uQ
 uQ
 uQ
 DK
@@ -27228,7 +27172,7 @@ kc
 aw
 Hr
 nl
-rH
+wt
 nT
 kc
 jY
@@ -27274,11 +27218,13 @@ mG
 nc
 uQ
 mc
-"}
-(30,1,1) = {"
 mc
+mc
+"}
+(29,1,1) = {"
 uQ
-Pq
+uQ
+uQ
 nc
 oD
 Nn
@@ -27344,16 +27290,18 @@ mG
 nc
 uQ
 mc
-"}
-(31,1,1) = {"
 mc
-Pq
+mc
+"}
+(30,1,1) = {"
+uQ
+uQ
 uQ
 nc
 oD
 bA
 Ob
-Vc
+aC
 OO
 Qf
 Xj
@@ -27380,8 +27328,8 @@ Gr
 lK
 WO
 VI
-Ou
-Ou
+jL
+jL
 wo
 sk
 oy
@@ -27414,12 +27362,14 @@ mG
 nc
 uQ
 mc
-"}
-(32,1,1) = {"
 mc
+mc
+"}
+(31,1,1) = {"
+uQ
 Pq
 uQ
-wt
+bU
 Yp
 iW
 iW
@@ -27484,9 +27434,11 @@ mG
 nc
 uQ
 mc
-"}
-(33,1,1) = {"
 mc
+mc
+"}
+(32,1,1) = {"
+uQ
 uQ
 uQ
 nc
@@ -27512,7 +27464,7 @@ Kn
 qF
 kc
 Wj
-RG
+Eh
 Aa
 uI
 kc
@@ -27551,13 +27503,15 @@ qW
 mG
 mG
 mG
-pq
+Bu
 uQ
 mc
-"}
-(34,1,1) = {"
 mc
-qj
+mc
+"}
+(33,1,1) = {"
+uQ
+Pq
 uQ
 nc
 NO
@@ -27624,9 +27578,11 @@ IK
 nc
 uQ
 mc
-"}
-(35,1,1) = {"
 mc
+mc
+"}
+(34,1,1) = {"
+uQ
 Pq
 uQ
 nc
@@ -27686,7 +27642,7 @@ fW
 yk
 AH
 rK
-oS
+UM
 YE
 Xg
 wQ
@@ -27694,12 +27650,14 @@ IK
 nc
 uQ
 mc
-"}
-(36,1,1) = {"
 mc
+mc
+"}
+(35,1,1) = {"
 uQ
 uQ
-wt
+uQ
+bU
 Yp
 Yp
 mp
@@ -27764,9 +27722,11 @@ IK
 nc
 uQ
 mc
-"}
-(37,1,1) = {"
 mc
+mc
+"}
+(36,1,1) = {"
+Fk
 uQ
 uQ
 nc
@@ -27834,9 +27794,11 @@ rh
 nc
 uQ
 mc
-"}
-(38,1,1) = {"
 mc
+mc
+"}
+(37,1,1) = {"
+uQ
 uQ
 uQ
 uQ
@@ -27904,11 +27866,13 @@ IK
 nc
 uQ
 mc
-"}
-(39,1,1) = {"
 mc
+mc
+"}
+(38,1,1) = {"
+uQ
 Pq
-wt
+bU
 UL
 UL
 FQ
@@ -27974,9 +27938,11 @@ IK
 nc
 uQ
 mc
-"}
-(40,1,1) = {"
 mc
+mc
+"}
+(39,1,1) = {"
+uQ
 uQ
 nc
 hO
@@ -28044,9 +28010,11 @@ rh
 Fy
 uQ
 mc
-"}
-(41,1,1) = {"
 mc
+mc
+"}
+(40,1,1) = {"
+uQ
 uQ
 nc
 hO
@@ -28114,9 +28082,11 @@ rh
 sG
 uQ
 mc
-"}
-(42,1,1) = {"
 mc
+mc
+"}
+(41,1,1) = {"
+uQ
 uQ
 nc
 hO
@@ -28184,9 +28154,11 @@ ax
 Fy
 uQ
 mc
-"}
-(43,1,1) = {"
 mc
+mc
+"}
+(42,1,1) = {"
+uQ
 uQ
 nc
 hO
@@ -28254,9 +28226,11 @@ uQ
 uQ
 uQ
 mc
-"}
-(44,1,1) = {"
 mc
+mc
+"}
+(43,1,1) = {"
+uQ
 uQ
 nc
 hO
@@ -28322,11 +28296,13 @@ yn
 rT
 uQ
 uQ
-uQ
+Pq
+mc
+mc
 mc
 "}
-(45,1,1) = {"
-mc
+(44,1,1) = {"
+uQ
 Pq
 nc
 Kd
@@ -28394,9 +28370,11 @@ uQ
 uQ
 uQ
 mc
-"}
-(46,1,1) = {"
 mc
+mc
+"}
+(45,1,1) = {"
+uQ
 uQ
 nc
 Kd
@@ -28462,16 +28440,18 @@ ST
 YY
 Lr
 uQ
+uQ
+mc
 mc
 mc
 "}
-(47,1,1) = {"
-mc
+(46,1,1) = {"
+uQ
 uQ
 Lr
 Kd
-HJ
-RJ
+uo
+oG
 Js
 zq
 Js
@@ -28532,17 +28512,19 @@ pk
 ST
 sG
 uQ
+uQ
+mc
 mc
 mc
 "}
-(48,1,1) = {"
-mc
+(47,1,1) = {"
+Fk
 uQ
-UG
+Rf
 TR
+UG
+mV
 YG
-pu
-SM
 wp
 SM
 je
@@ -28602,17 +28584,19 @@ Dy
 kt
 Lr
 uQ
+uQ
+mc
 mc
 mc
 "}
-(49,1,1) = {"
-mc
+(48,1,1) = {"
+uQ
 uQ
 Lr
 HU
-RO
-KS
-Bu
+LS
+VE
+Vc
 IA
 ia
 Fq
@@ -28672,17 +28656,19 @@ Ro
 kt
 nc
 uQ
+uQ
+mc
 mc
 mc
 "}
-(50,1,1) = {"
-mc
+(49,1,1) = {"
+uQ
 uQ
 nc
 HU
+sr
+rH
 Ek
-pu
-ui
 wp
 ui
 Xs
@@ -28744,15 +28730,17 @@ FE
 uQ
 mc
 mc
-"}
-(51,1,1) = {"
 mc
+mc
+"}
+(50,1,1) = {"
+Fk
 uQ
 nc
 HU
 Kw
-Ii
-qX
+Ed
+KS
 nH
 nA
 lF
@@ -28814,9 +28802,11 @@ nc
 uQ
 mc
 mc
-"}
-(52,1,1) = {"
 mc
+mc
+"}
+(51,1,1) = {"
+uQ
 uQ
 nc
 UL
@@ -28884,13 +28874,15 @@ nc
 uQ
 mc
 mc
-"}
-(53,1,1) = {"
 mc
-qj
+mc
+"}
+(52,1,1) = {"
 uQ
-nc
-Kd
+Pq
+uQ
+qX
+UL
 UL
 Kd
 UL
@@ -28948,19 +28940,21 @@ KF
 Of
 rv
 eZ
-ST
-ST
+YY
+YY
 nc
 uQ
 mc
 mc
+mc
+mc
 "}
-(54,1,1) = {"
-mc
-mc
+(53,1,1) = {"
 uQ
-za
-bU
+uQ
+uQ
+tO
+pq
 nc
 nc
 UL
@@ -28968,9 +28962,9 @@ hP
 iD
 pW
 UL
+GM
+yU
 De
-Rf
-im
 Kl
 ms
 ms
@@ -29018,16 +29012,18 @@ ST
 ST
 kt
 kt
-ST
-Yg
+YY
+iX
 uQ
 uQ
+mc
+mc
 mc
 mc
 "}
-(55,1,1) = {"
-mc
-mc
+(54,1,1) = {"
+uQ
+uQ
 Pq
 uQ
 uQ
@@ -29052,9 +29048,9 @@ Di
 Bq
 Wx
 Di
+Qq
+pO
 yU
-aC
-Rf
 Fc
 nc
 nc
@@ -29062,48 +29058,43 @@ Lr
 Az
 Lr
 nc
+De
+De
 im
-im
+De
 IW
-im
-MP
 nc
 nc
 uQ
 uQ
-KC
+yU
 Ph
 ZW
 ZW
 ZW
 ZW
-ZW
+Ph
+MP
+gr
 LM
-Nq
-Fc
-Rf
+yU
 nc
 nc
 nc
-KC
+yU
 nc
 nc
 DK
 uQ
 uQ
-uQ
+Pq
+mc
+mc
 mc
 mc
 "}
-(56,1,1) = {"
-mc
-mc
-mc
+(55,1,1) = {"
 uQ
-uQ
-uQ
-uQ
-Pq
 uQ
 uQ
 uQ
@@ -29111,6 +29102,13 @@ uQ
 uQ
 uQ
 Pq
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
 uQ
 uQ
 uQ
@@ -29160,33 +29158,86 @@ uQ
 uQ
 uQ
 uQ
+uQ
+mc
+mc
+mc
+mc
+mc
+"}
+(56,1,1) = {"
+uQ
+uQ
+uQ
+uQ
+Pq
+Pq
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+Pq
+uQ
+uQ
+uQ
+Pq
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+Pq
+Pq
+uQ
+uQ
+Pq
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+uQ
+Pq
+uQ
+uQ
+uQ
+uQ
+Pq
+uQ
+uQ
+uQ
+uQ
+Pq
+uQ
+uQ
+uQ
+uQ
+uQ
+mc
+mc
+mc
+mc
+mc
+mc
+mc
 mc
 mc
 mc
 mc
 "}
 (57,1,1) = {"
-mc
-mc
-mc
-mc
-qj
-qj
-mc
-mc
-mc
-mc
-mc
-Pq
-uQ
-uQ
-Pq
-uQ
-uQ
-uQ
-Pq
-uQ
-uQ
 uQ
 Pq
 uQ
@@ -29194,41 +29245,64 @@ uQ
 uQ
 uQ
 uQ
-uQ
-Pq
-Pq
-uQ
-uQ
-Pq
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-Pq
-uQ
-uQ
-uQ
-uQ
-Pq
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
-uQ
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
+mc
 mc
 mc
 mc
@@ -29236,7 +29310,9 @@ mc
 mc
 "}
 (58,1,1) = {"
-mc
+uQ
+uQ
+uQ
 mc
 mc
 mc

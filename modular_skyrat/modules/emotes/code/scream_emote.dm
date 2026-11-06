@@ -23,14 +23,10 @@
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/human_user = user
-	if(isnull(human_user.selected_scream) || (LAZYLEN(human_user.selected_scream.male_screamsounds) && LAZYLEN(human_user.selected_scream.female_screamsounds))) //For things that don't have a selected scream(npcs)
-		if(prob(1))
-			return 'sound/mobs/humanoids/human/scream/wilhelm_scream.ogg'
-		return human_user.dna.species.get_scream_sound(human_user)
-	if(human_user.gender == FEMALE && LAZYLEN(human_user.selected_scream.female_screamsounds))
-		return pick(human_user.selected_scream.female_screamsounds)
+	if(human_user.gender == FEMALE && LAZYLEN(human_user.selected_scream?.female_screamsounds))
+		return pick(human_user.selected_scream?.female_screamsounds)
 	else
-		return pick(human_user.selected_scream.male_screamsounds)
+		return pick(human_user.selected_scream?.male_screamsounds)
 
 /datum/emote/living/scream/can_run_emote(mob/living/user, status_check, intentional)
 	if(iscyborg(user))

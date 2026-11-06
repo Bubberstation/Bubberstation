@@ -20,6 +20,11 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 
 	// This code is responsible for splitting up create & destroy across multiple integration tests.
 	var/total_amount_to_check = length(type_paths_to_check)
+#ifdef RUNNING_LOCAL_TESTS
+	// not ci? do everything
+	var/start_index = 0
+	var/end_index = total_amount_to_check
+#else
 	var/runner_count = max(length(config.maplist), 1)
 
 	var/split_up_amount = floor(total_amount_to_check / runner_count)
@@ -33,6 +38,7 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 	var/start_index = (what_map_index_are_we - 1) * split_up_amount
 	// Instead of super trying to make it an equal split, we just give the remainder tests to the final runner
 	var/end_index = (what_map_index_are_we == runner_count) ? total_amount_to_check : start_index + split_up_amount
+#endif
 
 	// +1 because byond's list.Copy() implementation is weird
 	type_paths_to_check = type_paths_to_check.Copy(start_index, end_index + 1)
@@ -52,12 +58,9 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 				original_baseturf_count = length(original_baseturfs)
 		else
 			var/atom/creation = new type_path(spawn_at)
-			if(QDELETED(creation))
-				// Same as below
-				creation = null
-				continue
-			//Go all in
-			qdel(creation, force = TRUE)
+			if(!QDELETED(creation))
+				//Go all in
+				qdel(creation, force = TRUE)
 			//This will hold a ref to the last thing we process unless we set it to null
 			//Yes byond is fucking sinful
 			creation = null
@@ -66,7 +69,14 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 		var/list/to_del = spawn_at.contents - cached_contents
 		if(length(to_del))
 			for(var/atom/to_kill in to_del)
-				qdel(to_kill)
+				qdel(to_kill, force = TRUE)
+				// this does clear itself back to null once we leave this loop, but I do not trust
+				// BYOND to not fuck it up in the future. so it goes. this unfortunately makes the other comment
+				// slightly less funny since it means BYOND isn't THAT sinful but whatev, its still funny
+				to_kill = null
+		//This will hold a ref to the last thing we qdel unless we set it to null
+		//Yes, byond is VERY fucking sinful!
+		to_del = null
 
 	GLOB.running_create_and_destroy = FALSE
 
@@ -103,6 +113,7 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 			var/qdeld_at = oldest_packet[GC_QUEUE_ITEM_GCD_DESTROYED]
 
 			oldest_packet_creation = min(qdeld_at, oldest_packet_creation)
+			oldest_packet = null
 
 		//If we've found a packet that got del'd later then we finished, then all our shit has been processed
 		//That said, if there are any pending hard deletes you may NOT sleep, we gotta handle that shit

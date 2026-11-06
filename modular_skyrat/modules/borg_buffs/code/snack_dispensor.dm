@@ -1,6 +1,5 @@
 /datum/design/borg_snack_dispenser
 	name = "Snack Dispenser Module"
-	id = "borg_upgrade_snacks"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/snack_dispenser
 	materials = list(
@@ -15,6 +14,10 @@
 /obj/item/borg/upgrade/snack_dispenser
 	name = "Snack Dispenser Module"
 	desc = "Gives any borg the ability to dispense speciality snacks."
+	custom_materials = list(
+		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 7,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 	/// For storing modules that we remove, since the upgraded snack dispensor automatically removes inferior versions
 	var/list/removed_modules = list()
 

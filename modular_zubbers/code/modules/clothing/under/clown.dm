@@ -22,6 +22,7 @@
 	name = "pink clown skirt"
 	desc = "There's a small sign on the back labelled simply 'Honkland's shame'."
 	icon_state = "clussy_outfit"
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/service_teshari.dmi'
 
 /obj/item/clothing/under/rank/civilian/bubber/clown/jester
 	name = "amazing jester outfit"

@@ -33,21 +33,18 @@
 	light_range = 2
 	light_power = 0.8
 	light_on = TRUE
+	ai_controller = /datum/ai_controller/basic_controller/poppy
 
 /datum/ai_controller/basic_controller/poppy
+	behavior_tree_json = "modular_skyrat/master_files/code/modules/mob/living/simple_animal/friendly/poppy.bt.json"
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 	)
 
 	ai_traits = STOP_MOVING_WHEN_PULLED
 	ai_movement = /datum/ai_movement/basic_avoidance
-	idle_behavior = /datum/idle_behavior/idle_random_walk
 
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/random_speech/poppy,
-	)
-
-/datum/ai_planning_subtree/random_speech/poppy
+/datum/bt_node/ai_behavior/random_speech/poppy
 	speak = list("Hiss!", "HISS!", "Hissss?")
 	emote_hear = list("hisses.")
 	emote_see = list("runs in a circle.", "shakes.")

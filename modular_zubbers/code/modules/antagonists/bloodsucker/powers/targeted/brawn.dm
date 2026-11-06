@@ -6,6 +6,7 @@
 	desc = "Snap restraints, break lockers and doors at higher levels, or deal terrible damage with your bare hands."
 	button_icon_state = "power_strength"
 	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
+	bloodsucker_check_flags = parent_type::bloodsucker_check_flags & ~BP_CANT_USE_IN_FRENZY
 	bloodcost = 10
 	cooldown_time = 12 SECONDS
 	target_range = 1

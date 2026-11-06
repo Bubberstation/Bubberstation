@@ -48,6 +48,13 @@
 	if(!. && isprojectile(mover)) // Its short enough to be shot over
 		return TRUE
 
+/obj/structure/holosign/emp_act(severity)
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+
+	take_damage(150/severity, BRUTE, ENERGY, FALSE)
+
 /obj/structure/holosign/proc/attack_holosign(mob/living/user, list/modifiers)
 	user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 	user.changeNext_move(CLICK_CD_MELEE)
@@ -106,7 +113,7 @@
 
 	if(iscarbon(mover))
 		var/mob/living/carbon/moving_carbon = mover
-		if(moving_carbon.stat) // Lets not prevent dragging unconscious/dead people.
+		if(IS_UNCONSCIOUS_OR_CRIT(moving_carbon)) // Lets not prevent dragging unconscious/dead people.
 			return TRUE
 		if(allow_walk && moving_carbon.move_intent == MOVE_INTENT_WALK)
 			return TRUE
@@ -166,7 +173,7 @@
 	. = ..()
 	if(iscarbon(mover))
 		var/mob/living/carbon/C = mover
-		if(C.stat) // Lets not prevent dragging unconscious/dead people.
+		if(IS_UNCONSCIOUS_OR_CRIT(C)) // Lets not prevent dragging unconscious/dead people.
 			return TRUE
 		if(allow_walk && C.move_intent != MOVE_INTENT_WALK)
 			return FALSE

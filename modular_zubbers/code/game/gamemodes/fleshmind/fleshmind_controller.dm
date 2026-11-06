@@ -204,8 +204,13 @@
 				if(could_attack)
 					break
 		if(do_spread)
-			for(var/turf/open/adjacent_open in wireweed_turf.atmos_adjacent_turfs + wireweed_turf)
-				if(spawns_walls && !could_do_wall)
+			for(var/turf/open/adjacent_open in get_adjacent_open_turfs(wireweed_turf) + wireweed_turf)
+				var/not_blocked = TRUE
+				for(var/obj/object in adjacent_open)
+					if(object.density || istype(object, /obj/structure/window) || is_type_in_list(object, DOOR_OBJECT_LIST))
+						not_blocked = FALSE
+						break
+				if(spawns_walls && !could_do_wall && not_blocked)
 					if((wall_off_vaccuum && isspaceturf(adjacent_open)) || (wall_off_planetary && adjacent_open.planetary_atmos))
 						could_do_wall = TRUE
 						tasks++

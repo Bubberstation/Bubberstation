@@ -36,7 +36,7 @@
 			qdel(attacking_item)
 
 		balloon_alert(user, "[attacking_item] placed inside")
-		user.mind.adjust_experience(/datum/skill/primitive, 5)
+		user.mind?.adjust_experience(/datum/skill/primitive, 5)
 		operation_number += 2
 		if(prob(user.mind.get_skill_modifier(/datum/skill/primitive, SKILL_PROBS_MODIFIER)))
 			operation_number += 2
@@ -55,7 +55,7 @@
 			if(prob(user.mind.get_skill_modifier(/datum/skill/primitive, SKILL_PROBS_MODIFIER)))
 				operation_number += 2
 
-		user.mind.adjust_experience(/datum/skill/primitive, 5)
+		user.mind?.adjust_experience(/datum/skill/primitive, 5)
 		return
 
 	if(istype(attacking_item, /obj/item/stack/ore/glass))
@@ -92,12 +92,12 @@
 
 	src_mixture.assert_gases(/datum/gas/carbon_dioxide, /datum/gas/oxygen, /datum/gas/nitrogen)
 
-	var/proportion = src_mixture.gases[/datum/gas/carbon_dioxide][MOLES]
+	var/proportion = src_mixture.moles[/datum/gas/carbon_dioxide]
 	if(proportion) //if there is carbon dioxide in the air, lets turn it into oxygen
-		src_mixture.gases[/datum/gas/carbon_dioxide][MOLES] -= proportion
-		src_mixture.gases[/datum/gas/oxygen][MOLES] += proportion
+		src_mixture.moles[/datum/gas/carbon_dioxide] -= proportion
+		src_mixture.moles[/datum/gas/oxygen] += proportion
 
-	src_mixture.gases[/datum/gas/nitrogen][MOLES] += MOLES_CELLSTANDARD //the nitrogen cycle-- plants (and bacteria) participate in the nitrogen cycle
+	src_mixture.moles[/datum/gas/nitrogen] += MOLES_CELLSTANDARD //the nitrogen cycle-- plants (and bacteria) participate in the nitrogen cycle
 
 /obj/structure/plant_tank/wrench_act(mob/living/user, obj/item/tool)
 	balloon_alert(user, "[anchored ? "un" : ""]bolting")

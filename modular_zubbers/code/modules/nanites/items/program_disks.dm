@@ -2,6 +2,7 @@
 /obj/item/disk/nanite_program
 	name = "nanite program disk"
 	desc = "A disk capable of storing nanite programs. Can be customized using a Nanite Programming Console."
+	custom_materials = list(/datum/material/iron = 300, /datum/material/glass = 100)
 	var/program_type
 	var/datum/nanite_program/program
 
@@ -77,11 +78,13 @@
 /obj/item/disk/nanite_program/nervous
 	program_type = /datum/nanite_program/nervous
 
+/* TODO: FIX THESE
 /obj/item/disk/nanite_program/hardening
 	program_type = /datum/nanite_program/dermal_armor
 
 /obj/item/disk/nanite_program/refractive
 	program_type = /datum/nanite_program/dermal_armor/refractive
+*/
 
 /obj/item/disk/nanite_program/coagulating
 	program_type = /datum/nanite_program/coagulating

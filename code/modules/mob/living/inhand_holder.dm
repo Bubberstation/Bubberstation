@@ -85,7 +85,18 @@
 		if(display_messages)
 			to_chat(captor, span_warning("[released_mob] wriggles free!"))
 		captor.dropItemToGround(src)
-	released_mob.forceMove(drop_location())
+	else
+		// BUBBER EDIT ADDITION START - A holder sitting in nullspace has nowhere to put its occupant.
+		// The character preview builds and discards loadout items there, and forceMove(null) CRASHes.
+		// Nothing can reach the mob in that case, so take it with us rather than leaking it.
+		var/atom/drop_target = drop_location()
+		if(isnull(drop_target))
+			UnregisterSignal(released_mob, COMSIG_QDELETING)
+			held_mob = null
+			qdel(released_mob)
+			return TRUE
+		released_mob.forceMove(drop_target)
+		// BUBBER EDIT ADDITION END
 	released_mob.reset_perspective()
 	released_mob.setDir(SOUTH)
 	if(display_messages)

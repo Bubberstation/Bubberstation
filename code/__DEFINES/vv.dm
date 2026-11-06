@@ -88,6 +88,7 @@
 
 // /atom
 #define VV_HK_MODIFY_TRANSFORM "atom_transform"
+#define VV_HK_DOWNLOAD_SPRITE "download_sprite"
 #define VV_HK_SPIN_ANIMATION "atom_spin"
 #define VV_HK_STOP_ALL_ANIMATIONS "stop_animations"
 #define VV_HK_MODIFY_GREYSCALE "modify_greyscale"
@@ -150,6 +151,7 @@
 #define VV_HK_GIVE_HALLUCINATION "give_hallucination"
 #define VV_HK_GIVE_DELUSION_HALLUCINATION "give_hallucination_delusion"
 #define VV_HK_GIVE_GUARDIAN_SPIRIT "give_guardian_spirit"
+#define VV_HK_NAVIGATE_TO_MARKED_OBJECT "navigate_to_marked_object"
 
 // /mob/living/carbon
 #define VV_HK_MODIFY_BODYPART "mod_bodypart"

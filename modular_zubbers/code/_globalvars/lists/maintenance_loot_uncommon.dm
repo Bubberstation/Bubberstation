@@ -71,7 +71,6 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/vending_refill/wardrobe/atmos_wardrobe = 1,
 		/obj/item/vending_refill/wardrobe/bar_wardrobe = 1,
 		/obj/item/vending_refill/wardrobe/cargo_wardrobe = 1,
-		/obj/item/vending_refill/wardrobe/cent_wardrobe = 1,
 		/obj/item/vending_refill/wardrobe/chap_wardrobe = 1,
 		/obj/item/vending_refill/wardrobe/chef_wardrobe = 1,
 		/obj/item/vending_refill/wardrobe/chem_wardrobe = 1,

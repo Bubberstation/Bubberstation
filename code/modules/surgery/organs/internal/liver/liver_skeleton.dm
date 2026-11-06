@@ -8,12 +8,13 @@
 	desc = "You have no idea what this strange ball of bones does."
 	icon_state = "liver-bone"
 	organ_traits = list(TRAIT_STABLELIVER)
+	organ_flags = ORGAN_MINERAL
 	///Var for brute healing via milk
 	var/milk_brute_healing = 2.5
 	///Var for burn healing via milk
 	var/milk_burn_healing = 2.5
 
-/obj/item/organ/liver/bone/handle_chemical(mob/living/carbon/organ_owner, datum/reagent/chem, seconds_per_tick)
+/obj/item/organ/liver/bone/handle_chemical(mob/living/carbon/organ_owner, datum/reagent/chem, seconds_per_tick, metabolization_rate)
 	. = ..()
 	// parent returned COMSIG_MOB_STOP_REAGENT_TICK or we are failing
 	if((. & COMSIG_MOB_STOP_REAGENT_TICK) || (organ_flags & ORGAN_FAILING))

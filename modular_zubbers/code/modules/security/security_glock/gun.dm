@@ -77,14 +77,13 @@
 		playsound(src, eject_sound, eject_sound_volume, eject_sound_vary)
 	else
 		playsound(src, eject_empty_sound, eject_sound_volume, eject_sound_vary)
-	magazine.forceMove(drop_location())
 	var/obj/item/ammo_box/magazine/security/old_mag = magazine
+	magazine.forceMove(drop_location())
 	if(belt_mag)
 		insert_magazine(user, belt_mag)
 	else
 		magazine = null
 		return
-	old_mag.forceMove(drop_location())
 	playsound(old_mag, old_mag.murphy_eject_sound, 50, TRUE)
 	if(was_ejected)
 		old_mag.was_ejected = TRUE

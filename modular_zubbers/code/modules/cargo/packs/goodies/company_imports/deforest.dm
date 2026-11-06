@@ -227,11 +227,11 @@
 	cost = PAYCHECK_COMMAND * 9
 
 /datum/supply_pack/company_import/deforest/equipment/medigun_upgrade
-	item_type = /obj/item/device/custom_kit/medigun_fastcharge
+	item_type = /obj/item/custom_kit/medigun_fastcharge
 	cost = PAYCHECK_COMMAND * 12
 
 /datum/supply_pack/company_import/deforest/equipment/hypospray_upgrade
-	item_type = /obj/item/device/custom_kit/deluxe_hypo2
+	item_type = /obj/item/custom_kit/deluxe_hypo2
 	cost = PAYCHECK_COMMAND * 4.5
 
 /datum/supply_pack/company_import/deforest/equipment/advanced_hypospray

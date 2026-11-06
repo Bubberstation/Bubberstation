@@ -57,6 +57,7 @@ SUBSYSTEM_DEF(vote)
 	QDEL_LIST(generated_actions)
 
 	SStgui.update_uis(src)
+	SEND_SIGNAL(src, COMSIG_VOTE_ENDED) // BUBBER EDIT ADDITION - Added signal for vote end for mapvote HUD
 
 /**
  * Process the results of the vote.
@@ -251,6 +252,7 @@ SUBSYSTEM_DEF(vote)
 		if(current_vote.vote_sound && new_voter.prefs.read_preference(/datum/preference/toggle/sound_announcements))
 			SEND_SOUND(new_voter, sound(current_vote.vote_sound))
 
+	SEND_SIGNAL(src, COMSIG_VOTE_STARTED) // BUBBER EDIT ADDITION - Added signal for vote start for mapvote HUD
 	return TRUE
 
 /**
@@ -448,9 +450,7 @@ SUBSYSTEM_DEF(vote)
 	voting -= user.client?.ckey
 
 /// Mob level verb that allows players to vote on the current vote.
-/mob/verb/vote()
-	set category = "OOC"
-	set name = "Vote"
+GAME_VERB(/mob, vote, "Vote", "OOC")
 
 	if(!SSvote.initialized)
 		to_chat(usr, span_notice("<i>Voting is not set up yet!</i>"))

@@ -175,7 +175,6 @@ SUBSYSTEM_DEF(gamemode)
 
 	return SS_INIT_SUCCESS
 
-
 /datum/controller/subsystem/gamemode/fire(resumed = FALSE)
 	if(!resumed)
 		src.currentrun = running.Copy()
@@ -202,10 +201,6 @@ SUBSYSTEM_DEF(gamemode)
 		for(var/datum/scheduled_event/sch_event in scheduled_events)
 			if(world.time >= sch_event.start_time)
 				sch_event.try_fire()
-			else if(!sch_event.alerted_admins && world.time >= sch_event.start_time - 1 MINUTES)
-				///Alert admins 1 minute before running and allow them to cancel or refund the event, once again.
-				sch_event.alerted_admins = TRUE
-				message_admins("Scheduled Event: [sch_event.event] will run in [(sch_event.start_time - world.time) / 10] seconds. (<a href='byond://?src=[REF(sch_event)];action=cancel'>CANCEL</a>) (<a href='byond://?src=[REF(sch_event)];action=refund'>REFUND</a>)")
 
 	// Reset the cache value to false
 	pop_data_cached = FALSE
@@ -252,8 +247,9 @@ SUBSYSTEM_DEF(gamemode)
 	no_antags = TRUE,
 	list/restricted_roles,
 	list/restricted_species,
+	ignore_antag_prefs = FALSE,
+	ignore_be_antag = FALSE,
 	)
-
 
 	var/list/candidates = list()
 	var/list/candidate_candidates = list() //lol
@@ -285,7 +281,8 @@ SUBSYSTEM_DEF(gamemode)
 			if(restricted_species && (carbon.dna.species.id in restricted_species))
 				continue
 		if(special_role_flag)
-			if(!(candidate.client.prefs) || !(special_role_flag in candidate.client.prefs.be_special))
+			// The antag prompt can be configured to ask everyone instead of only those who opted in.
+			if(!ignore_antag_prefs && (!(candidate.client.prefs) || !(special_role_flag in candidate.client.prefs.be_special)))
 				continue
 			if(candidate.client.get_days_to_play_antag(special_role_flag) > 0)
 				continue
@@ -294,7 +291,7 @@ SUBSYSTEM_DEF(gamemode)
 
 		if(is_banned_from(candidate.client.ckey, BAN_ANTAGONIST))
 			continue
-		if(!candidate.client?.prefs?.read_preference(/datum/preference/toggle/be_antag))
+		if(!ignore_be_antag && !candidate.client?.prefs?.read_preference(/datum/preference/toggle/be_antag))
 			continue
 		candidates += candidate
 	return candidates
@@ -461,10 +458,7 @@ SUBSYSTEM_DEF(gamemode)
 /datum/controller/subsystem/gamemode/proc/resetFrequency()
 	event_frequency_multiplier = 1
 
-/* /client/proc/forceEvent()
-	set name = "Trigger Event"
-	set category = "Admin.Events"
-
+/* ADMIN_VERB(forceEvent, R_FUN, "Trigger Event", "Triggers an event of your choosing.", ADMIN_CATEGORY_EVENTS)
 	if(!holder ||!check_rights(R_FUN))
 		return
 
@@ -472,7 +466,6 @@ SUBSYSTEM_DEF(gamemode)
 
 /* /datum/admins/forceEvent(mob/user)
 	SSgamemode.event_panel(user) */
-
 
 //////////////
 // HOLIDAYS //
@@ -492,7 +485,6 @@ SUBSYSTEM_DEF(gamemode)
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //ALSO, MOST IMPORTANTLY: Don't add stupid stuff! Discuss bonus content with Project-Heads first please!//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 //sets up the holidays and holidays list
 /datum/controller/subsystem/gamemode/proc/getHoliday()
@@ -566,7 +558,6 @@ SUBSYSTEM_DEF(gamemode)
 	pop_data_cached = FALSE // Uncache it because we'd still wrongly consider it cached from lobby pops
 	return TRUE
 
-
 ///Handles late-join antag assignments
 /datum/controller/subsystem/gamemode/proc/make_antag_chance(mob/living/carbon/human/character)
 	return
@@ -596,7 +587,6 @@ SUBSYSTEM_DEF(gamemode)
 		if(L.ckey && !GLOB.directory[L.ckey])
 			msg += "<b>[L.name]</b> ([L.key]), the [L.job] (<font color='#ffcc00'><b>Disconnected</b></font>)\n"
 
-
 		if(L.ckey && L.client)
 			var/failed = FALSE
 			if(L.client.inactivity >= (15 MINUTES)) //Connected, but inactive (alt+tabbed or something)
@@ -606,7 +596,7 @@ SUBSYSTEM_DEF(gamemode)
 				if(H.get_dnr()) //Suicider
 					msg += "<b>[L.name]</b> ([L.key]), the [L.job] ([span_boldannounce("Suicide")])\n"
 					failed = TRUE //Disconnected client
-				if(!failed && (L.stat == UNCONSCIOUS || L.stat == HARD_CRIT))
+				if(!failed && (IS_UNCONSCIOUS_OR_CRIT(L)))
 					msg += "<b>[L.name]</b> ([L.key]), the [L.job] (Dying)\n"
 					failed = TRUE //Unconscious
 				if(!failed && L.stat == DEAD)
@@ -629,7 +619,6 @@ SUBSYSTEM_DEF(gamemode)
 					else
 						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([span_boldannounce("Ghosted")])\n"
 						continue //Ghosted while alive
-
 
 	for (var/C in GLOB.admins)
 		to_chat(C, msg.Join())
@@ -791,7 +780,6 @@ SUBSYSTEM_DEF(gamemode)
  *
  * Used to halt/unhalt and properly log storyteller
  */
-
 /datum/controller/subsystem/gamemode/proc/halt_storyteller(mob/user)
 	storyteller_halted = !storyteller_halted
 	if(isnull(user))

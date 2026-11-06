@@ -101,6 +101,10 @@
 	name = "cargo praetorian jacket"
 	armor_type = /datum/armor/dept_guard
 
+/obj/item/clothing/suit/toggle/labcoat/technical/cargo/guard/Initialize(mapload)
+	. = ..()
+	allowed += GLOB.security_vest_allowed
+
 /obj/item/clothing/suit/toggle/labcoat/technical/engineer
 	name = "engineering technical jacket"
 	desc = "A comfortable jacket in engineering yellow."
@@ -125,6 +129,10 @@
 	name = "engineering praetorian jacket"
 	armor_type = /datum/armor/dept_guard
 
+/obj/item/clothing/suit/toggle/labcoat/technical/engineer/guard/Initialize(mapload)
+	. = ..()
+	allowed += GLOB.security_vest_allowed
+
 /obj/item/clothing/suit/toggle/labcoat/technical/engineer/tcomm
 	name = "telecomms technical jacket"
 	desc = "A comfortable jacket in engineering yellow with blue telecomms trim."
@@ -140,6 +148,10 @@
 	name = "medical praetorian jacket"
 	armor_type = /datum/armor/dept_guard
 
+/obj/item/clothing/suit/toggle/labcoat/technical/medical/guard/Initialize(mapload)
+	. = ..()
+	allowed += GLOB.security_vest_allowed
+
 /obj/item/clothing/suit/toggle/labcoat/technical/medical/dark
 	icon_state = "technical_med_dark"
 
@@ -147,12 +159,20 @@
 	name = "medical praetorian jacket"
 	armor_type = /datum/armor/dept_guard
 
+/obj/item/clothing/suit/toggle/labcoat/technical/medical/dark/guard/Initialize(mapload)
+	. = ..()
+	allowed += GLOB.security_vest_allowed
+
 /obj/item/clothing/suit/toggle/labcoat/technical/medical/black
 	icon_state = "technical_med_black"
 
 /obj/item/clothing/suit/toggle/labcoat/technical/medical/black/guard
 	name = "medical praetorian jacket"
 	armor_type = /datum/armor/dept_guard
+
+/obj/item/clothing/suit/toggle/labcoat/technical/medical/black/guard/Initialize(mapload)
+	. = ..()
+	allowed += GLOB.security_vest_allowed
 
 /obj/item/clothing/suit/toggle/labcoat/technical/science
 	name = "science technical jacket"
@@ -163,11 +183,19 @@
 	name = "science praetorian jacket"
 	armor_type = /datum/armor/dept_guard
 
+/obj/item/clothing/suit/toggle/labcoat/technical/science/guard/Initialize(mapload)
+	. = ..()
+	allowed += GLOB.security_vest_allowed
+
 /obj/item/clothing/suit/toggle/labcoat/technical/sec
 	name = "security praetorian jacket"
 	desc = "A comfortable jacket in security red. Probably against uniform regulations."
 	icon_state = "technical_sec"
 	armor_type = /datum/armor/dept_guard
+
+/obj/item/clothing/suit/toggle/labcoat/technical/medical/dark/guard/Initialize(mapload)
+	. = ..()
+	allowed += GLOB.security_vest_allowed
 
 /obj/item/clothing/suit/toggle/labcoat/technical/sec/Initialize(mapload)
 	. = ..()
@@ -181,6 +209,10 @@
 /obj/item/clothing/suit/toggle/labcoat/technical/service/guard
 	name = "service praetorian jacket"
 	armor_type = /datum/armor/dept_guard
+
+/obj/item/clothing/suit/toggle/labcoat/technical/service/guard/Initialize(mapload)
+	. = ..()
+	allowed += GLOB.security_vest_allowed
 
 /obj/item/clothing/suit/toggle/labcoat/paramedic
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/labcoat_teshari.dmi'

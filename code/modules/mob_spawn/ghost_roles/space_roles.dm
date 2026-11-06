@@ -76,11 +76,13 @@
 	flavour_text = "Monitor enemy activity as best you can, and try to keep a low profile. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Do not let the base fall into enemy hands!"
 	important_text = "DO NOT abandon the base."
 
+/* BUBBER EDIT REMOVAL BEGIN - It's already a rare spawn. It doesn't need to be rarer.
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/comms/space/Initialize(mapload)
 	. = ..()
 	if(prob(85)) //only has a 15% chance of existing, otherwise it'll just be a NPC syndie.
 		new /mob/living/basic/trooper/syndicate/ranged(get_turf(src))
 		return INITIALIZE_HINT_QDEL
+BUBBER EDIT REMOVAL END */
 
 ///battlecruiser stuff
 

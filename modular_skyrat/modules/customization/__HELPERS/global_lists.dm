@@ -73,7 +73,6 @@
 /proc/init_skyrat_stack_recipes()
 	var/list/additional_stack_recipes = list(
 		/obj/item/stack/sheet/leather = list(GLOB.skyrat_leather_recipes, GLOB.skyrat_leather_belt_recipes),
-		/obj/item/stack/sheet/mineral/titanium = list(GLOB.skyrat_titanium_recipes),
 		/obj/item/stack/sheet/mineral/snow = list(GLOB.skyrat_snow_recipes),
 		/obj/item/stack/sheet/iron = list(GLOB.skyrat_metal_recipes, GLOB.skyrat_metal_airlock_recipes),
 		/obj/item/stack/sheet/plasteel = list(GLOB.skyrat_plasteel_recipes),
@@ -83,7 +82,6 @@
 		/obj/item/stack/rods = list(GLOB.skyrat_rod_recipes),
 		/obj/item/stack/sheet/mineral/stone = list(GLOB.stone_recipes),
 		/obj/item/stack/sheet/plastic_wall_panel = list(GLOB.plastic_wall_panel_recipes),
-		/obj/item/stack/sheet/spaceshipglass = list(GLOB.spaceshipglass_recipes),
 	)
 	for(var/stack in additional_stack_recipes)
 		for(var/material_list in additional_stack_recipes[stack])

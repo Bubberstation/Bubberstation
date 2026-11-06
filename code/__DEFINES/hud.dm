@@ -69,6 +69,7 @@
 #define HUD_MOB_MOOD "mob_mood"
 #define HUD_MOB_HEALTHDOLL "mob_healthdoll"
 #define HUD_MOB_MEMORIES "mob_memories"
+#define HUD_MOB_SLIME_POWER "mob_slime_power"
 #define HUD_MOB_AMMO_COUNTER "mob_ammo_counter" // BUBBER EDIT ADDITION
 
 #define HUD_OOZE_NUTRITION_DISPLAY "ooze_nutrition_display"
@@ -76,7 +77,7 @@
 #define HUD_HUMAN_TOGGLE_INVENTORY "human_toggle_inventory"
 
 #define HUD_NEW_PLAYER_START_NOW "new_player_start_now"
-#define HUD_NEW_PLAYER_SIGN_UP "newp_layer_sign_up"
+#define HUD_NEW_PLAYER_LOBBY_BUTTON(type) "new_player_lobby_button:[type]"
 #define HUD_KEY_NEW_PLAYER(slot) "newplayer_hud:[slot]"
 
 #define HUD_SILICON_TAKE_IMAGE "silicon_camera"
@@ -388,6 +389,10 @@
 
 //Blobbernauts
 #define ui_blobbernaut_overmind_health "EAST-1:28,CENTER+0:19"
+
+//Slimes
+#define ui_slime_hunger "EAST-1:30,CENTER:8"
+#define ui_slime_powerlevel "EAST-1:28,CENTER-2:18"
 
 // Defines relating to action button positions
 

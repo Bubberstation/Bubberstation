@@ -6,13 +6,13 @@
 	maximum_antags = 1
 	maximum_antags_global = 1
 
-	min_players = 20
+	min_players = 25
 	roundstart = FALSE
 	alert_observers = TRUE
 
 	antag_datum = /datum/antagonist/malf_ai
 	antag_flag = ROLE_MALF
-	weight = 4
+	weight = 2
 	tags = list(TAG_CREW_ANTAG, TAG_COMBAT, TAG_CHAOTIC)
 	restricted_roles = list("Cyborg")
 
@@ -26,13 +26,13 @@
 			candidate = candidate.deployed_shell
 		if(QDELETED(candidate) || !candidate.key || !candidate.client || !candidate.mind)
 			continue
-		if(!(candidate.client.prefs) || !(antag_flag in candidate.client.prefs.be_special))
+		if(!ignoring_antag_prefs() && (!(candidate.client.prefs) || !(antag_flag in candidate.client.prefs.be_special)))
 			continue
 		if(candidate.client.get_days_to_play_antag(antag_flag) > 0)
 			continue
 		if(is_banned_from(candidate.ckey, list(antag_flag, ROLE_SYNDICATE, BAN_ANTAGONIST)))
 			continue
-		if(!candidate.client.prefs.read_preference(/datum/preference/toggle/be_antag))
+		if(!ignoring_be_antag() && !candidate.client.prefs.read_preference(/datum/preference/toggle/be_antag))
 			continue
 		candidates += candidate
 	return candidates
@@ -42,7 +42,7 @@
 
 	roundstart = TRUE
 	typepath = /datum/round_event/antagonist/solo/malf_ai/roundstart
-	weight = 6
+	weight = 3
 
 // God has abandoned us
 /datum/round_event_control/antagonist/solo/malf/roundstart/get_candidates()

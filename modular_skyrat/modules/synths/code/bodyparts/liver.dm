@@ -8,6 +8,10 @@
 	slot = ORGAN_SLOT_LIVER
 	maxHealth = 1 * STANDARD_ORGAN_THRESHOLD
 	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
+	custom_materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 
 /obj/item/organ/liver/synth/emp_act(severity)
 	. = ..()
@@ -28,7 +32,6 @@
 /datum/design/synth_liver
 	name = "Reagent Processing Unit"
 	desc = "An electronic device that processes the beneficial chemicals for the synthetic user."
-	id = "synth_liver"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(

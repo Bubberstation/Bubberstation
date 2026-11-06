@@ -25,7 +25,7 @@
 	attack_verb_simple = "bite"
 	attack_sound = 'modular_skyrat/modules/black_mesa/sound/mobs/bullsquid/attack1.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
-	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 1, OXY = 1)
+	physiology = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 1, OXY = 1)
 
 	// Mob traits
 	mob_biotypes = MOB_ORGANIC | MOB_BEAST

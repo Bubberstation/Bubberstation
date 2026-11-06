@@ -39,8 +39,8 @@
 	var/broke_masquerade = FALSE
 	///How many Masquerade Infractions do we have?
 	var/masquerade_infractions = 0
-	///If we are currently in a Frenzy
-	var/frenzied = FALSE
+	///Have we already gone through Final Death? Prevents FinalDeath() from running more than once.
+	var/final_death_triggered = FALSE
 	/// sired by a ventrue
 	var/ventrue_sired
 
@@ -247,8 +247,7 @@
 /datum/antagonist/bloodsucker/on_removal()
 	free_all_ghouls()
 	if(!owner?.current)
-		return
-	unregister_sol_signals()
+		return ..()
 	if(is_head(owner.current))
 		cleanup_talking_head()
 	if(ishuman(owner.current))
@@ -263,6 +262,7 @@
 	. = ..()
 	if(!old_body || !new_body)
 		CRASH("Bloodsucker on_body_transfer called with null bodies!")
+	final_death_triggered = FALSE
 	for(var/datum/action/cooldown/bloodsucker/all_powers as anything in powers)
 		if(old_body)
 			all_powers.Remove(old_body)
@@ -352,16 +352,12 @@
 	if(my_clan)
 		clan_data["clan_name"] = my_clan.name
 		clan_data["clan_description"] = my_clan.description
-		clan_data["clan_icon"] = my_clan.join_icon_state
+		clan_data["clan_icon"] = my_clan.join_icon
+		clan_data["clan_icon_state"] = my_clan.join_icon_state
 
 	data["clan"] += list(clan_data)
 
 	return data + ..()
-
-/datum/antagonist/bloodsucker/ui_assets(mob/user)
-	return list(
-		get_asset_datum(/datum/asset/simple/bloodsucker_icons),
-	)
 
 /datum/antagonist/bloodsucker/ui_act(action, params, datum/tgui/ui)
 	. = ..()

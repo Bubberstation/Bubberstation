@@ -13,7 +13,7 @@
 	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_CREW_ANTAG)
 
 /datum/round_event_control/antagonist/solo/heretic/New()
-	protected_roles |= JOB_CHAPLAIN // Would be silly to get chaplain heretics
+//	protected_roles |= JOB_CHAPLAIN // Would be silly to get chaplain heretics
 	. = ..()
 
 #define TIME_CUTOFF 1.2 HOURS

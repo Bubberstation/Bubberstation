@@ -41,3 +41,4 @@
 	if (istype(taur))
 		taur.organ_flags &= ~ORGAN_ORGANIC
 		taur.organ_flags |= ORGAN_ROBOTIC
+		taur.on_mob_insert(target, special = TRUE, movement_flags = TRUE) //Reinsert the taur body now that we have preferences?

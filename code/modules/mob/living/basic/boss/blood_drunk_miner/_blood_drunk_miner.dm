@@ -68,11 +68,10 @@ Difficulty: Medium
 
 	grant_actions_by_list(get_innate_actions())
 	ai_controller.set_blackboard_key(BB_BDM_RANGED_ATTACK_COOLDOWN, ranged_attack_cooldown_duration)
-	RegisterSignals(ai_controller, list(AI_CONTROLLER_BEHAVIOR_QUEUED(/datum/ai_behavior/basic_melee_attack), AI_CONTROLLER_BEHAVIOR_QUEUED(/datum/ai_behavior/targeted_mob_ability)), PROC_REF(handle_saw_transformation))
 
 	RegisterSignal(src, COMSIG_LIVING_DROP_LOOT, PROC_REF(death_effect))
 
-	AddComponent(/datum/component/boss_music, 'sound/music/boss/bdm_boss.ogg', COMSIG_AI_BLACKBOARD_KEY_SET(BB_BASIC_MOB_CURRENT_TARGET))
+	AddComponent(/datum/component/boss_music, 'sound/music/boss/bdm_boss.ogg', COMSIG_AI_BLACKBOARD_KEY_SET(BB_CURRENT_TARGET))
 
 /// Block deletion of their saw under normal circumstances. It is fused to their hands as far as we're concerned.
 /mob/living/basic/boss/blood_drunk_miner/proc/on_saw_deleted(datum/source, force)
@@ -86,6 +85,9 @@ Difficulty: Medium
 	QDEL_NULL(miner_saw)
 	return ..()
 
+/mob/living/basic/boss/blood_drunk_miner/get_hud_x_offset()
+	return 0
+
 /// Returns a list of innate actions for the blood-drunk miner.
 /mob/living/basic/boss/blood_drunk_miner/proc/get_innate_actions()
 	var/list/innate_abilities = list(
@@ -95,12 +97,6 @@ Difficulty: Medium
 		/datum/action/cooldown/mob_cooldown/transform_weapon = BB_BDM_TRANSFORM_WEAPON_ABILITY,
 	)
 	return innate_abilities
-
-/// Invokes the transform weapon ability when signaled by the AI controller.
-/mob/living/basic/boss/blood_drunk_miner/proc/handle_saw_transformation()
-	SIGNAL_HANDLER
-
-	INVOKE_ASYNC(ai_controller.blackboard[BB_BDM_TRANSFORM_WEAPON_ABILITY], TYPE_PROC_REF(/datum/action, Trigger), src, NONE)
 
 /mob/living/basic/boss/blood_drunk_miner/proc/transform_saw()
 	miner_saw.attack_self(src)
@@ -120,7 +116,7 @@ Difficulty: Medium
 		used_item = miner_saw
 	return ..()
 
-/mob/living/basic/boss/blood_drunk_miner/adjust_health(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/basic/boss/blood_drunk_miner/on_damage_loss_changed(amount, updating_health, forced, damage_type)
 	var/adjustment_amount = amount * 0.1
 	if(world.time + adjustment_amount > next_move)
 		changeNext_move(adjustment_amount) //attacking it interrupts it attacking, but only briefly

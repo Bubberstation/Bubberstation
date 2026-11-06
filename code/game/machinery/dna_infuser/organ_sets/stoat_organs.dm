@@ -4,7 +4,7 @@
 /datum/status_effect/organ_set_bonus/stoat
 	id = "organ_set_bonus_stoat"
 	tick_interval = 3 SECONDS
-	organs_needed = 4
+	organs_needed = 5
 	bonus_activate_text = span_notice("Stoat DNA is deeply infused with you! \
 		Your instincts set in - you now feel fearless, as if you could take on any enemy, no matter the size difference.")
 	bonus_deactivate_text = span_notice("You are no longer majority stoat, \
@@ -58,7 +58,7 @@
 	return SUCCESSFUL_BLOCK
 
 /datum/status_effect/organ_set_bonus/stoat/proc/is_dangerous_mob(mob/living/target)
-	if(target.stat >= UNCONSCIOUS)
+	if(IS_UNCONSCIOUS(target))
 		return FALSE
 	if(istype(target, /mob/living/basic/stoat))
 		return owner.gender == MALE && target.gender == MALE // other stoats are ENEMIES if we are both males
@@ -72,7 +72,7 @@
 	return FALSE
 
 /datum/status_effect/organ_set_bonus/stoat/proc/is_friendly_mob(mob/living/target)
-	if(target.stat >= UNCONSCIOUS)
+	if(IS_UNCONSCIOUS(target))
 		return FALSE
 	if(istype(target, /mob/living/basic/stoat))
 		return owner.gender != MALE || target.gender != MALE
@@ -125,28 +125,26 @@
 	greyscale_colors = STOAT_COLORS
 	beat_noise = "a fast-paced high-pitched pit-pat"
 	maxHealth = parent_type::maxHealth * 0.8 // weaker heart
-	/// Tracks height of the mob on add
-	var/mob_base_height = HUMAN_HEIGHT_MEDIUM
+	organ_traits = list(TRAIT_TOO_TALL) //noodly boy
 
 /obj/item/organ/heart/stoat/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/stoat)
 	AddElement(/datum/element/update_icon_blocker)
 
-/obj/item/organ/heart/stoat/on_mob_insert(mob/living/carbon/organ_owner, special, movement_flags)
-	. = ..()
-	if(!ishuman(organ_owner))
-		return
-	var/mob/living/carbon/human/human_owner = organ_owner
-	mob_base_height = human_owner.get_base_mob_height()
-	human_owner.set_mob_height(HUMAN_HEIGHT_TALLEST, update_dna = FALSE)
+/obj/item/organ/fangs/stoat
+	desc = "Stoat DNA infused into what was once some normal teeth."
+	bite_low = 7
+	bite_high = 7
+	bite_effectiveness = 20
+	bite_pummeling_bonus = 0.75
+	bite_attack_effect = ATTACK_EFFECT_BITE
+	bite_sharpness = SHARP_POINTY
+	organ_traits = list(TRAIT_FERAL_BITER)
 
-/obj/item/organ/heart/stoat/on_mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
+/obj/item/organ/fangs/stoat/Initialize(mapload)
 	. = ..()
-	if(!ishuman(organ_owner))
-		return
-	var/mob/living/carbon/human/human_owner = organ_owner
-	human_owner.set_mob_height(mob_base_height, update_dna = FALSE)
+	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/stoat)
 
 /obj/item/organ/tongue/stoat
 	name = "mutated stoat-tongue"
@@ -161,7 +159,6 @@
 	liked_foodtypes = MEAT | RAW | GORE | BUGS
 	disliked_foodtypes = FRUIT | VEGETABLES
 	taste_sensitivity = 12
-	organ_traits = list(TRAIT_FERAL_BITER)
 
 /obj/item/organ/tongue/stoat/Initialize(mapload)
 	. = ..()
@@ -175,34 +172,12 @@
 /obj/item/organ/tongue/stoat/on_mob_insert(mob/living/carbon/receiver, special, movement_flags)
 	. = ..()
 	RegisterSignals(receiver, COMSIG_LIVING_GET_PERCEIVED_FOOD_QUALITY, PROC_REF(get_perceived_food_quality))
-	if(ishuman(receiver))
-		var/mob/living/carbon/human/human_receiver = receiver
-		human_receiver.physiology.hunger_mod *= 2
+	MODIFY_PHYSIOLOGY(receiver, PHYS_COEFF_HUNGER_MOD, 2)
 
 /obj/item/organ/tongue/stoat/on_mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
 	UnregisterSignal(organ_owner, COMSIG_LIVING_GET_PERCEIVED_FOOD_QUALITY)
-	if(ishuman(organ_owner))
-		var/mob/living/carbon/human/human_remover = organ_owner
-		human_remover.physiology.hunger_mod /= 2
-
-/obj/item/organ/tongue/stoat/on_bodypart_insert(obj/item/bodypart/limb)
-	. = ..()
-	limb.unarmed_damage_low += 7
-	limb.unarmed_damage_high += 7
-	limb.unarmed_effectiveness += 20
-	limb.unarmed_pummeling_bonus += 0.75
-	limb.unarmed_attack_effect = ATTACK_EFFECT_BITE
-	limb.unarmed_sharpness = SHARP_POINTY
-
-/obj/item/organ/tongue/stoat/on_bodypart_remove(obj/item/bodypart/limb)
-	. = ..()
-	limb.unarmed_damage_low -= 7
-	limb.unarmed_damage_high -= 7
-	limb.unarmed_effectiveness -= 20
-	limb.unarmed_pummeling_bonus -= 0.75
-	limb.unarmed_attack_effect = initial(limb.unarmed_attack_effect)
-	limb.unarmed_sharpness = initial(limb.unarmed_sharpness)
+	MODIFY_PHYSIOLOGY(organ_owner, PHYS_COEFF_HUNGER_MOD, 0.5)
 
 /obj/item/organ/tongue/stoat/proc/get_perceived_food_quality(mob/living/carbon/consumer, obj/item/food/consumed_food, list/extra_quality)
 	SIGNAL_HANDLER

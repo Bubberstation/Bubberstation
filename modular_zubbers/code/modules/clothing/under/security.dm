@@ -66,6 +66,8 @@
 	desc = "We may all be headed straight to hell. But what better place for us than this?"
 	icon = 'modular_zubbers/icons/obj/clothing/under/syndicate.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/syndicate.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/syndicate_digi.dmi'
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/syndicate_teshari.dmi'
 	icon_state = "snake"
 
 /obj/item/clothing/under/rank/security/camo
@@ -79,6 +81,7 @@
 	greyscale_config = /datum/greyscale_config/camo
 	greyscale_config_worn = /datum/greyscale_config/camo/worn
 	greyscale_config_worn_digi = /datum/greyscale_config/camo/worn/digi
+	greyscale_config_worn_teshari = /datum/greyscale_config/camo/worn/teshari
 	greyscale_colors = "#A53228#333333#292929"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
@@ -289,7 +292,7 @@
 	name = "security uniform"
 	desc = "A tactical security jumpsuit for officers complete with Nanotrasen belt buckle."
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
-	icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 	icon_state = "security_uniform_v"
 	inhand_icon_state = "r_suit"
@@ -324,6 +327,7 @@
 	name = "seucrity officer's bodysuit"
 	desc = "The latest in form-fitting, high speed, and low drag security equipment."
 	icon_state = "security_bodysuit"
+	can_adjust = FALSE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/security/viro/officer/bodysuit/equipped(mob/living/affected_mob, slot)
@@ -341,7 +345,8 @@
 	name = "security suit"
 	desc = "A formal security suit for officers complete with Nanotrasen belt buckle."
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
-	icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	icon_state = "warden_uniform"
 	inhand_icon_state = "r_suit"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
@@ -378,7 +383,8 @@
 	name = "head of security's uniform"
 	desc = "A security jumpsuit decorated for those few with the dedication to achieve the position of Head of Security."
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
-	icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	icon_state = "hos_uniform"
 	inhand_icon_state = "r_suit"
 	armor_type = /datum/armor/clothing_under/security_head_of_security
@@ -394,7 +400,7 @@
 	name = "head of security's skirt"
 	desc = "A security jumpskirt decorated for those few with the dedication to achieve the position of Head of Security."
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
-	icon = 'modular_zubbers/icons/mob/clothing/under/security.dmi'
+	icon = 'modular_zubbers/icons/obj/clothing/under/security.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/under/security_digi.dmi'
 	icon_state = "hos_skirt"
 	inhand_icon_state = "r_suit"
@@ -615,4 +621,7 @@
 	greyscale_config_worn_teshari = /datum/greyscale_config/jumpsuit/prison/worn/teshari
 
 /obj/item/clothing/under/rank/security/peacekeeper/miniskirt
+	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'
+
+/obj/item/clothing/under/rank/security/detective/kim
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'

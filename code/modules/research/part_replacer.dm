@@ -9,6 +9,7 @@
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 	w_class = WEIGHT_CLASS_HUGE
 	storage_type = /datum/storage/rped
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5)
 
 /obj/item/storage/part_replacer/interact_with_atom(obj/attacked_object, mob/living/user, list/modifiers)
 	if(user.combat_mode)
@@ -53,11 +54,12 @@
 ///Bluespace RPED. Allows exchanging parts from a distance & through cameras
 /obj/item/storage/part_replacer/bluespace
 	name = "bluespace rapid part exchange device"
-	desc = "A version of the RPED that allows for replacement of parts and scanning from a distance, along with higher capacity for parts."
+	desc = "A version of the RPED that allows for replacement of parts and scanning from a distance, along with the ability to store larger components."
 	icon_state = "BS_RPED"
 	inhand_icon_state = "BS_RPED"
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_type = /datum/storage/rped/bluespace
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 1.25)
 
 /obj/item/storage/part_replacer/bluespace/Initialize(mapload)
 	. = ..()
@@ -102,7 +104,14 @@
 			target_holder.force_stop_reacting()
 			target_holder.clear_reagents()
 			to_chat(usr, span_notice("[src] churns as [inserted_component] has its reagents emptied into bluespace."))
-		target_holder.flags = target_holder.flags << 5 //masks all flags upto DUNKABLE(1<<5) i.e. removes all methods of transfering reagents to/from the object
+		RegisterSignal(target_holder, COMSIG_REAGENTS_PRE_ADD_REAGENT, PROC_REF(on_insered_component_reagent_pre_add))
+
+/// Hooks [COMSIG_REAGENTS_PRE_ADD_REAGENT] to block adding any form of reagent to component beakers inside the RPED
+/obj/item/storage/part_replacer/bluespace/proc/on_insered_component_reagent_pre_add(datum/source, reagent, amount, reagtemp, data, no_react)
+	SIGNAL_HANDLER
+
+	return COMPONENT_CANCEL_REAGENT_ADD
+
 /**
  * Signal handler for a part is removed from the BRPED.
  * Restores original reagents of the component part, if it has any.
@@ -112,7 +121,7 @@
 
 	var/datum/reagents/target_holder = removed_component.reagents
 	if(target_holder)
-		target_holder.flags = target_holder.flags >> 5 //restores all flags upto DUNKABLE(1<<5)
+		UnregisterSignal(target_holder, COMSIG_REAGENTS_PRE_ADD_REAGENT)
 
 //RPED with tiered contents
 /obj/item/storage/part_replacer/bluespace/tier1/PopulateContents()
@@ -178,7 +187,7 @@
 ///Cyborg variant
 /obj/item/storage/part_replacer/cyborg
 	name = "rapid part exchange device"
-	desc = "Special mechanical module made to store, sort, and apply standard machine parts. This one has an extra large compartment for more parts."
+	desc = "Special mechanical module made to store, sort, and apply standard machine parts. This one has an extra large compartment for oversized components."
 	icon_state = "borgrped"
 	inhand_icon_state = "RPED"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
@@ -186,6 +195,6 @@
 	storage_type = /datum/storage/rped/bluespace
 
 /obj/item/storage/part_replacer/cyborg/small
-	desc = "Special mechanical module made to store, sort, and apply standard machine parts. This one has as much space, as your regular RPED"
+	desc = "Special mechanical module made to store, sort, and apply standard machine parts. This one has even less space than your regular RPED"
 	icon_state = "RPED"
-	storage_type = /datum/storage/rped
+	storage_type = /datum/storage/rped/compact

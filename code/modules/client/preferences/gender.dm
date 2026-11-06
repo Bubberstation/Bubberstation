@@ -7,7 +7,7 @@
 /datum/preference/choiced/gender/init_possible_values()
 	return list(MALE, FEMALE, PLURAL, NEUTER)
 
-/datum/preference/choiced/gender/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/choiced/gender/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	/* SKYRAT EDIT REMOVAL START - Did you just assume my gender???
 	if(!target.dna.species.sexes)
 		value = PLURAL //disregard gender preferences on this species

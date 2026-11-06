@@ -66,24 +66,31 @@
  */
 /datum/supply_pack/proc/generate(atom/A, datum/bank_account/paying_account, crate_override)
 	var/obj/structure/closet/crate/C
-	if(paying_account)
-		C = new /obj/structure/closet/crate/secure/owned(A, paying_account)
-		C.name = "[crate_name || C.name] - Purchased by [paying_account.account_holder]"
-	else if(!crate_type && !crate_override)
-		CRASH("tried to generate a supply pack without a valid crate type")
-	else if(crate_override)
+
+	if(crate_override)
 		var/obj/unique_container = new crate_override(A)
 		fill(unique_container)
 		return unique_container
 
-	else
-		C = new crate_type(A)
-		if(crate_name)
-			C.name = crate_name
-	if(access)
-		C.req_access = list(access)
-	if(access_any)
-		C.req_one_access = access_any
+	if(!crate_type)
+		CRASH("tried to generate a supply pack without a valid crate type")
+
+	// BUBBER EDIT BEGIN - ORIGINAL: C = new crate_type(A)
+	// A paid order arrives in a crate matching the account that bought it, not the pack's own crate.
+	var/crate_type_to_spawn = crate_type
+	if(paying_account)
+		crate_type_to_spawn = get_account_crate_type(paying_account)
+	C = new crate_type_to_spawn(A)
+	// BUBBER EDIT END
+	C.name = "[crate_name || C.name][paying_account ? " - Purchased by [paying_account.account_holder]" : ""]"
+	if(paying_account) // adds component for locking the crate so only the buyer (or their department) can open it
+		C.AddComponent(/datum/component/locked_to_account, paying_account)
+
+	if(!paying_account) // BUBBER EDIT - a paid order is gated by its account lock, so the pack's access is deliberately not stamped on top of it
+		if(access)
+			C.req_access = list(access)
+		if(access_any)
+			C.req_one_access = access_any
 
 	fill(C)
 	return C

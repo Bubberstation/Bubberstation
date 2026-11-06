@@ -120,6 +120,7 @@
 	post_init_icon_state = "giant_scarf"
 	greyscale_config = /datum/greyscale_config/giant_scarf
 	greyscale_config_worn = /datum/greyscale_config/giant_scarf/worn
+	greyscale_config_worn_teshari = /datum/greyscale_config/giant_scarf/worn/teshari
 	greyscale_colors = "#EEEEEE#bbbbbb"
 	female_sprite_flags = NO_FEMALE_UNIFORM
 	flags_1 = IS_PLAYER_COLORABLE_1

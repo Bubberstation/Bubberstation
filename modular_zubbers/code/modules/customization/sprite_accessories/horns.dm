@@ -48,10 +48,6 @@
 	name = "High-rise Horns"
 	icon_state = "highrisehorns"
 
-/datum/sprite_accessory/horns/bubber/halo //Sprites from Aurora Station
-	name = "Halo"
-	icon_state = "halo"
-
 /datum/sprite_accessory/horns/bubber/big/antlers //sprites by Gavla
 	name = "Aged Antlers"
 	icon_state = "antlers_more"
@@ -127,3 +123,12 @@
 /datum/sprite_accessory/horns/bubber/deathclawinverted
 	name = "Mutant Lizard (Inverted)"
 	icon_state = "deathclawinverted"
+
+/datum/sprite_accessory/horns/bubber/shieldguard
+	name = "Shieldguard"
+	icon_state = "shieldguard"
+
+/datum/sprite_accessory/horns/bubber/ilkhan
+	name = "Ilkhan"
+	icon_state = "ilkhan"
+

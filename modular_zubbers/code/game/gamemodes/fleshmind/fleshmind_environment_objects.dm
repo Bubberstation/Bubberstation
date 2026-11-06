@@ -5,6 +5,7 @@
 	icon = 'modular_zubbers/icons/fleshmind/fleshmind_structures.dmi'
 	icon_state = "wires"
 	anchored = TRUE
+	pass_flags_self = parent_type::pass_flags_self | PASSBLOB
 	/// Our faction
 	var/faction_types = list(FACTION_FLESHMIND)
 	/// A reference to our controller.
