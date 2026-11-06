@@ -233,7 +233,7 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 	/obj/item/boxcutter = 10,
 	list(
 		/obj/item/choice_beacon/music = 5,
-		/obj/item/choice_beacon/ingredient = 1
+		/obj/item/cooking_voucher = 1
 	) = 10,
 	list(
 		/obj/item/clothing/glasses/blindfold = 25,

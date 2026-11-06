@@ -1,5 +1,5 @@
-/obj/item/organ/cyberimp/arm/toolkit/surgery/cruel
-	items_to_create = list(
+/obj/item/organ/cyberimp/arm/toolkit/surgery/cruel/get_init_items()
+	return list(
 		/obj/item/retractor/cruel/augment,
 		/obj/item/hemostat/cruel/augment,
 		/obj/item/cautery/cruel/augment,

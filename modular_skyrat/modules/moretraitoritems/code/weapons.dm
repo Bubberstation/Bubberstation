@@ -11,7 +11,7 @@
 /obj/item/ammo_casing/c357/peacemaker
 	name = ".357 Peacemaker bullet casing"
 	desc = "A .357 Peacemaker bullet casing."
-	caliber = CALIBER_357
+	caliber = CALIBER_357_38
 	projectile_type = /obj/projectile/bullet/c357/peacemaker
 
 /obj/projectile/bullet/c357/peacemaker

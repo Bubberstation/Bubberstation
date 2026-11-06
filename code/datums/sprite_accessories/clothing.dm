@@ -45,7 +45,7 @@
 			created = wear_female_version(icon_state_to_use, icon_file_path, icon, female_sprite_flags_to_use)
 		if(use_digi)
 			var/icon/replacement = icon(SSgreyscale.GetColoredIconByType(/datum/greyscale_config/digitigrade_underwear, greyscale_colors), digi_icon_state)
-			created = replace_icon_legs(created, replacement)
+			created = apply_icon_mask(created, LEGS_MASK, replacement)
 
 		cached_icons[key] = fcopy_rsc(created)
 		result = mutable_appearance(created)
@@ -149,16 +149,16 @@
 	digi_icon_state = "boxers_stripe_threecolor"
 	greyscale_colors = "#D62626#EEEEEE#2E26D6"
 
+/datum/sprite_accessory/clothing/underwear/female_lace
+	name = "Lace Bikini"
+	icon_state = "female_lace"
+	gender = FEMALE
+
 /* BUBBER EDIT REMOVAL START - Underwear and bra split
 //FEMALE UNDERWEAR
 /datum/sprite_accessory/clothing/underwear/female_bikini
 	name = "Bikini"
 	icon_state = "female_bikini"
-	gender = FEMALE
-
-/datum/sprite_accessory/clothing/underwear/female_lace
-	name = "Lace Bikini"
-	icon_state = "female_lace"
 	gender = FEMALE
 
 /datum/sprite_accessory/clothing/underwear/female_bralette
@@ -456,12 +456,13 @@
 	icon_state = "whiteshortsleeve"
 	gender = NEUTER
 
-/* BUBBER EDIT REMOVAL START - Underwear and bra split
+
 /datum/sprite_accessory/clothing/undershirt/sports_bra
 	name = "Sports Bra"
 	icon_state = "sports_bra"
 	gender = NEUTER
 
+/* BUBBER EDIT REMOVAL START - Underwear and bra split
 /datum/sprite_accessory/clothing/undershirt/sports_bra2
 	name = "Sports Bra (Alt)"
 	icon_state = "sports_bra_alt"

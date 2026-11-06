@@ -40,9 +40,11 @@
 /obj/item/organ/cyberimp/arm/toolkit/armblade
 	name = "arm blade implant"
 	desc = "An integrated blade implant designed to be installed into a persons arm. Stylish and deadly; Although, being caught with this without proper permits is sure to draw unwanted attention."
-	items_to_create = list(/obj/item/melee/implantarmblade)
 	icon = 'modular_skyrat/modules/implants/icons/implanted_blade.dmi'
 	icon_state = "mantis_blade"
+
+/obj/item/organ/cyberimp/arm/toolkit/armblade/get_init_items()
+	return list(/obj/item/melee/implantarmblade)
 
 /obj/item/organ/cyberimp/arm/toolkit/armblade/emag_act()
 	if(obj_flags & EMAGGED)
@@ -121,12 +123,14 @@
 /obj/item/organ/cyberimp/arm/toolkit/razor_claws
 	name = "razor claws implant"
 	desc = "A set of hidden, retractable blades built into the fingertips; cyborg mercenary approved."
-	items_to_create = list(/obj/item/knife/razor_claws)
 	actions_types = list(/datum/action/item_action/organ_action/toggle/razor_claws)
 	icon = 'modular_skyrat/modules/implants/icons/razorclaws.dmi'
 	icon_state = "wolverine"
 	extend_sound = 'sound/items/unsheath.ogg'
 	retract_sound = 'sound/items/sheath.ogg'
+
+/obj/item/organ/cyberimp/arm/toolkit/razor_claws/get_init_items()
+	return list(/obj/item/knife/razor_claws)
 
 /// bespoke subtypes for augs menu since it's a bit wonky
 /obj/item/organ/cyberimp/arm/toolkit/razor_claws/right_arm
@@ -149,12 +153,30 @@
 	desc = "An small arm implant containing an advanced screwdriver, wirecutters, and multitool designed for engineers and on-the-field machine modification. Actually legal, despite what the name may make you think."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "toolkit_engiborg_multitool"
-	items_to_create = list(/obj/item/screwdriver/cyborg, /obj/item/wirecutters/cyborg, /obj/item/multitool/abductor/implant)
+
+/obj/item/organ/cyberimp/arm/toolkit/hacker/get_init_items()
+	return list(
+		/obj/item/screwdriver/cyborg,
+		/obj/item/wirecutters/cyborg,
+		/obj/item/multitool/abductor/implant,
+	)
 
 /obj/item/organ/cyberimp/arm/toolkit/botany
 	name = "botany arm implant"
 	desc = "A rather simple arm implant containing tools used in gardening and botanical research."
-	items_to_create = list(/obj/item/cultivator, /obj/item/shovel/spade, /obj/item/hatchet, /obj/item/gun/energy/floragun, /obj/item/plant_analyzer, /obj/item/geneshears, /obj/item/secateurs, /obj/item/storage/bag/plants, /obj/item/storage/bag/plants/portaseeder)
+
+/obj/item/organ/cyberimp/arm/toolkit/botany/get_init_items()
+	return list(
+		/obj/item/cultivator,
+		/obj/item/shovel/spade,
+		/obj/item/hatchet,
+		/obj/item/gun/energy/floragun,
+		/obj/item/plant_analyzer,
+		/obj/item/geneshears,
+		/obj/item/secateurs,
+		/obj/item/storage/bag/plants,
+		/obj/item/storage/bag/plants/portaseeder,
+	)
 
 /obj/item/implant_mounted_chainsaw
 	name = "integrated chainsaw"
@@ -192,7 +214,19 @@
 /obj/item/organ/cyberimp/arm/toolkit/janitor
 	name = "janitorial tools implant"
 	desc = "A set of janitorial tools on the user's arm."
-	items_to_create = list(/obj/item/lightreplacer, /obj/item/holosign_creator, /obj/item/soap/nanotrasen, /obj/item/reagent_containers/spray/cyborg_drying, /obj/item/mop/advanced, /obj/item/pushbroom/advanced/augment, /obj/item/paint/paint_remover, /obj/item/reagent_containers/cup/beaker/large, /obj/item/reagent_containers/spray/cleaner) //Beaker if for refilling sprays
+
+/obj/item/organ/cyberimp/arm/toolkit/janitor/get_init_items()
+	return list(
+		/obj/item/lightreplacer,
+		/obj/item/holosign_creator,
+		/obj/item/soap/nanotrasen,
+		/obj/item/reagent_containers/spray/cyborg_drying,
+		/obj/item/mop/advanced,
+		/obj/item/pushbroom/advanced/augment,
+		/obj/item/paint/paint_remover,
+		/obj/item/reagent_containers/cup/beaker/large,
+		/obj/item/reagent_containers/spray/cleaner,
+	)
 
 /obj/item/organ/cyberimp/arm/toolkit/janitor/emag_act()
 	if(obj_flags & EMAGGED)
@@ -206,7 +240,9 @@
 /obj/item/organ/cyberimp/arm/toolkit/lighter
 	name = "lighter implant"
 	desc = "A... implanted lighter. Incredibly useless."
-	items_to_create = list(/obj/item/lighter/greyscale) //Hilariously useless.
+
+/obj/item/organ/cyberimp/arm/toolkit/lighter/get_init_items()
+	return list(/obj/item/lighter/greyscale)
 
 /obj/item/organ/cyberimp/arm/toolkit/lighter/emag_act()
 	if(obj_flags & EMAGGED)

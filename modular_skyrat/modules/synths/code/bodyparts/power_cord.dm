@@ -1,11 +1,13 @@
 /obj/item/organ/cyberimp/arm/toolkit/power_cord
 	name = "synth interfacing hardware"
 	desc = "Stores an interfacing tool that provides various functions for synths."
-	items_to_create = list(/obj/item/synth_powercord)
 	attack_verb_continuous = list("pokes")
 	attack_verb_simple = list("poke")
 	zone = BODY_ZONE_L_ARM
 	slot = ORGAN_SLOT_LEFT_ARM_AUG
+
+/obj/item/organ/cyberimp/arm/toolkit/power_cord/get_init_items()
+	return list(/obj/item/synth_powercord)
 
 //
 // Synth powercord -- plugs into APCs and charges with them

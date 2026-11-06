@@ -13,3 +13,11 @@
 #define DIGITIGRADE_SHOES_FILE 'modular_skyrat/master_files/icons/mob/clothing/feet_digi.dmi' // SKYRAT EDIT CHANGE
 ///The dmi containing digitigrade oversuits
 #define DIGITIGRADE_SUIT_FILE 'modular_skyrat/master_files/icons/mob/clothing/suit_digi.dmi' // SKYRAT EDIT CHANGE
+
+//CERULEAN TAIL PATHS
+///The dmi which has sprites for Ceruleans and their suits
+#define CERULEAN_SUIT_FILE 'icons/mob/human/species/misc/cerulean_suit.dmi'
+///The dmi which has the Ceruleans modsuits
+#define CERULEAN_MODSUIT_FILE 'icons/mob/human/species/misc/cerulean_modsuit.dmi'
+///The dmi which has modular modsuit parts to assemble in handle_cerulean_modsuit()
+#define CERULEAN_MODSUIT_GEN_FILE 'icons/mob/human/species/misc/cerulean_modsuit_gen.dmi'

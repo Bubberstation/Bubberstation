@@ -196,7 +196,7 @@
 	name = "handcrafted revolver cylinder"
 	start_empty = TRUE
 	ammo_type = /obj/item/ammo_casing/c38
-	caliber = CALIBER_38
+	caliber = CALIBER_357_38
 	max_ammo = 6
 
 ///cause apparently tgcode doesn't have a bug check against if start_empty = false

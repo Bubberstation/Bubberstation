@@ -154,7 +154,7 @@
 	invis_view = SEE_INVISIBLE_OBSERVER
 	invis_override = null
 	flash_protect = FLASH_PROTECTION_SENSITIVE
-	vision_flags = SEE_MOBS
+	clothing_traits = list(TRAIT_THERMAL_VISION)
 	color_cutoffs = list(5, 15, 5)
 	glass_colour_type = /datum/client_colour/glass_colour/yellow
 	actions_types = list(/datum/action/item_action/toggle/clock)

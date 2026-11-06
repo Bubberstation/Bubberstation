@@ -218,7 +218,7 @@
 	if(current_eyes && !(current_eyes.organ_flags & ORGAN_ROBOTIC))
 		current_eyes.flash_protect = max(initial(current_eyes.flash_protect) - 1, FLASH_PROTECTION_SENSITIVE)
 		current_eyes.color_cutoffs = BLOODSUCKER_SIGHT_COLOR_CUTOFF
-		current_eyes.sight_flags = SEE_MOBS
+		current_eyes.organ_traits = list(TRAIT_THERMAL_VISION)
 
 	bloodsuckeruser.update_sight()
 	/// Disable gutting for the chest

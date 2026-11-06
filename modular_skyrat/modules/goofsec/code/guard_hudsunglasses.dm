@@ -122,19 +122,19 @@
 	name = "meson HUDsunglasses"
 	desc = "Sunglasses with a combined meson and security HUD. The forest green mirror lenses see straight through walls, which turns out to be less useful for catching criminals than you'd hope."
 	icon_state = "/obj/item/clothing/glasses/hud/security/sunglasses/guard/engineering"
-	clothing_traits = list(TRAIT_SECURITY_HUD, TRAIT_MADNESS_IMMUNE)
+	clothing_traits = list(TRAIT_SECURITY_HUD, TRAIT_MADNESS_IMMUNE, TRAIT_MESON_VISION)
 	greyscale_colors = "#585858#1a7a3e"
-	vision_flags = SEE_TURFS
 	// Matches the optical meson scanner's faint see-in-the-dark, so this isn't a strictly worse meson.
 	color_cutoffs = list(5, 15, 5)
 	glass_colour_type = /datum/client_colour/glass_colour/guard/engineering
 	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.8, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5)
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/engineering/update_extras(mob/living/wearer)
-	vision_flags = display_active ? SEE_TURFS : NONE
+	ADD_TRAIT(wearer, TRAIT_MESON_VISION, REF(src))
 	wearer.update_sight()
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/engineering/clear_extras(mob/living/wearer)
+	REMOVE_TRAIT(wearer, TRAIT_MESON_VISION, REF(src))
 	wearer.update_sight()
 
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/service
@@ -230,7 +230,6 @@
 	wearer.remove_status_effect(/datum/status_effect/agent_pinpointer/executive/booze)
 	wearer.remove_status_effect(/datum/status_effect/agent_pinpointer/executive/fortune)
 
-	vision_flags = NONE
 	color_cutoffs = null
 	REMOVE_TRAIT(wearer, TRAIT_THERMAL_VISION, REF(src))
 	qdel(wearer.GetComponent(/datum/component/money_sense/customs))
@@ -240,7 +239,7 @@
 
 	switch(mode)
 		if(EXECUTIVE_MODE_MESON)
-			vision_flags = SEE_TURFS
+			ADD_TRAIT(wearer, TRAIT_MESON_VISION, REF(src))
 			color_cutoffs = list(5, 15, 5)
 		if(EXECUTIVE_MODE_BOOZE)
 			wearer.apply_status_effect(/datum/status_effect/agent_pinpointer/executive/booze)
@@ -255,9 +254,9 @@
 /obj/item/clothing/glasses/hud/security/sunglasses/guard/command/clear_extras(mob/living/wearer)
 	wearer.remove_status_effect(/datum/status_effect/agent_pinpointer/executive/booze)
 	wearer.remove_status_effect(/datum/status_effect/agent_pinpointer/executive/fortune)
-	vision_flags = NONE
 	color_cutoffs = null
 	REMOVE_TRAIT(wearer, TRAIT_THERMAL_VISION, REF(src))
+	REMOVE_TRAIT(wearer, TRAIT_MESON_VISION, REF(src))
 	qdel(wearer.GetComponent(/datum/component/money_sense/customs))
 	wearer.update_sight()
 
@@ -693,9 +692,8 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 		return TRUE
 	if(their_job?.job_flags & JOB_HEAD_OF_STAFF)
 		return FALSE
-	for(var/obj/item/held as anything in suspect.held_items)
-		if(isgun(held))
-			return TRUE
+	for(var/obj/item/held as anything in suspect.get_held_items_of_type(/obj/item/gun))
+		return TRUE
 	return FALSE
 
 /datum/component/gun_spotter/process(seconds_per_tick)

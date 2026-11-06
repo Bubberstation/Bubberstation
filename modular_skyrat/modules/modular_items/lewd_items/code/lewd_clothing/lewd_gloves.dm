@@ -154,7 +154,7 @@
 	if(isclothing(target) && isliving(target.loc) && !wearer.get_active_held_item() && !wearer.combat_mode)
 		var/obj/item/clothing/cloth = target
 		var/mob/living/living_loc = target.loc
-		var/in_hand = (target in wearer.held_items)
+		var/in_hand = (wearer.is_holding(target))
 		var/truly_worn = (cloth.slot_flags && living_loc.get_item_by_slot(cloth.slot_flags) == cloth)
 		if(in_hand || truly_worn)
 			if(istype(cloth, /obj/item/clothing/gloves/ball_mittens))
@@ -213,7 +213,7 @@
 		return
 	if(isliving(target))
 		var/mob/living/living_target = target
-		if(item in living_target.held_items)
+		if(item in living_target.get_held_items())
 			return // Item in target's hands = equip action, not a strip
 	if(!isliving(target) || !isitem(item))
 		return COMPONENT_CANT_STRIP

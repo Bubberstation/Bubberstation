@@ -235,6 +235,7 @@
 /datum/bodypart_overlay/mutant/cat_ears/cybernetic
 	color_source = null
 	dyable = FALSE
+	overlay_flags = NONE
 	/// Color of the inner ear
 	var/inner_color = "#F0004A"
 
@@ -250,10 +251,10 @@
 	if (layer_index != inner_layer)
 		return ..()
 	var/list/all_images = ..()
-	//var/mutable_appearance/ear_holder = all_images[1] //BUBBER EDIT REMOVAL: Ear overlays in skyrat code is different. Check /datum/bodypart_overlay/mutant/proc/get_images()
-	var/mutable_appearance/inner = all_images[2] //BUBBER EDIT CHANGE: ORIGINAL: var/mutable_appearance/inner = ear_holder.overlays[2]
-	inner.color = inner_color // BUBBER EDIT ADDITION: We don't call get_image, we call get_singular_image(). This works fine here though.
-	all_images += emissive_appearance(inner.icon, inner.icon_state, limb, layer = inner.layer, alpha = inner.alpha * 0.75)
+	var/mutable_appearance/ear_holder = all_images[1]
+	var/mutable_appearance/inner = ear_holder.overlays[2]
+	var/mutable_appearance/emissive_overlay = emissive_appearance(inner.icon, inner.icon_state, limb, layer = inner.layer, alpha = inner.alpha * 0.75)
+	all_images[emissive_overlay] = LIMB_OVERLAY_META
 	return all_images
 
 /datum/bodypart_overlay/mutant/cat_ears/cybernetic/green

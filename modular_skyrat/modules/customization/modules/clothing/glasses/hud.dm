@@ -43,8 +43,7 @@
 	desc = "For those that only want to go half insane when staring at the supermatter."
 	icon_state = "mesonpatch"
 	base_icon_state = "mesonpatch"
-	clothing_traits = list(TRAIT_MADNESS_IMMUNE)
-	vision_flags = SEE_TURFS
+	clothing_traits = list(TRAIT_MADNESS_IMMUNE, TRAIT_MESON_VISION)
 	color_cutoffs = list(5, 15, 5)
 	lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
 	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
