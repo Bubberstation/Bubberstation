@@ -1,8 +1,9 @@
+// how long a citation can go unpaid before it elevates
+#define FINE_EVASION_WINDOW (10 MINUTES)
 // minutes left at which the owner gets a reminder
 #define FINE_EVASION_WARNINGS list(10, 5, 1)
 
 /datum/crime/citation
-	var/evasion_window = 0
 	var/evasion_deadline = 0
 	var/evasion_timer
 	var/datum/weakref/evasion_record_ref
@@ -12,11 +13,9 @@
 	return ..()
 
 /datum/crime/citation/proc/start_evasion_clock(datum/record/crew/target)
-	var/window_minutes = CONFIG_GET(number/fine_evasion_minutes)
-	if(!window_minutes || !target)
+	if(!target)
 		return
-	evasion_window = window_minutes MINUTES
-	evasion_deadline = world.time + evasion_window
+	evasion_deadline = world.time + FINE_EVASION_WINDOW
 	evasion_record_ref = WEAKREF(target)
 	evasion_check()
 
@@ -55,7 +54,7 @@
 	stop_evasion_clock()
 	var/datum/crime/evasion = new(
 		name = "Fine Evasion",
-		details = "Did not pay the [fine + paid][MONEY_SYMBOL] citation for '[name]' within [evasion_window / (1 MINUTES)] minutes.",
+		details = "Did not pay the [fine + paid][MONEY_SYMBOL] citation for '[name]' within [FINE_EVASION_WINDOW / (1 MINUTES)] minutes.",
 		author = "Citation Server"
 	)
 	target.crimes += evasion
@@ -77,7 +76,7 @@
 	if(fine <= 0)
 		stop_evasion_clock()
 		return
-	evasion_deadline += evasion_window * min(amount, owed_before) / original_fine
+	evasion_deadline += FINE_EVASION_WINDOW * min(amount, owed_before) / original_fine
 	schedule_evasion_check()
 
 // alert_owner needs a sending mob, the server has none
@@ -98,4 +97,5 @@
 		log_pda("(PDA: Citation Server) sent \"[message]\" to [signal.format_target()]")
 		break
 
+#undef FINE_EVASION_WINDOW
 #undef FINE_EVASION_WARNINGS
