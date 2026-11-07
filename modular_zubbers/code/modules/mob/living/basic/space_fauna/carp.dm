@@ -23,12 +23,14 @@
 	desc = "A carp-shaped portal to the carp-filled dimension."
 	icon = 'modular_zubbers/icons/mob/simple/carp.dmi'
 	icon_state = "metacarp"
+	icon_living = "metacarp"
+	greyscale_config = null
 	health = 450
 	maxHealth = 450
 	basic_mob_flags = parent_type::basic_mob_flags | DEL_ON_DEATH
 	//current living carp
 	var/mob/living/basic/carp/mycarp
-	var/time_between_carp_spawns = 10 SECONDS
+	var/time_between_carp_spawns = 2 SECONDS
 	var/carp_spawn_on_violent_death = 3
 
 	var/is_anomaly_containable = FALSE
@@ -54,6 +56,12 @@
 	RegisterSignal(mycarp, COMSIG_LIVING_DEATH, PROC_REF(spawn_carp_after_delay))
 
 /// Metacarp can be killed at <= 50% HP via anomaly stabilizer
+/mob/living/basic/carp/metacarp/attackby(obj/item/attacking_item, mob/living/user, list/modifiers, list/attack_modifiers)
+	. = ..()
+	if(is_anomaly_containable && istype(attacking_item, /obj/item/anomaly_neutralizer/))
+		anomaly_stabilize()
+		qdel(attacking_item)
+
 /mob/living/basic/carp/metacarp/apply_damage(
 	damage = 0,
 	damagetype = BRUTE,
@@ -73,9 +81,6 @@
 		is_anomaly_containable = TRUE
 		balloon_alert_to_viewers("destabilized!")
 		Shake(3, 3, 20 SECONDS)
-	else if(is_anomaly_containable && istype(attacking_item, /obj/item/anomaly_neutralizer/))
-		anomaly_stabilize()
-		qdel(attacking_item)
 
 /mob/living/basic/carp/metacarp/proc/anomaly_stabilize()
 	new /obj/effect/particle_effect/fluid/smoke/bad(loc)
