@@ -207,4 +207,11 @@ GLOBAL_LIST_INIT(ambience_assoc,list(
 	AMBIENCE_RUINS = GLOB.ruins_ambience,
 	AMBIENCE_SPACE = GLOB.space_ambience,
 	AMBIENCE_SPOOKY = GLOB.spooky_ambience,
+	//BUBBER EDIT ADDITION BEGIN
+	AMBIENCE_GAMING = GLOB.gaming_ambience,
+	AMBIENCE_WASTE = GLOB.waste_ambience,
+	AMBIENCE_GAMBLING = GLOB.gambling_ambience,
+	AMBIENCE_MAINTSROOMLOBBY = GLOB.maintsroomlobby_ambience,
+	AMBIENCE_MAINTSROOMVAPOR = GLOB.maintsroomeighties_ambience,
+	//BUBBER EDIT ADDITION END
 ))
