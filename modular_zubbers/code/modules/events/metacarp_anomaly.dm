@@ -4,7 +4,7 @@
 
 	min_players = 18
 	max_occurrences = 5
-	weight = 10
+	weight = 8
 	description = "Spawns an anomalous carp that spawns in more carp."
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 2
