@@ -69,3 +69,8 @@
 									/datum/material/gold = SMALL_MATERIAL_AMOUNT * 1)
 
 #define AMMO_MATS_SHOTGUN_PLASMA list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2)
+
+// fallback GAGS art for shell boxes, picked per shell with box_sprite
+#define SHELL_BOX_SPRITE_N "n"
+#define SHELL_BOX_SPRITE_STRIPE "stripe"
+#define SHELL_BOX_SPRITE_HAZARD "hazard"

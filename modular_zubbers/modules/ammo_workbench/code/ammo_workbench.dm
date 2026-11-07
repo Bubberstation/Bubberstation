@@ -147,19 +147,32 @@
 		possible_ammo_types = list(ammo_type) // literally just for the niche edgecase of shotgun slug boxes
 
 	for(var/obj/item/ammo_casing/our_casing as anything in possible_ammo_types) // this is a list of TYPES, not INSTANCES
-		if(!adminbus)
+		var/box_key = shell_box_unlocks(our_casing)
+		if(!adminbus && !box_key)
 			if(!(initial(our_casing.can_be_printed))) // if we're not supposed to be printed (looking at you, smartgun rails)
 				continue // go home
 			if(initial(our_casing.harmful) && (!allowed_harmful && !hacked)) // if you hack it that's on you.
 				continue
 			if(initial(our_casing.advanced_print_req) && !allowed_advanced) // if it's got a funny function (hello, AP!) and we're not good for it yet,
 				continue // no
-		if(initial(our_casing.projectile_type) == null) // spent casing subtypes >:(
+		if(initial(our_casing.projectile_type) == null && !box_key) // spent casing subtypes >:(
 			continue
 		valid_casings += our_casing // adding the valid typepath
 		valid_casings[our_casing] = initial(our_casing.name)
 		casing_tip_colors += initial(our_casing.workbench_tip_color)
 		// we pray to god these indexes stay consistent.
+
+// a shotgun shell box functions as a key for its own round, the inaccessible ones are admin only so it shouldn't cause a fuss, we can always futz with this later if we decide to make any of these crew accessible.
+// live rounds unlocked in this fashion still need the bench hacked or the design disk loaded.
+/obj/machinery/ammo_workbench/proc/shell_box_unlocks(obj/item/ammo_casing/casing_type)
+	if(!istype(loaded_magazine, /obj/item/ammo_box/advanced/s12gauge) || casing_type != loaded_magazine.ammo_type)
+		return FALSE
+	var/has_projectile = !isnull(initial(casing_type.projectile_type))
+	if(initial(casing_type.can_be_printed) && has_projectile)
+		return FALSE
+	if(has_projectile && initial(casing_type.harmful) && !(hacked || allowed_advanced || adminbus))
+		return FALSE
+	return TRUE
 
 // builds the "0.24 iron (1.68 to fill)" cost string for a casing type. computed live (not cached) since it
 // depends on current efficiency and how full the container is.
