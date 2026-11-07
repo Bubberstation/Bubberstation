@@ -638,37 +638,8 @@ There are several things that need to be remembered:
 
 /mob/living/carbon/human/get_held_overlays()
 	var/list/hands = list()
-	// BUBBER EDIT ADDITION START
-	if(held_left)
-		held_left.overlays.Cut()
-		held_left.underlays.Cut()
-	if(held_right)
-		held_right.overlays.Cut()
-		held_right.underlays.Cut()
-	// BUBBER EDIT ADDITION END
-	for(var/obj/item/worn_item in held_items)
-		var/held_index = get_held_index_of_item(worn_item)
-		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
-			worn_item.screen_loc = ui_hand_position(held_index)
-			// BUBBER EDIT REMOVAL BEGIN - pushing the held item onto our own client's screen here is how
-			// hand slots worked before the inventory slot rewrite. This alternate behavior is needed to stop duplicate item sprites appearing inhand.
-			// ORIGINAL: client.screen += worn_item
-			// BUBBER EDIT REMOVAL END
-			if(observers?.len)
-				for(var/M in observers)
-					var/mob/dead/observe = M
-					if(observe.client && observe.client.eye == src)
-						observe.client.screen += worn_item
-					else
-						observers -= observe
-						if(!observers.len)
-							observers = null
-							break
-
-		var/t_state = worn_item.inhand_icon_state
-		if(!t_state)
-			t_state = worn_item.icon_state
-
+	for(var/held_index in get_active_held_indexes())
+		var/obj/item/worn_item = get_item_for_held_index(held_index)
 
 		var/icon_file = IS_RIGHT_INDEX(held_index) ? worn_item.righthand_file : worn_item.lefthand_file
 		var/mutable_appearance/hand_overlay = worn_item.build_worn_icon(default_layer = HANDS_LAYER, default_icon_file = icon_file, isinhands = TRUE, bodyshape = bodyshape)
@@ -764,6 +735,9 @@ There are several things that need to be remembered:
 /// Modifies a sprite to conform to custom body shapes
 /obj/item/proc/get_bodyshape_icon(icon/base_icon, key, greyscale_colors, bodyshape)
 	ASSERT(istext(key), "get_bodyshape_icon: no key passed")
+	if(bodyshape & BODYSHAPE_CERULEAN)
+		if((bodyshapes_with_variations & BODYSHAPE_CERULEAN) || (supports_variations_flags & (CERULEAN_MASKING)))
+			return generate_cerulean_icons(base_icon, key, greyscale_colors, bodyshape)
 	if((bodyshape & BODYSHAPE_DIGITIGRADE) && (supports_variations_flags & CLOTHING_DIGITIGRADE_MASK))
 		if(isnull(greyscale_colors) || length(SSgreyscale.ParseColorString(greyscale_colors)) > 1)
 			greyscale_colors = get_general_color(base_icon)
@@ -780,18 +754,6 @@ There are several things that need to be remembered:
 
 		return icon(resulting_icon)
 	return base_icon // BUBBER EDIT - CHANGE - Fix female crop being discarded (originally returned null)
-
-/// Modifies a sprite to replace the legs with a new version
-/proc/replace_icon_legs(icon/base_icon, icon/new_legs)
-	var/static/icon/leg_mask
-	if(!leg_mask)
-		leg_mask = icon('icons/mob/clothing/under/masking_helpers.dmi', "digi_leg_mask")
-
-	// cuts the legs off
-	base_icon.Blend(leg_mask, ICON_SUBTRACT)
-	// staples the new legs on
-	base_icon.Blend(new_legs, ICON_OVERLAY)
-	return base_icon
 
 /**
  * Generates a digitigrade version of this item's worn icon
@@ -1034,22 +996,28 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 	if(HAS_TRAIT(src, TRAIT_HUSK) || HAS_TRAIT(src, TRAIT_INVISIBLE_MAN) || HAS_TRAIT(src, TRAIT_NO_UNDERWEAR))
 		return .
 
+	var/body_type = MALE
+	if(dna.species.sexes)
+		var/obj/item/bodypart/chest/our_chest = get_bodypart(BODY_ZONE_CHEST)
+		if(our_chest?.is_dimorphic)
+			body_type = physique
+
 	// Underwear, Undershirts & Socks
 	if(underwear)
 		var/datum/sprite_accessory/clothing/underwear/undie_accessory = SSaccessories.underwear_list[underwear]
-		var/mutable_appearance/underwear_overlay = undie_accessory?.make_appearance(underwear_color, physique, bodyshape)
+		var/mutable_appearance/underwear_overlay = undie_accessory?.make_appearance(underwear_color, body_type, bodyshape)
 		if(underwear_overlay)
 			. += underwear_overlay
 
 	if(undershirt)
 		var/datum/sprite_accessory/clothing/undershirt/shirt_accessory = SSaccessories.undershirt_list[undershirt]
-		var/mutable_appearance/shirt_overlay = shirt_accessory?.make_appearance(null, physique, bodyshape)
+		var/mutable_appearance/shirt_overlay = shirt_accessory?.make_appearance(null, body_type, bodyshape)
 		if(shirt_overlay)
 			. += shirt_overlay
 
 	if(socks && num_legs >= 2 && !(bodyshape & BODYSHAPE_DIGITIGRADE))
 		var/datum/sprite_accessory/clothing/socks/sock_accessory = SSaccessories.socks_list[socks]
-		var/mutable_appearance/socks_overlay = sock_accessory?.make_appearance(null, physique, bodyshape)
+		var/mutable_appearance/socks_overlay = sock_accessory?.make_appearance(null, body_type, bodyshape)
 		if(socks_overlay)
 			. += socks_overlay
 
@@ -1330,7 +1298,7 @@ mutant_styles: The mutant style - taur bodytype, STYLE_TESHARI, etc. // SKYRAT E
 			continue
 		var/overlay_x = overlay.pixel_x + overlay.pixel_w
 		var/overlay_y = overlay.pixel_y + overlay.pixel_z
-		if (!isnull(parsed_overlays[overlay])) // Nested overlay
+		if (islist(parsed_overlays[overlay])) // Nested overlay
 			overlay_x += parsed_overlays[overlay][SUB_OVERLAY_X_INDEX]
 			overlay_y += parsed_overlays[overlay][SUB_OVERLAY_Y_INDEX]
 		cached_body_width = max(cached_body_width, overlay.get_cached_width())

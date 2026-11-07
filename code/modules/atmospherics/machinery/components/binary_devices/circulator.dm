@@ -166,6 +166,7 @@ Skyrat removal START, moved to modular file
 /obj/machinery/atmospherics/components/binary/circulator/on_deconstruction(disassembled)
 	if(generator)
 		disconnectFromGenerator()
+	return ..()
 
 /obj/machinery/atmospherics/components/binary/circulator/proc/disconnectFromGenerator()
 	if(mode)

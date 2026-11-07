@@ -134,6 +134,7 @@
 			rank = target.rank,
 			species = target.species,
 			trim = target.trim,
+			job_icon = SSjob.get_job(target.trim)?.tgui_icon,
 			wanted_status = target.wanted_status,
 			// SKYRAT EDIT ADDITION - RP Records
 			past_general_records = target.past_general_records,

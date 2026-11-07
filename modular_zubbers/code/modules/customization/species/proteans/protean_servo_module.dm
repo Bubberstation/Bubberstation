@@ -123,7 +123,7 @@
 /datum/status_effect/protean_servo_movement/on_apply()
 	. = ..()
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/protean_servo/movement)
-	for(var/obj/item/thing in owner.held_items)
+	for(var/obj/item/thing as anything in owner.get_held_items())
 		ADD_TRAIT(thing, TRAIT_NODROP, PROTEAN_SERVO_TRAIT) //to prevent items droping out of wearer's hands
 		RegisterSignals(thing, list(COMSIG_ITEM_DROPPED, COMSIG_MOVABLE_MOVED), PROC_REF(clear_servo_trait)) //In case you somehow drop it anyway
 	owner.add_traits(list(TRAIT_RESTRAINED),PROTEAN_SERVO_TRAIT) //main drawback to balance out this particular effect
@@ -132,7 +132,7 @@
 	. = ..()
 	owner.remove_movespeed_modifier(/datum/movespeed_modifier/protean_servo/movement)
 	owner.remove_traits(list(TRAIT_RESTRAINED),PROTEAN_SERVO_TRAIT)
-	for(var/obj/item/thing in owner.held_items)
+	for(var/obj/item/thing in owner.get_held_items())
 		clear_servo_trait(thing)
 	owner.visible_message(span_warning("[owner]'s movement return to normal as Protean module runs out of power."))
 

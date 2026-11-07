@@ -275,6 +275,7 @@
 
 	SEND_SIGNAL(user.dna.species, COMSIG_OUTFIT_EQUIP, src, visuals_only) // BUBBER EDIT: Proteans. See /datum/species/protean/proc/outfit_handling
 	post_equip(user, visuals_only)
+	user.dna?.species?.post_equip_species_outfit(user, visuals_only)
 
 	if(!visuals_only)
 		apply_fingerprints(user)
@@ -353,7 +354,7 @@
 		user.l_store.add_fingerprint(user, ignoregloves = TRUE)
 	if(user.r_store)
 		user.r_store.add_fingerprint(user, ignoregloves = TRUE)
-	for(var/obj/item/item in user.held_items)
+	for(var/obj/item/item as anything in user.get_held_items())
 		item.add_fingerprint(user, ignoregloves = TRUE)
 	return TRUE
 

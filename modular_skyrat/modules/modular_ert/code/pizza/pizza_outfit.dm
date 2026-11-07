@@ -11,7 +11,6 @@
 	backpack_contents = list(
 		/obj/item/storage/box/survival,\
 		/obj/item/knife,\
-		/obj/item/storage/box/ingredients/italian,\
 		)
 
 /datum/outfit/centcom/ert/pizza/leader //da pizza for you and me
@@ -26,7 +25,6 @@
 	backpack_contents = list(
 		/obj/item/storage/box/survival,\
 		/obj/item/knife/hotknife,\
-		/obj/item/storage/box/ingredients/italian,\
 		)
 
 /datum/outfit/centcom/ert/pizza/pre_equip(mob/living/carbon/human/equipped_human, visualsOnly)

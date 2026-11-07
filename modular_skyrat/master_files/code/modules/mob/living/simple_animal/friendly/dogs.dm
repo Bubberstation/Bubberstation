@@ -105,7 +105,7 @@
 
 	AddElement(/datum/element/death_drops, borgi_drops)
 
-	var/datum/component/overlay_lighting/lighting_object = src.GetComponent(/datum/component/overlay_lighting)
+	var/datum/light_overlay/lighting_object = src.GetComponent(/datum/light_overlay)
 	var/image/cone = lighting_object.cone
 	cone.transform = cone.transform.Translate(0, -8)
 

@@ -31,22 +31,6 @@
 		/obj/item/clothing/neck/necklace/ashwalker,
 	)
 
-/datum/ash_ritual/summon_key
-	name = "Summon Skeleton Key"
-	desc = "Summons a key that opens the chests from fallen tendrils."
-	required_components = list(
-		"north" = /obj/item/stack/sheet/bone,
-		"south" = /obj/item/stack/sheet/bone,
-		"east" = /obj/item/stack/sheet/bone,
-		"west" = /obj/item/stack/sheet/bone,
-	)
-	consumed_components = list(
-		/obj/item/stack/sheet/bone,
-	)
-	ritual_success_items = list(
-		/obj/item/skeleton_key,
-	)
-
 /datum/ash_ritual/summon_cursed_knife
 	name = "Summon Cursed Ash Knife"
 	desc = "Summons a knife that places a tracking curse on unsuspecting miners who destroy our marked tendrils."
