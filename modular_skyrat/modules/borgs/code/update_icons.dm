@@ -24,7 +24,7 @@
 		/obj/item/borg/projectile_dampen = list("dragon-pk", "shield"),
 		/obj/item/katana/ninja_blade = list("dragon-ninja", "katana"),
 		/obj/item/kinetic_crusher = list("dragon-mining", "hammer"),
-		/obj/item/gun/energy/recharge/kinetic_accelerator/cyborg = list("dragon-mining", "pka"),
+		/obj/item/gun/energy/recharge/kinetic_accelerator/cyborg = list("all-sec", "pka"),
 		/obj/item/melee/energy/sword/saber/cyborg = list("dragon-syndi", "esword"),
 		/obj/item/gun/energy/laser/cyborg = list("all-sec", "laser"),
 		/obj/item/gun/energy/disabler/cyborg = list("all-sec", "disabler"),
@@ -66,9 +66,19 @@
 			if(hat_overlay)  // Don't forget your hat
 				add_overlay(hat_overlay)
 
-			if(TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS in model.model_features)
+			if(TRAIT_R_HAS_UNIQUE_RESTING_OVERLAY in model.model_features)
 				add_overlay("[icon_state]_e")
-
+			if(TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS in model.model_features)
+				if(light_on)
+					add_overlay("[icon_state]_l")
+			if(TRAIT_R_RESTING_UNIQUEPANEL in model.model_features)
+				if(opened)
+					if(wiresexposed)
+						add_overlay("[icon_state]_w")
+					else if(cell)
+						add_overlay("[icon_state]_c")
+					else
+						add_overlay("[icon_state]_cl")
 	else
 		icon_state = "[model.cyborg_base_icon]"
 
