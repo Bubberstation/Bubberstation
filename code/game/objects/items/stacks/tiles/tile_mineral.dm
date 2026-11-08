@@ -418,6 +418,10 @@
 		/obj/item/stack/tile/mineral/plastitanium/pod/red,
 		/obj/item/stack/tile/mineral/plastitanium/pod/redlight,
 		//BUBBER EDIT ADDITION BEGIN
+		/obj/item/stack/tile/mineral/plastitanium/pod/edge,
+		/obj/item/stack/tile/mineral/plastitanium/pod/half,
+		/obj/item/stack/tile/mineral/plastitanium/pod/corner,
+		/obj/item/stack/tile/mineral/plastitanium/pod/large,
 		/obj/item/stack/tile/mineral/plastitanium/pod/light/edge,
 		/obj/item/stack/tile/mineral/plastitanium/pod/light/half,
 		/obj/item/stack/tile/mineral/plastitanium/pod/light/corner,
@@ -434,6 +438,7 @@
 		/obj/item/stack/tile/mineral/plastitanium/pod/redlight/half,
 		/obj/item/stack/tile/mineral/plastitanium/pod/redlight/corner,
 		/obj/item/stack/tile/mineral/plastitanium/pod/redlight/large,
+		//BUBBER EDIT ADDITION END
 		)
 
 /obj/item/stack/tile/mineral/plastitanium/red
