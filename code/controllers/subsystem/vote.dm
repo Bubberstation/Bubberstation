@@ -57,6 +57,7 @@ SUBSYSTEM_DEF(vote)
 	QDEL_LIST(generated_actions)
 
 	SStgui.update_uis(src)
+	SEND_SIGNAL(src, COMSIG_VOTE_ENDED) // BUBBER EDIT ADDITION - Added signal for vote end for mapvote HUD
 
 /**
  * Process the results of the vote.
@@ -138,6 +139,10 @@ SUBSYSTEM_DEF(vote)
 		return
 	// BUBBER EDIT END
 
+	if(!(their_vote in current_vote.choices))
+		message_admins("POSSIBLE EXPLOIT: [key_name(voter)] tried to submit a vote for an option that didn't exist. They tried to call a vote for the following option: [sanitize(their_vote)]")
+		return
+
 	// If user has already voted, remove their specific vote
 	if(voter.ckey in current_vote.choices_by_ckey)
 		var/their_old_vote = current_vote.choices_by_ckey[voter.ckey]
@@ -167,6 +172,10 @@ SUBSYSTEM_DEF(vote)
 	// BUBBER EDIT END
 	else
 		voted += voter.ckey
+
+	if(!(their_vote in current_vote.choices))
+		message_admins("POSSIBLE EXPLOIT: [key_name(voter)] tried to submit a vote for an option that didn't exist. They tried to call a vote for the following option: [sanitize(their_vote)]")
+		return
 
 	if(current_vote.choices_by_ckey["[voter.ckey]_[their_vote]"] == 1) // BUBBER EDIT CHANGE - Original: [voter.ckey + their_vote]
 		current_vote.choices_by_ckey["[voter.ckey]_[their_vote]"] = 0 // BUBBER EDIT CHANGE - Original: [voter.ckey + their_vote]
@@ -251,6 +260,7 @@ SUBSYSTEM_DEF(vote)
 		if(current_vote.vote_sound && new_voter.prefs.read_preference(/datum/preference/toggle/sound_announcements))
 			SEND_SOUND(new_voter, sound(current_vote.vote_sound))
 
+	SEND_SIGNAL(src, COMSIG_VOTE_STARTED) // BUBBER EDIT ADDITION - Added signal for vote start for mapvote HUD
 	return TRUE
 
 /**

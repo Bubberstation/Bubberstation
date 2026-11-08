@@ -7,7 +7,7 @@
  *
  * PROC IS NOT ASYNC.
  */
-/proc/make_ert(ert_type, teamsize = 5, mission_objective_override = "Assist the station.", poll_description = "an ERT team", code = "UNKNOWN", enforce_human = FALSE, open_armory_doors = FALSE, leader_experience = FALSE, random_names = TRUE, notify_players = TRUE, spawnpoint_override = FALSE)
+/proc/make_ert(ert_type, teamsize = 5, mission_objective_override = "Assist the station.", poll_description = "an ERT team", code = "UNKNOWN", enforce_human = FALSE, open_armory_doors = FALSE, leader_experience = FALSE, random_names = FALSE, notify_players = TRUE, spawnpoint_override = FALSE)
 	if(!ert_type)
 		return
 
