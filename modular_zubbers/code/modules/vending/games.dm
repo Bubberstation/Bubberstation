@@ -104,6 +104,7 @@
 				/obj/item/toy/plush/fox_protogen = 3,
 				/obj/item/toy/plush/tangerine = 3,
 				/obj/item/toy/plush/blue_synth = 3,
+				/obj/item/toy/plush/myra = 3,
 			),
 		),
 		list(
