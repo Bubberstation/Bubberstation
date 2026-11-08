@@ -52,13 +52,23 @@ GAME_VERB_PROC_DESC(/mob/living/silicon/robot, rest_style, "Switch Rest Style", 
 	if(!can_rest())
 		to_chat(src, span_warning("You can't do that!"))
 		return
-	var/choice = tgui_alert(src, "Select resting pose", "", list("Resting", "Sitting", "Belly up"))
+	var/list/resting_styles = list(SKIN_RESTING_NORMAL, SKIN_RESTING_SIT, SKIN_RESTING_BELLY)
+	var/resting_skins = model.rest_styles
+	if(!isnull(resting_skins))
+		if(!islist(resting_skins))
+			CRASH("SKIN_RESTING_STYLES is not a list. Make it a list")
+		resting_styles = resting_skins
+	if(resting_styles.len <= 1)
+		to_chat(src, span_warning("There is no alternative poses."))
+		return
+
+	var/choice = tgui_alert(src, "Select resting pose", "", resting_styles)
 	switch(choice)
-		if("Resting")
+		if(SKIN_RESTING_NORMAL)
 			robot_rest_style = ROBOT_REST_NORMAL
-		if("Sitting")
+		if(SKIN_RESTING_SIT)
 			robot_rest_style = ROBOT_REST_SITTING
-		if("Belly up")
+		if(SKIN_RESTING_BELLY)
 			robot_rest_style = ROBOT_REST_BELLY_UP
 	robot_resting = robot_rest_style
 	if (robot_resting)
