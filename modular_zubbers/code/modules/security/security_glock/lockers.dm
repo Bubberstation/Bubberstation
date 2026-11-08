@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/security/sec/PopulateContents()
 	. = ..()
-	new /obj/item/storage/toolbox/guncase/skyrat/pistol/sec_glock(src)
+	new /obj/item/security_voucher/sidearm(src)
 
 /obj/structure/closet/secure_closet/warden/PopulateContents()
 	. = ..()

@@ -490,9 +490,11 @@ GLOBAL_LIST_INIT(admin_visible_traits, list(
 		"TRAIT_R_TALL" = TRAIT_R_TALL,
 		"TRAIT_R_SMALL" = TRAIT_R_SMALL,
 		"TRAIT_R_UNIQUEPANEL" = TRAIT_R_UNIQUEPANEL,
+		"TRAIT_R_RESTING_UNIQUEPANEL" = TRAIT_R_RESTING_UNIQUEPANEL, //BUBBER addition - unique resting panel
 		"TRAIT_R_SQUADRUPED" = TRAIT_R_SQUADRUPED, //BUBBER addition - for small quadruped 32x32 cyborgs
 		"TRAIT_R_LIGHT_WEIGHT" = TRAIT_R_LIGHT_WEIGHT, //BUBBER addition for small light weighted cyborgs
-		"TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS" = TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS, //BUBBER addition for borgs with unique resting emissives
+		"TRAIT_R_HAS_UNIQUE_RESTING_OVERLAY" = TRAIT_R_HAS_UNIQUE_RESTING_OVERLAY, //BUBBER addition for borgs with unique resting emissives
+		"TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS" = TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS, // BUBBER addition for borgs with unique resting lights
 		"TRAIT_R_EXPANDER_BLOCKED" = TRAIT_R_EXPANDER_BLOCKED, //BUBBER addition for borgs that cannot use the expander
 		"TRAIT_REAGENT" = TRAIT_REAGENT,
 		"TRAIT_REVIVES_BY_HEALING" = TRAIT_REVIVES_BY_HEALING,
