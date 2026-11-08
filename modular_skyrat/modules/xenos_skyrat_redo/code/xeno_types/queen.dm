@@ -36,8 +36,8 @@
 
 	add_movespeed_modifier(/datum/movespeed_modifier/alien_big)
 
-/mob/living/carbon/alien/adult/skyrat/queen/alien_talk(message, shown_name = name)
-	..(message, shown_name, TRUE)
+/mob/living/carbon/alien/adult/skyrat/queen/alien_talk(message, list/spans = list(), list/message_mods = list(), shown_name = name, big_voice = TRUE)
+	..(message, spans, message_mods, shown_name, TRUE)
 
 /obj/item/organ/alien/neurotoxin/queen
 	name = "neurotoxin gland"
