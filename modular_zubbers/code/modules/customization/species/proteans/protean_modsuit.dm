@@ -1,7 +1,7 @@
 /obj/item/mod/control/pre_equipped/protean
 	name = "\improper Protean modsuit"
 	desc = "The modsuit unit of a Protean, allowing them to retract into it, or to deploy a suit that protects against various environments."
-	theme = /datum/mod_theme // Standard theme. TODO: Can be changed with standard mod armors
+	theme = /datum/mod_theme/standard // Standard theme. TODO: Can be changed with standard mod armors
 
 	applied_core = /obj/item/mod/core/protean
 	applied_cell = null // Goes off stomach

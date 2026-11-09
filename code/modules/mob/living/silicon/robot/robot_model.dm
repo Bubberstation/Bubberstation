@@ -101,6 +101,7 @@
 		var/obj/item/stack/sheet_module = added_module
 		if(ispath(sheet_module.source, /datum/robot_energy_storage))
 			sheet_module.source = get_or_create_estorage(sheet_module.source)
+			LAZYADD(sheet_module.source.linked_modules, sheet_module)
 
 		if(istype(sheet_module.source))
 			sheet_module.cost = max(sheet_module.cost, 1) // Must not cost 0 to prevent div/0 errors.
@@ -313,8 +314,10 @@
 		//SKYRAT EDIT ADDITION
 		if(!isnull(details[SKIN_FEATURES]))
 			model_features += details[SKIN_FEATURES]
-		if (!isnull(details[SKIN_HAT_REST_OFFSET]))
+		if(!isnull(details[SKIN_HAT_REST_OFFSET]))
 			rest_hat_offset = details[SKIN_HAT_REST_OFFSET]
+		if(!isnull(details[SKIN_RESTING_STYLES]))
+			rest_styles = details[SKIN_RESTING_STYLES]
 		SSblackbox.record_feedback("tally", "cyborg_skins", 1, borg_skin)
 		//SKYRAT EDIT END
 	for(var/i in old_model.added_modules)
@@ -1126,6 +1129,8 @@
 	var/energy
 	///Whether this resource should refill from the aether inside a charging station.
 	var/renewable = TRUE
+	///Lazylist of all modules linked to this energy storage, so using one will update all.
+	var/list/obj/item/stack/linked_modules
 
 /datum/robot_energy_storage/New(obj/item/robot_model/model)
 	energy = max_energy
@@ -1133,6 +1138,10 @@
 		model.storages |= src
 		RegisterSignal(model.robot, COMSIG_MOB_GET_STATUS_TAB_ITEMS, PROC_REF(get_status_tab_item))
 		RegisterSignal(model, COMSIG_QDELETING, PROC_REF(unregister_from_model))
+
+/datum/robot_energy_storage/Destroy(force)
+	LAZYCLEARLIST(linked_modules)
+	return ..()
 
 /datum/robot_energy_storage/proc/unregister_from_model(obj/item/robot_model/model)
 	SIGNAL_HANDLER
@@ -1155,6 +1164,8 @@
 
 /datum/robot_energy_storage/proc/add_charge(amount)
 	energy = min(energy + amount, max_energy)
+	for(var/obj/item/stack/modules as anything in linked_modules)
+		modules.update_appearance(UPDATE_NAME)
 
 /datum/robot_energy_storage/material
 	name = "generic material storage"

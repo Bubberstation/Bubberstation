@@ -196,32 +196,26 @@ ADMIN_VERB(disable_communication, R_DEBUG, "Disable all communication verbs", "D
 ADMIN_VERB_VISIBILITY(create_mapping_job_icons, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
 ADMIN_VERB(create_mapping_job_icons, R_DEBUG, "Generate job landmarks icons", "Generates job starting location landmarks.", ADMIN_CATEGORY_MAPPING)
 	var/icon/final = icon()
-	var/list/job_key_to_icon = list() // SKYRAT EDIT ADDITION
-	var/mob/living/carbon/human/dummy/D = new(locate(1,1,1)) //spawn on 1,1,1 so we don't have runtimes when items are deleted
-	D.setDir(SOUTH)
-	for(var/job in subtypesof(/datum/job))
-		var/datum/job/JB = new job
-		switch(JB.title)
+
+	var/list/landmark_iconstates = list()
+	for(var/obj/effect/landmark/start/landmark as anything in valid_subtypesof(/obj/effect/landmark/start))
+		if(landmark::icon_state)
+			landmark_iconstates |= landmark::icon_state
+
+	for(var/job_type in valid_subtypesof(/datum/job))
+		var/datum/job/job_datum = SSjob.get_job_type(job_type)
+		if(!(job_datum.title in landmark_iconstates))
+			continue
+
+		switch(job_datum.title)
 			if(JOB_AI)
-				job_key_to_icon["AI"] = icon('icons/mob/silicon/ai.dmi', "ai", SOUTH, 1) // SKYRAT EDIT CHANGE - ORIGINAL: final.Insert(icon('icons/mob/silicon/ai.dmi', "ai", SOUTH, 1), "AI")
+				final.Insert(icon('icons/mob/silicon/ai.dmi', "ai", SOUTH, 1), JOB_AI)
 			if(JOB_CYBORG)
-				job_key_to_icon["Cyborg"] = icon('icons/mob/silicon/robots.dmi', "robot", SOUTH, 1) // SKYRAT EDIT CHANGE - ORIGINAL: final.Insert(icon('icons/mob/silicon/robots.dmi', "robot", SOUTH, 1), "Cyborg")
+				final.Insert(icon('icons/mob/silicon/robots.dmi', "robot", SOUTH, 1), JOB_CYBORG)
 			else
-				for(var/obj/item/I in D)
-					qdel(I)
-				randomize_human_normie(D)
-				D.dress_up_as_job(
-					equipping = JB,
-					visual_only = TRUE,
-					consistent = TRUE,
-				)
-				var/icon/I = icon(getFlatIcon(D), frame = 1)
-				job_key_to_icon[JB.title] = I // SKYRAT EDIT CHANGE - ORIGINAL: final.Insert(I, JB.title)
-	qdel(D)
-	// SKYRAT EDIT ADDITION START
-	for(var/job_key in job_key_to_icon)
-		final.Insert(job_key_to_icon[job_key], job_key)
-	// SKYRAT EDIT ADDITION END
+				if(job_datum.outfit) //only screenshot icons with an outfit
+					var/icon/I = get_flat_human_icon(null, job_datum, null, "landmark_icons[rand(1,100)]", list(SOUTH))
+					final.Insert(I, job_datum.title)
 	//Also add the x
 	for(var/x_number in 1 to 4)
 		final.Insert(icon('icons/hud/screen_gen.dmi', "x[x_number == 1 ? "" : x_number]"), "x[x_number == 1 ? "" : x_number]")

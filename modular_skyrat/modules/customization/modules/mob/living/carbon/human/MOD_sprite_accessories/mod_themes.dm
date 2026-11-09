@@ -64,9 +64,8 @@
 /datum/mod_theme/protean
 	hardlight_color = "#B8C4D6"
 
-/datum/mod_theme/entombed
+/datum/mod_theme/standard/entombed
 	hardlight_color = STANDARD_BLUE
-
 
 //	Traitor
 /datum/mod_theme/contractor

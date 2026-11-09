@@ -1,3 +1,5 @@
+#define DELAY_TO_FIRE_PURCHASED_EVENT 30 SECONDS
+
 ///The storyteller datum. He operates with the SSgamemode data to run events
 /datum/storyteller
 	/// Name of our storyteller.
@@ -25,7 +27,8 @@
 	/// Multipliers of weight to apply for each tag of an event.
 	var/list/tag_multipliers
 
-	/// Percentual variance in cost of the purchased events. Effectively affects frequency of events
+	/// Whenever an event is bought, the cost is refunded up to this much (as a % of the total cost)
+	/// ie. it makes the next event randomly happen up to this % faster
 	var/cost_variance = 30
 
 	/// Whether the storyteller guaranteed a crewset roll (crew antag) on roundstart. (Still needs to pass pop check)
@@ -136,7 +139,7 @@
 		log_dynamic("Storyteller selected roundstart event [bought_event] based on weighted selection!")
 		mode.TriggerEvent(bought_event)
 	else
-		mode.schedule_event(bought_event, (rand(3, 4) MINUTES), total_cost)
+		mode.schedule_event(bought_event, DELAY_TO_FIRE_PURCHASED_EVENT, total_cost)
 
 /**
  * Calculates the weights of the events from a passed track.
@@ -162,3 +165,5 @@
 	for(var/track in mode.event_tracks)
 		calculate_weights(track)
 	mode.update_static_data_for_all_viewers()
+
+#undef DELAY_TO_FIRE_PURCHASED_EVENT

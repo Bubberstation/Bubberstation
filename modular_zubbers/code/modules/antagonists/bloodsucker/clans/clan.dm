@@ -75,7 +75,7 @@
 	var/mob/living/carbon/human/human_bloodsucker = bloodsuckerdatum.owner.current
 	if(!istype(human_bloodsucker))
 		return
-	human_bloodsucker.physiology.stamina_mod *= frenzy_stamina_mod
+	MODIFY_PHYSIOLOGY(human_bloodsucker, STAMINA, frenzy_stamina_mod)
 
 /datum/bloodsucker_clan/proc/on_exit_frenzy(datum/antagonist/bloodsucker/source)
 	SIGNAL_HANDLER
@@ -84,7 +84,7 @@
 		return
 	human_bloodsucker.set_timed_status_effect(3 SECONDS, /datum/status_effect/dizziness, only_if_higher = TRUE)
 	human_bloodsucker.Paralyze(2 SECONDS)
-	human_bloodsucker.physiology.stamina_mod /= frenzy_stamina_mod
+	MODIFY_PHYSIOLOGY(human_bloodsucker, STAMINA, 1/frenzy_stamina_mod)
 
 /datum/bloodsucker_clan/proc/give_clan_objective()
 	if(isnull(clan_objective))

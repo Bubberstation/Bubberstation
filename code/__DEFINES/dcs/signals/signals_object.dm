@@ -106,10 +106,15 @@
 // /obj access signals
 #define COMSIG_AIRLOCK_SHELL_ALLOWED "airlock_shell_try_allowed"
 
+//from /obj/machinery/door/open(): (forced)
+#define COMSIG_MOB_OPENED_DOOR "mob_opened_door"
+
 // /obj/machinery/door/airlock signals
 
 //from /obj/machinery/door/airlock/open(): (forced)
 #define COMSIG_AIRLOCK_OPEN "airlock_open"
+//from /obj/machinery/door/airlock/open(): (forced)
+#define COMSIG_MOB_OPENED_AIRLOCK "mob_opened_airlock"
 //from /obj/machinery/door/airlock/close(): (forced)
 #define COMSIG_AIRLOCK_CLOSE "airlock_close"
 ///from /obj/machinery/door/airlock/set_bolt():
@@ -390,7 +395,7 @@
 #define COMSIG_GUN_CHAMBER_PROCESSED "gun_chamber_processed"
 ///called in /obj/item/gun/ballistic/process_chamber (casing)
 #define COMSIG_CASING_EJECTED "casing_ejected"
-///called in /obj/item/gun/ballistic/sawoff(mob/user, obj/item/saw, handle_modifications) : (mob/user)
+///called in /obj/item/gun/ballistic/try_sawoff(mob/user, obj/item/saw, handle_modifications) : (mob/user)
 #define COMSIG_GUN_BEING_SAWNOFF "gun_being_sawnoff"
 	#define COMPONENT_CANCEL_SAWING_OFF (1<<0)
 #define COMSIG_GUN_SAWN_OFF "gun_sawn_off"
@@ -512,6 +517,12 @@
 #define COMSIG_ITEM_ATTACK "item_attack"
 ///from base of obj/item/attack_self(): (/mob)
 #define COMSIG_ITEM_ATTACK_SELF "item_attack_self"
+// BUBBER EDIT ADDITION - lets a flatpacked machine hand things to the machine it deploys into
+///from base of /datum/component/deployable/proc/deploy(): (atom/deployed_object)
+#define COMSIG_DEPLOYABLE_DEPLOYED "deployable_deployed"
+///from /datum/element/repackable/proc/repack(), before the source is deconstructed: (obj/item/packed_item)
+#define COMSIG_REPACKABLE_REPACKED "repackable_repacked"
+// BUBBER EDIT ADDITION END
 //from base of obj/item/attack_self_secondary(): (/mob)
 #define COMSIG_ITEM_ATTACK_SELF_SECONDARY "item_attack_self_secondary"
 ///from base of obj/item/attack_atom(): (/atom, /mob, list/modifiers)
@@ -548,7 +559,7 @@
 ///from /datum/computer_file/program/nt_pay/_pay(), sent to every physical card of a bank account: (computer, money_received)
 #define COMSIG_ID_CARD_NTPAY_MONEY_RECEIVED "id_card_ntpay_money_received"
 
-///from base of /obj/item/mmi/set_brainmob(): (mob/living/brain/new_brainmob)
+///from base of /obj/item/brain_processor/set_brainmob(): (mob/living/brain/new_brainmob)
 #define COMSIG_MMI_SET_BRAINMOB "mmi_set_brainmob"
 
 /// from base of /obj/item/slimepotion/speed/interact_with_atom(): (obj/target, /obj/src, mob/user)
@@ -601,9 +612,9 @@
 /// from /obj/machinery/computer/camera_advanced/shuttle_docker/gatherNavComputerOverlays() : (list/images_out)
 #define COMSIG_SHUTTLE_NAV_COMPUTER_IMAGE_REQUESTED "shuttle_nav_computer_image_requested"
 
-/// Sent from /obj/item/organ/wings/functional/proc/open_wings(): (mob/living/carbon/owner)
+/// Sent from /obj/item/organ/wings/proc/open_wings(): (mob/living/carbon/owner)
 #define COMSIG_WINGS_OPENED "wings_opened"
-/// Sent from /obj/item/organ/wings/functional/proc/close_wings(): (mob/living/carbon/owner)
+/// Sent from /obj/item/organ/wings/proc/close_wings(): (mob/living/carbon/owner)
 #define COMSIG_WINGS_CLOSED "wings_closed"
 
 /// Sent from /obj/item/clothing/shoes/bhop/rocket/jet, specifically it's toggle action /datum/action/item_action/toggle_flight
