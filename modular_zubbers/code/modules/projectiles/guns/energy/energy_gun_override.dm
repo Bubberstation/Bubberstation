@@ -1,39 +1,3 @@
-//Weapon Overlay Override. Includes a skyrat edit as well as a new change mode to allow for Zydras's guns to work properly.
-
-/obj/item/gun/energy/update_overlays()
-	. = ..()
-	if(!automatic_charge_overlays || !cell)
-		return
-
-	var/overlay_icon_state = "[icon_state]_charge"
-	var/obj/item/ammo_casing/energy/shot = ammo_type[select]
-
-	if(modifystate)
-		if(single_shot_type_overlay)
-			. += "[icon_state]_[initial(shot.select_name)]"
-		overlay_icon_state += "_[initial(shot.select_name)]"
-
-	var/ratio = get_charge_ratio()
-	if(ratio == 0 && display_empty)
-		. += "[icon_state]_empty"
-		return
-
-	if(shot_type_fluff_overlay)
-		. += "[icon_state]_[initial(shot.select_name)]_extra"
-
-	if(shaded_charge == SHADED_CHARGE_MODE_LABELED) // support a third shaded_charge state
-		. += "[icon_state]_[initial(shot.select_name)]_charge[ratio]"
-		return
-
-	if(shaded_charge)
-		. += "[icon_state]_charge[ratio]"
-		return
-	var/mutable_appearance/charge_overlay = mutable_appearance(icon, overlay_icon_state)
-	for(var/i = ratio, i >= 1, i--)
-		charge_overlay.pixel_w = ammo_x_offset * (i - 1)
-		charge_overlay.pixel_z = ammo_y_offset * (i - 1)
-		. += new /mutable_appearance(charge_overlay)
-
 //New gun sprites and lore. Most of the lore is by me (IbexGoetia), while the sprites have all been made by Zydras.
 
 /obj/item/gun/energy/laser
