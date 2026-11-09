@@ -274,10 +274,6 @@
 
 /obj/item/gun/energy/update_overlays()
 	. = ..()
-	// SKYRAT EDIT START
-	if(!automatic_charge_overlays || !cell)
-		return
-	// SKYRAT EDIT END
 
 	var/overlay_icon_state = "[icon_state]_charge"
 	var/obj/item/ammo_casing/energy/shot = ammo_type[select]
