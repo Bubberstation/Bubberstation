@@ -274,6 +274,10 @@
 
 /obj/item/gun/energy/update_overlays()
 	. = ..()
+	// SKYRAT EDIT START
+	if(!automatic_charge_overlays || !cell)
+		return
+	// SKYRAT EDIT END
 
 	var/overlay_icon_state = "[icon_state]_charge"
 	var/obj/item/ammo_casing/energy/shot = ammo_type[select]
@@ -290,6 +294,12 @@
 
 	if(shot_type_fluff_overlay)
 		. += "[icon_state]_[initial(shot.select_name)]_extra"
+
+	// BUBBER EDIT START: labeled charge mode
+	if(shaded_charge == SHADED_CHARGE_MODE_LABELED) // support a third shaded_charge state
+		. += "[icon_state]_[initial(shot.select_name)]_charge[ratio]"
+		return
+	// BUBBER EDIT END
 
 	if(shaded_charge)
 		. += "[icon_state]_charge[ratio]"
