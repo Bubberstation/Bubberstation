@@ -610,13 +610,6 @@
 /obj/effect/turf_decal/tile/neutral/full,
 /turf/open/floor/iron/large,
 /area/awaymission/caves/maintsroom)
-"aOK" = (
-/turf/closed/indestructible/reinforced{
-	name = "adurrr";
-	color = "#FF0000";
-	desc = "A red wall, of no signifigance, seriously this means nothing"
-	},
-/area/awaymission/caves/maintsroom)
 "aPE" = (
 /obj/machinery/door/airlock/vault,
 /obj/effect/mapping_helpers/airlock/locked,
@@ -710,7 +703,9 @@
 /turf/open/floor/carpet/lone,
 /area/awaymission/caves/maintsroom/gambling)
 "aUG" = (
-/turf/closed/indestructible/hotelwall,
+/turf/closed/indestructible/hotelwall{
+	desc = "A wall that looks, fuzzy but yet still sharp, but its clearly supposed to be just a wooden wall contrasted by the surrounding reinforced metal"
+	},
 /area/awaymission/caves/maintsroom)
 "aVg" = (
 /turf/open/floor/mineral/plastitanium/red,
@@ -1454,10 +1449,12 @@
 /turf/open/floor/circuit/green,
 /area/awaymission/caves/maintsroom)
 "bWm" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/closed/mineral/random/high_chance/volcanic,
+/obj/structure/rack,
+/obj/item/ammo_box/c9mm,
+/obj/item/ammo_box/c9mm,
+/obj/item/ammo_box/c9mm,
+/obj/item/ammo_box/c9mm,
+/turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "bWr" = (
 /obj/structure/rack,
@@ -1751,15 +1748,11 @@
 "cnV" = (
 /obj/structure/rack,
 /obj/item/ammo_box/magazine/napad{
-	pixel_x = -5;
-	anchored = 1
+	pixel_x = -5
 	},
+/obj/item/ammo_box/magazine/napad,
 /obj/item/ammo_box/magazine/napad{
-	anchored = 1
-	},
-/obj/item/ammo_box/magazine/napad{
-	pixel_x = 6;
-	anchored = 1
+	pixel_x = 6
 	},
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
@@ -1875,27 +1868,13 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "cxA" = (
-/obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/stimulants{
-	pixel_y = 8;
-	anchored = 1
+/obj/effect/decal/remains/human,
+/obj/item/clothing/under/rank/centcom/military{
+	name = "kevlar threaded combat uniform";
+	armor_type = /datum/armor/clothing_under/ash_robes;
+	desc = "A dark colored uniform worn by CentCom's conscripted military forces, this ones kind of uncomfortable to wear"
 	},
-/obj/item/reagent_containers/hypospray/medipen/stimulants{
-	pixel_y = 4;
-	anchored = 1
-	},
-/obj/item/reagent_containers/hypospray/medipen/stimulants{
-	anchored = 1
-	},
-/obj/item/reagent_containers/hypospray/medipen/stimulants{
-	pixel_y = -4;
-	anchored = 1
-	},
-/obj/item/reagent_containers/hypospray/medipen/stimulants{
-	pixel_y = -8;
-	anchored = 1
-	},
-/turf/open/floor/iron/smooth,
+/turf/open/misc/asteroid/basalt,
 /area/awaymission/caves/maintsroom)
 "cxB" = (
 /mob/living/basic/mining/lobstrosity,
@@ -2802,15 +2781,6 @@
 /obj/item/food/drug/moon_rock,
 /turf/open/floor/plating/rust,
 /area/awaymission/caves/maintsroom)
-"dGT" = (
-/obj/effect/light_emitter/fake_outdoors,
-/obj/structure/rack,
-/obj/item/gun/ballistic/automatic/sol_smg,
-/obj/item/ammo_box/magazine/c35sol_pistol/stendo,
-/obj/item/ammo_box/magazine/c35sol_pistol/stendo,
-/obj/item/ammo_box/magazine/c35sol_pistol/stendo,
-/turf/open/floor/asphalt,
-/area/awaymission/caves/maintsroom)
 "dHi" = (
 /turf/open/floor/bamboo,
 /area/awaymission/caves/maintsroom)
@@ -3271,10 +3241,6 @@
 	},
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
-"emU" = (
-/obj/structure/ore_vein/silver,
-/turf/open/misc/asteroid/basalt,
-/area/awaymission/caves/maintsroom)
 "ene" = (
 /mob/living/basic/malf_borg/roomba{
 	faction = list("hostile","cult")
@@ -3647,10 +3613,6 @@
 /obj/machinery/suit_storage_unit/medical,
 /turf/open/floor/sepia,
 /area/awaymission/caves/maintsroom)
-"eIs" = (
-/obj/structure/flora/rock/pile/icy,
-/turf/open/misc/asteroid/basalt,
-/area/awaymission/caves/maintsroom)
 "eIH" = (
 /obj/structure/spacevine,
 /turf/open/misc/grass/jungle,
@@ -3856,10 +3818,8 @@
 /area/awaymission/caves/maintsroom)
 "eVh" = (
 /obj/structure/rack,
-/obj/item/ammo_box/c10mm,
-/obj/item/ammo_box/c10mm,
-/obj/item/ammo_box/c10mm,
-/obj/item/ammo_box/c10mm/ap,
+/obj/item/ammo_box/magazine/c40sol_rifle/drum/starts_empty,
+/obj/item/ammo_box/magazine/c40sol_rifle/drum/starts_empty,
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "eVG" = (
@@ -4016,7 +3976,7 @@
 /area/awaymission/caves/maintsroom)
 "feM" = (
 /obj/machinery/camera/xray/directional/east,
-/turf/open/misc/asteroid/basalt,
+/turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "ffw" = (
 /obj/item/popsicle_stick{
@@ -4102,27 +4062,11 @@
 /obj/effect/mapping_helpers/burnt_floor,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
-"fox" = (
-/obj/structure/rack,
-/obj/item/gun/ballistic/automatic/napad{
-	anchored = 1
-	},
-/turf/open/floor/iron/smooth,
-/area/awaymission/caves/maintsroom)
 "foE" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/mapping_helpers/burnt_floor,
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/awaymission/caves/maintsroom)
-"foN" = (
-/obj/structure/closet/crate/secure/weapon,
-/obj/item/clothing/head/helmet/marine/security,
-/obj/item/clothing/head/helmet/marine,
-/obj/item/clothing/suit/armor/vest/marine,
-/obj/item/clothing/suit/armor/vest/marine/security,
-/obj/effect/light_emitter/fake_outdoors,
-/turf/open/floor/asphalt,
 /area/awaymission/caves/maintsroom)
 "fpi" = (
 /obj/structure/table,
@@ -4505,9 +4449,6 @@
 /area/awaymission/caves/maintsroom)
 "fTg" = (
 /obj/machinery/suit_storage_unit/open,
-/obj/item/mod/control/pre_equipped/apocryphal{
-	anchored = 1
-	},
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "fTs" = (
@@ -5023,11 +4964,6 @@
 /obj/item/clothing/suit/hooded/cultrobes,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
-"gIX" = (
-/obj/effect/light_emitter/fake_outdoors,
-/obj/structure/flora/rock/pile/style_random,
-/turf/open/misc/asteroid/basalt,
-/area/awaymission/caves/maintsroom)
 "gJb" = (
 /obj/structure/girder,
 /turf/open/floor/plating,
@@ -5145,12 +5081,10 @@
 "gSM" = (
 /obj/structure/table/wood,
 /obj/item/clothing/suit/armor/vest/marine/medic{
-	pixel_y = -3;
-	anchored = 1
+	pixel_y = -3
 	},
 /obj/item/clothing/head/helmet/marine/medic{
-	pixel_y = 5;
-	anchored = 1
+	pixel_y = 5
 	},
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
@@ -5469,15 +5403,11 @@
 "hkW" = (
 /obj/structure/rack,
 /obj/item/ammo_box/magazine/smgm45{
-	pixel_y = -4;
-	anchored = 1
+	pixel_y = 4
 	},
+/obj/item/ammo_box/magazine/smgm45,
 /obj/item/ammo_box/magazine/smgm45{
-	anchored = 1
-	},
-/obj/item/ammo_box/magazine/smgm45{
-	pixel_y = 4;
-	anchored = 1
+	pixel_y = 4
 	},
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
@@ -6115,10 +6045,6 @@
 /obj/machinery/light/small/directional/west,
 /turf/open/floor/iron/small,
 /area/awaymission/caves/maintsroom)
-"hWm" = (
-/obj/structure/ore_vein/stone,
-/turf/open/misc/asteroid/basalt,
-/area/awaymission/caves/maintsroom)
 "hWy" = (
 /obj/structure/table,
 /obj/item/defibrillator/loaded,
@@ -6479,13 +6405,6 @@
 	slowdown = 3
 	},
 /area/awaymission/caves/maintsroom)
-"ius" = (
-/obj/structure/rack,
-/obj/item/clothing/glasses/welding/up,
-/obj/item/clothing/glasses/welding/up,
-/obj/machinery/camera/xray/directional/south,
-/turf/open/floor/iron/smooth,
-/area/awaymission/caves/maintsroom)
 "ivR" = (
 /obj/item/reagent_containers/crackbrick,
 /obj/structure/rack,
@@ -6751,28 +6670,10 @@
 /turf/open/lava/smooth,
 /area/awaymission/caves/maintsroom)
 "iOC" = (
-/obj/structure/rack,
-/obj/item/ammo_box/magazine/sniper_rounds{
-	anchored = 1;
-	pixel_y = 6;
-	pixel_x = -4
-	},
-/obj/item/ammo_box/magazine/sniper_rounds{
-	anchored = 1;
-	pixel_y = 6;
-	pixel_x = 5
-	},
-/obj/item/ammo_box/magazine/sniper_rounds{
-	anchored = 1;
-	pixel_y = -3;
-	pixel_x = -4
-	},
-/obj/item/ammo_box/magazine/sniper_rounds{
-	anchored = 1;
-	pixel_y = -3;
-	pixel_x = 5
-	},
-/turf/open/floor/iron/smooth,
+/obj/structure/wall_torch/spawns_lit/directional/west,
+/obj/effect/decal/remains/human,
+/obj/item/clothing/under/costume/gladiator/ash_walker/ash_plates,
+/turf/open/misc/asteroid/basalt,
 /area/awaymission/caves/maintsroom)
 "iOD" = (
 /obj/structure/falsewall,
@@ -7574,11 +7475,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/awaymission/caves/maintsroom)
-"jIx" = (
-/obj/effect/light_emitter/fake_outdoors,
-/obj/structure/ore_vein/silver,
-/turf/open/misc/asteroid/basalt,
-/area/awaymission/caves/maintsroom)
 "jIJ" = (
 /obj/structure/showcase/mecha/marauder{
 	name = "Commanding Combat Mech";
@@ -7698,11 +7594,6 @@
 	pixel_x = -32
 	},
 /turf/open/floor/plating,
-/area/awaymission/caves/maintsroom)
-"jTH" = (
-/obj/effect/light_emitter/fake_outdoors,
-/obj/structure/flora/rock/style_random,
-/turf/open/misc/asteroid/basalt,
 /area/awaymission/caves/maintsroom)
 "jUr" = (
 /obj/structure/disposalpipe/segment{
@@ -8555,12 +8446,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/eighties/red,
 /area/awaymission/caves/maintsroom/gaming_spatial)
-"lcC" = (
-/obj/structure/flora/rock/pile/icy,
-/obj/effect/light_emitter/fake_outdoors,
-/obj/structure/flora/rock/style_random,
-/turf/open/misc/asteroid/basalt,
-/area/awaymission/caves/maintsroom)
 "ldq" = (
 /obj/structure/table/wood,
 /turf/open/floor/plating,
@@ -9067,10 +8952,6 @@
 	dir = 2
 	},
 /turf/open/floor/plating,
-/area/awaymission/caves/maintsroom)
-"lRK" = (
-/obj/structure/ore_vein/diamond,
-/turf/open/misc/asteroid/basalt,
 /area/awaymission/caves/maintsroom)
 "lSo" = (
 /obj/effect/light_emitter,
@@ -9611,14 +9492,6 @@
 /area/awaymission/caves/maintsroom)
 "mAr" = (
 /obj/structure/rack,
-/obj/item/clothing/head/helmet/marine/medic{
-	pixel_y = 5;
-	anchored = 1
-	},
-/obj/item/clothing/suit/armor/vest/marine/medic{
-	pixel_y = -3;
-	anchored = 1
-	},
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "mAs" = (
@@ -9643,7 +9516,9 @@
 /area/awaymission/caves/maintsroom)
 "mCb" = (
 /obj/item/gun/ballistic/automatic/napad{
-	anchored = 1
+	anchored = 1;
+	pixel_x = -8;
+	pixel_y = -2
 	},
 /obj/structure/rack,
 /obj/machinery/light/floor,
@@ -9659,30 +9534,6 @@
 /obj/machinery/processor,
 /obj/machinery/camera/xray/directional/south,
 /turf/open/floor/iron/cafeteria,
-/area/awaymission/caves/maintsroom)
-"mDq" = (
-/obj/structure/rack,
-/obj/item/ammo_box/magazine/m7mm{
-	pixel_y = -4;
-	pixel_x = -5;
-	anchored = 1
-	},
-/obj/item/ammo_box/magazine/m7mm{
-	pixel_y = -4;
-	pixel_x = 6;
-	anchored = 1
-	},
-/obj/item/ammo_box/magazine/m7mm{
-	pixel_y = 3;
-	pixel_x = 6;
-	anchored = 1
-	},
-/obj/item/ammo_box/magazine/m7mm{
-	pixel_y = 3;
-	pixel_x = -5;
-	anchored = 1
-	},
-/turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "mDr" = (
 /obj/structure/closet/crate/engineering/electrical,
@@ -10190,21 +10041,10 @@
 /area/ruin/powered/reebe)
 "npU" = (
 /obj/structure/rack,
-/obj/item/ammo_box/magazine/m44a{
-	pixel_x = -7;
-	anchored = 1
-	},
-/obj/item/ammo_box/magazine/m44a{
-	pixel_x = -2;
-	anchored = 1
-	},
-/obj/item/ammo_box/magazine/m44a{
-	pixel_x = 3;
-	anchored = 1
-	},
-/obj/item/ammo_box/magazine/m44a{
-	pixel_x = 8;
-	anchored = 1
+/obj/item/clothing/under/rank/centcom/military{
+	name = "kevlar threaded combat uniform";
+	armor_type = /datum/armor/clothing_under/ash_robes;
+	desc = "A dark colored uniform worn by CentCom's conscripted military forces, this ones kind of uncomfortable to wear"
 	},
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
@@ -10811,11 +10651,8 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "okJ" = (
-/obj/structure/rack,
-/obj/item/gun/ballistic/automatic/l6_saw{
-	anchored = 1
-	},
-/turf/open/floor/iron/smooth,
+/obj/item/pickaxe/improvised,
+/turf/open/misc/asteroid/basalt,
 /area/awaymission/caves/maintsroom)
 "okW" = (
 /obj/effect/mapping_helpers/airlock/abandoned,
@@ -11124,15 +10961,6 @@
 	},
 /turf/open/floor/plating/rust,
 /area/awaymission/caves/maintsroom)
-"oKG" = (
-/obj/effect/light_emitter/fake_outdoors,
-/obj/item/gun/ballistic/automatic/sol_smg,
-/obj/structure/rack,
-/obj/item/ammo_box/magazine/c35sol_pistol/stendo,
-/obj/item/ammo_box/magazine/c35sol_pistol/stendo,
-/obj/item/ammo_box/magazine/c35sol_pistol/stendo,
-/turf/open/floor/asphalt,
-/area/awaymission/caves/maintsroom)
 "oLq" = (
 /obj/structure/rack,
 /obj/item/gun/ballistic/rifle/sniper_rifle{
@@ -11228,10 +11056,6 @@
 /turf/open/misc/ashplanet/wateryrock{
 	initial_gas_mix = "o2=22;n2=82;TEMP=293.15"
 	},
-/area/awaymission/caves/maintsroom)
-"oTD" = (
-/obj/structure/ore_vein/plasma,
-/turf/open/misc/asteroid/basalt,
 /area/awaymission/caves/maintsroom)
 "oTI" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -11330,10 +11154,6 @@
 /obj/structure/table,
 /obj/item/grenade/iedcasing/spawned,
 /turf/open/floor/plating,
-/area/awaymission/caves/maintsroom)
-"pet" = (
-/obj/structure/flora/rock/pile/style_random,
-/turf/open/misc/asteroid/basalt,
 /area/awaymission/caves/maintsroom)
 "pfE" = (
 /obj/machinery/computer/slot_machine/mime,
@@ -11632,11 +11452,6 @@
 /obj/structure/alien/weeds,
 /obj/structure/cable,
 /turf/open/floor/iron,
-/area/awaymission/caves/maintsroom)
-"pzW" = (
-/obj/effect/light_emitter/fake_outdoors,
-/obj/structure/rack,
-/turf/open/floor/asphalt,
 /area/awaymission/caves/maintsroom)
 "pAh" = (
 /obj/structure/decorative/shelf/alcohol_assortment,
@@ -12185,10 +12000,6 @@
 /obj/effect/mapping_helpers/mob_buckler,
 /obj/structure/chair/comfy,
 /turf/open/floor/iron,
-/area/awaymission/caves/maintsroom)
-"qiv" = (
-/obj/structure/flora/rock/pile/style_2,
-/turf/open/misc/asteroid/basalt,
 /area/awaymission/caves/maintsroom)
 "qiN" = (
 /obj/effect/decal/cleanable/cobweb,
@@ -12820,12 +12631,6 @@
 /obj/effect/spawner/random/structure/girder,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
-"raM" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/open/misc/asteroid/basalt,
-/area/awaymission/caves/maintsroom)
 "raT" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/mapping_helpers/burnt_floor,
@@ -13296,12 +13101,6 @@
 /obj/structure/table/wood,
 /obj/item/flashlight/flare/torch,
 /turf/open/floor/wood,
-/area/awaymission/caves/maintsroom)
-"rGv" = (
-/obj/effect/light_emitter/fake_outdoors,
-/obj/effect/spawner/armory_spawn/centcom_lasers,
-/obj/structure/rack,
-/turf/open/floor/asphalt,
 /area/awaymission/caves/maintsroom)
 "rGT" = (
 /obj/structure/lattice,
@@ -14001,9 +13800,7 @@
 /area/awaymission/caves/maintsroom)
 "sBA" = (
 /obj/structure/rack,
-/obj/item/gun/ballistic/automatic/ar/modular/m44a/grenadelauncher{
-	anchored = 1
-	},
+/obj/item/gun/energy/lasercannon,
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "sBW" = (
@@ -14429,8 +14226,12 @@
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
 "tgk" = (
-/obj/structure/ore_vein/iron,
-/turf/open/misc/asteroid/basalt,
+/obj/item/gun/ballistic/automatic/napad/no_mag{
+	pixel_x = -9;
+	pixel_y = -1
+	},
+/obj/structure/rack,
+/turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "tgx" = (
 /obj/effect/mapping_helpers/airlock/access/any/service/janitor,
@@ -15054,12 +14855,10 @@
 "tPl" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/armor/vest/marine/sulaco{
-	pixel_y = -3;
-	anchored = 1
+	pixel_y = -3
 	},
 /obj/item/clothing/head/helmet/marine/pmc{
-	pixel_y = 5;
-	anchored = 1
+	pixel_y = 5
 	},
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
@@ -15191,10 +14990,6 @@
 /obj/structure/lattice/catwalk/mining,
 /obj/item/extinguisher/mini,
 /turf/open/floor/plating,
-/area/awaymission/caves/maintsroom)
-"tXo" = (
-/obj/structure/ore_vein/gold,
-/turf/open/misc/asteroid/basalt,
 /area/awaymission/caves/maintsroom)
 "tXC" = (
 /obj/structure/closet/crate,
@@ -15488,11 +15283,6 @@
 /turf/open/floor/engine{
 	slowdown = 3
 	},
-/area/awaymission/caves/maintsroom)
-"uqq" = (
-/obj/effect/light_emitter/fake_outdoors,
-/obj/structure/ore_vein/iron,
-/turf/open/misc/asteroid/basalt,
 /area/awaymission/caves/maintsroom)
 "uqA" = (
 /obj/effect/spawner/random/trash/garbage,
@@ -15990,11 +15780,6 @@
 /obj/item/oar,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
-"uRD" = (
-/obj/effect/light_emitter/fake_outdoors,
-/obj/structure/ore_vein/stone,
-/turf/open/misc/asteroid/basalt,
-/area/awaymission/caves/maintsroom)
 "uRG" = (
 /obj/structure/cannon{
 	dir = 4
@@ -16437,27 +16222,7 @@
 /area/awaymission/caves/maintsroom)
 "vvK" = (
 /obj/structure/rack,
-/obj/item/gun/energy/pulse/carbine{
-	anchored = 1;
-	pixel_y = 6;
-	pixel_x = -3
-	},
-/obj/item/gun/energy/pulse/pistol/m1911{
-	anchored = 1
-	},
-/obj/item/shield/energy{
-	pixel_y = -7;
-	pixel_x = -3;
-	anchored = 1
-	},
-/obj/item/melee/energy/sword/saber/blue{
-	anchored = 1
-	},
-/obj/item/clothing/glasses/night,
-/obj/item/reagent_containers/hypospray/medipen/survival/luxury{
-	pixel_y = -7;
-	pixel_x = 7
-	},
+/obj/item/firing_pin,
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
 "vvU" = (
@@ -16926,38 +16691,6 @@
 /obj/effect/turf_decal/tile/yellow/half/contrasted,
 /turf/open/floor/iron,
 /area/awaymission/caves/maintsroom)
-"whu" = (
-/obj/structure/rack,
-/obj/item/ammo_box/magazine/c40sol_rifle/standard{
-	pixel_y = -5;
-	pixel_x = -8;
-	anchored = 1
-	},
-/obj/item/ammo_box/magazine/c40sol_rifle/standard{
-	pixel_y = -5;
-	anchored = 1
-	},
-/obj/item/ammo_box/magazine/c40sol_rifle/standard{
-	pixel_y = -5;
-	pixel_x = 8;
-	anchored = 1
-	},
-/obj/item/ammo_box/magazine/c40sol_rifle/standard{
-	pixel_y = 5;
-	pixel_x = 8;
-	anchored = 1
-	},
-/obj/item/ammo_box/magazine/c40sol_rifle/standard{
-	pixel_y = 5;
-	anchored = 1
-	},
-/obj/item/ammo_box/magazine/c40sol_rifle/standard{
-	pixel_y = 5;
-	pixel_x = -8;
-	anchored = 1
-	},
-/turf/open/floor/iron/smooth,
-/area/awaymission/caves/maintsroom)
 "wid" = (
 /obj/structure/table/wood/fancy/royalblack,
 /obj/item/flashlight/flare/candle/infinite,
@@ -17057,13 +16790,6 @@
 	},
 /turf/open/floor/iron/cafeteria,
 /area/awaymission/caves/maintsroom)
-"woI" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/railing,
-/turf/open/misc/asteroid/basalt,
-/area/awaymission/caves/maintsroom)
 "woP" = (
 /obj/machinery/door/poddoor/shutters{
 	dir = 4;
@@ -17087,6 +16813,8 @@
 /area/awaymission/caves/maintsroom)
 "wpU" = (
 /obj/machinery/camera/xray/directional/north,
+/obj/effect/decal/remains/human,
+/obj/item/clothing/under/costume/gladiator/ash_walker/chiefrags,
 /turf/open/misc/asteroid/basalt,
 /area/awaymission/caves/maintsroom)
 "wqi" = (
@@ -18162,18 +17890,6 @@
 /obj/item/clothing/shoes/magboots,
 /turf/open/floor/plating,
 /area/awaymission/caves/maintsroom)
-"xMA" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/armor/vest/marine/engineer{
-	pixel_y = -3;
-	anchored = 1
-	},
-/obj/item/clothing/head/helmet/marine/engineer{
-	pixel_y = 5;
-	anchored = 1
-	},
-/turf/open/floor/iron/smooth,
-/area/awaymission/caves/maintsroom)
 "xMW" = (
 /obj/item/storage/box/survival/engineer/marine,
 /turf/open/floor/iron/smooth,
@@ -18223,12 +17939,9 @@
 /area/awaymission/caves/maintsroom)
 "xUJ" = (
 /obj/structure/rack,
-/obj/item/clothing/suit/armor/vest/marine/security{
-	anchored = 1
-	},
+/obj/item/clothing/suit/armor/vest/marine/security,
 /obj/item/clothing/head/helmet/marine/security{
-	pixel_y = 7;
-	anchored = 1
+	pixel_y = 7
 	},
 /turf/open/floor/iron/smooth,
 /area/awaymission/caves/maintsroom)
@@ -19870,21 +19583,21 @@ sUv
 sUv
 sUv
 sUv
-bWm
-bWm
-bWm
-bWm
-bWm
-bWm
-bWm
-raM
-raM
-raM
-raM
-raM
-raM
-raM
-woI
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -20090,22 +19803,22 @@ eZq
 eZq
 eZq
 eBR
-qYr
-qYr
-qYr
-qYr
-qYr
-qYr
-uCX
-uCX
-uCX
-uCX
-jrg
-qiv
-uCX
-uCX
-tXo
-uCX
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -20310,23 +20023,23 @@ eZq
 eZq
 eZq
 eBR
-qYr
-qYr
-qYr
-qYr
-qYr
-uCX
-uCX
-sgl
-uCX
-gIX
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -20530,24 +20243,24 @@ eZq
 eZq
 eZq
 eBR
-qYr
-qYr
-qYr
-qYr
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-eIs
-uCX
-uCX
-uCX
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -20750,24 +20463,24 @@ eZq
 eZq
 eZq
 eBR
-qYr
-qYr
-qYr
-qYr
-uCX
-jIx
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -20970,25 +20683,25 @@ eZq
 eZq
 eZq
 eBR
-qYr
-qYr
-qYr
-qYr
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-pet
-uCX
-uCX
-tgk
-uCX
-uCX
-uCX
-uCX
-uCX
+eZq
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -21190,25 +20903,25 @@ eZq
 eZq
 eZq
 iMX
-qYr
-qYr
-qYr
-uCX
-uCX
-sgl
-uCX
-sgl
-lRK
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
-lcC
-uCX
+eZq
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -21410,26 +21123,26 @@ eZq
 eZq
 eZq
 eBR
-qYr
-qYr
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
+eZq
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -21630,27 +21343,27 @@ eZq
 eZq
 eZq
 eBR
-qYr
-qYr
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-emU
-sgl
-uCX
-uRD
-uCX
-sgl
-pet
-sgl
-uCX
-sgl
-uCX
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -21850,28 +21563,28 @@ eZq
 eZq
 eZq
 eBR
-qYr
-qYr
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-jrg
-uCX
-uCX
-uCX
-jrg
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -22070,29 +21783,29 @@ eBR
 eBR
 eBR
 eBR
-qYr
-qYr
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-pet
-sgl
-uCX
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -22290,29 +22003,29 @@ eBR
 eBR
 eBR
 eBR
-qYr
-qYr
-uCX
-uCX
-uCX
-uCX
-pet
-uCX
-uCX
-uCX
-uCX
-pet
-uCX
-uCX
-uCX
-qYr
-qYr
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -22510,29 +22223,29 @@ frq
 ldq
 ciM
 eBR
-qYr
-qYr
-uCX
-sgl
-uCX
-sgl
-uCX
-uqq
-uCX
-sgl
-uCX
-sgl
-oTD
-sgl
-qYr
-qYr
-qYr
-qYr
-uCX
-sgl
-uCX
-sgl
-uCX
+eZq
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -22730,30 +22443,30 @@ eZq
 eZq
 eZq
 iMX
-qYr
-qYr
-qYr
-uCX
-uCX
-pet
-uCX
-uCX
-jrg
-uCX
-uCX
-uCX
-uCX
-qYr
-qYr
-qYr
-qYr
-uCX
-hWm
-uCX
-uCX
-uCX
-uCX
-uCX
+eZq
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -22950,30 +22663,30 @@ eZq
 eZq
 eZq
 iMX
-qYr
-qYr
-qYr
-uCX
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-qYr
-qYr
-qYr
-qYr
-qYr
-sgl
-uCX
-sgl
-uCX
-sgl
-tXo
-uCX
+eZq
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -23170,30 +22883,30 @@ jjg
 ldq
 rTo
 eBR
-qYr
-qYr
-qYr
-qYr
-uCX
-uCX
-uCX
-uCX
-pet
-uCX
-uCX
-qYr
-qYr
-qYr
-qYr
-qYr
-uCX
-uCX
-uCX
-uCX
-tgk
-uCX
-uCX
-pet
+eZq
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -23390,30 +23103,30 @@ eBR
 eBR
 eBR
 eBR
-qYr
-qYr
-qYr
-qYr
-uCX
-sgl
-uCX
-sgl
-uCX
-qYr
-qYr
-qYr
-qYr
-qYr
-qYr
-qYr
-uCX
-jTH
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -23611,30 +23324,30 @@ ffG
 ffG
 ffG
 feM
-qYr
-qYr
-qYr
-qYr
-uCX
-uCX
-uCX
-qYr
-qYr
-qYr
-qYr
-qYr
-qYr
-qYr
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -23834,27 +23547,27 @@ ffG
 ffG
 ffG
 ffG
-qYr
-uCX
-uCX
-sgl
-qYr
-qYr
-qYr
-qYr
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -24054,27 +23767,27 @@ eZq
 eZq
 eZq
 ffG
-qYr
-qYr
-uCX
-uCX
-uCX
-qYr
-qYr
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-pet
-uCX
-uCX
-jrg
-uCX
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -24274,27 +23987,27 @@ eZq
 eZq
 eZq
 ffG
-qYr
-qYr
-qYr
-sgl
-tgk
-sgl
-uCX
-sgl
-uCX
-sgl
-pet
-sgl
-lRK
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -24494,27 +24207,27 @@ eZq
 eZq
 eZq
 ffG
-qYr
-qYr
-qYr
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-qYr
-qYr
-qYr
-uCX
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -24714,27 +24427,27 @@ eZq
 eZq
 eZq
 ffG
-qYr
-qYr
-qYr
-uCX
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
-qYr
-qYr
-qYr
-qYr
-qYr
-qYr
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 gDd
 gDd
 gDd
@@ -24934,24 +24647,24 @@ iMX
 ffG
 ffG
 ffG
-qYr
-qYr
-qYr
-qYr
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-qYr
-qYr
-qYr
-qYr
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 qYr
 qYr
 qYr
@@ -25154,22 +24867,22 @@ eZq
 eZq
 eZq
 ffG
-qYr
-qYr
-qYr
-qYr
-uCX
-sgl
-uCX
-sgl
-uCX
-sgl
-uCX
-uCX
-qYr
-qYr
-qYr
-qYr
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+okJ
 qYr
 qYr
 qYr
@@ -25374,20 +25087,20 @@ eZq
 eZq
 eZq
 ffG
-qYr
-qYr
-qYr
-qYr
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-uCX
-qYr
-qYr
-qYr
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 qYr
 qYr
 qYr
@@ -25594,15 +25307,15 @@ eZq
 eZq
 eZq
 ffG
-qYr
-qYr
-qYr
-qYr
-qYr
-sgl
-uCX
-pet
-uCX
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 jrg
 uCX
 qYr
@@ -25814,13 +25527,13 @@ eZq
 eZq
 eZq
 ffG
-qYr
-qYr
-qYr
-qYr
-qYr
-qYr
-qYr
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
+gDd
 qYr
 qYr
 qYr
@@ -26494,7 +26207,7 @@ rjr
 qYr
 qYr
 qYr
-rjr
+iOC
 rBT
 ffG
 ffG
@@ -28472,7 +28185,7 @@ fYN
 fYN
 qYr
 eSH
-eBR
+qYr
 qYr
 qYr
 ady
@@ -28692,7 +28405,7 @@ fYN
 fYN
 qYr
 ady
-uCX
+cxA
 qYr
 qYr
 ady
@@ -37223,7 +36936,7 @@ ffG
 ffG
 ffG
 ffG
-ffG
+cEY
 ffG
 ffG
 eec
@@ -37435,15 +37148,15 @@ ttf
 ttf
 ffG
 fTg
-vvK
+mAr
 oSs
 oSs
 oSs
 oSs
 oSs
-oSs
-ius
-ffG
+cEY
+cEY
+cEY
 ffG
 ffG
 sOG
@@ -37658,13 +37371,13 @@ oSs
 oSs
 oSs
 oSs
-oSs
-oSs
-oSs
-oSs
-fIO
-ffG
-ffG
+cEY
+cEY
+cEY
+cEY
+bWm
+cEY
+cEY
 ffG
 sOG
 sOG
@@ -37877,14 +37590,14 @@ ffG
 oSs
 xUJ
 tPl
-tPl
-tPl
-xMA
-xMA
+cEY
+cEY
+cEY
+cEY
 oSs
-fIO
-ffG
-ffG
+cEY
+cEY
+cEY
 ffG
 sOG
 sOG
@@ -38095,16 +37808,16 @@ mlN
 mlN
 ffG
 oSs
-iOC
-npU
-whu
-whu
+cEY
+cEY
+cEY
+cEY
+cEY
 cnV
-cnV
-oSs
-eVh
-ffG
-ffG
+cEY
+cEY
+cEY
+cEY
 ffG
 sOG
 sOG
@@ -38315,16 +38028,16 @@ mlN
 mlN
 ffG
 oSs
+cEY
+cEY
+oSs
+cEY
 oSs
 oSs
-oSs
-oSs
-oSs
-oSs
-oSs
+cEY
 eVh
-ffG
-ffG
+cEY
+cEY
 ffG
 sOG
 sOG
@@ -38524,10 +38237,10 @@ sgl
 sgl
 wBa
 sgl
-oKG
+sgl
 sgl
 mlN
-foN
+mlN
 mlN
 mlN
 mlN
@@ -38535,16 +38248,16 @@ mlN
 mlN
 ffG
 oSs
-oLq
+cEY
 sBA
-pCM
-pCM
-fox
-fox
-oSs
-cxA
-ffG
-ffG
+cEY
+cEY
+cEY
+cEY
+cEY
+cEY
+cEY
+cEY
 ffG
 sOG
 sOG
@@ -38744,7 +38457,7 @@ sgl
 sgl
 sgl
 sgl
-dGT
+sgl
 sgl
 mlN
 mlN
@@ -38754,16 +38467,16 @@ mlN
 mlN
 mlN
 hFv
+cEY
+cEY
+cEY
+cEY
+cEY
+cEY
 oSs
-oSs
-oSs
-oSs
-oSs
-oSs
-oSs
-oSs
-gcb
-ffG
+cEY
+cEY
+cEY
 ffG
 ffG
 sOG
@@ -38964,7 +38677,7 @@ sgl
 wBa
 sgl
 sgl
-rGv
+sgl
 sgl
 mlN
 mlN
@@ -38974,16 +38687,16 @@ mlN
 mlN
 mlN
 hFv
+cEY
 oSs
+cEY
+cEY
+cEY
 oSs
-oSs
-oSs
-oSs
-oSs
-oSs
-oSs
+cEY
+cEY
 gcb
-ffG
+cEY
 ffG
 ffG
 sOG
@@ -39184,7 +38897,7 @@ sgl
 sgl
 sgl
 sgl
-pzW
+sgl
 sgl
 mlN
 aKL
@@ -39194,16 +38907,16 @@ mlN
 mlN
 wme
 ffG
-oSs
-okJ
-sBA
+cEY
+cEY
+cEY
+cEY
 pCM
-pCM
-stc
-stc
+cEY
+tgk
 oSs
-cxA
-ffG
+cEY
+cEY
 ffG
 ffG
 sOG
@@ -39413,16 +39126,16 @@ iHZ
 mlN
 mlN
 mlN
-ffG
+cEY
+cEY
+cEY
+cEY
 oSs
-oSs
-oSs
-oSs
-oSs
-oSs
-oSs
-oSs
-aoH
+cEY
+cEY
+cEY
+cEY
+cEY
 ffG
 ffG
 ffG
@@ -39632,14 +39345,14 @@ mlN
 mlN
 mlN
 mlN
-eBR
-ffG
-oSs
-mDq
-npU
-whu
-whu
-hkW
+iHZ
+cEY
+cEY
+cEY
+cEY
+cEY
+cEY
+cEY
 hkW
 oSs
 aoH
@@ -39852,15 +39565,15 @@ iHZ
 iHZ
 mlN
 mlN
-eBR
-ffG
-oSs
-xUJ
-tPl
-tPl
-tPl
+iHZ
+cEY
+cEY
+cEY
+cEY
+cEY
+cEY
 mAr
-mAr
+npU
 oSs
 fIO
 ffG
@@ -40072,11 +39785,11 @@ lSU
 iHZ
 iHZ
 iHZ
-eBR
-ffG
-oSs
-oSs
-oSs
+iHZ
+cEY
+cEY
+cEY
+cEY
 oSs
 oSs
 oSs
@@ -40290,11 +40003,11 @@ iHZ
 iHZ
 iHZ
 iHZ
-mlN
 iHZ
-eBR
-ffG
-fTg
+iHZ
+iHZ
+cEY
+cEY
 vvK
 oSs
 oSs
@@ -40510,9 +40223,9 @@ cEY
 cEY
 cEY
 cEY
-ffG
-ffG
-ffG
+cEY
+cEY
+cEY
 ffG
 ffG
 ffG
@@ -40730,8 +40443,8 @@ cEY
 cEY
 cEY
 cEY
-tqR
-ffG
+cEY
+cEY
 ffG
 ffG
 ffG
@@ -44598,7 +44311,7 @@ dxh
 dxh
 dxh
 dxh
-aki
+dxh
 dxh
 dxh
 dxh
@@ -45035,7 +44748,7 @@ lpL
 lpL
 dxh
 dxh
-bYt
+dxh
 dxh
 dxh
 dxh
@@ -45481,7 +45194,7 @@ dxh
 dxh
 dxh
 dxh
-bYt
+dxh
 dxh
 dxh
 dxh
@@ -46136,7 +45849,7 @@ uOx
 dxh
 dxh
 dxh
-aki
+dxh
 dxh
 dxh
 dfv
@@ -48119,7 +47832,7 @@ dxh
 dxh
 dxh
 dxh
-bYt
+dxh
 dxh
 dxh
 dxh
@@ -48335,7 +48048,6 @@ lpL
 lpL
 dxh
 dxh
-aki
 dxh
 dxh
 dxh
@@ -48343,7 +48055,8 @@ dxh
 dxh
 dxh
 dxh
-aki
+dxh
+dxh
 dxh
 dxh
 dxh
@@ -49216,7 +48929,7 @@ lpL
 dxh
 dxh
 dxh
-bYt
+dxh
 dxh
 dxh
 dxh
@@ -49878,7 +49591,7 @@ dxh
 dxh
 dxh
 dxh
-aki
+dxh
 dxh
 dxh
 dxh
@@ -62824,7 +62537,7 @@ ffG
 ffG
 ffG
 ffG
-aOK
+ffG
 knJ
 knJ
 knJ
