@@ -1,0 +1,351 @@
+/**
+ * Wall mounted heat pump theme.
+ * Akh Frontier field kit: enamel casing, slate louvres, colony orange.
+ * Heat and cool colours are lifted straight from the machine sprite.
+ */
+
+$enamel: #c2c1c9;
+$enamel-light: #ebebeb;
+$enamel-dark: #49475c;
+$steel: #8a8a9e;
+$slate: #1e1e2a;
+$colony-orange: #d15b1b;
+$heat: #cd4456;
+$cool: #47a1b3;
+$amber: #ffb347;
+$good: #8fd16a;
+
+.theme-heatpump:root {
+  --color-base: hsl(240, 14%, 13%);
+  --color-primary: #{$colony-orange};
+  --color-secondary: hsl(240, 12%, 19%);
+  --base-gradient-spread: 4;
+
+  --button-background-default: hsl(240, 10%, 27%);
+  --button-background-selected: #{$colony-orange};
+  --button-background-caution: hsl(36, 85%, 50%);
+  --button-background-danger: #{$heat};
+  --progress-bar-background: hsla(240, 20%, 6%, 0.7);
+  --tooltip-background: hsl(240, 20%, 8%);
+}
+
+// frontier kit, so no nanotrasen watermark
+.theme-heatpump .Layout__content {
+  background-color: hsl(240, 14%, 11%);
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.018) 0 2px,
+    transparent 2px 7px
+  );
+  // main.scss sizes this for the logo, put it back to a full tile
+  background-size: auto;
+  background-position: 0 0;
+  background-repeat: repeat;
+}
+
+.theme-heatpump {
+  .Button {
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 1px solid rgba(0, 0, 0, 0.55);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.14),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.35);
+  }
+
+  .HeatPump__hazard {
+    height: 6px;
+    margin-bottom: 6px;
+    border-radius: 1px;
+    background-image: repeating-linear-gradient(
+      -45deg,
+      $colony-orange 0 8px,
+      #15151d 8px 16px
+    );
+  }
+
+  .HeatPump__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 10px;
+    margin-bottom: 8px;
+    background-color: hsl(240, 12%, 16%);
+    border: 1px solid $enamel-dark;
+    border-radius: 2px;
+  }
+
+  .HeatPump__maker {
+    font-size: 0.75em;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: $colony-orange;
+  }
+
+  .HeatPump__model {
+    font-size: 1.35em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: $enamel-light;
+  }
+
+  .HeatPump__header-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .HeatPump__status {
+    font-size: 0.85em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    min-width: 76px;
+    text-align: right;
+  }
+
+  // enamel frame, shaded like the sprite's casing
+  .HeatPump__bezel {
+    position: relative;
+    padding: 9px;
+    margin-bottom: 8px;
+    background-color: $enamel;
+    border-radius: 3px;
+    border-top: 2px solid $enamel-light;
+    border-bottom: 3px solid $enamel-dark;
+    border-left: 2px solid $steel;
+    border-right: 2px solid $steel;
+  }
+
+  .HeatPump__rivet {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, $enamel-light, $enamel-dark);
+
+    &--tl {
+      top: 2px;
+      left: 2px;
+    }
+
+    &--tr {
+      top: 2px;
+      right: 2px;
+    }
+
+    &--bl {
+      bottom: 2px;
+      left: 2px;
+    }
+
+    &--br {
+      bottom: 2px;
+      right: 2px;
+    }
+  }
+
+  .HeatPump__bezel-label {
+    font-size: 0.7em;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: $enamel-dark;
+    margin: -3px 0 4px 2px;
+  }
+
+  .HeatPump__lcd {
+    padding: 8px 10px;
+    background-color: #0d0f14;
+    border-radius: 2px;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.9);
+    font-family: Consolas, 'Lucida Console', monospace;
+    color: $amber;
+    transition: filter 0.3s;
+
+    // dim the phosphor, not the whole panel, so the casing never shows through
+    &--off {
+      filter: brightness(0.45) saturate(0.5);
+    }
+  }
+
+  .HeatPump__lcd-label {
+    font-size: 0.75em;
+    letter-spacing: 3px;
+    color: rgba(255, 179, 71, 0.55);
+  }
+
+  .HeatPump__lcd-big {
+    font-size: 3em;
+    line-height: 1;
+    text-shadow: 0 0 8px rgba(255, 179, 71, 0.55);
+  }
+
+  // hot hazards glow red, cold ones glow blue
+  .HeatPump__lcd-big--hot,
+  .HeatPump__lcd-mid--hot {
+    color: #ff6b5a;
+    text-shadow: 0 0 8px rgba(255, 90, 74, 0.6);
+  }
+
+  .HeatPump__lcd-big--cold,
+  .HeatPump__lcd-mid--cold {
+    color: #6fd3f0;
+    text-shadow: 0 0 8px rgba(111, 211, 240, 0.6);
+  }
+
+  .HeatPump__lcd-hazard {
+    margin-left: 10px;
+    font-weight: bold;
+    animation: heatpump-blink 1s steps(1) infinite;
+
+    &--hot {
+      color: #ff6b5a;
+    }
+
+    &--cold {
+      color: #6fd3f0;
+    }
+  }
+
+  .HeatPump__lcd-offset {
+    min-height: 1.2em;
+    margin-top: 4px;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+    color: rgba(255, 179, 71, 0.7);
+  }
+
+  .HeatPump__lcd-mid {
+    font-size: 1.9em;
+    line-height: 1;
+    min-width: 72px;
+    text-align: right;
+    text-shadow: 0 0 6px rgba(255, 179, 71, 0.5);
+  }
+
+  .HeatPump__lcd-unit {
+    font-size: 0.45em;
+    margin-left: 2px;
+    vertical-align: top;
+  }
+
+  .HeatPump__lcd-divider {
+    align-self: stretch;
+    width: 2px;
+    margin: 0 10px;
+    background-color: rgba(255, 179, 71, 0.15);
+  }
+
+
+  .HeatPump__stencil {
+    font-size: 0.75em;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: $steel;
+    margin-bottom: 3px;
+  }
+
+  .HeatPump__mode--heat.Button--selected {
+    background-color: $heat;
+  }
+
+  .HeatPump__mode--cool.Button--selected {
+    background-color: #2f8aa0;
+  }
+
+  .HeatPump__lamp {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background-color: #2a2a35;
+    border: 2px solid #0d0f14;
+
+    &--heat {
+      background-color: $heat;
+      box-shadow: 0 0 8px $heat;
+    }
+
+    &--cool {
+      background-color: $cool;
+      box-shadow: 0 0 8px $cool;
+    }
+
+    &--standby {
+      background-color: $good;
+      box-shadow: 0 0 6px $good;
+    }
+
+    &--warning {
+      background-color: $amber;
+      box-shadow: 0 0 8px $amber;
+      animation: heatpump-blink 1s steps(1) infinite;
+    }
+
+    &--bad {
+      background-color: $heat;
+      box-shadow: 0 0 6px $heat;
+    }
+  }
+
+  .HeatPump__plate {
+    padding: 7px 10px;
+    margin-bottom: 8px;
+    background-color: hsl(240, 12%, 16%);
+    border: 1px solid $enamel-dark;
+    border-radius: 2px;
+  }
+
+  .HeatPump__gauge {
+    display: flex;
+    gap: 2px;
+    height: 14px;
+  }
+
+  .HeatPump__gauge-segment {
+    flex: 1;
+    background-color: #2a2a35;
+    border: 1px solid #0d0f14;
+
+    &--good {
+      background-color: $good;
+    }
+
+    &--average {
+      background-color: $amber;
+    }
+
+    &--bad {
+      background-color: $heat;
+    }
+  }
+
+  .HeatPump__warning {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #15151d;
+    background-image: repeating-linear-gradient(
+      -45deg,
+      $amber 0 10px,
+      #f29d2a 10px 20px
+    );
+    border-radius: 2px;
+  }
+
+  .HeatPump__graph-text {
+    font-family: Consolas, 'Lucida Console', monospace;
+    fill: rgba(255, 179, 71, 0.6);
+  }
+}
+
+@keyframes heatpump-blink {
+  50% {
+    opacity: 0.25;
+  }
+}

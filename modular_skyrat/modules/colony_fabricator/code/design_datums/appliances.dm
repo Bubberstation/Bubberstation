@@ -25,7 +25,7 @@
 		/datum/design/co2_cracker,
 		/datum/design/portable_recycler,
 		/datum/design/foodricator,
-		/datum/design/wall_mounted_space_heater,
+		/datum/design/heat_pump,
 		/datum/design/macrowave,
 		/datum/design/frontier_range,
 		/datum/design/tabletop_griddle,
@@ -80,15 +80,15 @@
 	construction_time = 30 SECONDS
 
 /// Space heater, but it mounts on walls
-/datum/design/wall_mounted_space_heater
-	name = "Mounted Heater"
+/datum/design/heat_pump
+	name = "Wall Mounted Heat Pump"
 	build_type = COLONY_FABRICATOR
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 4,
 		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 1,
 		/datum/material/gold = SMALL_MATERIAL_AMOUNT,
 	)
-	build_path = /obj/item/wallframe/wall_heater
+	build_path = /obj/item/wallframe/heat_pump
 	category = list(
 		RND_CATEGORY_INITIAL,
 		FABRICATOR_CATEGORY_APPLIANCES + FABRICATOR_SUBCATEGORY_ATMOS,

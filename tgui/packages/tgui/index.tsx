@@ -8,6 +8,7 @@
 import './styles/main.scss';
 import './styles/themes/clockwork.scss'; // SKYRAT EDIT ADDITION
 import './styles/themes/ammoworkbench.scss'; // BUBBER EDIT: ammo workbench theme
+import './styles/themes/heatpump.scss'; // BUBBER EDIT: heat pump theme
 
 import { setupGlobalEvents } from 'tgui-core/events';
 import { setupHotKeys } from 'tgui-core/hotkeys';

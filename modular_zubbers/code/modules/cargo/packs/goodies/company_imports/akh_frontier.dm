@@ -44,6 +44,10 @@
 	item_type = /obj/item/wallframe/cell_charger_multi
 	cost = PAYCHECK_CREW
 
+/datum/supply_pack/company_import/akh_frontier/appliances/heat_pump
+	item_type = /obj/item/wallframe/heat_pump
+	cost = PAYCHECK_COMMAND * 3
+
 /datum/supply_pack/company_import/akh_frontier/appliances/water_synth
 	item_type = /obj/item/flatpacked_machine/water_synth
 

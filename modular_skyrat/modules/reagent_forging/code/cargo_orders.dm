@@ -15,7 +15,7 @@
 
 /datum/supply_pack/misc/blacksmith_starter_pack
 	name = "Blacksmithing Workstation Pack"
-	desc = "All the workdesks one person needs to get to a basic blacksmithing setup. Contains a forge, anvil, cooling basin, crafting bench, two jerrycans of smithing oil, a wall-mounted A/C unit, and a wrench to secure everything to the floor."
+	desc = "All the workdesks one person needs to get to a basic blacksmithing setup. Contains a forge, anvil, cooling basin, crafting bench, two jerrycans of smithing oil, a wall-mounted heat pump, and a wrench to secure everything to the floor."
 	cost = CARGO_CRATE_VALUE * 3
 	access = list(ACCESS_WEAPONS)
 	crate_type = /obj/structure/closet/crate/large/smithing

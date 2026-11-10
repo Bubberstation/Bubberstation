@@ -75,7 +75,7 @@
 	If someone wants specialized equipment -- especially old stuff -- they should go to you.<br>\n\
 	If you have a dedicated department room, it should come with the following:<br> \n\
 	The <b>forge</b> heats up sheets of metal to be worked into desired shapes.<br> \n\
-	The <b>wall mounted A/C unit</b> will cool down the excess heat that your forge leaks, so that you do not boil yourself alive. <b>Remember to turn it on!</b><br> \n\
+	The <b>wall mounted heat pump</b> (your A/C) will cool down the excess heat that your forge leaks, so that you do not boil yourself alive. <b>Remember to turn it on!</b><br> \n\
 	The <b>anvil</b> can hold a heated, incomplete item.<br>\n\
 	The <b>quenching basin</b> allows you to cool a heated item.<br>\n\
 	The <b>workbench</b> is where you will finish crafting your equipment.<br>\n\

@@ -9,7 +9,7 @@
 	new /obj/structure/reagent_forge(src)
 	new /obj/item/reagent_containers/cup/jerrycan/smithing_oil(src)
 	new /obj/item/reagent_containers/cup/jerrycan/smithing_oil(src)
-	new /obj/item/wallframe/wall_heater(src)
+	new /obj/item/wallframe/heat_pump(src)
 	new /obj/item/wrench
 
 /obj/structure/closet/crate/wooden/blacksmith
