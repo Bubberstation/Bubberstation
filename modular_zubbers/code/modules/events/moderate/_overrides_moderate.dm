@@ -1,0 +1,104 @@
+/datum/round_event_control/brand_intelligence
+	tags = list(TAG_DESTRUCTIVE, TAG_COMMUNAL, TAG_CHAOTIC)
+
+/datum/round_event_control/carp_migration
+	tags = list(TAG_COMMUNAL, TAG_SPACE, TAG_COMBAT, TAG_NPC_ANTAG)
+
+/datum/round_event_control/communications_blackout
+	tags = list(TAG_COMMUNAL, TAG_SPOOKY)
+
+/datum/round_event_control/ion_storm
+	tags = list(TAG_TARGETED)
+
+/datum/round_event_control/processor_overload
+	tags = list(TAG_COMMUNAL)
+
+/datum/round_event_control/radiation_leak
+	tags = list(TAG_COMMUNAL)
+
+/datum/round_event_control/supermatter_surge
+	tags = list(TAG_TARGETED)
+
+/datum/round_event_control/stray_meteor
+	tags = list(TAG_DESTRUCTIVE, TAG_SPACE)
+	weight = 25
+
+/datum/round_event_control/shuttle_catastrophe
+	tags = list(TAG_COMMUNAL)
+
+/datum/round_event_control/vent_clog
+	tags = list(TAG_COMMUNAL)
+
+/datum/round_event_control/vent_clog/critical
+	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_NPC_ANTAG)
+
+/datum/round_event_control/anomaly
+	tags = list(TAG_COMMUNAL)
+
+/datum/round_event_control/anomaly/anomaly_vortex
+	tags = list(TAG_DESTRUCTIVE)
+	weight = 5
+
+/datum/round_event_control/anomaly/anomaly_pyro
+	tags = list(TAG_DESTRUCTIVE)
+	weight = 5
+
+/datum/round_event_control/anomaly/anomaly_flux
+	tags = list(TAG_DESTRUCTIVE)
+	weight = 10
+
+/datum/round_event_control/spacevine
+	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_CHAOTIC, TAG_NPC_ANTAG)
+
+/datum/round_event_control/portal_storm_syndicate
+	tags = list(TAG_COMBAT, TAG_CHAOTIC, TAG_NPC_ANTAG)
+
+/datum/round_event_control/portal_storm_narsie
+	tags = list(TAG_COMBAT, TAG_CHAOTIC,TAG_NPC_ANTAG )
+
+/datum/round_event_control/mold
+	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_CHAOTIC, TAG_NPC_ANTAG)
+	weight = 0
+	max_occurrences = 0
+
+/datum/round_event_control/obsessed
+	tags = list(TAG_TARGETED)
+
+/datum/round_event_control/santa
+	tags = list(TAG_COMMUNAL, TAG_POSITIVE)
+	weight = 25
+	earliest_start = 45 MINUTES
+
+/datum/round_event_control/operative
+	track = EVENT_TRACK_MODERATE
+	min_players = 20
+
+/datum/round_event_control/radiation_storm
+	track = EVENT_TRACK_MODERATE
+	tags = list(TAG_COMMUNAL)
+
+/datum/round_event_control/dynamic_tweak // no dynamic in this house
+	weight = 0
+	max_occurrences = 0
+	tags = list(TAG_CREW_ANTAG)
+
+/datum/round_event_control/cme
+	track = EVENT_TRACK_MODERATE
+	tags = list(TAG_DESTRUCTIVE, TAG_COMMUNAL, TAG_CHAOTIC)
+
+/datum/round_event_control/cme/minimal
+	min_players = 10
+	max_occurrences = 2
+	weight = 12
+
+/datum/round_event_control/cme/moderate
+	min_players = 20 // It's really not that bad, they lied to you GI
+	max_occurrences = 2
+	weight = 7
+
+/datum/round_event_control/wormholes
+	tags = list(TAG_COMMUNAL)
+
+/datum/round_event_control/bureaucratic_error
+	tags = list(TAG_COMMUNAL)
+	weight = 1 // Yes, it's annoying.

@@ -332,3 +332,21 @@ export const erp_free_use: FeatureToggle = {
   name: 'ERP Free Use Status',
   component: CheckboxInput,
 };
+
+export const oviparity_eggs_max: Feature<number> = {
+  name: 'Ovulation Max',
+  description: 'Maximum number of eggs your character can store at once.',
+  component: FeatureNumberInput,
+};
+
+export const oviparity_eggs_rate: Feature<number> = {
+  name: 'Ovulation Period',
+  description: 'Number of seconds between each produced egg.',
+  component: FeatureNumberInput,
+};
+
+export const oviparity_egglaying_rate: Feature<number> = {
+  name: 'Oviposition Period',
+  description: 'Number of seconds it takes to lay an egg.',
+  component: FeatureNumberInput,
+};
