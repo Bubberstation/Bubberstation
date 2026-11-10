@@ -30,8 +30,3 @@
 /obj/effect/baseturf_helper/beach/black
 	name = "beach sand baseturf editor"
 	baseturf = /turf/open/floor/black
-
-/obj/item/clothing/under/rank/centcom/military/kevlar
-	name = "kevlar threaded combat uniform"
-	desc = "A dark colored uniform worn by CentCom's conscripted military forces, this one is kind of uncomfortable and hard to move in to wear and most soldiers prefer the standard uniform."
-	slowdown = 0.1
