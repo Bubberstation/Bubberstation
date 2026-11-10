@@ -35,14 +35,3 @@
 	name = "kevlar threaded combat uniform"
 	desc = "A dark colored uniform worn by CentCom's conscripted military forces, this one is kind of uncomfortable and hard to move in to wear and most soldiers prefer the standard uniform."
 	slowdown = 0.1
-	armor_type = /datum/armor/clothing_under/ash_robes
-
-/obj/item/clothing/under/rank/centcom/military/kevlar/accessory_equipped(obj/item/clothing/under/clothes, mob/living/user)
-	user.add_mood_event("uncomfortable", /datum/mood_event/uncomfortable_clothing)
-
-/obj/item/clothing/under/rank/centcom/military/kevlar/accessory_dropped(obj/item/clothing/under/clothes, mob/living/user)
-	user.clear_mood_event("uncomfortable")
-
-/datum/mood_event/uncomfortable_clothing
-	description = "This clothing is quite uncomfortable."
-	mood_change = -2
