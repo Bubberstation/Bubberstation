@@ -7,6 +7,12 @@
 #define SKIN_FEATURES "skin_features" //for the new system of borg making
 #define SKIN_HAT_REST_OFFSET "skin_hat_rest_offset" //for how much to shift the hat y when resting
 
+//Defines for borg resting sprites
+#define SKIN_RESTING_STYLES "skin_resting_styles"
+#define SKIN_RESTING_NORMAL "Resting"
+#define SKIN_RESTING_SIT "Sitting"
+#define SKIN_RESTING_BELLY "Belly Up"
+
 // Icon file locations for modular borg icons
 #define CYBORG_ICON_STANDARD 'modular_skyrat/modules/borgs/icons/robots.dmi'
 

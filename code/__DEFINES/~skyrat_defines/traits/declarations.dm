@@ -150,7 +150,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Any model that has a custom front panel
 #define TRAIT_R_UNIQUEPANEL "unique_openpanel"
 /// Any model that has unique lights while resting
-#define TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS "has_unique_resting_lights"
+#define TRAIT_R_HAS_UNIQUE_RESTING_OVERLAY "has_unique_resting_overlay"
+#define TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS "has_unique_resting_light"
+#define TRAIT_R_RESTING_UNIQUEPANEL "resting_unique_openpanel"
 /// Any model that cannot use a borg expander
 #define TRAIT_R_EXPANDER_BLOCKED "expander_blocked"
 
