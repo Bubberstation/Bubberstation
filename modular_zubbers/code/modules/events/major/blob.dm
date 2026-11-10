@@ -12,7 +12,6 @@
 /datum/round_event_control/blob/can_spawn_event(players, allow_magic = FALSE)
 	if(EMERGENCY_PAST_POINT_OF_NO_RETURN) // no blobs if the shuttle is past the point of no return
 		return FALSE
-
 	return ..()
 
 /datum/round_event/ghost_role/blob
@@ -23,11 +22,11 @@
 /datum/round_event/ghost_role/blob/announce(fake)
 	if(!fake)
 		return //the mob itself handles this.
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(lose_some_weight_lardass)), rand(60 SECONDS,180 SECONDS))
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(lose_some_weight_lardass)), rand(2 MINUTES, 4 MINUTES))
 	priority_announce("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", ANNOUNCER_OUTBREAK5)
 
 /datum/dynamic_ruleset/midround/from_ghosts/blob/false_alarm()
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(lose_some_weight_lardass)), rand(60 SECONDS,180 SECONDS))
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(lose_some_weight_lardass)), rand(2 MINUTES, 4 MINUTES))
 
 /datum/round_event/ghost_role/blob/spawn_role()
 	if(!GLOB.blobstart.len)
