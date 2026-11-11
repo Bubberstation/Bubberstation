@@ -60,3 +60,6 @@
 	if(owner.get_fire_loss() > 0)
 		owner.adjust_fire_loss(healing_amount, forced = TRUE)
 		owner.nutrition += healing_amount * 2.5
+	if(owner.blood_volume < BLOOD_VOLUME_NORMAL)
+		owner.blood_volume += 3
+		owner.nutrition -= 9
