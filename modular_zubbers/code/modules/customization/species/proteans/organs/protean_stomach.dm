@@ -25,13 +25,11 @@
 
 	var/base_hunger = low_power ? 0.5 : 1 // Low power halves hunger, but disables healing
 	hunger_modifier = folded ? 0 : base_hunger
-	if(folded)
-		return
 
 	if(isnull(owner.client)) // So we dont die from afk/crashing out
 		return
 
-	if(owner.nutrition < NUTRITION_LEVEL_STARVING)
+	if(owner.nutrition < NUTRITION_LEVEL_STARVING && !folded)
 		owner.adjust_brute_loss(1, forced = TRUE)
 		owner.adjust_fire_loss(1, forced = TRUE)
 		if(COOLDOWN_FINISHED(src, starving_message))
