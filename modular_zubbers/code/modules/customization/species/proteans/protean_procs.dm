@@ -30,15 +30,18 @@
 
 /mob/living/carbon/proc/suit_transformation(forced = FALSE)
 	var/obj/item/organ/brain/protean/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/stomach/protean/stomach = get_organ_slot(ORGAN_SLOT_STOMACH)
 
-	if(!istype(brain))
+	if(!istype(brain) || !istype(stomach))
 		return
 	var/datum/species/protean/species = dna.species
 	if(loc == species.species_modsuit)
 		brain.leave_modsuit()
+		stomach.folded = FALSE
 	else if(isturf(loc))
 		if(!incapacitated)
 			brain.go_into_suit(forced)
+			stomach.folded = TRUE
 		else
 			balloon_alert(src, "incapacitated!")
 

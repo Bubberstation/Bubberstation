@@ -43,16 +43,15 @@
 		human_owner.damage_resistance += 100
 
 /datum/status_effect/protean_low_power_mode/low_power
-	var/metabolism_modifier_factor = 16
 
 /datum/status_effect/protean_low_power_mode/low_power/on_apply()
 	. = ..()
 	var/obj/item/organ/stomach/protean/stomach = owner.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(istype(stomach))
-		stomach.metabolism_modifier /= metabolism_modifier_factor
+		stomach.low_power = TRUE
 
 /datum/status_effect/protean_low_power_mode/low_power/on_remove()
 	. = ..()
 	var/obj/item/organ/stomach/protean/stomach = owner.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(istype(stomach))
-		stomach.metabolism_modifier *= metabolism_modifier_factor
+		stomach.low_power = FALSE

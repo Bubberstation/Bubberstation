@@ -97,15 +97,13 @@
 	return TRUE
 
 /datum/species/protean/proc/get_metal()
-	var/obj/item/organ/stomach/protean/refactory = owner?.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(refactory))
+	if(isnull(owner))
 		return 0
-	return refactory.metal
+	return owner.nutrition
 
 /datum/species/protean/proc/max_metal()
-	var/obj/item/organ/stomach/protean/refactory = owner?.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(refactory))
+	if(isnull(owner))
 		return 1
-	return refactory.metal_max
+	return NUTRITION_LEVEL_FULL
 
 

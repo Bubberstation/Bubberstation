@@ -45,8 +45,7 @@
 		// Needed to exist without dying and robot specific stuff.
 		TRAIT_NOBREATH,
 		TRAIT_ROCK_EATER,
-		TRAIT_STABLEHEART, // TODO: handle orchestrator code
-		TRAIT_NOHUNGER, // They will have metal stored in the stomach. Fuck nutrition code.
+		TRAIT_STABLEHEART,
 		TRAIT_LIMBATTACHMENT,
 
 		// Synthetic lifeforms
@@ -93,7 +92,7 @@
 	RegisterSignal(owner, COMSIG_CARBON_GAIN_ORGAN, PROC_REF(organ_reject))
 	protean_action = new(src)
 	protean_action.Grant(owner)
-	var/obj/item/mod/core/protean/core = species_modsuit.core
+	var/obj/item/mod/core/standard/protean/core = species_modsuit.core
 	if(!core)
 		CRASH("Protean: [gainer] failed to link to a core, and thus, have a functional suit!")
 	core.linked_species = src

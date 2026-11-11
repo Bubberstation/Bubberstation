@@ -20,7 +20,7 @@
 /obj/item/mod/module/protean_servo/on_activation()
 	. = ..()
 
-	var/obj/item/mod/core/protean/protean_core = mod.core
+	var/obj/item/mod/core/standard/protean/protean_core = mod.core
 	var/mob/living/carbon/human/protean_in_suit = protean_core.linked_species.owner
 
 	if(protean_in_suit == mod.wearer) //Protean cant benefit from module they're suposed to be powering
@@ -35,7 +35,7 @@
 
 /obj/item/mod/module/protean_servo/on_deactivation(display_message = TRUE, deleting = FALSE)
 	. = ..()
-	var/obj/item/mod/core/protean/protean_core = mod.core
+	var/obj/item/mod/core/standard/protean/protean_core = mod.core
 	var/mob/living/carbon/human/protean_in_suit = protean_core?.linked_species.owner
 
 	servo_movement.Remove(protean_in_suit) //All the cleanup, since module deactivates once out of power, this will remove granted abilities
