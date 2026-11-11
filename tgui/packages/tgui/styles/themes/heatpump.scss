@@ -338,6 +338,64 @@ $good: #8fd16a;
     border-radius: 2px;
   }
 
+  .HeatPump__status--off {
+    color: $steel;
+  }
+
+  .HeatPump__status--warning {
+    color: $amber;
+  }
+
+  .HeatPump__status--heat {
+    color: $heat;
+  }
+
+  .HeatPump__status--cool {
+    color: $cool;
+  }
+
+  .HeatPump__status--standby {
+    color: $good;
+  }
+
+  // graph line colour per sample, plus the hot/comfy/cold background bands
+  .HeatPump__stop--hot {
+    stop-color: $heat;
+  }
+
+  .HeatPump__stop--comfy {
+    stop-color: $good;
+  }
+
+  .HeatPump__stop--cold {
+    stop-color: $cool;
+  }
+
+  .HeatPump__band--hot {
+    fill: $heat;
+    fill-opacity: 0.1;
+  }
+
+  .HeatPump__band--comfy {
+    fill: $good;
+    fill-opacity: 0.06;
+  }
+
+  .HeatPump__band--cold {
+    fill: $cool;
+    fill-opacity: 0.1;
+  }
+
+  .HeatPump__graph-grid {
+    stroke: rgba(255, 179, 71, 0.12);
+  }
+
+  .HeatPump__graph-target {
+    stroke: $colony-orange;
+    stroke-opacity: 0.8;
+    stroke-dasharray: 4 3;
+  }
+
   .HeatPump__graph-text {
     font-family: Consolas, 'Lucida Console', monospace;
     fill: rgba(255, 179, 71, 0.6);

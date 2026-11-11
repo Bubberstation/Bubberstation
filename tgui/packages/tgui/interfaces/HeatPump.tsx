@@ -33,20 +33,15 @@ const GAUGE_SEGMENTS = 10;
 // degrees moved by a shift-click on the target arrows
 const SHIFT_STEP = 5;
 
-// heat and cool match the machine sprite
-const COLOR_COLD = '#47a1b3';
-const COLOR_COMFY = '#8fd16a';
-const COLOR_HOT = '#cd4456';
-const COLOR_ORANGE = '#d15b1b';
-
-const zoneColor = (celsius: number) => {
+// colours live in the heatpump theme, this just picks the zone
+const zoneOf = (celsius: number) => {
   if (celsius < COLD_LIMIT) {
-    return COLOR_COLD;
+    return 'cold';
   }
   if (celsius > HOT_LIMIT) {
-    return COLOR_HOT;
+    return 'hot';
   }
-  return COLOR_COMFY;
+  return 'comfy';
 };
 
 const toFahrenheit = (celsius: number) => (celsius * 9) / 5 + 32;
@@ -55,23 +50,22 @@ const toCelsius = (fahrenheit: number) => ((fahrenheit - 32) * 5) / 9;
 type Status = {
   lamp: string;
   label: string;
-  color: string;
 };
 
 const getStatus = (data: Data): Status => {
   if (!data.on) {
-    return { lamp: '', label: 'OFF', color: '#8a8a9e' };
+    return { lamp: 'off', label: 'OFF' };
   }
   if (!data.hasCell || data.cellCharge <= 0) {
-    return { lamp: 'warning', label: 'NO CHARGE', color: '#ffb347' };
+    return { lamp: 'warning', label: 'NO CHARGE' };
   }
   if (data.activeMode === 'heat') {
-    return { lamp: 'heat', label: 'HEATING', color: COLOR_HOT };
+    return { lamp: 'heat', label: 'HEATING' };
   }
   if (data.activeMode === 'cool') {
-    return { lamp: 'cool', label: 'COOLING', color: COLOR_COLD };
+    return { lamp: 'cool', label: 'COOLING' };
   }
-  return { lamp: 'standby', label: 'STANDBY', color: COLOR_COMFY };
+  return { lamp: 'standby', label: 'STANDBY' };
 };
 
 export const HeatPump = (props) => {
@@ -92,12 +86,12 @@ export const HeatPump = (props) => {
             <Box className="HeatPump__model">HEAT PUMP</Box>
           </Box>
           <Box className="HeatPump__header-right">
-            <Box className="HeatPump__status" style={{ color: status.color }}>
+            <Box
+              className={`HeatPump__status HeatPump__status--${status.lamp}`}
+            >
               {status.label}
             </Box>
-            <Box
-              className={`HeatPump__lamp${status.lamp ? ` HeatPump__lamp--${status.lamp}` : ''}`}
-            />
+            <Box className={`HeatPump__lamp HeatPump__lamp--${status.lamp}`} />
             <Button
               icon="power-off"
               selected={!!data.on}
@@ -458,7 +452,7 @@ const TemperatureGraph = (props: GraphProps) => {
             <stop
               key={index}
               offset={index / (history.length - 1)}
-              stopColor={zoneColor(celsius)}
+              className={`HeatPump__stop--${zoneOf(celsius)}`}
             />
           ))}
         </linearGradient>
@@ -469,8 +463,7 @@ const TemperatureGraph = (props: GraphProps) => {
           y={PLOT_TOP}
           width={PLOT_RIGHT - PLOT_LEFT}
           height={comfyTop - PLOT_TOP}
-          fill={COLOR_HOT}
-          fillOpacity={0.1}
+          className="HeatPump__band--hot"
         />
       )}
       {comfyBottom > comfyTop && (
@@ -479,8 +472,7 @@ const TemperatureGraph = (props: GraphProps) => {
           y={comfyTop}
           width={PLOT_RIGHT - PLOT_LEFT}
           height={comfyBottom - comfyTop}
-          fill={COLOR_COMFY}
-          fillOpacity={0.06}
+          className="HeatPump__band--comfy"
         />
       )}
       {PLOT_BOTTOM > comfyBottom && (
@@ -489,8 +481,7 @@ const TemperatureGraph = (props: GraphProps) => {
           y={comfyBottom}
           width={PLOT_RIGHT - PLOT_LEFT}
           height={PLOT_BOTTOM - comfyBottom}
-          fill={COLOR_COLD}
-          fillOpacity={0.1}
+          className="HeatPump__band--cold"
         />
       )}
       {gridValues.map((value) => (
@@ -500,7 +491,7 @@ const TemperatureGraph = (props: GraphProps) => {
             x2={PLOT_RIGHT}
             y1={yFor(value)}
             y2={yFor(value)}
-            stroke="rgba(255, 179, 71, 0.12)"
+            className="HeatPump__graph-grid"
           />
           <text
             className="HeatPump__graph-text"
@@ -518,9 +509,7 @@ const TemperatureGraph = (props: GraphProps) => {
         x2={PLOT_RIGHT}
         y1={targetY}
         y2={targetY}
-        stroke={COLOR_ORANGE}
-        strokeOpacity={0.8}
-        strokeDasharray="4 3"
+        className="HeatPump__graph-target"
       />
       <text
         className="HeatPump__graph-text"
