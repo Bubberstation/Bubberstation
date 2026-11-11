@@ -56,7 +56,7 @@
 
 	if(owner.get_brute_loss() > 0)
 		owner.adjust_brute_loss(healing_amount, forced = TRUE)
-		owner.nutrition += healing_amount * 3
+		owner.nutrition += healing_amount * 2.5
 	if(owner.get_fire_loss() > 0)
 		owner.adjust_fire_loss(healing_amount, forced = TRUE)
-		owner.nutrition += healing_amount * 3
+		owner.nutrition += healing_amount * 2.5

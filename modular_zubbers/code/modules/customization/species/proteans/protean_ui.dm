@@ -49,7 +49,11 @@
 			INVOKE_ASYNC(src, PROC_REF(eject_stored_modsuit))
 		if("protean_transform")
 			if(COOLDOWN_FINISHED(src, transform_cooldown)) // Anti-spam
-				var/component = species_modsuit.wearer?.GetComponent(/datum/component/transformation)
+				COOLDOWN_START(src, transform_cooldown, 1 SECONDS)
+				if(isnull(species_modsuit.wearer))
+					to_chat(owner, span_warning("You need a wearer!"))
+					return
+				var/component = species_modsuit.wearer.GetComponent(/datum/component/transformation)
 				if(component)
 					playsound(owner, 'sound/machines/click.ogg', 25)
 					UnregisterSignal(species_modsuit, COMSIG_ITEM_PRE_UNEQUIP)
@@ -60,7 +64,6 @@
 					playsound(owner, 'sound/machines/click.ogg', 25)
 					species_modsuit.wearer.AddComponent(/datum/component/transformation, source = owner)
 					RegisterSignal(species_modsuit, COMSIG_ITEM_PRE_UNEQUIP, PROC_REF(protean_transform_unequip))
-				COOLDOWN_START(src, transform_cooldown, 1 SECONDS)
 	return TRUE
 
 /datum/species/protean/proc/eject_stored_modsuit()
