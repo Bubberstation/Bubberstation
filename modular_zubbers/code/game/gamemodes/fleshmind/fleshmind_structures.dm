@@ -276,7 +276,7 @@
 	/// How quickly we can attack
 	var/attack_cooldown = 3 SECONDS
 	/// The range at which we rally troops!
-	var/rally_range = 15
+	var/rally_range = 10
 	///How far we whip fuckers.
 	var/whip_range = 2
 	COOLDOWN_DECLARE(attack_move)
