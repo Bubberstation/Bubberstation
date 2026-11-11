@@ -69,7 +69,8 @@ export const Protean = () => {
           <ProgressBar
             value={metal / metal_max}
             ranges={{
-              good: [0.5, Infinity],
+              teal: [1, Infinity],
+              good: [0.5, 1],
               average: [0.2, 0.5],
               bad: [-Infinity, 0.2],
             }}
