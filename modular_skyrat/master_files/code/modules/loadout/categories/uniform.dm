@@ -529,6 +529,10 @@
 	name = "Keyhole Sweater"
 	item_path = /obj/item/clothing/under/sweater/keyhole
 
+/datum/loadout_item/uniform/miscellaneous/virginkiller
+	name = "Virgin Killer Keyhole Sweater"
+	item_path = /obj/item/clothing/under/sweater/keyhole/virgin
+
 /datum/loadout_item/uniform/miscellaneous/blacknwhite
 	name = "Classic Prisoner Jumpsuit"
 	item_path = /obj/item/clothing/under/rank/prisoner/classic

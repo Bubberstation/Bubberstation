@@ -239,3 +239,15 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
+/obj/item/clothing/suit/sexy_shrinemaiden
+	name = "sexy shrine maiden's outfit"
+	desc = "Looks more like a costume from a video game than anything based in historical reality."
+	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
+	icon_state = "/obj/item/clothing/suit/sexy_shrinemaiden"
+	greyscale_config = /datum/greyscale_config/sexy_shrinemaiden
+	greyscale_config_worn = /datum/greyscale_config/sexy_shrinemaiden
+	greyscale_colors = "#FFFFFF#4A4A59#FF005B"
+	body_parts_covered = CHEST|GROIN
+	flags_1 = IS_PLAYER_COLORABLE_1
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON

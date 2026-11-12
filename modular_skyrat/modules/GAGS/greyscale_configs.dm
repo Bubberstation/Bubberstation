@@ -880,6 +880,10 @@
 	name = "Tailored Short Jacket (Worn)"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/suits/tailored_short_jacket/tailored_short_jacket_worn.json'
 
+/datum/greyscale_config/sexy_shrinemaiden
+	name = "Sexy Shrine Maiden's Outfit"
+	icon_file = 'modular_skyrat/modules/GAGS/icons/suit/suit.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/suits/sexy_shrinemaiden/sexy_shrinemaiden.json'
 
 /*
 *	UNDER
