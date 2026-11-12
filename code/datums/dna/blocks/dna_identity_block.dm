@@ -138,6 +138,7 @@
 		HUMAN_HEIGHT_MEDIUM,
 		HUMAN_HEIGHT_TALL,
 		HUMAN_HEIGHT_TALLER,
+		HUMAN_HEIGHT_TALLEST, // BUBBER EDIT - LET PEOPLE BE TALL!!!!
 	)
 
 /datum/dna_block/identity/height/create_unique_block(mob/living/carbon/human/target)
