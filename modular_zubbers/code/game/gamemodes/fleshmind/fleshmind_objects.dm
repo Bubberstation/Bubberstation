@@ -15,6 +15,7 @@
 	desc = "The flesh does not discriminate. Join the flesh."
 	icon_state = "wirepriesthood"
 	armor_type = /datum/armor/head_helmet
+	flash_protect = FLASH_PROTECTION_WELDER
 
 // Wire Priest's Staff
 /obj/item/wire_priest_staff
