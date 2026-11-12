@@ -29,3 +29,7 @@
 	lefthand_file = 'modular_zubbers/icons/fleshmind/fleshmind_objects_onmob_l.dmi'
 	righthand_file = 'modular_zubbers/icons/fleshmind/fleshmind_objects_onmob_r.dmi'
 	icon_state = "wireprieststaff"
+
+/obj/item/wire_priest_staff/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_GLUED_ITEM)
