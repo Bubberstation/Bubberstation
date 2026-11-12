@@ -15,6 +15,7 @@
 	lighting_cutoff_red = 0
 	lighting_cutoff_green = 5
 	lighting_cutoff_blue = 10
+	hud_type = /datum/hud/wire_eye
 	// When you get forced to place the core, even when you don't like it.
 	var/autoplace_max_time = WIREPRIEST_EYE_FORCE_SPAWN_TIME
 
@@ -31,6 +32,9 @@
 /mob/eye/wire_priest/proc/spawn_core_and_priest(turf/spawn_turf)
 	if(isnull(spawn_turf))
 		spawn_turf = get_turf(src)
+		if(!is_valid_turf(spawn_turf)) // If we got one passed in, we force
+			src.balloon_alert(src, "can't spawn here")
+			return
 	var/obj/structure/fleshmind/structure/core/new_core = new(spawn_turf)
 	if(isnull(mind))
 		return
@@ -40,6 +44,12 @@
 	mind.transfer_to(priest)
 	priest_datum.on_gain_physical_state()
 	message_admins("[ADMIN_LOOKUPFLW(priest)] has been made into a physical Wire Priest.")
+
+/mob/eye/wire_priest/proc/is_valid_turf(turf/to_check)
+	var/area/check_area = get_area(to_check)
+	if(isgroundlessturf(to_check) || istype(check_area, /area/shuttle) || !can_atmos_pass(to_check))
+		return FALSE
+	return TRUE
 
 /mob/eye/wire_priest/Move(atom/newloc, direct, glide_size_override, update_dir)
 	var/area/check_area = get_area(newloc)
@@ -52,3 +62,7 @@
 	. = ..()
 	if(!mind.has_antag_datum(/datum/antagonist/wire_priest))
 		mind.add_antag_datum(/datum/antagonist/wire_priest)
+
+/datum/hud/wire_eye/initialize_screen_objects()
+	. = ..()
+	add_screen_object(/atom/movable/screen/wire_priest/spawn_core, HUD_BLOB_JUMP_TO_CORE)

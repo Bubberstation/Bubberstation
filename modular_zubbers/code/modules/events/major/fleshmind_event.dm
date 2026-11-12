@@ -64,6 +64,8 @@
 		if(checked_area in GLOB.the_station_areas)
 			final_area_list += checked_area
 
+	if(isnull(final_area_list)) // How did we get here
+		return null
 	final_turf = wireweed_try_get_valid_turf(final_area_list)
 	if(final_turf)
 		return final_turf
