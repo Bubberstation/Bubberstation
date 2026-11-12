@@ -82,13 +82,14 @@
 
 /mob/living/basic/node_drone/proc/arrive(obj/structure/ore_vent/parent_vent)
 	attached_vent = parent_vent
-	maxHealth = 300 + ((attached_vent.boulder_size/BOULDER_SIZE_SMALL) * 100)
+	maxHealth = 600 + ((attached_vent.boulder_size/BOULDER_SIZE_SMALL) * 100)
 	health = maxHealth
 	flying_state = FLY_IN_STATE
 	update_appearance(UPDATE_ICON_STATE)
 	pixel_z = 400
 	animate(src, pixel_z = 0, time = 2 SECONDS, easing = QUAD_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
 
+// BUBBER EDIT, maxHealth. Original number = 300, Subject to Feedback/Change.
 
 /**
  * Called when wave defense is completed. Visually flicks the escape sprite and then deletes the mob.
