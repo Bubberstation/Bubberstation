@@ -10,17 +10,24 @@
 /obj/item/bodypart/generate_icon_key()
 	RETURN_TYPE(/list)
 	. = ..()
+
+	// For species with unique digitigrade legs. base_limb_id seems to be used for differentiating them
+	if(limb_id == BODYPART_ID_DIGITIGRADE)
+		. += "-[base_limb_id]"
+
 	if(current_style)
 		. += "-[current_style]"
 
+	if(length(markings))
+		. += "-markings_[body_zone]"
 	for(var/key in markings)
-		. += limb_id == "digitigrade" ? ("digitigrade_1_" + body_zone) : body_zone
-		. += "-[key]_[markings[key][MARKING_INDEX_COLOR]]_[markings[key][MARKING_INDEX_EMISSIVE]]"
+		. += "_[key]_[markings[key][MARKING_INDEX_COLOR]]_[markings[key][MARKING_INDEX_EMISSIVE]]"
 
 	// Hand markings are drawn by this limb too, so they have to be part of its cache key.
+	if(length(aux_zone_markings))
+		. += "-auxmarkings_[aux_zone]"
 	for(var/key in aux_zone_markings)
-		. += aux_zone
-		. += "-[key]_[aux_zone_markings[key][MARKING_INDEX_COLOR]]_[aux_zone_markings[key][MARKING_INDEX_EMISSIVE]]"
+		. += "_[key]_[aux_zone_markings[key][MARKING_INDEX_COLOR]]_[aux_zone_markings[key][MARKING_INDEX_EMISSIVE]]"
 
 	return .
 
