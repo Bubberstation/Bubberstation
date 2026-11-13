@@ -88,6 +88,7 @@
 	. = ..()
 	owner = gainer
 	equip_modsuit(gainer)
+	owner.AddElementTrait(TRAIT_METAL_HEAL, REF(src), /datum/element/metal_healing)
 	RegisterSignal(src, COMSIG_OUTFIT_EQUIP, PROC_REF(outfit_handling))
 	RegisterSignal(owner, COMSIG_CARBON_GAIN_ORGAN, PROC_REF(organ_reject))
 	protean_action = new(src)
@@ -118,6 +119,7 @@
 
 /datum/species/protean/on_species_loss(mob/living/carbon/human/gainer, datum/species/new_species, pref_load)
 	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_METAL_HEAL, REF(src))
 	if(gainer)
 		UnregisterSignal(owner, COMSIG_CARBON_GAIN_ORGAN)
 	if(species_modsuit.stored_modsuit)

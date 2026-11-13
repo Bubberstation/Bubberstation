@@ -13,3 +13,5 @@
 
 /// Trait gained from bioware surgeries
 #define SUBSYSTEM_UPGRADE_TRAIT "subsystem_upgrade"
+
+#define TRAIT_METAL_HEAL "metal_healing"
