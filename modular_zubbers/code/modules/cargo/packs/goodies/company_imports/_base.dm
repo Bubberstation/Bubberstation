@@ -1,7 +1,8 @@
 #define CARGO_CUT 0.05
+#define COMPANY_IMPORT_DEFAULT_DESC "Contains one imported company item."
 
 /datum/supply_pack/company_import
-	desc = "Contains one imported company item."
+	desc = COMPANY_IMPORT_DEFAULT_DESC
 	group = "Company Imports"
 	order_flags = ORDER_GOODY
 	crate_type = null
@@ -16,7 +17,7 @@
 		return
 	contains = list(item_type)
 	name = "[item_type::name] Single-Pack"
-	if(desc == initial(desc))
+	if(desc == COMPANY_IMPORT_DEFAULT_DESC)
 		desc = "Contains one [item_type::name]."
 	if(CONFIG_GET(flag/permit_pins) && item_type && istype(item_type, /obj/item/gun))
 		desc += " The gun will come with a permit pin installed."
@@ -34,3 +35,4 @@
 		gun_actually.pin = new_pin
 
 #undef CARGO_CUT
+#undef COMPANY_IMPORT_DEFAULT_DESC
