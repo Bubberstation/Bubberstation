@@ -26,7 +26,6 @@
 	return ..()
 
 //stupid code that prevents bypassing via flatpacker
-
 /obj/machinery/flatpacker/base_item_interaction(mob/living/user, obj/item/attacking_item, list/modifiers)
 	if(istype(attacking_item, /obj/item/circuitboard/machine/biogenerator/food_replicator))
 		balloon_alert(user, "can't flatpack!")
