@@ -1421,9 +1421,14 @@
 		update_draw_color()
 
 	if(draw_color)
-		limb.color = "[draw_color]"
+		// BUBBER EDIT CHANGE START - Custom shading
+		var/limb_color = "[draw_color]"
+		if(should_draw_greyscale && !is_husked && owner)
+			limb_color = owner.get_custom_shading(limb_color)
+		limb.color = limb_color
 		if(aux_zone)
-			aux.color = "[draw_color]"
+			aux.color = limb_color
+		// BUBBER EDIT CHANGE END
 
 	// No need to handle leg layering if dropped, we only face south anyways
 	if(!dropped && ((body_zone == BODY_ZONE_R_LEG) || (body_zone == BODY_ZONE_L_LEG)))
