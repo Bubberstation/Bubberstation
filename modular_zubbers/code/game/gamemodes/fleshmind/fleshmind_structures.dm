@@ -757,7 +757,7 @@
 	for(var/mob/living/target_mob in view(activation_range, src))
 		if(faction_check_atom(target_mob))
 			continue
-		if(!IS_UNCONSCIOUS(target_mob))
+		if(IS_UNCONSCIOUS_OR_CRIT(target_mob))
 			continue
 		targets += target_mob
 
@@ -792,3 +792,4 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/neurotoxin
 	hitsound = 'modular_skyrat/modules/black_mesa/sound/mobs/bullsquid/splat1.ogg'
 	hitsound_wall = 'modular_skyrat/modules/black_mesa/sound/mobs/bullsquid/splat1.ogg'
+	faction = list(FACTION_FLESHMIND)
