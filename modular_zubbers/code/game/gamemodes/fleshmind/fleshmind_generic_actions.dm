@@ -22,8 +22,12 @@
 
 	var/list/built_radial_menu = list()
 	for(var/obj/iterating_type as anything in possible_structures)
-		built_radial_menu[iterating_type] = image(icon = initial(iterating_type.icon), icon_state = initial(iterating_type.icon_state))
-	var/obj/structure/fleshmind/structure/picked_stucture_type = show_radial_menu(owner, owner, built_radial_menu, radius = 40)
+		var/info_text = span_boldnotice("[initial(iterating_type.desc)]")
+		var/datum/radial_menu_choice/choice = new
+		choice.image = image(icon = initial(iterating_type.icon), icon_state = initial(iterating_type.icon_state))
+		choice.info = info_text
+		built_radial_menu[iterating_type] = choice
+	var/obj/structure/fleshmind/structure/picked_stucture_type = show_radial_menu(owner, owner, built_radial_menu, radius = 40, tooltips = TRUE)
 	if(!picked_stucture_type)
 		return
 	var/obj/structure/fleshmind/wireweed/under_wireweed = locate() in get_turf(owner)
