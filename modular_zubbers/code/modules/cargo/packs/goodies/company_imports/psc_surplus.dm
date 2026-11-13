@@ -67,7 +67,7 @@
 
 /datum/supply_pack/company_import/psc_surplus/misc/food_replicator
 	item_type = /obj/item/circuitboard/machine/biogenerator/food_replicator
-	desc = "Once widespread technology used by numerous fringe colonies of PSC origin and even in some TerraGov territories, that ultimately went out of fashion due to TerraGov propaganda deeming it unprofitable and imposing severe trading fees on anyone trying to sell them. A small portion of government-backed manufacturers still produce 'food replicators' for private and government use; a few of them is selling this via us. Cannot be deployed on station."
+	desc = "Once widespread technology used by numerous fringe colonies of PSC origin and even in some TerraGov territories, that ultimately went out of fashion due to TerraGov propaganda deeming it unprofitable and imposing severe trading fees on anyone trying to sell them. A small portion of government-backed manufacturers still produce 'food replicators' for private and government use; a few of them is selling this via us. Cannot be built or deployed on station."
 	cost = CARGO_CRATE_VALUE * 9
 
 /datum/supply_pack/company_import/psc_surplus/misc/nri_flag
