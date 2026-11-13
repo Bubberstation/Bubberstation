@@ -24,13 +24,16 @@
 	if(attacker == holder)
 		return
 	if(holder.health >= holder.maxHealth)
-		to_chat(attacker, span_notice("[holder] can no longer integrate [item] into their mass!"))
 		return
+	INVOKE_ASYNC(src, PROC_REF(heal_and_do), holder, material, attacker)
+	return COMPONENT_NO_AFTERATTACK
+
+/datum/element/metal_healing/proc/heal_and_do(mob/living/holder, obj/item/stack/sheet/material, mob/living/attacker)
 	if(!do_after(attacker, 1 SECONDS, holder))
 		return
 	if(material.use(1))
 		to_chat(attacker, span_warning("You feed metal to [holder] to heal them!"))
 		holder.adjust_brute_loss(-10, forced = TRUE)
 		holder.adjust_fire_loss(-10, forced=TRUE)
-		return COMPONENT_NO_AFTERATTACK
-	return
+		if(holder.health >= holder.maxHealth)
+			to_chat(attacker, span_notice("[holder] can no longer integrate material into their mass!"))
