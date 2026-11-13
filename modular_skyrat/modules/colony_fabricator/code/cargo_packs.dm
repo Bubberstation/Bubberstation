@@ -15,7 +15,7 @@
 
 /datum/supply_pack/service/frontier_kitchen
 	name = "Frontier Kitchen Equipment"
-	desc = "A range of frontier appliance classics, enough to set up a functioning kitchen no matter where you are in the galaxy. Flatpacked contents csannot be deployed on station."
+	desc = "A range of frontier appliance classics, enough to set up a functioning kitchen no matter where you are in the galaxy. Flatpacked contents cannot be deployed on station."
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(
 		/obj/item/flatpacked_machine/water_synth,
