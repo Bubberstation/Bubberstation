@@ -8,6 +8,11 @@
 
 /datum/species/protean/ui_data(mob/user)
 	var/data = list()
+	var/obj/item/stock_parts/power_store/cell = species_modsuit?.get_cell()
+	var/obj/item/organ/stomach/protean/stomach = owner.get_organ_slot(ORGAN_SLOT_STOMACH)
+	var/can_convert = FALSE
+	if(!isnull(owner.get_organ_slot(ORGAN_SLOT_STOMACH)) && cell?.chargerate != 0)
+		can_convert = TRUE
 
 	data["metal"] = get_metal()
 	data["metal_max"] = max_metal()
@@ -18,6 +23,11 @@
 	data["transform"] = species_modsuit?.wearer?.GetComponent(/datum/component/transformation)
 	data["assimilated"] = !isnull(species_modsuit?.stored_modsuit)
 	data["is_owner"] = user == owner
+	data["cell_charge"] = cell?.charge
+	data["cell_max_charge"] = cell?.maxcharge
+	data["charge_rate"] = cell?.chargerate
+	data["can_convert"] = can_convert
+	data["actively_converting"] = istype(stomach) ? stomach.converting_metal : FALSE
 	return data
 
 /datum/species/protean/ui_status(mob/user) // Protean's UI
@@ -64,7 +74,20 @@
 					playsound(owner, 'sound/machines/click.ogg', 25)
 					species_modsuit.wearer.AddComponent(/datum/component/transformation, source = owner)
 					RegisterSignal(species_modsuit, COMSIG_ITEM_PRE_UNEQUIP, PROC_REF(protean_transform_unequip))
+		if("convert")
+			toggle_convert()
 	return TRUE
+
+/datum/species/protean/proc/toggle_convert()
+	var/obj/item/organ/stomach/protean/stomach = owner.get_organ_slot(ORGAN_SLOT_STOMACH)
+	playsound(owner, 'sound/machines/click.ogg', 25)
+	if(isnull(stomach))
+		to_chat(owner, span_warning("You don't have a refactory!"))
+		return
+	var/obj/item/stock_parts/power_store/cell/cell = species_modsuit.get_cell()
+	if(cell.chargerate == 0 || isnull(cell))
+		return
+	stomach.converting_metal = !stomach.converting_metal
 
 /datum/species/protean/proc/eject_stored_modsuit()
 	to_chat(owner, span_notice("You begin to extract [species_modsuit.stored_modsuit] from your body."))

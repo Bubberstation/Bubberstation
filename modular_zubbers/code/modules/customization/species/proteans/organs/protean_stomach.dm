@@ -1,3 +1,4 @@
+#define CHARGE_PER_TICK 3
 /obj/item/organ/stomach/protean
 	name = "refactory"
 	desc = "An extremely fragile factory used to recycle materials and create more nanite mass. Needed to facilitate the repair process on a collapsed Protean; it can be installed as a module in the rig, or as an organ."
@@ -11,6 +12,7 @@
 	var/low_power = FALSE
 	/// If we're folded up into our suit
 	var/folded = FALSE
+	var/converting_metal = FALSE
 
 /obj/item/organ/stomach/protean/on_life(seconds_per_tick, times_fired)
 	for(var/datum/reagent/consumable/food in reagents.reagent_list) // Will only process materials
@@ -42,6 +44,19 @@
 
 	if(owner.nutrition < NUTRITION_LEVEL_VERY_HUNGRY)
 		return
+
+	var/datum/species/protean/species = owner.dna.species
+	var/obj/item/stock_parts/power_store/cell/power_cell = species.species_modsuit.get_cell()
+	if(converting_metal)
+		if(isnull(power_cell))
+			converting_metal = !converting_metal
+		else // 100 percent is 1 kj per point of nutrition.
+			var/efficency = power_cell.chargerate / 20000
+			var/round_off = clamp((power_cell.maxcharge - power_cell.charge) / 10000, 0, 1)
+			var/charge_amount = round(CHARGE_PER_TICK * efficency * round_off, 0.1) // If the cell is full, only fill tiny amounts
+			power_cell.give(charge_amount * 1000)
+			owner.nutrition -= charge_amount / efficency // Nutrition always drains the same amount. Reverse the division
+
 	var/healing_amount = -2
 	var/health_range = owner.health / owner.maxHealth
 	switch(health_range)
@@ -61,3 +76,4 @@
 	if(owner.blood_volume < BLOOD_VOLUME_NORMAL)
 		owner.blood_volume += 3
 		owner.nutrition -= 9
+#undef CHARGE_PER_TICK
