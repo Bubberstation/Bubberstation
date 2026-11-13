@@ -26,12 +26,9 @@
 
 /datum/supply_pack/company_import/akh_frontier/deployables_fab/rapid_construction_fabricator
 	item_type = /obj/item/flatpacked_machine
-	cost = CARGO_CRATE_VALUE * 30
-
-/datum/supply_pack/company_import/akh_frontier/deployables_fab/rapid_construction_fabricator/New()
-	. = ..()
 	name = "Rapid Construction Fabricator (RCF)"
 	desc = "Contains one flat-packed rapid construction fabricator, with a charged cell to get it running anywhere. Cannot be deployed on station."
+	cost = CARGO_CRATE_VALUE * 30
 
 /datum/supply_pack/company_import/akh_frontier/deployables_fab/foodricator
 	item_type = /obj/item/flatpacked_machine/organics_ration_printer
@@ -100,7 +97,7 @@
 
 /datum/supply_pack/company_import/akh_frontier/deployables/solids_generator
 	item_type = /obj/item/flatpacked_machine/fuel_generator
-	desc = "Contains one flat-packed solids generator, cannot be deployed on station."
+	desc = "Contains one flat-packed fuel generator, cannot be deployed on station."
 
 /datum/supply_pack/company_import/akh_frontier/deployables/rtg
 	item_type = /obj/item/flatpacked_machine/rtg
