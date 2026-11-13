@@ -31,10 +31,11 @@
 /datum/supply_pack/company_import/akh_frontier/deployables_fab/rapid_construction_fabricator/New()
 	. = ..()
 	name = "Rapid Construction Fabricator (RCF)"
-	desc = "Contains one flat-packed rapid construction fabricator, with a charged cell to get it running anywhere."
+	desc = "Contains one flat-packed rapid construction fabricator, with a charged cell to get it running anywhere. Cannot be deployed on station."
 
 /datum/supply_pack/company_import/akh_frontier/deployables_fab/foodricator
 	item_type = /obj/item/flatpacked_machine/organics_ration_printer
+	desc = "Contains one flat-packed organics ration printer, cannot be deployed on station."
 	cost = CARGO_CRATE_VALUE * 2
 
 /datum/supply_pack/company_import/akh_frontier/appliances
@@ -46,28 +47,35 @@
 
 /datum/supply_pack/company_import/akh_frontier/appliances/water_synth
 	item_type = /obj/item/flatpacked_machine/water_synth
+	desc = "Contains one flat-packed water synthesizer, cannot be deployed on station."
 
 /datum/supply_pack/company_import/akh_frontier/appliances/hydro_synth
 	item_type = /obj/item/flatpacked_machine/hydro_synth
+	desc = "Contains one flat-packed hydroponics synthesizer, cannot be deployed on station."
 
 /datum/supply_pack/company_import/akh_frontier/appliances/sustenance_dispenser
 	item_type = /obj/item/flatpacked_machine/sustenance_machine
 	cost = PAYCHECK_COMMAND * 2
+	desc = "Contains one flat-packed sustenance dispenser, cannot be deployed on station."
 
 /datum/supply_pack/company_import/akh_frontier/deployables_misc
 	cost = PAYCHECK_COMMAND
 
 /datum/supply_pack/company_import/akh_frontier/deployables_misc/arc_furnace
 	item_type = /obj/item/flatpacked_machine/arc_furnace
+	desc = "Contains one flat-packed arc furnace, cannot be deployed on station."
 
 /datum/supply_pack/company_import/akh_frontier/deployables_misc/thermomachine
 	item_type = /obj/item/flatpacked_machine/thermomachine
+	desc = "Contains one flat-packed thermomachine, cannot be deployed on station."
 
 /datum/supply_pack/company_import/akh_frontier/deployables_misc/co2_cracker
 	item_type = /obj/item/flatpacked_machine/co2_cracker
+	desc = "Contains one flat-packed CO2 cracker, cannot be deployed on station."
 
 /datum/supply_pack/company_import/akh_frontier/deployables_misc/recycler
 	item_type = /obj/item/flatpacked_machine/recycler
+	desc = "Contains one flat-packed recycler, cannot be deployed on station."
 
 /datum/supply_pack/company_import/akh_frontier/deployables
 	cost = PAYCHECK_COMMAND
@@ -75,19 +83,25 @@
 /datum/supply_pack/company_import/akh_frontier/deployables/solar
 	item_type = /obj/item/flatpacked_machine/solar
 	cost = PAYCHECK_CREW
+	desc = "Contains one flat-packed solar panel, cannot be deployed on station."
 
 /datum/supply_pack/company_import/akh_frontier/deployables/solar_tracker
 	item_type = /obj/item/flatpacked_machine/solar_tracker
+	desc = "Contains one flat-packed solar tracker, cannot be deployed on station."
 	cost = PAYCHECK_CREW
 
 /datum/supply_pack/company_import/akh_frontier/deployables/station_battery
 	item_type = /obj/item/flatpacked_machine/station_battery
+	desc = "Contains one flat-packed station battery, cannot be deployed on station."
 
 /datum/supply_pack/company_import/akh_frontier/deployables/big_station_battery
 	item_type = /obj/item/flatpacked_machine/large_station_battery
+	desc = "Contains one flat-packed large station battery, cannot be deployed on station."
 
 /datum/supply_pack/company_import/akh_frontier/deployables/solids_generator
 	item_type = /obj/item/flatpacked_machine/fuel_generator
+	desc = "Contains one flat-packed solids generator, cannot be deployed on station."
 
 /datum/supply_pack/company_import/akh_frontier/deployables/rtg
 	item_type = /obj/item/flatpacked_machine/rtg
+	desc = "Contains one flat-packed RTG, cannot be deployed on station."
