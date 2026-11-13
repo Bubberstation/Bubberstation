@@ -456,7 +456,7 @@ GLOBAL_LIST_EMPTY(unconscious_appearances)
 	crusher = null
 
 /datum/status_effect/crusher_mark/on_apply()
-	if(owner.mob_size < MOB_SIZE_LARGE || HAS_TRAIT(owner, TRAIT_CRUSHER_MARK_IMMUNE))
+	if(owner.mob_size < MOB_SIZE_LARGE || HAS_TRAIT(owner, TRAIT_CRUSHER_MARK_IMMUNE)) // BUBBER EDIT: adds TRAIT_CRUSHER_MARK_IMMUNE check
 		return FALSE
 
 	marked_underlay = new()
