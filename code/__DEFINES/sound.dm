@@ -170,6 +170,12 @@
 //SKYRAT EDIT END
 
 // BUBBER EDIT ADDITION BEGIN
+#define AMBIENCE_MAINTSROOMVAPOR "maintsroomeighties_ambience"
+#define AMBIENCE_WASTE "waste_ambience"
+#define AMBIENCE_GAMING "gaming_ambience"
+#define AMBIENCE_GAMBLING "gambling_ambience"
+#define AMBIENCE_MAINTSROOMLOBBY "maintsroomlobby_ambience"
+
 #define ANNOUNCER_GRAVGENBLACKOUT "announcer_gravgenblackout"
 #define ANNOUNCER_METEORWARNING "announcer_meteorwarning"
 // BUBBER EDIT ADDITION END
