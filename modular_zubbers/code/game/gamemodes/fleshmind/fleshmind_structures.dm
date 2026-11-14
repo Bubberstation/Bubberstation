@@ -37,6 +37,8 @@
 	COOLDOWN_DECLARE(ability_cooldown)
 	/// Do we have a disabled sprite?
 	var/disabled_sprite = TRUE
+	/// What description is shown to our converted members?
+	var/converted_desc = null
 
 /obj/structure/fleshmind/structure/Initialize(mapload)
 	. = ..()
@@ -58,6 +60,19 @@
 	. = ..()
 	if(trigger_on_attack && (ability_cooldown_time && !COOLDOWN_FINISHED(src, ability_cooldown)))
 		activate_ability()
+
+/obj/structure/fleshmind/structure/examine(mob/user)
+	. = ..()
+	if(user.has_faction(FACTION_FLESHMIND) && converted_desc)
+		. += span_notice("This item could be examined further...")
+
+/obj/structure/fleshmind/structure/examine_more(mob/user)
+	. = ..()
+	if(user.has_faction(FACTION_FLESHMIND) && converted_desc)
+		var/composed_message
+		composed_message = "Being one with the <b>flesh</b> tells you that: <br>"
+		composed_message += converted_desc
+		. += composed_message
 
 /**
  * Calculate trigger turfs - INTERNAL PROC
@@ -265,6 +280,8 @@
 	base_icon_state = "core"
 	density = TRUE
 	max_integrity = 800
+	converted_desc = "This is a Processor Unit of your kernel. Protect it at all costs, it is what provides you life. It can send attackers flying in a pinch, but you shouldn't \
+	let it come to that."
 	/// The controller we create when we are created.
 	var/controller_type = /datum/fleshmind_controller
 	/// Whether the core can attack nearby hostiles as its processing.
@@ -462,6 +479,7 @@
 	icon_state = "antenna"
 	base_icon_state = "antenna"
 	max_integrity = 100
+	converted_desc = "A Babbler sends threatening messages over the radio to crewmembers. You cannot build one unless your kernel has three cores."
 	required_controller_level = CONTROLLER_LEVEL_3 // We don't want the presence announced too soon!
 	automatic_trigger_time_upper = 2 MINUTES
 	automatic_trigger_time_lower = 1.5 MINUTES
@@ -545,6 +563,7 @@
 	icon_state = "head"
 	base_icon_state = "head"
 	max_integrity = 120
+	converted_desc = "A Tormented Head will stun nearby enemies. You cannot build one unless your kernel has two cores."
 	required_controller_level = CONTROLLER_LEVEL_2
 	activation_range = DEFAULT_VIEW_RANGE
 	ability_cooldown_time = 45 SECONDS
@@ -577,6 +596,7 @@
 	icon_state = "orb"
 	base_icon_state = "orb"
 	max_integrity = 100
+	converted_desc = "A Whisperer sends threatening messages psionically to nearby crewmembers. You cannot build one unless your kernel has two cores."
 	required_controller_level = CONTROLLER_LEVEL_2
 	/// Upper timer limit for our ability
 	automatic_trigger_time_upper = 1.5 MINUTES
@@ -631,6 +651,7 @@
 	icon = 'modular_zubbers/icons/fleshmind/fleshmind_machines.dmi'
 	icon_state = "psy"
 	max_integrity = 100
+	converted_desc = "A Psi-Modulator causes nearby crewmembers to suffer from hallucinations. You cannot build one unless your kernel has three cores."
 	base_icon_state = "psy"
 	required_controller_level = CONTROLLER_LEVEL_3
 	activation_range = DEFAULT_VIEW_RANGE
@@ -658,6 +679,7 @@
 	base_icon_state = "spawner"
 	density = FALSE
 	max_integrity = 260
+	converted_desc = "An Assembler creates more machines for your army. Unless you plan on fighting alone, it is a good idea to protect these."
 	activation_range = DEFAULT_VIEW_RANGE
 	ability_cooldown_time = 20 SECONDS
 	automatic_trigger_time_lower = 20 SECONDS
@@ -741,6 +763,7 @@
 	activation_range = DEFAULT_VIEW_RANGE
 	ability_cooldown_time = 3 SECONDS
 	max_integrity = 300
+	converted_desc = "A Spiker shoots neurotoxin at nearby enemies. Useful for if those pesky uninitiated decide to attack your kernel."
 	/// The projectile we fire.
 	var/projectile_type = /obj/projectile/fleshmind_flechette
 
