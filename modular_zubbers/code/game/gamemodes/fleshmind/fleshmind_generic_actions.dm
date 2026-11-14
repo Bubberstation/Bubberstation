@@ -21,8 +21,8 @@
 	var/datum/fleshmind_controller/owner_controller = our_component.our_controller
 
 	var/list/built_radial_menu = list()
-	for(var/obj/iterating_type as anything in possible_structures)
-		var/info_text = span_boldnotice("[initial(iterating_type.desc)]")
+	for(var/obj/structure/fleshmind/structure/iterating_type as anything in possible_structures)
+		var/info_text = span_boldnotice("[initial(iterating_type.converted_desc)]")
 		var/datum/radial_menu_choice/choice = new
 		choice.image = image(icon = initial(iterating_type.icon), icon_state = initial(iterating_type.icon_state))
 		choice.info = info_text
