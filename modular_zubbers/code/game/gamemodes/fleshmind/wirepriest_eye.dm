@@ -32,7 +32,7 @@
 /mob/eye/wire_priest/proc/spawn_core_and_priest(turf/spawn_turf)
 	if(isnull(spawn_turf))
 		spawn_turf = get_turf(src)
-		if(!is_valid_turf(spawn_turf)) // If we got one passed in, we force
+		if(!wireweed_is_valid_turf(spawn_turf)) // If we got one passed in, we force
 			src.balloon_alert(src, "can't spawn here")
 			return
 	var/obj/structure/fleshmind/structure/core/new_core = new(spawn_turf)
@@ -44,16 +44,11 @@
 	mind.transfer_to(priest)
 	priest_datum.on_gain_physical_state()
 	message_admins("[ADMIN_LOOKUPFLW(priest)] has been made into a physical Wire Priest.")
-
-/mob/eye/wire_priest/proc/is_valid_turf(turf/to_check)
-	var/area/check_area = get_area(to_check)
-	if(isgroundlessturf(to_check) || istype(check_area, /area/shuttle) || !can_atmos_pass(to_check))
-		return FALSE
-	return TRUE
+	qdel(src)
 
 /mob/eye/wire_priest/Move(atom/newloc, direct, glide_size_override, update_dir)
 	var/area/check_area = get_area(newloc)
-	if(isgroundlessturf(newloc) || istype(check_area, /area/shuttle)) //if unplaced, can't go on shuttles or groundless tiles
+	if(isgroundlessturf(newloc) || istype(check_area, /area/shuttle))
 		return FALSE
 	forceMove(newloc)
 	return TRUE
