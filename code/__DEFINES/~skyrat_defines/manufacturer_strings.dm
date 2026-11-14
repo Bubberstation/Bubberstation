@@ -12,8 +12,9 @@
 #define COMPANY_SCARBOROUGH "It has <b>[span_orange("Scarborough Arms")]</b> stamped onto it."
 #define COMPANY_INTERDYNE "It has <b>[span_cyan("Interdyne Pharmaceuticals")]</b> stamped onto it."
 
-#define COMPANY_ALLSTAR "It has <b>[span_red("Allstar Lasers Inc.")]</b> stamped onto it."
+#define COMPANY_ALLSTAR "It has a <b>[span_red("five-pointed shooting star")]</b> alongside <b>[span_red("Allstar Lasers Inc.")]</b> laser-etched into it."
 #define COMPANY_MICRON "It has <b>[span_cyan("Micron Control Sys.")]</b> cut into it."
+#define COMPANY_ALLSTAR_NT "It has a <b>[span_red("five-pointed shooting star")]</b> alongside <b>[span_blue("Nanotrasen Armories")] laser-etched into it."
 
 #define COMPANY_SZOT "It has a small <b>[span_engradio("three point crown")]</b> alongside <b>[span_engradio("Szot Dynamica")]</b> cut into it."
 #define COMPANY_TKACH "It has <b>[span_robot("Tkach Design Bureau")]</b> stamped onto it."
