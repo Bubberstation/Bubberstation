@@ -72,7 +72,7 @@ GLOBAL_LIST_INIT(mining_ambience, list(
 	'sound/ambience/ruin/ambiruin5.ogg',
 	'sound/ambience/ruin/ambiruin6.ogg',
 	'sound/ambience/ruin/ambiruin7.ogg',
-	'modular_zubbers/sound/ambiance/bangle-graveyard-of-time.ogg' // Bubber Edit - Credit: Bangle
+	'modular_zubbers/sound/ambience/bangle-graveyard-of-time.ogg' // Bubber Edit - Credit: Bangle
 ))
 
 GLOBAL_LIST_INIT(icemoon_ambience,list(
@@ -86,7 +86,7 @@ GLOBAL_LIST_INIT(icemoon_ambience,list(
 	'sound/ambience/icemoon/ambiicesting3.ogg',
 	'sound/ambience/icemoon/ambiicesting4.ogg',
 	'sound/ambience/icemoon/ambiicesting5.ogg',
-	'modular_zubbers/sound/ambiance/bangle-freezer.ogg', // Bubber Edit - Credit: Bangle
+	'modular_zubbers/sound/ambience/bangle-freezer.ogg', // Bubber Edit - Credit: Bangle
 ))
 
 GLOBAL_LIST_INIT(medical_ambience,list(
