@@ -11,7 +11,7 @@
 	protean.set_species(/datum/species/protean)
 	var/datum/species/protean/p_species = protean.dna.species
 	var/backslot = protean.get_item_by_slot(ITEM_SLOT_BACK)
-	var/obj/item/mod/core/protean/core = p_species.species_modsuit.core
+	var/obj/item/mod/core/standard/protean/core = p_species.species_modsuit.core
 	TEST_ASSERT_EQUAL(p_species.owner, protean, "Protean species did not assign dummy as its owner.")
 	TEST_ASSERT(istype(backslot, /obj/item/mod/control/pre_equipped/protean), "Protean species did not assign /obj/item/mod/control/protean to ITEM_SLOT_BACK. Backslot: [isnull(backslot) ? "Null" : "[backslot]"]")
 	TEST_ASSERT_NOTNULL(p_species.species_modsuit, "Protean species failed to link to modsuit.")

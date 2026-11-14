@@ -10,13 +10,20 @@ import {
   Section,
   Stack,
   Table,
+  Tooltip,
 } from 'tgui-core/components';
+import { formatSiUnit } from 'tgui-core/format';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type ProteanData = {
   metal: number;
   metal_max: number;
+  cell_max_charge: number | null;
+  cell_charge: number;
+  charge_rate: number;
+  can_convert: boolean;
+  actively_converting: boolean;
   low_power: boolean;
   transformation: boolean;
   lock: boolean;
@@ -28,7 +35,7 @@ type ProteanData = {
 
 export const ProteanUI = () => {
   return (
-    <Window width={400} height={300}>
+    <Window width={400} height={320}>
       <Protean />
     </Window>
   );
@@ -40,6 +47,11 @@ export const Protean = () => {
     lock,
     metal,
     metal_max,
+    cell_charge,
+    cell_max_charge,
+    charge_rate,
+    can_convert,
+    actively_converting,
     icon,
     icon_state,
     low_power,
@@ -66,16 +78,58 @@ export const Protean = () => {
       <Divider />
       <LabeledList>
         <LabeledList.Item label="Metal Storage">
-          <ProgressBar
-            value={metal / metal_max}
-            ranges={{
-              good: [0.5, Infinity],
-              average: [0.2, 0.5],
-              bad: [-Infinity, 0.2],
-            }}
-          >
-            <AnimatedNumber value={Number(metal?.toFixed(2))} />
-          </ProgressBar>
+          <Stack>
+            <Stack.Item width="85%">
+              <ProgressBar
+                value={metal / metal_max}
+                style={{
+                  textShadow: '1px 1px 0 black',
+                }}
+                ranges={{
+                  teal: [1, Infinity],
+                  good: [0.5, 1],
+                  average: [0.2, 0.5],
+                  bad: [-Infinity, 0.2],
+                }}
+              >
+                <AnimatedNumber value={Number(metal?.toFixed(2))} />
+              </ProgressBar>
+            </Stack.Item>
+            <Stack.Item right>
+              <Button
+                color={actively_converting ? 'green' : 'default'}
+                icon="fa-charging-station"
+                tooltip="Convert Metal into Suit Charge"
+                onClick={() => act('convert')}
+                disabled={!can_convert}
+              />
+            </Stack.Item>
+          </Stack>
+        </LabeledList.Item>
+        <LabeledList.Item label="Suit Power">
+          <Stack>
+            <Stack.Item width="85%">
+              <ProgressBar
+                value={cell_max_charge ? cell_charge / cell_max_charge : 0}
+                style={{
+                  textShadow: '1px 1px 0 black',
+                }}
+                ranges={{
+                  white: [0, 0],
+                  teal: [0, Infinity],
+                }}
+              >
+                {cell_max_charge
+                  ? `${formatSiUnit(cell_charge, 0, 'J')} / ${formatSiUnit(cell_max_charge, 0, 'J')}`
+                  : 'Power Cell Missing'}
+              </ProgressBar>
+            </Stack.Item>
+            <Stack.Item textColor="grey" fontSize={0.9} right>
+              <Tooltip content="Efficiency rate of metal to power conversion. This can be upgraded with better cells">
+                <b>{charge_rate ? charge_rate / 200 : 0}%</b>
+              </Tooltip>
+            </Stack.Item>
+          </Stack>
         </LabeledList.Item>
       </LabeledList>
       <Divider />

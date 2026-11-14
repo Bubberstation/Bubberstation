@@ -179,7 +179,7 @@
 
 /obj/item/remote_controller/ui_data(mob/user)
 	var/list/data = list()
-	var/obj/item/mod/core/protean/core = module.mod.core
+	var/obj/item/mod/core/standard/protean/core = module.mod.core
 	if(istype(core)) // Checks if it's connected to a protean core
 		data["protean"] = !!module.mod.core
 		data += core.linked_species.ui_data()
@@ -208,7 +208,7 @@
 
 /obj/item/remote_controller/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
-	var/obj/item/mod/core/protean/core = module.mod.core
+	var/obj/item/mod/core/standard/protean/core = module.mod.core
 	if(istype(core))
 		core.linked_species?.ui_act(action, params, ui, state)
 	return module?.mod?.ui_act(action, params, ui, state)
