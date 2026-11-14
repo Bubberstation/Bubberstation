@@ -129,7 +129,7 @@
 
 	owner.balloon_alert(owner, "feeding off [feed_target]...")
 	owner.face_atom(feed_target)
-	if(!do_after(owner, get_feed_start_time(), feed_target, show_progress = FALSE))
+	if(!do_after(owner, get_feed_start_time(), feed_target, cog_icon = null))
 		owner.balloon_alert(owner, "feed stopped")
 		target_ref = null
 		return FALSE
@@ -145,7 +145,7 @@
 	else
 		aggressive_feed = FALSE
 		// Only people who AREN'T the target will notice this action.
-		var/dead_message = feed_target.stat != DEAD ? " <i>[feed_target.p_they(TRUE)] looks dazed, and will not notice this.</i>" : ""
+		var/dead_message = feed_target.stat != DEAD ? " <i>[feed_target.p_they()] look[feed_target.p_s()] dazed, and will not notice this.</i>" : ""
 		owner.visible_message(
 			span_warning("[owner] puts [feed_target]'s wrist up to [owner.p_their()] mouth."),
 			span_notice("You slip your fangs into [feed_target]'s wrist.[dead_message]"),
@@ -229,13 +229,13 @@
 
 	if(!IS_BLOODSUCKER(feed_target))
 		if(feed_target.blood_volume <= BLOOD_VOLUME_BAD && warning_target_bloodvol > BLOOD_VOLUME_BAD)
-			owner.balloon_alert(owner, "your victim's blood is fatally low!")
+			owner.balloon_alert(owner, "victim's blood fatally low!")
 		else if(feed_target.blood_volume <= BLOOD_VOLUME_OKAY && warning_target_bloodvol > BLOOD_VOLUME_OKAY)
-			owner.balloon_alert(owner, "your victim's blood is dangerously low.")
+			owner.balloon_alert(owner, "victim's blood dangerously low.")
 		else if(feed_target.blood_volume <= BLOOD_VOLUME_SAFE && warning_target_bloodvol > BLOOD_VOLUME_SAFE)
-			owner.balloon_alert(owner, "your victim's blood is at an unsafe level.")
+			owner.balloon_alert(owner, "victim's blood at an unsafe level.")
 		else if(feed_target.blood_volume <= BLOOD_VOLUME_SAFE && owner.pulling != feed_target)
-			owner.balloon_alert(owner, "you cannot drink more without first getting a better grip!.")
+			owner.balloon_alert(owner, "cannot drink more without first getting a better grip!.")
 			DeactivatePower()
 			return
 		warning_target_bloodvol = feed_target.blood_volume
@@ -328,11 +328,11 @@
 	if(safe_set_target(owner.pulledby))
 		return TRUE
 	if(bloodsuckerdatum_power?.is_frenzied())
-		owner.balloon_alert(owner, "beast active! must grab someone to feed!")
+		owner.balloon_alert(owner, "must grab someone to feed!")
 		return FALSE
 	var/mob/living/carbon/carbon = owner
 	if(iscarbon(carbon) && carbon.handcuffed)
-		owner.balloon_alert(owner, "you cannot stealthily feed while handcuffed!")
+		owner.balloon_alert(owner, "cannot stealthily feed while handcuffed!")
 		return FALSE
 	var/list/close_living_mobs = list()
 	var/list/close_dead_mobs = list()
@@ -438,7 +438,7 @@
 	if (!COOLDOWN_FINISHED(src, feed_movement_notify_cooldown))
 		return
 	COOLDOWN_START(src, feed_movement_notify_cooldown, 3 SECONDS)
-	owner.balloon_alert(owner, "you cannot move while feeding! Click the power to stop.")
+	owner.balloon_alert(owner, "cannot move while feeding. Click the power to stop.")
 
 /datum/action/cooldown/bloodsucker/feed/proc/modify_blood_drunk(amount = 0)
 	for(var/datum/weakref/weakref as anything in targets_and_blood)
