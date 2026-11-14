@@ -1,5 +1,5 @@
 /datum/ai_controller/basic_controller/fleshmind/tyrant
-	behavior_tree_json = "modular_zubbers/code/game/gamemodes/fleshmind/tyrant/tyrant.bt.json"
+	behavior_tree_json = "modular_zubbers/code/game/gamemodes/fleshmind/fleshmind_mobs/tyrant/tyrant.bt.json"
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_BASIC_MOB_SPEAK_LINES = null,
