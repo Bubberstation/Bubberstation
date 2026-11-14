@@ -1,5 +1,6 @@
 #define CHOICE_SUPERMATTER "Supermatter Crystal"
 #define CHOICE_RBMK "RB-MK2 Reactor"
+#define CHOICE_EELS "Bioelectric Generator"
 
 /obj/machinery/power/supermatter_crystal/Initialize(mapload)
 
@@ -43,16 +44,35 @@
 
 	var/deployment_timer_id
 
+	var/deploy_default_choice_after = 5 MINUTES
+	var/default_choice = CHOICE_EELS
+
 /obj/machinery/engine_choice/Initialize(mapload)
 	. = ..()
 	radio = new(src)
 	radio.keyslot = new radio_key
 	radio.set_listening(FALSE)
 	radio.recalculateChannels()
+	RegisterSignal(SSticker, COMSIG_TICKER_ROUND_STARTING, PROC_REF(on_round_start))
+
+/obj/machinery/engine_choice/proc/on_round_start()
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/machinery/engine_choice, choose_default_choice)), deploy_default_choice_after)
 
 /obj/machinery/engine_choice/Destroy()
 	. = ..()
 	QDEL_NULL(radio)
+
+/obj/machinery/engine_choice/proc/choose_default_choice()
+	message_admins("[src] has defaulted to engine type \"[default_choice]\" for the shift [ADMIN_VERBOSEJMP(center_turf)]")
+	log_game("[src] has defaulted to engine type \"[default_choice]\" for the shift [AREACOORD(center_turf)]")
+
+	radio.talk_into(
+		src,
+		"No engine selected -- defaulting to \"[choice]\"!",
+		RADIO_CHANNEL_COMMON
+	)
+
+	do_deploy(get_turf(src), default_choice)
 
 //Helper interaction for if we can interact with this (called before and after menu selection).
 /obj/machinery/engine_choice/proc/can_use(mob/user)
@@ -163,6 +183,10 @@
 			deploy_supermatter(center_turf)
 		if(CHOICE_RBMK)
 			deploy_rbmk(center_turf)
+		if(CHOICE_EELS)
+			merge_eels(center_turf)
+		else
+			stack_trace("[src] had an invalid engine choice [choice]!")
 
 //RB-MK2
 /obj/machinery/engine_choice/proc/deploy_rbmk(turf/center_turf)
@@ -180,6 +204,10 @@
 /obj/machinery/engine_choice/proc/deploy_supermatter(turf/center_turf)
 	new /obj/machinery/power/supermatter_crystal/engine(center_turf)
 
+//Eels Engine
+// This probably needs to be nerfed -- or replaced, if there exists some other power source that can be trivially spawned in and doesn't need upkeep
+/obj/machinery/engine_choice/proc/merge_eels(turf/center_turf)
+	var/obj/fishtank = new /obj/structure/aquarium/bioelec_gen/prefilled/engine_ready(center_turf)
 
 #undef CHOICE_SUPERMATTER
 #undef CHOICE_RBMK
