@@ -8,7 +8,7 @@
 	siemens_coeff = 1.5 // Electricty messes you up.
 	payday_modifier = 1.0 // the normal amount
 
-	exotic_bloodtype = BLOOD_TYPE_NANITE_SLURRY
+	exotic_bloodtype = /datum/blood_type/nanite_slurry
 	digitigrade_customization = DIGITIGRADE_OPTIONAL
 
 	meat = /obj/item/stack/sheet/iron
