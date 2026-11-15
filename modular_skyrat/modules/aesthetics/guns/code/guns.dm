@@ -21,7 +21,6 @@
 /obj/item/gun/ballistic/shotgun/riot
 	name = "woodstock shotgun"
 	fire_delay = 6 //We slighly bump this up because thats a good idea
-	sawn_desc = "Come with me if you want to live."
 
 /obj/item/gun/ballistic/shotgun/automatic/combat
 	name = "\improper Peacekeeper combat shotgun"
