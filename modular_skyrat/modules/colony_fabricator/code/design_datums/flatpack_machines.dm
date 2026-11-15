@@ -31,7 +31,7 @@
 // Lets the colony lathe make more colony lathes but at very hihg cost, for fun
 
 /datum/design/flatpack_colony_fabricator
-	name = "Flat-Packed Colony Fabricator"
+	name = "Flat-Packed Rapid Construction Fabricator (RCF)"
 	desc = "A deployable fabricator capable of producing other flat-packed machines and other special equipment tailored for \
 		rapidly constructing functional structures given resources and power. While it cannot be upgraded, it can be repacked \
 		and moved to any location you see fit."
@@ -158,7 +158,7 @@
 // Buildable RTG that is quite radioactive
 
 /datum/design/flatpack_rtg
-	name = "Flat-Packed Radioisotope Thermoelectric Generator"
+	name = "Flat-Packed Radioisotope Thermoelectric Generator (RTG)"
 	desc = "A deployable radioisotope generator capable of producing a practically free trickle of power. \
 		Free if you can tolerate the radiation that the machine makes while deployed, that is."
 	build_type = COLONY_FABRICATOR

@@ -87,7 +87,7 @@
 	log_combat(parent_mob, null, "deconverted", "deconverted message", "[parent_mob] has been deconverted from the fleshmind")
 	if(our_controller && parent_mob.client)
 		LAZYREMOVE(our_controller.infected_crew, parent_mob)
-	for(var/datum/antagonist/wire_priest/priest as anything in parent_mob.mind.antag_datums)
+	for(var/datum/antagonist/wire_priest/priest in parent_mob.mind.antag_datums)
 		qdel(priest)
 
 	our_controller = null

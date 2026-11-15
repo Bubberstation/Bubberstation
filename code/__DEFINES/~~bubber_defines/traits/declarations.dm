@@ -79,6 +79,8 @@
 #define TRAIT_EMAGGING_HAND "emagging_hand"
 /// Used by the irreality collar - prevents use of rituals and most spells from Acolytes.
 #define TRAIT_MANSUS_INHIBITION "mansus_inhibition"
+/// Given by wearing a heretic focus - allows Acolytes to cast forbidden school spells.
+#define TRAIT_ALLOW_HERETIC_CASTING "allow_heretic_casting"
 
 /// Trait that gives your brain traumas more resilance
 #define TRAIT_RESILIENT_TRAUMAS "trait_resilient_traumas"

@@ -1089,3 +1089,14 @@
 	. = proxy.attack(target, user)
 	playsound(user, 'modular_skyrat/modules/emotes/sound/emotes/dwoop.ogg', 50, TRUE)
 	qdel(proxy)
+
+// Plush for Sharkoink
+/obj/item/toy/plush/myra
+	name = "\improper Noble dragon-shark plushie"
+	desc = "Here to relieve you of your worries <b>and</b> your job!"
+	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
+	icon_state = "myra" // sprited by xPokee
+	attack_verb_simple = list("attack", "lay down the law to", "prbts!")
+	attack_verb_continuous = list("attacks", "lays down the law to", "prbts!")
+	squeak_override = list('modular_zubbers/code/modules/emotes/sound/voice/prbt.ogg' = 1)
+	gender = FEMALE

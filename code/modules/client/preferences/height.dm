@@ -4,6 +4,7 @@
 	savefile_key = "character_height"
 	savefile_identifier = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	priority = PREFERENCE_PRORITY_LATE_BODY_TYPE // BUBBER EDIT - Apply height later
 	can_randomize = FALSE
 	// BUBBER EDIT BEGIN - Removes reservations
 	var/list/height_to_actual = list(

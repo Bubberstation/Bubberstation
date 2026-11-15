@@ -17,6 +17,8 @@
 		/datum/design/portable_gas_pump,
 		/datum/design/portable_gas_scrubber,
 		/datum/design/survival_knife, // I just don't want to make a whole new node for this one sorry
+		/datum/design/colony_soup_pot,
+		/datum/design/frontier_radio_headset,
 		/datum/design/water_synthesizer,
 		/datum/design/hydro_synthesizer,
 		/datum/design/frontier_sustenance_dispenser,

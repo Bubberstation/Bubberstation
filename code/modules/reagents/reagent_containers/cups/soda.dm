@@ -91,7 +91,7 @@
 			span_notice("You crush the can of [src] on [target]'s forehead."),
 		)
 	playsound(src, 'sound/items/weapons/pierce.ogg', rand(10, 50), TRUE)
-	var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(target.drop_location())
+	var/obj/item/trash/can/crushed_can = new trash_type(target.drop_location()) // BUBBER EDIT - ALLOW MORE TRASH TYPES
 	crushed_can.icon_state = icon_state
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
@@ -102,7 +102,7 @@
 		return
 	if(!proj.damage || proj.damage_type != BRUTE)
 		return
-	var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(loc)
+	var/obj/item/trash/can/crushed_can = new trash_type(loc) // BUBBER EDIT - ALLOW MORE TRASH TYPES
 	crushed_can.icon_state = icon_state
 	var/atom/throw_target = get_edge_target_turf(crushed_can, pick(GLOB.alldirs))
 	crushed_can.throw_at(throw_target, rand(1,2), 7)
@@ -275,7 +275,7 @@
 
 	burst_soda(hit_atom, hide_message = TRUE)
 	visible_message(span_danger("[src]'s impact with [hit_atom] causes it to rupture, spilling everywhere!"))
-	var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(loc)
+	var/obj/item/trash/can/crushed_can = new trash_type(loc) // BUBBER EDIT - ALLOW MORE TRASH TYPES
 	crushed_can.icon_state = icon_state
 	moveToNullspace()
 	QDEL_IN(src, 1 SECONDS) // give it a second so it can still be logged for the throw impact

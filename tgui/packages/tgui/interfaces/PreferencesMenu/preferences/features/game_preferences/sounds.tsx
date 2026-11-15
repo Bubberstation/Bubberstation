@@ -31,7 +31,9 @@ export const sound_announcements: FeatureToggle = {
 export const sound_ghost_poll_prompt: FeatureChoiced = {
   name: 'Ghost poll prompt',
   category: 'SOUND',
-  description: 'Choose which sound prompt to play on getting ghost polls.',
+  // BUBBER EDIT CHANGE - ANTAG PROMPT - ORIGINAL : description: 'Choose which sound prompt to play on getting ghost polls.',
+  description:
+    'Choose which sound prompt to play on getting ghost polls. Disabled also hides their chat message.',
   component: FeatureDropdownInput,
 };
 
@@ -87,7 +89,8 @@ export const sound_tts_radio: FeatureChoiced = {
 export const sound_tts_hear_self_radio: FeatureToggle = {
   name: 'Enable TTS Hear Self Over Radio',
   category: 'SOUND',
-  description: 'When enabled, hear yourself over the radio when Text to Speech and TTS Over Radio is enabled.',
+  description:
+    'When enabled, hear yourself over the radio when Text to Speech and TTS Over Radio is enabled.',
   component: CheckboxInput,
 };
 
@@ -101,7 +104,8 @@ export const sound_tts_volume: Feature<number> = {
 export const sound_tts_radio_volume: Feature<number> = {
   name: 'TTS Radio Volume',
   category: 'SOUND',
-  description: 'The volume that radio text-to-speech sounds will play at. This is independent of regular TTS volume.',
+  description:
+    'The volume that radio text-to-speech sounds will play at. This is independent of regular TTS volume.',
   component: FeatureSliderInput,
 };
 
@@ -138,7 +142,8 @@ export const sound_achievement: FeatureChoiced = {
 export const sound_radio_noise: Feature<number> = {
   name: 'Radio sound volume',
   category: 'SOUND',
-  description: 'Volume of the bloops that play when a radio message is said or received.',
+  description:
+    'Volume of the bloops that play when a radio message is said or received.',
   component: FeatureSliderInput,
 };
 

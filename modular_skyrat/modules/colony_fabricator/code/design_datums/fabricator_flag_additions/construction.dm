@@ -87,3 +87,15 @@
 /datum/design/alloy/plasmarglass/New()
 	. = ..()
 	build_type |= COLONY_FABRICATOR
+
+/datum/design/alloy/titaniumglass/New()
+	. = ..()
+	build_type |= COLONY_FABRICATOR
+
+/datum/design/alloy/plastitaniumglass/New()
+	. = ..()
+	build_type |= COLONY_FABRICATOR
+
+/datum/design/alloy/plastitanium/New()
+	. = ..()
+	build_type |= COLONY_FABRICATOR
