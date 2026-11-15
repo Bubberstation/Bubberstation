@@ -143,8 +143,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_R_WIDE "wide_borg"
 /// 32x64 skins
 #define TRAIT_R_TALL "tall_borg"
-/// Any model big enough to reject the grower upgrade. (Any 64x64 or larger model)
+/// 64x64 skins
 #define TRAIT_R_BIG "big_borg"
+/// Any model that cannot use a borg expander
+#define TRAIT_R_EXPANDER_BLOCKED "expander_blocked"
 /// Any model small enough to reject the shrinker upgrade.
 #define TRAIT_R_SMALL "small_chassis"
 /// Any model that has a custom front panel
@@ -153,8 +155,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_R_HAS_UNIQUE_RESTING_OVERLAY "has_unique_resting_overlay"
 #define TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS "has_unique_resting_light"
 #define TRAIT_R_RESTING_UNIQUEPANEL "resting_unique_openpanel"
-/// Any model that cannot use a borg expander
-#define TRAIT_R_EXPANDER_BLOCKED "expander_blocked"
 
 // Lewd traits
 #define TRAIT_MASOCHISM "masochism"
