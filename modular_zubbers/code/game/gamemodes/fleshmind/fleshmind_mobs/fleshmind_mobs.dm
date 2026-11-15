@@ -15,6 +15,9 @@
 	armour_penetration = 10
 	combat_mode = TRUE
 	pass_flags = parent_type::pass_flags | PASSBLOB
+	unsuitable_atmos_damage = 0
+	minimum_survivable_temperature = 0
+	maximum_survivable_temperature = 1000
 	/// A link to our controller
 	var/datum/fleshmind_controller/our_controller
 	/// If we have been converted from another mob, here is our reference.
@@ -946,6 +949,7 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/neurotoxin
 	hitsound = 'modular_skyrat/modules/black_mesa/sound/mobs/bullsquid/splat1.ogg'
 	hitsound_wall = 'modular_skyrat/modules/black_mesa/sound/mobs/bullsquid/splat1.ogg'
+	faction = list(FACTION_FLESHMIND)
 
 /obj/projectile/treader/on_hit(atom/target, blocked, pierce_hit)
 	new /obj/effect/decal/cleanable/greenglow(target.loc)

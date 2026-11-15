@@ -17,15 +17,23 @@
 	var/datum/fleshmind_controller/brain_jack
 	var/initial_pass_flags
 
-/datum/antagonist/wire_priest/on_gain()
+/datum/antagonist/wire_priest/apply_innate_effects(mob/living/mob_override)
 	. = ..()
+	if(isliving(owner))
+		on_gain_physical_state()
+
+/datum/antagonist/wire_priest/remove_innate_effects(mob/living/mob_override)
+	if(initial_pass_flags)
+		owner?.current.pass_flags = initial_pass_flags
+	. = ..()
+
+/datum/antagonist/wire_priest/proc/on_gain_physical_state()
 	owner.current.AddComponent(/datum/component/human_corruption, brain_jack)
 	equip_wire_priest()
 	initial_pass_flags = owner.current.pass_flags
 	owner.current.pass_flags = owner.current.pass_flags | PASSBLOB
 
-/datum/antagonist/wire_priest/Destroy()
-	owner?.current.pass_flags = initial_pass_flags
+/datum/antagonist/wire_priest/on_removal()
 	. = ..()
 	brain_jack = null
 
