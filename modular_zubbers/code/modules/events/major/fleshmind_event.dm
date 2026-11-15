@@ -37,8 +37,6 @@
 		CRASH("Fleshmind failed to pick a valid turf!")
 
 	new /obj/structure/fleshmind/structure/core(spawn_turf)
-	//var/datum/round_event_control/event = locate(/datum/round_event_control/wire_priest) in SSevents.control
-	//event.run_event(admin_forced = TRUE)
 
 /proc/wireweed_get_valid_loc()
 	var/list/priority_areas = list(
@@ -84,19 +82,24 @@
 		var/list/candidate_turfs = get_area_turfs(candidate_area)
 		for(var/turf_attempt in 1 to 8)
 			var/turf/turf_to_try = pick(candidate_turfs)
-			if(wireweed_is_valid_turf(turf_to_try))
+			if(wireweed_is_valid_turf(turf_to_try, check_proximity = TRUE))
 				return turf_to_try
 			candidate_turfs -= turf_to_try
 	return null
 
 /// Copied from line 150 of code/modules/antagonists/blob/overmind.dm
-/proc/wireweed_is_valid_turf(turf/tile)
+/proc/wireweed_is_valid_turf(turf/tile, check_proximity = FALSE)
 	if(isnull(tile))
 		return FALSE
 	var/area/area = get_area(tile)
 	if((area && !(area.area_flags & BLOBS_ALLOWED)) || !is_station_level(tile.z) || isgroundlessturf(tile) || tile.density)
 		return FALSE
-	if(tile.surrounding_has_player(16))
+	for(var/obj/to_check in tile.contents)
+		if(to_check.density)
+			return FALSE
+		if(to_check.pass_flags_self & (PASSGRILLE | PASSWINDOW | PASSDOORS))
+			return FALSE
+	if(check_proximity && tile.surrounding_has_player(16))
 		return FALSE
 	return TRUE
 
