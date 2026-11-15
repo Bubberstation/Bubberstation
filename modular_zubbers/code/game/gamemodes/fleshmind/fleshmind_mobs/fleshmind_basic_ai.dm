@@ -1,7 +1,7 @@
 #define MECHIVER_CORPSE_RANGE 10
 
 /datum/ai_controller/basic_controller/fleshmind
-	behavior_tree_json = "modular_zubbers/code/game/gamemodes/fleshmind/fleshmind.bt.json"
+	behavior_tree_json = "modular_zubbers/code/game/gamemodes/fleshmind/fleshmind_mobs/fleshmind.bt.json"
 	ai_movement = /datum/ai_movement/jps
 
 	blackboard = list(
@@ -14,13 +14,13 @@
 	)
 
 /datum/ai_controller/basic_controller/fleshmind/fleshmind_melee
-	behavior_tree_json = "modular_zubbers/code/game/gamemodes/fleshmind/fleshmind_melee.bt.json"
+	behavior_tree_json = "modular_zubbers/code/game/gamemodes/fleshmind/fleshmind_mobs/fleshmind_melee.bt.json"
 
 /datum/ai_controller/basic_controller/fleshmind/fleshmind_ranged
-	behavior_tree_json = "modular_zubbers/code/game/gamemodes/fleshmind/fleshmind_ranged.bt.json"
+	behavior_tree_json = "modular_zubbers/code/game/gamemodes/fleshmind/fleshmind_mobs/fleshmind_ranged.bt.json"
 
 /datum/ai_controller/basic_controller/fleshmind/treader
-	behavior_tree_json = "modular_zubbers/code/game/gamemodes/fleshmind/treader.bt.json"
+	behavior_tree_json = "modular_zubbers/code/game/gamemodes/fleshmind/fleshmind_mobs/treader.bt.json"
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_BASIC_MOB_SPEAK_LINES = null,
@@ -46,7 +46,7 @@
 /// Attempts to avoid alive players, running away from them, attacking only if cornered
 /// Suicide dashes toward a hardcrit or dead player with the goal to convert them
 /datum/ai_controller/basic_controller/fleshmind/mechiver
-	behavior_tree_json = "modular_zubbers/code/game/gamemodes/fleshmind/mechiver.bt.json"
+	behavior_tree_json = "modular_zubbers/code/game/gamemodes/fleshmind/fleshmind_mobs/mechiver.bt.json"
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_MECHIVER_TARGETING_STRAT = /datum/targeting_strategy/basic/mechiver,

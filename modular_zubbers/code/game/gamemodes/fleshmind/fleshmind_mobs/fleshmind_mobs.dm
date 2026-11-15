@@ -15,6 +15,9 @@
 	armour_penetration = 10
 	combat_mode = TRUE
 	pass_flags = parent_type::pass_flags | PASSBLOB
+	unsuitable_atmos_damage = 0
+	minimum_survivable_temperature = 0
+	maximum_survivable_temperature = 1000
 	/// A link to our controller
 	var/datum/fleshmind_controller/our_controller
 	/// If we have been converted from another mob, here is our reference.
