@@ -1,5 +1,5 @@
 /datum/techweb_node/construction/New()
 	unlocked_designs += list(
-		/datum/design/rapid_lighting_device,
+		/datum/design/rld_mini,
 	)
 	return ..()
