@@ -206,10 +206,20 @@
 		/obj/item/gun/energy/e_gun/stun/tacticool = 3,
 	)
 
+/datum/supply_pack/security/armory/woodstocks
+	name = "Woodstock Shotgun Crate"
+	desc = "Three woodstock pump-action shotguns to restock your armories with."
+	cost = CARGO_CRATE_VALUE * 10
+	contains = list(
+		/obj/item/gun/ballistic/shotgun/riot,
+		/obj/item/gun/ballistic/shotgun/riot,
+		/obj/item/gun/ballistic/shotgun/riot,
+	)
+
 /datum/supply_pack/security/armory/peacekeepers
 	name = "Renoster Shotgun Crate"
-	desc = "Three Renoster pump-action shotguns to restock your armories with."
-	cost = CARGO_CRATE_VALUE * 10
+	desc = "Three Renoster pump-action shotguns to add to your armory."
+	cost = CARGO_CRATE_VALUE * 18
 	contains = list(
 		/obj/item/gun/ballistic/shotgun/riot/sol,
 		/obj/item/gun/ballistic/shotgun/riot/sol,

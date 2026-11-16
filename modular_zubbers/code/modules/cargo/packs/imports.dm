@@ -43,3 +43,16 @@
 	access_view = ACCESS_WEAPONS
 	crate_type = /obj/structure/closet/crate/secure/plasma
 	crate_name = "relic rifle crate"
+
+/datum/supply_pack/imports/riflecrate
+	name = "Lanca Battle Rifle Single-Order"
+	desc = "Need some more reliable firepower than the standard Sakhno? Look no further than these bad boys. Featuring a more modern semi-automatic action, these bad babies will be sure to make anyone regret messing with you. Don't mind the fees..."
+	cost = 2500
+	contains = list(
+		/obj/item/gun/ballistic/automatic/lanca,
+		/obj/item/ammo_box/magazine/lanca,
+		/obj/item/ammo_box/magazine/lanca,
+	)
+	crate_type = /obj/structure/closet/crate/secure/weapon
+	crate_name = "Battle Rifle Crate"
+	access_view = ACCESS_WEAPONS
