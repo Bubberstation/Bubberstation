@@ -213,8 +213,8 @@
 				/obj/item/clothing/suit/greyscale/sweater = 5,
 				/obj/item/clothing/suit/greyscale/sweater/bow = 5,
 				/obj/item/clothing/suit/greyscale/furred_trenchcoat = 5,
-				/obj/item/clothing/suit/jacket/frontier_colonist = 5,
-				/obj/item/clothing/suit/jacket/frontier_colonist/short = 5,
+				/obj/item/clothing/suit/jacket/frontier_colonist/loadout = 5, //loadout versions because no armor
+				/obj/item/clothing/suit/jacket/frontier_colonist/short/loadout = 5, //loadout versions because no armor
 			),
 		),
 
