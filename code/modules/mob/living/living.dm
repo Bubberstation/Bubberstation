@@ -1070,7 +1070,7 @@ GAME_VERB_PROC(/mob/living, mob_sleep, "Sleep", "IC") // BUBBER EDIT - Make slee
 /// (We don't want to revive then to have them instantly die again)
 /mob/living/proc/can_be_revived()
 	//BUBBER ADDITION START - DNR
-	if(HAS_TRAIT(src, TRAIT_DNR))
+	if(HAS_TRAIT(src, TRAIT_DNR) && !HAS_TRAIT(src, TRAIT_GHOSTROLE_ON_REVIVE) )
 		return FALSE
 	//BUBBER ADDITION END
 	if(HAS_TRAIT(src, TRAIT_NODEATH))
