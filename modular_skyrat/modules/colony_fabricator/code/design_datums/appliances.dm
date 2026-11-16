@@ -36,7 +36,7 @@
 /// Wall mountable multi cell charger
 /datum/design/wall_mounted_multi_charger
 	name = "Mounted Multi-Cell Charging Rack"
-	build_type = COLONY_FABRICATOR
+	build_type = COLONY_FABRICATOR | PROTOLATHE
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
 		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 1,
@@ -44,9 +44,11 @@
 	build_path = /obj/item/wallframe/cell_charger_multi
 	category = list(
 		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING,
 		FABRICATOR_CATEGORY_APPLIANCES + FABRICATOR_SUBCATEGORY_POWER,
 	)
 	construction_time = 15 SECONDS
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
 
 /// Portable scrubber and pumps for all your construction atmospherics needs
 /datum/design/portable_gas_pump
@@ -82,7 +84,7 @@
 /// Space heater, but it mounts on walls
 /datum/design/wall_mounted_space_heater
 	name = "Mounted Heater"
-	build_type = COLONY_FABRICATOR
+	build_type = COLONY_FABRICATOR | PROTOLATHE
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 4,
 		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 1,
@@ -91,8 +93,10 @@
 	build_path = /obj/item/wallframe/wall_heater
 	category = list(
 		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING,
 		FABRICATOR_CATEGORY_APPLIANCES + FABRICATOR_SUBCATEGORY_ATMOS,
 	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
 	construction_time = 15 SECONDS
 
 /// Plumbable chem machine that makes nothing but water
