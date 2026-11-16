@@ -13,8 +13,8 @@
 	pass_flags = PASSBLOB
 	faction = list(ROLE_WIRE_PRIEST)
 	lighting_cutoff_red = 0
-	lighting_cutoff_green = 5
-	lighting_cutoff_blue = 10
+	lighting_cutoff_green = 40
+	lighting_cutoff_blue = 30
 	hud_type = /datum/hud/wire_eye
 	// When you get forced to place the core, even when you don't like it.
 	var/autoplace_max_time = WIREPRIEST_EYE_FORCE_SPAWN_TIME
