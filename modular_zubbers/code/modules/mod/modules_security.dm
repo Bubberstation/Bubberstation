@@ -22,3 +22,8 @@
 	else
 		overlay_state_inactive = "[initial(overlay_state_inactive)]"
 	return ..()
+
+/obj/item/mod/module/shooting_assistant/ert
+	complexity = 0
+	removable = FALSE
+	desc = "An improved version of the uncommon BEPIS-technology funded Shooting Assistant. These never made it to mass production to market to TGMC or other external forces, but found a home in the Nanotrasen Emergency Response Corps' gear."
