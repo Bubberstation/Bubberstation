@@ -220,7 +220,7 @@
 	REMOVE_TRAIT(ghoul, TRAIT_MUTE, MAGIC_TRAIT)
 // BUBBER EDIT START - remove sign language when ghoul is deconverted but keep it if the victim had it before
 	var/datum/component/sign_language/sign_language = ghoul.GetComponent(/datum/component/sign_language)
-	if (sign_language && WEAKREF(sign_language) in ghoul_sign_language_components)
+	if (sign_language && (WEAKREF(sign_language) in ghoul_sign_language_components))
 		LAZYREMOVE(ghoul_sign_language_components, WEAKREF(sign_language))
 		qdel(sign_language)
 // BUBBER EDIT END
