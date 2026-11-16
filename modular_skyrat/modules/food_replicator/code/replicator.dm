@@ -17,3 +17,17 @@
 /obj/item/circuitboard/machine/biogenerator/food_replicator
 	name = "Colonial Supply Core"
 	build_path = /obj/machinery/biogenerator/food_replicator
+
+/obj/item/circuitboard/machine/biogenerator/food_replicator/completion_requirements(obj/structure/frame/install_frame, mob/living/user)
+	var/area/build_area = get_area(install_frame)
+	if(build_area.type in GLOB.the_station_areas)
+		install_frame.balloon_alert(user, "can't build on station!")
+		return FALSE
+	return ..()
+
+//stupid code that prevents bypassing via flatpacker
+/obj/machinery/flatpacker/base_item_interaction(mob/living/user, obj/item/attacking_item, list/modifiers)
+	if(istype(attacking_item, /obj/item/circuitboard/machine/biogenerator/food_replicator))
+		balloon_alert(user, "can't flatpack!")
+		return ITEM_INTERACT_BLOCKING
+	return ..()

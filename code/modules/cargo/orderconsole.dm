@@ -289,7 +289,7 @@
 	var/list/working_list = SSshuttle.shopping_list
 	var/reason = ""
 	var/datum/bank_account/personal_department
-	if(requestonly && !self_paid && !(pack.order_flags & ORDER_GOODY))
+	if(requestonly && !self_paid && (!(pack.order_flags & ORDER_GOODY) || pack.allow_non_private_purchase)) // BUBBER EDIT - imports go through the request list too, not straight onto cargo's budget
 		working_list = SSshuttle.request_list
 		reason = tgui_input_text(user, "Reason", name, max_length = MAX_MESSAGE_LEN)
 		if(isnull(reason))

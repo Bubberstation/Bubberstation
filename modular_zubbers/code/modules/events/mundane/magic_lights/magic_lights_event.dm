@@ -62,8 +62,8 @@
 	for(var/obj/to_check in tile.contents)
 		if(to_check.density)
 			return FALSE
-		if(istype(to_check, /obj/machinery/door) || istype(to_check, /obj/effect/magical_light))
+		if(istype(to_check, /obj/effect/magical_light))
 			return FALSE
-		if(to_check.pass_flags_self & (PASSGRILLE | PASSWINDOW))
+		if(to_check.pass_flags_self & (PASSGRILLE | PASSWINDOW | PASSDOORS))
 			return FALSE
 	return TRUE
