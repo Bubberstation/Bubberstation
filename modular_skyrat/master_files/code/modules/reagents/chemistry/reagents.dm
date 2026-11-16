@@ -4,4 +4,4 @@
 	var/chemical_flags_skyrat = NONE
 
 /datum/reagent/drug/nicotine
-	addiction_types = list(/datum/addiction/nicotine = 4) // 1.6 per 2 seconds
+	addiction_types = list(/datum/addiction/nicotine = 37.5)
