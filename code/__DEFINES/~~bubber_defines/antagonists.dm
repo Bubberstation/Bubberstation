@@ -14,3 +14,5 @@
 #define OBJECTIVE_HELP_ESCAPE_TRAITOR_WEIGHT 30
 /// Chance to be forced to help a random person escape
 #define OBJECTIVE_HELP_ESCAPE_WEIGHT 10
+
+#define IS_WIREPRIEST(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/wire_priest))

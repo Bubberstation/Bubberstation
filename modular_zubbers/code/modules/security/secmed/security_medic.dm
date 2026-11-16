@@ -160,6 +160,7 @@ by the automapper.
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	//To prevent the bodies of your fellow officers from decaying, or the antag with one million implants in them.
 	new /obj/item/reagent_containers/cup/bottle/formaldehyde(src)
+	new /obj/item/security_voucher/sidearm(src)
 
 //Prevents secmed hours from counting towards HoS
 /datum/controller/subsystem/job/setup_occupations()
