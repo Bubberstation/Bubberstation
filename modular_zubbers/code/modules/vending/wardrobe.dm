@@ -20,6 +20,8 @@
 		/obj/item/clothing/suit/toggle/labcoat/technical/medical/black = 3,
 		/obj/item/clothing/suit/toggle/labcoat/technical/medical/dark = 3,
 		/obj/item/clothing/suit/toggle/labcoat/virologist = 4,
+		/obj/item/clothing/suit/jacket/frontier_colonist/medical = 3,
+		/obj/item/clothing/head/soft/frontier_colonist/medic = 3,
 		/obj/item/clothing/under/rank/civilian/psychologist_bunnysuit = 3,
 		/obj/item/clothing/under/rank/engineering/engineer/skyrat/hazard_chem/emt = 2,
 		/obj/item/clothing/under/rank/medical/doctor_bunnysuit = 3,
@@ -33,8 +35,6 @@
 		/obj/item/storage/backpack/messenger/med = 4,
 		/obj/item/storage/backpack/messenger/vir = 4,
 		/obj/item/storage/belt/medbandolier = 2,
-		/obj/item/clothing/suit/jacket/frontier_colonist/medical = 3,
-		/obj/item/clothing/head/soft/frontier_colonist/medic = 3,
 	)
 
 /obj/machinery/vending/wardrobe/chem_wardrobe
