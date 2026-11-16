@@ -16,6 +16,8 @@
 		"Deputy Commissioner",
 		"Jailer",
 		"Master-at-Arms",
+		"Dispatch Mofficer",
+		"Moth-at-Arms",
 	)
 	sec_antag_cap = 1
 	akula_outfit = /datum/outfit/akula/security_officer

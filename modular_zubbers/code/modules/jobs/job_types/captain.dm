@@ -10,4 +10,6 @@
 		"Station Commander",
 		"Facility Director",
 		"Chief Executive Officer",
+		"Commanding Mofficer",
+		"Chief Executive Mofficer",
 	)

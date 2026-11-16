@@ -44,6 +44,8 @@
 		"Corrections Officer",
 		"Brig Officer",
 		"Prison Guard",
+		"Corrections Mofficer",
+		"Brig Mofficer",
 	)
 	tgui_icon = FA_ICON_BARS
 

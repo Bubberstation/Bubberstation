@@ -10,4 +10,5 @@
 		"Legal Clerk",
 		"Prosecutor",
 		"Public Defender",
+		"Moth Resources Agent",
 	)

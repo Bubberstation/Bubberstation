@@ -8,4 +8,7 @@
 		"Jester",
 		"Joker",
 		"Prankster",
+		"Target Practice",
+		"Training Dummy",
+		"Medical Enrichment",
 	)

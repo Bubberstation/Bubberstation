@@ -20,6 +20,8 @@
 		"Security Assistant",
 		"Security Specialist",
 		"Defense Contractor",
+		"Security Mofficer",
+		"Junior Mofficer",
 	)
 
 /datum/outfit/job/security

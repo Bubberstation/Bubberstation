@@ -8,5 +8,6 @@
 		"Engineering Foreman",
 		"Head of Engineering",
 		"Chief Technical Officer",
+		"Chief Technical Mofficer",
 	)
 	job_flags = JOB_ANTAG_PROTECTED | STATION_JOB_FLAGS | HEAD_OF_STAFF_JOB_FLAGS

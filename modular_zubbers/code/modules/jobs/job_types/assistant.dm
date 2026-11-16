@@ -33,4 +33,6 @@
 		"Off-Duty Staff",
 		"Musician",
 		"Waiter",
+		"Moff-Duty Crew",
+		"Moff-Duty Staff",
 	)
