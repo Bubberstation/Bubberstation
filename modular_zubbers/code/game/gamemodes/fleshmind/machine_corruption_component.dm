@@ -73,6 +73,8 @@
 	var/set_overlay = ""
 	/// The cooldown to damage responses.
 	var/damage_response_cooldown = 3 SECONDS
+	/// Original faction of the corrupted machine
+	var/list/original_faction = list()
 	COOLDOWN_DECLARE(damage_response)
 
 /datum/component/machine_corruption/Initialize(datum/fleshmind_controller/incoming_controller)
@@ -91,6 +93,8 @@
 	set_overlay = pick(possible_overlays)
 
 	var/obj/machinery/parent_machinery = parent
+	original_faction = parent_machinery.get_faction()
+	parent_machinery.set_faction(list(FACTION_FLESHMIND))
 
 	RegisterSignal(parent_machinery, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(handle_overlays))
 	parent_machinery.update_appearance()
@@ -139,6 +143,8 @@
 
 /datum/component/machine_corruption/UnregisterFromParent()
 	var/obj/machinery/parent_machinery = parent
+	parent_machinery.set_faction(original_faction)
+
 	parent_machinery.idle_power_usage = initial(parent_machinery.idle_power_usage)
 	parent_machinery.light_color = initial(parent_machinery.light_color)
 	parent_machinery.light_power = initial(parent_machinery.light_power)
@@ -253,9 +259,11 @@
 /**
  * A general attack proc, this whips all users within a range around the machine.
  */
-/datum/component/machine_corruption/proc/whip_all_in_range(range_to_whip)
+/datum/component/machine_corruption/proc/whip_all_in_range(range_to_whip = 2)
 	var/obj/machinery/parent_machinery = parent
 	for(var/mob/living/living_mob in circle_view(parent_machinery, range_to_whip))
+		if(parent_machinery.faction_check_atom(living_mob))
+			continue
 		whip_mob(living_mob)
 
 /**
