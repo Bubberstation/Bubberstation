@@ -40,6 +40,7 @@
 		/datum/reagent/consumable/banana,
 		/datum/reagent/consumable/blumpkinjuice,
 		/datum/reagent/consumable/milk,
+		/datum/reagent/consumable/coco
 	)
 	/// Tier 4 drink dispenser reagents
 	var/static/list/drink_upgrade3_reagents = list(
