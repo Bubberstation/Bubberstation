@@ -10,6 +10,6 @@
 		"Union Bitrunner",
 		"Junior Runner",
 		"Professional Gamer",
-		"Bugrunner"
-		"Bugdiver"
+		"Bugrunner",
+		"Bugdiver",
 	)
