@@ -96,7 +96,7 @@
 /datum/design/biogen/smartfridge_fabricator_chicken
 	name = "Synthetic Chicken"
 	materials = list(/datum/material/biomass = 50)
-	build_path = /obj/item/food/meat/slab/chicken
+	build_path = /obj/item/food/meat/slab/chicken/chickenproduct
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_SFOF_INGREDIENT)
 
 /datum/design/biogen/smartfridge_fabricator_meatslab
