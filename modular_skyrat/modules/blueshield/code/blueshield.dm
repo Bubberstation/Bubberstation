@@ -52,6 +52,7 @@
 		"Command Security Specialist",
 		"Command Protection Officer",
 		"Henchman",
+		"Corporate Goon",
 	)
 
 	tgui_icon = FA_ICON_SHIELD
