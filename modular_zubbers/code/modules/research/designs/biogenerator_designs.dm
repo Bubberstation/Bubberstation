@@ -11,10 +11,10 @@
 	make_reagent = /datum/reagent/saltpetre
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_CHEMICALS)
 
-/datum/design/biogen/chicken
-	name = "Chicken"
+/datum/design/biogen/chicken_product
+	name = "Chicken Product"
 	materials = list(/datum/material/biomass = 25)
-	build_path = /obj/item/food/meat/slab/chicken
+	build_path = /obj/item/food/meat/slab/chicken/chickenproduct
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_BIO_FOOD)
 
 /datum/design/biogen/egg
