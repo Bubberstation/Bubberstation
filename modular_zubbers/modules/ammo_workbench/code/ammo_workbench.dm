@@ -253,7 +253,8 @@
 		return
 	switch(action)
 		if("EjectMag")
-			ejectItem()
+			var/mob/living/user = ui.user
+			ejectItem(user)
 			. = TRUE
 
 		if("RecycleMag")
