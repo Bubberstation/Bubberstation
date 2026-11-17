@@ -95,6 +95,7 @@
 		/datum/design/board/telecomms_bus,
 		/datum/design/board/subspace_broadcaster,
 		/datum/design/board/subspace_receiver,
+		/datum/design/board/traffic, // BUBBER ADDITION -- NTSL -- The board to actually program in NTSL
 		/datum/design/subspace_amplifier,
 		/datum/design/subspace_analyzer,
 		/datum/design/subspace_ansible,
