@@ -318,6 +318,7 @@
 // Service Tech
 
 /datum/techweb_node/office_equip/New()
+	. = ..()
 	unlocked_designs += list(
 		/datum/design/soup_pot,
 	)
