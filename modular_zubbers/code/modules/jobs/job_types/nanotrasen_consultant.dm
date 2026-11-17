@@ -52,7 +52,6 @@
 		"Corporate Representative",
 		"Corporate Liaison",
 		"Corporate Interest Officer",
-		"Corporate Interest Mofficer",
 	)
 	tgui_icon = FA_ICON_CLIPBOARD
 

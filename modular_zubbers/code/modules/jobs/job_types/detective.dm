@@ -13,5 +13,4 @@
 		"CID Officer",
 		"Criminal Investigator",
 		"Gumshoe",
-		"CID Mofficer",
 	)

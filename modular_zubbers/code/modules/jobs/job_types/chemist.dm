@@ -7,6 +7,4 @@
 		"Pharmacist",
 		"Pharmacologist",
 		"Trainee Pharmacist",
-		"Pharmoffcist",
-		"Pharmothologist"
 	)

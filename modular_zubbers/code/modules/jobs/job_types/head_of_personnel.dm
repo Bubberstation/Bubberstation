@@ -7,7 +7,5 @@
 		"Crew Supervisor",
 		"Employment Officer",
 		"Executive Officer",
-		"Employment Mofficer",
-		"Executive Mofficer",
 	)
 	job_flags = JOB_ANTAG_PROTECTED | STATION_JOB_FLAGS | HEAD_OF_STAFF_JOB_FLAGS

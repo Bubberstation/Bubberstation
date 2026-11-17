@@ -15,5 +15,4 @@
 		"Chief Security Officer",
 		"Sheriff",
 		"Security Commissioner",
-		"Chief Security Mofficer",
 	)

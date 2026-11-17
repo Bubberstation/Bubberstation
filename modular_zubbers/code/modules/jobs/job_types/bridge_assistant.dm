@@ -33,6 +33,4 @@
 		"Manager Representative",
 		"Head Assistant",
 		"Bridge Tour Coordinator",
-		"Command Entertainment Mofficer",
-		"Junior Mofficer of the Deck",
 	)
