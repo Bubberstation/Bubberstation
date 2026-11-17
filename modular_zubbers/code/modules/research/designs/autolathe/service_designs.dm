@@ -9,3 +9,7 @@
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_KITCHEN,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design/airlock_painter/decal/New()
+	departmental_flags |= DEPARTMENT_BITFLAG_SERVICE
+	. = ..()

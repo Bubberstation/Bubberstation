@@ -2,6 +2,7 @@
 	abstract_type = /datum/heretic_knowledge/passive_upgrade
 	research_tree_icon_path = 'icons/obj/weapons/khopesh.dmi'
 	research_tree_icon_state = "cosmic_blade"
+	cost = 0.5
 	var/level
 
 /datum/heretic_knowledge/passive_upgrade/on_research(mob/user, datum/antagonist/heretic/our_heretic)
@@ -13,7 +14,6 @@
 	name = "Passive - Level One"
 	desc = "PLACEHOLDER GIves level one passive"
 	level = 1
-	cost = 1
 
 /datum/heretic_knowledge/passive_upgrade/one/on_research(mob/user, datum/antagonist/heretic/our_heretic)
 	. = ..()
@@ -28,7 +28,6 @@
 	name = "Passive - Level Two"
 	desc = "PLACEHOLDER GIves level two passive"
 	level = 2
-	cost = 2
 
 /datum/heretic_knowledge/passive_upgrade/two/on_research(mob/user, datum/antagonist/heretic/our_heretic)
 	. = ..()
@@ -39,7 +38,6 @@
 	name = "Passive - Level Three"
 	desc = "PLACEHOLDER GIves level three passive"
 	level = 3
-	cost = 3
 
 /datum/heretic_knowledge/passive_upgrade/three/on_research(mob/user, datum/antagonist/heretic/our_heretic)
 	. = ..()
@@ -54,17 +52,14 @@
 /datum/heretic_knowledge/passive_upgrade/one/void
 	research_tree_icon_state = "void_blade"
 	desc = "Grants you immunity to cold and low pressure."
-	cost = 2
 
 /datum/heretic_knowledge/passive_upgrade/two/void
 	research_tree_icon_state = "void_blade"
 	desc = "Makes you not need to breathe."
-	cost = 1
 
 /datum/heretic_knowledge/passive_upgrade/three/void
 	research_tree_icon_state = "void_blade"
 	desc = "You can no longer slip on any surface."
-	cost = 2
 
 //moon
 /datum/heretic_knowledge_tree_column/moon
@@ -75,17 +70,14 @@
 /datum/heretic_knowledge/passive_upgrade/one/moon
 	research_tree_icon_state = "moon_blade"
 	desc = "Gain immunity to brain trauma, and regenerate brain damage passively."
-	cost = 2
 
 /datum/heretic_knowledge/passive_upgrade/two/moon
 	research_tree_icon_state = "moon_blade"
 	desc = "Grants sleep immunity, and improves your passive brain regeneration."
-	cost = 2
 
 /datum/heretic_knowledge/passive_upgrade/three/moon
 	research_tree_icon_state = "moon_blade"
 	desc = "Mind gate and Ringleader's rise will channel the moon amulet effects, further inreases brain regeneration."
-	cost = 2
 
 //flesh
 /datum/heretic_knowledge_tree_column/flesh
@@ -96,17 +88,14 @@
 /datum/heretic_knowledge/passive_upgrade/one/flesh
 	research_tree_icon_state = "flesh_blade"
 	desc = "Gain immunity to diseases, disgust, and space ants."
-	cost = 0.5
 
 /datum/heretic_knowledge/passive_upgrade/two/flesh
 	research_tree_icon_state = "flesh_blade"
 	desc = "Eating organs or meat now heals you, gain the voracious and gluttonous trait and being fat doesn't slow you down."
-	cost = 2
 
 /datum/heretic_knowledge/passive_upgrade/three/flesh
 	research_tree_icon_state = "flesh_blade"
 	desc = "Gain a flat 25% damage and stamina damage reduction when fat as well as baton resistance."
-	cost = 2
 
 //lock
 /datum/heretic_knowledge_tree_column/lock
@@ -117,17 +106,14 @@
 /datum/heretic_knowledge/passive_upgrade/one/lock
 	research_tree_icon_state = "key_blade"
 	desc = "Gain shock immunity."
-	cost = 1
 
 /datum/heretic_knowledge/passive_upgrade/two/lock
 	research_tree_icon_state = "key_blade"
 	desc = "Gain x-ray vision."
-	cost = 3 // thjis is so strong
 
 /datum/heretic_knowledge/passive_upgrade/three/lock
 	research_tree_icon_state = "key_blade"
 	desc = "Grasp now has a reduced cooldown when used on a door/locker." // BUBBER EDIT CHANGE - now only reduced CD
-	cost = 3 // this is actually pretty powerful and makes running away easy as fuck. 8 sec cooldown severely limits urself
 
 //cosmic
 /datum/heretic_knowledge_tree_column/cosmic
@@ -138,14 +124,11 @@
 /datum/heretic_knowledge/passive_upgrade/one/cosmic
 	research_tree_icon_state = "cosmic_blade"
 	desc = "Cosmic fields speed you up and regenerate stamina."
-	cost = 2
 
 /datum/heretic_knowledge/passive_upgrade/two/cosmic
 	research_tree_icon_state = "cosmic_blade"
 	desc = "Cosmic fields disrupt grenades or signalers from being activated and turn off already primed grenades."
-	cost = 2
 
 /datum/heretic_knowledge/passive_upgrade/three/cosmic
 	research_tree_icon_state = "cosmic_blade"
 	desc = "Cosmic fields slow projectiles down."
-	cost = 2
