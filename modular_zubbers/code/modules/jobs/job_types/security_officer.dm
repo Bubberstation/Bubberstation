@@ -20,7 +20,6 @@
 		"Security Assistant",
 		"Security Specialist",
 		"Defense Contractor",
-		"Security Mofficer",
 	)
 
 /datum/outfit/job/security
