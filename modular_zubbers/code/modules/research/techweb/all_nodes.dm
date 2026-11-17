@@ -137,9 +137,9 @@
 /datum/techweb_node/exp_tools/New()
 	unlocked_designs += list(
 		/datum/design/wall_mounted_multi_charger,
+		/datum/design/frontier_tools_disk
 	)
 	return ..()
-
 
 // TOOLS
 
