@@ -14,9 +14,9 @@
 	build_path = /obj/item/food/egg
 
 /datum/design/biogen/frontier_ration/ingredients/frontier_ration_chicken
-	name = "Chicken"
+	name = "Chicken Product"
 	materials = list(/datum/material/biomass = 50)
-	build_path = /obj/item/food/meat/slab/chicken
+	build_path = /obj/item/food/meat/slab/chicken/chickenproduct
 
 /datum/design/biogen/frontier_ration/ingredients/frontier_ration_mystery_meat
 	name = "Meat Product"
