@@ -364,47 +364,52 @@
 /// The proc we call when we permanently kill our victim due to being at maximum degradation. DNRs them, ghosts/kills them, and prints a series of highly dramatic messages,
 /// befitting for a death such as this.
 /datum/brain_trauma/severe/death_consequences/proc/and_so_your_story_ends()
-	ADD_TRAIT(owner, TRAIT_DNR, TRAUMA_TRAIT) // you're gone bro
-	owner.AddElement(/datum/element/dnr)
-	final_death_delivered = TRUE
-
+	var/mob/dead/observer/owner_ghost = owner.get_ghost()
+	var/mob/living/carbon/human/notnullowner = owner_ghost?.mind?.current //dont ask me why but it doesnt work any other way and i tried other ways
 	// this is a sufficiently dramatic event for some dramatic to_chats
 	var/visible_message
 	var/self_message
-	var/log_message
 
 	if (owner.stat == DEAD)
 		visible_message = span_revenwarning("The air around [owner] seems to ripple for a moment.")
 		self_message = span_revendanger("The metaphorical \"tether\" binding you to your body finally gives way. You try holding on, but you soon find yourself \
 		falling into a deep, dark abyss...")
-		log_message = "has been permanently ghosted by their resonance instability quirk."
-		owner.ghostize(can_reenter_corpse = FALSE)
 	else
 		if (force_death_if_permakilled) // kill them - a violent and painful end
 			visible_message = span_revenwarning("[owner] suddenly lets out a harrowing gasp and falls to one knee, clutching their head! The remainder of their \
 			body goes limp soon after, failing to stand back up.")
 			owner.death(gibbed = FALSE)
-			log_message = "has been permanently killed by their resonance instability quirk."
 		else // ghostize them - they simply stop thinking, forever
 			visible_message = span_revenwarning("[owner] jerkily arches their head upwards, untensing and going slackjawed with dilated pupils. They \
 			cease all action and simply stand there, swaying.")
-			owner.ghostize(can_reenter_corpse = FALSE)
-			log_message = "has been permanently ghosted by their resonance instability quirk."
 
 		self_message = span_revendanger("Your mind suddenly clouds, and you lose control of all thought and function. You try to squeeze your eyes shut, but you forget \
 		where they are only a split second later. You drift away from yourself, further and further, until it's impossible to return...")
 
-	var/mob/dead/observer/owner_ghost = owner.get_ghost()
+	if(isnull(owner_ghost) || isnull(notnullowner))
+		return
+	owner.ghostize()
+	owner_ghost.stay_dead()
+	final_death_delivered = TRUE
+	if(HAS_TRAIT(notnullowner, TRAIT_GHOSTROLE_ON_REVIVE))
+		RegisterSignal(owner, COMSIG_LIVING_REVIVE, PROC_REF(ghostrole_after_permadeath_revive))
+
 	var/mob/self_message_target = (owner_ghost ? owner_ghost : owner) // if youre ghosted, you still get the message
 
 	visible_message += span_revenwarning(" <b>You sense something terrible has happened.</b>") // append crucial info and context clues
 	self_message += span_danger(" You have been killed by your death degradation, which prevents you from returning to your body or even being revived. \
 	You may roleplay this however you wish - this death may be temporary, permanent - you may or may not appear in soulcatchers - it's all up to you.")
 
-	owner.investigate_log(log_message)
+	owner.log_message("had their player ([key_name(src)]) DNR automatically via death degradation trait.", LOG_GAME, color = COLOR_GREEN, log_globally = FALSE)
 	owner.visible_message(visible_message, ignored_mobs = self_message_target) // finally, send it
 	owner.balloon_alert_to_viewers("something terrible has happened...")
 	to_chat(self_message_target, self_message)
+
+/datum/brain_trauma/severe/death_consequences/proc/ghostrole_after_permadeath_revive(mob/user)
+	SIGNAL_HANDLER
+	final_death_delivered = FALSE
+	adjust_degradation(-INFINITY)
+	UnregisterSignal(owner, COMSIG_LIVING_REVIVE)
 
 /// Returns a short-ish string containing an href to [get_specific_data].
 /datum/brain_trauma/severe/death_consequences/proc/get_health_analyzer_link_text(mob/user)
@@ -521,7 +526,8 @@
 		return
 
 	max_degradation = victim_prefs.read_preference(/datum/preference/numeric/death_consequences/max_degradation)
-	current_degradation = clamp(victim_prefs.read_preference(/datum/preference/numeric/death_consequences/starting_degradation), 0, max_degradation - 1) // let's not let people instantly fucking die
+	if(current_degradation == 0)
+		current_degradation = clamp(victim_prefs.read_preference(/datum/preference/numeric/death_consequences/starting_degradation), 0, max_degradation - 1) // let's not let people instantly fucking die
 
 	base_degradation_reduction_per_second_while_alive = victim_prefs.read_preference(/datum/preference/numeric/death_consequences/living_degradation_recovery_per_second)
 	base_degradation_per_second_while_dead = victim_prefs.read_preference(/datum/preference/numeric/death_consequences/dead_degradation_per_second)

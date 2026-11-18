@@ -13,7 +13,7 @@
 	gain_text = "The time for subterfuge is over. The Light casts too much a shadow - I cannot hide anymore. Their eyes must be sown shut."
 	research_tree_icon_path = 'icons/obj/weapons/khopesh.dmi'
 	research_tree_icon_state = "eldritch_blade"
-	cost = 2
+	cost = 0.5
 
 /datum/heretic_knowledge/enable_blades/can_be_invoked(datum/antagonist/heretic/invoker)
 	return FALSE
