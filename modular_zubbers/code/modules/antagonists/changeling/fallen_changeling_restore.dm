@@ -1,16 +1,33 @@
-/datum/action/changeling/absorb_dna/fallen
+// yes, a lot of this code is copied from changelings.
+// no, it should not be a child type of changeling code -- changeling code is meant for changelings, not fallen, who it won't work on
+/datum/action/changeling_restore_fallen
 	name = "Absorb DNA (Restorative)"
 	desc = "Absorb the DNA of our victim, restoring our powers. Requires us to strangle them."
+	button_icon = 'icons/mob/actions/actions_changeling.dmi'
 	button_icon_state = "absorb_dna"
 	dna_cost = CHANGELING_POWER_UNOBTAINABLE //invalid to buy from cellular emporium
 
 /datum/action/changeling/Trigger(mob/clicker, trigger_flags)
 	. = ..()
-	if(. == FALSE) //changeling antag status has no bearing on whether parent returns false or true -- ergo this is true if action is usable under non-changeling conditions
+	if(!.)
 		return
-	try_to_sting(owner)
+	var/mob/user = owner
+	if(!user || !mob?.mind?.has_antag_datum(/datum/antagonist/fallen_changeling))
+		return
+	try_to_sting(user)
 
-/datum/action/changeling/absorb_dna/fallen/can_sting(mob/living/carbon/owner)
+/datum/action/changeling/proc/try_to_sting(mob/living/user, mob/living/target)
+	if(!can_sting(user, target))
+		return FALSE
+	if(user.fire_stacks && user.on_fire)
+		user.balloon_alert(user, "on fire!")
+		return FALSE
+	if(sting_action(user, target))
+		user.changeNext_move(CLICK_CD_MELEE)
+		return TRUE
+	return FALSE
+
+/datum/action/changeling_restore_fallen/can_sting(mob/living/carbon/owner)
 	if(req_stat < IS_UNCONSCIOUS_OR_CRIT(owner) || (req_stat == STABLE && IS_UNCONSCIOUS(owner)))
 		owner.balloon_alert(owner, "incapacitated!")
 		return FALSE
@@ -29,7 +46,7 @@
 
 	var/mob/living/carbon/target = owner.pulling
 	var/datum/antagonist/fallen_changeling/fallen = owner?.mind?.has_antag_datum(/datum/antagonist/fallen_changeling)
-	return fallen.can_absorb_dna(target)
+	return can_absorb_dna(target)
 
 /datum/action/changeling/absorb_dna/fallen/attempt_absorb(mob/living/carbon/human/target)
 	. = ..(target)
@@ -66,13 +83,8 @@
 		user.changeNext_move(CLICK_CD_MELEE)
 		return TRUE
 	return FALSE
-///////////////// fallen ling overrides /////////////////
 
-/*
- * Checks if this changeling can absorb the DNA of [target].
- * if [verbose] = TRUE, give feedback as to why they cannot absorb the DNA.
- */
-/datum/antagonist/fallen_changeling/proc/can_absorb_dna(mob/living/carbon/human/target, verbose = TRUE)
+/datum/action/changeling/absorb_dna/fallen/proc/can_absorb_dna(mob/living/carbon/human/target, verbose = TRUE)
 	if(!target)
 		return FALSE
 	if(!iscarbon(owner.current))
@@ -93,6 +105,7 @@
 		return FALSE
 
 	return TRUE
+///////////////// fallen ling overrides /////////////////
 
 /datum/antagonist/fallen_changeling/
 	//grants reabsorption ability
