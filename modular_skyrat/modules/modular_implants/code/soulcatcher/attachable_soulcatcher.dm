@@ -66,7 +66,7 @@
 	/// What items do we want to prevent the viewer from attaching this to?
 	var/list/blacklisted_items = list(
 		/obj/item/organ,
-		/obj/item/mmi,
+		/obj/item/brain_processor,
 		/obj/item/pai_card,
 		/obj/item/aicard,
 		/obj/item/card,

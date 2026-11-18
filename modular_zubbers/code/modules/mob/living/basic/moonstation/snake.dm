@@ -33,7 +33,7 @@
 
 	health = 20
 	maxHealth = 20
-	damage_coeff = list(BRUTE = 1, BURN = 0.75, TOX = 0.25, STAMINA = 1, OXY = 1)
+	physiology = list(BRUTE = 1, BURN = 0.75, TOX = 0.25, STAMINA = 1, OXY = 1)
 	mob_biotypes = MOB_ORGANIC|MOB_REPTILE|MOB_AQUATIC|MOB_BEAST
 	basic_mob_flags = IMMUNE_TO_GETTING_WET
 	status_flags = NONE

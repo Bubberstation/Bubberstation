@@ -19,7 +19,7 @@
 /obj/machinery/computer/arcade/minesweeper
 	name = "Minesweeper"
 	desc = "An arcade machine that generates grids. It seems that the machine sparks and screeches when a grid is generated, as if it cannot cope with the intensity of generating the grid."
-	icon_state = "arcade"
+	icon_state = MAP_SWITCH("arcade", "/obj/machinery/computer/arcade")
 	circuit = /obj/item/circuitboard/computer/arcade/minesweeper
 
 	var/datum/minesweeper/board

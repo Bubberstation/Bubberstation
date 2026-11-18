@@ -32,7 +32,7 @@
 	mutantheart = /obj/item/organ/heart/synth
 	mutantliver = /obj/item/organ/liver/synth
 	mutantappendix = null
-	exotic_bloodtype = BLOOD_TYPE_OIL
+	exotic_bloodtype = /datum/blood_type/oil
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/synth,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/synth,
@@ -111,6 +111,7 @@
 	. = ..()
 
 	RegisterSignal(human_who_gained_species, COMSIG_ATOM_EMAG_ACT, PROC_REF(on_emag_act))
+	RegisterSignal(human_who_gained_species, COMSIG_LIVING_LIFE, PROC_REF(on_life))
 
 	var/datum/action/sing_tones/sing_action = new
 	sing_action.Grant(human_who_gained_species)

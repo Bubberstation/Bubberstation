@@ -17670,6 +17670,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/shrink_cw{
 	dir = 1
 	},
+/obj/machinery/computer/telecomms/traffic,
 /turf/open/floor/iron,
 /area/station/tcommsat/computer)
 "bOq" = (
@@ -19218,8 +19219,8 @@
 /area/station/tcommsat/server)
 "bYD" = (
 /obj/machinery/computer/telecomms/server{
-	dir = 4;
-	network = "tcommsat"
+	network = "tcommsat";
+	dir = 4
 	},
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 10
@@ -19737,7 +19738,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
-/obj/item/relic/lavaland,
+/obj/item/assembly/relic/lavaland,
 /obj/structure/closet/crate{
 	name = "E.X.P.E.R.I-MENTOR Supply Crate"
 	},
@@ -60414,15 +60415,15 @@
 /area/station/security/office)
 "pzG" = (
 /obj/structure/rack,
-/obj/item/mmi{
+/obj/item/brain_processor/organic{
 	pixel_x = 2;
 	pixel_y = -4
 	},
-/obj/item/mmi{
+/obj/item/brain_processor/organic{
 	pixel_x = -1;
 	pixel_y = 1
 	},
-/obj/item/mmi{
+/obj/item/brain_processor/organic{
 	pixel_x = -4;
 	pixel_y = 6
 	},
@@ -61535,7 +61536,7 @@
 	pixel_y = -2;
 	pixel_x = 5
 	},
-/obj/item/mmi{
+/obj/item/brain_processor/organic{
 	pixel_x = -4;
 	pixel_y = 11
 	},

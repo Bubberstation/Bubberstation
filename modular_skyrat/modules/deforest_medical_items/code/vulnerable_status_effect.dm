@@ -11,7 +11,7 @@
 	/// The percentage damage modifier we give the mob we're applied to
 	var/damage_resistance_subtraction = 50
 	/// How much extra bleeding the mob is given
-	var/bleed_modifier_addition = 1
+	var/bleed_modifier_multiplier = 2
 
 /datum/status_effect/vulnerable_to_damage/surgery
 	duration = 15 MINUTES
@@ -19,13 +19,13 @@
 /datum/status_effect/vulnerable_to_damage/on_apply()
 	to_chat(owner, span_userdanger("Your body suddenly feels weak and fragile!"))
 	var/mob/living/carbon/human/carbon_owner = owner
-	carbon_owner.physiology.damage_resistance -= damage_resistance_subtraction
-	carbon_owner.physiology.bleed_mod += bleed_modifier_addition
+	carbon_owner.damage_resistance -= damage_resistance_subtraction
+	MODIFY_PHYSIOLOGY(carbon_owner, PHYS_COEFF_BLEED, bleed_modifier_multiplier)
 	return ..()
 
 /datum/status_effect/vulnerable_to_damage/on_remove()
 	to_chat(owner, span_notice("You seem to have recovered from your unnatural fragility!"))
-	var/mob/living/carbon/human/carbon_recoverer = owner
-	carbon_recoverer.physiology.damage_resistance += damage_resistance_subtraction
-	carbon_recoverer.physiology.bleed_mod -= bleed_modifier_addition
+	var/mob/living/carbon/human/carbon_owner = owner
+	carbon_owner.damage_resistance += damage_resistance_subtraction
+	MODIFY_PHYSIOLOGY(carbon_owner, PHYS_COEFF_BLEED, 1/bleed_modifier_multiplier)
 	return ..()

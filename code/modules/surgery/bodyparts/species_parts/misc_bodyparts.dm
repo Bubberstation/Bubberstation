@@ -99,6 +99,7 @@
 	burn_modifier = 0.5 // = 1/2x generic burn damage
 	head_flags = HEAD_EYECOLOR | HEAD_EYESPRITES | HEAD_HAIR | HEAD_FACIAL_HAIR
 	butcher_replacement = null
+	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/slime_passgrille)
 
 /obj/item/bodypart/chest/jelly
 	biological_state = (BIO_FLESH|BIO_BLOODED|BIO_JELLY)
@@ -106,8 +107,9 @@
 	is_dimorphic = TRUE
 	dmg_overlay_type = null
 	burn_modifier = 0.5 // = 1/2x generic burn damage
-	wing_types = list(/obj/item/organ/wings/functional/slime)
+	wing_types = list(/obj/item/organ/wings/slime)
 	butcher_replacement = null
+	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/slime_passgrille)
 
 /obj/item/bodypart/chest/jelly/get_butt_sprite()
 	return icon('icons/mob/butts.dmi', BUTT_SPRITE_SLIME)
@@ -118,6 +120,7 @@
 	dmg_overlay_type = null
 	burn_modifier = 0.5 // = 1/2x generic burn damage
 	butcher_replacement = null
+	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/slime_passgrille)
 
 /obj/item/bodypart/arm/right/jelly
 	biological_state = (BIO_FLESH|BIO_BLOODED|BIO_JELLY)
@@ -125,6 +128,7 @@
 	dmg_overlay_type = null
 	burn_modifier = 0.5 // = 1/2x generic burn damage
 	butcher_replacement = null
+	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/slime_passgrille)
 
 /obj/item/bodypart/leg/left/jelly
 	biological_state = (BIO_FLESH|BIO_BLOODED|BIO_JELLY)
@@ -132,6 +136,7 @@
 	dmg_overlay_type = null
 	burn_modifier = 0.5 // = 1/2x generic burn damage
 	butcher_replacement = null
+	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/slime_passgrille)
 
 /obj/item/bodypart/leg/right/jelly
 	biological_state = (BIO_FLESH|BIO_BLOODED|BIO_JELLY)
@@ -139,6 +144,7 @@
 	dmg_overlay_type = null
 	burn_modifier = 0.5 // = 1/2x generic burn damage
 	butcher_replacement = null
+	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/slime_passgrille)
 
 ///SLIME
 /obj/item/bodypart/head/jelly/slime
@@ -257,7 +263,7 @@
 	limb_id = SPECIES_FLYPERSON
 	is_dimorphic = TRUE
 	should_draw_greyscale = FALSE
-	wing_types = list(/obj/item/organ/wings/functional/fly)
+	wing_types = list(/obj/item/organ/wings/fly)
 	bodypart_traits = list(TRAIT_TACKLING_FRAIL_ATTACKER)
 
 /obj/item/bodypart/arm/left/fly
@@ -356,7 +362,7 @@
 	should_draw_greyscale = FALSE
 	dmg_overlay_type = null
 	bodypart_flags = BODYPART_UNHUSKABLE
-	wing_types = list(/obj/item/organ/wings/functional/skeleton)
+	wing_types = list(/obj/item/organ/wings/skeleton)
 	scarrable = FALSE
 	butcher_replacement = null
 

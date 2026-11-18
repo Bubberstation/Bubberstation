@@ -341,7 +341,11 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			var/mob/living/silicon/ai/AI = usr
 			if(!istype(AI))
 				return
-			AI.ai_tracking_tool.track_name(AI, params["name"])
+			// We need to do this because the ID might add an honorific and otherwise break tracking
+			var/mob/living/target = locate(params["ref"]) in GLOB.mob_living_list
+			if(isnull(target))
+				return
+			AI.ai_tracking_tool.track_mob(AI, target)
 
 // #undef SENSORS_UPDATE_PERIOD // BUBBER EDIT REMOVAL - Defined in code/__DEFINES/~~bubber_defines/misc.dm
 #undef UNKNOWN_JOB_ID

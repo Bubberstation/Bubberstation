@@ -79,6 +79,7 @@
 	. = ..()
 	mutant_hands_component = human_who_gained_species.AddComponent(__IMPLIED_TYPE__, mutant_hand_path = hands_to_give)
 	RegisterSignal(human_who_gained_species, COMSIG_MOB_AFTER_APPLY_DAMAGE, PROC_REF(queue_regeneration))
+	RegisterSignal(human_who_gained_species, COMSIG_LIVING_LIFE, PROC_REF(on_life))
 
 /datum/species/mutant/infectious/on_species_loss(mob/living/carbon/human/human_who_lost_species, datum/species/new_species, pref_load)
 	. = ..()
@@ -140,9 +141,6 @@
 
 /datum/species/mutant/infectious/check_roundstart_eligible()
 	return FALSE
-
-/datum/species/mutant/infectious/spec_stun(mob/living/carbon/human/H,amount)
-	. = min(20, amount)
 
 /// Start the cooldown to regenerate - 5 seconds after taking damage
 /datum/species/mutant/infectious/proc/queue_regeneration()

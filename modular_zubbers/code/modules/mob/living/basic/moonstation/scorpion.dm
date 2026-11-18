@@ -11,7 +11,7 @@
 	mob_biotypes = MOB_ORGANIC|MOB_BUG
 	maxHealth = 75
 	health = 75
-	damage_coeff = list(BRUTE = 1, BURN = 0.75, TOX = 0.5, STAMINA = 1, OXY = 1)
+	physiology = list(BRUTE = 1, BURN = 0.75, TOX = 0.5, STAMINA = 1, OXY = 1)
 	basic_mob_flags = FLAMMABLE_MOB
 	status_flags = NONE
 

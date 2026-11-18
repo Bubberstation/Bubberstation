@@ -10,7 +10,6 @@
 /datum/design/board/self_actualization_device
 	name = "Machine Design (Self-Actualization Device)"
 	desc = "The circuit board for a Self-Actualization Device by Veymed: A Family Company."
-	id = "self_actualization_device"
 	build_path = /obj/item/circuitboard/machine/self_actualization_device
 	category = list(RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_MEDICAL)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL

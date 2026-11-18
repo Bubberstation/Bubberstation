@@ -1,4 +1,4 @@
-/obj/item/multitool/abductor/bluespace
+/obj/item/multitool/abductor/debug
 	name = "bluespace multitool"
 	desc = "Functionally identical, but we gotta maintain the theme. It's probably okay if you have this, but probably not."
 	icon = 'modular_zubbers/icons/obj/tools.dmi'

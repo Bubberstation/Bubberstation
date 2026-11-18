@@ -1,0 +1,216 @@
+2026-11-01:
+  ArrisFairburne:
+  - qol: Ghost Cafe visitors now get the Return spell to disappear from the cafe from
+      anywhere
+  - qol: Ghost Cafe visitors now get TRAIT_NO_HUNGER, preventing the hunger message
+      from showing up randomly.
+  - qol: Ghost Cafe visitors now get qdel'd instead of disintegrated if they leave
+      ghost cafe turfs or exit their body, preventing moods based on them from being
+      given to others.
+  - map: Fixed a bug where the Ghost Cafe captain's bedroom had an error image as
+      its floor.
+  - qol: The Ghost Cafe areas no longer occupy like 90% of the total ghost teleport
+      POIs; only the arrival shuttle appears for ghosts.
+  - bugfix: fixed a bug where the sec airlocks would change colors upon destruction
+  thegrb93:
+  - bugfix: Fix the air in alleyway and fastfood condos
+2026-11-02:
+  Arturlang:
+  - rscdel: charges for heretic spells, you need focuses again
+  KateAnbolho:
+  - rscadd: Adds a Wylom order to security's armory.
+  - rscadd: Adds a Lanca goodie
+  - bugfix: the cargo shuttle will no longer brick itself at the concept of an illegal
+      magazine
+  - balance: Increases the .60 Strela's Dest Mod.
+  SapphoQueer:
+  - bugfix: Penises no longer render in front of breasts and bellies
+2026-11-03:
+  NanoCats:
+  - bugfix: ERT members now use their chosen ERT Operative Alias by default instead
+      of a random name.
+2026-11-04:
+  SapphoQueer:
+  - rscadd: Gibtonite now can be sold through the cargo shuttle, giving a larger sum
+      of credits depending on how close it was to detonating.
+  Swan:
+  - rscadd: The telepathy quirk now gives out a balloon alert if the telepathy mutation
+      is not obtained.
+2026-11-05:
+  NanoCats:
+  - rscadd: Rapid Construction Fabricators can now be opened and hacked to access
+      autolathe contraband designs.
+  - rscadd: The Rapid Construction Fabricator has an internal battery, so it can print
+      without station power.
+  - rscadd: Planetary Ore Thumpers have a very small chance of causing an earthquake
+      while fracking.
+  - rscadd: Restored soup pots to the Rapid Construction Fabricator.
+  - rscadd: Added the field multitool and GAGS for colony tools
+  - balance: The Rapid Construction Fabricator costs more, its tools are slower, and
+      its design list was trimmed
+  - bugfix: Fixed colony wind turbines and Stirling generators to work correctly with
+      the current power system
+  - bugfix: Fixed deployable colony solar panel overlays
+  - bugfix: Made ore thumpers work as intended and improved Ore Thumper usability
+  - bugfix: The colony recycler no longer eats things it shouldn't
+  - bugfix: Fixed infinite biomass from the Colonial Supply Core
+  - qol: DeForest bioregenerator stackables now print a full stack instead of a single
+      item.
+  - image: Updated colony gear sprites
+2026-11-06:
+  ArrisFairburne:
+  - rscadd: Woodstock shotguns can now be bought for the security armory in packs
+      of 3
+  - balance: Instead of two renosters and two lesslethal renosters, the armory now
+      spawns three woodstocks and two lesslethal renosters
+  - balance: Adjusted shotgun single-pack order prices (double-barrel 1000cr > 700cr,
+      woodstock 1200cr > 1000cr, renoster 1400cr > 1800cr). The three-packs are priced
+      similarly.
+  - balance: The shotgun ammobelt and ammopouch have been moved into their own cargo
+      orders at 100cr
+  xPokee:
+  - rscadd: Added the Noble dragon-shark plushie, available from the loadout and Good
+      Clean Fun vendors.
+2026-11-07:
+  KateAnbolho:
+  - bugfix: fixes the lanca
+  SapphoQueer:
+  - rscadd: Security now gets a lethal sidearm voucher in their lockers as opposed
+      to just the murphy, featuring three whole options!
+2026-11-08:
+  Maia-J:
+  - rscdel: Removed all remnants of antag tickets
+  - rscdel: Disabled pipe carp until we can get them working again
+  - bugfix: non-destructive anomalies no longer have the destructive tag.
+  - balance: Drop pod attacks have had their tracks and weights rebalanced
+  - code_imp: All events are now in the events module
+  - code_imp: Antag prompting is now nested under storyteller
+  StrangeWeirdKitten:
+  - rscadd: Adds Wyvern borgs
+2026-11-09:
+  Aeri:
+  - bugfix: Company imports ordered from a request console now go to cargo's request
+      list for approval instead of being charged straight to the cargo budget.
+  Robwo:
+  - image: subtly modified window icons
+  - image: resprited newer tiled variants of floors
+  - image: resprited various newer glass floors
+  thegrb93:
+  - rscadd: Oviparity max eggs and egg rate config options
+  - bugfix: Fix xeno queen unable to hive chat
+  xPokee:
+  - image: Removed a stray pixel on the 'Cool thigh highs'.
+2026-11-11:
+  Maia-J:
+  - bugfix: the fleshmind learned from its mistakes and is now more powerful with
+      its reinforcement routine
+  - balance: The secondary message for fake blob happens later.
+  xPokee:
+  - map: Removed the mapped in rat king at the Lavaland Lizard Gas.
+2026-11-12:
+  Maia-J:
+  - bugfix: The fleshdrive also no longer gets stuck on reinforces
+  thegrb93:
+  - qol: Add back sleep button in IC tab
+2026-11-13:
+  Odairu:
+  - balance: revert malf weight nerf
+  SapphoQueer:
+  - balance: Flatpacked colony gear can no longer be deployed on station.
+  - balance: The colony core biomass machine can no longer be deployed on station.
+  thegrb93:
+  - bugfix: Fix bad caching causing vox/teshari/lizard digitigrade sprites to mix
+      up
+2026-11-14:
+  Arturlang:
+  - bugfix: dragons are crusher immune again
+  Maia-J:
+  - balance: The wireweed now uses intelligent deployment routines (It lets a player
+      tell it where to spawn)
+  - balance: The wirepriest staff is now nodrop
+  - bugfix: Wireweed conversion hopefully no longer wipes antag datums upon being
+      lost.
+  - bugfix: Wireweed projectiles now contain friend-foe identification routines
+  - bugfix: Wireweed turret targeting now actually targets alive foes.
+  - bugfix: Machine corruption retaliations can now discern friend and foe.
+  SapphoQueer:
+  - bugfix: Cargo imports now support custom descriptions properly again
+  - bugfix: The station restriction to the colony core biomass machine can no longer
+      by bypassed through a flatpacker
+  - bugfix: The frontier kitchen crate now has contents come in its flatpacked forms,
+      as opposed to being fully constructed out of the box.
+  - rscadd: Colony machines unavailable on station now have a description within the
+      cargo console that states that it's not available to be deployed on station.
+  - rscadd: Secmeds also get a sidearm voucher.
+  thegrb93:
+  - bugfix: Broken pod person, synth, and zombie mechanics
+  xPokee:
+  - balance: Wire Priest's hoods have welding protection now.
+2026-11-15:
+  xPokee:
+  - qol: Added in-game documentation to wireweed structures, provided you are converted.
+2026-11-16:
+  ArrisFairburne:
+  - rscdel: Reverted skyrat description of woodstock shotguns back to the tg description
+  - map: fixed voidraptor's BZ chamber to not use engine BZ
+  Maia-J:
+  - bugfix: The wirepriest eye now deletes itself after the priest spawns in
+  - code_imp: Checks for wireweed and magical light valid spawning locations got improved.
+  - balance: Wireweed mobs are now spaceproof
+  MrGloopy:
+  - balance: Enforcer Pistol - Increased damage of less lethal projectile from 20
+      to 25. Lethal projectile damage increased from 18 to 20. Projectile speed increased
+      to 1.3, from previous value of 1.25, the default ballistic speed.
+  - balance: Lancer SMG - Increased damage of less lethal projectile from 16 to 18.
+      Lethal projectile damage increased from 14 to 16. Projectile speed increased
+      to 1.3 from previous value of 1.25, the default ballistic speed.
+  SapphoQueer:
+  - qol: The tarkon "creamatorium" has been replaced with a regular crematorium
+2026-11-17:
+  BingusTheClown:
+  - rscadd: Added Traffic Console for Telecomms
+  - rscadd: Two achievements related to the Traffic Console
+  - map: Mapped in consoles (TBD)
+  - code_imp: Lots of scripting to support the Traffic Console
+  KateAnbolho:
+  - balance: Tweaks and buffs ERT loadouts!)
+  LeatherGnome:
+  - qol: gave the service autolathe the decal painter
+  Maia-J:
+  - qol: The wirepriest and their converts can see in the dark
+  - bugfix: The wirepriest eye can now see in the dark.
+  Robwo:
+  - rscadd: Added UpdatePaths script for wall closet directional presets
+  - map: Added new arcade themed condo
+  - map: moved condo dmm files to _maps/bubber/condos
+  - bugfix: borg yoga mats are no longer in 3/4ths perspective
+  - sound: Added subtle rain ambience for fast_food.dmm and apartment_skyscraper.dmm
+  slightlyevilpeanut22:
+  - bugfix: thanatorenasia people can now be revived after someone takes the ghost
+      poll
+  - bugfix: death degradation makes you unreviveable with permadeath mode regardless
+      if you were ghosted when it maxxed
+  - rscadd: orbiting a person with thanatorenasia after they went dnr will make them
+      appear as reviveable on senors
+  - rscadd: death degradation permadeath and DNR quirk automatically works with thanatorenasia
+  - rscadd: people that went DNR and can't be revived won't appear in orbit menu,
+      they still can be found in observe verb if you search their name. Those who
+      are dnr and can be revived for ghost role are still showing up in orbit menu
+  - bugfix: clicking refresh death degradation variables no longer instantly resets
+      it to 0
+  - bugfix: going DNR without thanatorenasia now properly frees up
+  thegrb93:
+  - bugfix: Chaps don't cover genitals anymore.
+  xPokee:
+  - bugfix: Autolathes can accept the components data disks again.
+2026-11-18:
+  Arturlang:
+  - balance: passive/minion/khopesh crashing are reduced to 0.5, with the exception
+      of the humanoid ghoul knowledge being 0.5
+  ibexgoetia:
+  - rscadd: New chicken-flavoured, meat-like products, for all chicken nugget and
+      boneless wing enjoyers!
+  - bugfix: The Organic Rations printer now actually produces synthetic chicken, as
+      opposed to just creating the real thing.
+  thegrb93:
+  - bugfix: Fix security bodysuit name typo

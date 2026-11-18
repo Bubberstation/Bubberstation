@@ -12,10 +12,10 @@
 	var/obj/item/modular_computer/pda/synth/internal_computer
 	actions_types = list(/datum/action/item_action/synth/open_internal_computer)
 	organ_traits = list(TRAIT_SILICON_EMOTES_ALLOWED)
-	var/mmi_type = /obj/item/mmi/posibrain
-	var/obj/item/mmi/stored_mmi
+	var/mmi_type = /obj/item/brain_processor/positronic
+	var/obj/item/brain_processor/stored_mmi
 
-/obj/item/organ/brain/synth/Initialize(mapload, obj/item/mmi/brain_mmi)
+/obj/item/organ/brain/synth/Initialize(mapload, obj/item/brain_processor/brain_mmi)
 	. = ..()
 	internal_computer = new(src)
 	ADD_TRAIT(src, TRAIT_SILICON_EMOTES_ALLOWED, INNATE_TRAIT)
@@ -30,20 +30,21 @@
 	QDEL_NULL(stored_mmi)
 	. = ..()
 
-/obj/item/organ/brain/synth/Remove(mob/living/carbon/organ_owner, special = FALSE, movement_flags)
+/obj/item/organ/brain/synth/on_surgical_removal(mob/living/user, obj/item/bodypart/limb, obj/item/tool)
 	. = ..()
-	if(!istype(stored_mmi) || special || loc == null)
+	if(!istype(stored_mmi))
 		return
-	stored_mmi.brain = src
+	if(istype(stored_mmi, /obj/item/brain_processor/organic))
+		var/obj/item/brain_processor/organic/organic_mmi = stored_mmi
+		organic_mmi.brain = src
 	organ_flags |= ORGAN_FROZEN
 	stored_mmi.update_appearance()
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(nest_into_stored_mmi))
+	nest_into_stored_mmi()
 
-/obj/item/organ/brain/synth/proc/nest_into_stored_mmi(datum/source, atom/old_loc, dir, forced)
-	SIGNAL_HANDLER
+/obj/item/organ/brain/synth/proc/nest_into_stored_mmi()
 	if(loc == stored_mmi)
 		return
-	var/obj/item/mmi/mmi = stored_mmi
+	var/obj/item/brain_processor/mmi = stored_mmi
 	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
 	stored_mmi = null
 	var/atom/destination = loc || mmi.drop_location()
@@ -157,11 +158,11 @@
 	inhand_icon_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
-	mmi_type = /obj/item/mmi/posibrain/circuit
+	mmi_type = /obj/item/brain_processor/positronic/circuit
 
 /obj/item/organ/brain/synth/mmi
 	name = "augmented brain"
 	desc = "A augmented organic brain"
 	icon = /obj/item/organ/brain::icon
 	icon_state = "brain"
-	mmi_type = /obj/item/mmi
+	mmi_type = /obj/item/brain_processor/organic

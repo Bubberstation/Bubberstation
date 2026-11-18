@@ -52,6 +52,7 @@
 		"Combat Medic",
 		"Special Operations Medic",
 	)
+	tgui_icon = FA_ICON_HEART_CIRCLE_BOLT
 
 /datum/outfit/job/security_medic
 	name = "Security Medic"
@@ -63,7 +64,7 @@
 		/obj/item/sensor_device/secmed = 1
 		)
 	suit_store = /obj/item/flashlight/seclite
-	belt = /obj/item/modular_computer/pda/security
+	belt = /obj/item/modular_computer/pda/crew/security
 	ears = /obj/item/radio/headset/headset_medsec
 	uniform = /obj/item/clothing/under/rank/security/peacekeeper/security_medic
 	gloves = /obj/item/clothing/gloves/latex/nitrile
@@ -159,6 +160,7 @@ by the automapper.
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	//To prevent the bodies of your fellow officers from decaying, or the antag with one million implants in them.
 	new /obj/item/reagent_containers/cup/bottle/formaldehyde(src)
+	new /obj/item/security_voucher/sidearm(src)
 
 //Prevents secmed hours from counting towards HoS
 /datum/controller/subsystem/job/setup_occupations()

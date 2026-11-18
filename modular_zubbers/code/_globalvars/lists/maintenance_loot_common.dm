@@ -1,6 +1,6 @@
 GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 	GLOB.arcade_prize_pool = 150,
-	/obj/item/relic = 100,
+	/obj/item/assembly/relic = 100,
 	list(
 		/obj/item/storage/backpack = 200,
 		/obj/item/storage/backpack/duffelbag = 100,

@@ -26,7 +26,7 @@
 		/obj/item/security_voucher/utility = 1
 		)
 	belt = /obj/item/storage/belt/holster/detective/full
-	l_pocket = /obj/item/modular_computer/pda/detective
+	l_pocket = /obj/item/modular_computer/pda/crew/detective
 	pda_slot = ITEM_SLOT_LPOCKET
 
 

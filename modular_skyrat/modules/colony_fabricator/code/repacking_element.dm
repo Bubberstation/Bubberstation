@@ -52,7 +52,8 @@
 
 	playsound(source, 'sound/items/tools/ratchet.ogg', 50, TRUE)
 
-	new item_to_pack_into(source.drop_location())
+	var/obj/item/packed_item = new item_to_pack_into(source.drop_location())
+	SEND_SIGNAL(source, COMSIG_REPACKABLE_REPACKED, packed_item)
 
 	if(istype(source, /obj))
 		var/obj/source_object = source
