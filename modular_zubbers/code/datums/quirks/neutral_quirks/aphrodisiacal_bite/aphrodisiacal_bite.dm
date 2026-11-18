@@ -26,7 +26,7 @@
 	to_inject = quantity_override || reagent_spec[1]
 	cooldown_time = cooldown_override || reagent_spec[2]
 
-/datum/action/cooldown/mob_cooldown/aphrodisiacal_bite/Trigger(mob/clicker, trigger_flags)
+/datum/action/cooldown/mob_cooldown/aphrodisiacal_bite/Trigger(mob/clicker, trigger_flags, atom/target)
 	if(trigger_flags & TRIGGER_SECONDARY_ACTION)
 		var/new_reagent = tgui_input_list(clicker, "Select which venom to inject.", "Venom Selection", /datum/preference/choiced/aphrodisiacal_bite_venom::aphrodisiacal_bite_choice_specs)
 		set_reagent(new_reagent)
