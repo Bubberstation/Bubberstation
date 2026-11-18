@@ -88,13 +88,13 @@
 			var/list/name_list = list()
 			for(var/storyteller_type in storytellers)
 				var/datum/storyteller/storyboy = storytellers[storyteller_type]
-				name_list[storyboy.name] = storyboy.type
+				name_list[storyboy.name] = storyteller_type
 			var/new_storyteller_name = input(usr, "Choose new storyteller (circumvents voted one):", "Storyteller")  as null|anything in name_list
 			if(!new_storyteller_name)
 				return
 			message_admins("[key_name_admin(usr)] has changed the Storyteller to [new_storyteller_name].")
 			var/new_storyteller_type = name_list[new_storyteller_name]
-			set_storyteller(new_storyteller_name, TRUE, usr.ckey)
+			set_storyteller(new_storyteller_type, TRUE, usr.ckey)
 		if("halt_storyteller")
 			halt_storyteller(usr)
 		if("track_action")

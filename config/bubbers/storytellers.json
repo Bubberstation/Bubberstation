@@ -4,19 +4,54 @@
 		"desc": "This storyteller will be light on events and antag rolls compared to other storytellers, especially so on ones involving combat, destruction, or chaos. The least hectic storyteller of all, while still having some spice. Best for RP-focused rounds with a few events and antags sprinkled in.",
 		"welcome_text": "If you vote for this storyteller on Ice Box, you have no originality.",
 		"track_data":[{
-			"threshold_mundane": 1800,
-			"threshold_moderate": 2700,
-			"threshold_major": 16000,
-			"threshold_crewset": 3200,
-			"threshold_ghostset": 20000
+			"Mundane": 1800,
+			"Moderate": 2700,
+			"Major": 16000,
+			"Crewset": 3200,
+			"Ghostset": 20000
 		}],
 		"tag_multipliers":[{
 			"combat": 0.3,
-			"destructive":0.3,
-			"chaotic":0.1
+			"destructive": 0.3,
+			"chaotic": 0.1
 		}],
 		"guarantees_roundstart_crewset": 0,
 		"antag_divisor": 32,
 		"storyteller_type": 1
+	},
+	"fragile": {
+		"name": "Fragile (Mid-Low Event/Antag Rolls)",
+		"desc": "This storyteller will limit destructive, combat-focused, and chaotic events. Spawns more events than the Light storyteller, but less than Default Andy.",
+		"welcome_text": "Handle with care!",
+		"event_repetition_multiplier": 0.5,
+		"track_data":[{
+			"Mundane": 1200,
+			"Moderate": 1800,
+			"Major": 10000,
+			"Crewset": 3000,
+			"Ghostset": 6800
+		}],
+		"tag_multipliers":[{
+			"combat": 0.6,
+			"destruction": 0.6,
+			"chaotic": 0.6
+		}],
+		"storyteller_type": 0
+	},
+	"default": {
+		"name": "Default Andy (Normal Event/Antag Rolls)",
+		"desc": "This is the default Storyteller, and the comparison point for every other Storyteller. It's a midpoint between the other event storytellers. Best for an average, varied experience.",
+		"welcome_text": "If I chopped you up in a meat grinder...",
+		"track_data":[{
+			"Mundane": 1200,
+			"Moderate": 1800,
+			"Major": 7000,
+			"Crewset": 2400,
+			"Ghostset": 6000
+		}],
+		"tag_multipliers":[{
+			"chaotic": 0.7
+		}],
+		"storyteller_type": 0
 	}
 }

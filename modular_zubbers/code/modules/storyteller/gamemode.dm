@@ -130,6 +130,7 @@ SUBSYSTEM_DEF(gamemode)
 		event_pools[track] = list()
 
 	// Populate storytellers
+	storytellers["extended"] = new /datum/storyteller/extended
 	load_config_storytellers()
 
 	for(var/type in typesof(/datum/round_event_control))
@@ -753,11 +754,11 @@ SUBSYSTEM_DEF(gamemode)
 			channel_tag,
 		)
 
-#define THRESHOLD_MUNDANE 0
-#define THRESHOLD_MODERATE 1
-#define THRESHOLD_MAJOR 2
-#define THRESHOLD_CREWSET 3
-#define THRESHOLD_GHOSTSET 4
+#define THRESHOLD_MUNDANE 1
+#define THRESHOLD_MODERATE 2
+#define THRESHOLD_MAJOR 3
+#define THRESHOLD_CREWSET 4
+#define THRESHOLD_GHOSTSET 5
 
 /**
  * set_storyteller
@@ -772,12 +773,11 @@ SUBSYSTEM_DEF(gamemode)
 		CRASH("Attempted to set an invalid storyteller type: [passed_type].")
 	storyteller = storytellers[passed_type]
 
-	// var/datum/storyteller_data/tracks/track_data = storyteller.track_data
-	point_thresholds[EVENT_TRACK_MUNDANE] = storyteller.track_data[THRESHOLD_MUNDANE]
-	point_thresholds[EVENT_TRACK_MODERATE] = storyteller.track_data[THRESHOLD_MODERATE]
-	point_thresholds[EVENT_TRACK_MAJOR] = storyteller.track_data[THRESHOLD_MAJOR]
-	point_thresholds[EVENT_TRACK_CREWSET] = storyteller.track_data[THRESHOLD_CREWSET]
-	point_thresholds[EVENT_TRACK_GHOSTSET] = storyteller.track_data[THRESHOLD_GHOSTSET]
+	point_thresholds[EVENT_TRACK_MUNDANE] = storyteller.track_data[EVENT_TRACK_MUNDANE]
+	point_thresholds[EVENT_TRACK_MODERATE] = storyteller.track_data[EVENT_TRACK_MODERATE]
+	point_thresholds[EVENT_TRACK_MAJOR] = storyteller.track_data[EVENT_TRACK_MAJOR]
+	point_thresholds[EVENT_TRACK_CREWSET] = storyteller.track_data[EVENT_TRACK_CREWSET]
+	point_thresholds[EVENT_TRACK_GHOSTSET] = storyteller.track_data[EVENT_TRACK_GHOSTSET]
 
 	log_admin_private("Storyteller switched to [storyteller.name]. [forced ? "Forced by admin ckey [force_ckey]" : ""]")
 

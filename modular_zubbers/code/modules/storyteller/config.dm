@@ -67,32 +67,6 @@
 	integer = TRUE
 	min_val = 0
 
-// Point Thresholds
-/datum/config_entry/number/mundane_point_threshold
-	default = MUNDANE_POINT_THRESHOLD
-	integer = TRUE
-	min_val = 0
-
-/datum/config_entry/number/moderate_point_threshold
-	default = MODERATE_POINT_THRESHOLD
-	integer = TRUE
-	min_val = 0
-
-/datum/config_entry/number/major_point_threshold
-	default = MAJOR_POINT_THRESHOLD
-	integer = TRUE
-	min_val = 0
-
-/datum/config_entry/number/crewset_point_threshold
-	default = CREWSET_POINT_THRESHOLD
-	integer = TRUE
-	min_val = 0
-
-/datum/config_entry/number/ghostset_point_threshold
-	default = GHOSTSET_POINT_THRESHOLD
-	integer = TRUE
-	min_val = 0
-
 /datum/config_entry/number/disallow_crew_antags_time_threshold
 	default = -1
 	integer = TRUE

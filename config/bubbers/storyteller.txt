@@ -1,5 +1,5 @@
 ## Default Storyteller. Comment out to enable voting.
-DEFAULT_STORYTELLER /datum/storyteller/extended
+DEFAULT_STORYTELLER extended
 
 ## Gamemode configurations
 
@@ -23,13 +23,6 @@ MODERATE_MIN_POP 0
 MAJOR_MIN_POP 0
 CREWSET_MIN_POP 0
 GHOSTSET_MIN_POP 0
-
-## Point thresholds for tracks to run events. The lesser the more frequent events will be.
-MUNDANE_POINT_THRESHOLD 25
-MODERATE_POINT_THRESHOLD 50
-MAJOR_POINT_THRESHOLD 90
-CREWSET_POINT_THRESHOLD 120
-GHOSTSET_POINT_THRESHOLD 130
 
 ## Disable storyteller crew antagonist creation after this many minutes. Values less than 0 means don't disable.
 DISALLOW_CREW_ANTAGS_TIME_THRESHOLD -1
