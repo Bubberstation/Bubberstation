@@ -113,6 +113,9 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	/// If TRUE, then this turf will be skipped entirely by minimap rendering.
 	var/skip_minimap_rendering = FALSE
 
+/turf/Initialize(mapload, ...)
+	. = ..()
+	color = "#bf00ff"
 
 /// ChangeTurf passes the old signal tables here so initialization can update them directly.
 /// In particular, occupant initialization can move or delete existing contents before New() returns.
