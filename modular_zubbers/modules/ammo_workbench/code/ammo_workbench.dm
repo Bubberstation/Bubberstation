@@ -247,7 +247,7 @@
 
 	return data
 
-/obj/machinery/ammo_workbench/ui_act(action, params)
+/obj/machinery/ammo_workbench/ui_act(action, params, datum/tgui/ui)
 	. = ..()
 	if(.)
 		return
