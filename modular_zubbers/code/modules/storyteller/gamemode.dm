@@ -866,8 +866,7 @@ SUBSYSTEM_DEF(gamemode)
 	for (var/storyteller in storyteller_configs)
 		var/datum/storyteller/new_storyteller = new
 		var/list/var_list = storyteller_configs[storyteller]
-		for (var/variable in var_list)
-			var/value = var_list[variable]
+		for (var/variable, value in var_list)
 			switch (variable)
 				if ("name")
 					new_storyteller.name = value
