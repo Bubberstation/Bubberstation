@@ -345,6 +345,11 @@
 		speaker = virtual_speaker.source
 		classes |= "virtual-speaker"
 
+	// BUBBER ADDITION START -- NTSL -- NTSL doesn't pass a speaker when you do broadcast() since technically nothing is actually speaking.
+	if(!speaker)
+		return
+	// BUBBER ADDITION END
+
 	// Ignore virtual speaker (most often radio messages) from ourselves
 	if (original_speaker != src && speaker == src)
 		return
