@@ -410,13 +410,15 @@ GAME_VERB(/mob/dead/observer, do_not_resuscitate, "Do Not Resuscitate", null)
 		SEND_SIGNAL(current_mob, COMSIG_LIVING_DNR, src)
 
 		// BUBBER EDIT - ADDITION - START
-		if(!current_mob.has_quirk(/datum/quirk/dnr))
-			current_mob.add_quirk(/datum/quirk/dnr)
-		var/datum/job/job_to_free = SSjob.get_job(current_mob.mind.assigned_role.title)
-		if(job_to_free)
-			job_to_free.current_positions = max(0, job_to_free.current_positions - 1)
-		if(ishuman(mind.current))
-			current_mob.alpha = GHOST_ALPHA
+		if(!HAS_TRAIT(current_mob, TRAIT_DNR))
+			ADD_TRAIT(current_mob, TRAIT_DNR, INNATE_TRAIT)
+		if(!HAS_TRAIT(current_mob, TRAIT_GHOSTROLE_ON_REVIVE))
+			var/datum/job/job_to_free = SSjob.get_job(current_mob.mind.assigned_role.title)
+			if(job_to_free)
+				job_to_free.current_positions = max(0, job_to_free.current_positions - 1)
+			if(ishuman(mind.current))
+				current_mob.alpha = GHOST_ALPHA
+			current_mob.mind = null
 		// BUBBER EDIT - ADDITION - END
 	log_message("has opted to do-not-resuscitate / DNR from their body ([current_mob])", LOG_GAME, color = COLOR_GREEN)
 

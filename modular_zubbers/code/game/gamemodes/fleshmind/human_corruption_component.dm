@@ -70,6 +70,11 @@
 	infected_human.light_color = "#50edd9"
 	infected_human.update_appearance()
 
+	// Cyan-ish nvg
+	infected_human.lighting_cutoff_blue += 40
+	infected_human.lighting_cutoff_green += 30
+	infected_human.update_sight()
+
 /datum/component/human_corruption/Destroy(force, silent)
 	QDEL_LIST(granted_actions)
 	var/mob/living/parent_mob = parent
@@ -87,8 +92,12 @@
 	log_combat(parent_mob, null, "deconverted", "deconverted message", "[parent_mob] has been deconverted from the fleshmind")
 	if(our_controller && parent_mob.client)
 		LAZYREMOVE(our_controller.infected_crew, parent_mob)
-	for(var/datum/antagonist/wire_priest/priest as anything in parent_mob.mind.antag_datums)
+	for(var/datum/antagonist/wire_priest/priest in parent_mob.mind.antag_datums)
 		qdel(priest)
+
+	parent_mob.lighting_cutoff_blue -= 40
+	parent_mob.lighting_cutoff_green -= 30
+	parent_mob.update_sight()
 
 	our_controller = null
 	return ..()
@@ -148,7 +157,6 @@
 
 /datum/component/human_corruption/proc/host_death()
 	SIGNAL_HANDLER
-
 	qdel(src)
 
 /datum/component/human_corruption/proc/create_glow()

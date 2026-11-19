@@ -266,7 +266,20 @@
 
 /// Adds the deployable component, so that it can be overridden in case that's wanted
 /obj/item/flatpacked_machine/proc/give_deployable_component()
-	AddComponent(/datum/component/deployable, deploy_time, type_to_deploy)
+	AddComponent(/datum/component/deployable/colony_fabricator, deploy_time, type_to_deploy)
+
+/datum/component/deployable/colony_fabricator/deploy(obj/source, mob/user, location, direction)
+	var/turf/deploy_location = user ? get_step(user, user.dir) : location
+	if(!deploy_location)
+		return
+
+	var/area/deploy_area = get_area(deploy_location)
+	if((deploy_area.type in GLOB.the_station_areas))
+		if(user)
+			source.balloon_alert(user, "can't deploy on station!")
+		return
+
+	return ..()
 
 /// Adds the manufacturer examine element to the flatpack machine, but can be overridden in the future
 /obj/item/flatpacked_machine/proc/give_manufacturer_examine()
