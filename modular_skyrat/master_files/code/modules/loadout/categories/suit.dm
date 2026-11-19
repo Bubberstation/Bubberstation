@@ -261,7 +261,7 @@
 
 /datum/loadout_item/suit/sexy_shrine
 	name = "Sexy Shrine Maiden Robe"
-	item_path = /obj/item/clothing/suit/sexy_shrinemaiden
+	item_path = /obj/item/clothing/suit/sexy_shrine_maiden
 
 /*
 *	SEASONAL
