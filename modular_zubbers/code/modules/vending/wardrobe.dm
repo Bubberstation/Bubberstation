@@ -227,7 +227,7 @@
 		/obj/item/clothing/neck/bunny_pendant = 6,
 		/obj/item/clothing/neck/cross = 5,
 		/obj/item/clothing/suit/costume/nemes = 1,
-		/obj/item/clothing/suit/sexy_shrinemaiden = 1
+		/obj/item/clothing/suit/sexy_shrinemaiden = 1,
 		/obj/item/clothing/suit/jacket/brasspriest = 1,
 		/obj/item/clothing/suit/jacket/tailcoat/chaplain = 1,
 		/obj/item/clothing/under/rank/civilian/chaplain_bunnysuit = 1,
