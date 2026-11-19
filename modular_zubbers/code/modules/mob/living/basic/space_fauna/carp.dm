@@ -116,7 +116,7 @@
 
 /mob/living/basic/carp/metacarp/death(gibbed)
 	for(var/i = 0; i < carp_spawn_on_violent_death; i ++)
-		mycarp = new(loc)
+		new /mob/living/basic/carp(loc)
 	do_sparks(3)
 	playsound(get_turf(src),'sound/effects/magic/repulse.ogg', 100, TRUE)
 	. = ..()
