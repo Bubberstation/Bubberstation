@@ -753,12 +753,6 @@ SUBSYSTEM_DEF(gamemode)
 			channel_tag,
 		)
 
-#define THRESHOLD_MUNDANE 1
-#define THRESHOLD_MODERATE 2
-#define THRESHOLD_MAJOR 3
-#define THRESHOLD_CREWSET 4
-#define THRESHOLD_GHOSTSET 5
-
 /**
  * set_storyteller
  *
@@ -779,12 +773,6 @@ SUBSYSTEM_DEF(gamemode)
 	point_thresholds[EVENT_TRACK_GHOSTSET] = storyteller.track_data[EVENT_TRACK_GHOSTSET]
 
 	log_admin_private("Storyteller switched to [storyteller.name]. [forced ? "Forced by admin ckey [force_ckey]" : ""]")
-
-#undef THRESHOLD_MUNDANE
-#undef THRESHOLD_MODERATE
-#undef THRESHOLD_MAJOR
-#undef THRESHOLD_CREWSET
-#undef THRESHOLD_GHOSTSET
 
 /**
  * halt_storyteller
