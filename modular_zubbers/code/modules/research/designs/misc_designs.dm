@@ -94,3 +94,13 @@
 	. = ..()
 	build_type |= AUTOLATHE
 	category += list(RND_CATEGORY_INITIAL)
+
+/datum/design/frontier_tools_disk
+	name = "Frontier Tools Autolathe Design Disk"
+	desc = "A disk containing blueprints for frontier tools."
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(
+		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 1.5
+	)
+	build_path = /obj/item/disk/design_disk/frontier_tools_disk
+	departmental_flags = DEPARTMENT_BITFLAG_CARGO

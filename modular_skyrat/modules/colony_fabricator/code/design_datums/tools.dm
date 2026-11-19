@@ -15,7 +15,7 @@
 // Screw-Wrench-Wirecutter combo machine
 /datum/design/colony_power_driver
 	name = "Powered Driver"
-	build_type = COLONY_FABRICATOR
+	build_type = COLONY_FABRICATOR | AUTOLATHE
 	build_path = /obj/item/screwdriver/omni_drill
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.45,
@@ -30,7 +30,6 @@
 	research_icon = 'modular_skyrat/modules/colony_fabricator/icons/tools.dmi'
 	research_icon_state = "drill_charged"
 	category = list(
-		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED,
 	)
 
@@ -38,14 +37,13 @@
 
 /datum/design/colony_door_crowbar
 	name = "Prybar"
-	build_type = COLONY_FABRICATOR
+	build_type = COLONY_FABRICATOR | AUTOLATHE
 	build_path = /obj/item/crowbar/large/colony_prybar
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.75,
 		/datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT,
 	)
 	category = list(
-		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED,
 	)
 
@@ -53,7 +51,7 @@
 
 /datum/design/colony_arc_welder
 	name = "Arc Welder"
-	build_type = COLONY_FABRICATOR
+	build_type = COLONY_FABRICATOR | AUTOLATHE
 	build_path = /obj/item/weldingtool/electric/arc_welder
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.2,
@@ -67,7 +65,6 @@
 	research_icon = 'modular_skyrat/modules/colony_fabricator/icons/tools.dmi'
 	research_icon_state = "arc_welder_charged"
 	category = list(
-		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED,
 	)
 
@@ -75,27 +72,25 @@
 
 /datum/design/colony_compact_drill
 	name = "Compact Mining Drill"
-	build_type = COLONY_FABRICATOR
+	build_type = COLONY_FABRICATOR | AUTOLATHE
 	build_path = /obj/item/pickaxe/drill/compact
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
 	)
 	category = list(
-		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING,
 	)
 
 /datum/design/colony_multitool
 	name = "Field Multitool"
-	build_type = COLONY_FABRICATOR
+	build_type = COLONY_FABRICATOR | AUTOLATHE
 	build_path = /obj/item/multitool/colony
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.5,
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.2,
 	)
 	category = list(
-		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED,
 	)
 
