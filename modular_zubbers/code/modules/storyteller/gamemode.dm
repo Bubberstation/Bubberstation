@@ -130,7 +130,7 @@ SUBSYSTEM_DEF(gamemode)
 		event_pools[track] = list()
 
 	// Populate storytellers
-	storytellers["extended"] = new /datum/storyteller/extended
+	storytellers["extended"] = new /datum/storyteller/extended	// this one is kind of special. One of a kind, really.
 	load_config_storytellers()
 
 	for(var/type in typesof(/datum/round_event_control))
