@@ -11,8 +11,8 @@ SUBSYSTEM_DEF(gamemode)
 	var/list/event_tracks = EVENT_TRACKS
 	/// Our storyteller. He progresses our trackboards and picks out events
 	var/datum/storyteller/storyteller
-	/// Result of the storyteller vote. Defaults to the guide.
-	var/voted_storyteller = /datum/storyteller/default
+	/// Result of the storyteller vote. Defaults to extended
+	var/voted_storyteller = "extended"
 	/// List of all the storytellers. Populated at init. Associative from type
 	var/list/storytellers = list()
 	/// Next process for our storyteller. The wait time is STORYTELLER_WAIT_TIME
