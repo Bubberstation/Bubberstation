@@ -8,7 +8,7 @@
 	flags_1 = ON_BORDER_1
 	obj_flags = CAN_BE_HIT | BLOCKS_CONSTRUCTION_DIR | IGNORE_DENSITY
 	max_integrity = 100
-	pass_flags_self = PASSSTRUCTURE | LETPASSTHROW
+	pass_flags_self = PASSSTRUCTURE | LETPASSTHROW | PASSTABLE
 	///The type of stack the barricade dropped when disassembled if any.
 	var/stack_type
 	///The amount of stack dropped when disassembled at full health
@@ -92,6 +92,18 @@
 	if((border_dir & dir) && !closed)
 		return . || mover.throwing || mover.movement_type & (FLYING | FLOATING)
 	return TRUE
+
+/// barricade needs different behavior for projectiles vs. players, so CanAllowThrough must be altered -- extra stipulation prevents tesh from tablewalking through barricades
+/obj/structure/deployable_barricade/CanAllowThrough(atom/movable/mover, border_dir)
+	SHOULD_CALL_PARENT(0)
+	if(mover.pass_flags & pass_flags_self)
+		if(istype(mover, /obj/projectile))
+			return TRUE
+		else if(mover.pass_flags & (pass_flags_self ^ PASSTABLE))
+			return TRUE
+	if(mover.throwing && (pass_flags_self & LETPASSTHROW))
+		return TRUE
+	return !density
 
 /obj/structure/deployable_barricade/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/stack/cable_coil) && can_wire)
