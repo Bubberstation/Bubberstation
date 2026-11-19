@@ -11,7 +11,6 @@
 		"Target Practice",
 		"Training Dummy",
 		"Medical Enrichment",
-		"Clug (Clown Bug)",
 		"Security Enrichment",
 		"Clown Executive Officer",
 		"Head of Clowning",
