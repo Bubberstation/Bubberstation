@@ -13,7 +13,7 @@ SUBSYSTEM_DEF(gamemode)
 	var/datum/storyteller/storyteller
 	/// Result of the storyteller vote. Defaults to extended
 	var/voted_storyteller = "extended"
-	/// List of all the storytellers. Populated at init. Associative from type
+	/// List of all the storytellers. Populated at init. Associative from short name
 	var/list/storytellers = list()
 	/// Next process for our storyteller. The wait time is STORYTELLER_WAIT_TIME
 	var/next_storyteller_process = 0
@@ -35,11 +35,11 @@ SUBSYSTEM_DEF(gamemode)
 		)
 	/// Point thresholds at which the events are supposed to be rolled, it is also the base cost for events.
 	var/list/point_thresholds = list(
-		EVENT_TRACK_MUNDANE = 100,
-		EVENT_TRACK_MODERATE = 100,
-		EVENT_TRACK_MAJOR = 100,
-		EVENT_TRACK_CREWSET = 100,
-		EVENT_TRACK_GHOSTSET = 100
+		EVENT_TRACK_MUNDANE = 1200,
+		EVENT_TRACK_MODERATE = 1800,
+		EVENT_TRACK_MAJOR = 7000,
+		EVENT_TRACK_CREWSET = 2400,
+		EVENT_TRACK_GHOSTSET = 6000
 		)
 
 	/// Minimum population thresholds for the tracks to fire off events.
@@ -49,15 +49,6 @@ SUBSYSTEM_DEF(gamemode)
 		EVENT_TRACK_MAJOR = MAJOR_MIN_POP,
 		EVENT_TRACK_CREWSET = CREWSET_MIN_POP,
 		EVENT_TRACK_GHOSTSET = GHOSTSET_MIN_POP
-		)
-
-	/// Configurable multipliers for point gain over time.
-	var/list/point_gain_multipliers = list(
-		EVENT_TRACK_MUNDANE = 1,
-		EVENT_TRACK_MODERATE = 1,
-		EVENT_TRACK_MAJOR = 1,
-		EVENT_TRACK_CREWSET = 1,
-		EVENT_TRACK_GHOSTSET = 1
 		)
 	/// Configurable multipliers for roundstart points.
 	var/list/roundstart_point_multipliers = list(
@@ -674,12 +665,6 @@ SUBSYSTEM_DEF(gamemode)
 
 /// Loads config values from game_options.txt
 /datum/controller/subsystem/gamemode/proc/load_config_vars()
-	point_gain_multipliers[EVENT_TRACK_MUNDANE] = CONFIG_GET(number/mundane_point_gain_multiplier)
-	point_gain_multipliers[EVENT_TRACK_MODERATE] = CONFIG_GET(number/moderate_point_gain_multiplier)
-	point_gain_multipliers[EVENT_TRACK_MAJOR] = CONFIG_GET(number/major_point_gain_multiplier)
-	point_gain_multipliers[EVENT_TRACK_CREWSET] = CONFIG_GET(number/crewset_point_gain_multiplier)
-	point_gain_multipliers[EVENT_TRACK_GHOSTSET] = CONFIG_GET(number/ghostset_point_gain_multiplier)
-
 	roundstart_point_multipliers[EVENT_TRACK_MUNDANE] = CONFIG_GET(number/mundane_roundstart_point_multiplier)
 	roundstart_point_multipliers[EVENT_TRACK_MODERATE] = CONFIG_GET(number/moderate_roundstart_point_multiplier)
 	roundstart_point_multipliers[EVENT_TRACK_MAJOR] = CONFIG_GET(number/major_roundstart_point_multiplier)
