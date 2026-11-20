@@ -35,11 +35,11 @@ SUBSYSTEM_DEF(gamemode)
 		)
 	/// Point thresholds at which the events are supposed to be rolled, it is also the base cost for events.
 	var/list/point_thresholds = list(
-		EVENT_TRACK_MUNDANE = 1200,
-		EVENT_TRACK_MODERATE = 1800,
-		EVENT_TRACK_MAJOR = 7000,
-		EVENT_TRACK_CREWSET = 2400,
-		EVENT_TRACK_GHOSTSET = 6000
+		EVENT_TRACK_MUNDANE = 100,
+		EVENT_TRACK_MODERATE = 100,
+		EVENT_TRACK_MAJOR = 100,
+		EVENT_TRACK_CREWSET = 100,
+		EVENT_TRACK_GHOSTSET = 100
 		)
 
 	/// Minimum population thresholds for the tracks to fire off events.
@@ -49,14 +49,6 @@ SUBSYSTEM_DEF(gamemode)
 		EVENT_TRACK_MAJOR = MAJOR_MIN_POP,
 		EVENT_TRACK_CREWSET = CREWSET_MIN_POP,
 		EVENT_TRACK_GHOSTSET = GHOSTSET_MIN_POP
-		)
-	/// Configurable multipliers for roundstart points.
-	var/list/roundstart_point_multipliers = list(
-		EVENT_TRACK_MUNDANE = 1,
-		EVENT_TRACK_MODERATE = 1,
-		EVENT_TRACK_MAJOR = 1,
-		EVENT_TRACK_CREWSET = 1,
-		EVENT_TRACK_GHOSTSET = 1
 		)
 
 	/// Associative list of control events by their track category. Compiled in Init
@@ -341,7 +333,6 @@ SUBSYSTEM_DEF(gamemode)
 			if(EVENT_TRACK_GHOSTSET)
 				base_amt = ROUNDSTART_GHOSTSET_BASE
 		var/calc_value = base_amt
-		calc_value *= roundstart_point_multipliers[track]
 		calc_value *= storyteller.starting_point_multipliers[track]
 		calc_value *= (1 + (rand(-storyteller.roundstart_points_variance, storyteller.roundstart_points_variance) / 100))
 		event_track_points[track] = max(0, round(calc_value))
@@ -665,12 +656,6 @@ SUBSYSTEM_DEF(gamemode)
 
 /// Loads config values from game_options.txt
 /datum/controller/subsystem/gamemode/proc/load_config_vars()
-	roundstart_point_multipliers[EVENT_TRACK_MUNDANE] = CONFIG_GET(number/mundane_roundstart_point_multiplier)
-	roundstart_point_multipliers[EVENT_TRACK_MODERATE] = CONFIG_GET(number/moderate_roundstart_point_multiplier)
-	roundstart_point_multipliers[EVENT_TRACK_MAJOR] = CONFIG_GET(number/major_roundstart_point_multiplier)
-	roundstart_point_multipliers[EVENT_TRACK_CREWSET] = CONFIG_GET(number/crewset_roundstart_point_multiplier)
-	roundstart_point_multipliers[EVENT_TRACK_GHOSTSET] = CONFIG_GET(number/ghostset_roundstart_point_multiplier)
-
 	min_pop_thresholds[EVENT_TRACK_MUNDANE] = CONFIG_GET(number/mundane_min_pop)
 	min_pop_thresholds[EVENT_TRACK_MODERATE] = CONFIG_GET(number/moderate_min_pop)
 	min_pop_thresholds[EVENT_TRACK_MAJOR] = CONFIG_GET(number/major_min_pop)
