@@ -522,6 +522,16 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	for(var/keybind_name in base_bindings)
 		if (!(keybind_name in GLOB.keybindings_by_name))
 			base_bindings -= keybind_name
+		//BUBBER EDIT BEGIN
+		else if(!islist(base_bindings[keybind_name]))
+			// An entry can be null when "Reset to Defaults" was applied to a
+			// keybinding type that defines neither hotkey_keys nor classic_keys
+			// (e.g. stop_interactions). JSON round-trips that as null, and a null
+			// entry later crashes TGUI ("Cannot read properties of null (reading
+			// 'filter')"). Repair it to an empty list so corrupted savefiles
+			// self-heal on their next login (save_preferences() rewrites it after
+			// check_keybindings()).
+			base_bindings[keybind_name] = list() // BUBBER EDIT END
 	return base_bindings
 
 #undef SAVEFILE_VERSION_MAX
