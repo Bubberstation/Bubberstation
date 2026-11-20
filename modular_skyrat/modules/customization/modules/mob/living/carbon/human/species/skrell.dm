@@ -9,8 +9,7 @@
 		TRAIT_MUTANT_COLORS,
 	)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
-	exotic_bloodtype = BLOOD_TYPE_COPPER
-	bodytemp_normal = (BODYTEMP_NORMAL + 70)
+	exotic_bloodtype = /datum/blood_type/copper
 	bodytemp_heat_damage_limit = FIRE_MINIMUM_TEMPERATURE_TO_SPREAD
 	bodytemp_cold_damage_limit = (T20C - 10)
 	species_language_holder = /datum/language_holder/skrell
