@@ -1,0 +1,196 @@
+{
+	"chill": {
+		"name": "Light (Low Event/Antag Rolls)",
+		"desc": "This storyteller will be light on events and antag rolls compared to other storytellers, especially so on ones involving combat, destruction, or chaos. The least hectic storyteller of all, while still having some spice. Best for RP-focused rounds with a few events and antags sprinkled in.",
+		"welcome_text": "If you vote for this storyteller on Ice Box, you have no originality.",
+		"track_data":[{
+			"Mundane": 1800,
+			"Moderate": 2700,
+			"Major": 16000,
+			"Crewset": 3200,
+			"Ghostset": 20000
+		}],
+		"tag_multipliers":[{
+			"combat": 0.3,
+			"destructive": 0.3,
+			"chaotic": 0.1
+		}],
+		"guarantees_roundstart_crewset": 0,
+		"antag_divisor": 32,
+		"storyteller_type": 1
+	},
+	"fragile": {
+		"name": "Fragile (Mid-Low Event/Antag Rolls)",
+		"desc": "This storyteller will limit destructive, combat-focused, and chaotic events. Spawns more events than the Light storyteller, but less than Default Andy.",
+		"welcome_text": "Handle with care!",
+		"event_repetition_multiplier": 0.5,
+		"track_data":[{
+			"Mundane": 1200,
+			"Moderate": 1800,
+			"Major": 10000,
+			"Crewset": 3000,
+			"Ghostset": 6800
+		}],
+		"tag_multipliers":[{
+			"combat": 0.6,
+			"destructive": 0.6,
+			"chaotic": 0.6
+		}],
+		"storyteller_type": 0
+	},
+	"default": {
+		"name": "Default Andy (Normal Event/Antag Rolls)",
+		"desc": "This is the default Storyteller, and the comparison point for every other Storyteller. It's a midpoint between the other event storytellers. Best for an average, varied experience.",
+		"welcome_text": "If I chopped you up in a meat grinder...",
+		"event_repetition_multiplier": 0.6,
+		"starting_point_multipliers":[{
+			"Mundane": 1,
+			"Moderate": 1,
+			"Major": 1,
+			"Crewset": 1,
+			"Ghostset": 1
+		}],
+		"track_data":[{
+			"Mundane": 1200,
+			"Moderate": 1800,
+			"Major": 7000,
+			"Crewset": 2400,
+			"Ghostset": 6000
+		}],
+		"roundstart_points_variance": 30,
+		"tag_multipliers":[{
+			"chaotic": 0.7
+		}],
+		"cost_variance": 30,
+		"guarantees_roundstart_crewset": 1,
+		"disable_distribution": 0,
+		"votable": 1,
+		"population_min": 0,
+		"population_max": 0,
+		"antag_divisor": 8,
+		"storyteller_type": 0
+	},
+	"bomb": {
+		"name": "Bomb (Destructive Event Focus)",
+		"desc": "This storyteller will try to make more destructive events. For when you have a full engineering team. Or not, because they all cryo'd.",
+		"welcome_text": "Somebody set up us the bomb.",
+		"track_data":[{
+			"Mundane": 1800,
+			"Moderate": 1400,
+			"Major": 5500,
+			"Crewset": 2400,
+			"Ghostset": 6000
+		}],
+		"tag_multipliers":[{
+			"destructive": 1.5
+		}],
+		"population_min": 25,
+		"antag_divisor": 10,
+		"storyteller_type": 2
+	},
+	"gamer": {
+		"name": "Heavy (Crew Antag Spawns Focus)",
+		"desc": "This storyteller prioritizes combat-based encounters and chaos, although the actual level of chaos may be unpredictable due to player agency. The number of destructive events is reduced.",
+		"welcome_text": "Welcome to the Gamer storyteller. Now with 50% more ahelps!",
+		"track_data":[{
+			"Mundane": 1200,
+			"Moderate": 1300,
+			"Major": 4000,
+			"Crewset": 2000,
+			"Ghostset": 4800
+		}],
+		"tag_multipliers":[{
+			"destructive": 0.7,
+			"combat": 1.5,
+			"chaotic": 1.3
+		}],
+		"population_min": 35,
+		"antag_divisor": 5,
+		"storyteller_type": 2
+	},
+	"enemy": {
+		"name": "Enemy Within (Crew Antag Spawns Ultra-Focus)",
+		"desc": "This storyteller aims to ensure that there are only crew antagonists while also prioritizing spawns for those antagonist types.",
+		"welcome_text": "Chat, I think there is an imposter among us on this Space Station 13. I have grown suspicious.",
+		"votable": 0,
+		"track_data":[{
+			"Mundane": 1200,
+			"Moderate": 1800,
+			"Major": 8000,
+			"Crewset": 1950,
+			"Ghostset": 6500
+		}],
+		"tag_multipliers":[{
+			"destructive": 0.25,
+			"crew_antag": 2,
+			"chaotic": 0.1
+		}],
+		"population_min": 35,
+		"antag_divisor": 5,
+		"storyteller_type": 2,
+		"guarantees_roundstart_crewset": 1,
+		"starting_point_multipliers":[{
+			"Mundane": 0,
+			"Moderate": 0,
+			"Major": 0,
+			"Crewset": 1,
+			"Ghostset": 0
+		}],
+		"event_repetition_multiplier": 1
+	},
+	"war": {
+		"name": "Swarm (Hostile NPC Focus)",
+		"desc": "This storyteller heavily prioritizes spawning in NPC antagonists to keep combat roles active in-round, as a supplement to the standard rate of player-controlled antagonists.",
+		"welcome_text": "WAR! HOO! What is it good for? Absolutely NOTHING!",
+		"track_data":[{
+			"Mundane": 1200,
+			"Moderate": 1350,
+			"Major": 2850,
+			"Crewset": 2400,
+			"Ghostset": 6000
+		}],
+		"tag_multipliers":[{
+			"npc_antag": 4
+		}],
+		"population_min": 35,
+		"storyteller_type": 2,
+		"guarantees_roundstart_crewset": 1,
+		"starting_point_multipliers":[{
+			"Mundane": 0.6,
+			"Moderate": 0.8,
+			"Major": 1,
+			"Crewset": 1,
+			"Ghostset": 0
+		}],
+		"event_repetition_multiplier": 1
+	},
+	"whimsy": {
+		"name": "Whimsy (Low Events, Silly Focus)",
+		"desc": "This storyteller spawns lots of events, but de-prioritizes combat and chaos, leaving just the mundane ones that won't kill players or cause destruction.",
+		"welcome_text": "I'm just a silly little guy!!!!!!",
+		"track_data":[{
+			"Mundane": 1200,
+			"Moderate": 1600,
+			"Major": 16000,
+			"Crewset": 3200,
+			"Ghostset": 20000
+		}],
+		"tag_multipliers":[{
+			"npc_antag": 0.3,
+			"combat": 0.3,
+			"destructive": 0.3,
+			"chaotic": 0.1
+		}],
+		"antag_divisor": 32,
+		"storyteller_type": 1,
+		"guarantees_roundstart_crewset": 0,
+		"starting_point_multipliers":[{
+			"Mundane": 0.6,
+			"Moderate": 0.8,
+			"Major": 1,
+			"Crewset": 1,
+			"Ghostset": 0
+		}],
+		"event_repetition_multiplier": 1
+	}
+}

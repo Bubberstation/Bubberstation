@@ -19,7 +19,13 @@
 		EVENT_TRACK_GHOSTSET = 1
 		)
 	/// The datum containing track size data
-	var/datum/storyteller_data/tracks/track_data = /datum/storyteller_data/tracks
+	var/list/track_data = list(
+		EVENT_TRACK_MUNDANE = 1200,
+		EVENT_TRACK_MODERATE = 1800,
+		EVENT_TRACK_MAJOR = 7000,
+		EVENT_TRACK_CREWSET = 2400,
+		EVENT_TRACK_GHOSTSET = 6000,
+		)
 
 	/// Percentual variance in the budget of roundstart points.
 	var/roundstart_points_variance = 30
