@@ -66,6 +66,7 @@
 	human_owner.hud_used?.plane_master_controllers[PLANE_MASTERS_GAME].add_filter("weed_blur", 10, angular_blur_filter(0, 0, 0.45))
 
 /datum/status_effect/stoned/on_remove()
+	. = ..()
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/human_owner = owner
