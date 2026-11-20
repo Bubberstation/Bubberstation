@@ -27,7 +27,7 @@
 	ph = 7
 	overdose_threshold = 15
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-	addiction_types = list(/datum/addiction/stimulants = 15)
+	addiction_types = list(/datum/addiction/stimulants = 52)
 
 	metabolized_traits = list(TRAIT_UNNATURAL_RED_GLOWY_EYES, TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_FEARLESS, TRAIT_ANALGESIA)
 	/// How much time has the drug been in them?
