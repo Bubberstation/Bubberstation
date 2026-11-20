@@ -301,6 +301,7 @@
 	taste_description = "minerals"
 	color = COLOR_WEBSAFE_DARK_GRAY
 	chemical_flags = NONE
+	process_flags = PROCESS_PROTEAN | PROCESS_ORGANIC // Bubberstation
 	brute_heal = 0
 	burn_heal = 0
 

@@ -8,6 +8,11 @@
 
 /datum/species/protean/ui_data(mob/user)
 	var/data = list()
+	var/obj/item/stock_parts/power_store/cell = species_modsuit?.get_cell()
+	var/obj/item/organ/stomach/protean/stomach = owner.get_organ_slot(ORGAN_SLOT_STOMACH)
+	var/can_convert = FALSE
+	if(!isnull(owner.get_organ_slot(ORGAN_SLOT_STOMACH)) && cell?.chargerate != 0)
+		can_convert = TRUE
 
 	data["metal"] = get_metal()
 	data["metal_max"] = max_metal()
@@ -18,6 +23,11 @@
 	data["transform"] = species_modsuit?.wearer?.GetComponent(/datum/component/transformation)
 	data["assimilated"] = !isnull(species_modsuit?.stored_modsuit)
 	data["is_owner"] = user == owner
+	data["cell_charge"] = cell?.charge
+	data["cell_max_charge"] = cell?.maxcharge
+	data["charge_rate"] = cell?.chargerate
+	data["can_convert"] = can_convert
+	data["actively_converting"] = istype(stomach) ? stomach.converting_metal : FALSE
 	return data
 
 /datum/species/protean/ui_status(mob/user) // Protean's UI
@@ -49,7 +59,11 @@
 			INVOKE_ASYNC(src, PROC_REF(eject_stored_modsuit))
 		if("protean_transform")
 			if(COOLDOWN_FINISHED(src, transform_cooldown)) // Anti-spam
-				var/component = species_modsuit.wearer?.GetComponent(/datum/component/transformation)
+				COOLDOWN_START(src, transform_cooldown, 1 SECONDS)
+				if(isnull(species_modsuit.wearer))
+					to_chat(owner, span_warning("You need a wearer!"))
+					return
+				var/component = species_modsuit.wearer.GetComponent(/datum/component/transformation)
 				if(component)
 					playsound(owner, 'sound/machines/click.ogg', 25)
 					UnregisterSignal(species_modsuit, COMSIG_ITEM_PRE_UNEQUIP)
@@ -60,8 +74,20 @@
 					playsound(owner, 'sound/machines/click.ogg', 25)
 					species_modsuit.wearer.AddComponent(/datum/component/transformation, source = owner)
 					RegisterSignal(species_modsuit, COMSIG_ITEM_PRE_UNEQUIP, PROC_REF(protean_transform_unequip))
-				COOLDOWN_START(src, transform_cooldown, 1 SECONDS)
+		if("convert")
+			toggle_convert()
 	return TRUE
+
+/datum/species/protean/proc/toggle_convert()
+	var/obj/item/organ/stomach/protean/stomach = owner.get_organ_slot(ORGAN_SLOT_STOMACH)
+	playsound(owner, 'sound/machines/click.ogg', 25)
+	if(isnull(stomach))
+		to_chat(owner, span_warning("You don't have a refactory!"))
+		return
+	var/obj/item/stock_parts/power_store/cell/cell = species_modsuit.get_cell()
+	if(cell.chargerate == 0 || isnull(cell))
+		return
+	stomach.converting_metal = !stomach.converting_metal
 
 /datum/species/protean/proc/eject_stored_modsuit()
 	to_chat(owner, span_notice("You begin to extract [species_modsuit.stored_modsuit] from your body."))
@@ -97,15 +123,13 @@
 	return TRUE
 
 /datum/species/protean/proc/get_metal()
-	var/obj/item/organ/stomach/protean/refactory = owner?.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(refactory))
+	if(isnull(owner))
 		return 0
-	return refactory.metal
+	return owner.nutrition
 
 /datum/species/protean/proc/max_metal()
-	var/obj/item/organ/stomach/protean/refactory = owner?.get_organ_slot(ORGAN_SLOT_STOMACH)
-	if(!istype(refactory))
+	if(isnull(owner))
 		return 1
-	return refactory.metal_max
+	return NUTRITION_LEVEL_FULL
 
 
