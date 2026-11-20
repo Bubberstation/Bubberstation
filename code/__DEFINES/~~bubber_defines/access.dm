@@ -21,3 +21,6 @@
 
 // Access Helpers
 #define ACCESS_LZGAS "lizard_gas"
+
+#define ACCESS_INDMINER_CAPTAIN "independent_captain"
+#define ACCESS_INDMINER "independent_miner"
