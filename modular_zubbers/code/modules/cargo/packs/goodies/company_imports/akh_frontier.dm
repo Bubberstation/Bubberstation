@@ -24,6 +24,75 @@
 	item_type = /obj/item/pickaxe/drill/compact
 	cost = PAYCHECK_CREW * 5
 
+/datum/supply_pack/company_import/akh_frontier/ppe/frontier_jumpsuit
+	item_type = /obj/item/clothing/under/frontier_colonist
+	cost = PAYCHECK_LOWER
+
+/datum/supply_pack/company_import/akh_frontier/ppe/frontier_heavy_boots
+	item_type = /obj/item/clothing/shoes/jackboots/frontier_colonist
+	cost = PAYCHECK_COMMAND * 1.25
+
+/datum/supply_pack/company_import/akh_frontier/ppe/frontier_trenchcoat
+	item_type = /obj/item/clothing/suit/jacket/frontier_colonist
+	cost = PAYCHECK_CREW * 2
+
+/datum/supply_pack/company_import/akh_frontier/ppe/frontier_jacket
+	item_type = /obj/item/clothing/suit/jacket/frontier_colonist/short
+	cost = PAYCHECK_CREW
+
+/datum/supply_pack/company_import/akh_frontier/ppe/frontier_jacket_medical
+	item_type = /obj/item/clothing/suit/jacket/frontier_colonist/medical
+	cost = PAYCHECK_CREW
+
+/datum/supply_pack/company_import/akh_frontier/ppe/frontier_flak_jacket
+	item_type = /obj/item/clothing/suit/frontier_colonist_flak
+	cost = PAYCHECK_COMMAND * 1.25
+
+/datum/supply_pack/company_import/akh_frontier/ppe/frontier_cap
+	item_type = /obj/item/clothing/head/soft/frontier_colonist
+	cost = PAYCHECK_LOWER
+
+/datum/supply_pack/company_import/akh_frontier/ppe/frontier_cap_medic
+	item_type = /obj/item/clothing/head/soft/frontier_colonist/medic
+	cost = PAYCHECK_LOWER
+
+/datum/supply_pack/company_import/akh_frontier/ppe/frontier_helmet
+	item_type = /obj/item/clothing/head/frontier_colonist_helmet
+	cost = PAYCHECK_COMMAND * 1.25
+
+/datum/supply_pack/company_import/akh_frontier/ppe/frontier_headset
+	item_type = /obj/item/radio/headset/headset_frontier_colonist
+	cost = PAYCHECK_CREW * 2
+
+/datum/supply_pack/company_import/akh_frontier/ppe/frontier_headset_wide
+	item_type = /obj/item/radio/headset/headset_frontier_colonist/wide
+	cost = PAYCHECK_CREW * 2
+
+/datum/supply_pack/company_import/akh_frontier/ppe/frontier_gloves
+	item_type = /obj/item/clothing/gloves/frontier_colonist
+	cost = PAYCHECK_CREW
+
+/datum/supply_pack/company_import/akh_frontier/ppe/frontier_gasmask
+	item_type = /obj/item/clothing/mask/gas/atmos/frontier_colonist
+	cost = PAYCHECK_CREW * 3
+
+/datum/supply_pack/company_import/akh_frontier/ppe/frontier_chest_rig
+	item_type = /obj/item/storage/belt/utility/frontier_colonist
+	cost = PAYCHECK_CREW * 2
+
+/datum/supply_pack/company_import/akh_frontier/ppe/frontier_backpack
+	item_type = /obj/item/storage/backpack/industrial/frontier_colonist
+	cost = PAYCHECK_LOWER
+
+/datum/supply_pack/company_import/akh_frontier/ppe/frontier_satchel
+	item_type = /obj/item/storage/backpack/industrial/frontier_colonist/satchel
+	cost = PAYCHECK_LOWER
+
+/datum/supply_pack/company_import/akh_frontier/ppe/frontier_messenger
+	item_type = /obj/item/storage/backpack/industrial/frontier_colonist/messenger
+	cost = PAYCHECK_LOWER
+
+
 /datum/supply_pack/company_import/akh_frontier/deployables_fab/rapid_construction_fabricator
 	item_type = /obj/item/flatpacked_machine
 	name = "Rapid Construction Fabricator (RCF)"

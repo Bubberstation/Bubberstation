@@ -46,7 +46,7 @@
 
 /datum/supply_pack/company_import/kahraman/ppe/frontier_heavy_boots
 	item_type = /obj/item/clothing/shoes/jackboots/frontier_colonist
-	cost = PAYCHECK_CREW * 2.25
+	cost = PAYCHECK_COMMAND * 1.25
 
 /datum/supply_pack/company_import/kahraman/ppe/frontier_trenchcoat
 	item_type = /obj/item/clothing/suit/jacket/frontier_colonist
@@ -54,27 +54,27 @@
 
 /datum/supply_pack/company_import/kahraman/ppe/frontier_jacket
 	item_type = /obj/item/clothing/suit/jacket/frontier_colonist/short
-	cost = PAYCHECK_CREW * 2
+	cost = PAYCHECK_CREW
 
 /datum/supply_pack/company_import/kahraman/ppe/frontier_jacket_medical
 	item_type = /obj/item/clothing/suit/jacket/frontier_colonist/medical
-	cost = PAYCHECK_CREW * 2
+	cost = PAYCHECK_CREW
 
 /datum/supply_pack/company_import/kahraman/ppe/frontier_flak_jacket
 	item_type = /obj/item/clothing/suit/frontier_colonist_flak
-	cost = PAYCHECK_CREW * 2.25
+	cost = PAYCHECK_COMMAND * 1.25
 
 /datum/supply_pack/company_import/kahraman/ppe/frontier_cap
 	item_type = /obj/item/clothing/head/soft/frontier_colonist
-	cost = PAYCHECK_CREW
+	cost = PAYCHECK_LOWER
 
 /datum/supply_pack/company_import/kahraman/ppe/frontier_cap_medic
 	item_type = /obj/item/clothing/head/soft/frontier_colonist/medic
-	cost = PAYCHECK_CREW
+	cost = PAYCHECK_LOWER
 
 /datum/supply_pack/company_import/kahraman/ppe/frontier_helmet
 	item_type = /obj/item/clothing/head/frontier_colonist_helmet
-	cost = PAYCHECK_CREW * 2.25
+	cost = PAYCHECK_COMMAND * 1.25
 
 /datum/supply_pack/company_import/kahraman/ppe/frontier_headset
 	item_type = /obj/item/radio/headset/headset_frontier_colonist
