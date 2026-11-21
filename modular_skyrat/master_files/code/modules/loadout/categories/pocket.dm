@@ -134,6 +134,18 @@
 	name = "Mothic Rations Pack"
 	item_path = /obj/item/storage/box/mothic_rations
 
+/datum/loadout_item/pocket_items/PSC_mre
+	name = "PSC Colonial Rations Pack"
+	item_path = /obj/item/storage/box/colonial_rations
+
+/datum/loadout_item/pocket_items/boot_mre
+	name = "Military Rations Pack"
+	item_path = /obj/item/storage/box/hecu_rations
+
+/datum/loadout_item/pocket_items/colonial_thermocup
+	name = "Empty Colonial Thermocup"
+	item_path = /obj/item/reagent_containers/cup/glass/coffee/colonial/empty
+
 /datum/loadout_item/pocket_items/cloth_ten
 	name = "Ten Cloth Sheets"
 	item_path = /obj/item/stack/sheet/cloth/ten

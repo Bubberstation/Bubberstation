@@ -173,6 +173,7 @@
 	var/obj/item/stock_parts/power_store/cell = /obj/item/stock_parts/power_store/cell
 
 /obj/item/radio/headset/headset_frontier_colonist/wide
+	name = "frontier radio headset (wide)"
 	worn_icon_state = "radio_wide"
 
 /obj/item/radio/headset/headset_frontier_colonist/Initialize(mapload)
