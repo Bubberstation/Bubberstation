@@ -259,6 +259,9 @@
 				/obj/item/storage/backpack/saddlebags = 5,
 				/obj/item/umbrella = 20,
 				/obj/item/umbrella/parasol = 20,
+				/obj/item/storage/backpack/industrial/frontier_colonist = 5,
+				/obj/item/storage/backpack/industrial/frontier_colonist/satchel = 5,
+				/obj/item/storage/backpack/industrial/frontier_colonist/messenger = 5,
 			)
 		)
 	)

@@ -60,18 +60,6 @@
 	item_type = /obj/item/storage/belt/utility/frontier_colonist
 	cost = PAYCHECK_CREW * 2
 
-/datum/supply_pack/company_import/akh_frontier/ppe/frontier_backpack
-	item_type = /obj/item/storage/backpack/industrial/frontier_colonist
-	cost = PAYCHECK_LOWER
-
-/datum/supply_pack/company_import/akh_frontier/ppe/frontier_satchel
-	item_type = /obj/item/storage/backpack/industrial/frontier_colonist/satchel
-	cost = PAYCHECK_LOWER
-
-/datum/supply_pack/company_import/akh_frontier/ppe/frontier_messenger
-	item_type = /obj/item/storage/backpack/industrial/frontier_colonist/messenger
-	cost = PAYCHECK_LOWER
-
 /datum/supply_pack/company_import/akh_frontier/deployables_fab/rapid_construction_fabricator
 	item_type = /obj/item/flatpacked_machine
 	name = "Rapid Construction Fabricator (RCF)"
