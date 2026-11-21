@@ -123,6 +123,7 @@
 				/obj/item/clothing/under/suit/skyrat/recolorable/skirt = 5,
 				/obj/item/clothing/under/sweater = 5,
 				/obj/item/clothing/under/sweater/keyhole = 5,
+				/obj/item/clothing/under/sweater/keyhole/virgin = 5,
 				/obj/item/clothing/under/syndicate/tacticool/black = 5,
 				/obj/item/clothing/under/tachawaiian = 5,
 				/obj/item/clothing/under/tachawaiian/blue = 5,
