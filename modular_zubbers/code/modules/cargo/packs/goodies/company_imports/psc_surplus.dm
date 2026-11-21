@@ -49,22 +49,6 @@
 	item_type = /obj/item/clothing/suit/armor/vest/nri_police
 	cost = PAYCHECK_COMMAND * 3
 
-/datum/supply_pack/company_import/psc_surplus/clothing/colonial_outfit
-	item_type = /obj/item/clothing/under/colonial
-	cost = PAYCHECK_LOWER
-
-/datum/supply_pack/company_import/psc_surplus/clothing/colonial_halfboots
-	item_type = /obj/item/clothing/shoes/jackboots/colonial
-	cost = PAYCHECK_LOWER
-
-/datum/supply_pack/company_import/psc_surplus/clothing/colonial_cloak
-	item_type = /obj/item/clothing/neck/cloak/colonial
-	cost = PAYCHECK_LOWER
-
-/datum/supply_pack/company_import/psc_surplus/clothing/colonial_cap
-	item_type = /obj/item/clothing/head/hats/colonial
-	cost = PAYCHECK_LOWER
-
 /datum/supply_pack/company_import/psc_surplus/clothing/colonial_webbing_nerfed
 	item_type = /obj/item/storage/belt/webbing/colonial_webbing
 	cost = PAYCHECK_COMMAND

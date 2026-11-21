@@ -176,6 +176,10 @@
 	name = "Frontier Jacket"
 	item_path = /obj/item/clothing/suit/jacket/frontier_colonist/short/loadout
 
+/datum/loadout_item/suit/frontier_colonist_medical
+	name = "Frontier Medical Jacket"
+	item_path = /obj/item/clothing/suit/jacket/frontier_colonist/medical/loadout
+
 //Doppler hoodies.
 
 /datum/loadout_item/suit/hoodie/big_hoodie
