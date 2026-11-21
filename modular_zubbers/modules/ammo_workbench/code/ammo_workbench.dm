@@ -247,13 +247,14 @@
 
 	return data
 
-/obj/machinery/ammo_workbench/ui_act(action, params)
+/obj/machinery/ammo_workbench/ui_act(action, params, datum/tgui/ui)
 	. = ..()
 	if(.)
 		return
 	switch(action)
 		if("EjectMag")
-			ejectItem()
+			var/mob/living/user = ui.user
+			ejectItem(user)
 			. = TRUE
 
 		if("RecycleMag")
