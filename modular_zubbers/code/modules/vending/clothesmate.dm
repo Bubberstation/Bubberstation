@@ -262,6 +262,7 @@
 				/obj/item/storage/backpack/industrial/frontier_colonist = 5,
 				/obj/item/storage/backpack/industrial/frontier_colonist/satchel = 5,
 				/obj/item/storage/backpack/industrial/frontier_colonist/messenger = 5,
+				/obj/item/storage/belt/webbing/colonial_webbing = 10,
 			)
 		)
 	)

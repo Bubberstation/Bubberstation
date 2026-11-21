@@ -49,10 +49,6 @@
 	item_type = /obj/item/clothing/suit/armor/vest/nri_police
 	cost = PAYCHECK_COMMAND * 3
 
-/datum/supply_pack/company_import/psc_surplus/clothing/colonial_webbing_nerfed
-	item_type = /obj/item/storage/belt/webbing/colonial_webbing
-	cost = PAYCHECK_COMMAND
-
 /datum/supply_pack/company_import/psc_surplus/misc/flares
 	item_type = /obj/item/storage/box/nri_flares
 	cost = PAYCHECK_LOWER
