@@ -76,6 +76,10 @@
 	icon_state = "jacket_med"
 	worn_icon_state = "jacket_med"
 
+/obj/item/clothing/suit/jacket/frontier_colonist/medical/Initialize(mapload)
+	. = ..()
+	allowed += /obj/item/crowbar/power/paramedic
+
 // Flak Jacket
 
 /obj/item/clothing/suit/frontier_colonist_flak
@@ -173,6 +177,7 @@
 	var/obj/item/stock_parts/power_store/cell = /obj/item/stock_parts/power_store/cell
 
 /obj/item/radio/headset/headset_frontier_colonist/wide
+	name = "frontier radio headset (wide)"
 	worn_icon_state = "radio_wide"
 
 /obj/item/radio/headset/headset_frontier_colonist/Initialize(mapload)
@@ -298,18 +303,13 @@
 //// Loadout variant
 // suit
 /obj/item/clothing/suit/jacket/frontier_colonist/loadout
-	armor_type = /datum/armor/none
-
-/obj/item/clothing/suit/jacket/frontier_colonist/loadout/Initialize(mapload)
-	. = ..()
-	allowed = list()
+	armor_type = /datum/armor/hooded_wintercoat
 
 /obj/item/clothing/suit/jacket/frontier_colonist/short/loadout
-	armor_type = /datum/armor/none
+	armor_type = /datum/armor/hooded_wintercoat
 
-/obj/item/clothing/suit/jacket/frontier_colonist/short/loadout/Initialize(mapload)
-	. = ..()
-	allowed = list()
+/obj/item/clothing/suit/jacket/frontier_colonist/medical/loadout
+	armor_type = /datum/armor/wintercoat_medical
 
 // Gloves
 /obj/item/clothing/gloves/frontier_colonist/loadout

@@ -55,6 +55,7 @@
 				/obj/item/clothing/gloves/elofy = 5,
 				/obj/item/clothing/gloves/fingerless/blutigen_wraps = 5,
 				/obj/item/clothing/gloves/skyy = 5,
+				/obj/item/clothing/gloves/frontier_colonist = 5,
 				/obj/item/clothing/mask/gas/nightlight = 5,
 				/obj/item/clothing/mask/gas/nightlight/fir22 = 5,
 				/obj/item/clothing/neck/cloak/colourable = 5,
@@ -238,7 +239,7 @@
 				/obj/item/clothing/shoes/wraps/cloth = 5,
 				/obj/item/clothing/shoes/wraps/colourable = 5,
 				/obj/item/clothing/shoes/jackboots/colonial = 5,
-				/obj/item/clothing/shoes/jackboots/frontier_colonist = 5,
+				/obj/item/clothing/shoes/jackboots/frontier_colonist/loadout = 5,
 			),
 		),
 
@@ -258,6 +259,10 @@
 				/obj/item/storage/backpack/saddlebags = 5,
 				/obj/item/umbrella = 20,
 				/obj/item/umbrella/parasol = 20,
+				/obj/item/storage/backpack/industrial/frontier_colonist = 5,
+				/obj/item/storage/backpack/industrial/frontier_colonist/satchel = 5,
+				/obj/item/storage/backpack/industrial/frontier_colonist/messenger = 5,
+				/obj/item/storage/belt/webbing/colonial_webbing = 10,
 			)
 		)
 	)

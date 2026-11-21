@@ -3,11 +3,11 @@
 
 /datum/supply_pack/company_import/psc_surplus/clothing/uniform
 	item_type = /obj/item/clothing/under/syndicate/rus_army/cin_surplus/random_color
-	cost = PAYCHECK_CREW
+	cost = PAYCHECK_CREW * 2
 
 /datum/supply_pack/company_import/psc_surplus/clothing/belt
 	item_type = /obj/item/storage/belt/military/cin_surplus/random_color
-	cost = PAYCHECK_CREW
+	cost = PAYCHECK_CREW * 3
 
 /datum/supply_pack/company_import/psc_surplus/clothing/backpack
 	item_type = /obj/item/storage/backpack/industrial/cin_surplus/random_color
@@ -19,15 +19,15 @@
 
 /datum/supply_pack/company_import/psc_surplus/clothing/helmet
 	item_type = /obj/item/clothing/head/helmet/cin_surplus_helmet/random_color
-	cost = PAYCHECK_COMMAND
+	cost = PAYCHECK_COMMAND * 1.5
 
 /datum/supply_pack/company_import/psc_surplus/clothing/vest
 	item_type = /obj/item/clothing/suit/armor/vest/cin_surplus_vest
-	cost = PAYCHECK_COMMAND
+	cost = PAYCHECK_COMMAND * 1.5
 
 /datum/supply_pack/company_import/psc_surplus/clothing/police_uniform
 	item_type = /obj/item/clothing/under/colonial/nri_police
-	cost = PAYCHECK_CREW
+	cost = PAYCHECK_CREW * 2
 
 /datum/supply_pack/company_import/psc_surplus/clothing/police_cloak
 	item_type = /obj/item/clothing/neck/cloak/colonial/nri_police
@@ -35,7 +35,7 @@
 
 /datum/supply_pack/company_import/psc_surplus/clothing/police_cap
 	item_type = /obj/item/clothing/head/hats/colonial/nri_police
-	cost = PAYCHECK_CREW
+	cost = PAYCHECK_COMMAND * 2.5
 
 /datum/supply_pack/company_import/psc_surplus/clothing/police_mask
 	item_type = /obj/item/clothing/mask/gas/nri_police
@@ -43,11 +43,11 @@
 
 /datum/supply_pack/company_import/psc_surplus/clothing/police_vest
 	item_type = /obj/item/clothing/head/helmet/nri_police
-	cost = PAYCHECK_COMMAND
+	cost = PAYCHECK_COMMAND * 3
 
 /datum/supply_pack/company_import/psc_surplus/clothing/police_helmet
 	item_type = /obj/item/clothing/suit/armor/vest/nri_police
-	cost = PAYCHECK_COMMAND
+	cost = PAYCHECK_COMMAND * 3
 
 /datum/supply_pack/company_import/psc_surplus/misc/flares
 	item_type = /obj/item/storage/box/nri_flares
@@ -63,12 +63,16 @@
 
 /datum/supply_pack/company_import/psc_surplus/misc/trench_tool
 	item_type = /obj/item/trench_tool
-	cost = PAYCHECK_CREW
+	cost = PAYCHECK_COMMAND * 2
 
 /datum/supply_pack/company_import/psc_surplus/misc/food_replicator
 	item_type = /obj/item/circuitboard/machine/biogenerator/food_replicator
 	desc = "Once widespread technology used by numerous fringe colonies of PSC origin and even in some TerraGov territories, that ultimately went out of fashion due to TerraGov propaganda deeming it unprofitable and imposing severe trading fees on anyone trying to sell them. A small portion of government-backed manufacturers still produce 'food replicators' for private and government use; a few of them is selling this via us. Cannot be built or deployed on station."
 	cost = CARGO_CRATE_VALUE * 9
+
+/datum/supply_pack/company_import/psc_surplus/misc/colonial_rations
+	item_type = /obj/item/storage/box/colonial_rations
+	cost = PAYCHECK_CREW
 
 /datum/supply_pack/company_import/psc_surplus/misc/nri_flag
 	item_type = /obj/item/sign/flag/nri
