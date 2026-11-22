@@ -30,6 +30,8 @@
 				/obj/item/clothing/head/small_bow = 5,
 				/obj/item/clothing/head/soft/galfedcap = 5,
 				/obj/item/clothing/head/sweet_bow = 5,
+				/obj/item/clothing/head/soft/frontier_colonist = 5,
+				/obj/item/clothing/head/hats/colonial = 5,
 			),
 		),
 
@@ -70,6 +72,7 @@
 				/obj/item/clothing/neck/robe_cape = 5,
 				/obj/item/clothing/neck/scarf/pride = 5,
 				/obj/item/clothing/neck/wide_cape = 5,
+				/obj/item/clothing/neck/cloak/colonial = 5,
 				/obj/item/clothing/neck/syntech = 5,
 				/obj/item/clothing/neck/syntech/choker = 5,
 				/obj/item/clothing/neck/syntech/collar = 5,
@@ -134,6 +137,8 @@
 				/obj/item/clothing/under/pants/greyscale/big_pants = 5,
 				/obj/item/clothing/under/pants/greyscale/loose_pants = 5,
 				/obj/item/clothing/under/pants/greyscale/wide_leg = 5,
+				/obj/item/clothing/under/colonial = 5,
+				/obj/item/clothing/under/frontier_colonist = 5,
 			),
 		),
 
@@ -208,6 +213,8 @@
 				/obj/item/clothing/suit/greyscale/sweater = 5,
 				/obj/item/clothing/suit/greyscale/sweater/bow = 5,
 				/obj/item/clothing/suit/greyscale/furred_trenchcoat = 5,
+				/obj/item/clothing/suit/jacket/frontier_colonist/loadout = 5, //loadout versions because no armor
+				/obj/item/clothing/suit/jacket/frontier_colonist/short/loadout = 5, //loadout versions because no armor
 			),
 		),
 
@@ -230,6 +237,8 @@
 				/obj/item/clothing/shoes/sports = 5,
 				/obj/item/clothing/shoes/wraps/cloth = 5,
 				/obj/item/clothing/shoes/wraps/colourable = 5,
+				/obj/item/clothing/shoes/jackboots/colonial = 5,
+				/obj/item/clothing/shoes/jackboots/frontier_colonist = 5,
 			),
 		),
 
