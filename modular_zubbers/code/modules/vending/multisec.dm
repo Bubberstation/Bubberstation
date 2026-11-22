@@ -129,6 +129,8 @@
 					/obj/item/clothing/head/helmet/blueshirt = 3,
 					/obj/item/clothing/suit/armor/vest/blueshirt = 3,
 					/obj/item/riding_saddle/leather/peacekeeper = 3,
+					/obj/item/clothing/suit/frontier_colonist_flak = 3,
+					/obj/item/clothing/head/frontier_colonist_helmet = 3,
 	)
 
 //CONTRABAND: Basically for less serious/hard to cat stuff like the Cowboy and Bluecoat stuff. And for stuff that shouldn't be easy to get like HUD varients.

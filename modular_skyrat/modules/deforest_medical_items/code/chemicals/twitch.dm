@@ -31,7 +31,7 @@
 	ph = 3
 	overdose_threshold = 15
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-	addiction_types = list(/datum/addiction/stimulants = 20)
+	addiction_types = list(/datum/addiction/stimulants = 39)
 	/// How much time has the drug been in them?
 	var/constant_dose_time = 0
 	/// What type of span class do we change heard speech to?

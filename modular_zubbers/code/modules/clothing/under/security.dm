@@ -324,7 +324,7 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/security/viro/officer/bodysuit
-	name = "seucrity officer's bodysuit"
+	name = "security officer's bodysuit"
 	desc = "The latest in form-fitting, high speed, and low drag security equipment."
 	icon_state = "security_bodysuit"
 	can_adjust = FALSE

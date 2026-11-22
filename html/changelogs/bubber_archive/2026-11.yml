@@ -149,3 +149,95 @@
 2026-11-15:
   xPokee:
   - qol: Added in-game documentation to wireweed structures, provided you are converted.
+2026-11-16:
+  ArrisFairburne:
+  - rscdel: Reverted skyrat description of woodstock shotguns back to the tg description
+  - map: fixed voidraptor's BZ chamber to not use engine BZ
+  Maia-J:
+  - bugfix: The wirepriest eye now deletes itself after the priest spawns in
+  - code_imp: Checks for wireweed and magical light valid spawning locations got improved.
+  - balance: Wireweed mobs are now spaceproof
+  MrGloopy:
+  - balance: Enforcer Pistol - Increased damage of less lethal projectile from 20
+      to 25. Lethal projectile damage increased from 18 to 20. Projectile speed increased
+      to 1.3, from previous value of 1.25, the default ballistic speed.
+  - balance: Lancer SMG - Increased damage of less lethal projectile from 16 to 18.
+      Lethal projectile damage increased from 14 to 16. Projectile speed increased
+      to 1.3 from previous value of 1.25, the default ballistic speed.
+  SapphoQueer:
+  - qol: The tarkon "creamatorium" has been replaced with a regular crematorium
+2026-11-17:
+  BingusTheClown:
+  - rscadd: Added Traffic Console for Telecomms
+  - rscadd: Two achievements related to the Traffic Console
+  - map: Mapped in consoles (TBD)
+  - code_imp: Lots of scripting to support the Traffic Console
+  KateAnbolho:
+  - balance: Tweaks and buffs ERT loadouts!)
+  LeatherGnome:
+  - qol: gave the service autolathe the decal painter
+  Maia-J:
+  - qol: The wirepriest and their converts can see in the dark
+  - bugfix: The wirepriest eye can now see in the dark.
+  Robwo:
+  - rscadd: Added UpdatePaths script for wall closet directional presets
+  - map: Added new arcade themed condo
+  - map: moved condo dmm files to _maps/bubber/condos
+  - bugfix: borg yoga mats are no longer in 3/4ths perspective
+  - sound: Added subtle rain ambience for fast_food.dmm and apartment_skyscraper.dmm
+  slightlyevilpeanut22:
+  - bugfix: thanatorenasia people can now be revived after someone takes the ghost
+      poll
+  - bugfix: death degradation makes you unreviveable with permadeath mode regardless
+      if you were ghosted when it maxxed
+  - rscadd: orbiting a person with thanatorenasia after they went dnr will make them
+      appear as reviveable on senors
+  - rscadd: death degradation permadeath and DNR quirk automatically works with thanatorenasia
+  - rscadd: people that went DNR and can't be revived won't appear in orbit menu,
+      they still can be found in observe verb if you search their name. Those who
+      are dnr and can be revived for ghost role are still showing up in orbit menu
+  - bugfix: clicking refresh death degradation variables no longer instantly resets
+      it to 0
+  - bugfix: going DNR without thanatorenasia now properly frees up
+  thegrb93:
+  - bugfix: Chaps don't cover genitals anymore.
+  xPokee:
+  - bugfix: Autolathes can accept the components data disks again.
+2026-11-18:
+  Arturlang:
+  - balance: passive/minion/khopesh crashing are reduced to 0.5, with the exception
+      of the humanoid ghoul knowledge being 0.5
+  ibexgoetia:
+  - rscadd: New chicken-flavoured, meat-like products, for all chicken nugget and
+      boneless wing enjoyers!
+  - bugfix: The Organic Rations printer now actually produces synthetic chicken, as
+      opposed to just creating the real thing.
+  thegrb93:
+  - bugfix: Fix security bodysuit name typo
+2026-11-20:
+  MintyPhresh:
+  - rscadd: You can now switch the venom of the Aphrodisiacal Bite quirk in-round,
+      by right-clicking the button.
+  SapphoQueer:
+  - rscadd: Synthetic Chicken, Eggs, and cornmeal are now printable through the biogenerator.
+  - rscadd: Coco powder and Caramel are now available through the soda dispenser's
+      tier 3 and tier 4 upgrades respectively.
+  - rscadd: The rapid light dispenser is now available through the engineering and
+      service lathes after the construction techweb has been researched.
+  - rscadd: The frontier/colonial clothing is now within the appropriate vendors,
+      most of it through the clothesvend, the medical stuff through the medical's,
+      and the armored stuff through security's.
+  - rscadd: The wallmounted heaters and multi-chargers are now available through the
+      appropriate techwebs.
+  - rscadd: The medipen pouch is now available through the premium tab of the medivend.
+  - rscadd: Cargo can print a frontier disk which will allow the autolathe to print
+      the frontier tools once experimental tools has been researched.
+  - rscadd: Soup pots are once again available in the autolathe
+2026-11-21:
+  thegrb93:
+  - bugfix: Fixes addictions triggering almost instantly for most drugs
+2026-11-22:
+  thegrb93:
+  - qol: Made weed not shake the screen around and say annoying stuff. Also metabolize
+      it slower and give you red eyes.
+  - bugfix: Fix insanely broken atmos from 'plant tank' construction

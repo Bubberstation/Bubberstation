@@ -92,12 +92,12 @@
 
 	src_mixture.assert_gases(/datum/gas/carbon_dioxide, /datum/gas/oxygen, /datum/gas/nitrogen)
 
-	var/proportion = src_mixture.moles[/datum/gas/carbon_dioxide]
-	if(proportion) //if there is carbon dioxide in the air, lets turn it into oxygen
-		src_mixture.moles[/datum/gas/carbon_dioxide] -= proportion
-		src_mixture.moles[/datum/gas/oxygen] += proportion
+	var/moles = min(src_mixture.moles[/datum/gas/carbon_dioxide], MOLES_CELLSTANDARD * BREATH_PERCENTAGE * seconds_per_tick)
+	if(moles) //if there is carbon dioxide in the air, lets turn it into oxygen
+		src_mixture.moles[/datum/gas/carbon_dioxide] -= moles
+		src_mixture.moles[/datum/gas/oxygen] += moles
 
-	src_mixture.moles[/datum/gas/nitrogen] += MOLES_CELLSTANDARD //the nitrogen cycle-- plants (and bacteria) participate in the nitrogen cycle
+	src_mixture.moles[/datum/gas/nitrogen] += moles //the nitrogen cycle-- plants (and bacteria) participate in the nitrogen cycle
 
 /obj/structure/plant_tank/wrench_act(mob/living/user, obj/item/tool)
 	balloon_alert(user, "[anchored ? "un" : ""]bolting")
