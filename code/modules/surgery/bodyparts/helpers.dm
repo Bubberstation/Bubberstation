@@ -280,9 +280,10 @@
 			all_limb_flags |= organ.external_bodyshapes
 		all_limb_flags |= limb.bodyshape
 
-	if(obscured_slots & HIDESNOUT)
-		all_limb_flags &= ~BODYSHAPE_SNOUTED
-
+	// BUBBER EDIT - MAKES VARIOUS MASKS USE THEIR SNOUTED SPRITE
+	//if(obscured_slots & HIDESNOUT)
+	//.	all_limb_flags &= ~BODYSHAPE_SNOUTED
+	//
 	bodyshape = all_limb_flags
 
 /proc/skintone2hex(skin_tone)
