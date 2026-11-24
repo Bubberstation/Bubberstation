@@ -296,6 +296,12 @@ SUBSYSTEM_DEF(gamemode)
 		candidates += candidate
 	return candidates
 
+/datum/controller/subsystem/gamemode/proc/is_pending_antag(datum/mind/checked_mind)
+	for(var/datum/round_event/antagonist/event in SSevents.running)
+		if(checked_mind in event.setup_minds)
+			return TRUE
+	return FALSE
+
 /// Gets the correct popcount, returning READY people if roundstart, and active people if not.
 /datum/controller/subsystem/gamemode/proc/get_correct_popcount()
 	if(SSticker.HasRoundStarted())
