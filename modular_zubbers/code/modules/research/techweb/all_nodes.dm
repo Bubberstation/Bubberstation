@@ -125,7 +125,21 @@
 		/datum/design/nitrogen_tank,
 		///datum/design/nitrogen_tank_belt, | Uncomment in case nitrogen internal tanks get refactored to no longer be 25L
 		/datum/design/anesthetic_tank,
+		/datum/design/wall_mounted_space_heater,
 	)
+
+/datum/techweb_node/construction/New()
+	unlocked_designs += list(
+		/datum/design/rld_mini,
+	)
+	return ..()
+
+/datum/techweb_node/exp_tools/New()
+	unlocked_designs += list(
+		/datum/design/wall_mounted_multi_charger,
+		/datum/design/frontier_tools_disk
+	)
+	return ..()
 
 // TOOLS
 
@@ -298,5 +312,13 @@
 	unlocked_designs += list(
 		/datum/design/module/protean/servo,
 		/datum/design/module/hat_stabilizer,
+	)
+	. = ..()
+
+// Service Tech
+
+/datum/techweb_node/office_equip/New()
+	unlocked_designs += list(
+		/datum/design/soup_pot,
 	)
 	. = ..()
