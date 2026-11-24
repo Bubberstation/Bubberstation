@@ -28,6 +28,10 @@
 	item_type = /obj/item/clothing/shoes/jackboots/frontier_colonist
 	cost = PAYCHECK_COMMAND
 
+/datum/supply_pack/company_import/akh_frontier/ppe/frontier_gloves
+	item_type = /obj/item/clothing/gloves/frontier_colonist
+	cost = PAYCHECK_LOWER
+
 /datum/supply_pack/company_import/akh_frontier/ppe/frontier_trenchcoat
 	item_type = /obj/item/clothing/suit/jacket/frontier_colonist
 	cost = PAYCHECK_CREW * 2

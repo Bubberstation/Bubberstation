@@ -121,8 +121,8 @@
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/gloves/frontier_colonist
-	name = "Frontier Gloves"
-	item_path = /obj/item/clothing/gloves/frontier_colonist //They're not fully insulated. You still get zapped and stunned upon touching wires.
+	name = "Light Frontier Gloves"
+	item_path = /obj/item/clothing/gloves/frontier_colonist/loadout
 
 /datum/loadout_item/gloves/cat
 	name = "Cat Gloves"

@@ -313,7 +313,9 @@
 
 // Gloves
 /obj/item/clothing/gloves/frontier_colonist/loadout
+	name = "light frontier gloves"
 	siemens_coefficient = 0.50
+	clothing_traits = list(NULL)
 
 // boots
 /obj/item/clothing/shoes/jackboots/frontier_colonist/loadout
