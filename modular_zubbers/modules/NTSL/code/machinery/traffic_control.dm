@@ -85,6 +85,7 @@
 	data["access_log"] = access_log.Copy()
 	data["compiler_output"] = compiler_output.Copy()
 	data["emagged"] = ((obj_flags & EMAGGED) > 0)
+	data["isai"] = HAS_AI_ACCESS(user)
 
 	data["admin_view"] = FALSE
 	if(user.client.holder) // enables an admin-only button in case of severe grief
@@ -95,10 +96,6 @@
 /obj/machinery/computer/telecomms/traffic/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	var/mob/living/user = ui.user
-
-	if(issilicon(user) || isAI(user) || iscyborg(user) || ispAI(user))
-		to_chat(user, span_warning("There seems to be a firewall preventing silicon access!"))
-		return
 
 	if(action == "admin_reset") // something to note, this will runtime when clicked on by an admin ghost. But still works.
 		if(!user.client.holder)
@@ -134,6 +131,9 @@
 			log_telecomms("[user] saved the telecomms traffic controller with the following data: \n [storedcode]")
 			return TRUE
 		if("compile_code")
+			if(issilicon(user) || isAI(user) || iscyborg(user) || ispAI(user))
+				to_chat(user, span_warning("There seems to be a firewall preventing this action!"))
+				return
 			if(!user_name)
 				message_admins("[key_name_admin(user)] attempted compiling NTSL without being logged in.") // tell admins that someone tried a javascript injection
 				return
