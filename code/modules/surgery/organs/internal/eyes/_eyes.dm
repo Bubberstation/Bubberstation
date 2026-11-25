@@ -326,6 +326,10 @@
 	var/mutable_appearance/eye_right = mutable_appearance(eye_icon, "[eye_icon_state]_r", -EYES_LAYER)
 	eye_left.dir = eye_dir
 	eye_right.dir = eye_dir
+	// BUBBER EDIT ADDITION START - Eyes opacity
+	eye_left.alpha = eyes_opacity
+	eye_right.alpha = eyes_opacity
+	// BUBBER EDIT ADDITION END
 
 	var/list/overlays = list(eye_left, eye_right)
 
@@ -359,8 +363,8 @@
 		eye_right.alpha = 0
 
 	if (is_emissive) // Because it was done all weird up there.
-		var/mutable_appearance/emissive_left = emissive_appearance(eye_left.icon, eye_left.icon_state, offset_spokesman = owner, layer = eye_left.layer)
-		var/mutable_appearance/emissive_right = emissive_appearance(eye_right.icon, eye_right.icon_state, offset_spokesman = owner, layer = eye_right.layer)
+		var/mutable_appearance/emissive_left = emissive_appearance(eye_left.icon, eye_left.icon_state, offset_spokesman = owner, layer = eye_left.layer, alpha = eye_left.alpha)
+		var/mutable_appearance/emissive_right = emissive_appearance(eye_right.icon, eye_right.icon_state, offset_spokesman = owner, layer = eye_right.layer, alpha = eye_right.alpha)
 		emissive_left.appearance_flags &= ~RESET_TRANSFORM
 		emissive_right.appearance_flags &= ~RESET_TRANSFORM
 
