@@ -5,6 +5,11 @@
 	button_icon = 'modular_skyrat/master_files/icons/mob/actions/actions_nif.dmi'
 	button_icon_state = "soulcatcher_enter"
 
+// BUBBER EDIT ADDITION BEGIN - VAMPIRES
+/datum/action/innate/join_soulcatcher/IsAvailable(feedback = FALSE)
+	return ..() && !HAS_TRAIT(owner, TRAIT_NO_OBSERVE)
+// BUBBER EDIT ADDITION END
+
 /datum/action/innate/join_soulcatcher/Activate()
 	. = ..()
 	var/mob/dead/observer/joining_soul = owner
@@ -14,6 +19,11 @@
 	joining_soul.join_soulcatcher()
 
 GAME_VERB(/mob/dead/observer, join_soulcatcher, "Enter Soulcatcher", "IC")
+	// BUBBER EDIT ADDITION BEGIN - VAMPIRES
+	if(HAS_TRAIT(src, TRAIT_NO_OBSERVE))
+		to_chat(src, span_warning("You cannot enter a soulcatcher in your current form!"))
+		return
+	// BUBBER EDIT ADDITION END
 	var/list/joinable_soulcatchers = list()
 	var/list/rooms_to_join = list()
 

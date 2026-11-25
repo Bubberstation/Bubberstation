@@ -624,6 +624,11 @@ GAME_VERB(/mob/dead/observer, toggle_gas_scan, "Toggle Gas Scan", null)
 
 GAME_VERB(/mob/dead/observer, restore_ghost_appearance, "Restore Ghost Character", null)
 
+	// BUBBER EDIT ADDITION BEGIN - VAMPIRES
+	if(HAS_TRAIT(src, TRAIT_NO_OBSERVE))
+		return
+	// BUBBER EDIT ADDITION END
+
 	set_ghost_appearance()
 	if(client?.prefs)
 		var/real_name = client.prefs.read_preference(/datum/preference/name/real_name)

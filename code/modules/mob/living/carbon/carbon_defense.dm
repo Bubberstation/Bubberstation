@@ -318,6 +318,7 @@
 				src.Knockdown(20)
 				src.apply_damage(30, STAMINA)
 			helper.visible_message(span_notice("[helper] boops [src]'s nose."), span_notice("You boop [src] on the nose."))
+			SEND_SIGNAL(helper, COMSIG_LIVING_HUG_CARBON, src) // BUBBER EDIT ADDITION - VAMPIRES
 	//SKYRAT EDIT ADDITION END
 	else if(check_zone(helper.zone_selected) == BODY_ZONE_HEAD && get_bodypart(BODY_ZONE_HEAD)) //Headpats!
 		//SKYRAT EDIT ADDITION BEGIN - OVERSIZED & DISALLOWED HEADPATS
@@ -342,6 +343,7 @@
 			if(src_tail && !(src_tail.wag_flags & WAG_WAGGING))
 				emote("wag")
 		//SKYRAT EDIT ADDITION END
+		SEND_SIGNAL(helper, COMSIG_LIVING_HUG_CARBON, src) // BUBBER EDIT ADDITION - VAMPIRES
 
 	else if ((helper.zone_selected == BODY_ZONE_PRECISE_GROIN) && !isnull(src.get_organ_by_type(/obj/item/organ/tail)))
 		helper.visible_message(span_notice("[helper] pulls on [src]'s tail!"), \
@@ -381,6 +383,7 @@
 			to_chat(helper, span_notice("You hug [src] to make [p_them()] feel better!"))
 			to_chat(src, span_notice("[helper] hugs you to make you feel better!"))
 
+		SEND_SIGNAL(helper, COMSIG_LIVING_HUG_CARBON, src) // BUBBER EDIT ADDITION - VAMPIRES
 		share_blood_on_touch(helper, ITEM_SLOT_HEAD|ITEM_SLOT_MASK|ITEM_SLOT_GLOVES)
 		// Warm them up with hugs
 		share_bodytemperature(helper)

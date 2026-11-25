@@ -50,6 +50,7 @@ export const CATEGORY_ICONS_CRAFTING = {
   Entertainment: 'masks-theater',
   Gardening: 'wheat-awn', // BUBBER EDIT ADDITION - Gardening Category
   'Blood Cult': 'users',
+  Vampire: 'droplet', // BUBBER EDIT ADDITION - VAMPIRES
   Construction: 'trowel-bricks',
 } as const;
 

@@ -12,7 +12,7 @@
 	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY
 
 /datum/element/dnr/proc/apply_dnr(mob/living/holder)
-	if(IS_CHANGELING(holder) || IS_BLOODSUCKER(holder))
+	if(IS_CHANGELING(holder) || IS_VAMPIRE(holder))
 		return
 	holder.ghostize()
 	var/mob/dead/observer/owner_ghost = holder.get_ghost()

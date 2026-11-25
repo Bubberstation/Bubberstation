@@ -1,18 +1,18 @@
-#define BLOODSUCKER_GUARDIAN_PATH /mob/living/basic/guardian/standard/timestop
-///Bloodsuckers spawning a Guardian will get the Bloodsucker one instead.
+#define VAMPIRE_GUARDIAN_PATH /mob/living/basic/guardian/standard/timestop
+///Vampires spawning a Guardian will get the Vampire one instead.
 /obj/item/guardian_creator/spawn_guardian(mob/living/user, mob/dead/candidate, guardian_path)
-	if(IS_BLOODSUCKER(user) && guardian_path != BLOODSUCKER_GUARDIAN_PATH)
+	if(IS_VAMPIRE(user) && guardian_path != VAMPIRE_GUARDIAN_PATH)
 		theme = GLOB.guardian_themes[GUARDIAN_THEME_MAGIC]
-		spawn_guardian(user, candidate, BLOODSUCKER_GUARDIAN_PATH)
+		spawn_guardian(user, candidate, VAMPIRE_GUARDIAN_PATH)
 		return
 	// Call parent to deal with everyone else
 	return ..()
-#undef BLOODSUCKER_GUARDIAN_PATH
+#undef VAMPIRE_GUARDIAN_PATH
 /**
  * The Guardian itself
  */
 /mob/living/basic/guardian/standard/timestop
-	// Like Bloodsuckers do, you will take more damage to Burn and less to Brute
+	// Like Vampires do, you will take more damage to Burn and less to Brute
 	physiology = list(BRUTE = 0.5, BURN = 2.5, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	playstyle_string = span_holoparasite("As a <b>timestop</b> type you have the ability to stop time, allowing you to move freely while your enemies and even projectiles are frozen. You are also resistant to brute damage, but weak to burn damage.")
 	creator_name = "Timestop"
