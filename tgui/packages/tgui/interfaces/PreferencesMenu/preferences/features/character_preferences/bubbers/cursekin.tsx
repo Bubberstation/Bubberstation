@@ -19,13 +19,13 @@ export const cursekin_sfx: FeatureChoiced = {
 export const cursekin_transform_text: Feature<string> = {
   name: 'Lycan Transformation Text',
   description:
-    'The text displayed when you transform into your lycan form. Appended with an ! at the end.',
+    'The text displayed when you transform into your lycan form. Appended with an ! at the end - use %OWNER for name and %PRONOUN for she/her/they.',
   component: FeatureTextInput,
 };
 
 export const cursekin_detransform_text: Feature<string> = {
   name: 'Lycan Detransformation Text',
   description:
-    'The text displayed when you transform out of your lycan form. Appended with an ! at the end.',
+    'The text displayed when you transform out of your lycan form. Appended with an ! at the end - use %OWNER for name and %PRONOUN for she/her/they.',
   component: FeatureTextInput,
 };
