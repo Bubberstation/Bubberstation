@@ -682,8 +682,13 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF
+	flash_protect = FLASH_PROTECTION_WELDER
 	flags_inv = HIDEFACE | HIDEFACIALHAIR | HIDEHAIR | HIDEMASK | HIDEEYES | HIDEEARS
 	custom_materials = list(/datum/material/metalhydrogen = SHEET_MATERIAL_AMOUNT * 3)
+
+/obj/item/clothing/head/helmet/elder_atmosian/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/radiation_protected_clothing)
 
 /datum/armor/helmet_elder_atmosian
 	melee = 40

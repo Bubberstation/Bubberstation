@@ -14,8 +14,9 @@
 
 /datum/bodypart_overlay/mutant/neck_accessory
 	feature_key = "neck_accessory"
-	layers = EXTERNAL_FRONT | EXTERNAL_ADJACENT
+	layers = list(EXTERNAL_FRONT = BODY_FRONT_LAYER, EXTERNAL_ADJACENT = BODY_ADJ_LAYER)
 	color_source = ORGAN_COLOR_OVERRIDE
+	offset_location = UPPER_BODY
 
 /datum/bodypart_overlay/mutant/neck_accessory/override_color(rgb_value)
 	return draw_color

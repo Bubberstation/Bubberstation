@@ -42,6 +42,7 @@
 	icon_state = "powerpack_small-12"
 	ammo_type = /obj/item/ammo_casing/caseless/c22hl
 	max_ammo = 12
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/ammo_box/magazine/recharge/ntusp/laser
 	name = "small lethal power pack"
@@ -53,9 +54,11 @@
 
 /obj/item/ammo_box/magazine/recharge/ntusp/laser/empty
 	start_empty = TRUE // so you cant field convert mags to full laser ones
+	custom_materials = null
 
 /obj/item/ammo_box/magazine/recharge/ntusp/empty
 	start_empty = TRUE
+	custom_materials = null
 
 /obj/item/ammo_box/magazine/recharge/ntusp/emp_act(severity) //shooting physical bullets wont stop you dying to an EMP
 	. = ..()
@@ -77,6 +80,7 @@
 	max_ammo = 5
 	ammo_band_icon = null
 	ammo_band_color = null
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/plastic = SHEET_MATERIAL_AMOUNT)
 
 /obj/item/ammo_box/speedloader/security/update_icon_state()
 	. = ..()
@@ -90,6 +94,7 @@
 		. += "9mm-revolver-[inserted_ammo]"
 
 /obj/item/ammo_box/magazine/r45
+	caliber = CALIBER_45
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10,
 		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 10,
@@ -97,3 +102,9 @@
 		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 10,
 		/datum/material/telecrystal = SHEET_MATERIAL_AMOUNT,
 	)
+
+/obj/item/ammo_box/speedloader/c38/c32
+	name = "speed loader (.32)"
+	desc = "Designed to quickly reload six-chamber .32 revolvers."
+	ammo_type = /obj/item/ammo_casing/c38/c32
+	caliber = CALIBER_32

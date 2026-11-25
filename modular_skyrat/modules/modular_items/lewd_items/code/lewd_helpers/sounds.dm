@@ -86,7 +86,7 @@
 	/// What preference are we going to check with our looping sound when we play it for people?
 	var/pref_to_check = /datum/preference/toggle/erp/sex_toy_sounds
 
-/datum/looping_sound/lewd/play(soundfile, volume_override)
+/datum/looping_sound/lewd/play(soundfile, volume_override, delete_when_finished, repeat_sound)
 	var/sound/sound_to_play = sound(soundfile)
 	if(direct)
 		sound_to_play.channel = sound_channel || SSsounds.random_available_channel()

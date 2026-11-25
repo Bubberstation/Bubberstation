@@ -48,9 +48,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // Trait sources
 #define TRAIT_GHOSTROLE "ghostrole" // SKYRAT EDIT ADDITION -- Ghost Cafe Traits
 
-/// One can breath under water, you get me?
-#define TRAIT_WATER_BREATHING "water_breathing"
-
 /// Trait to assign to pets who've already had a space treat to prevent double-feeding
 #define TRAIT_PET_SPACE_TREAT "space_pet_treat"
 
@@ -58,6 +55,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_SLICK_SKIN "slick_skin"
 /// The trait which is applied when a `slick skin` trait haver actually gets wet_stacks
 #define TRAIT_SLIPPERY "slippery"
+
+/// The trait that is used by the "moist_skin" quirk to prevent stacking of water particles
+#define TRAIT_MOIST_SKIN "moist_skin"
 
 /// When someone is fixing electrical damage, this trait is set and prevents the wound from worsening.
 // We use a trait to avoid erronous setting of a variable to false if two people are repairing and one stops.
@@ -150,7 +150,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Any model that has a custom front panel
 #define TRAIT_R_UNIQUEPANEL "unique_openpanel"
 /// Any model that has unique lights while resting
-#define TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS "has_unique_resting_lights"
+#define TRAIT_R_HAS_UNIQUE_RESTING_OVERLAY "has_unique_resting_overlay"
+#define TRAIT_R_HAS_UNIQUE_RESTING_LIGHTS "has_unique_resting_light"
+#define TRAIT_R_RESTING_UNIQUEPANEL "resting_unique_openpanel"
 /// Any model that cannot use a borg expander
 #define TRAIT_R_EXPANDER_BLOCKED "expander_blocked"
 

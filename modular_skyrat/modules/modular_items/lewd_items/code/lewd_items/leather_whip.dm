@@ -12,7 +12,6 @@
 	worn_icon_muzzled = 'modular_skyrat/master_files/icons/mob/clothing/mask_muzzled.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	hitsound = 'sound/items/weapons/whip.ogg'
-	clothing_flags = INEDIBLE_CLOTHING
 	//When taking that thing in mouth
 	flags_cover = MASKCOVERSMOUTH
 	var/modifies_speech = TRUE
@@ -41,6 +40,9 @@
 	var/list/moans_alt = list("Mhgm...", "Hmmmp!...", "GMmmhp!")
 	/// Probabilty that `moans_alt` is used instead of `moans`
 	var/moans_alt_probability = 5
+
+/obj/item/clothing/mask/leatherwhip/create_moth_snack()
+	return null
 
 /obj/item/clothing/mask/leatherwhip/worn_overlays(isinhands = FALSE)
 	. = ..()
@@ -95,7 +97,7 @@
 
 	update_icon()
 	update_appearance()
-	update_overlays()
+	update_overlays(UPDATE_OVERLAYS)
 
 /obj/item/clothing/mask/leatherwhip/examine(mob/user)
 	. = ..()
@@ -152,7 +154,7 @@
 
 	update_icon()
 	update_appearance()
-	update_overlays()
+	update_overlays(UPDATE_OVERLAYS)
 
 /obj/item/clothing/mask/leatherwhip/update_icon_state()
 	. = ..()

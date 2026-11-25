@@ -49,7 +49,7 @@
 	// Take a "breath" of the air
 	var/datum/gas_mixture/breath = mix.remove(mix.total_moles() * BREATH_PERCENTAGE)
 
-	var/list/breath_gases = breath.gases
+	var/list/breath_moles = breath.moles
 
 	breath.assert_gases(
 		/datum/gas/oxygen,
@@ -60,11 +60,11 @@
 		/datum/gas/miasma,
 	)
 
-	var/oxygen_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/oxygen][MOLES])
-	var/plasma_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/plasma][MOLES])
-	var/carbon_dioxide_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/carbon_dioxide][MOLES])
-	var/bz_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/bz][MOLES])
-	var/miasma_pp = breath.get_breath_partial_pressure(breath_gases[/datum/gas/miasma][MOLES])
+	var/oxygen_pp = breath.get_breath_partial_pressure(breath_moles[/datum/gas/oxygen])
+	var/plasma_pp = breath.get_breath_partial_pressure(breath_moles[/datum/gas/plasma])
+	var/carbon_dioxide_pp = breath.get_breath_partial_pressure(breath_moles[/datum/gas/carbon_dioxide])
+	var/bz_pp = breath.get_breath_partial_pressure(breath_moles[/datum/gas/bz])
+	var/miasma_pp = breath.get_breath_partial_pressure(breath_moles[/datum/gas/miasma])
 
 	safe_oxygen_min = floor(min(safe_oxygen_min, oxygen_pp - ADAPTIVE_TOLERANCE))
 

@@ -13,6 +13,10 @@
 	slot = ORGAN_SLOT_LUNGS
 	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD
 	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
+	custom_materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+	)
 
 /obj/item/organ/lungs/synth/emp_act(severity)
 	. = ..()
@@ -35,7 +39,6 @@
 /datum/design/synth_heatsink
 	name = "Heatsink"
 	desc = "A device that transfers generated heat to a fluid medium to cool it down. Required to keep your synthetics cool-headed. It's shape resembles lungs."
-	id = "synth_lungs"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(

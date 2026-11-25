@@ -55,6 +55,18 @@
 	src.species = species
 	src.trim = trim
 
+/// Parses gender field into byond gender defines
+/datum/record/proc/get_byond_gender()
+	var/record_gender = LOWER_TEXT(gender)
+	// already slots nicely into a define
+	if(record_gender == MALE || record_gender == FEMALE || record_gender == NEUTER || record_gender == PLURAL)
+		return record_gender
+	// they/them if "unknown"
+	if(record_gender == "unknown")
+		return PLURAL
+	// it/its if "other"
+	return NEUTER
+
 /**
  * Crew record datum
  */
@@ -113,6 +125,7 @@
 	physical_status = PHYSICAL_ACTIVE,
 	mental_status = MENTAL_STABLE,
 	quirk_notes,
+	security_note, // BUBBER EDIT
 	// SKYRAT EDIT START - RP Records
 	past_general_records = "",
 	past_medical_records = "",
@@ -129,6 +142,7 @@
 	src.mental_status = mental_status
 	src.quirk_notes = quirk_notes
 	// SKYRAT EDIT START - RP Records
+	src.security_note = security_note
 	src.past_general_records = past_general_records
 	src.past_medical_records = past_medical_records
 	src.past_security_records = past_security_records

@@ -1,6 +1,8 @@
 
+/* BUBBER EDIT BEGIN - moved to <modular_zubber/code/modules/mob/living/silicon/silicon_defense.dm.
 /mob/living/silicon/grippedby(mob/living/carbon/user, instant = FALSE)
 	return //can't upgrade a simple pull into a more aggressive grab.
+*/ // BUBBER EDIT END
 
 /mob/living/silicon/get_ear_protection(ignore_deafness = FALSE)
 	return ..() + EAR_PROTECTION_HEAVY //no ears
@@ -78,7 +80,7 @@
 		return TRUE
 	else
 		// SKYRAT EDIT ADDITION START
-		if(HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && (src.stat != UNCONSCIOUS) && !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS))
+		if(HAS_TRAIT(src, TRAIT_QUICKREFLEXES) && (!IS_UNCONSCIOUS_OR_CRIT(src)) && !INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS))
 			visible_message(span_warning("[user] tries to pet [src], but it moves out of the way."))
 			return TRUE
 		// SKYRAT EDIT ADDITION END

@@ -1,6 +1,10 @@
 /obj/item/assembly/control/polarizer
 	name = "window polarization remote controller"
 	desc = "A small electronic device able to control the polarization status of linked windows remotely."
+	custom_materials = list(
+		/datum/material/iron = SMALL_MATERIAL_AMOUNT,
+		/datum/material/glass = SMALL_MATERIAL_AMOUNT,
+	)
 	/// Whether the connected windows are meant to be polarized or not.
 	var/polarizing = FALSE
 
@@ -49,7 +53,6 @@
 
 /datum/design/polarizer
 	name = "Window Polarization Remote Controller"
-	id = "polarizer"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE | COLONY_FABRICATOR
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT,

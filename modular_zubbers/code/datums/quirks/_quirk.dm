@@ -5,6 +5,8 @@
 	var/list/species_blacklist = null
 	/// Whitelist of species for this quirk
 	var/list/species_whitelist = null
+	///This text will appear in security records for the trait
+	var/security_record_text
 
 /datum/quirk/item_quirk
 	/// If TRUE, giving an item to our holder will instead delete it. Used for quirk reapplying.

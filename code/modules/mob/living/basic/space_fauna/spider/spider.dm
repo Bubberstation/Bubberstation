@@ -14,7 +14,7 @@
 	response_disarm_simple = "gently push aside"
 	initial_language_holder = /datum/language_holder/spider
 	melee_attack_cooldown = CLICK_CD_MELEE
-	damage_coeff = list(BRUTE = 1, BURN = 1.25, TOX = 3, STAMINA = 1, OXY = 1)
+	physiology = list(BURN = 1.25, TOX = 3)
 	basic_mob_flags = FLAMMABLE_MOB
 	status_flags = NONE
 	unsuitable_cold_damage = 4
@@ -200,7 +200,6 @@
 	icon_state = "maint_spider"
 	icon_living = "maint_spider"
 	icon_dead = "maint_spider_dead"
-	can_be_held = TRUE
 	mob_size = MOB_SIZE_TINY
 	held_w_class = WEIGHT_CLASS_TINY
 	worn_slot_flags = ITEM_SLOT_HEAD
@@ -234,3 +233,4 @@
 	AddElement(/datum/element/ai_retaliate)
 	AddComponent(/datum/component/obeys_commands, pet_commands)
 	AddElement(/datum/element/tiny_mob_hunter)
+	AddElement(/datum/element/can_be_held)

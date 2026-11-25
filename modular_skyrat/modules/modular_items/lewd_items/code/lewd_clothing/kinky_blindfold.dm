@@ -55,13 +55,13 @@
 	inhand_icon_state = "[base_icon_state]_[current_kinkfold_color]"
 
 //message when equipping that thing
-/obj/item/clothing/glasses/blindfold/kinky/equipped(mob/living/carbon/user, slot)
+/obj/item/clothing/glasses/blindfold/kinky/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(src == user.glasses)
 		to_chat(user, span_purple("The blindfold blocks your vision! You can't make out anything on the other side..."))
 
 //message when unequipping that thing
-/obj/item/clothing/glasses/blindfold/kinky/dropped(mob/living/carbon/user)
+/obj/item/clothing/glasses/blindfold/kinky/dropped(mob/living/carbon/human/user)
 	. = ..()
 	if(src == user.glasses)
 		to_chat(user, span_purple("The blindfold no longer restricts your vision."))

@@ -49,6 +49,9 @@
 /turf/open/floor/bamboo
 	icon = 'modular_zubbers/icons/turf/floors/bamboo_mat.dmi'
 
+/turf/open/floor/bamboo/planks
+	icon = 'modular_zubbers/icons/turf/floors/floors.dmi'
+
 /turf/open/floor/bamboo/tatami
 	icon = 'modular_zubbers/icons/turf/floors/floor_variations.dmi'
 
@@ -57,6 +60,21 @@
 
 /turf/open/floor/bamboo/tatami/black
 	icon = 'modular_zubbers/icons/turf/floors/floor_variations.dmi'
+
+// GLASS FLOORS
+// TG PRs #97723 and #97241 make me groan with disappointment.
+
+/turf/open/floor/glass/bronze
+	icon = 'modular_zubbers/icons/turf/floors/glass_bronze.dmi'
+
+/turf/open/floor/glass/cult
+	icon = 'modular_zubbers/icons/turf/floors/glass_runic.dmi'
+
+/turf/open/floor/glass/titatanium
+	icon = 'modular_zubbers/icons/turf/floors/glass_titanium.dmi'
+
+/turf/open/floor/glass/plastitatanium
+	icon = 'modular_zubbers/icons/turf/floors/glass_plastitanium.dmi'
 
 // TRAM FLOORS
 
@@ -103,6 +121,7 @@
 
 /obj/item/stack/light_w
 	icon = 'modular_zubbers/icons/obj/tiles.dmi'
+
 // This isn't under stack/tile..... Look at you, light_w, you get an entire two lines to yourself!
 // Enjoy it, because people only craft you out of mistake.
 
@@ -130,7 +149,7 @@
 		/obj/item/stack/tile/mineral/titanium/shuttle_evac,
 		)
 
-/obj/item/stack/tile/mineral/bananium
+/obj/item/stack/tile/mineral/bananium/tiled
 	tile_rotate_dirs = list(SOUTH, NORTH, EAST, WEST, SOUTHEAST, SOUTHWEST, NORTHEAST, NORTHWEST)
 
 /obj/structure/broken_flooring

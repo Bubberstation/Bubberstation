@@ -25,8 +25,6 @@ GLOBAL_LIST_EMPTY(customizable_races)
 	var/flavor_text = "No description."
 	///Path to BODYSHAPE_CUSTOM species worn icons. An assoc list of ITEM_SLOT_X => /icon
 	var/list/custom_worn_icons = list()
-	///Is this species restricted from changing their body_size in character creation?
-	var/body_size_restricted = FALSE
 	/// Are we lore protected? This prevents people from changing the species lore or species name.
 	var/lore_protected = FALSE
 
@@ -121,11 +119,6 @@ GLOBAL_LIST_EMPTY(customizable_races)
 
 /datum/species/proc/get_random_body_markings(list/features) //Needs features to base the colour off of
 	return list()
-
-/datum/species/spec_stun(mob/living/carbon/human/target, amount)
-	if(istype(target))
-		target.unwag_tail()
-	return ..()
 
 /datum/species/regenerate_organs(mob/living/carbon/target, datum/species/old_species, replace_current = TRUE, list/excluded_zones, visual_only = FALSE, replace_missing = TRUE)
 	. = ..()

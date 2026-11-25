@@ -329,7 +329,7 @@
 		else
 			to_chat(user, span_notice("<i>You glance at [photo], looking for wires in the pictured blueprints.</i>"))
 
-		if(do_after(user, study_length, holder, interaction_key = STUDY_INTERACTION_KEY, hidden = TRUE))
+		if(do_after(user, study_length, holder, interaction_key = STUDY_INTERACTION_KEY, cog_icon = null))
 			LAZYSET(studied_photos, REF(user.mind), REF(photo))
 		return
 
@@ -394,7 +394,17 @@
 			if(I || isAdminGhostAI(usr))
 				if(I && holder)
 					I.play_tool_sound(holder, 20)
+				// BUBBER EDIT ADDITION START - insulated multitools keep the user from being shocked by the pulse
+				var/obj/item/multitool/probe = I
+				var/insulated_pulse = istype(probe) && probe.insulated_probes
+				if(insulated_pulse)
+					ADD_TRAIT(L, TRAIT_SHOCKIMMUNE, INSULATED_PROBE_TRAIT)
+				// BUBBER EDIT ADDITION END
 				pulse_color(target_wire, L)
+				// BUBBER EDIT ADDITION START
+				if(insulated_pulse)
+					REMOVE_TRAIT(L, TRAIT_SHOCKIMMUNE, INSULATED_PROBE_TRAIT)
+				// BUBBER EDIT ADDITION END
 				. = TRUE
 			else
 				to_chat(L, span_warning("You need a multitool!"))

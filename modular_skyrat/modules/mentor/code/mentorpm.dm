@@ -1,19 +1,3 @@
-//shows a list of clients we could send PMs to, then forwards our choice to cmd_Mentor_pm
-/client/proc/cmd_mentor_pm_panel() // We're not using this and I'm debating removing the code as it's dead and useless. We don't need mentors PMing people out of the blue. That's not really how we operate.
-	set category = "Mentor"
-	set name = "Mentor PM"
-	if(!is_mentor())
-		to_chat(src, span_danger("Error: Mentor-PM-Panel: Only Mentors and Admins may use this command."))
-		return
-	var/list/client/targets[0]
-	for(var/client/T) // What a cursed proc this is
-		targets["[T]"] = T
-
-	var/list/sorted = sort_list(targets)
-	var/target = input(src, "To whom shall we send a message?", "Mentor PM", null) in sorted|null
-	cmd_mentor_pm(targets[target], null)
-	SSblackbox.record_feedback("tally", "Mentor_verb", TRUE, "APM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 /**
  * Takes input from cmd_mentor_pm_context, cmd_Mentor_pm_panel or /client/Topic and sends them a PM.
  * Fetching a message if needed. src is the sender and target is the target client

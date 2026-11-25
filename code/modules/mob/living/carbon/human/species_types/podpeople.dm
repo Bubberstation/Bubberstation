@@ -6,6 +6,7 @@
 	inherent_traits = list(
 		TRAIT_MUTANT_COLORS,
 		TRAIT_PLANT_SAFE,
+		TRAIT_REQUIRED_ADV_HEALTH_SCANNER,
 		TRAIT_KNOW_ADVANCED_SMITHING, //BUBBER EDIT
 	)
 	mutant_organs = list(
@@ -17,7 +18,7 @@
 	heatmod = 1.5
 	payday_modifier = 1.0
 	meat = /obj/item/food/meat/slab/human/mutant/plant
-	exotic_bloodtype = BLOOD_TYPE_H2O
+	exotic_bloodtype = /datum/blood_type/water
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/plant
 

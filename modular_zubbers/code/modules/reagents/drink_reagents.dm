@@ -241,7 +241,7 @@
 
 /datum/reagent/consumable/ethanol/bat_outta_hell/overdose_process(mob/living/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
-	affected_mob.add_traits(list(TRAIT_GOOD_HEARING, TRAIT_MINOR_NIGHT_VISION),"Overdose:/datum/reagent/consumable/ethanol/bat_outta_hell")
+	affected_mob.add_traits(list(TRAIT_GOOD_HEARING, TRAIT_NIGHT_VISION),"Overdose:/datum/reagent/consumable/ethanol/bat_outta_hell")
 	metabolization_rate = 4.5 * REAGENTS_METABOLISM
 	affected_mob.set_jitter_if_lower(5 SECONDS * REM * seconds_per_tick)
 	affected_mob.set_dizzy_if_lower(5 SECONDS * REM * seconds_per_tick)
@@ -249,7 +249,7 @@
 
 /datum/reagent/consumable/ethanol/bat_outta_hell/on_mob_end_metabolize(mob/living/affected_mob)
 	. = ..()
-	affected_mob.remove_traits(list(TRAIT_GOOD_HEARING, TRAIT_MINOR_NIGHT_VISION),"Overdose:/datum/reagent/consumable/ethanol/bat_outta_hell")
+	affected_mob.remove_traits(list(TRAIT_GOOD_HEARING, TRAIT_NIGHT_VISION),"Overdose:/datum/reagent/consumable/ethanol/bat_outta_hell")
 
 /datum/reagent/consumable/ethanol/bat_outta_hell/expose_mob(mob/living/affected_mob, methods, reac_volume)
 	. = ..()

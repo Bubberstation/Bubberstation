@@ -50,88 +50,101 @@
 
 ///ABDUCTOR
 /obj/item/bodypart/head/abductor
+	icon_greyscale = 'modular_zubbers/icons/mob/human/abductor_bodyparts.dmi' //bubber edit: Lets abductors change their skin color
 	limb_id = SPECIES_ABDUCTOR
 	is_dimorphic = FALSE
-	should_draw_greyscale = FALSE
-	head_flags = NONE
+	should_draw_greyscale = TRUE //bubber edit: Lets abductors change their skin color
+	head_flags = HEAD_HAIR | HEAD_FACIAL_HAIR | HEAD_EYESPRITES //Bubber Edit: Lets the abductor have hair and facial hair. Mainly intended for like, fake hair or more customization options for custom species.
 	teeth_count = 0
 
 /obj/item/bodypart/chest/abductor
+	icon_greyscale = 'modular_zubbers/icons/mob/human/abductor_bodyparts.dmi' //bubber edit: Lets abductors change their skin color
 	limb_id = SPECIES_ABDUCTOR
 	is_dimorphic = FALSE
-	should_draw_greyscale = FALSE
+	should_draw_greyscale = TRUE //bubber edit: Lets abductors change their skin color
 	wing_types = null
+	bodypart_traits = list(TRAIT_ABDUCTOR_QUICK_SCAN)
 
 /obj/item/bodypart/chest/abductor/get_butt_sprite()
 	return icon('icons/mob/butts.dmi', BUTT_SPRITE_GREY)
 
 /obj/item/bodypart/arm/left/abductor
+	icon_greyscale = 'modular_zubbers/icons/mob/human/abductor_bodyparts.dmi' //bubber edit: Lets abductors change their skin color
 	limb_id = SPECIES_ABDUCTOR
-	should_draw_greyscale = FALSE
+	should_draw_greyscale = TRUE //bubber edit: Lets abductors change their skin color
 	bodypart_traits = list(TRAIT_CHUNKYFINGERS)
 
 /obj/item/bodypart/arm/right/abductor
+	icon_greyscale = 'modular_zubbers/icons/mob/human/abductor_bodyparts.dmi' //bubber edit: Lets abductors change their skin color
 	limb_id = SPECIES_ABDUCTOR
-	should_draw_greyscale = FALSE
+	should_draw_greyscale = TRUE //bubber edit: Lets abductors change their skin color
 	bodypart_traits = list(TRAIT_CHUNKYFINGERS)
 
 /obj/item/bodypart/leg/left/abductor
+	icon_greyscale = 'modular_zubbers/icons/mob/human/abductor_bodyparts.dmi' //bubber edit: Lets abductors change their skin color
 	limb_id = SPECIES_ABDUCTOR
-	should_draw_greyscale = FALSE
+	should_draw_greyscale = TRUE //bubber edit: Lets abductors change their skin color
 
 /obj/item/bodypart/leg/right/abductor
+	icon_greyscale = 'modular_zubbers/icons/mob/human/abductor_bodyparts.dmi' //bubber edit: Lets abductors change their skin color
 	limb_id = SPECIES_ABDUCTOR
-	should_draw_greyscale = FALSE
+	should_draw_greyscale = TRUE //bubber edit: Lets abductors change their skin color
 
 ///JELLY
 /obj/item/bodypart/head/jelly
-	biological_state = (BIO_FLESH|BIO_BLOODED)
+	biological_state = (BIO_FLESH|BIO_BLOODED|BIO_JELLY)
 	limb_id = SPECIES_JELLYPERSON
 	is_dimorphic = TRUE
 	dmg_overlay_type = null
 	burn_modifier = 0.5 // = 1/2x generic burn damage
 	head_flags = HEAD_EYECOLOR | HEAD_EYESPRITES | HEAD_HAIR | HEAD_FACIAL_HAIR
 	butcher_replacement = null
+	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/slime_passgrille)
 
 /obj/item/bodypart/chest/jelly
-	biological_state = (BIO_FLESH|BIO_BLOODED)
+	biological_state = (BIO_FLESH|BIO_BLOODED|BIO_JELLY)
 	limb_id = SPECIES_JELLYPERSON
 	is_dimorphic = TRUE
 	dmg_overlay_type = null
 	burn_modifier = 0.5 // = 1/2x generic burn damage
-	wing_types = list(/obj/item/organ/wings/functional/slime)
+	wing_types = list(/obj/item/organ/wings/slime)
 	butcher_replacement = null
+	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/slime_passgrille)
 
 /obj/item/bodypart/chest/jelly/get_butt_sprite()
 	return icon('icons/mob/butts.dmi', BUTT_SPRITE_SLIME)
 
 /obj/item/bodypart/arm/left/jelly
-	biological_state = (BIO_FLESH|BIO_BLOODED)
+	biological_state = (BIO_FLESH|BIO_BLOODED|BIO_JELLY)
 	limb_id = SPECIES_JELLYPERSON
 	dmg_overlay_type = null
 	burn_modifier = 0.5 // = 1/2x generic burn damage
 	butcher_replacement = null
+	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/slime_passgrille)
 
 /obj/item/bodypart/arm/right/jelly
-	biological_state = (BIO_FLESH|BIO_BLOODED)
+	biological_state = (BIO_FLESH|BIO_BLOODED|BIO_JELLY)
 	limb_id = SPECIES_JELLYPERSON
 	dmg_overlay_type = null
 	burn_modifier = 0.5 // = 1/2x generic burn damage
 	butcher_replacement = null
+	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/slime_passgrille)
 
 /obj/item/bodypart/leg/left/jelly
-	biological_state = (BIO_FLESH|BIO_BLOODED)
+	biological_state = (BIO_FLESH|BIO_BLOODED|BIO_JELLY)
 	limb_id = SPECIES_JELLYPERSON
 	dmg_overlay_type = null
 	burn_modifier = 0.5 // = 1/2x generic burn damage
 	butcher_replacement = null
+	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/slime_passgrille)
 
 /obj/item/bodypart/leg/right/jelly
-	biological_state = (BIO_FLESH|BIO_BLOODED)
+	biological_state = (BIO_FLESH|BIO_BLOODED|BIO_JELLY)
 	limb_id = SPECIES_JELLYPERSON
 	dmg_overlay_type = null
 	burn_modifier = 0.5 // = 1/2x generic burn damage
 	butcher_replacement = null
+	bodypart_effects = list(/datum/status_effect/grouped/bodypart_effect/slime_passgrille)
 
 ///SLIME
 /obj/item/bodypart/head/jelly/slime
@@ -172,46 +185,6 @@
 
 /obj/item/bodypart/leg/right/jelly/luminescent
 	limb_id = SPECIES_LUMINESCENT
-
-///ZOMBIE
-/obj/item/bodypart/head/zombie
-	limb_id = SPECIES_ZOMBIE
-	is_dimorphic = FALSE
-	should_draw_greyscale = FALSE
-	head_flags = HEAD_EYESPRITES|HEAD_DEBRAIN
-	can_dismember = TRUE
-
-/obj/item/bodypart/chest/zombie
-	limb_id = SPECIES_ZOMBIE
-	is_dimorphic = FALSE
-	should_draw_greyscale = FALSE
-	wing_types = null
-
-/obj/item/bodypart/arm/left/zombie
-	limb_id = SPECIES_ZOMBIE
-	should_draw_greyscale = FALSE
-
-/obj/item/bodypart/arm/right/zombie
-	limb_id = SPECIES_ZOMBIE
-	should_draw_greyscale = FALSE
-
-/obj/item/bodypart/leg/left/zombie
-	limb_id = SPECIES_ZOMBIE
-	should_draw_greyscale = FALSE
-
-/obj/item/bodypart/leg/right/zombie
-	limb_id = SPECIES_ZOMBIE
-	should_draw_greyscale = FALSE
-
-/obj/item/bodypart/leg/left/zombie/infectious
-	limb_id = SPECIES_ZOMBIE
-	should_draw_greyscale = FALSE
-	speed_modifier = 0.5 //braaaaains
-
-/obj/item/bodypart/leg/right/zombie/infectious
-	limb_id = SPECIES_ZOMBIE
-	should_draw_greyscale = FALSE
-	speed_modifier = 0.5 //braaaaains
 
 ///PODPEOPLE
 /obj/item/bodypart/head/pod
@@ -290,7 +263,7 @@
 	limb_id = SPECIES_FLYPERSON
 	is_dimorphic = TRUE
 	should_draw_greyscale = FALSE
-	wing_types = list(/obj/item/organ/wings/functional/fly)
+	wing_types = list(/obj/item/organ/wings/fly)
 	bodypart_traits = list(TRAIT_TACKLING_FRAIL_ATTACKER)
 
 /obj/item/bodypart/arm/left/fly
@@ -389,7 +362,7 @@
 	should_draw_greyscale = FALSE
 	dmg_overlay_type = null
 	bodypart_flags = BODYPART_UNHUSKABLE
-	wing_types = list(/obj/item/organ/wings/functional/skeleton)
+	wing_types = list(/obj/item/organ/wings/skeleton)
 	scarrable = FALSE
 	butcher_replacement = null
 
@@ -565,7 +538,7 @@
 	icon = 'icons/mob/human/species/golems.dmi'
 	icon_static = 'icons/mob/human/species/golems.dmi'
 	icon_state = "golem_head"
-	biological_state = BIO_BONE
+	biological_state = BIO_BONE|BIO_STONE
 	bodytype = BODYTYPE_GOLEM | BODYTYPE_ORGANIC
 	bodyshape = BODYSHAPE_GOLEM
 	limb_id = SPECIES_GOLEM
@@ -608,7 +581,7 @@
 	icon = 'icons/mob/human/species/golems.dmi'
 	icon_static = 'icons/mob/human/species/golems.dmi'
 	icon_state = "golem_chest"
-	biological_state = BIO_BONE
+	biological_state = BIO_BONE|BIO_STONE
 	acceptable_bodytype = BODYTYPE_GOLEM
 	bodytype = BODYTYPE_GOLEM | BODYTYPE_ORGANIC
 	bodyshape = BODYSHAPE_GOLEM
@@ -634,7 +607,7 @@
 	icon = 'icons/mob/human/species/golems.dmi'
 	icon_static = 'icons/mob/human/species/golems.dmi'
 	icon_state = "golem_l_arm"
-	biological_state = (BIO_BONE|BIO_JOINTED)
+	biological_state = (BIO_BONE|BIO_JOINTED|BIO_STONE)
 	bodytype = BODYTYPE_GOLEM | BODYTYPE_ORGANIC
 	bodyshape = BODYSHAPE_GOLEM
 	limb_id = SPECIES_GOLEM
@@ -671,7 +644,7 @@
 	icon = 'icons/mob/human/species/golems.dmi'
 	icon_static = 'icons/mob/human/species/golems.dmi'
 	icon_state = "golem_r_arm"
-	biological_state = (BIO_BONE|BIO_JOINTED)
+	biological_state = (BIO_BONE|BIO_JOINTED|BIO_STONE)
 	bodytype = BODYTYPE_GOLEM | BODYTYPE_ORGANIC
 	bodyshape = BODYSHAPE_GOLEM
 	limb_id = SPECIES_GOLEM
@@ -708,7 +681,7 @@
 	icon = 'icons/mob/human/species/golems.dmi'
 	icon_static = 'icons/mob/human/species/golems.dmi'
 	icon_state = "golem_l_leg"
-	biological_state = (BIO_BONE|BIO_JOINTED)
+	biological_state = (BIO_BONE|BIO_JOINTED|BIO_STONE)
 	bodytype = BODYTYPE_GOLEM | BODYTYPE_ORGANIC
 	bodyshape = BODYSHAPE_GOLEM
 	limb_id = SPECIES_GOLEM
@@ -725,7 +698,7 @@
 	icon = 'icons/mob/human/species/golems.dmi'
 	icon_static = 'icons/mob/human/species/golems.dmi'
 	icon_state = "golem_r_leg"
-	biological_state = (BIO_BONE|BIO_JOINTED)
+	biological_state = (BIO_BONE|BIO_JOINTED|BIO_STONE)
 	bodytype = BODYTYPE_GOLEM | BODYTYPE_ORGANIC
 	bodyshape = BODYSHAPE_GOLEM
 	limb_id = SPECIES_GOLEM

@@ -1,6 +1,6 @@
 /datum/species/skrell/get_species_description()
 	return list(
-	"The skrell are a dying amphibious species from the marshworld Qerrbalak, \
+	"The Skrell are a dying amphibious species from the marshworld Qerrbalak, \
 	possessing some of the most intelligent minds in the galaxy due to their often singular focus.",
 	"Their blood is rich in copper, oxidizing their skin to a blue tint. \
 	Amebocytes in their blood filter out smaller doses of toxins, \
@@ -28,6 +28,6 @@
 
 		"In time, however, the Skrell would be able to go no further, causing population numbers to drastically decline over the past few generations. The reasons remain a subject of debate, \
 		some outside sources seem to believe it is primarily due to their inability to crossbreed but it is certain that the Skrell have declined outside their core systems, \
-		now officially labeled endangered by the FHO, an organization they created. Many of the brightest minds of the Skrell have returned to Qerrbalak to try and stay the extinction of the Skrell species \
-		But many more have chosen to live out their final days, at home or where they are.",
+		now officially labeled endangered by the FHO, an organization they created. Many of the brightest minds of the Skrell have returned to Qerrbalak to try and stay the extinction of the Skrell species, \
+		but many more have chosen to live out their final days, at home or where they are.",
 	)

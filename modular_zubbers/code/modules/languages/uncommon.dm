@@ -3,7 +3,7 @@
 	desc = "Developed in protest against the subversion of its traditional lingua franca by integrationists, Terran Uncommon is most commonly spoken on its namesake, Terra. \
 		Being a pidgin of English, Mandarin and Hindi, Terran Uncommon is similar to, but decisively distinct from, its Common counterpart, free of alien influence."
 	key = "!"
-	flags = TONGUELESS_SPEECH
+	flags = LANGUAGE_TONGUELESS_SPEECH
 	space_chance = 20
 	sentence_chance = 0
 	between_word_sentence_chance = 10

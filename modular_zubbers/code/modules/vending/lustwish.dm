@@ -47,4 +47,5 @@
 		/obj/item/toy/plush/aeri = 1,
 		/obj/item/toy/plush/noble = 1,
 		/obj/item/toy/plush/protective_protogen = 1,
+		/obj/item/breastpump = 3,
 	)

@@ -50,6 +50,7 @@
 	Even with the weapon destroyed, all the pieces containing the creature have coagulated back together to find a new host."
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "cursed_katana"
+	inhand_icon_state = "cursed_katana"
 	icon_angle = -45
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
@@ -100,7 +101,7 @@
 		qdel(src)
 
 /obj/item/cursed_katana/attack(mob/living/target, mob/user, list/modifiers, list/attack_modifiers)
-	if(target.stat < DEAD && target != user)
+	if(target.stat != DEAD && target != user)
 		drew_blood = TRUE
 		if(ismining(target))
 			user.changeNext_move(CLICK_CD_RAPID)

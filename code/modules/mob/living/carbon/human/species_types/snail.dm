@@ -6,7 +6,7 @@
 		TRAIT_MUTANT_COLORS,
 		// TRAIT_NO_UNDERWEAR, //SKYRAT EDIT REMOVAL - Roundstart Snails - Snails deserve to wear underwear
 		TRAIT_NO_SLIP_ALL,
-		TRAIT_WATER_BREATHING, //SKYRAT EDIT ADDITION - Roundstart Snails - Sea snails exist, and land snails can weather being underwater for almost a day.
+		TRAIT_NODROWN, //SKYRAT EDIT ADDITION - Roundstart Snails - Sea snails exist, and land snails can weather being underwater for almost a day.
 	)
 
 	coldmod = 0.5 //snails only come out when its cold and wet
@@ -17,7 +17,7 @@
 	mutanteyes = /obj/item/organ/eyes/snail
 	mutanttongue = /obj/item/organ/tongue/snail
 	mutantliver = /obj/item/organ/liver/snail
-	exotic_bloodtype = BLOOD_TYPE_SNAIL
+	exotic_bloodtype = /datum/blood_type/snail
 
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/snail,

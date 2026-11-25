@@ -20,7 +20,7 @@
 	///The "would you like to play as XXX" message used when polling for players.
 	var/polldesc
 	/// If TRUE, gives the team members "[role] [random last name]" style names
-	var/random_names = TRUE
+	var/random_names = FALSE // BUBBER EDIT CHANGE - ORIGINAL: var/random_names = TRUE
 	/// If TRUE, the admin who created the response team will be spawned in the briefing room in their preferred briefing outfit (assuming they're a ghost)
 	var/spawn_admin = FALSE
 	/// If TRUE, we try and pick one of the most experienced players who volunteered to fill the leader slot

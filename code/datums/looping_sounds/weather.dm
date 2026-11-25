@@ -5,7 +5,7 @@
 		'sound/ambience/weather/ashstorm/outside/active_mid1.ogg'=1
 		)
 	mid_length = 80 SECONDS
-	start_sound = 'modular_zubbers/sound/ambiance/bangle-ash-and-fire.ogg' // Bubber edit. Credit: Bangle
+	start_sound = 'modular_zubbers/sound/ambience/bangle-ash-and-fire.ogg' // Bubber edit. Credit: Bangle
 	start_length = 13 SECONDS
 	end_sound = 'sound/ambience/weather/ashstorm/outside/active_end.ogg'
 	volume = 80
@@ -54,6 +54,7 @@
 	pressure_affected = FALSE
 	reserve_random_channel = TRUE
 	use_sound_tokens = TRUE
+	never_native_repeat = TRUE
 
 /datum/looping_sound/snowstorm
 	mid_sounds = list(

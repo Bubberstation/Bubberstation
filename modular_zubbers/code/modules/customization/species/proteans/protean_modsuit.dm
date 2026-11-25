@@ -1,7 +1,7 @@
 /obj/item/mod/control/pre_equipped/protean
-	name = "protean modsuit"
+	name = "\improper Protean modsuit"
 	desc = "The modsuit unit of a Protean, allowing them to retract into it, or to deploy a suit that protects against various environments."
-	theme = /datum/mod_theme // Standard theme. TODO: Can be changed with standard mod armors
+	theme = /datum/mod_theme/standard // Standard theme. TODO: Can be changed with standard mod armors
 
 	applied_core = /obj/item/mod/core/protean
 	applied_cell = null // Goes off stomach
@@ -21,6 +21,7 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, "protean")
 	AddElement(/datum/element/strippable/protean, GLOB.strippable_human_items)
+	make_indestructible()
 
 /obj/item/mod/control/pre_equipped/protean/Destroy()
 	var/obj/item/mod/core/protean/p_core = core
@@ -54,7 +55,7 @@
 		return TRUE
 
 	to_chat(stripper, span_warning("This suit seems to be a part of them. You can't remove it!"))
-	stripper.balloon_alert(stripper, "can't strip a protean's suit!")
+	stripper.balloon_alert(stripper, "can't strip a Protean's suit!")
 	return ..()
 
 /obj/item/mod/control/pre_equipped/protean/proc/drop_suit()
@@ -62,6 +63,14 @@
 		if(HAS_TRAIT(src, TRAIT_NODROP))
 			REMOVE_TRAIT(src, TRAIT_NODROP, "protean")
 		wearer.dropItemToGround(src, TRUE, TRUE, TRUE)
+
+/// makes the MOD suit and its parts indestructible. This is done because a lot of stuff 
+/// overwrites the resistance flags but we REALLY need the protean MOD suit to be 
+/// indestructible or else fun and exotic bugs happen
+/obj/item/mod/control/pre_equipped/protean/proc/make_indestructible()
+	for (var/part in mod_parts)
+		var/datum/mod_part/modsuit_part = mod_parts[part]
+		modsuit_part.part_item.resistance_flags |= LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | INDESTRUCTIBLE
 
 /// Proteans can lock themselves on people.
 /obj/item/mod/control/pre_equipped/protean/proc/toggle_lock(forced = FALSE)
@@ -164,10 +173,10 @@
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return ITEM_INTERACT_SUCCESS
 
-	///Memory Wipe Via Pen
+	// Memory Wipe Via Pen
 
 	if(brain?.dead && istype(tool, /obj/item/pen))
-		to_chat(user, span_notice("You begin to reset the protean's random access memory using a pen!"))
+		to_chat(user, span_notice("You begin to reset the Protean's random access memory using a pen!"))
 		user.balloon_alert_to_viewers("resetting memory")
 		user.visible_message(span_boldwarning("[user] is reaching a pen into [protean_in_suit] to find the reset button!"))
 		playsound(src, 'sound/machines/synth/synth_no.ogg', 100)
@@ -190,14 +199,6 @@
 		return UI_INTERACTIVE
 	. = ..()
 
-/obj/item/mod/control/pre_equipped/protean/verb/remove_modsuit()
-	set name = "Remove Assimilated Modsuit"
-	var/obj/item/mod/core/protean/p_core = core
-	to_chat(usr, span_notice("You begin to pry at the [stored_modsuit] to seperate it."))
-	if(!do_after(usr, 5 SECONDS))
-		return
-	p_core.linked_species.unassimilate_modsuit(usr)
-
 /obj/item/mod/control/pre_equipped/protean/examine(mob/user)
 	. = ..()
 	var/obj/item/mod/core/protean/protean_core = core
@@ -211,7 +212,7 @@
 	if(!isnull(brain) || istype(brain))
 		if(brain.dead)
 			if(!open)
-				. += isnull(refactory) ? span_warning("This Protean requires critical repairs! <b>Screwdriver them open.</b>... There does seem to be a tiny reset hole on the top of the Protean, it seems a <b>Pen</b> might fit in there.. ") : span_notice("<b>Repairing systems...</b>") //Small line for how to memory reset a protean here too.
+				. += isnull(refactory) ? span_warning("This Protean requires critical repairs! <b>Screwdriver them open.</b>... There does seem to be a tiny reset hole on the top of the Protean, it seems a <b>Pen</b> might fit in there.. ") : span_notice("<b>Repairing systems...</b>") //Small line for how to memory reset a Protean here too.
 			else
 				. += isnull(refactory) ? span_warning("<b>Insert a new refactory</b>") : span_notice("<b>Refactory Installed! Repairing systems...</b>")
 		if(protean_in_suit.key && !protean_in_suit.client)  // We have to put these here because you're examining an object, and not a carbon, and players otherwise can't tell if anyone is home.
@@ -266,5 +267,3 @@
 	INVOKE_ASYNC(strip_menu, TYPE_PROC_REF(/datum/, ui_interact), user)
 
 	return COMPONENT_CANCEL_MOUSEDROP_ONTO
-
-

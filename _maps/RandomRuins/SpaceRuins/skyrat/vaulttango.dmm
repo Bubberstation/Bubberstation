@@ -18,7 +18,7 @@
 /obj/effect/turf_decal/trimline/neutral/filled/line{
 	dir = 1
 	},
-/mob/living/basic/trooper/syndicate/melee,
+/mob/living/basic/trooper/syndicate/ranged/smg/space,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/vaulttango)
 "aM" = (
@@ -857,7 +857,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 9
 	},
-/obj/structure/closet/crate/goldcrate,
+/obj/structure/closet/crate/goldcrate/stocked,
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/vaulttango)
@@ -1101,6 +1101,7 @@
 	},
 /obj/machinery/firealarm/directional/north,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
+/mob/living/basic/trooper/syndicate/ranged/smg/space,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/vaulttango)
 "Mk" = (
@@ -1146,6 +1147,14 @@
 /area/ruin/space/has_grav/vaulttango)
 "NK" = (
 /obj/effect/turf_decal/bot_blue,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/vaulttango)
+"NO" = (
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/trooper/syndicate/ranged/smg/space,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/vaulttango)
 "NP" = (
@@ -1249,10 +1258,6 @@
 	},
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/basic/trooper/syndicate/ranged{
-	desc = "An armed agent, provided by the Syndicate.";
-	name = "ARBORLINK Operative"
-	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/vaulttango)
 "Rb" = (
@@ -3346,7 +3351,7 @@ ai
 ai
 ai
 PS
-cM
+NO
 Tp
 Zl
 ai

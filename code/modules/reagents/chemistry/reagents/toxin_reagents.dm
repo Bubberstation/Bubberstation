@@ -233,7 +233,7 @@
 /datum/reagent/toxin/lexorin/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
 	if(!HAS_TRAIT(affected_mob, TRAIT_NOBREATH))
-		affected_mob.adjust_oxy_loss(2.5 * normalise_creation_purity() * metabolization_ratio * seconds_per_tick, FALSE, required_biotype = affected_biotype, required_respiration_type = affected_respiration_type)
+		affected_mob.adjust_oxy_loss(2.5 * normalise_creation_purity() * metabolization_ratio * seconds_per_tick, FALSE, required_biotype = affected_biotype)
 		affected_mob.losebreath += 1 * normalise_creation_purity() * metabolization_ratio * seconds_per_tick
 		. = UPDATE_MOB_HEALTH
 		if(SPT_PROB(10, seconds_per_tick))
@@ -298,6 +298,22 @@
 		if(dna in data)
 			continue
 		data += dna
+
+/obj/item/paper/guides/carnivorous_blood
+	name = "Thank you for your purchase!"
+	default_raw_text = "We thank you for your purchase of a sample of Carnivorous Blood for your \[MEDICAL RESEARCH\].\
+	<br>We at Interdyne Pharmaceuticals love to see passion for the field of \[BLOODOLOGY\].\
+	<br>We hope to see you succeed in your goal of \[JUSTGIVEIT\].\
+	<br>Please exercise caution. Interdyne Pharmaceuticals is not responsible for bodily harm caused by the substance.\
+	<br>\
+	<br>☣BIOHAZARD WARNING☣\
+	<ul>\
+	<li>NEVER allow Carnivorous Blood to enter a living being's bloodstream. The substance has been found to rapidly deplete blood cell counts.\
+	<li>NEVER mix Carnivorous Blood with actual blood outside a living being. Doing so will greatly increase the risk to the blood's donor if the substance finds itself within their bloodstream.\
+	<li>If three or more beings have had their blood mixed with a sample of Carnivorous Blood, this additional risk no longer applies, though the sample should be disposed of immediately.\
+	<li>NEVER mix liquified meat, or any other high-protein liquid, with Carnivorous Blood. Doing so will cause the substance to rapidly self-replicate.\
+	</ul>\
+	"
 
 /datum/reagent/toxin/slimejelly
 	name = "Slime Jelly"
@@ -371,7 +387,7 @@
 /datum/reagent/toxin/zombiepowder/proc/zombify(mob/living/holder_mob)
 	PRIVATE_PROC(TRUE)
 
-	holder_mob.adjust_oxy_loss(0.25, FALSE, required_biotype = affected_biotype, required_respiration_type = affected_respiration_type)
+	holder_mob.adjust_oxy_loss(0.25, FALSE, required_biotype = affected_biotype)
 	if((data?["method"] & (INGEST|INHALE)) && holder_mob.stat != DEAD)
 		holder_mob.apply_status_effect(/datum/status_effect/reagent_effect/fakedeath, type)
 
@@ -416,7 +432,7 @@
 
 /datum/reagent/toxin/ghoulpowder/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
-	if(affected_mob.adjust_oxy_loss(0.5 * metabolization_ratio * seconds_per_tick, FALSE, updating_health = FALSE, required_biotype = affected_biotype, required_respiration_type = affected_respiration_type))
+	if(affected_mob.adjust_oxy_loss(0.5 * metabolization_ratio * seconds_per_tick, FALSE, updating_health = FALSE, required_biotype = affected_biotype))
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/toxin/mindbreaker
@@ -467,6 +483,8 @@
 	ph = 2.7
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
+	var/spacevine_kill_prob = 50
+	var/weed_damage_multiplier = 1
 
 // Plant-B-Gone is just as bad
 /datum/reagent/toxin/plantbgone/on_hydroponics_apply(obj/machinery/hydroponics/mytray, mob/user)
@@ -476,32 +494,41 @@
 
 /datum/reagent/toxin/plantbgone/expose_obj(obj/exposed_obj, reac_volume, methods=TOUCH, show_message=TRUE)
 	. = ..()
-	if(istype(exposed_obj, /obj/structure/alien/weeds))
-		var/obj/structure/alien/weeds/alien_weeds = exposed_obj
-		alien_weeds.take_damage(rand(15, 35), BRUTE, 0) // Kills alien weeds pretty fast
+	if(istype(exposed_obj, /obj/structure/alien/weeds)) // alien weeds have low hp so just kill
+		qdel(exposed_obj)
 	if(istype(exposed_obj, /obj/structure/alien/resin/flower_bud))
 		var/obj/structure/alien/resin/flower_bud/flower = exposed_obj
-		flower.take_damage(rand(30, 50), BRUTE, 0)
-	else if(istype(exposed_obj, /obj/structure/glowshroom)) //even a small amount is enough to kill it
+		var/datum/spacevine_mutation/toxicity/toxicity = locate() in flower.mutations
+		if(toxicity)
+			return
+
+		var/flower_damage = rand(15, 25) * weed_damage_multiplier
+		flower.take_damage(flower_damage, BRUTE, 0)
+	if(istype(exposed_obj, /obj/structure/glowshroom)) //even a small amount is enough to kill it
 		qdel(exposed_obj)
-	else if(istype(exposed_obj, /obj/structure/spacevine))
-		var/obj/structure/spacevine/SV = exposed_obj
-		SV.on_chem_effect(src)
+	if(istype(exposed_obj, /obj/structure/spacevine))
+		var/obj/structure/spacevine/vine = exposed_obj
+		var/datum/spacevine_mutation/toxicity/toxicity = locate() in vine.mutations
+		if(toxicity)
+			return
+
+		if(prob(spacevine_kill_prob))
+			qdel(vine)
 
 /datum/reagent/toxin/plantbgone/expose_mob(mob/living/exposed_mob, methods = TOUCH, reac_volume)
 	. = ..()
 	var/damage = min(round(0.4 * reac_volume, 0.1), 10)
 	if(exposed_mob.mob_biotypes & MOB_PLANT)
-		// spray bottle emits 5u so it's dealing ~15 dmg per spray
-		if(exposed_mob.adjust_tox_loss(damage * 20, required_biotype = affected_biotype))
+		damage = damage * 10 * weed_damage_multiplier
+		if(exposed_mob.adjust_tox_loss(damage, required_biotype = affected_biotype))
 			return
 
-	if(!(methods & VAPOR) || !iscarbon(exposed_mob))
+	if(!(methods & VAPOR) || !ishuman(exposed_mob))
 		return
 
-	var/mob/living/carbon/exposed_carbon = exposed_mob
-	if(!exposed_carbon.wear_mask)
-		exposed_carbon.adjust_tox_loss(damage, required_biotype = affected_biotype)
+	var/mob/living/carbon/human/exposed_human = exposed_mob
+	if(!exposed_human.wear_mask)
+		exposed_human.adjust_tox_loss(damage, required_biotype = affected_biotype)
 
 /datum/reagent/toxin/plantbgone/weedkiller
 	name = "Weed Killer"
@@ -510,6 +537,8 @@
 	ph = 3
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
+	spacevine_kill_prob = 75
+	weed_damage_multiplier = 2
 
 //Weed Spray
 /datum/reagent/toxin/plantbgone/weedkiller/on_hydroponics_apply(obj/machinery/hydroponics/mytray, mob/user)
@@ -806,7 +835,7 @@
 	. = ..()
 	var/heal = 4 * metabolization_ratio * seconds_per_tick
 	var/need_mob_update
-	need_mob_update = affected_mob.adjust_oxy_loss(heal, updating_health = FALSE, required_biotype = affected_biotype, required_respiration_type = affected_respiration_type)
+	need_mob_update = affected_mob.adjust_oxy_loss(heal, updating_health = FALSE, required_biotype = affected_biotype)
 	need_mob_update += affected_mob.adjust_brute_loss(heal, updating_health = FALSE, required_bodytype = affected_bodytype)
 	need_mob_update += affected_mob.adjust_tox_loss(heal, updating_health = FALSE, required_biotype = affected_biotype)
 	if(need_mob_update)
@@ -988,16 +1017,16 @@
 			affected_mob.Paralyze(60)
 		if(2)
 			affected_mob.losebreath += 10
-			affected_mob.adjust_oxy_loss(2 * rand(5,25) * metabolization_ratio * seconds_per_tick, updating_health = FALSE, required_biotype = affected_biotype, required_respiration_type = affected_respiration_type)
+			affected_mob.adjust_oxy_loss(2 * rand(5,25) * metabolization_ratio * seconds_per_tick, updating_health = FALSE, required_biotype = affected_biotype)
 			need_mob_update = TRUE
 		if(3)
 			if(!affected_mob.undergoing_cardiac_arrest() && affected_mob.can_heartattack())
 				affected_mob.set_heartattack(TRUE)
-				if(affected_mob.stat == CONSCIOUS)
+				if(!IS_UNCONSCIOUS_OR_CRIT(affected_mob))
 					affected_mob.visible_message(span_userdanger("[affected_mob] clutches at [affected_mob.p_their()] chest as if [affected_mob.p_their()] heart stopped!"))
 			else
 				affected_mob.losebreath += 10
-				need_mob_update = affected_mob.adjust_oxy_loss(rand(5,25), updating_health = FALSE, required_biotype = affected_biotype, required_respiration_type = affected_respiration_type)
+				need_mob_update = affected_mob.adjust_oxy_loss(rand(5,25), updating_health = FALSE, required_biotype = affected_biotype)
 	if(need_mob_update)
 		return UPDATE_MOB_HEALTH
 
@@ -1158,7 +1187,7 @@
 	. = ..()
 	if(current_cycle > 11)
 		affected_mob.Paralyze(240 * metabolization_ratio * seconds_per_tick)
-	if(affected_mob.adjust_oxy_loss(2 * metabolization_ratio * seconds_per_tick, updating_health = FALSE, required_biotype = affected_biotype, required_respiration_type = affected_respiration_type))
+	if(affected_mob.adjust_oxy_loss(2 * metabolization_ratio * seconds_per_tick, updating_health = FALSE, required_biotype = affected_biotype))
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/toxin/heparin //Based on a real-life anticoagulant. I'm not a doctor, so this won't be realistic.
@@ -1374,7 +1403,7 @@
 
 /datum/reagent/toxin/bonehurtingjuice/on_mob_add(mob/living/carbon/affected_mob)
 	. = ..()
-	affected_mob.say("oof ouch my bones", forced = /datum/reagent/toxin/bonehurtingjuice)
+	INVOKE_ASYNC(affected_mob, TYPE_PROC_REF(/atom/movable, say), "oof ouch my bones", forced = /datum/reagent/toxin/bonehurtingjuice)
 
 /datum/reagent/toxin/bonehurtingjuice/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -1502,7 +1531,7 @@
 		liver_tolerance_multiplier = 0
 		silent_toxin = TRUE
 		remove_paralysis(affected_mob)
-		need_mob_update += affected_mob.adjust_oxy_loss(-3.5 * metabolization_ratio * seconds_per_tick, updating_health = FALSE, required_biotype = affected_biotype, required_respiration_type = affected_respiration_type)
+		need_mob_update += affected_mob.adjust_oxy_loss(-3.5 * metabolization_ratio * seconds_per_tick, updating_health = FALSE, required_biotype = affected_biotype)
 		need_mob_update = affected_mob.adjust_tox_loss(-3.25 * metabolization_ratio * seconds_per_tick, updating_health = FALSE, required_biotype = affected_biotype)
 		need_mob_update += affected_mob.adjust_brute_loss(-6 * metabolization_ratio * seconds_per_tick, updating_health = FALSE, required_bodytype = affected_bodytype)
 		need_mob_update += affected_mob.adjust_fire_loss(-6.75 * metabolization_ratio * seconds_per_tick, updating_health = FALSE, required_bodytype = affected_bodytype)
@@ -1640,7 +1669,7 @@
 	. = ..()
 	var/merged_total = amount + volume
 	if(merged_total >= CRITICAL_CAPACITY)
-		spew_waste(round(volume / WASTE_REACTION_THRESHOLD * 2)) //Sure as HELL can't store it.
+		spew_waste(round(volume / (WASTE_REACTION_THRESHOLD * 2)), merged_total) //Sure as HELL can't store it.
 		var/atom/container = holder.my_atom
 		var/damage_mult = 1
 		if(ismachinery(container))
@@ -1677,7 +1706,6 @@
 
 	if(goo.lazy_init_reagents())
 		goo.reagents.maximum_volume = min(goo.reagents.maximum_volume + rounded_volume, 300)
-		goo.reagents.add_reagent(type, rounded_volume)
 	if(goo.reagents.has_reagent(type, WASTE_REACTION_THRESHOLD))
 		goo.pre_dissolve()
 		return // Otherwise there's too little waste to do anything.
@@ -1695,10 +1723,11 @@
 /**
  * Pick a random turf in the spew range and split our total amount of waste there.
  */
-/datum/reagent/toxin/acid/industrial_waste/proc/spew_waste(spew_range = 1)
+/datum/reagent/toxin/acid/industrial_waste/proc/spew_waste(spew_range = 1, total_toxins)
 	if(!spew_range)
 		return
-
+	if(!holder.my_atom)
+		return
 	var/atom/atom_holder = holder.my_atom
 	var/turf/dropturf = get_turf(atom_holder)
 	if(!dropturf)
@@ -1762,3 +1791,45 @@
 	if(current_cycle >= transformation_cycle)
 		affected_mob.mind?.add_antag_datum(/datum/antagonist/spider)
 		affected_mob.change_mob_type(/mob/living/basic/spider/giant, delete_old_mob = TRUE)
+
+/datum/reagent/toxin/berserker
+	name = "Berserker Toxin"
+	description = "A psychoactive substance irritating the neural sectors responsible for fight or flight response, damaging them in the process."
+	silent_toxin = TRUE
+	color = "#ad378d"
+	penetrates_skin = VAPOR
+	toxpwr = 0.2
+	taste_description = "bitter rage"
+	chemical_flags = REAGENT_NO_RANDOM_RECIPE
+	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
+	metabolized_traits = list(TRAIT_ANALGESIA, TRAIT_STIMULATED)
+	addiction_types = list(/datum/addiction/stimulants = 30)
+
+/datum/reagent/toxin/berserker/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
+	. = ..()
+	var/need_mob_update
+	need_mob_update += affected_mob.adjust_organ_loss(ORGAN_SLOT_BRAIN, 0.75 * metabolization_ratio * seconds_per_tick)
+	affected_mob.AdjustAllImmobility(-5 * metabolization_ratio * seconds_per_tick)
+	if(affected_mob.adjust_stamina_loss(-10 * metabolization_ratio * seconds_per_tick, updating_stamina = FALSE))
+		. = UPDATE_MOB_HEALTH
+	if(need_mob_update)
+		. = UPDATE_MOB_HEALTH
+	if(SPT_PROB(5, seconds_per_tick))
+		affected_mob.emote(pick("twitch", "drool"))
+
+/datum/reagent/toxin/berserker/on_mob_metabolize(mob/living/affected_mob)
+	. = ..()
+	affected_mob.apply_status_effect(/datum/status_effect/spasms)
+	RegisterSignal(affected_mob, COMSIG_LIVING_ENTER_STAMCRIT, PROC_REF(on_stamcrit))
+
+/datum/reagent/toxin/berserker/on_mob_end_metabolize(mob/living/affected_mob)
+	. = ..()
+	affected_mob.remove_status_effect(/datum/status_effect/spasms)
+	UnregisterSignal(affected_mob, COMSIG_LIVING_ENTER_STAMCRIT)
+
+/datum/reagent/toxin/berserker/proc/on_stamcrit(mob/living/affected_mob)
+	SIGNAL_HANDLER
+	affected_mob.set_stamina_loss(90, updating_stamina = TRUE)
+	to_chat(affected_mob, span_message("This can't end like this... Blood rushes away from your head..."))
+	volume -= volume
+	return STAMCRIT_CANCELLED

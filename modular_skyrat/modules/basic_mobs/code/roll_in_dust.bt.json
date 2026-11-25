@@ -1,0 +1,31 @@
+{
+	"dm_type": "/datum/bt_node/subtree/roll_in_dust",
+	"type": "decorator",
+	"decorator": "/datum/bt_node/decorator/bb_key_set",
+	"vars": {
+		"key": "BB_DUST_TARGET",
+		"observer_abort": "BT_ABORT_BOTH"
+	},
+	"child": {
+		"type": "sequence",
+		"children": [
+			{
+				"type": "leaf",
+				"behavior": "/datum/bt_node/ai_behavior/move_to_target",
+				"vars": {
+					"target_key": "BB_DUST_TARGET",
+					"required_dist": 0
+				}
+			},
+			{
+				"type": "leaf",
+				"behavior": "/datum/bt_node/ai_behavior/hunt_target/dust_roll",
+				"vars": {
+					"target_key": "BB_DUST_TARGET",
+					"cooldown_key": "BB_DUST_COOLDOWN",
+					"hunt_cooldown": "20 SECONDS"
+				}
+			}
+		]
+	}
+}

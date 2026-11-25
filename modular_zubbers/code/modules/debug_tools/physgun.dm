@@ -19,6 +19,12 @@
 	throw_range = 1
 	drop_sound = 'sound/items/handling/tools/screwdriver_drop.ogg'
 	pickup_sound = 'modular_zubbers/sound/phystools/physgun_pickup.ogg'
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/uranium = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/bluespace = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/diamond = SHEET_MATERIAL_AMOUNT * 3,
+		)
 
 	/// The dragged object
 	var/atom/movable/handled_atom

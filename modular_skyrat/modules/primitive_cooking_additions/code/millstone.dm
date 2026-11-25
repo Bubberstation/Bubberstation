@@ -153,7 +153,7 @@
 		balloon_alert_to_viewers("stopped grinding")
 		return
 
-	user.mind.adjust_experience(/datum/skill/primitive, 5)
+	user.mind?.adjust_experience(/datum/skill/primitive, 5)
 
 	for(var/target_item in contents)
 		seedify(target_item, t_max = 1)

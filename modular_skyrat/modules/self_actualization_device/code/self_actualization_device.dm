@@ -10,7 +10,6 @@
 /datum/design/board/self_actualization_device
 	name = "Machine Design (Self-Actualization Device)"
 	desc = "The circuit board for a Self-Actualization Device by Veymed: A Family Company."
-	id = "self_actualization_device"
 	build_path = /obj/item/circuitboard/machine/self_actualization_device
 	category = list(RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_MEDICAL)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
@@ -225,9 +224,6 @@
 
 	playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, FALSE)
 	say("Procedure complete! Enjoy your life being a new you!")
-	if(isethereal(patient.dna.species))
-		var/datum/species/ethereal/ethereal = patient.dna.species
-		ethereal.refresh_light_color(patient)
 	open_machine()
 	SSquirks.OverrideQuirks(patient, patient.client, spawn_items = FALSE)
 
@@ -270,7 +266,7 @@
 	user.emote("scream")
 
 	if(do_after(user, BREAKOUT_TIME, target = src))
-		if(!user || user.stat != CONSCIOUS || user.loc != src || state_open)
+		if(!user || !IS_UNCONSCIOUS_OR_CRIT(user) || user.loc != src || state_open)
 			return
 		user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
 			span_notice("You successfully break out of [src]!"))

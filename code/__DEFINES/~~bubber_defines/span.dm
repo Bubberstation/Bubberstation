@@ -1,3 +1,4 @@
+#define span_narrate(str) ("<span class='narrate'>" + str + "</span>")
 #define span_subtle(str) ("<span class='subtle'>" + str + "</span>")
 #define span_subtlepda(str) ("<span class='subtlepda'>" + str + "</span>")
 #define span_subtler(str) ("<span class='subtler'>" + str + "</span>")

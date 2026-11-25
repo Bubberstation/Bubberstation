@@ -73,7 +73,7 @@
 	add_relay_to(GET_NEW_PLANE(RENDER_PLANE_EMISSIVE_BLOOM, offset), blend_override = BLEND_MULTIPLY)
 
 /atom/movable/screen/plane_master/rendering_plate/particle_weather
-	name = "Particle Weather"
+	name = "Particle Weather Holder Plate"
 	documentation = "Plane used to render particle weather, masked by WEATHER_MASK_PLANE. \
 		Cannot be a single screen object as it needs to be a planemaster in order to be properly masked by the weather mask."
 	plane = RENDER_PLANE_PARTICLE_WEATHER
@@ -89,35 +89,45 @@
 	. = ..()
 	if(!.)
 		return
-	home.AddComponent(/datum/component/hide_weather_planes, src, TRUE)
-	RegisterSignal(home, COMSIG_GROUP_HUD_CHANGED, PROC_REF(hud_changed))
-	update_state(home.our_hud?.mymob)
+	home.AddComponent(/datum/component/hide_weather_planes, src)
+	AddComponent(/datum/component/connect_perspective, home, list(COMSIG_MOVABLE_Z_CHANGED = PROC_REF(z_changed)))
+	RegisterSignal(home, COMSIG_PLANE_GROUP_HUD_CHANGED, PROC_REF(hud_changed))
+	RegisterSignal(home, COMSIG_PLANE_GROUP_PERSPECTIVE_CHANGED, PROC_REF(perspective_changed))
+	update_state()
 
-/atom/movable/screen/plane_master/rendering_plate/particle_weather/proc/hud_changed(datum/source, datum/hud/old_hud, datum/hud/new_hud)
+/atom/movable/screen/plane_master/rendering_plate/particle_weather/proc/z_changed(datum/source)
 	SIGNAL_HANDLER
-	update_state(new_hud?.mymob)
+	update_state()
+
+/atom/movable/screen/plane_master/rendering_plate/particle_weather/proc/hud_changed(datum/source)
+	SIGNAL_HANDLER
+	update_state()
+
+/atom/movable/screen/plane_master/rendering_plate/particle_weather/proc/perspective_changed(datum/source)
+	SIGNAL_HANDLER
+	update_state()
 
 /// Updates ourselves based on our mob's preferences state
-/atom/movable/screen/plane_master/rendering_plate/particle_weather/proc/update_state(mob/mymob)
-	SSweather.particle_planemasters -= src
+/atom/movable/screen/plane_master/rendering_plate/particle_weather/proc/update_state()
 	vis_contents.Cut()
 
+	var/mob/mymob = home?.our_hud?.mymob
 	if(!istype(mymob) || !mymob.canon_client?.prefs?.read_preference(/datum/preference/toggle/particle_weather))
 		return
+	// Lobby HUDs, we don't care about weather during init anyways
+	if(!SSmapping.initialized)
+		return
 
-	SSweather.particle_planemasters += src
-	// And add all ongoing weather to ourselves
-	for (var/holder_offset, holder_list in SSweather.particle_holders)
-		for (var/obj/effect/abstract/weather_holder/holder as anything in holder_list)
-			if (holder.plane == plane)
-				vis_contents += holder
+	var/list/stack_levels = SSmapping.get_connected_levels(get_turf(home.get_perspective()))
+	var/max_z = max(stack_levels)
+	var/our_z = max_z - offset
+	if(!(our_z in stack_levels))
+		return
 
-/atom/movable/screen/plane_master/rendering_plate/particle_weather/Destroy()
-	SSweather.particle_planemasters -= src
-	return ..()
+	vis_contents += SSweather.z_particles[our_z][plane]
 
 /atom/movable/screen/plane_master/rendering_plate/particle_weather/emissive
-	name = "Emissive Particle Weather"
+	name = "Emissive Particle Weather Holder Plate"
 	documentation = "Secondary particle weather plane for emissive parts of weather, which is additionally rendered onto the emissive plane after being masked."
 	plane = RENDER_PLANE_EMISSIVE_PARTICLE_WEATHER
 
@@ -288,8 +298,8 @@
 /atom/movable/screen/plane_master/rendering_plate/lighting/set_home(datum/plane_master_group/home)
 	. = ..()
 	if(home)
-		RegisterSignal(home, COMSIG_GROUP_HUD_CHANGED, PROC_REF(hud_changed))
-		hud_changed(null, null, home.our_hud)
+		RegisterSignal(home, COMSIG_PLANE_GROUP_OFFSET_CHANGED, PROC_REF(on_offset_change))
+		offset_change(home.active_offset || 0)
 
 /atom/movable/screen/plane_master/rendering_plate/lighting/show_to(mob/mymob)
 	. = ..()
@@ -312,14 +322,6 @@
 	. = ..()
 	oldmob.clear_fullscreen("lighting_backdrop_lit_[home.key]#[offset]")
 	oldmob.clear_fullscreen("lighting_backdrop_unlit_[home.key]#[offset]")
-
-/atom/movable/screen/plane_master/rendering_plate/lighting/proc/hud_changed(datum/source, datum/hud/old_hud, datum/hud/new_hud)
-	SIGNAL_HANDLER
-	if(old_hud)
-		UnregisterSignal(old_hud, COMSIG_HUD_OFFSET_CHANGED, PROC_REF(on_offset_change))
-	if(new_hud)
-		RegisterSignal(new_hud, COMSIG_HUD_OFFSET_CHANGED, PROC_REF(on_offset_change))
-	offset_change(new_hud?.current_plane_offset || 0)
 
 /atom/movable/screen/plane_master/rendering_plate/lighting/proc/on_offset_change(datum/source, old_offset, new_offset)
 	SIGNAL_HANDLER
@@ -534,16 +536,8 @@
 	if(offset == 0)
 		return
 	if(home)
-		RegisterSignal(home, COMSIG_GROUP_HUD_CHANGED, PROC_REF(hud_changed))
-		hud_changed(null, null, home.our_hud)
-
-/atom/movable/screen/plane_master/rendering_plate/master/proc/hud_changed(datum/source, datum/hud/old_hud, datum/hud/new_hud)
-	SIGNAL_HANDLER
-	if(old_hud)
-		UnregisterSignal(old_hud, COMSIG_HUD_OFFSET_CHANGED, PROC_REF(on_offset_change))
-	if(new_hud)
-		RegisterSignal(new_hud, COMSIG_HUD_OFFSET_CHANGED, PROC_REF(on_offset_change))
-	offset_change(new_hud?.current_plane_offset || 0)
+		RegisterSignal(home, COMSIG_PLANE_GROUP_OFFSET_CHANGED, PROC_REF(on_offset_change))
+		offset_change(home.active_offset || 0)
 
 /atom/movable/screen/plane_master/rendering_plate/master/proc/on_offset_change(datum/source, old_offset, new_offset)
 	SIGNAL_HANDLER
@@ -631,7 +625,7 @@
 	if(show_to)
 		show_to.screen += relay
 	if(offsetting_flags & OFFSET_RELAYS_MATCH_HIGHEST && home.our_hud)
-		offset_relay(relay, home.our_hud.current_plane_offset)
+		offset_relay(relay, home.active_offset)
 	return relay
 
 /// Breaks a connection between this plane master, and the passed in place

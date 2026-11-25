@@ -1,6 +1,6 @@
 /datum/techweb_node/anomaly_shells/New()
-	design_ids += list(
-		"satchel_holding",
-		"duffel_holding",
+	unlocked_designs += list(
+		/datum/design/satchel_holding,
+		/datum/design/duffel_holding,
 	)
 	return ..()

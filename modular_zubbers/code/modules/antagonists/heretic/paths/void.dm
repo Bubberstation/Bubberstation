@@ -102,7 +102,6 @@
 
 /datum/action/cooldown/spell/void_stealth/proc/cloak_mob(mob/living/cast_on)
 	active_cloak = cast_on.apply_status_effect(/datum/status_effect/void_stealth)
-	RegisterSignal(cast_on, SIGNAL_REMOVETRAIT(TRAIT_ALLOW_HERETIC_CASTING), PROC_REF(on_focus_lost))
 	to_chat(cast_on, span_notice("The void surrounds you, and you find yourself invisible to the mortal world."))
 
 /datum/action/cooldown/spell/void_stealth/proc/uncloak_mob(mob/living/cast_on, show_message = TRUE)
@@ -111,22 +110,11 @@
 		qdel(active_cloak)
 	active_cloak = null
 
-	UnregisterSignal(cast_on, SIGNAL_REMOVETRAIT(TRAIT_ALLOW_HERETIC_CASTING))
 	if(show_message)
 		cast_on.visible_message(
 			span_warning("[cast_on] appears from nothing!"),
 			span_notice("The void wrapping your form unravels, revealing you to the mortal world once more."),
 		)
-
-/// Signal proc for [SIGNAL_REMOVETRAIT] via [TRAIT_ALLOW_HERETIC_CASTING], losing our focus midcast will throw us out.
-/datum/action/cooldown/spell/void_stealth/proc/on_focus_lost(mob/living/source)
-	SIGNAL_HANDLER
-
-	uncloak_mob(source, show_message = FALSE)
-	source.visible_message(
-		span_warning("[source] suddenly appears from nothing!"),
-		span_userdanger("As you lose your focus, the void around your form unravels!"),
-	)
 	StartCooldown(remove_time)
 
 /// Shadow cloak effect. Sets the owner's alpha very low while also chilling the area around them
@@ -201,7 +189,7 @@
 	SIGNAL_HANDLER
 
 	// Going above unconscious will self-delete
-	if(new_stat >= UNCONSCIOUS)
+	if(new_stat >= SOFT_CRIT)
 		var/datum/action/cooldown/spell/void_stealth/stealth = locate() in owner.actions
 		stealth?.uncloak_mob()
 		if (!stealth)
@@ -269,13 +257,11 @@
 	var/mob/living/living_owner = owner
 	if (living_owner.IsSleeping())
 		return
-	if (living_owner.stat != CONSCIOUS)
+	if (IS_UNCONSCIOUS_OR_CRIT(living_owner))
 		return
 	if (!tgui_alert(living_owner, "Enter a soothing sleep? (You will be awakened if you are attacked)", "Void Sleep", list("Yes", "No"), timeout = 5 SECONDS))
 		return
 	if (living_owner.IsSleeping())
-		return
-	if (living_owner.stat != CONSCIOUS)
 		return
 	if (QDELETED(src))
 		return
@@ -296,7 +282,7 @@
 /datum/status_effect/void_chill/proc/put_to_bed(mob/living/sleepy_boy)
 	if (sleepy_boy.IsSleeping())
 		return
-	if (sleepy_boy.stat != CONSCIOUS)
+	if (!IS_UNCONSCIOUS(sleepy_boy))
 		return
 	if (QDELETED(src))
 		return
@@ -335,7 +321,7 @@
 /datum/status_effect/void_chill/proc/on_stat_changed(datum/signal_source, new_stat, old_stat)
 	SIGNAL_HANDLER
 
-	if (new_stat != UNCONSCIOUS)
+	if (new_stat <= SOFT_CRIT)
 		set_sleep_status(FALSE)
 
 /datum/status_effect/void_chill/proc/on_block_check(datum/signal_source, atom/hit_by, damage, attack_text, attack_type, armour_penetration, damage_type)

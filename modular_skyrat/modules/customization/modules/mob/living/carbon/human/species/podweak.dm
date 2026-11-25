@@ -29,9 +29,13 @@
 
 	always_customizable = FALSE
 
+/datum/species/pod/podweak/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons)
+	. = ..()
+	RegisterSignal(human_who_gained_species, COMSIG_LIVING_LIFE, PROC_REF(on_life))
+
 /datum/species/pod/podweak/proc/on_life(mob/living/carbon/human/H, seconds_per_tick)
 	SIGNAL_HANDLER
-	if(H.stat != CONSCIOUS)
+	if(IS_UNCONSCIOUS(H))
 		return
 
 	var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing

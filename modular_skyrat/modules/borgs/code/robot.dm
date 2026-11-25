@@ -39,7 +39,6 @@
 
 			table_contents.throw_at(get_ranged_target_turf(table_contents, pick(GLOB.cardinals), range = 1), range = 1, speed = 1)
 
-
 /mob/living/silicon/robot/on_standing_up()
 	if(layer == LYING_MOB_LAYER)
 		layer = initial(layer)
@@ -49,33 +48,38 @@
 	if(model && model.model_features && (TRAIT_R_BIG in model.model_features))
 		maptext_height = 64
 
-/mob/living/silicon/robot/proc/rest_style()
-	set name = "Switch Rest Style"
-	set category = "AI Commands"
-	set desc = "Select your resting pose."
+GAME_VERB_PROC_DESC(/mob/living/silicon/robot, rest_style, "Switch Rest Style", "Select your resting pose.", "AI Commands")
 	if(!can_rest())
 		to_chat(src, span_warning("You can't do that!"))
 		return
-	var/choice = tgui_alert(src, "Select resting pose", "", list("Resting", "Sitting", "Belly up"))
+	var/list/resting_styles = list(SKIN_RESTING_NORMAL, SKIN_RESTING_SIT, SKIN_RESTING_BELLY)
+	var/resting_skins = model.rest_styles
+	if(!isnull(resting_skins))
+		if(!islist(resting_skins))
+			CRASH("SKIN_RESTING_STYLES is not a list. Make it a list")
+		resting_styles = resting_skins
+	if(resting_styles.len <= 1)
+		to_chat(src, span_warning("There is no alternative poses."))
+		return
+
+	var/choice = tgui_alert(src, "Select resting pose", "", resting_styles)
 	switch(choice)
-		if("Resting")
+		if(SKIN_RESTING_NORMAL)
 			robot_rest_style = ROBOT_REST_NORMAL
-		if("Sitting")
+		if(SKIN_RESTING_SIT)
 			robot_rest_style = ROBOT_REST_SITTING
-		if("Belly up")
+		if(SKIN_RESTING_BELLY)
 			robot_rest_style = ROBOT_REST_BELLY_UP
 	robot_resting = robot_rest_style
 	if (robot_resting)
 		on_lying_down()
 	update_icons()
 
-/mob/living/silicon/robot/proc/robot_lay_down()
-	set name = "Lay down"
-	set category = "AI Commands"
+GAME_VERB_PROC(/mob/living/silicon/robot, robot_lay_down, "Lay down", "AI Commands")
 	if(!can_rest())
 		to_chat(src, span_warning("You can't do that!"))
 		return
-	if(stat != CONSCIOUS) //Make sure we don't enable movement when not concious
+	if(IS_UNCONSCIOUS_OR_CRIT(src)) //Make sure we don't enable movement when not concious
 		return
 	if(robot_resting)
 		to_chat(src, span_notice("You are now getting up."))

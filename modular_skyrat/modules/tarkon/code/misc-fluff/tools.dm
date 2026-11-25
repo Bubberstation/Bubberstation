@@ -6,5 +6,7 @@
 	ranged = TRUE
 	canRturf = FALSE
 	max_matter = 300
-	matter = 300
 	construction_upgrades = RCD_UPGRADE_FRAMES | RCD_UPGRADE_SIMPLE_CIRCUITS
+
+/obj/item/construction/rcd/arcd/tarkon/loaded
+	matter = 300

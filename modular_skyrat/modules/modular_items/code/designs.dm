@@ -5,7 +5,6 @@
 /datum/design/health_hud_aviator
 	name = "Medical HUD Aviators"
 	desc = "A heads-up display that scans the humanoids in view and provides accurate data about their health status. This HUD has been fitted inside of a pair of sunglasses."
-	id = "health_hud_aviator"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 7,
@@ -21,7 +20,6 @@
 /datum/design/security_hud_aviator
 	name = "Security HUD Aviators"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status. This HUD has been fitted inside of a pair of sunglasses."
-	id = "security_hud_aviator"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 7,
@@ -38,7 +36,6 @@
 /datum/design/diagnostic_hud_aviator
 	name = "Diagnostic HUD Aviators"
 	desc = "A heads-up display used to analyze and determine faults within robotic machinery. This HUD has been fitted inside of a pair of sunglasses."
-	id = "diagnostic_hud_aviator"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 7,
@@ -54,7 +51,6 @@
 /datum/design/meson_hud_aviator
 	name = "Meson HUD Aviators"
 	desc = "A heads-up display used by engineering and mining staff to see basic structural and terrain layouts through walls, regardless of lighting condition. This HUD has been fitted inside of a pair of sunglasses."
-	id = "meson_hud_aviator"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 7,
@@ -70,7 +66,6 @@
 /datum/design/science_hud_aviator
 	name = "Science Aviators"
 	desc = "A pair of tacky purple aviator sunglasses that allow the wearer to recognize various chemical compounds with only a glance."
-	id = "science_hud_aviator"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 7,
@@ -86,7 +81,6 @@
 /datum/design/health_hud_projector
 	name = "Retinal Projector Medical HUD"
 	desc = "A headset equipped with a scanning lens and mounted retinal projector. It doesn't provide any eye protection, but it's less obtrusive than goggles."
-	id = "health_hud_projector"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 7,
@@ -102,7 +96,6 @@
 /datum/design/security_hud_projector
 	name = "Retinal Projector Security HUD"
 	desc = "A headset equipped with a scanning lens and mounted retinal projector. It doesn't provide any eye protection, but it's less obtrusive than goggles."
-	id = "security_hud_projector"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 7,
@@ -119,7 +112,6 @@
 /datum/design/diagnostic_hud_projector
 	name = "Retinal Projector Diagnostic HUD"
 	desc = "A headset equipped with a scanning lens and mounted retinal projector. It doesn't provide any eye protection, but it's less obtrusive than goggles."
-	id = "diagnostic_hud_projector"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 7,
@@ -135,7 +127,6 @@
 /datum/design/meson_hud_projector
 	name = "Retinal Projector Meson HUD"
 	desc = "A headset equipped with a scanning lens and mounted retinal projector. It doesn't provide any eye protection, but it's less obtrusive than goggles."
-	id = "meson_hud_projector"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 7,
@@ -151,7 +142,6 @@
 /datum/design/science_hud_projector
 	name = "Science Retinal Projector"
 	desc = "A headset equipped with a scanning lens and mounted retinal projector. It doesn't provide any eye protection, but it's less obtrusive than goggles."
-	id = "science_hud_projector"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 7,

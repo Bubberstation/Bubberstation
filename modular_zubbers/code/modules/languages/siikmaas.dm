@@ -6,7 +6,7 @@
 		After first contact, Humans describe the tongue as sounding somewhat similar to old Scandinavian languages. \
 		It's rarely seen spoken by those not native to Taj, though certain genemodder groups have picked up a form of it."
 	key = "3"
-	flags = TONGUELESS_SPEECH
+	flags = LANGUAGE_TONGUELESS_SPEECH
 	sentence_chance = 9
 	space_chance = 60
 	syllables = list(

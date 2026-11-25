@@ -1,5 +1,5 @@
 /obj/item/mod/core/protean
-	name = "MOD protean core"
+	name = "\improper MOD Protean core"
 	icon_state = "mod-core-ethereal"
 	desc = "If you see this, go scream at a coder and tell them how you managed to do this."
 

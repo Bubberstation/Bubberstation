@@ -106,10 +106,15 @@
 // /obj access signals
 #define COMSIG_AIRLOCK_SHELL_ALLOWED "airlock_shell_try_allowed"
 
+//from /obj/machinery/door/open(): (forced)
+#define COMSIG_MOB_OPENED_DOOR "mob_opened_door"
+
 // /obj/machinery/door/airlock signals
 
 //from /obj/machinery/door/airlock/open(): (forced)
 #define COMSIG_AIRLOCK_OPEN "airlock_open"
+//from /obj/machinery/door/airlock/open(): (forced)
+#define COMSIG_MOB_OPENED_AIRLOCK "mob_opened_airlock"
 //from /obj/machinery/door/airlock/close(): (forced)
 #define COMSIG_AIRLOCK_CLOSE "airlock_close"
 ///from /obj/machinery/door/airlock/set_bolt():
@@ -143,7 +148,9 @@
 #define COMSIG_ITEM_ON_JUICE "on_juice"
 ///from /obj/machinery/hydroponics/attackby(obj/item/O, mob/user, list/modifiers, list/attack_modifiers) when an object is used as compost: (mob/user)
 #define COMSIG_ITEM_ON_COMPOSTED "on_composted"
-///Called when an item is dried by a drying rack
+///Called when an item has finished being deied by a drying rack
+#define COMSIG_ITEM_FINISH_DRYING "item_finish_drying"
+///Called after we're done applying the dried status to the item with the dryable element
 #define COMSIG_ITEM_DRIED "item_dried"
 ///from base of obj/item/dropped(): (mob/user)
 #define COMSIG_ITEM_DROPPED "item_drop"
@@ -151,6 +158,8 @@
 #define COMSIG_MOB_DROPPED_ITEM "mob_dropped_item"
 ///from base of obj/item/pickup(): (/mob/taker)
 #define COMSIG_ITEM_PICKUP "item_pickup"
+///from base of mob/put_in_hand(), after forceMove  item is now in the mob's hand: (mob/holder, hand_index)
+#define COMSIG_ITEM_ENTERED_HANDS "item_entered_hands"
 ///from base of obj/item/on_outfit_equip(): (mob/equipper, visuals_only, slot)
 #define COMSIG_ITEM_EQUIPPED_AS_OUTFIT "item_equip_as_outfit"
 ///from base of datum/storage/handle_enter(): (datum/storage/storage)
@@ -222,7 +231,7 @@
 	#define COMPONENT_OFFER_TAKE_INTERRUPT (1<<0)
 /// sent from obj/effect/attackby(): (/obj/effect/hit_effect, /mob/living/attacker, list/modifiers)
 #define COMSIG_ITEM_ATTACK_EFFECT "item_effect_attacked"
-/// Called by /obj/item/proc/worn_overlays(list/overlays, mutable_appearance/standing, isinhands, icon_file)
+/// Called by /obj/item/proc/worn_overlays(list/overlays, mutable_appearance/standing, isinhands, icon_file, bodyshape)
 #define COMSIG_ITEM_GET_WORN_OVERLAYS "item_get_worn_overlays"
 /// Called by /obj/item/proc/separate_worn_overlays(list/overlays, mutable_appearance/standing, mutable_appearance/draw_target, isinhands, icon_file)
 #define COMSIG_ITEM_GET_SEPARATE_WORN_OVERLAYS "item_get_separate_worn_overlays"
@@ -253,6 +262,13 @@
 #define COMSIG_CLOSET_INSERT "closet_insert"
 	///used to interrupt insertion
 	#define COMPONENT_CLOSET_INSERT_INTERRUPT (1<<0)
+
+/// From closet_teleporter_controller when something is teleporting through a closet
+#define COMSIG_CLOSET_TELEPORTER_PRE_SENDING "closet_teleporter_pre_sending"
+	/// Blocks the item from teleporting
+	#define CLOSET_TELEPORT_BLOCKED (1<<0)
+	/// Ignores the can_teleport check
+	#define CLOSET_TELEPORT_FORCED (1<<1)
 
 ///From open: (forced)
 #define COMSIG_CLOSET_PRE_OPEN "closet_pre_open"
@@ -379,7 +395,7 @@
 #define COMSIG_GUN_CHAMBER_PROCESSED "gun_chamber_processed"
 ///called in /obj/item/gun/ballistic/process_chamber (casing)
 #define COMSIG_CASING_EJECTED "casing_ejected"
-///called in /obj/item/gun/ballistic/sawoff(mob/user, obj/item/saw, handle_modifications) : (mob/user)
+///called in /obj/item/gun/ballistic/try_sawoff(mob/user, obj/item/saw, handle_modifications) : (mob/user)
 #define COMSIG_GUN_BEING_SAWNOFF "gun_being_sawnoff"
 	#define COMPONENT_CANCEL_SAWING_OFF (1<<0)
 #define COMSIG_GUN_SAWN_OFF "gun_sawn_off"
@@ -501,6 +517,12 @@
 #define COMSIG_ITEM_ATTACK "item_attack"
 ///from base of obj/item/attack_self(): (/mob)
 #define COMSIG_ITEM_ATTACK_SELF "item_attack_self"
+// BUBBER EDIT ADDITION - lets a flatpacked machine hand things to the machine it deploys into
+///from base of /datum/component/deployable/proc/deploy(): (atom/deployed_object)
+#define COMSIG_DEPLOYABLE_DEPLOYED "deployable_deployed"
+///from /datum/element/repackable/proc/repack(), before the source is deconstructed: (obj/item/packed_item)
+#define COMSIG_REPACKABLE_REPACKED "repackable_repacked"
+// BUBBER EDIT ADDITION END
 //from base of obj/item/attack_self_secondary(): (/mob)
 #define COMSIG_ITEM_ATTACK_SELF_SECONDARY "item_attack_self_secondary"
 ///from base of obj/item/attack_atom(): (/atom, /mob, list/modifiers)
@@ -537,7 +559,7 @@
 ///from /datum/computer_file/program/nt_pay/_pay(), sent to every physical card of a bank account: (computer, money_received)
 #define COMSIG_ID_CARD_NTPAY_MONEY_RECEIVED "id_card_ntpay_money_received"
 
-///from base of /obj/item/mmi/set_brainmob(): (mob/living/brain/new_brainmob)
+///from base of /obj/item/brain_processor/set_brainmob(): (mob/living/brain/new_brainmob)
 #define COMSIG_MMI_SET_BRAINMOB "mmi_set_brainmob"
 
 /// from base of /obj/item/slimepotion/speed/interact_with_atom(): (obj/target, /obj/src, mob/user)
@@ -590,10 +612,15 @@
 /// from /obj/machinery/computer/camera_advanced/shuttle_docker/gatherNavComputerOverlays() : (list/images_out)
 #define COMSIG_SHUTTLE_NAV_COMPUTER_IMAGE_REQUESTED "shuttle_nav_computer_image_requested"
 
-/// Sent from /obj/item/organ/wings/functional/proc/open_wings(): (mob/living/carbon/owner)
+/// Sent from /obj/item/organ/wings/proc/open_wings(): (mob/living/carbon/owner)
 #define COMSIG_WINGS_OPENED "wings_opened"
-/// Sent from /obj/item/organ/wings/functional/proc/close_wings(): (mob/living/carbon/owner)
+/// Sent from /obj/item/organ/wings/proc/close_wings(): (mob/living/carbon/owner)
 #define COMSIG_WINGS_CLOSED "wings_closed"
+
+/// Sent from /obj/item/clothing/shoes/bhop/rocket/jet, specifically it's toggle action /datum/action/item_action/toggle_flight
+#define COMSIG_JETBOOTS_ACTIVE "jets_on"
+/// Sent from /obj/item/clothing/shoes/bhop/rocket/jet, specifically it's toggle action /datum/action/item_action/toggle_flight
+#define COMSIG_JETBOOTS_INACTIVE "jets_off"
 
 /// Sent from /obj/item/assembly/on_attach(): (atom/holder)
 #define COMSIG_ASSEMBLY_ATTACHED "assembly_attached"
@@ -674,6 +701,11 @@
 /// From /obj/machinery/vending/dispense(): (obj/item/vended_item)
 #define COMSIG_VENDING_DISPENSED "vending_dispensed"
 
+/// From /obj/machinery/vending/vend(): (mob/user, obj/machinery/vending_machine, obj/item/vended_item)
+#define COMSIG_MOB_VENDING_PURCHASE "mob_vending_purchase"
+	/// Stops the mob from picking up whatevr they just purchased (it just goes to the floor)
+	#define VENDING_NO_PICKUP (1<<0)
+
 /// Sent from /datum/component/reflection when the reflection is updated to the mob reflecting: (atom/movable/reflecting_in, obj/effect/abstract/reflection)
 #define COMSIG_REFLECTION_UPDATED "reflection_updated"
 
@@ -687,3 +719,8 @@
 #define COMSIG_ITEM_PRE_CUFFED_TO_MOB "item_cuffed_to_mob"
 	/// Return to stop the cuffing from happening.
 	#define BLOCK_ITEM_CUFF (1<<0)
+
+/// Sent from /obj/machinery/door/airlock/close, to a movable blocking it from closing: (obj/machinery/door/being_blocked, force_close, force_crush)
+#define COMSIG_MOVABLE_BLOCKING_AIRLOCK "movable_blocking_airlock"
+	/// Forces the airlock to crush whatever's blocking it even if it normally wouldn't
+	#define AIRLOCK_BLOCK_FORCE_CRUSH (1<<0)

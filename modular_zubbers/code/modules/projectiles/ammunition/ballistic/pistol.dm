@@ -18,10 +18,11 @@
 	armor_flag = ENERGY
 	damage = 1 //ouch ouch my skin ouchie
 	damage_type = BURN
+	speed = 1.3
 	sharpness = NONE
 	embed_type = null
 	shrapnel_type = null
-	stamina = 20
+	stamina = 25
 
 /obj/item/ammo_casing/caseless/c22ls
 	caliber = LASER
@@ -41,8 +42,9 @@
 	icon = 'modular_zubbers/icons/obj/weapons/guns/projectiles.dmi'
 	icon_state = "disabler_bullet"
 	armor_flag = LASER
-	damage = 18
+	damage = 20
 	damage_type = BURN
+	speed = 1.3
 	color = "#ff0000"
 	wound_bonus = -15
 	exposed_wound_bonus = 5
@@ -77,3 +79,15 @@
 	if(istype(magazine, /obj/item/ammo_box/magazine/recharge/ntusp/laser))
 		icon_state = "ntusp-l"
 	..()
+
+/obj/item/ammo_casing/c38/c32 //They will never know
+	name = ".32 bullet casing"
+	desc = "A .32 bullet casing."
+	projectile_type = /obj/projectile/bullet/c38/c32
+	caliber = CALIBER_32
+
+/obj/item/ammo_casing/c38/c32/spent
+	projectile_type = null
+
+/obj/projectile/bullet/c38/c32
+	name = ".32 bullet"

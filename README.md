@@ -7,6 +7,7 @@
 | Website                 | Link                                                              |
 | ----------------------- | ----------------------------------------------------------------- |
 | Git / GitHub cheatsheet | https://www.notion.so/Git-GitHub-61bc81766b2e4c7d9a346db3078ce833 |
+| Maintainer SOP          | [./modular_zubbers/maint-sop.md](./modular_zubbers/maint-sop.md)  |
 | Guide to Modularization | [./modular_zubbers/readme.md](./modular_zubbers/readme.md)        |
 | Website                 | https://wiki.bubberstation.org/index.php?title=Main_Page          |
 | Code                    | https://github.com/Bubberstation/Bubberstation                    |
@@ -47,8 +48,9 @@ As of our recent split from Skyrat, a lot of codedocs/modularization guides need
 **3. Usage of Code Generation Tools**
 
 - Usage of autocompletes, auto documentation generation and other tools are allowed
-- It is fully expected of a person using any of these tools to ensure the output and quality of said tools
-- Any code written by tooling is expected to be heavily tested and proven to work
+- It is fully expected of a person using any of these tools to ensure the output and quality of said tools.
+- Any code written by tooling is expected to be heavily tested and proven to work.
+- AI generation to complete PR bodies, PR comments, or PR reviews is forbidden. Don't have an AI write your pull requests.
 
 **4. The Licensing is Non-negotiable**
 

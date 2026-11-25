@@ -23,6 +23,7 @@
 	icon = 'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 1.5)
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
 	unarmed_damage_high = TESHARI_PUNCH_HIGH
@@ -36,6 +37,7 @@
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 1.5)
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
 	unarmed_damage_high = TESHARI_PUNCH_HIGH
@@ -49,6 +51,7 @@
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 1.5)
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
 	unarmed_damage_high = TESHARI_PUNCH_HIGH
@@ -62,6 +65,7 @@
 	icon_static =  'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 1.5)
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
 	unarmed_damage_high = TESHARI_PUNCH_HIGH
@@ -75,6 +79,7 @@
 	icon_static =  'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	custom_materials = list(/datum/material/iron= SHEET_MATERIAL_AMOUNT * 6)
 
 	brute_modifier = 1
 	burn_modifier = 0.9
@@ -87,6 +92,7 @@
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 0.75)
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW
 	unarmed_damage_high = TESHARI_PUNCH_HIGH
@@ -350,6 +356,11 @@
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 3,
+	)
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
 	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
@@ -368,6 +379,11 @@
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 3,
+	)
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
 	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
@@ -386,6 +402,11 @@
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 3,
+	)
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
 	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
@@ -404,84 +425,17 @@
 	icon_static = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	icon = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
 	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 3,
+	)
 
 	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
 	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
 
 	brute_modifier = 0.8
 	burn_modifier = 1
-
-	max_damage = LIMB_MAX_HP_ADVANCED
-	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_ADVANCED
-
-	biological_state = (BIO_METAL|BIO_JOINTED)
-
-/obj/item/bodypart/arm/left/robot/teshari_advanced
-	name = "advanced left raptoral forelimb"
-	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
-	icon_static = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
-	icon = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
-	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-
-	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
-	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
-
-	brute_modifier = 1
-	burn_modifier = 0.9
-
-	max_damage = LIMB_MAX_HP_ADVANCED
-	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_ADVANCED
-
-	biological_state = (BIO_METAL|BIO_JOINTED)
-
-/obj/item/bodypart/arm/right/robot/teshari_advanced
-	name = "advanced right raptoral forelimb"
-	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
-	icon_static = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
-	icon = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
-	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-
-	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
-	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
-
-	brute_modifier = 1
-	burn_modifier = 0.9
-
-	max_damage = LIMB_MAX_HP_ADVANCED
-	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_ADVANCED
-
-	biological_state = (BIO_METAL|BIO_JOINTED)
-
-/obj/item/bodypart/leg/left/robot/teshari_advanced
-	name = "advanced left raptoral hindlimb"
-	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
-	icon_static = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
-	icon = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
-	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-
-	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
-	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
-
-	brute_modifier = 1
-	burn_modifier = 0.9
-
-	max_damage = LIMB_MAX_HP_ADVANCED
-	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_ADVANCED
-
-	biological_state = (BIO_METAL|BIO_JOINTED)
-
-/obj/item/bodypart/leg/right/robot/teshari_advanced
-	name = "advanced right raptoral hindlimb"
-	desc = "An advanced robotic hindlimb. These designs are usually reserved for those still on the search for Avalon."
-	icon_static = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
-	icon = 'modular_skyrat/modules/tesh_augments/icons/advanced_augments_teshari.dmi'
-	bodyshape = parent_type::bodyshape | BODYSHAPE_CUSTOM
-
-	unarmed_damage_low = TESHARI_PUNCH_LOW * 2
-	unarmed_damage_high = TESHARI_PUNCH_HIGH * 3
-
-	brute_modifier = 1
-	burn_modifier = 0.9
 
 	max_damage = LIMB_MAX_HP_ADVANCED
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_ADVANCED

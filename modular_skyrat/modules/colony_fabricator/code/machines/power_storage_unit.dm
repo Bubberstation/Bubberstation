@@ -39,20 +39,6 @@
 	if(!mapload)
 		flick("smes_deploy", src)
 
-/obj/machinery/power/smes/battery_pack/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/screwdriver)
-	if(screwdriver.tool_behaviour != TOOL_SCREWDRIVER)
-		return FALSE
-
-	screwdriver.play_tool_sound(src, 50)
-	toggle_panel_open()
-	if(panel_open)
-		icon_state = icon_state_open
-		to_chat(user, span_notice("You open the maintenance hatch of [src]."))
-	else
-		icon_state = icon_state_closed
-		to_chat(user, span_notice("You close the maintenance hatch of [src]."))
-	return TRUE
-
 // previously NO_DECONSTRUCTION
 /obj/machinery/power/smes/battery_pack/default_deconstruction_crowbar(obj/item/crowbar, ignore_panel, custom_deconstruct)
 	return NONE

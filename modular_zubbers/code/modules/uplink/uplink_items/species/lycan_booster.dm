@@ -1,9 +1,8 @@
 /datum/uplink_item/lycan_booster
 	name = "Lycanthropy Booster"
-	desc = "A highly advanced mix of nanomachines and general 'bad vibes' that will significantly boost the combat performance of a Cursekin's \
-	Lycan form, granting significant damage resistance, baton resistance, regeneration, and further sharpening your claws. Additionally grants you expert fitness. \
-	ONLY USABLE ON CURSEKIN."
-	cost = 15
+	desc = "A highly advanced mix of nanomachines and general 'bad vibes' that will significantly boost the combat performance of your \
+	Lycan form, granting significant damage resistance, baton resistance, regeneration, and further sharpening your claws. Additionally grants you expert fitness."
+	cost = 20
 	item = /obj/item/lycan_booster
 	surplus = 0
 	category = /datum/uplink_category/dangerous

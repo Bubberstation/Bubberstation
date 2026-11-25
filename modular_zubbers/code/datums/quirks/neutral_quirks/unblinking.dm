@@ -28,5 +28,5 @@
 	if(!eyes)
 		return
 
-	eyes.blink_animation = TRUE
+	eyes.blink_animation = initial(eyes.blink_animation) // some eyes never blinked to begin with
 	quirk_holder.update_body()

@@ -1,4 +1,4 @@
-// 	Smoke particle effect for heavy-duty cyborgs
+// Smoke particle effect for heavy-duty cyborgs
 /datum/component/robot_smoke
 
 /datum/component/robot_smoke/RegisterWithParent()
@@ -38,11 +38,7 @@
 			movable_parent.particles.position = list(6, 12, 0)
 			movable_parent.particles.drift = generator("vector", list(0, 0.4), list(0.8, -0.2))
 
-
-/mob/living/silicon/robot/proc/toggle_smoke()
-	set name = "Toggle smoke"
-	set category = "AI Commands"
-
+GAME_VERB_PROC(/mob/living/silicon/robot, toggle_smoke, "Toggle smoke", "AI Commands")
 	if(particles)
 		dissipate()
 	else if (!stat && !robot_resting)

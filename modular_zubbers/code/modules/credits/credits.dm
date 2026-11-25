@@ -33,7 +33,6 @@ GLOBAL_LIST(end_titles)
 /* /client
 	var/list/credits */
 
-
 /client/proc/RollCredits()
 	set waitfor = FALSE
 	var/credit_pref = mob.client?.prefs?.read_preference(/datum/preference/toggle/see_credits)
@@ -60,9 +59,7 @@ GLOBAL_LIST(end_titles)
 	ClearCredits()
 	verbs -= /client/proc/ClearCredits
 
-/client/proc/ClearCredits()
-	set name = "Stop End Titles"
-	set category = "OOC"
+GAME_VERB_PROC(/client, ClearCredits, "Stop End Titles", "OOC")
 	verbs -= /client/proc/ClearCredits
 	QDEL_LAZYLIST(credits)
 

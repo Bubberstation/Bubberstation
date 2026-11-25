@@ -34,3 +34,4 @@
 	required_temp = 500
 	mix_message = "The mixture thickens and heats up slighty..."
 	erp_reaction = TRUE
+	reaction_tags = REACTION_TAG_CHEMICAL | REACTION_TAG_DRUG | REACTION_TAG_EASY

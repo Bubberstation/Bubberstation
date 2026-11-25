@@ -80,7 +80,7 @@
 
 /turf/closed/mineral/random/labormineral/lunar/mineral_chances()
 	return list(
-		/obj/item/boulder/gulag_expanded = 166,
+		/obj/item/boulder/gulag = 166,
 		/turf/closed/mineral/gibtonite/lunar_cave = 2,
 		)
 

@@ -49,6 +49,7 @@
 /// Organ slot external
 #define ORGAN_SLOT_EXTERNAL_CAP "cap"
 #define ORGAN_SLOT_EXTERNAL_FLUFF "fluff"
+#define ORGAN_SLOT_EXTERNAL_HALO "halo"
 #define ORGAN_SLOT_EXTERNAL_HEAD_ACCESSORY "head_accessory"
 #define ORGAN_SLOT_EXTERNAL_MOTH_MARKINGS "moth_markings"
 #define ORGAN_SLOT_EXTERNAL_NECK_ACCESSORY "neck_accessory"
@@ -64,10 +65,6 @@
 #define ACC_RANDOM		"random"
 
 #define MAXIMUM_MARKINGS_PER_LIMB 3
-
-#define BODY_SIZE_NORMAL 1.00
-#define BODY_SIZE_MAX 1.5
-#define BODY_SIZE_MIN 0.8
 
 //In inches
 #define PENIS_MIN_GIRTH PENIS_MIN_LENGTH
@@ -105,7 +102,6 @@
 	"penis_taur_mode" = TRUE,\
 	"penis_sheath" = SHEATH_NONE,\
 	"balls_size" = 1,\
-	"body_size" = BODY_SIZE_NORMAL,\
 	"custom_species" = "",\
 	"penis_uses_skintones" = TRUE,\
 	"penis_uses_skincolor" = TRUE,\

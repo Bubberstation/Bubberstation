@@ -13,13 +13,6 @@
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/cin_soldier
 
 /datum/ai_controller/basic_controller/trooper/calls_reinforcements/ancient_milsim
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/simple_find_target,
-		/datum/ai_planning_subtree/call_reinforcements,
-		/datum/ai_planning_subtree/attack_obstacle_in_path/trooper,
-		/datum/ai_planning_subtree/basic_melee_attack_subtree,
-		/datum/ai_planning_subtree/travel_to_point/and_clear_target/reinforce,
-	)
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_TARGET_MINIMUM_STAT = SOFT_CRIT,
@@ -27,12 +20,6 @@
 	)
 
 /datum/ai_controller/basic_controller/trooper/calls_reinforcements/ancient_milsim/ranged
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/simple_find_target,
-		/datum/ai_planning_subtree/call_reinforcements,
-		/datum/ai_planning_subtree/basic_ranged_attack_subtree/trooper,
-		/datum/ai_planning_subtree/travel_to_point/and_clear_target/reinforce,
-	)
 
 /mob/living/basic/trooper/cin_soldier/melee
 	r_hand = /obj/item/melee/energy/sword/saber/purple

@@ -23,10 +23,13 @@ ADMIN_VERB(spawn_liquid, R_ADMIN, "Spawn Liquid", "Spawns an amount of chosen li
 	message_admins("[ADMIN_LOOKUPFLW(user)] spawned liquid at [epicenter.loc] ([choice] - [volume]).")
 	log_admin("[key_name(user)] spawned liquid at [epicenter.loc] ([choice] - [volume]).")
 
-ADMIN_VERB_AND_CONTEXT_MENU(remove_liquid, R_ADMIN, "Remove liquids", "Removes all liquids in specified radius.", ADMIN_CATEGORY_GAME, turf/epicenter in world)
-	var/range = tgui_input_number(user, "Enter range:", "Range selection", 2)
+ADMIN_VERB_AND_CONTEXT_MENU(remove_liquid, R_ADMIN, "Remove liquids", "Removes all liquids in specified radius.", ADMIN_CATEGORY_GAME, /turf/open)
+	VERB_ARG_TYPED(locale, VERB_ARG_TYPE_TURF, VERB_ARG_SOURCE_WORLD, /turf/open)
+	VERB_ARG(range, VERB_ARG_TYPE_NUM, VERB_ARG_SOURCE_INPUT)
 
-	for(var/obj/effect/abstract/liquid_turf/liquid in range(range, epicenter))
+	message_admins("[key_name_admin(user)] removed liquids with range [range] in area [locale.loc.name]")
+	user.mob.log_message("removed liquids with range [range] in area [locale.loc.name]", LOG_ADMIN)
+
+	for(var/obj/effect/abstract/liquid_turf/liquid in range(range, locale))
 		qdel(liquid, TRUE)
 
-	message_admins("[key_name_admin(user)] removed liquids with range [range] in [epicenter.loc.name]")

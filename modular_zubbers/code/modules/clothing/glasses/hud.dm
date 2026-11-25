@@ -16,7 +16,7 @@
 	flash_protect = FLASH_PROTECTION_FLASH
 	flags_cover = GLASSESCOVERSEYES
 	tint = 1
-	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.55, /datum/material/iron = SMALL_MATERIAL_AMOUNT / 2)
+	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.8, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.55)
 
 /obj/item/clothing/glasses/hud/security
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/eyes_teshari.dmi'
@@ -29,3 +29,6 @@
 
 /obj/item/clothing/glasses/meson/engine
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/eyes_teshari.dmi'
+
+/obj/item/clothing/glasses/hud/security/sunglasses/guard
+	greyscale_config_worn_teshari = /datum/greyscale_config/guard_hudsunglasses/worn/teshari

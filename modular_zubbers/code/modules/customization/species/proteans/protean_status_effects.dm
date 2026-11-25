@@ -19,7 +19,7 @@
 	owner.remove_movespeed_modifier(/datum/movespeed_modifier/protean_slowdown_low_power)
 
 /datum/movespeed_modifier/protean_slowdown_low_power
-	multiplicative_slowdown = 3
+	multiplicative_slowdown = 2
 
 /datum/status_effect/protean_low_power_mode/reform
 	duration = 7 SECONDS
@@ -34,13 +34,13 @@
 	. = ..()
 	var/mob/living/carbon/human/human_owner = owner
 	if(istype(human_owner))
-		human_owner.physiology.damage_resistance -= 100 // Double the damage
+		human_owner.damage_resistance -= 100 // Double the damage
 
 /datum/status_effect/protean_low_power_mode/reform/on_remove()
 	. = ..()
 	var/mob/living/carbon/human/human_owner = owner
 	if(istype(human_owner))
-		human_owner.physiology.damage_resistance += 100
+		human_owner.damage_resistance += 100
 
 /datum/status_effect/protean_low_power_mode/low_power
 	var/metabolism_modifier_factor = 16

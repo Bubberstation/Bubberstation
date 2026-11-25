@@ -94,8 +94,9 @@
 
 /datum/bodypart_overlay/mutant/taur_body
 	feature_key = FEATURE_TAUR
-	layers = ALL_EXTERNAL_OVERLAYS | EXTERNAL_FRONT_UNDER_CLOTHES | EXTERNAL_FRONT_OVER
+	layers = list(EXTERNAL_FRONT_OVER_HEAD = ABOVE_BODY_FRONT_HEAD_LAYER, EXTERNAL_FRONT_UNDER_CLOTHES = BODY_FRONT_UNDER_CLOTHES, EXTERNAL_FRONT = BODY_FRONT_LAYER, EXTERNAL_ADJACENT = BODY_ADJ_LAYER, EXTERNAL_BEHIND = BODY_BEHIND_LAYER)
 	color_source = ORGAN_COLOR_OVERRIDE
+	offset_location = ENTIRE_BODY
 
 	/// If this taur body can lay down
 	var/can_lay_down = FALSE
@@ -193,7 +194,7 @@
 	return ..()
 
 /obj/item/organ/taur_body/proc/get_riding_offset(oversized = FALSE)
-	var/size_scaling = (owner.dna.features["body_size"] / BODY_SIZE_NORMAL) - 1
+	var/size_scaling = (owner.current_size / RESIZE_DEFAULT_SIZE) - 1
 	var/scaling_mult = 1 + (size_scaling * riding_offset_scaling_mult)
 
 	return list(
@@ -203,10 +204,7 @@
 		TEXT_WEST = list(round(riding_offset_side_x * scaling_mult, 1), round((riding_offset_side_y + taur_specific_clothing_y_offsets?[TEXT_WEST]) * scaling_mult, 1)),
 	)
 
-/obj/item/organ/taur_body/proc/toggle_laying()
-	set category = "Taur"
-	set name = "Toggle Laying Down"
-
+GAME_VERB_PROC(/obj/item/organ/taur_body, toggle_laying, "Toggle Laying Down", "Taur")
 	var/mob/living/carbon/human/owner = src
 	if(!istype(owner))
 		return
@@ -251,10 +249,7 @@
 
 #undef LAYDOWN_COOLDOWN
 
-/obj/item/organ/taur_body/proc/toggle_cropping()
-	set category = "Taur"
-	set name = "Override Taur Cropping Settings"
-
+GAME_VERB_PROC(/obj/item/organ/taur_body, toggle_cropping, "Override Taur Cropping Settings", "Taur")
 	var/mob/living/carbon/human/owner = src
 	if(!istype(owner))
 		return

@@ -6,6 +6,7 @@
 	icon_state = "refactory"
 	organ_flags = ORGAN_ROBOTIC | ORGAN_NANOMACHINE
 	organ_traits = list(TRAIT_NOHUNGER)
+	custom_premium_price = PAYCHECK_COMMAND * 2
 
 	/// How much max metal can we hold at any given time (In sheets). This isn't using nutrition code because nutrition code gets weird without livers.
 	var/metal_max = PROTEAN_STOMACH_FULL

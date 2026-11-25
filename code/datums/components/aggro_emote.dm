@@ -22,7 +22,7 @@
 	var/minimum_chance
 
 /datum/component/aggro_emote/Initialize(
-	target_key = BB_BASIC_MOB_CURRENT_TARGET,
+	target_key = BB_CURRENT_TARGET,
 	living_only = FALSE,
 	list/emote_list,
 	list/speak_list, // BUBBER EDIT - ADDITION: FLESHMIND
@@ -83,6 +83,8 @@
 
 // BUBBER EDIT - START: FLESHMIND
 /// Randomly choose between each emote
+	if(isnull(sound_to_play))
+		return
 	if(random_number_in_range <= audible_emote_length)
 		source.manual_emote("[pick(audible_emote_list)]")
 		playsound(source, sound_to_play, 80, vary = TRUE)

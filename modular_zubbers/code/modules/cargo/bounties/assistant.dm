@@ -4,7 +4,7 @@
 	name = "Strange Object"
 	description = "Nanotrasen has taken an interest in strange objects. Find one in maintenance, and ship it off to CentCom right away."
 	reward = CARGO_CRATE_VALUE * 2.4
-	wanted_types = list(/obj/item/relic = TRUE)
+	wanted_types = list(/obj/item/assembly/relic = TRUE)
 
 /datum/bounty/item/assistant/scooter
 	name = "Scooter"
@@ -281,7 +281,7 @@
 	description = "The new office craze is melon water. Send Centcom some watermelons so we can squeeze a few pitchers."
 	reward = CARGO_CRATE_VALUE * 6
 	required_count = 6
-	wanted_types = list(/obj/item/food/grown/watermelon = TRUE)
+	wanted_types = list(/obj/item/food/grown/melonlike/watermelon = TRUE)
 
 /datum/bounty/item/assistant/dogbed
 	name = "Dog Bed"

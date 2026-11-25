@@ -33,7 +33,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NE
 		/obj/item/clothing/glasses/meson = 100,
 		/obj/item/clothing/glasses/science = 25,
 		/obj/item/clothing/glasses/hud/security = 10,
-		/obj/item/clothing/glasses/hud/gun_permit = 25,
+		/obj/item/clothing/glasses/hud/security/sunglasses/guard/customs = 25,
 		/obj/item/clothing/glasses/hud/security/redsec = 5,
 		/obj/item/clothing/glasses/meson/engine = 25,
 		/obj/item/clothing/glasses/meson/engine/tray = 25,
@@ -131,7 +131,7 @@ GLOBAL_LIST_INIT(rarity_loot, list(//rare: really good items - TODO: FIND THE NE
 	) = 10,
 	/obj/item/lightreplacer = 25,
 	/obj/item/locator = 5,
-	/obj/item/mmi = 10,
+	/obj/item/brain_processor/organic = 10,
 	/obj/item/pinata = 20,
 	/obj/item/pinpointer/material_sniffer = 5,
 	list(

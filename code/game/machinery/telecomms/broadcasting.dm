@@ -79,6 +79,7 @@
 	message,  // the text content of the message
 	spans,  // the list of spans applied to the message
 	list/message_mods, // the list of modification applied to the message. Whispering, singing, ect
+	lvls = null, // BUBBER ADDITION -- NTSL -- what z-levels is this message broadcast to?
 )
 	src.source = source
 	src.frequency = frequency
@@ -94,7 +95,8 @@
 		"spans" = spans,
 		"mods" = message_mods,
 	)
-	levels = SSmapping.get_connected_levels(get_turf(source))
+	// levels = SSmapping.get_connected_levels(get_turf(source)) //BUBBER EDIT OLD
+	levels = ((lvls != null) ? lvls : SSmapping.get_connected_levels(get_turf(source))) // BUBBER EDIT NEW
 
 #undef COMPRESSION_VOCAL_SIGNAL_MIN
 #undef COMPRESSION_VOCAL_SIGNAL_MAX
@@ -105,10 +107,6 @@
 	copy.data = data.Copy()
 	copy.levels = levels
 	return copy
-
-/// Past this amount of compression, the resulting gibberish will actually
-/// replace characters, making it even harder to understand.
-#define COMPRESSION_REPLACE_CHARACTER_THRESHOLD 30
 
 /// This is the meat function for making radios hear vocal transmissions.
 /datum/signal/subspace/vocal/broadcast()
@@ -162,29 +160,42 @@
 	for(var/obj/item/radio/called_radio as anything in radios)
 		called_radio.on_receive_message(data)
 	var/list/message_mods = data["mods"]
-	// From the list of radios, find all mobs who can hear those.
-	var/list/receive = get_hearers_in_radio_ranges(radios)
-	var/list/receive_radios = null
 
-	if(LAZYACCESS(message_mods, MODE_TTS_IDENTIFIER)) // only do this if we have a TTS identifier to save on perf
-		receive_radios = get_hearers_in_radio_ranges_track_radios(radios, frequency)
+	var/tts_radio_id = LAZYACCESS(message_mods, MODE_TTS_IDENTIFIER)
+	// Flat list of mobs who can hear the message
+	var/list/receive
+	// Assoc list of weakref to a radio to list of weakrefs to mobs who can hear the message
+	var/list/receive_radios
+
+	if(tts_radio_id) // only do this if we have a TTS identifier to save on perf
+		receive = list()
+		receive_radios = list()
+		for(var/radio, radio_hearers in get_hearers_in_radio_ranges_track_radios(radios))
+			receive |= radio_hearers
+			var/datum/weakref/radio_ref = WEAKREF(radio)
+			for(var/mob/possible_hearer in radio_hearers)
+				if(!isnull(possible_hearer.client) && can_hear_radio_tts(possible_hearer, frequency))
+					receive_radios[radio_ref] ||= list()
+					receive_radios[radio_ref] += WEAKREF(possible_hearer)
+
+	else
+		receive = get_hearers_in_radio_ranges(radios)
 
 	// Add observers who have ghost radio enabled.
 	for(var/mob/dead/observer/ghost in GLOB.player_list)
 		if(get_chat_toggles(ghost.client) & CHAT_GHOSTRADIO)
 			receive |= ghost
-			if(LAZYACCESS(message_mods, MODE_TTS_IDENTIFIER))
-				receive_radios[TTS_GHOST_RADIO] |= ghost
+			if(tts_radio_id && can_hear_radio_tts(ghost, frequency))
+				receive_radios[TTS_GHOST_RADIO] ||= list()
+				receive_radios[TTS_GHOST_RADIO] += WEAKREF(ghost)
+
+	if(tts_radio_id && length(receive_radios))
+		SStts.queued_radio_messages[tts_radio_id] = receive_radios
+		SStts.queued_radio_messages_compression[tts_radio_id] = compression
 
 	// Render the message and have everybody hear it.
 	// Always call this on the virtualspeaker to avoid issues.
 	var/spans = data["spans"]
-
-	if(LAZYACCESS(message_mods, MODE_TTS_IDENTIFIER))
-		receive_radios[TTS_GHOST_RADIO] = filter_tts_listeners(receive_radios[TTS_GHOST_RADIO], frequency)
-		for(var/radio in receive_radios)
-			LAZYSET(SStts.queued_radio_messages[message_mods[MODE_TTS_IDENTIFIER]], radio, receive_radios[radio])
-		LAZYSET(SStts.queued_radio_messages_compression, message_mods[MODE_TTS_IDENTIFIER], compression)
 
 	for(var/atom/movable/hearer as anything in receive)
 		if(!hearer)
@@ -215,5 +226,3 @@
 		log_telecomms("[virt.source] [log_text] [loc_name(get_turf(virt.source))]")
 
 	QDEL_IN(virt, 5 SECONDS)  // Make extra sure the virtualspeaker gets qdeleted
-
-#undef COMPRESSION_REPLACE_CHARACTER_THRESHOLD

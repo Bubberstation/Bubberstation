@@ -6,6 +6,7 @@
 	circuit = /obj/item/circuitboard/computer/nanite_cloud_controller
 	icon_screen = "nanite_cloud_controller_screen"
 	icon_keyboard = null
+	connectable = FALSE	// remove this if you ever change the sprite to have the regular console shape
 
 	var/obj/item/disk/nanite_program/disk
 	var/list/datum/nanite_cloud_backup/cloud_backups = list()

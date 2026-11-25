@@ -25,6 +25,8 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		copy_to_turf.icon_state = icon_state
 	if(copy_to_turf.icon != icon)
 		copy_to_turf.icon = icon
+	if(length(custom_materials))
+		copy_to_turf.set_custom_materials(custom_materials)
 	if(LAZYLEN(atom_colours))
 		copy_to_turf.atom_colours = atom_colours.Copy()
 		copy_to_turf.update_atom_colour()
@@ -79,7 +81,6 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	var/old_lighting_corner_SW = lighting_corner_SW
 	var/old_lighting_corner_NW = lighting_corner_NW
 	var/old_directional_opacity = directional_opacity
-	var/old_dynamic_lumcount = dynamic_lumcount
 	//SKYRAT EDIT CHANGE
 	var/obj/effect/abstract/liquid_turf/old_liquids = liquids
 	if(lgroup)
@@ -112,16 +113,9 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	var/list/old_listen_lookup = _listen_lookup?.Copy()
 	var/list/old_signal_procs = _signal_procs?.Copy()
 	var/carryover_turf_flags = (RESERVATION_TURF | UNUSED_RESERVATION_TURF) & turf_flags
-	var/turf/new_turf = new path(src)
+	// Turf references survive replacement, but their signal lists must be set before Initialize.
+	var/turf/new_turf = new path(src, old_listen_lookup, old_signal_procs)
 	new_turf.turf_flags |= carryover_turf_flags
-
-	// WARNING WARNING
-	// Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
-	// It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
-	if(old_listen_lookup)
-		LAZYOR(new_turf._listen_lookup, old_listen_lookup)
-	if(old_signal_procs)
-		LAZYOR(new_turf._signal_procs, old_signal_procs)
 
 	for(var/datum/callback/callback as anything in post_change_callbacks)
 		callback.InvokeAsync(new_turf)
@@ -153,8 +147,6 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	lighting_corner_SE = old_lighting_corner_SE
 	lighting_corner_SW = old_lighting_corner_SW
 	lighting_corner_NW = old_lighting_corner_NW
-
-	dynamic_lumcount = old_dynamic_lumcount
 
 	lattice_underneath = old_lattice_underneath
 
@@ -296,7 +288,6 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		return
 
 	var/datum/gas_mixture/total = new//Holders to assimilate air from nearby turfs
-	var/list/total_gases = total.gases
 	//Stolen blatently from self_breakdown
 	var/list/turf_list = atmos_adjacent_turfs + src
 	var/turflen = turf_list.len
@@ -312,14 +303,13 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		energy += mix.temperature * capacity
 		heat_cap += capacity
 
-		var/list/giver_gases = mix.gases
-		for(var/giver_id in giver_gases)
-			ASSERT_GAS_IN_LIST(giver_id, total_gases)
-			total.adjust_gas(giver_id, giver_gases[giver_id][MOLES])
+		for(var/giver_id, amount in mix.moles)
+			total.adjust_gas(giver_id, amount)
 
 	total.temperature = energy / heat_cap
-	for(var/id in total_gases)
-		total_gases[id][MOLES] /= turflen
+	var/list/cached_total_moles = total.moles
+	for(var/id in cached_total_moles)
+		cached_total_moles[id] /= turflen
 
 	for(var/turf/open/turf in turf_list)
 		turf.air.copy_from(total)

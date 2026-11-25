@@ -12,10 +12,10 @@
 	var/obj/item/modular_computer/pda/synth/internal_computer
 	actions_types = list(/datum/action/item_action/synth/open_internal_computer)
 	organ_traits = list(TRAIT_SILICON_EMOTES_ALLOWED)
-	var/mmi_type = /obj/item/mmi/posibrain
-	var/obj/item/mmi/stored_mmi
+	var/mmi_type = /obj/item/brain_processor/positronic
+	var/obj/item/brain_processor/stored_mmi
 
-/obj/item/organ/brain/synth/Initialize(mapload, obj/item/mmi/brain_mmi)
+/obj/item/organ/brain/synth/Initialize(mapload, obj/item/brain_processor/brain_mmi)
 	. = ..()
 	internal_computer = new(src)
 	ADD_TRAIT(src, TRAIT_SILICON_EMOTES_ALLOWED, INNATE_TRAIT)
@@ -30,20 +30,21 @@
 	QDEL_NULL(stored_mmi)
 	. = ..()
 
-/obj/item/organ/brain/synth/Remove(mob/living/carbon/organ_owner, special = FALSE, movement_flags)
+/obj/item/organ/brain/synth/on_surgical_removal(mob/living/user, obj/item/bodypart/limb, obj/item/tool)
 	. = ..()
-	if(!istype(stored_mmi) || special)
+	if(!istype(stored_mmi))
 		return
-	stored_mmi.brain = src
+	if(istype(stored_mmi, /obj/item/brain_processor/organic))
+		var/obj/item/brain_processor/organic/organic_mmi = stored_mmi
+		organic_mmi.brain = src
 	organ_flags |= ORGAN_FROZEN
 	stored_mmi.update_appearance()
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(nest_into_stored_mmi))
+	nest_into_stored_mmi()
 
-/obj/item/organ/brain/synth/proc/nest_into_stored_mmi(datum/source, atom/old_loc, dir, forced)
-	SIGNAL_HANDLER
+/obj/item/organ/brain/synth/proc/nest_into_stored_mmi()
 	if(loc == stored_mmi)
 		return
-	var/obj/item/mmi/mmi = stored_mmi
+	var/obj/item/brain_processor/mmi = stored_mmi
 	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
 	stored_mmi = null
 	var/atom/destination = loc || mmi.drop_location()
@@ -54,6 +55,7 @@
 	. = ..()
 	if(stored_mmi?.brainmob?.mind && stored_mmi.brainmob.mind.current == stored_mmi.brainmob)
 		stored_mmi.brainmob.mind.transfer_to(brain_owner)
+		QDEL_NULL(stored_mmi.brainmob)
 
 	if(brain_owner.stat == DEAD && ishuman(brain_owner))
 		var/mob/living/carbon/human/user_human = brain_owner
@@ -65,7 +67,8 @@
 
 /obj/item/organ/brain/synth/on_mob_remove(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
-	cache_brainmob_into_stored_mmi(organ_owner)
+	if(!(movement_flags & NO_ID_TRANSFER))
+		cache_brainmob_into_stored_mmi(organ_owner)
 
 	UnregisterSignal(organ_owner, COMSIG_MOB_EQUIPPED_ITEM)
 	UnregisterSignal(organ_owner, COMSIG_HUMAN_UNEQUIPPED_ITEM)
@@ -75,11 +78,13 @@
 	if(isnull(internal_computer))
 		return
 	if(slot == ITEM_SLOT_ID)
-		internal_computer.handle_id_slot(owner)
+		internal_computer.handle_id_slot(owner, item)
 
 /obj/item/organ/brain/synth/proc/on_unequip_signal(datum/source, obj/item/dropped_item, force, new_location)
 	SIGNAL_HANDLER
 	if(isnull(internal_computer))
+		return
+	if(!isnull(owner.get_item_by_slot(ITEM_SLOT_ID)))
 		return
 	internal_computer.handle_id_slot(owner)
 
@@ -103,7 +108,7 @@
 	stored_mmi.set_brainmob(brainmob_to_store)
 	brainmob_to_store.doMove(stored_mmi)
 	brainmob_to_store.container = stored_mmi
-	brainmob_to_store.set_stat(CONSCIOUS)
+	brainmob_to_store.set_stat(STABLE)
 	brainmob_to_store.reset_perspective()
 	if(brainmob == brainmob_to_store)
 		brainmob = null
@@ -153,11 +158,11 @@
 	inhand_icon_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
-	mmi_type = /obj/item/mmi/posibrain/circuit
+	mmi_type = /obj/item/brain_processor/positronic/circuit
 
 /obj/item/organ/brain/synth/mmi
 	name = "augmented brain"
 	desc = "A augmented organic brain"
 	icon = /obj/item/organ/brain::icon
 	icon_state = "brain"
-	mmi_type = /obj/item/mmi
+	mmi_type = /obj/item/brain_processor/organic

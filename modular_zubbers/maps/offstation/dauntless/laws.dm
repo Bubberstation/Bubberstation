@@ -1,6 +1,6 @@
 // Dauntless AI Laws
 
-/obj/item/ai_module/core/full/dauntless
+/obj/item/ai_module/law/core/full/dauntless
 	name = "'Dauntless' Core Module"
 	law_id = "dauntless"
 

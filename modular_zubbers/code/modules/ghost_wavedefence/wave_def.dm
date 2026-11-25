@@ -33,6 +33,10 @@
 	icon = 'modular_zubbers/icons/obj/machines/wavedef_items.dmi'
 	icon_state = "hackc"
 	desc = "A small tool with a bunch of ones and zeros on it. The label say 'For emergency use only!'"
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT
+	)
 
 /mob/living/basic/node_drone/hackc
 	name = "Hack-C drone"

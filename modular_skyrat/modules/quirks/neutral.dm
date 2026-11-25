@@ -111,7 +111,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	pcooldown = world.time + pcooldown_time
 	var/mob/living/carbon/human/user = quirk_holder
 	if(user && istype(user))
-		if(user.stat == CONSCIOUS)
+		if(!IS_UNCONSCIOUS(user))
 			if(prob(20))
 				user.emote("laugh")
 				addtimer(CALLBACK(user, /mob/proc/emote, "laugh"), 5 SECONDS)

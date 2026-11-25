@@ -19,12 +19,8 @@
 	desc = "A 12 gauge magnesium slug meant for \"setting shit on fire and looking cool while you do it\".\
 	<br><br>\
 	<i>INCENDIARY: Leaves a trail of fire when shot, sets targets aflame.</i>"
-	custom_materials = AMMO_MATS_SHOTGUN_PLASMA
 
 /obj/item/ammo_casing/shotgun/ion
-	custom_materials = AMMO_MATS_SHOTGUN_TIDE
-
-/obj/item/ammo_casing/shotgun/scatterlaser
 	custom_materials = AMMO_MATS_SHOTGUN_TIDE
 
 /obj/item/ammo_casing/shotgun/techshell
@@ -154,6 +150,7 @@
 	name = "frangible slug"
 	desc = "A weak anti materiel shell intended for dislodging airlock, breaking down barricades and structures. Not effective against people."
 	icon_state = "breacher"
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1, /datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT)
 	projectile_type = /obj/projectile/bullet/frangible_slug
 
 /obj/projectile/bullet/frangible_slug

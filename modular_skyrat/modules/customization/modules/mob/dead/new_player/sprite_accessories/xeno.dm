@@ -2,7 +2,7 @@
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/xeno_parts.dmi'
 	key = "xenodorsal"
 	color_src = USE_ONE_COLOR
-	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
+	relevent_layers = list(EXTERNAL_BEHIND, EXTERNAL_FRONT)
 	organ_type = /obj/item/organ/xenodorsal
 
 /datum/sprite_accessory/xenodorsal/none
@@ -44,7 +44,7 @@
 /datum/sprite_accessory/xenohead
 	icon = 'modular_skyrat/master_files/icons/mob/sprite_accessory/xeno_parts.dmi'
 	key = "xenohead"
-	relevent_layers = list(BODY_ADJ_LAYER)
+	relevent_layers = list(EXTERNAL_ADJACENT)
 	organ_type = /obj/item/organ/xenohead
 
 /datum/sprite_accessory/xenohead/none

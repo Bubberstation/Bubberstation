@@ -20,7 +20,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 10
 	attack_sound = 'sound/items/weapons/bite.ogg'
-	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
+	physiology = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
 
 	ai_controller = /datum/ai_controller/basic_controller/vortigaunt
 	gold_core_spawnable = FRIENDLY_SPAWN

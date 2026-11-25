@@ -163,12 +163,6 @@ export const eyes_opacity: Feature<number> = {
   component: FeatureNumberInput,
 };
 
-export const mutant_colors_color: Feature<string[]> = {
-  name: 'Mutant Colors',
-  component: FeatureTriColorInput,
-  description: 'Body color used for non-human species.',
-};
-
 export const body_markings_toggle: FeatureToggle = {
   name: 'Body Markings',
   component: CheckboxInput,

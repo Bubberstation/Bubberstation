@@ -12,7 +12,6 @@
 		)
 	ai_controller = /datum/ai_controller/basic_controller/dog/corgi
 	gender = MALE
-	can_be_held = FALSE
 	gold_core_spawnable = FRIENDLY_SPAWN
 	///can this mob breed?
 	var/can_breed = TRUE
@@ -29,15 +28,16 @@
 		can_breed_with = typecacheof(list(/mob/living/basic/pet/dog/corgi)),\
 		baby_paths = list(/mob/living/basic/pet/dog/corgi/puppy),\
 	) // no mixed breed puppies sadly
+	RemoveElement(/datum/element/can_be_held)
 
 /mob/living/basic/pet/dog/markus/treat_message(message)
 	if(client)
 		message = pick(markus_speak) // markus only talks business
 	return ..()
 
-/mob/living/basic/pet/dog/markus/update_dog_speech(datum/ai_planning_subtree/random_speech/speech)
+/mob/living/basic/pet/dog/markus/update_dog_speech(list/speech_data)
 	. = ..()
-	speech.speak = markus_speak
+	speech_data[BB_EMOTE_SAY] = markus_speak
 
 /datum/chemical_reaction/mark_reaction
 	results = list(/datum/reagent/consumable/liquidgibs = 15)
@@ -70,7 +70,6 @@
 	icon_dead = "borgi_dead"
 	gender = NEUTER
 	unique_pet = TRUE
-	can_be_held = FALSE
 	maxHealth = 150
 	health = 150
 	butcher_results = list(
@@ -117,6 +116,8 @@
 	// For traitor objectives
 	RegisterSignal(src, COMSIG_ATOM_EMAG_ACT, PROC_REF(on_emag_act))
 
+	RemoveElement(/datum/element/can_be_held)
+
 /**
  * Try to harass a target, considering if they are a friend.
  *
@@ -137,10 +138,6 @@
 
 	if(health > rage_hp || is_friend)
 		return
-
-	borgi.set_movement_target(target)
-	borgi.blackboard[BB_DOG_HARASS_TARGET] = WEAKREF(target)
-	borgi.queue_behavior(/datum/ai_behavior/basic_melee_attack/dog, BB_DOG_HARASS_TARGET, BB_PET_TARGETING_STRATEGY)
 
 /mob/living/basic/pet/dog/corgi/borgi/proc/on_attack_hand(datum/source, mob/living/target)
 	SIGNAL_HANDLER
@@ -236,8 +233,6 @@
 	UnregisterSignal(src, COMSIG_ATOM_EMAG_ACT)
 
 	do_sparks(number = 3, cardinal_only = TRUE, source = src)
-	var/datum/ai_controller/basic_controller/dog/borgi = ai_controller
-	LAZYCLEARLIST(borgi.current_behaviors)
 
 /mob/living/basic/pet/dog/corgi/borgi/proc/on_emag_act(mob/living/basic/pet/dog/target, mob/user)
 	SIGNAL_HANDLER
@@ -283,57 +278,6 @@
 		BB_PET_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 	)
 
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/emagged_borgi,
-		/datum/ai_planning_subtree/random_speech/dog,
-		/datum/ai_planning_subtree/pet_planning,
-		/datum/ai_planning_subtree/dog_harassment,
-	)
-
-/// Subtree that schedules borgi to randomly shoot if they're emagged.
-/datum/ai_planning_subtree/emagged_borgi
-	/// Probability that emagged borgi will randomly attack.
-	var/chance = 33
-
-/datum/ai_planning_subtree/emagged_borgi/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
-	. = ..()
-
-	// Emagged borgi?
-	var/mob/living/basic/pet/dog/corgi/borgi/borgi_pawn = controller.pawn
-	if(!istype(borgi_pawn) || !borgi_pawn.emagged)
-		return
-
-	// Target if not already targetted and prob check passes.
-	var/datum/weakref/weak_target = controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
-	var/atom/target = weak_target?.resolve()
-	if(QDELETED(target))
-		if(!SPT_PROB(chance, seconds_per_tick))
-			return
-
-		controller.queue_behavior(/datum/ai_behavior/find_potential_targets, BB_BASIC_MOB_CURRENT_TARGET, BB_PET_TARGETING_STRATEGY, BB_BASIC_MOB_CURRENT_TARGET_HIDING_LOCATION)
-		return
-
-	// Attack.
-	controller.queue_behavior(/datum/ai_behavior/emagged_borgi_attack, BB_BASIC_MOB_CURRENT_TARGET)
-	return SUBTREE_RETURN_FINISH_PLANNING
-
-/**
- * Shoot a random target.
- */
-/datum/ai_behavior/emagged_borgi_attack
-	action_cooldown = 3 SECONDS
-
-/datum/ai_behavior/emagged_borgi_attack/perform(seconds_per_tick, datum/ai_controller/controller, target_key)
-	var/atom/target = controller.blackboard[target_key]
-	if(QDELETED(target))
-		return
-
-	var/mob/living/basic/pet/dog/corgi/borgi/borgi_pawn = controller.pawn
-	if(!istype(borgi_pawn))
-		return
-
-	borgi_pawn.shoot_at(target)
-
 /mob/living/basic/pet/dog/dobermann
 	name = "\improper dobermann"
 	desc = "A larger breed of dog."
@@ -350,25 +294,21 @@
 	icon_dead = "pitbull_dead"
 	icon_living = "pitbull"
 	ai_controller = /datum/ai_controller/basic_controller/pitbull
-	can_be_held = FALSE //He's too big.
 
 /datum/ai_controller/basic_controller/pitbull
+	behavior_tree_json = "modular_skyrat/master_files/code/modules/mob/living/simple_animal/friendly/pitbull.bt.json"
 	blackboard = list(
-		BB_ALWAYS_IGNORE_FACTION = TRUE,
+		BB_DOG_HARASS_HARM = TRUE,
+		BB_VISION_RANGE = AI_DOG_VISION_RANGE,
+		BB_PET_TARGETING_STRATEGY = /datum/targeting_strategy/basic/not_friends,
+		// Find smaller mobs
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic/of_size/smaller,
-		BB_FLEE_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
+		// With tongs in hand!
+		BB_TARGET_HELD_ITEM = /obj/item/kitchen/tongs,
+		BB_BABIES_PARTNER_TYPES = list(/mob/living/basic/pet/dog),
 	)
 
 	ai_movement = /datum/ai_movement/dumb
-	idle_behavior = /datum/idle_behavior/idle_dog
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/target_retaliate/to_flee,
-		/datum/ai_planning_subtree/flee_target/from_flee_key,
-		/datum/ai_planning_subtree/dog_harassment,
-		/datum/ai_planning_subtree/simple_find_target,
-		/datum/ai_planning_subtree/basic_melee_attack_subtree,
-		/datum/ai_planning_subtree/random_speech/dog,
-	)
 
 
 /mob/living/basic/pet/dog/pitbull/Initialize(mapload)
@@ -377,5 +317,4 @@
 		name = pick("Crayon", "Pimpy", "Staypuft", "Bape", "BLOODSKULL", "Baby G")
 	AddElement(/datum/element/tiny_mob_hunter, MOB_SIZE_SMALL) //He eats anything that he sees as a toddler.
 	AddElement(/datum/element/footstep, footstep_type = FOOTSTEP_MOB_CLAW)
-
-
+	RemoveElement(/datum/element/can_be_held)

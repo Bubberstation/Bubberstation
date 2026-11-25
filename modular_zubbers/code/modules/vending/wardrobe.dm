@@ -20,6 +20,8 @@
 		/obj/item/clothing/suit/toggle/labcoat/technical/medical/black = 3,
 		/obj/item/clothing/suit/toggle/labcoat/technical/medical/dark = 3,
 		/obj/item/clothing/suit/toggle/labcoat/virologist = 4,
+		/obj/item/clothing/suit/jacket/frontier_colonist/medical = 3,
+		/obj/item/clothing/head/soft/frontier_colonist/medic = 3,
 		/obj/item/clothing/under/rank/civilian/psychologist_bunnysuit = 3,
 		/obj/item/clothing/under/rank/engineering/engineer/skyrat/hazard_chem/emt = 2,
 		/obj/item/clothing/under/rank/medical/doctor_bunnysuit = 3,
@@ -137,8 +139,8 @@
 	premium = list(
 		/obj/item/organ/stomach/protean = 1,
 		/obj/item/organ/heart/protean = 1,
+		/obj/item/clothing/accessory/dogtags/protean_match = 6,
 	)
-	extra_price = PAYCHECK_COMMAND * 2.0 // This ensures the protean organs are ~200 credits each.
 
 /obj/machinery/vending/wardrobe/robo_wardrobe/Initialize(mapload)
 	product_categories[1]["products"] += products
@@ -182,7 +184,7 @@
 
 /obj/machinery/vending/wardrobe/cargo_wardrobe
 	zubbers_products = list(
-		/obj/item/clothing/glasses/hud/gun_permit = 5, //from company imports module
+		/obj/item/clothing/glasses/hud/permit = 2,
 		/obj/item/clothing/head/caligram_cap_tan = 3,
 		/obj/item/clothing/head/playbunnyears/bitrunner = 3,
 		/obj/item/clothing/head/playbunnyears/cargo = 3,

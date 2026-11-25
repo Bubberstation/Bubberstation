@@ -325,7 +325,7 @@
 
 	in_use = TRUE
 	user.put_in_hands(new glass.chosen_item)
-	user.mind.adjust_experience(/datum/skill/production, 30)
+	user.mind?.adjust_experience(/datum/skill/production, 30)
 	glass_ref = null
 	qdel(glass)
 	icon_state = "blow_pipe_empty"
@@ -393,7 +393,7 @@
 	in_use = FALSE
 
 	to_chat(user, span_notice("You finish trying to [step_id] [src]."))
-	user.mind.adjust_experience(/datum/skill/production, 10)
+	user.mind?.adjust_experience(/datum/skill/production, 10)
 
 
 /**

@@ -1,9 +1,14 @@
+/obj/item/clothing/shoes
+	/// If TRUE, wearing these shoes will not override the wearer's natural barefoot/claw footstep sounds
+	var/preserve_natural_footsteps = FALSE
+
 /obj/item/clothing/shoes/wraps
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
 	name = "gilded leg wraps"
 	desc = "Ankle coverings. These ones have a golden design."
 	icon_state = "gildedcuffs"
+	preserve_natural_footsteps = TRUE
 
 /obj/item/clothing/shoes/wraps/silver
 	name = "silver leg wraps"
@@ -115,7 +120,6 @@
 	greyscale_config_worn = /datum/greyscale_config/clothwraps/worn
 	greyscale_config_worn_digi = /datum/greyscale_config/clothwraps/worn/digi
 	greyscale_colors = "#FFFFFF"
-	body_parts_covered = FALSE
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/shoes/wraps/colourable
@@ -128,7 +132,6 @@
 	greyscale_config_worn = /datum/greyscale_config/legwraps/worn
 	greyscale_config_worn_digi = /datum/greyscale_config/legwraps/worn/digi
 	greyscale_colors = "#FFFFFF"
-	body_parts_covered = FALSE
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/shoes/sports

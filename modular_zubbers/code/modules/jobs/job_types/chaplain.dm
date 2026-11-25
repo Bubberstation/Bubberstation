@@ -1,3 +1,28 @@
+/datum/job/chaplain
+	required_languages = null
+	akula_outfit = /datum/outfit/akula
+	alt_titles = list(
+		"Chaplain",
+		"Clockwork Priest",
+		"Cleric",
+		"High Priest",
+		"High Priestess",
+		"Imam",
+		"Magister",
+		"Monk",
+		"Nun",
+		"Oracle",
+		"Preacher",
+		"Priest",
+		"Priestess",
+		"Pontifex",
+		"Guru",
+		"Rabbi",
+		"Reverend",
+		"Shrine Maiden",
+		"Shrine Guardian",
+	)
+
 /datum/job/chaplain/after_spawn(mob/living/spawned, client/player_client)
 	. = ..()
 	var/mob/living/carbon/human/spawned_chaplain = spawned

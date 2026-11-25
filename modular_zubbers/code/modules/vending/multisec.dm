@@ -15,7 +15,6 @@
 					/obj/item/storage/backpack/satchel/sec = 6,
 					/obj/item/storage/backpack/duffelbag/sec = 6,
 					/obj/item/storage/backpack/messenger/sec = 6,
-					/obj/item/clothing/under/rank/security/officer/redsec = 6,
 					/obj/item/clothing/under/rank/security/peacekeeper/armadyne = 6,
 					/obj/item/clothing/under/rank/security/camo = 6,
 					/obj/item/clothing/under/rank/security/officer/turtleneck/red = 6,
@@ -49,7 +48,6 @@
 					/obj/item/clothing/under/rank/security/officer/skirt = 6,
 					/obj/item/clothing/under/rank/security/skyrat/utility/redsec = 6,
 					/obj/item/clothing/under/rank/security/peacekeeper/skirt_redsec = 6,
-					/obj/item/clothing/suit/toggle/jacket/sec/old = 6,
 					/obj/item/clothing/suit/armor/vest/secjacket = 6,
 					/obj/item/clothing/suit/armor/vest/peacekeeper/armadyne = 6,
 					/obj/item/clothing/suit/armor/vest/peacekeeper/armadyne/armor = 6,
@@ -131,6 +129,8 @@
 					/obj/item/clothing/head/helmet/blueshirt = 3,
 					/obj/item/clothing/suit/armor/vest/blueshirt = 3,
 					/obj/item/riding_saddle/leather/peacekeeper = 3,
+					/obj/item/clothing/suit/frontier_colonist_flak = 3,
+					/obj/item/clothing/head/frontier_colonist_helmet = 3,
 	)
 
 //CONTRABAND: Basically for less serious/hard to cat stuff like the Cowboy and Bluecoat stuff. And for stuff that shouldn't be easy to get like HUD varients.

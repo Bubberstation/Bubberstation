@@ -35,6 +35,11 @@
 	bodyshape = BODYSHAPE_HUMANOID
 	change_exempt_flags = NONE
 	dmg_overlay_type = "robotic"
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.25,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/gold = SMALL_MATERIAL_AMOUNT,
+	)
 
 	brute_modifier = SYNTH_BRUTE_MODIFIER
 	burn_modifier = SYNTH_BURN_MODIFIER
@@ -59,7 +64,6 @@
 
 /datum/design/synth_head
 	name = "Android Head Base"
-	id = "synth_head"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(
@@ -91,6 +95,11 @@
 	bodyshape = BODYSHAPE_HUMANOID
 	change_exempt_flags = NONE
 	dmg_overlay_type = "robotic"
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3.25,
+		/datum/material/silver = SMALL_MATERIAL_AMOUNT,
+		/datum/material/gold = SMALL_MATERIAL_AMOUNT,
+	)
 
 	brute_modifier = SYNTH_BRUTE_MODIFIER
 	burn_modifier = SYNTH_BURN_MODIFIER
@@ -112,13 +121,12 @@
 	bodypart_flags = BODYPART_UNHUSKABLE
 
 	wing_types = list(
-		/obj/item/organ/wings/functional/robotic,
-		/obj/item/organ/wings/functional/robotic/virtual
+		/obj/item/organ/wings/robotic,
+		/obj/item/organ/wings/robotic/virtual
 	)
 
 /datum/design/synth_chest
 	name = "Android Torso Base"
-	id = "synth_chest"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(
@@ -167,6 +175,10 @@
 	bodyshape = BODYSHAPE_HUMANOID
 	change_exempt_flags = NONE
 	dmg_overlay_type = "robotic"
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/gold = SMALL_MATERIAL_AMOUNT,
+	)
 
 	brute_modifier = SYNTH_BRUTE_MODIFIER
 	burn_modifier = SYNTH_BURN_MODIFIER
@@ -190,7 +202,6 @@
 
 /datum/design/synth_l_arm
 	name = "Android Left Arm Base"
-	id = "synth_l_arm"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(
@@ -220,6 +231,10 @@
 	bodyshape = BODYSHAPE_HUMANOID
 	change_exempt_flags = NONE
 	dmg_overlay_type = "robotic"
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/gold = SMALL_MATERIAL_AMOUNT,
+	)
 
 	brute_modifier = SYNTH_BRUTE_MODIFIER
 	burn_modifier = SYNTH_BURN_MODIFIER
@@ -244,7 +259,6 @@
 
 /datum/design/synth_r_arm
 	name = "Android Right Arm Base"
-	id = "synth_r_arm"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(
@@ -275,6 +289,10 @@
 	bodyshape = BODYSHAPE_HUMANOID
 	change_exempt_flags = NONE
 	dmg_overlay_type = "robotic"
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/gold = SMALL_MATERIAL_AMOUNT * 2,
+	)
 
 	brute_modifier = SYNTH_BRUTE_MODIFIER
 	burn_modifier = SYNTH_BURN_MODIFIER
@@ -299,7 +317,6 @@
 
 /datum/design/synth_l_leg
 	name = "Android Plantigrade Left Leg Base"
-	id = "synth_l_leg"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(
@@ -330,6 +347,10 @@
 	bodyshape = BODYSHAPE_HUMANOID
 	change_exempt_flags = NONE
 	dmg_overlay_type = "robotic"
+	custom_materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/gold = SMALL_MATERIAL_AMOUNT * 2,
+	)
 
 	brute_modifier = SYNTH_BRUTE_MODIFIER
 	burn_modifier = SYNTH_BURN_MODIFIER
@@ -354,7 +375,6 @@
 
 /datum/design/synth_r_leg
 	name = "Android Plantigrade Right Leg Base"
-	id = "synth_r_leg"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(
@@ -379,7 +399,6 @@
 
 /datum/design/synth_l_d_leg
 	name = "Android Digitigrade Left Leg Base"
-	id = "synth_l_d_leg"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(
@@ -404,7 +423,6 @@
 
 /datum/design/synth_r_d_leg
 	name = "Android Digitigrade Right Leg Base"
-	id = "synth_r_d_leg"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS
 	materials = list(

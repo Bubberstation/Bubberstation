@@ -43,17 +43,12 @@
 			ANNOUNCER_ANOMALIES
 		)
 
-	for (var/mob/living/silicon/ai/iter_ai in GLOB.alive_mob_list)
-		iter_ai.laws_sanity_check()
+	for (var/obj/machinery/ai_law_rack/base/rack as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/ai_law_rack/base))
+		if(prob(REMOVE_RANDOM_LAW_CHANCE))
+			rack.scramble_ai_rack(remove_law_prob = 100, base_ion_prob = 0)
 
-		if (prob(REMOVE_RANDOM_LAW_CHANCE))
-			iter_ai.remove_law(rand(1, iter_ai.laws.get_law_amount(list(LAW_INHERENT, LAW_SUPPLIED))))
-
-		var/laws_left = 3
-		while (laws_left-- > 0)
-			iter_ai.add_ion_law(generate_ion_law())
-
-		log_silicon("[key_name(user)], via [src.name], changed laws of [key_name(iter_ai)] to [english_list(iter_ai.laws.get_law_list(TRUE, TRUE))]")
+		rack.scramble_ai_rack(sub_ion_prob = 100, ion_limit = 2)
+		log_silicon("[key_name(user)], via [src.name], changed laws of [key_name(rack)] to [english_list(rack.combined_lawset.get_law_list(TRUE, TRUE))]")
 
 	var/datum/antagonist/heretic/our_heretic = GET_HERETIC(user)
 	our_heretic?.wildcard_obj?.increment_progress(our_heretic)

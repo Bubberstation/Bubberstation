@@ -21,7 +21,7 @@
 			process_speed = override_speed_multiplier
 
 		else
-			process_speed = INATE_BOULDER_SPEED_MULTIPLIER
+			process_speed = INNATE_BOULDER_SPEED_MULTIPLIER
 
 		playsound(src, 'sound/effects/rock/rocktap1.ogg', 50)
 		if(!continued)

@@ -55,6 +55,7 @@
 	name = "black chaps"
 	desc = "Yeehaw"
 	icon_state = "chaps"
+	body_parts_covered = NONE
 
 
 /*

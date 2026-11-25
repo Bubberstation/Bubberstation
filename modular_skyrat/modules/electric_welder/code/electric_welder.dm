@@ -11,12 +11,14 @@
 	// We don't use fuel
 	change_icons = FALSE
 	var/cell_override = /obj/item/stock_parts/power_store/cell/high
+	/// Whether the cell component draws its own battery overlay
+	var/has_cell_overlays = TRUE
 	var/powered = FALSE
 	max_fuel = 20
 
 /obj/item/weldingtool/electric/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/cell, cell_override, CALLBACK(src, PROC_REF(switched_off)))
+	AddComponent(/datum/component/cell, cell_override, CALLBACK(src, PROC_REF(switched_off)), _has_cell_overlays = has_cell_overlays)
 
 /obj/item/weldingtool/electric/attack_self(mob/user, modifiers)
 	. = ..()

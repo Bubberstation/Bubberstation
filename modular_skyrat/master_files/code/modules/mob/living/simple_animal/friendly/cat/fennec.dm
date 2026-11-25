@@ -13,7 +13,6 @@
 		/obj/item/food/meat/slab = 1,
 	)
 	collar_icon_state = null
-	can_be_held = TRUE
 	worn_slot_flags = ITEM_SLOT_HEAD
 	held_state = "fennec"
 	ai_controller = /datum/ai_controller/basic_controller/cat/fennec
@@ -28,30 +27,7 @@
 		held_item_overlay = mutable_appearance(icon, "fennec_mouse_overlay")
 	. += held_item_overlay
 
-/datum/ai_planning_subtree/random_speech/fennecs
-	speech_chance = 5
-	speak = list(
-		"screm!",
-		"rrrrf!",
-		"screech!",
-		"aaaaaa!",
-		"squeak!",
-		"yip!",
-		"squee!",
-	)
-
 /datum/ai_controller/basic_controller/cat/fennec
-	planning_subtrees = list(
-		/datum/ai_planning_subtree/reside_in_home,
-		/datum/ai_planning_subtree/flee_target/from_flee_key/cat_struggle,
-		/datum/ai_planning_subtree/find_and_hunt_target/hunt_mice,
-		/datum/ai_planning_subtree/find_and_hunt_target/find_cat_food,
-		/datum/ai_planning_subtree/simple_find_target,
-		/datum/ai_planning_subtree/haul_food_to_young,
-		/datum/ai_planning_subtree/territorial_struggle,
-		/datum/ai_planning_subtree/make_babies,
-		/datum/ai_planning_subtree/random_speech/fennecs,
-	)
 
 /mob/living/basic/pet/cat/fennec/add_breeding_component()
 	AddComponent(\

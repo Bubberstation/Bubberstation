@@ -31,16 +31,14 @@
 
 	return values
 
-/datum/preference/choiced/species/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/prefs)
-	target.set_species(value, icon_update = FALSE, pref_load = FALSE, override_features = prefs?.features.Copy(), override_mutantparts = prefs?.mutant_bodyparts.Copy(), override_markings = prefs?.body_markings.Copy()) // SKYRAT EDIT - Customization
+/datum/preference/choiced/species/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
+	target.set_species(value, icon_update = FALSE, pref_load = FALSE, override_features = preferences?.features.Copy(), override_mutantparts = preferences?.mutant_bodyparts.Copy(), override_markings = preferences?.body_markings.Copy()) // SKYRAT EDIT - Customization
 
 	//SKYRAT EDIT ADDITION
-	target.dna.update_body_size()
-
 	for(var/organ_key in list(ORGAN_SLOT_VAGINA, ORGAN_SLOT_PENIS, ORGAN_SLOT_BREASTS, ORGAN_SLOT_ANUS))
 		var/obj/item/organ/genital/gent = target.get_organ_slot(organ_key)
 		if(gent)
-			gent.aroused = prefs.arousal_preview
+			gent.aroused = preferences.arousal_preview
 			gent.update_sprite_suffix()
 	//SKYRAT EDIT END
 

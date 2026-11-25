@@ -140,7 +140,7 @@
 
 			if(DIG_ROCK)
 				to_chat(user, span_notice("You successfully dig around the item."))
-				user.mind.adjust_experience(/datum/skill/research, xeno_hammer.dig_amount)
+				user.mind?.adjust_experience(/datum/skill/research, xeno_hammer.dig_amount)
 
 	if(istype(attacking_item, /obj/item/xenoarch/brush))
 		var/obj/item/xenoarch/brush/xeno_brush = attacking_item
@@ -157,7 +157,7 @@
 
 			if(BRUSH_UNCOVER)
 				to_chat(user, span_notice("You successfully brush around the item, fully revealing the item!"))
-				user.mind.adjust_experience(/datum/skill/research, 20)
+				user.mind?.adjust_experience(/datum/skill/research, 20)
 				return
 
 			if(BRUSH_NONE)
@@ -172,7 +172,7 @@
 
 		if(get_measured())
 			to_chat(user, span_notice("You successfully attach a holo measuring tape to the strange rock; the strange rock will now report its dug depth always!"))
-			user.mind.adjust_experience(/datum/skill/research, 5)
+			user.mind?.adjust_experience(/datum/skill/research, 5)
 			return
 
 		to_chat(user, span_warning("The strange rock was already marked with a holo measuring tape."))
@@ -187,7 +187,7 @@
 
 		if(get_scanned(item_scanner.scan_advanced))
 			to_chat(user, span_notice("You successfully attach a holo scanning module to the strange rock; the strange rock will now report its depth information always!"))
-			user.mind.adjust_experience(/datum/skill/research, 5)
+			user.mind?.adjust_experience(/datum/skill/research, 5)
 			if(adv_scanned)
 				to_chat(user, span_notice("The rock's item depth is being reported!"))
 

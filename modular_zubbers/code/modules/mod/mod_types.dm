@@ -50,3 +50,6 @@
 		/obj/item/mod/module/auto_doc,
 	)
 
+/obj/item/mod/control/pre_equipped/administrative/no_deploy
+	worn_icon = 'modular_zubbers/icons/mob/clothing/modsuit/mod_clothing.dmi'
+	no_outfit_deploy = TRUE

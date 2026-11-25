@@ -1,5 +1,6 @@
 /datum/species/vulpkanin
 	name = "Vulpkanin"
+	plural_form = "Vulpkanin"
 	id = SPECIES_VULP
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
@@ -36,35 +37,35 @@
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "face-smile-beam",
 		SPECIES_PERK_NAME = "Peanut Butter Affinity",
-		SPECIES_PERK_DESC = "Vulpkanin LOVE peanutbutter and get quite excited when eating it",
+		SPECIES_PERK_DESC = "Vulpkanin LOVE peanutbutter, and get quite excited when eating it.",
 	))
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "shoe-prints",
 		SPECIES_PERK_NAME = "Hardened Soles",
-		SPECIES_PERK_DESC = "Vulpkanin have feet that can withstand more than most species",
+		SPECIES_PERK_DESC = "Vulpkanin have feet that can withstand more than most species.",
 	))
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "eye",
 		SPECIES_PERK_NAME = "Night Vision",
-		SPECIES_PERK_DESC = "Vulpkanin eyes can see better in the dark than most species",
+		SPECIES_PERK_DESC = "Vulpkanin eyes can see better in the dark than most species.",
 	))
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "biohazard",
 		SPECIES_PERK_NAME = "Chocolate Allergy",
-		SPECIES_PERK_DESC = "Vulpkanin will start rapidly taking toxic damage when consuming coco",
+		SPECIES_PERK_DESC = "Vulpkanin will start rapidly taking toxic damage when consuming coco.",
 	))
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "stomach",
 		SPECIES_PERK_NAME = "Hunger",
-		SPECIES_PERK_DESC = "Vulpkanin will get hungrier 50% faster than most species",
+		SPECIES_PERK_DESC = "Vulpkanin will get hungrier 50% faster than most species.",
 	))
 
 	return to_add

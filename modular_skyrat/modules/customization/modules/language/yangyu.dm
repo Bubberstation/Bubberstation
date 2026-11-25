@@ -4,7 +4,7 @@
 	that was first proposed in the early 19th century. This group of tongues is the second most popular in Terran space to Galactic Common. \
 	Many loanwords, idioms, and cultural relics have managed to persist, especially in the daily lives of speakers coming from Martian cities."
 	key = "Y"
-	flags = TONGUELESS_SPEECH
+	flags = LANGUAGE_TONGUELESS_SPEECH
 	space_chance = 70
 	// Entirely Chinese save for the isolated 2 "nya" style syllables. I don't want to bloat the syllable list with other mixes, but they generally sound somewhat alike.
 	syllables = list (

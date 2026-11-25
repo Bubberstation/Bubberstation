@@ -23,6 +23,11 @@
 	greyscale_config = /datum/greyscale_config/hypospray_mkii
 	desc = "A new development from DeForest Medical, this hypospray takes 50-unit vials as the drug supply for easy swapping."
 	w_class = WEIGHT_CLASS_TINY
+	custom_materials = list(
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 3,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT,
+	)
 	var/list/allowed_containers = list(/obj/item/reagent_containers/cup/vial/small)
 	/// Is the hypospray only able to use small vials. Relates to the loaded overlays
 	var/small_only = TRUE
@@ -72,14 +77,15 @@
 	penetrates = INJECT_CHECK_PENETRATE_THICK
 
 // Deluxe hypo upgrade Kit
-/obj/item/device/custom_kit/deluxe_hypo2
+/obj/item/custom_kit/deluxe_hypo2
 	name = "hypospray Mk. II deluxe bodykit"
 	desc = "Upgrades the DeForest Hypospray Mk. II to support larger vials."
 	// don't tinker with a loaded (medi)gun. fool
 	from_obj = /obj/item/hypospray/mkii
 	to_obj = /obj/item/hypospray/mkii/deluxe
+	custom_materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 8)
 
-/obj/item/device/custom_kit/deluxe_hypo2/pre_convert_check(obj/target_obj, mob/user)
+/obj/item/custom_kit/deluxe_hypo2/pre_convert_check(obj/target_obj, mob/user)
 	var/obj/item/hypospray/mkii/our_hypo = target_obj
 	if(our_hypo.type in subtypesof(/obj/item/hypospray/mkii/))
 		balloon_alert(user, "only works on basic mk. ii hypos!")
@@ -181,17 +187,16 @@
 		greyscale_colors = null
 
 /obj/item/hypospray/mkii/proc/unload_hypo(obj/item/hypo, mob/user)
-	if((istype(hypo, /obj/item/reagent_containers/cup/vial)))
-		var/obj/item/reagent_containers/cup/vial/container = hypo
-		container.forceMove(user.loc)
-		user.put_in_hands(container)
-		to_chat(user, span_notice("You remove [vial] from [src]."))
-		vial = null
-		update_icon()
-		playsound(loc, 'sound/items/weapons/empty.ogg', 50, 1)
-	else
+	if(!hypo)
 		to_chat(user, span_notice("This hypo isn't loaded!"))
 		return
+
+	hypo.forceMove(user.loc)
+	user.put_in_hands(hypo)
+	to_chat(user, span_notice("You remove [vial] from [src]."))
+	vial = null
+	update_icon()
+	playsound(loc, 'sound/items/weapons/empty.ogg', 50, 1)
 
 /obj/item/hypospray/mkii/proc/insert_vial(obj/item/new_vial, mob/living/user)
 	if(!is_type_in_list(new_vial, allowed_containers))

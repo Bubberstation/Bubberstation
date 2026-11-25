@@ -56,10 +56,10 @@
 				new_limb.set_icon_static(chosen_style.icon)
 			else
 				new_limb.set_icon_greyscale(chosen_style.icon)
-				if(supports_digitigrade == TRUE && old_limb.limb_id == BODYPART_ID_DIGITIGRADE)
-					new_limb.limb_id = BODYPART_ID_DIGITIGRADE
-					new_limb.base_limb_id = BODYPART_ID_DIGITIGRADE
-					new_limb.bodyshape = old_limb.bodyshape
+		if(supports_digitigrade == TRUE && old_limb.limb_id == BODYPART_ID_DIGITIGRADE)
+			new_limb.limb_id = BODYPART_ID_DIGITIGRADE
+			new_limb.base_limb_id = BODYPART_ID_DIGITIGRADE
+			new_limb.bodyshape = old_limb.bodyshape
 
 		new_limb.replace_limb(augmented)
 		qdel(old_limb)

@@ -90,6 +90,10 @@
 #define CYBORG_ICON_SCI 'modular_zubbers/code/modules/silicons/borgs/sprites/robot_sci.dmi'
 #define CYBORG_ICON_SCI_HAYDEE_BUBBER 'modular_zubbers/code/modules/silicons/borgs/sprites/curverobot_sci.dmi'
 
+//TARKON BORG ICON DEFINES
+#define CYBORG_ICON_TARKON_WIDE_BUBBER 'modular_zubbers/code/modules/silicons/borgs/sprites/widerobot_tarkon.dmi'
+#define CYBORG_ICON_TARKON_TALL_BUBBER 'modular_zubbers/code/modules/silicons/borgs/sprites/tallrobot_tarkon.dmi'
+
 // RAPTOR BORG ICON TYPE DEFINE
 #define CYBORG_ICON_TYPE_RAPTOR "raptor"
 
@@ -129,7 +133,7 @@
 #define CYBORG_ICON_STATE_SEC_FELI "FELI-Security"
 #define CYBORG_ICON_STATE_SYNDI_FELI "FELI-Combat"
 #define CYBORG_ICON_STATE_NINJA_FELI "FELI-Ninja"
-
+#define CYBORG_ICON_STATE_TARKON_FELI "FELI-Tarkon"
 
 // KITTY BORG DEFINES BELOW
 
@@ -180,6 +184,16 @@
 #define CYBORG_ICON_PK_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerPeaceKeeper.dmi'
 #define CYBORG_ICON_SERVICE_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerService.dmi'
 #define CYBORG_ICON_SYNDI_MYOMER 'modular_zubbers/code/modules/silicons/borgs/sprites/myomer/ProjectMyomerSyndi.dmi'
+
+// WYVERN BORGS ICON DEFINES - Sprites by Toriate, comissioned by Gearsin
+#define CYBORG_ICON_MED_WYVERN 'modular_zubbers/code/modules/silicons/borgs/sprites/wyvern/WyvernFrameMedical.dmi'
+#define CYBORG_ICON_ENGI_WYVERN 'modular_zubbers/code/modules/silicons/borgs/sprites/wyvern/WyvernFrameEnginerding.dmi'
+#define CYBORG_ICON_JANI_WYVERN 'modular_zubbers/code/modules/silicons/borgs/sprites/wyvern/WyvernFrameJani.dmi'
+#define CYBORG_ICON_MINE_WYVERN 'modular_zubbers/code/modules/silicons/borgs/sprites/wyvern/WyvernFrameMining.dmi'
+#define CYBORG_ICON_SEC_WYVERN 'modular_zubbers/code/modules/silicons/borgs/sprites/wyvern/WyvernFrameSec.dmi'
+#define CYBORG_ICON_PEACE_WYVERN 'modular_zubbers/code/modules/silicons/borgs/sprites/wyvern/WyvernFramePeace.dmi'
+#define CYBORG_ICON_SCI_WYVERN 'modular_zubbers/code/modules/silicons/borgs/sprites/wyvern/WyvernFrameResearch.dmi'
+#define CYBORG_ICON_SYNDI_WYVERN 'modular_zubbers/code/modules/silicons/borgs/sprites/wyvern/WyvernFrameSyndi.dmi'
 
 //WAGECAGE CARGOBORG DEFINES - Sprites by Boviro
 
@@ -283,3 +297,6 @@
 #define SKIFF_HAT_OFFSET \
 	SKIN_HAT_OFFSET = list("north" = list(0, -6), "south" = list(0, -5), "east" = list(-1, -5), "west" = list(1, -5)), \
 	SKIN_HAT_REST_OFFSET = list("north" = list(0, -12), "south" = list(0, -18), "east" = list(6, -18), "west" = list(-6, -18))
+#define WYVERN_HAT_OFFSET \
+	SKIN_HAT_OFFSET = list("north" = list(16, 2), "south" = list(17, -2), "east" = list(42, -4), "west" = list(-10, -4)), \
+	SKIN_HAT_REST_OFFSET = list("north" = list(16, -8), "south" = list(17, -12), "east" = list(42, -16), "west" = list(-10, -16))

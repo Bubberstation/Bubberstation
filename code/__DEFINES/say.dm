@@ -84,6 +84,8 @@
 #define MODE_TTS_IDENTIFIER "tts_identifier"
 /// Override the mob's name
 #define MODE_SPEAKER_NAME_OVERRIDE "speaker_name_override"
+/// Override the mob's gender
+#define MODE_SPEAKER_GENDER_OVERRIDE "speaker_gender_override"
 
 //Spans. Robot speech, italics, etc. Applied in compose_message().
 #define SPAN_ROBOT "robot"
@@ -100,6 +102,7 @@
 #define SPAN_SOAPBOX "soapbox"
 #define SPAN_COLOSSUS "colossus"
 #define SPAN_DANGER "danger"
+#define SPAN_REVENWARNING "revenwarning"
 //bitflag #defines for return value of the radio() proc.
 /// Makes the message use italics
 #define ITALICS (1<<0)
@@ -113,7 +116,7 @@
 /// Range to hear whispers normally
 #define WHISPER_RANGE 1
 /// Additional range to partially hear whispers
-#define EAVESDROP_EXTRA_RANGE 1 //how much past the specified message_range does the message get starred, whispering only
+#define EAVESDROP_RANGE 1 //how much past the specified message_range does the message get starred, whispering only
 
 /// How close intercoms can be for radio code use
 #define MODE_RANGE_INTERCOM 1

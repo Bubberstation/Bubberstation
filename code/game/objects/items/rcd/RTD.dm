@@ -15,6 +15,7 @@
 	desc = "Used for fast placement & destruction of floor tiles."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rtd"
+	inhand_icon_state = "rtd"
 	worn_icon_state = "RCD"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
@@ -27,6 +28,7 @@
 	drop_sound = 'sound/items/handling/tools/rcd_drop.ogg'
 	pickup_sound = 'sound/items/handling/tools/rcd_pickup.ogg'
 	sound_vary = TRUE
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.25)
 
 	/// main category for tile design
 	var/root_category = "Conventional"

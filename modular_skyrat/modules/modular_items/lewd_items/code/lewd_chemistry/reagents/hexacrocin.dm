@@ -50,5 +50,6 @@
 	required_temp = 600
 	mix_message = "The mixture rapidly condenses and darkens in color..."
 	erp_reaction = TRUE
+	reaction_tags = REACTION_TAG_CHEMICAL | REACTION_TAG_DRUG | REACTION_TAG_EASY
 
 #undef OD_CHANCE_NO_TRAUMA

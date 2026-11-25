@@ -2,7 +2,7 @@
 	icon = 'modular_zubbers/master_files/icons/mob/sprite_accessory/skrell_hair.dmi'
 	key = "skrell_hair"
 	color_src = USE_MATRIXED_COLORS
-	relevent_layers = list(BODY_ADJ_LAYER, BODY_FRONT_LAYER)
+	relevent_layers = list(EXTERNAL_ADJACENT, EXTERNAL_FRONT)
 	organ_type = /obj/item/organ/skrell_hair
 
 /datum/sprite_accessory/skrell_hair/is_hidden(mob/living/carbon/human/wearer)

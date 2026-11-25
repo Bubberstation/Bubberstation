@@ -2,7 +2,8 @@
 /mob/living/silicon/compose_track_href(atom/movable/speaker, namepart)
 	if(!HAS_TRAIT(src, TRAIT_CAN_GET_AI_TRACKING_MESSAGE))
 		return ""
-	var/mob/M = speaker.GetSource()
+	// var/mob/M = speaker.GetSource() // BUBBERSTATION EDIT OLD
+	var/mob/M = speaker.GetJob() // BUBBER EDIT NEW -- NTSL
 	if(M)
 		return "<a href='byond://?src=[REF(src)];track=[html_encode(namepart)]'>"
 	return ""
@@ -68,11 +69,7 @@
 // Make sure that the code compiles with AI_VOX undefined
 #ifdef AI_VOX
 #define VOX_DELAY 600
-/mob/living/silicon/ai/verb/announcement_help()
-
-	set name = "Announcement Help"
-	set desc = "Display a list of vocal words to announce to the crew."
-	set category = "AI Commands"
+GAME_VERB_DESC(/mob/living/silicon/ai, announcement_help, "Announcement Help", "Display a list of vocal words to announce to the crew.", "AI Commands")
 
 	if(incapacitated)
 		return

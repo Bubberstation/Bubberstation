@@ -37,6 +37,8 @@
 	COOLDOWN_DECLARE(ability_cooldown)
 	/// Do we have a disabled sprite?
 	var/disabled_sprite = TRUE
+	/// What description is shown to our converted members?
+	var/converted_desc = null
 
 /obj/structure/fleshmind/structure/Initialize(mapload)
 	. = ..()
@@ -58,6 +60,19 @@
 	. = ..()
 	if(trigger_on_attack && (ability_cooldown_time && !COOLDOWN_FINISHED(src, ability_cooldown)))
 		activate_ability()
+
+/obj/structure/fleshmind/structure/examine(mob/user)
+	. = ..()
+	if(user.has_faction(FACTION_FLESHMIND) && converted_desc)
+		. += span_notice("This item could be examined further...")
+
+/obj/structure/fleshmind/structure/examine_more(mob/user)
+	. = ..()
+	if(user.has_faction(FACTION_FLESHMIND) && converted_desc)
+		var/composed_message
+		composed_message = "Being one with the <b>flesh</b> tells you that: <br>"
+		composed_message += converted_desc
+		. += composed_message
 
 /**
  * Calculate trigger turfs - INTERNAL PROC
@@ -89,7 +104,7 @@
 
 	var/mob/living/arriving_mob = arrived
 
-	if(arriving_mob.stat != CONSCIOUS)
+	if(IS_UNCONSCIOUS(arriving_mob))
 		return
 
 	if(faction_check_atom(arriving_mob)) // A friend :)
@@ -175,6 +190,7 @@
 	smoothing_groups = SMOOTH_GROUP_WIREWEED_WALLS
 	canSmoothWith = SMOOTH_GROUP_WIREWEED_WALLS
 	can_atmos_pass = ATMOS_PASS_DENSITY
+	pass_flags_self = parent_type::pass_flags_self | PASSBLOB
 	max_integrity = 150
 	disabled_sprite = FALSE
 
@@ -264,6 +280,8 @@
 	base_icon_state = "core"
 	density = TRUE
 	max_integrity = 800
+	converted_desc = "This is a Processor Unit of your kernel. Protect it at all costs, it is what provides you life. It can send attackers flying in a pinch, but you shouldn't \
+	let it come to that."
 	/// The controller we create when we are created.
 	var/controller_type = /datum/fleshmind_controller
 	/// Whether the core can attack nearby hostiles as its processing.
@@ -275,7 +293,7 @@
 	/// How quickly we can attack
 	var/attack_cooldown = 3 SECONDS
 	/// The range at which we rally troops!
-	var/rally_range = 15
+	var/rally_range = 10
 	///How far we whip fuckers.
 	var/whip_range = 2
 	COOLDOWN_DECLARE(attack_move)
@@ -312,7 +330,7 @@
 	if(QDELETED(src))
 		return
 	var/mob/living/carbon/human/target = locate() in view(5, src)
-	if(target && target.stat == CONSCIOUS)
+	if(target && !IS_UNCONSCIOUS(target))
 		if(get_dist(src, target) <= 1)
 			icon_state = "core-fear"
 		else
@@ -355,8 +373,11 @@
 
 /obj/structure/fleshmind/structure/core/examine(mob/user)
 	. = ..()
-	/// Level * Progress Required - Current Points
-	var/level_calculation = (our_controller.level * our_controller.level_up_progress_required) - our_controller.current_points
+
+	/// Last Level Up Points + the points needed to next level, default 300
+	/// typically this means per level it takes around 300 points to level up, may be a bit more if it levelled up fast
+
+	var/level_calculation = (our_controller.last_level_up_points + our_controller.level_up_progress_required) - our_controller.current_points
 	/// round Cooldown Time / 10
 	var/time_calculation = round(COOLDOWN_TIMELEFT(our_controller, level_up_cooldown) / 10)
 
@@ -365,7 +386,7 @@
 			. += span_notice("Your GPS tracks to this thing!")
 		if(isobserver(user))
 			if(COOLDOWN_FINISHED(our_controller, level_up_cooldown) || level_calculation > 0)
-				. += "Level: [our_controller.level] | Progress to Next Level: [level_calculation]"
+				. += "Level: [our_controller.level] | Points to Next Level: [level_calculation]"
 			else
 				. += "Level: [our_controller.level] | Time to Next Level: [time_calculation] Seconds"
 
@@ -396,7 +417,7 @@
 	whip_those_fuckers()
 	rally_troops()
 	build_a_wall()
-	spawn_mob_at_core(/mob/living/basic/fleshmind/mechiver)
+	spawn_mob_at_core(/mob/living/basic/fleshmind/mechiver) // TODO: make an assault variant that actually fights
 
 // Tries to place mobs outside of the walls. But it will spawn on the core if it can't find a place.
 
@@ -458,6 +479,7 @@
 	icon_state = "antenna"
 	base_icon_state = "antenna"
 	max_integrity = 100
+	converted_desc = "A Babbler sends threatening messages over the radio to crewmembers. You cannot build one unless your kernel has three cores."
 	required_controller_level = CONTROLLER_LEVEL_3 // We don't want the presence announced too soon!
 	automatic_trigger_time_upper = 2 MINUTES
 	automatic_trigger_time_lower = 1.5 MINUTES
@@ -541,6 +563,7 @@
 	icon_state = "head"
 	base_icon_state = "head"
 	max_integrity = 120
+	converted_desc = "A Tormented Head will stun nearby enemies. You cannot build one unless your kernel has two cores."
 	required_controller_level = CONTROLLER_LEVEL_2
 	activation_range = DEFAULT_VIEW_RANGE
 	ability_cooldown_time = 45 SECONDS
@@ -573,6 +596,7 @@
 	icon_state = "orb"
 	base_icon_state = "orb"
 	max_integrity = 100
+	converted_desc = "A Whisperer sends threatening messages psionically to nearby crewmembers. You cannot build one unless your kernel has two cores."
 	required_controller_level = CONTROLLER_LEVEL_2
 	/// Upper timer limit for our ability
 	automatic_trigger_time_upper = 1.5 MINUTES
@@ -606,7 +630,7 @@
 	for(var/mob/living/carbon/human/iterating_human in GLOB.player_list)
 		if(iterating_human.z != z)
 			continue
-		if(iterating_human.stat != CONSCIOUS)
+		if(!IS_UNCONSCIOUS_OR_CRIT(iterating_human))
 			continue
 		if(faction_check_atom(iterating_human))
 			continue
@@ -627,6 +651,7 @@
 	icon = 'modular_zubbers/icons/fleshmind/fleshmind_machines.dmi'
 	icon_state = "psy"
 	max_integrity = 100
+	converted_desc = "A Psi-Modulator causes nearby crewmembers to suffer from hallucinations. You cannot build one unless your kernel has three cores."
 	base_icon_state = "psy"
 	required_controller_level = CONTROLLER_LEVEL_3
 	activation_range = DEFAULT_VIEW_RANGE
@@ -654,8 +679,11 @@
 	base_icon_state = "spawner"
 	density = FALSE
 	max_integrity = 260
+	converted_desc = "An Assembler creates more machines for your army. Unless you plan on fighting alone, it is a good idea to protect these."
 	activation_range = DEFAULT_VIEW_RANGE
 	ability_cooldown_time = 20 SECONDS
+	automatic_trigger_time_lower = 20 SECONDS
+	automatic_trigger_time_upper = 60 SECONDS
 	/// The max amount of mobs we can have at any one time.
 	var/max_mobs = 2
 	/// The current amount of spawned mobs
@@ -670,10 +698,10 @@
 		/mob/living/basic/fleshmind/treader = 3,
 		/mob/living/basic/fleshmind/himan = 3,
 		/mob/living/basic/fleshmind/phaser = 2,
-		/mob/living/basic/fleshmind/mechiver = 4,
+		/mob/living/basic/fleshmind/mechiver = 3,
 	)
 	/// Our override type, if manually set.
-	var/override_monser_type
+	var/override_monster_type
 
 
 /obj/structure/fleshmind/structure/assembler/activate_ability(mob/living/triggered_mob)
@@ -698,7 +726,7 @@
 	if(!chosen_override_type)
 		return
 
-	override_monser_type = chosen_override_type
+	override_monster_type = chosen_override_type
 
 /obj/structure/fleshmind/structure/assembler/proc/spawn_mob()
 	if(!our_controller)
@@ -708,7 +736,7 @@
 	do_squish(0.8, 1.2)
 
 	spawned_mobs++
-	var/chosen_mob_type = override_monser_type ? override_monser_type : pick_weight(monster_types)
+	var/chosen_mob_type = override_monster_type ? override_monster_type : pick_weight(monster_types)
 
 	var/mob/living/basic/fleshmind/spawned_mob = our_controller.spawn_mob(get_turf(src), chosen_mob_type)
 
@@ -735,6 +763,7 @@
 	activation_range = DEFAULT_VIEW_RANGE
 	ability_cooldown_time = 3 SECONDS
 	max_integrity = 300
+	converted_desc = "A Spiker shoots neurotoxin at nearby enemies. Useful for if those pesky uninitiated decide to attack your kernel."
 	/// The projectile we fire.
 	var/projectile_type = /obj/projectile/fleshmind_flechette
 
@@ -751,7 +780,7 @@
 	for(var/mob/living/target_mob in view(activation_range, src))
 		if(faction_check_atom(target_mob))
 			continue
-		if(target_mob.stat != CONSCIOUS)
+		if(IS_UNCONSCIOUS_OR_CRIT(target_mob))
 			continue
 		targets += target_mob
 
@@ -786,3 +815,4 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/neurotoxin
 	hitsound = 'modular_skyrat/modules/black_mesa/sound/mobs/bullsquid/splat1.ogg'
 	hitsound_wall = 'modular_skyrat/modules/black_mesa/sound/mobs/bullsquid/splat1.ogg'
+	faction = list(FACTION_FLESHMIND)

@@ -21,8 +21,8 @@
 	liver_traits = list(TRAIT_PRETENDER_ROYAL_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_BRIDGE_ASSISTANT
-	department_for_prefs = /datum/job_department/captain
-	departments_list = list(/datum/job_department/command)
+	department_for_prefs = /datum/job_department/assistant // BUBBER EDIT ADDITION
+//	departments_list = list(/datum/job_department/command) // BUBBER EDIT REMOVAL
 
 	family_heirlooms = list(/obj/item/banner/command/mundane)
 
@@ -35,6 +35,7 @@
 	// BUBBER EDIT - Previous: job_flags = STATION_JOB_FLAGS | JOB_ANTAG_BLACKLISTED | JOB_CANNOT_OPEN_SLOTS
 	job_flags = STATION_JOB_FLAGS | JOB_ANTAG_BLACKLISTED | HEAD_OF_STAFF_JOB_FLAGS
 	human_authority = JOB_AUTHORITY_NON_HUMANS_ALLOWED
+	tgui_icon = FA_ICON_BUILDING_SHIELD
 
 /obj/effect/landmark/start/bridge_assistant
 	name = "Bridge Assistant"

@@ -47,7 +47,7 @@
 	var/drawn_amount = min(reagents.maximum_volume - reagents.total_volume, 5)
 	// BUBBER EDIT ADDITION BEGIN - doafter for phylactery
 	to_chat(user, span_warning("You delicately aim the spindle at your target's neck..."))
-	if (!do_after(user, 3 SECONDS, hidden = TRUE))
+	if (!do_after(user, 3 SECONDS, show_progress = FALSE))
 		to_chat(user, span_warning("Both you and your target must stay still!"))
 		return ITEM_INTERACT_BLOCKING
 	// BUBBER EDIT ADDITION END

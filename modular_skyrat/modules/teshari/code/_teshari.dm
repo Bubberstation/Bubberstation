@@ -4,6 +4,7 @@
 
 /datum/species/teshari
 	name = "Teshari"
+	plural_form = "Teshari"
 	id = SPECIES_TESHARI
 	no_gender_shaping = TRUE // Female uniform shaping breaks Teshari worn sprites, so this is disabled. This will not affect anything else in regards to gender however.
 	inherent_traits = list(
@@ -40,7 +41,6 @@
 	species_language_holder = /datum/language_holder/teshari
 	mutantears = /obj/item/organ/ears/teshari
 	mutantlungs = /obj/item/organ/lungs/adaptive/cold
-	body_size_restricted = TRUE
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/mutant/teshari,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/mutant/teshari,
@@ -62,6 +62,9 @@
 	name = "teshari tongue"
 	liked_foodtypes = SEAFOOD | VEGETABLES | NUTS
 	disliked_foodtypes = GROSS | GRAIN
+	emote_sounds = list(
+		/datum/emote/living/scream::key = 'modular_skyrat/modules/emotes/sound/emotes/raptorscream.ogg'
+	)
 
 /obj/item/organ/eyes/teshari
 	name = "teshari eyes"
@@ -80,11 +83,11 @@
 
 /datum/species/teshari/on_species_gain(mob/living/carbon/human/new_teshari, datum/species/old_species, pref_load, regenerate_icons)
 	. = ..()
-	passtable_on(new_teshari, SPECIES_TRAIT)
+	ADD_TRAIT(new_teshari, TRAIT_PASSTABLE, SPECIES_TRAIT)
 
 /datum/species/teshari/on_species_loss(mob/living/carbon/C, datum/species/new_species, pref_load)
 	. = ..()
-	passtable_off(C, SPECIES_TRAIT)
+	REMOVE_TRAIT(C, TRAIT_PASSTABLE, SPECIES_TRAIT)
 
 /datum/species/teshari/create_pref_unique_perks()
 	var/list/perk_descriptions = list()

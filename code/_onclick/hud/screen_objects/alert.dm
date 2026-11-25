@@ -86,6 +86,8 @@
 	alerts -= category
 	if(client && hud_used)
 		hud_used.reorganize_alerts()
+		for(var/mob/viewer as anything in observers)
+			viewer.client?.screen -= alert
 		client.screen -= alert
 	qdel(alert)
 
@@ -547,6 +549,7 @@
 		offerer.add_mood_event("high_five", /datum/mood_event/down_low)
 		rube.add_mood_event("high_five", /datum/mood_event/too_slow)
 		offerer.remove_status_effect(/datum/status_effect/offering/no_item_received/high_five)
+		offerer.client?.give_award(/datum/award/achievement/misc/down_low_too_slow, offerer)
 
 	qdel(src)
 
@@ -555,7 +558,7 @@
 	SIGNAL_HANDLER
 
 	if(QDELETED(offer.offered_item))
-		examine_list += span_warning("[source]'s arm appears tensed up, as if [source.p_they()] plan on pulling it back suddenly...")
+		examine_list += span_warning("[source]'s arm appears tensed up, as if [source.p_they()] plan[source.p_s()] on pulling it back suddenly...")
 
 /atom/movable/screen/alert/give/hand
 	screentip_override_text = "Take Hand"
@@ -606,7 +609,7 @@
 		return
 	if(length(last_whisper))
 		living_owner.say("#[last_whisper]")
-	living_owner.succumb(whispered = length(last_whisper) > 0)
+	INVOKE_GAME_VERB(living_owner, usr, /mob/living, succumb, whisper = length(last_whisper) > 0)
 
 //ALIENS
 
@@ -1009,6 +1012,7 @@
 			context[SCREENTIP_CONTEXT_ALT_LMB] = "[selected_never ? "Cancel " : ""]Never For This Round"
 		if(poll.jump_to_me && isobserver(owner))
 			context[SCREENTIP_CONTEXT_CTRL_LMB] = "Jump To"
+		context[SCREENTIP_CONTEXT_RMB] = "Dismiss" //BUBBER EDIT ADDITION - ANTAG PROMPT
 	return CONTEXTUAL_SCREENTIP_SET
 
 /atom/movable/screen/alert/poll_alert/process()
@@ -1027,8 +1031,15 @@
 	if(!. || isnull(poll))
 		return
 	var/list/modifiers = params2list(params)
+	//BUBBER EDIT ADDITION BEGIN - ANTAG PROMPT - right click closes the prompt
+	if(LAZYACCESS(modifiers, RIGHT_CLICK))
+		dismiss_poll()
+		return
+	//BUBBER EDIT ADDITION END - ANTAG PROMPT
 	if(LAZYACCESS(modifiers, ALT_CLICK) && poll.ignoring_category)
-		set_never_round()
+		//BUBBER EDIT CHANGE - ANTAG PROMPT - antag prompts confirm first, they blanket every roll
+		//set_never_round() - BUBBER EDIT ORIGINAL
+		confirm_never_round()
 		return
 	if(LAZYACCESS(modifiers, CTRL_CLICK) && poll.jump_to_me)
 		jump_to_jump_target()
@@ -1076,7 +1087,7 @@
 
 /atom/movable/screen/alert/poll_alert/proc/update_candidates_number_overlay()
 	cut_overlay(candidates_num_overlay)
-	if(!length(poll.signed_up))
+	if(!length(poll.signed_up) || !poll.show_candidate_amount) //BUBBER EDIT - ANTAG PROMPT - some polls hide their signup count
 		return
 	candidates_num_overlay = new
 	candidates_num_overlay.maptext = MAPTEXT("<span style='text-align: right; color: aqua'>[length(poll.signed_up)]</span>")
@@ -1160,13 +1171,12 @@
 	if(!.)
 		return
 
-	var/mob/living/carbon/carbon_owner = owner
-
-	if(!carbon_owner.can_resist() || !carbon_owner.shoes)
+	var/obj/item/clothing/shoes/shoes = owner.get_item_by_slot(ITEM_SLOT_FEET)
+	if(!owner.can_resist() || !istype(shoes, /obj/item/clothing/shoes))
 		return
 
-	carbon_owner.changeNext_move(CLICK_CD_RESIST)
-	carbon_owner.shoes.handle_tying(carbon_owner)
+	owner.changeNext_move(CLICK_CD_RESIST)
+	shoes.handle_tying(owner)
 
 /atom/movable/screen/alert/shoes/untied
 	name = "Untied Shoes"
