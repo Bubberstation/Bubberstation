@@ -61,6 +61,11 @@
 	var/paused = FALSE
 	/// Last time the projectile moved, used for lag compensation if SSprojectiles starts chugging
 	VAR_PRIVATE/last_projectile_move = 0
+	// BUBBER EDIT ADDITION BEGIN - PROJECTILE LAG
+	VAR_PRIVATE/last_projectile_move_real = 0
+	/// Real deciseconds this tick's movement is animated over, 0 means world.tick_lag
+	VAR_PRIVATE/animation_window = 0
+	// BUBBER EDIT ADDITION END
 	/// Last time the projectile was processed, also used for lag compensation
 	VAR_PRIVATE/last_process = 0
 	/// How many pixels we missed last tick due to lag or speed cap
@@ -409,7 +414,7 @@
 		reagent_note = "REAGENTS: [pretty_string_from_reagent_list(reagents.reagent_list)]"
 
 	if(ismob(firer) && !do_not_log)
-		log_combat(firer, living_target, "shot", src, reagent_note)
+		SSprojectiles.queue_combat_log(firer, living_target, "shot", src, reagent_note) // BUBBER EDIT CHANGE - PROJECTILE LAG - ORIGINAL: log_combat(firer, living_target, "shot", src, reagent_note)
 		return BULLET_ACT_HIT
 
 	if(isvehicle(firer))
@@ -419,11 +424,11 @@
 			logging_mobs = firing_vehicle.return_drivers()
 		if(!do_not_log)
 			for(var/mob/logged_mob as anything in logging_mobs)
-				log_combat(logged_mob, living_target, "shot", src, "from inside [firing_vehicle][logging_mobs.len > 1 ? " with multiple occupants" : null][reagent_note ? " and contained [reagent_note]" : null]")
+				SSprojectiles.queue_combat_log(logged_mob, living_target, "shot", src, "from inside [firing_vehicle][logging_mobs.len > 1 ? " with multiple occupants" : null][reagent_note ? " and contained [reagent_note]" : null]") // BUBBER EDIT CHANGE - PROJECTILE LAG - ORIGINAL: log_combat(...)
 		return BULLET_ACT_HIT
 
 	if(!do_not_log)
-		living_target.log_message("has been shot by [firer] with [src][reagent_note ? " containing [reagent_note]" : null]", LOG_ATTACK, color="orange")
+		SSprojectiles.queue_log(living_target, "has been shot by [firer] with [src][reagent_note ? " containing [reagent_note]" : null]", LOG_ATTACK, "orange") // BUBBER EDIT CHANGE - PROJECTILE LAG - ORIGINAL: living_target.log_message(..., LOG_ATTACK, color="orange")
 	return BULLET_ACT_HIT
 
 /obj/projectile/proc/vol_by_damage()
@@ -716,6 +721,10 @@
  */
 /obj/projectile/proc/on_entered(datum/source, atom/movable/entered_atom)
 	SIGNAL_HANDLER
+	// BUBBER EDIT ADDITION BEGIN - PROJECTILE LAG
+	if (source != loc)
+		return
+	// BUBBER EDIT ADDITION END
 	if(can_hit_target(entered_atom, direct_target = (entered_atom == original)))
 		impact(entered_atom)
 
@@ -793,7 +802,7 @@
 		if (firer != original)
 			RegisterSignal(original, COMSIG_QDELETING, PROC_REF(original_deleted))
 	if (!log_override && firer && original && !do_not_log)
-		log_combat(firer, original, "fired at", src, "from [get_area_name(src, TRUE)]")
+		SSprojectiles.queue_combat_log(firer, original, "fired at", src, "from [get_area_name(src, TRUE)]") // BUBBER EDIT CHANGE - PROJECTILE LAG - ORIGINAL: log_combat(firer, original, "fired at", src, "from [get_area_name(src, TRUE)]")
 			//note: mecha projectile logging is handled in /obj/item/mecha_parts/mecha_equipment/weapon/action(). try to keep these messages roughly the sameish just for consistency's sake.
 	if (direct_target && (get_dist(direct_target, get_turf(src)) <= 1)) // point blank shots
 		impact(direct_target)
@@ -818,6 +827,7 @@
 	free_hitscan_forceMove = TRUE
 	forceMove(starting)
 	last_projectile_move = world.time
+	last_projectile_move_real = SSprojectiles.real_now() // BUBBER EDIT ADDITION - PROJECTILE LAG
 	fired = TRUE
 	play_fov_effect(starting, 6, "gunfire", dir = NORTH, angle = angle)
 	SEND_SIGNAL(src, COMSIG_PROJECTILE_FIRE)
@@ -904,6 +914,7 @@
 	if(paused || !isturf(loc))
 		// Compensates for pausing, so it doesn't become a hitscan projectile when unpaused from charged up ticks.
 		last_projectile_move = last_process
+		last_projectile_move_real = SSprojectiles.real_now() // BUBBER EDIT ADDITION - PROJECTILE LAG
 		return
 
 	if (hitscan)
@@ -911,7 +922,10 @@
 		return
 
 	// Calculates how many pixels should be moved this tick, including overrun debt from the previous tick
-	var/elapsed_time = world.time - last_projectile_move
+	// BUBBER EDIT CHANGE BEGIN - PROJECTILE LAG
+	// var/elapsed_time = world.time - last_projectile_move - BUBBER EDIT ORIGINAL
+	var/elapsed_time = SSprojectiles.real_now() - last_projectile_move_real
+	// BUBBER EDIT CHANGE END
 	var/pixels_to_move = elapsed_time * SSprojectiles.pixels_per_decisecond * speed + overrun
 	overrun = 0
 
@@ -924,14 +938,30 @@
 	SEND_SIGNAL(src, COMSIG_PROJECTILE_BEFORE_MOVE)
 
 	// Registering turf entries is done here instead of a connect_loc because else it could be called multiple times per tick and waste performance
-	if (last_tick_turf)
-		UnregisterSignal(last_tick_turf, COMSIG_ATOM_ENTERED)
+	// BUBBER EDIT REMOVAL BEGIN - PROJECTILE LAG
+	// if (last_tick_turf)
+	// 	UnregisterSignal(last_tick_turf, COMSIG_ATOM_ENTERED)
+	// BUBBER EDIT REMOVAL END
 
+	// BUBBER EDIT CHANGE BEGIN - PROJECTILE LAG
+	// process_movement(pixels_to_move) - BUBBER EDIT ORIGINAL
+	animation_window = clamp(elapsed_time, world.tick_lag, SSprojectiles.max_animation_window)
 	process_movement(pixels_to_move)
+	animation_window = 0
+	// BUBBER EDIT CHANGE END
 
-	if (!QDELETED(src) && !deletion_queued && isturf(loc))
-		RegisterSignal(loc, COMSIG_ATOM_ENTERED, PROC_REF(on_entered))
-		last_tick_turf = loc
+	// BUBBER EDIT CHANGE BEGIN - PROJECTILE LAG
+	// if (!QDELETED(src) && !deletion_queued && isturf(loc))
+	// 	RegisterSignal(loc, COMSIG_ATOM_ENTERED, PROC_REF(on_entered))
+	// 	last_tick_turf = loc - BUBBER EDIT ORIGINAL
+	var/turf/entry_turf = (!QDELETED(src) && !deletion_queued && isturf(loc)) ? loc : null
+	if (entry_turf != last_tick_turf)
+		if (last_tick_turf)
+			UnregisterSignal(last_tick_turf, COMSIG_ATOM_ENTERED)
+		if (entry_turf)
+			RegisterSignal(entry_turf, COMSIG_ATOM_ENTERED, PROC_REF(on_entered))
+		last_tick_turf = entry_turf
+	// BUBBER EDIT CHANGE END
 
 /*
  * Main projectile movement cycle.
@@ -950,6 +980,7 @@
 	var/total_move_distance = pixels_to_move
 	var/movements_done = 0
 	last_projectile_move = world.time
+	last_projectile_move_real = SSprojectiles.real_now() // BUBBER EDIT ADDITION - PROJECTILE LAG
 	while (pixels_to_move > 0 && isturf(loc) && !QDELETED(src) && !deletion_queued)
 		// Because pixel_x/y represents offset and not actual visual position of the projectile, we add 16 pixels to each and cut the excess because projectiles are not meant to be highly offset by default
 		var/pixel_x_actual = pixel_x + ICON_SIZE_X / 2
@@ -1050,7 +1081,7 @@
 			var/delete_x = pixel_x + movement_vector.pixel_x * delete_distance
 			var/delete_y = pixel_y + movement_vector.pixel_y * delete_distance
 			// In order to keep a consistent speed, calculate at what point between ticks we get deleted
-			var/animate_time = world.tick_lag * delete_distance / total_move_distance
+			var/animate_time = (animation_window || world.tick_lag) * delete_distance / total_move_distance // BUBBER EDIT CHANGE - PROJECTILE LAG - ORIGINAL: world.tick_lag * delete_distance / total_move_distance
 			// Sometimes we need to move *just a bit* more than we can afford this tick - in this case, delete a tick after
 			// so we don't disappear before impact. This shouldn't be more than 1, ever.
 			if (delete_distance > pixels_to_move)
@@ -1070,8 +1101,13 @@
 			// We need to shift back to the tile we were on before moving
 			pixel_x -= x_shift * ICON_SIZE_X
 			pixel_y -= y_shift * ICON_SIZE_Y
-			if (!move_animate(entry_x, entry_y))
-				animate(src, pixel_x = entry_x, pixel_y = entry_y, time = world.tick_lag * distance_to_move / total_move_distance, flags = ANIMATION_PARALLEL | ANIMATION_CONTINUE)
+			// BUBBER EDIT CHANGE BEGIN - PROJECTILE LAG
+			// if (!move_animate(entry_x, entry_y))
+			// 	animate(src, pixel_x = entry_x, pixel_y = entry_y, time = world.tick_lag * distance_to_move / total_move_distance, flags = ANIMATION_PARALLEL | ANIMATION_CONTINUE) - BUBBER EDIT ORIGINAL
+			var/step_time = (animation_window || world.tick_lag) * distance_to_move / total_move_distance
+			if (!move_animate(entry_x, entry_y, step_time))
+				animate(src, pixel_x = entry_x, pixel_y = entry_y, time = step_time, flags = ANIMATION_PARALLEL | ANIMATION_CONTINUE)
+			// BUBBER EDIT CHANGE END
 
 		// Homing caps our movement speed per loop while leaving per tick speed intact, so we can just call process_homing every loop here
 		if (homing)
