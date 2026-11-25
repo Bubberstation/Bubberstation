@@ -43,9 +43,9 @@
 
 /obj/item/storage/box/hero/vamphunter // I SWEAR this isn't just the chaplains stuff!!!!
 	name = "Vampire Hunter Kit - 1735"
-	desc = "Vampire Hunter - 1735. 
-" + span_notice("The garb can hold a variety of relevant items.
-Comes with a crucifix that wards against hexes, and a few premium stakes.")
+	desc = "Vampire Hunter - 1735. \n" \
+		+ span_notice("The garb can hold a variety of relevant items.\n\
+		Comes with a crucifix that wards against hexes, and a few premium stakes.")
 
 /obj/item/storage/box/hero/vamphunter/PopulateContents()
 	new /obj/item/clothing/suit/armor/vamphunter(src)
