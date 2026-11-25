@@ -32,6 +32,8 @@
 	var/datum/antagonist/vampire/vampire_datum
 	/// Cooldown twhere, if it finishes, we'll just force heal the vampire, to avoid eternal torpor.
 	COOLDOWN_DECLARE(force_heal_time)
+	/// While true, torpor only ends due to frenzy
+	var/held = FALSE
 	/// List of traits applied while in torpor.
 	var/static/list/torpor_traits = list(
 		TRAIT_DEATHCOMA,
@@ -60,6 +62,7 @@
 	return TRUE
 
 /datum/status_effect/vampire_torpor/on_remove()
+	UnregisterSignal(owner, COMSIG_MOB_LOGIN)
 	if(!iscarbon(owner) || vampire_datum.final_death)
 		return
 
@@ -74,7 +77,22 @@
 
 	to_chat(owner, span_notice("You have recovered from Torpor."))
 
+/// Keeps us in Torpor until someone is back in control of the body
+/datum/status_effect/vampire_torpor/proc/hold_until_login()
+	if(owner.client)
+		return
+	held = TRUE
+	RegisterSignal(owner, COMSIG_MOB_LOGIN, PROC_REF(release_hold), override = TRUE)
+
+/datum/status_effect/vampire_torpor/proc/release_hold(datum/source)
+	SIGNAL_HANDLER
+	held = FALSE
+	UnregisterSignal(owner, COMSIG_MOB_LOGIN)
+	COOLDOWN_START(src, force_heal_time, 5 MINUTES)
+
 /datum/status_effect/vampire_torpor/tick(seconds_between_ticks)
+	if(held && !HAS_TRAIT(owner, TRAIT_FRENZY))
+		return
 	if(should_end())
 		qdel(src)
 		return
