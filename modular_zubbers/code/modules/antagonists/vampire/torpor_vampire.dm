@@ -10,7 +10,7 @@
  * - Death, dealt with by /HandleDeath()
  * Torpor is ended by:
  * - Having no more than TORPOR_DAMAGE_THRESHOLD Brute damage while OUTSIDE of your Coffin.
- * - Having no more than TORPOR_DAMAGE_THRESHOLD Brute & Burn Combined while INSIDE of your Coffin.
+ * - Having no more than TORPOR_DAMAGE_THRESHOLD Brute & Burn Combined and no missing limbs while INSIDE of your Coffin.
  * Only damage we can heal counts, see get_healable_brute() and get_healable_burn().
 **/
 #define TORPOR_DAMAGE_THRESHOLD 10
@@ -20,7 +20,7 @@
 	if(QDELETED(carbon_owner))
 		return
 	var/total_damage = get_healable_brute() + get_healable_burn()
-	if(total_damage > TORPOR_DAMAGE_THRESHOLD || length(carbon_owner.all_wounds))
+	if(total_damage > TORPOR_DAMAGE_THRESHOLD || length(carbon_owner.all_wounds) || length(carbon_owner.get_missing_limbs()))
 		carbon_owner.apply_status_effect(/datum/status_effect/vampire_torpor)
 
 /datum/status_effect/vampire_torpor
@@ -123,7 +123,8 @@
 
 	// You are in a coffin, so instead we'll check TOTAL damage.
 	if(istype(owner.loc, /obj/structure/closet/crate/coffin))
-		if((total_brute + total_burn) <= TORPOR_DAMAGE_THRESHOLD)
+		var/mob/living/carbon/carbon_owner = owner
+		if((total_brute + total_burn) <= TORPOR_DAMAGE_THRESHOLD && !length(carbon_owner.get_missing_limbs()))
 			owner.heal_overall_damage(brute = 10, burn = 10) // heal minor leftover damage
 			return TRUE
 	else if(total_brute <= TORPOR_DAMAGE_THRESHOLD)

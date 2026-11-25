@@ -229,6 +229,6 @@
 
 	// Flavor
 	to_chat(vampiredatum.owner.current, span_notice("You are now a rank [vampiredatum.vampire_level] Vampire. \
-		Your strength, health, feed rate, regen rate, and maximum blood capacity have all increased! \n\
+		Your feed rate, regen rate, and maximum blood capacity have all increased! \n\
 		* Your existing powers have all ranked up as well!"))
 	vampiredatum.update_hud()
