@@ -20,7 +20,8 @@
 
 	initial_species = human_owner.dna.species
 
-	human_owner.visible_message(span_warning("[human_owner] turns [human_owner.p_their()] head to the sky and howls, rapidly growing and transforming into a horrible beast!"))
+	var/msg = parse_lycan_text(human_owner, cursekin_quirk.to_text)
+	human_owner.visible_message(span_warning("[msg]!"))
 
 	var/client/target_client = human_owner.client
 	if (!isnull(target_client))
@@ -60,7 +61,8 @@
 	if (!istype(cursekin_quirk))
 		return
 
-	human_owner.visible_message(span_warning("[human_owner] shrinks down, their fur receding!"))
+	var/msg = parse_lycan_text(human_owner, cursekin_quirk.from_text)
+	human_owner.visible_message(span_warning("[msg]!"))
 
 	if (cursekin_quirk.last_slot)
 		var/client/target_client = human_owner.client
@@ -128,5 +130,11 @@
 	var/output = jointext(render_list, "")
 
 	to_chat(user, custom_boxed_message("blue_box", output), trailing_newline = FALSE, type = MESSAGE_TYPE_INFO)
+
+/datum/status_effect/beast_form/proc/parse_lycan_text(mob/living/source, text)
+	text = replacetext(text, "%OWNER", source)
+	text = replacetext(text, "%PRONOUN", source.p_their())
+
+	return text
 
 #undef BEAST_FORM_EXPOSITION_LINK

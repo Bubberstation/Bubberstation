@@ -10,6 +10,8 @@
 	mob_trait = TRAIT_LYCAN
 	species_blacklist = list(/datum/species/protean, /datum/species/synthetic, /datum/species/lycan)
 	var/last_slot
+	var/to_text = "%OWNER turns %PRONOUN head to the sky and howls, growing into a terrible beast"
+	var/from_text = "%OWNER shrinks down, %PRONOUN fur receding"
 	var/to_human_sfx = 'modular_zubbers/code/modules/customization/species/lycans/transform.ogg'
 	var/to_lycan_sfx = 'modular_zubbers/code/modules/customization/species/lycans/transform.ogg'
 	var/datum/action/cooldown/spell/beast_form/action
@@ -21,7 +23,7 @@
 
 /datum/quirk_constant_data/cursekin
 	associated_typepath = /datum/quirk/cursekin
-	customization_options = list(/datum/preference/numeric/cursekin_char_slot)
+	customization_options = list(/datum/preference/numeric/cursekin_char_slot, /datum/preference/choiced/cursekin_sfx, /datum/preference/text/cursekin_transform_text, /datum/preference/text/cursekin_detransform_text)
 
 /datum/quirk/cursekin/add_to_holder(mob/living/new_holder, quirk_transfer, client/client_source, unique, announce)
 	. = ..()
@@ -30,6 +32,12 @@
 
 	new_holder.AddElement(/datum/element/inorganic_rejection)
 	action.Grant(new_holder)
+
+	if (client_source)
+		to_text = client_source.prefs.read_preference(/datum/preference/text/cursekin_transform_text)
+		from_text = client_source.prefs.read_preference(/datum/preference/text/cursekin_detransform_text)
+		to_human_sfx = client_source.prefs.read_preference(/datum/preference/choiced/cursekin_sfx)
+		to_lycan_sfx = client_source.prefs.read_preference(/datum/preference/choiced/cursekin_sfx)
 
 /datum/quirk/cursekin/remove()
 	. = ..()
