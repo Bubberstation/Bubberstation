@@ -77,7 +77,7 @@ GLOBAL_LIST_INIT(possible_lycan_tf_sounds, list(
 /datum/preference/choiced/cursekin_sfx/init_possible_values()
 	var/list/values = list()
 
-	for (var/entry as anything in GLOB.possible_lycan_tf_sounds)
+	for (var/entry in GLOB.possible_lycan_tf_sounds)
 		values += entry
 
 	return values

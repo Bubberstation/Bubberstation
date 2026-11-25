@@ -62,10 +62,6 @@
 	quirk_holder.remove_status_effect(/datum/status_effect/beast_form)
 
 /datum/quirk/cursekin/proc/toggle_beast_form(mob/user)
-	set name = "Enter/Leave Lycan Form"
-	set desc = "Succumb to the rage and turn into a lycan."
-	set category = "Lycan"
-
 	if(!user)
 		return
 	if(user.has_status_effect(/datum/status_effect/beast_form))
