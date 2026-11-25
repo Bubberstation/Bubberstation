@@ -49,8 +49,7 @@
 	build_all_button_icons(UPDATE_BUTTON_NAME | UPDATE_BUTTON_BACKGROUND)
 
 /datum/action/cooldown/vampire/targeted/deactivate_power(successful = FALSE)
-	if(vampire_power_flags & BP_AM_TOGGLE)
-		UnregisterSignal(owner, COMSIG_LIVING_LIFE)
+	stop_upkeep()
 
 	if((vampire_power_flags & BP_AM_SINGLEUSE) && successful)
 		remove_after_use()
@@ -96,7 +95,7 @@
 	power_in_use = TRUE
 	fire_targeted_power(target_atom, modifiers)
 	if(vampire_power_flags & BP_AM_TOGGLE)
-		RegisterSignal(owner, COMSIG_LIVING_LIFE, PROC_REF(use_power), override = TRUE)
+		start_upkeep()
 	// Skip this part so we can return TRUE right away.
 	if(power_activates_immediately)
 		power_activated_sucessfully() // Mesmerize pays only after success.

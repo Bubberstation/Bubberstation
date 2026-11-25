@@ -350,7 +350,7 @@
 
 	// A bite that never landed leaves us listening, that must not end or drain whatever was started since
 	if(!target_ref)
-		UnregisterSignal(owner, COMSIG_LIVING_LIFE)
+		stop_upkeep()
 		return
 	var/mob/living/feed_target = target_ref.resolve()
 	if(!feed_target)

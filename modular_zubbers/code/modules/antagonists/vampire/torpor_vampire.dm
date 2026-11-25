@@ -62,7 +62,8 @@
 	return TRUE
 
 /datum/status_effect/vampire_torpor/on_remove()
-	UnregisterSignal(owner, COMSIG_MOB_LOGIN)
+	if(held)
+		release_hold()
 	if(!iscarbon(owner) || vampire_datum.final_death)
 		return
 
@@ -77,18 +78,27 @@
 
 	to_chat(owner, span_notice("You have recovered from Torpor."))
 
-/// Keeps us in Torpor until someone is back in control of the body
+/// Keeps us in Torpor until someone is back in control of the body. Being hurt in the meantime wakes us on the spot.
 /datum/status_effect/vampire_torpor/proc/hold_until_login()
-	if(owner.client)
+	if(held || owner.client)
 		return
 	held = TRUE
-	RegisterSignal(owner, COMSIG_MOB_LOGIN, PROC_REF(release_hold), override = TRUE)
+	RegisterSignal(owner, COMSIG_MOB_LOGIN, PROC_REF(release_hold))
+	RegisterSignal(owner, COMSIG_MOB_AFTER_APPLY_DAMAGE, PROC_REF(on_held_damage))
 
 /datum/status_effect/vampire_torpor/proc/release_hold(datum/source)
 	SIGNAL_HANDLER
 	held = FALSE
-	UnregisterSignal(owner, COMSIG_MOB_LOGIN)
+	UnregisterSignal(owner, list(COMSIG_MOB_LOGIN, COMSIG_MOB_AFTER_APPLY_DAMAGE))
 	COOLDOWN_START(src, force_heal_time, 5 MINUTES)
+
+/datum/status_effect/vampire_torpor/proc/on_held_damage(mob/living/source, damage_dealt)
+	SIGNAL_HANDLER
+	if(!held || damage_dealt <= 0)
+		return
+	release_hold()
+	to_chat(source.get_ghost(TRUE, TRUE) || source, span_userdanger("Your body is under attack! You are pulled back into it."))
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src)
 
 /datum/status_effect/vampire_torpor/tick(seconds_between_ticks)
 	if(held && !HAS_TRAIT(owner, TRAIT_FRENZY))

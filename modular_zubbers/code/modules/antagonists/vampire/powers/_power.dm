@@ -45,6 +45,8 @@
 
 	///The upgraded version of this Power. 'null' means it's the max level.
 	var/upgraded_power = null
+	/// Whether use_power() is listening to the owner's life ticks
+	var/upkeep_running = FALSE
 
 /datum/action/cooldown/vampire/New(Target, original = TRUE)
 	. = ..()
@@ -74,9 +76,9 @@
 		RegisterSignals(owner, list(COMSIG_CARBON_GAIN_ORGAN, COMSIG_CARBON_LOSE_ORGAN), PROC_REF(update_status_on_signal))
 
 /datum/action/cooldown/vampire/Remove(mob/removed_from)
+	stop_upkeep()
 	if(owner)
 		UnregisterSignal(owner, list(
-			COMSIG_LIVING_LIFE,
 			COMSIG_CARBON_GAIN_ORGAN,
 			COMSIG_CARBON_LOSE_ORGAN,
 			SIGNAL_ADDTRAIT(TRAIT_TORPOR),
@@ -256,7 +258,7 @@
 /datum/action/cooldown/vampire/proc/activate_power()
 	currently_active = TRUE
 	if(vampire_power_flags & BP_AM_TOGGLE)
-		RegisterSignal(owner, COMSIG_LIVING_LIFE, PROC_REF(use_power))
+		start_upkeep()
 
 	owner.log_message("used [src][vitaecost != 0 ? " at the cost of [vitaecost]" : ""].", LOG_ATTACK, color="red")
 	build_all_button_icons(UPDATE_BUTTON_NAME | UPDATE_BUTTON_BACKGROUND)
@@ -265,8 +267,7 @@
 	if(!currently_active) //Already inactive? Return
 		return
 
-	if(vampire_power_flags & BP_AM_TOGGLE)
-		UnregisterSignal(owner, COMSIG_LIVING_LIFE)
+	stop_upkeep()
 	if(vampire_power_flags & BP_AM_SINGLEUSE)
 		remove_after_use()
 		return
@@ -274,6 +275,19 @@
 	currently_active = FALSE
 	StartCooldown()
 	build_all_button_icons(UPDATE_BUTTON_NAME | UPDATE_BUTTON_BACKGROUND)
+
+/datum/action/cooldown/vampire/proc/start_upkeep()
+	if(upkeep_running || !owner)
+		return
+	upkeep_running = TRUE
+	RegisterSignal(owner, COMSIG_LIVING_LIFE, PROC_REF(use_power))
+
+/datum/action/cooldown/vampire/proc/stop_upkeep()
+	if(!upkeep_running)
+		return
+	upkeep_running = FALSE
+	if(owner)
+		UnregisterSignal(owner, COMSIG_LIVING_LIFE)
 
 /// Used by powers that are continuously active (That have BP_AM_TOGGLE flag). Runs every life tick of the owner.
 /datum/action/cooldown/vampire/proc/use_power(mob/living/source, seconds_per_tick)
