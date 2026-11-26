@@ -36,9 +36,6 @@
 #define BUTT_SPRITE_VOX "vox"
 #define BUTT_SPRITE_VULP "vulp"
 
-#define BLOOD_TYPE_COPPER "CU"
-#define BLOOD_TYPE_NANITE_SLURRY "NS"
-
 #define AI_HOLOGRAM_MOTHROACH "Mothroach"
 #define	AI_HOLOGRAM_STOAT "Stoat"
 #define	AI_HOLOGRAM_BEE "Bee"
