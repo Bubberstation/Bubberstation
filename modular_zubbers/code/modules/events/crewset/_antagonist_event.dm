@@ -161,7 +161,20 @@
 	for(var/template in cast_control.ruleset_lazy_templates)
 		SSmapping.lazy_load_template(template)
 
-/datum/round_event/antagonist/solo/start()
+/datum/round_event/antagonist/start()
+	for(var/datum/mind/antag_mind as anything in setup_minds)
+		if(!QDELETED(antag_mind.current) && !isnewplayer(antag_mind.current))
+			continue
+		setup_minds -= antag_mind
+		LAZYREMOVE(antag_mind.special_roles, antag_flag)
+		LAZYREMOVE(SSjob.prevented_occupations, antag_mind)
+		log_game("[key_name(antag_mind)] was selected for antagonist role [antag_flag] but never spawned, skipping.")
+		message_admins(span_yellowteamradio("[key_name_admin(antag_mind)] was selected for antagonist role [antag_flag] but never spawned, skipping."))
+	if(!length(setup_minds))
+		return
+	assign_antags()
+
+/datum/round_event/antagonist/proc/assign_antags()
 	for(var/datum/mind/antag_mind as anything in setup_minds)
 		add_datum_to_mind(antag_mind)
 		log_game("[antag_mind.current] was selected for antagonist role [antag_flag].")
@@ -183,12 +196,6 @@
 
 /datum/round_event/antagonist/team
 	var/antag_leader_datum
-
-/datum/round_event/antagonist/team/start()
-	for(var/datum/mind/antag_mind as anything in setup_minds)
-		add_datum_to_mind(antag_mind)
-		log_game("[antag_mind.current] was selected for antagonist role [antag_flag].")
-		message_admins(span_yellowteamradio("[ADMIN_LOOKUPFLW(antag_mind.current)] was selected for antagonist role [antag_flag]."))
 
 /datum/round_event/antagonist/team/load_vars(datum/round_event_control/antagonist/team/cast_control)
 	. = ..()

@@ -26,7 +26,7 @@
 /datum/round_event/antagonist/team/nukie/candidate_roles_setup(mob/candidate)
 	candidate.mind.set_assigned_role(SSjob.get_job_type(job_type))
 
-/datum/round_event/antagonist/team/nukie/start()
+/datum/round_event/antagonist/team/nukie/assign_antags()
 	// Get our nukie leader
 	var/datum/mind/most_experienced = get_most_experienced(setup_minds, required_role)
 	if(!most_experienced)
