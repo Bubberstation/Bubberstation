@@ -151,6 +151,9 @@
 	icon = 'modular_zubbers/icons/obj/weapons/guns/energy.dmi'
 	shaded_charge = SHADED_CHARGE_MODE_LABELED
 
+/obj/item/gun/energy/e_gun/mini/practice_phaser
+	shaded_charge = FALSE
+
 /obj/item/gun/energy/laser/xray
 	name = "\improper Allstar SC-XR Prototype xray rifle"
 	desc = "A highly experimental energy rifle that fires concentrated x-ray beams capable of phasing through most walls and surfaces. Technically a confidential Allstar prototype."

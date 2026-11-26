@@ -11,6 +11,7 @@
 	charge_delay = 9
 	can_charge = FALSE //Doesn't work like that son
 	selfcharge = 1
+	shaded_charge = FALSE
 	cell_type = /obj/item/stock_parts/power_store/cell/hos_gun
 	w_class = WEIGHT_CLASS_NORMAL //Fits in bag!
 	force = 15 //smash sulls in

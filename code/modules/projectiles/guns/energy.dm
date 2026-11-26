@@ -300,7 +300,7 @@
 		charge_overlay.pixel_w = ammo_x_offset * (i - 1)
 		charge_overlay.pixel_z = ammo_y_offset * (i - 1)
 		. += new /mutable_appearance(charge_overlay)
-*/
+*/// BUBBER EDIT END
 
 ///Used by update_icon_state() and update_overlays()
 /obj/item/gun/energy/proc/get_charge_ratio()
