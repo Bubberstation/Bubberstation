@@ -78,7 +78,6 @@
 
 	to_chat(owner, span_notice("You have recovered from Torpor."))
 
-/// Keeps us in Torpor until someone is back in control of the body. Being hurt in the meantime wakes us on the spot.
 /datum/status_effect/vampire_torpor/proc/hold_until_login()
 	if(held || owner.client)
 		return

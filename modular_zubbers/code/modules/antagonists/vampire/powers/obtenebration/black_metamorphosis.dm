@@ -1,6 +1,5 @@
 #define METAMORPHOSIS_OUTLINE "black_metamorphosis_outline"
 #define METAMORPHOSIS_SHADOW "black_metamorphosis_shadow"
-/// Choking stops here, since 50 oxyloss knocks people out and that'd be a hard stun.
 #define METAMORPHOSIS_MAX_OXYLOSS 40
 
 /datum/action/cooldown/vampire/black_metamorphosis

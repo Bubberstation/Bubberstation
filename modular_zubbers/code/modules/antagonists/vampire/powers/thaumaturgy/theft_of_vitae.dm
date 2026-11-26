@@ -47,7 +47,6 @@
 	antimagic_flags = MAGIC_RESISTANCE_HOLY
 	hitsound = 'modular_zubbers/sound/effects/vampires/bloodbolt.ogg'
 	var/datum/beam/drain_beam
-	/// Whether we latched onto someone, a miss ends the power
 	var/latched = FALSE
 
 /obj/projectile/magic/theft_of_vitae/fire(fire_angle, atom/direct_target)

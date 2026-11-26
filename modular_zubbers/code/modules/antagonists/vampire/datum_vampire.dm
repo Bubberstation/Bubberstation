@@ -149,7 +149,6 @@ GLOBAL_LIST_EMPTY(all_vampires)
 		TRAIT_XENO_IMMUNE, // something something facehuggers only latch onto living things
 	)
 
-	/// Quirks that don't mix with the curse, taken away for as long as we have it
 	var/static/list/banned_quirks = typesof(/datum/quirk/item_quirk/addict) + list(
 		/datum/quirk/skittish,
 		/datum/quirk/hemophage,
@@ -299,7 +298,7 @@ GLOBAL_LIST_EMPTY(all_vampires)
 	UnregisterSignal(owner.current, COMSIG_MOB_HUD_CREATED)
 	update_hud()
 
-/// Species with their own blood organs swap them out when they get or change into the body
+/// Override some properties of incompatible species
 /datum/antagonist/vampire/proc/on_species_gain(mob/living/carbon/human/target, datum/species/current_species, datum/species/old_species)
 	SIGNAL_HANDLER
 	current_species?.on_vampire_gain(target)
@@ -387,7 +386,6 @@ GLOBAL_LIST_EMPTY(all_vampires)
 			not_vamp_brain.organ_flags |= ORGAN_VITAL
 			not_vamp_brain.decoy_override = FALSE
 
-	// The quirks we took away come back once the datum is gone
 	if(owner.current?.client)
 		addtimer(CALLBACK(SSquirks, TYPE_PROC_REF(/datum/controller/subsystem/processing/quirks, AssignQuirks), owner.current, owner.current.client), 1 SECONDS)
 

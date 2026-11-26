@@ -12,7 +12,6 @@
 	vampire_power_flags = BP_AM_TOGGLE
 	vitaecost = 200
 	cooldown_time = 60 SECONDS
-	/// The body we left behind and are waiting to get back into
 	var/mob/living/awaiting_return
 
 /datum/action/cooldown/vampire/astral_projection/activate_power()

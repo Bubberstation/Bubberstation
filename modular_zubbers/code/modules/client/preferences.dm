@@ -4,7 +4,6 @@
 	if(unlock_content || donator_status)
 		max_save_slots = 100
 
-/// Antag opt-ins saved under role names that have since been renamed
 /datum/preferences/sanitize_be_special(list/input_be_special)
 	var/static/list/renamed_roles = list(
 		"Bloodsucker" = ROLE_VAMPIRE,

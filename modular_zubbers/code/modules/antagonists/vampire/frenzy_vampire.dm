@@ -118,7 +118,6 @@
 	SIGNAL_HANDLER
 	qdel(src)
 
-/// Anything put on us mid frenzy snaps the moment we resist it
 /datum/status_effect/frenzy/proc/on_removing_cuffs(mob/living/carbon/source, obj/item/cuffs)
 	SIGNAL_HANDLER
 	if(cuffs != source.handcuffed && cuffs != source.legcuffed)

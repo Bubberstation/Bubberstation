@@ -3,7 +3,6 @@
 #define FEED_FRENZY_TIME 2 SECONDS
 #define FEED_MESMERIZE_TIME 2 SECONDS
 #define FEED_BLOOD_FROM_MICE 25
-/// How much vitae a vampire makes out of each unit of blood drunk
 #define FEED_VITAE_PER_BLOOD 4
 
 /datum/action/cooldown/vampire/targeted/feed
@@ -61,14 +60,12 @@
 	if(vampiredatum_power)
 		. += "<b>IMPORTANT:</b> Should you drain another vampire, you will absorb their power!"
 
-/// How long the bite takes to land once the target is subdued
 /datum/action/cooldown/vampire/targeted/feed/proc/get_feed_time(feeding_on_vassal = FALSE)
 	var/feed_time = (HAS_TRAIT(owner, TRAIT_FRENZY) ? FEED_FRENZY_TIME : clamp(round(FEED_DEFAULT_TIME / (1.25 * (level_current || 1))), 1, FEED_DEFAULT_TIME)) / 2
 	if(feeding_on_vassal)
 		feed_time /= 4
 	return feed_time
 
-/// How long a combat feed stuns the victim
 /datum/action/cooldown/vampire/targeted/feed/proc/get_combat_stun_time()
 	return (5 + level_current) SECONDS
 
@@ -348,7 +345,6 @@
 /datum/action/cooldown/vampire/targeted/feed/use_power(mob/living/source, seconds_per_tick)
 	var/mob/living/user = owner
 
-	// A bite that never landed leaves us listening, that must not end or drain whatever was started since
 	if(!target_ref)
 		stop_upkeep()
 		return
@@ -405,7 +401,6 @@
 		feed_strength_mult = 1
 
 	handle_feeding(feed_target, feed_strength_mult * seconds_per_tick / VAMPIRE_LIFE_TICK_SECONDS)
-	// They struggled free
 	if(!currently_active)
 		return
 
@@ -618,7 +613,6 @@
 		owner.balloon_alert(owner, "struggles free!")
 		deactivate_power()
 
-/// A vampire turns what they drink into vitae. Anyone else (hemophages) keeps it as plain blood.
 /datum/action/cooldown/vampire/targeted/feed/proc/absorb_blood(mob/living/target, blood_amount, vitae_amount)
 	if(vampiredatum_power)
 		vampiredatum_power.adjust_blood_volume(vitae_amount)
@@ -629,7 +623,6 @@
 	if(!HAS_TRAIT(living_owner, TRAIT_NOBLOOD))
 		living_owner.adjust_blood_volume(blood_amount)
 
-/// Vampires can always drink more. Anyone else stops once their own veins are full.
 /datum/action/cooldown/vampire/targeted/feed/proc/max_blood_reached(mob/living/target)
 	if(vampiredatum_power)
 		return FALSE

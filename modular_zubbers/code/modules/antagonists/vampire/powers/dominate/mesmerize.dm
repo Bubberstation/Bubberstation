@@ -1,4 +1,3 @@
-/// From this level on, Mesmerize works through masks and helmets
 #define MESMERIZE_COVERED_EYES_LEVEL 3
 
 /**
@@ -68,7 +67,6 @@
 	. += "At level [MESMERIZE_COVERED_EYES_LEVEL], you will be able to use the power through masks and helmets."
 	. += "At level 4, your range grows from 4 tiles to 6."
 
-/// How long the victim stays mesmerized
 /datum/action/cooldown/vampire/targeted/mesmerize/proc/get_power_time()
 	return 9 SECONDS + level_current * 1.5 SECONDS
 

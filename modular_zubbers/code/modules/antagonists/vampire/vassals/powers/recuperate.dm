@@ -1,7 +1,6 @@
 #define RECUPERATE_BRUTE_HEAL 2.5
 #define RECUPERATE_TOX_HEAL 2
 #define RECUPERATE_BURN_HEAL 1.5
-/// Stamina damage this leaves you short of the maximum, so it can't stamcrit you. barely.
 #define RECUPERATE_STAMINA_MARGIN 5
 
 /// Used by vassals
@@ -26,7 +25,6 @@
 	. += "If you aren't a bloodless race, you will additionally heal [RECUPERATE_BURN_HEAL / VAMPIRE_LIFE_TICK_SECONDS] Burn damage."
 	. += "It will not exhaust you completely, but it ends if you are incapacitated."
 
-/// Stamina damage per life tick of VAMPIRE_LIFE_TICK_SECONDS
 /datum/action/cooldown/vampire/recuperate/proc/get_stamina_cost()
 	return constant_vitaecost * 1.1
 

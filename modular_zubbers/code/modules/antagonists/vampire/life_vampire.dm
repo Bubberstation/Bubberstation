@@ -71,7 +71,6 @@
 
 	var/actual_regen = vampire_regen_rate + additional_regen
 
-	// Heal brain damage
 	current.adjust_organ_loss(ORGAN_SLOT_BRAIN, -1 * (actual_regen * 4) * seconds_per_tick)
 
 	if(!iscarbon(current))
@@ -140,7 +139,6 @@
 
 	return FALSE
 
-/// Which limbs our healing works on. Robotic limbs only count for synthetics, so a prosthetic can't keep anyone else in Torpor.
 /datum/antagonist/vampire/proc/get_healable_bodytype()
 	return issynthetic(owner.current) ? ALL : BODYTYPE_ORGANIC
 
@@ -222,7 +220,6 @@
 
 	// Don't Revive if staked or being staked
 	if(carbon_user.stat == DEAD && COOLDOWN_FINISHED(src, revive_cooldown) && !check_if_staked() && !HAS_TRAIT(carbon_user, TRAIT_BEINGSTAKED))
-		// Damage we can't otherwise heal must not keep us dead
 		carbon_user.set_oxy_loss(0, updating_health = FALSE, forced = TRUE)
 		carbon_user.set_tox_loss(0, forced = TRUE)
 		carbon_user.revive()

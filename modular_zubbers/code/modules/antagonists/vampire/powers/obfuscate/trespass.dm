@@ -35,7 +35,6 @@
 	. += "The departure is heard at [get_sound_strength()]% volume."
 	. += "Higher levels decrease the sound played from using the Power, and increase the speed of the transition."
 
-/// How long the trip takes
 /datum/action/cooldown/vampire/targeted/trespass/proc/get_mist_delay()
 	return max(5, 20 - level_current * 2.5) // Level up and do this faster.
 

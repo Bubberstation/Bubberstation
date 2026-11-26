@@ -1,6 +1,5 @@
 /// Drinks it takes to make a vassal.
 #define BLOOD_BOND_DRINKS 3
-/// How long one drink takes
 #define BLOOD_BOND_DRINK_TIME (5 SECONDS)
 
 /datum/action/cooldown/vampire/targeted/share_blood
@@ -202,7 +201,6 @@
 
 /datum/status_effect/blood_bond/proc/on_item_attack(mob/living/source, mob/living/target_mob, mob/living/user, list/modifiers, list/attack_modifiers)
 	SIGNAL_HANDLER
-	// The signal doesn't say which item it is here
 	var/obj/item/weapon = source.get_active_held_item()
 	if(target_mob != vampire.owner.current || !weapon || (weapon.item_flags & NOBLUDGEON))
 		return NONE

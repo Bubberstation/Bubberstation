@@ -100,7 +100,6 @@
 	if(mapload)
 		addtimer(CALLBACK(src, PROC_REF(spawn_kindred_archive)), 0)
 
-// Deferred so a mapped display case gets to make its archive first, we only want one.
 /obj/item/book/codex_gigas/proc/spawn_kindred_archive()
 	var/list/points_of_interest = SSpoints_of_interest.get_other_pois()
 	for(var/poi in points_of_interest)

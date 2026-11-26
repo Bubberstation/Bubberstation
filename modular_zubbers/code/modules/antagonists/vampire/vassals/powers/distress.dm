@@ -1,4 +1,3 @@
-/// Brute damage calling for help costs the vassal
 #define DISTRESS_SELF_DAMAGE 10
 
 /datum/action/cooldown/vampire/distress

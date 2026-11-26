@@ -39,7 +39,6 @@
 	. += "At level 4, you can bash airlocks open.[level_current >= 4 ? "" : " You are not strong enough yet."]"
 	. += "Higher ranks will increase the damage when punching someone."
 
-/// The line of the explanation with the numbers of our punch in it
 /datum/action/cooldown/vampire/targeted/brawn/proc/get_punch_explanation()
 	var/powerlevel = get_powerlevel()
 	return "Your punch hits for [damage_coefficient] times your unarmed damage plus 2, and throws the target [powerlevel] tile\s away."

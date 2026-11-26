@@ -124,7 +124,6 @@
 		if(WEST)
 			_x = -zoom_amt
 
-	// Goes through view_size so it scales off the player's own widescreen setting
 	if(!looking)
 		client.view_size.setBoth(zoom_out_amt, zoom_out_amt)
 	client.pixel_x = ICON_SIZE_X * _x
@@ -154,7 +153,6 @@
 	owner.update_sight()
 
 	// do this last in case weird client shit happens and runtimes
-	// canon_client is whoever just left us, when this runs off a logout (ghosting, astral projection)
 	var/client/client = owner.client || owner.canon_client
 	if(client)
 		client.view_size?.resetToDefault()

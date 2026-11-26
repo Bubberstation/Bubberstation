@@ -33,10 +33,13 @@
 /// When do we warn them about their low blood?
 #define VAMPIRE_LOW_BLOOD_WARNING 300
 
-/// Lumcount above which costs_double_in_light powers pay double
+///light of this intensity causes rapid burn damage (high number because movable lights are weird)
+/**so the problem is that movable lights ALWAYS have a luminosity of 0.5, regardless of power or distance, so even at the edge of the overlay they still do damage
+ * at 0.6 being bright they'll still do damage and disable some abilities, but it won't be weaponized
+ */
 #define SHADOW_SPECIES_BRIGHT_LIGHT 0.6
 
-/// Seconds in the life tick the PR's per-tick costs were balanced around
+/// Seconds in the life tick the per-tick costs are balanced around
 #define VAMPIRE_LIFE_TICK_SECONDS 2
 
 // how much to multiply the coffin size by mob_size
@@ -65,7 +68,6 @@
 #define VAMPIRE_SPAM_HEALING (15 SECONDS)
 #define VAMPIRE_SPAM_BLUSH_OF_LIFE (60 SECONDS)
 
-/// Shared cooldown group for the disabling mind powers (Summon, Entrancement, Mesmerize)
 #define VAMPIRE_SHARED_COOLDOWN_MIND (1<<10)
 
 // Clan defines
@@ -80,7 +82,6 @@
 #define CLAN_HECATA "Hecata Clan"
 #define CLAN_LASOMBRA "Lasombra Clan"
 
-// Power defines, for vampire_check_flags. Consciousness, incapacitation and phasing use the action's check_flags.
 /// This Power can't be used in Torpor
 #define BP_CANT_USE_IN_TORPOR (1<<0)
 /// This Power can't be used in Frenzy.
@@ -88,13 +89,12 @@
 /// This Power can't be used with a stake in you
 #define BP_CANT_USE_WHILE_STAKED (1<<2)
 
-/// This Power can be used by a vampire with no heart
+/// This Power can be used while heartless
 #define BP_CAN_USE_HEARTLESS (1<<3)
 
 /// This is a Default Power that all Vampires get.
 #define VAMPIRE_DEFAULT_POWER (1<<1)
 
-// For vampire_power_flags
 /// This Power is a Toggled Power
 #define BP_AM_TOGGLE (1<<0)
 /// This Power is a Single-Use Power
@@ -106,7 +106,6 @@
 /// This Power has a cooldown that is more dynamic than a typical power
 #define BP_AM_VERY_DYNAMIC_COOLDOWN (1<<4)
 
-// Signals
 ///Called when a Vampire reaches Final Death.
 #define COMSIG_VAMPIRE_FINAL_DEATH "vampire_final_death"
 	///Whether the vampire should not be dusted when arriving Final Death
@@ -117,18 +116,15 @@
 #define COMSIG_VAMPIRE_TRACK_HUMANITY_GAIN "comsig_vampire_track_humanity_gain"
 /// Called on the mind when a Vampire chooses a clan: (datum/antagonist/vampire, datum/vampire_clan)
 #define COMSIG_VAMPIRE_CLAN_CHOSEN "vampire_clan_chosen"
-/// Called on the vampire datum when it enters Frenzy
 #define COMSIG_VAMPIRE_ENTERS_FRENZY "vampire_enters_frenzy"
-/// Called on the vampire datum when it exits Frenzy
 #define COMSIG_VAMPIRE_EXITS_FRENZY "vampire_exits_frenzy"
-/// From petting a basic or simple animal: (mob/living/pet)
+/// From base of /mob/living/simple_animal/attack_hand() and /mob/living/basic/attack_hand() when petting (non-combat): (mob/living/pet)
 #define COMSIG_LIVING_PET_ANIMAL "living_pet_animal"
-/// From hugging or headpatting a carbon: (mob/living/carbon/hugged)
+/// From base of carbon_defense.dm when hugging: (mob/living/carbon/hugged)
 #define COMSIG_LIVING_HUG_CARBON "living_hug_carbon"
-/// From /datum/element/art when appraising art: (atom/art_piece)
+/// From base of /datum/element/art when appraising art: (atom/art_piece)
 #define COMSIG_LIVING_APPRAISE_ART "living_appraise_art"
 
-// Clan drinking defines
 /// Drinks blood the normal Vampire way.
 #define VAMPIRE_DRINK_NORMAL "vampire_drink_normal"
 /// Drinks blood but is snobby, refusing to drink from mindless
@@ -145,9 +141,10 @@
 #define TRAIT_SEE_DIABLERIE "see_diablerie"
 /// Hides TRAIT_GENELESS if it's only from the same sources as TRAIT_FAKEGENES.
 #define TRAIT_FAKEGENES "fakegenes"
-/// Mind trait: You have special interactions with vampires and the occult.
+/// You have special interactions with vampires and the occult.
 #define TRAIT_OCCULTIST "occultist"
-/// Mind trait: a vampire or vassal. Check `HAS_MIND_TRAIT(user, TRAIT_VAMPIRE_ALIGNED)` instead of `IS_VAMPIRE(user) || IS_VASSAL(user)`
+/// The user is "vampire aligned" - i.e a vampire or vassal.
+/// Basically just check for `HAS_MIND_TRAIT(user, TRAIT_VAMPIRE_ALIGNED)` instead of `IS_VAMPIRE(user) || IS_VASSAL(user)`
 #define TRAIT_VAMPIRE_ALIGNED "vampire_aligned"
 
 // Trait sources
@@ -156,7 +153,6 @@
 /// Source trait while Feeding
 #define FEED_TRAIT "feed_trait"
 
-// Misc
 #define FACTION_VAMPIRE "Vampire"
 #define LANGUAGE_VAMPIRE "vampire"
 #define LANGUAGE_VASSAL "vassal"
@@ -175,7 +171,7 @@
 /// Checks if the given mob is a vassal
 #define IS_VASSAL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/vassal))
 #define IS_CURATOR(mob) istype(mob?.mind?.assigned_role, /datum/job/curator)
-/// Monster hunters aren't ported
+///Whether a mob is a Monster Hunter
 #define IS_MONSTERHUNTER(mob) (FALSE)
 #define IS_VAMPIRE_HUNTER(mob) (IS_CURATOR(mob) || IS_MONSTERHUNTER(mob))
 

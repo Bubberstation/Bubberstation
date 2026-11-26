@@ -38,7 +38,6 @@
 		return
 	INVOKE_ASYNC(src, PROC_REF(on_vampire_enter), user)
 
-// Split from after_close() because the claim prompt sleeps.
 /obj/structure/closet/crate/coffin/proc/on_vampire_enter(mob/living/user)
 	var/datum/antagonist/vampire/vampire = IS_VAMPIRE(user)
 	if(!vampire)
@@ -156,7 +155,7 @@
 	locked = TRUE
 	return TRUE
 
-// An oversized vampire claimed this one, make some room.
+// some fatass bloodsucker is trying to fit in a too-small coffin, how about we make some room?
 /obj/structure/closet/crate/proc/enlarge(mob/living/user)
 	if(HAS_TRAIT_FROM(src, TRAIT_COFFIN_ENLARGED, COFFIN_ENLARGED_SOURCE))
 		return

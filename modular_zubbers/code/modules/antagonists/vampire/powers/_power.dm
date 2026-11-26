@@ -27,7 +27,7 @@
 
 	/// The effects on this Power (Toggled/Single Use/Static Cooldown)
 	var/vampire_power_flags = BP_AM_TOGGLE | BP_AM_SINGLEUSE | BP_AM_STATIC_COOLDOWN | BP_AM_COSTLESS_UNCONSCIOUS
-	/// Vampire-specific requirement flags, on top of check_flags
+	/// Vampire-specific requirement flags for checks
 	var/vampire_check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_IN_FRENZY | BP_CANT_USE_WHILE_STAKED
 
 	// Special flags you can give to powers. Mainly used for any powers we want them to have by default, so, feed.
@@ -38,14 +38,13 @@
 	var/level_current = 1
 	///The cost to ACTIVATE this Power
 	var/vitaecost = 0
-	///The cost to MAINTAIN this Power, per life tick of VAMPIRE_LIFE_TICK_SECONDS. Only used for constant powers
+	///The cost to MAINTAIN this Power Only used for constant powers
 	var/constant_vitaecost = 0
 	/// If TRUE, both costs double while the user stands on a brightly lit tile.
 	var/costs_double_in_light = FALSE
 
 	///The upgraded version of this Power. 'null' means it's the max level.
 	var/upgraded_power = null
-	/// Whether use_power() is listening to the owner's life ticks
 	var/upkeep_running = FALSE
 
 /datum/action/cooldown/vampire/New(Target, original = TRUE)
@@ -93,13 +92,11 @@
 		return TRUE
 	return ..()
 
-/// An active power can always be clicked off. Otherwise check_flags, cooldown and our own flags all apply.
 /datum/action/cooldown/vampire/IsAvailable(feedback = FALSE)
 	if(currently_active)
 		return !!owner
 	return ..() && check_vampire_flags(feedback)
 
-/// The vampire_check_flags part of IsAvailable()
 /datum/action/cooldown/vampire/proc/check_vampire_flags(feedback = FALSE)
 	if(!isliving(owner))
 		return FALSE
@@ -139,7 +136,6 @@
 /datum/action/cooldown/vampire/proc/update_desc()
 	desc = get_power_desc()
 
-/// Builds the button tooltip, rebuilt whenever the power's level changes
 /datum/action/cooldown/vampire/proc/get_power_desc()
 	SHOULD_CALL_PARENT(TRUE)
 	var/new_desc = get_power_desc_extended()
@@ -157,17 +153,14 @@
 		new_desc += "<br><br><b>SHARED COOLDOWN:</b><i> Using this locks your other disabling powers for [DisplayTimeText(shared_cooldown_time)].</i>"
 	return new_desc
 
-/// The descriptive part of the tooltip, override for text that depends on level_current
 /datum/action/cooldown/vampire/proc/get_power_desc_extended()
 	return initial(desc)
 
-/// Lines shown for this power in the antagonist panel
 /datum/action/cooldown/vampire/proc/get_power_explanation()
 	SHOULD_CALL_PARENT(TRUE)
 	. = list()
 	. += get_power_explanation_extended()
 
-/// The explanation itself, override for text that depends on level_current
 /datum/action/cooldown/vampire/proc/get_power_explanation_extended()
 	return list(power_explanation)
 
@@ -186,7 +179,7 @@
 			continue
 		shared_power.StartCooldownSelf(shared_cooldown_time)
 
-/// Vitae we can spend: the vampire's own, the master's blood in a vassal, or plain blood for anyone else (hemophages).
+/// Vitae we can spend: the vampire's own, or the master's blood in a vassal.
 /datum/action/cooldown/vampire/proc/get_vitae()
 	if(vampiredatum_power)
 		return vampiredatum_power.current_vitae
@@ -197,7 +190,6 @@
 		return 0
 	return living_owner.get_blood_volume()
 
-/// Takes vitae from whichever pool get_vitae() reads.
 /datum/action/cooldown/vampire/proc/spend_vitae(amount)
 	if(amount <= 0)
 		return
@@ -237,7 +229,7 @@
 
 	return TRUE
 
-/// Checks beyond IsAvailable() made right as the power is used. IsAvailable() already ran with feedback by the time this is reached from a button press.
+///Checks if the Power is available to use.
 /datum/action/cooldown/vampire/proc/can_use()
 	if(!iscarbon(owner))
 		return FALSE
@@ -289,7 +281,6 @@
 	if(owner)
 		UnregisterSignal(owner, COMSIG_LIVING_LIFE)
 
-/// Used by powers that are continuously active (That have BP_AM_TOGGLE flag). Runs every life tick of the owner.
 /datum/action/cooldown/vampire/proc/use_power(mob/living/source, seconds_per_tick)
 	if(!continue_active()) // We can't afford the Power? Deactivate it.
 		deactivate_power()
@@ -300,7 +291,6 @@
 	spend_vitae(get_tick_cost(seconds_per_tick))
 	return TRUE
 
-/// The upkeep owed for this many seconds of being active
 /datum/action/cooldown/vampire/proc/get_tick_cost(seconds_per_tick = VAMPIRE_LIFE_TICK_SECONDS)
 	return get_vitaecost(constant_vitaecost) * seconds_per_tick / VAMPIRE_LIFE_TICK_SECONDS
 

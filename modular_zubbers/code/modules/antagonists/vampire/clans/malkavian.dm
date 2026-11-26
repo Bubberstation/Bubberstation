@@ -7,7 +7,7 @@
 	joinable_clan = TRUE
 	default_humanity = 8
 
-	/// The prob chance, per life tick, of spouting a revelation.
+	/// The prob chance of a malkavian spouting a revelation.
 	var/max_madness_chance = 10
 	var/min_madness_chance = 5
 
@@ -42,9 +42,13 @@
 /datum/vampire_clan/malkavian/handle_clan_life()
 	. = ..()
 	var/mob/living/living_vampire = vampiredatum.owner.current
-	// Share of our starting humanity that is gone. None lost counts as all of it, so a fresh Malkavian sits at the minimum chance.
+	// Using linear interpolation to calculate the chance of a revelation. The more humanity lost, the higher the chance.
+	// This is the reversed version since we want to increase the prob as the number decreases.
+	// Equation: interpolated value = end + normalized factor * (start - end)
+	// normalized factor(between 0 and 1, in decimals)
 	var/humanity_lost_modifier = clamp((default_humanity - vampiredatum.humanity) / default_humanity, 0, 1)
 	if(humanity_lost_modifier == 0)
+		// 0 * anything = 0, this makes having 0 humanity not max out the chance.
 		humanity_lost_modifier = 1
 	var/interpolated_chance = max_madness_chance + humanity_lost_modifier * (min_madness_chance - max_madness_chance)
 	var/madness_chance = clamp(interpolated_chance, min_madness_chance, max_madness_chance)
