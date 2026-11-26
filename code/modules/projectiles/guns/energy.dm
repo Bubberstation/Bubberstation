@@ -272,6 +272,7 @@
 		worn_icon_state = temp_icon_to_use
 	return ..()
 
+/* BUBBER EDIT MOVED TO modular_zubbers/code/modules/projectiles/guns/energy/energy_gun_override.dm
 /obj/item/gun/energy/update_overlays()
 	. = ..()
 
@@ -299,7 +300,7 @@
 		charge_overlay.pixel_w = ammo_x_offset * (i - 1)
 		charge_overlay.pixel_z = ammo_y_offset * (i - 1)
 		. += new /mutable_appearance(charge_overlay)
-
+*/
 
 ///Used by update_icon_state() and update_overlays()
 /obj/item/gun/energy/proc/get_charge_ratio()
