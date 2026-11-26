@@ -109,7 +109,7 @@ GAME_VERB_HIDDEN(/client, hotkeys_help, "Hotkeys Help")
 
 	GLOB.hotkeys_tgui.ui_interact(mob)
 
-GAME_VERB_HIDDEN(/client, emote_panel, "Emote Panel")
+GAME_VERB(/client, emote_panel, "Emote Panel", "IC") // BUBBER EDIT CHANGE - PREVIOUS: GAME_VERB_HIDDEN(/client, emote_panel, "Emote Panel")
 
 	if(!isliving(mob))
 		to_chat(mob, span_notice("You can only use this while you're alive!"))
@@ -118,3 +118,8 @@ GAME_VERB_HIDDEN(/client, emote_panel, "Emote Panel")
 	if(!GLOB.emote_panel)
 		GLOB.emote_panel = new /datum/emote_panel()
 	GLOB.emote_panel.ui_interact(mob)
+
+// BUBBER EDIT ADDITION - Add back missing print levels IC button
+GAME_VERB(/client, view_skills, "View Skills", "IC")
+	mob.mind?.print_levels(src)
+// BUBBER EDIT END
