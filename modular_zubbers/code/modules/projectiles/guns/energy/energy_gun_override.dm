@@ -296,3 +296,8 @@
 	icon = 'modular_zubbers/icons/obj/weapons/guns/energy.dmi'
 	ammo_x_offset = 2
 	shaded_charge = FALSE
+
+/obj/item/gun/energy/e_gun/nuclear_smg
+	icon = 'modular_zubbers/icons/obj/weapons/guns/energy.dmi'
+	ammo_x_offset = 2
+	shaded_charge = FALSE
