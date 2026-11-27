@@ -30,10 +30,10 @@
 	basic_mob_flags = parent_type::basic_mob_flags | DEL_ON_DEATH
 
 	var/carp_spawn_type = /mob/living/basic/carp
-	var/time_between_carp_spawns = 3 SECONDS
+	var/time_between_carp_spawns = 8 SECONDS
 	var/max_living_carp_spawns = 4
 	var/subcarp = list()
-	var/carp_spawn_on_violent_death = 3
+	var/carp_spawn_on_violent_death = 5
 
 	var/is_anomaly_containable = FALSE
 	var/anomaly_destabilize_threshhold = 0.5
