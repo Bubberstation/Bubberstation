@@ -29,3 +29,11 @@
 	icon_state = "/obj/item/clothing/under/sweater/keyhole"
 	post_init_icon_state = "keyhole_sweater"
 	greyscale_colors = "#c5699c"
+
+/obj/item/clothing/under/sweater/keyhole/virgin
+	name = "virgin killer keyhole sweater"
+	desc = "Looks sexy, soft, and warm. Fails spectacularly at being warm, but two out of three isn't that bad."
+	icon_state = "/obj/item/clothing/under/sweater/keyhole/virgin"
+	post_init_icon_state = "keyhole_virgin"
+	body_parts_covered = CHEST|GROIN
+	greyscale_colors = "#c5699c"
