@@ -43,7 +43,7 @@
 
 	if (islycan(affected_mob))
 		return 3
-	else if (iscursekin(affected_mob))
+	else if (affected_mob.get_quirk(/datum/quirk/cursekin))
 		return 1
 
 	return 0

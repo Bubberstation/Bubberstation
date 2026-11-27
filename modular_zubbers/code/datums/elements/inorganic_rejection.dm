@@ -6,6 +6,11 @@
 	if(!istype(target))
 		return ELEMENT_INCOMPATIBLE
 	RegisterSignal(target, COMSIG_CARBON_GAIN_ORGAN, PROC_REF(organ_reject))
+	var/mob/living/carbon/human/human_target = target
+	if (!istype(human_target))
+		return
+	for (var/obj/item/organ/iter_organ in human_target.organs)
+		organ_reject(human_target, iter_organ)
 
 /datum/element/inorganic_rejection/Detach(mob/living/source, ...)
 	. = ..()
