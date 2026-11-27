@@ -33,6 +33,7 @@ type Data = {
   compiler_output: string[];
   access_log: string[];
   server_data: Server_Data[];
+  issilicon: boolean;
 };
 
 type Server_Data = {
@@ -180,7 +181,7 @@ const ScriptEditor = (props: NTSLTextAreaProps) => {
 
 const CompilerOutput = (props: NTSLTextAreaProps) => {
   const { act, data } = useBackend<Data>();
-  const { compiler_output } = data;
+  const { compiler_output, issilicon } = data;
   const [ntslCode] = props.storedNtslCode;
   return (
     <>
@@ -201,6 +202,7 @@ const CompilerOutput = (props: NTSLTextAreaProps) => {
         <Button
           mb={1}
           icon="running"
+          disabled={issilicon}
           onClick={() => act('compile_code')}
           tooltip={'Hint: Ctrl-Shift-B in the editor to save & compile'}
         >
