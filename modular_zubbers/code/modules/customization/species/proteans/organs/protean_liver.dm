@@ -16,3 +16,10 @@
 /obj/item/organ/liver/protean/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/nanite_organ)
+
+/obj/item/organ/liver/protean/handle_chemical(mob/living/carbon/organ_owner, datum/reagent/chem, seconds_per_tick, metabolization_rate)
+	. = ..()
+	if(istype(chem, /datum/reagent/consumable) && !istype(chem, /datum/reagent/consumable/nutriment/mineral))
+		var/datum/reagent/consumable/yummy_chem = chem
+		yummy_chem.nutriment_factor = 0
+		return // Do normal metabolism

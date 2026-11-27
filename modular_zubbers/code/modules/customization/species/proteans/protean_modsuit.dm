@@ -3,8 +3,8 @@
 	desc = "The modsuit unit of a Protean, allowing them to retract into it, or to deploy a suit that protects against various environments."
 	theme = /datum/mod_theme/standard // Standard theme. TODO: Can be changed with standard mod armors
 
-	applied_core = /obj/item/mod/core/protean
-	applied_cell = null // Goes off stomach
+	applied_core = /obj/item/mod/core/standard/protean
+	applied_cell = /obj/item/stock_parts/power_store/cell/super
 	applied_modules = list(/obj/item/mod/module/storage/large_capacity)
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | INDESTRUCTIBLE // funny nanite
 	drag_pickup = FALSE
@@ -24,7 +24,7 @@
 	make_indestructible()
 
 /obj/item/mod/control/pre_equipped/protean/Destroy()
-	var/obj/item/mod/core/protean/p_core = core
+	var/obj/item/mod/core/standard/protean/p_core = core
 	if(stored_modsuit)
 		if(p_core?.linked_species)
 			stored_modsuit.forceMove(get_turf(src))
@@ -64,8 +64,8 @@
 			REMOVE_TRAIT(src, TRAIT_NODROP, "protean")
 		wearer.dropItemToGround(src, TRUE, TRUE, TRUE)
 
-/// makes the MOD suit and its parts indestructible. This is done because a lot of stuff 
-/// overwrites the resistance flags but we REALLY need the protean MOD suit to be 
+/// makes the MOD suit and its parts indestructible. This is done because a lot of stuff
+/// overwrites the resistance flags but we REALLY need the protean MOD suit to be
 /// indestructible or else fun and exotic bugs happen
 /obj/item/mod/control/pre_equipped/protean/proc/make_indestructible()
 	for (var/part in mod_parts)
@@ -123,7 +123,7 @@
 
 /obj/item/mod/control/pre_equipped/protean/tool_act(mob/living/user, obj/item/tool, list/modifiers)
 	. = ..()
-	var/obj/item/mod/core/protean/protean_core = core
+	var/obj/item/mod/core/standard/protean/protean_core = core
 	var/obj/item/organ/brain/protean/brain = protean_core?.linked_species.owner.get_organ_slot(ORGAN_SLOT_BRAIN)
 	var/obj/item/organ/stomach/protean/refactory = protean_core.linked_species.owner.get_organ_slot(ORGAN_SLOT_STOMACH)
 	var/mob/living/carbon/human/protean_in_suit = protean_core.linked_species.owner
@@ -191,7 +191,7 @@
 		protean_in_suit.SetSleeping(1 MINUTES)
 
 /obj/item/mod/control/pre_equipped/protean/ui_status(mob/user, datum/ui_state/state)
-	var/obj/item/mod/core/protean/source = core
+	var/obj/item/mod/core/standard/protean/source = core
 	var/datum/species/protean/species = source.linked_species
 	if(isprotean(species.owner) && species.owner == user && user.loc == src)
 		return UI_INTERACTIVE
@@ -201,7 +201,7 @@
 
 /obj/item/mod/control/pre_equipped/protean/examine(mob/user)
 	. = ..()
-	var/obj/item/mod/core/protean/protean_core = core
+	var/obj/item/mod/core/standard/protean/protean_core = core
 	var/mob/living/carbon/human/protean_in_suit = protean_core?.linked_species.owner
 	var/obj/item/organ/brain/protean/brain = protean_core?.linked_species.owner.get_organ_slot(ORGAN_SLOT_BRAIN)
 	var/obj/item/organ/stomach/protean/refactory = protean_core.linked_species.owner.get_organ_slot(ORGAN_SLOT_STOMACH)
@@ -221,7 +221,7 @@
 			. += span_deadsay("[t_He] [t_is] totally listless. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.")
 
 /obj/item/mod/control/pre_equipped/protean/blob_act(obj/structure/blob/B)
-	var/obj/item/mod/core/protean/p_core = core
+	var/obj/item/mod/core/standard/protean/p_core = core
 	var/mob/living/carbon/human/protean = p_core?.linked_species.owner
 	var/obj/item/organ/brain/protean/brain = protean?.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(!brain.dead && !isnull(brain))
@@ -248,7 +248,7 @@
 /// Overwrites the base proc for /datum/element/strippable to allow snowflake code.
 /datum/element/strippable/protean/mouse_drop_onto(datum/source, atom/over, mob/user)
 	var/obj/item/mod/control/pre_equipped/protean/suit = source
-	var/obj/item/mod/core/protean/core = suit.core
+	var/obj/item/mod/core/standard/protean/core = suit.core
 	var/datum/species/protean/species = core.linked_species
 
 	if(species.owner == user)

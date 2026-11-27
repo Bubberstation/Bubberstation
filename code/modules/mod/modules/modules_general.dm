@@ -638,7 +638,7 @@
 	/// Bubber Edit Start - Proteans
 	if(istype(mod, /obj/item/mod/control/pre_equipped/protean))
 		var/obj/item/mod/control/pre_equipped/protean/p_suit = mod
-		var/obj/item/mod/core/protean/p_core = mod.core
+		var/obj/item/mod/core/standard/protean/p_core = mod.core
 		var/datum/species/protean/species = p_core.linked_species
 		if(species.owner.loc == p_suit.loc)
 			return balloon_alert(p_suit.wearer, "button unresponsive")
