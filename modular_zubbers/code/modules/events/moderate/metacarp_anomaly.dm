@@ -2,7 +2,7 @@
 	name = "Anomaly: Metacarp Entity"
 	typepath = /datum/round_event/anomaly/anomaly_metacarp
 
-	min_players = 18
+	min_players = 24
 	max_occurrences = 5
 	weight = 8
 	description = "Spawns an anomalous carp that spawns in more carp."
