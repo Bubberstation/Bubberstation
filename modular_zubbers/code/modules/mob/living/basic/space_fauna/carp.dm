@@ -29,6 +29,7 @@
 	maxHealth = 450
 	basic_mob_flags = parent_type::basic_mob_flags | DEL_ON_DEATH
 
+	var/carp_spawn_type = /mob/living/basic/carp
 	var/time_between_carp_spawns = 3 SECONDS
 	var/max_living_carp_spawns = 4
 	var/subcarp = list()
@@ -53,15 +54,16 @@
 
 /mob/living/basic/carp/metacarp/proc/spawn_carp()
 	if(count_carp() < max_living_carp_spawns)
-		var/mycarp = new(get_turf(src))
+		var/mycarp = new carp_spawn_type(get_turf(src))
 		subcarp += mycarp
 		new /obj/effect/temp_visual/lesser_carp_rift/exit(get_turf(src))
-		playsound(destination, 'sound/effects/magic/wand_teleport.ogg', 50)
+		playsound(src, 'sound/effects/magic/wand_teleport.ogg', 50)
 		RegisterSignal(mycarp, COMSIG_LIVING_DEATH, PROC_REF(on_subcarp_death))
+		spawn_carp_after_delay()
 
 /mob/living/basic/carp/metacarp/proc/count_carp()
 	. = 0
-	for(listitem as anything in subcarp)
+	for(var/listitem as anything in subcarp)
 		if(!isliving(listitem))
 			subcarp -= listitem
 			continue
@@ -76,6 +78,7 @@
 	if(!isnull(source))
 		UnregisterSignal(source, COMSIG_LIVING_DEATH)
 		subcarp -= source
+		spawn_carp_after_delay()
 
 /// Metacarp can be killed at <= 50% HP via anomaly stabilizer
 /mob/living/basic/carp/metacarp/attackby(obj/item/attacking_item, mob/living/user, list/modifiers, list/attack_modifiers)
@@ -116,7 +119,7 @@
 
 /mob/living/basic/carp/metacarp/death(gibbed)
 	for(var/i = 0; i < carp_spawn_on_violent_death; i ++)
-		new /mob/living/basic/carp(loc)
+		new carp_spawn_type(loc)
 	do_sparks(3)
 	playsound(get_turf(src),'sound/effects/magic/repulse.ogg', 100, TRUE)
 	. = ..()
