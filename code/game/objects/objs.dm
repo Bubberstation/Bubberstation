@@ -50,6 +50,10 @@
 
 	uses_integrity = TRUE
 
+/obj/Initialize(mapload, ...)
+	. = ..()
+	color = "#bf00ff"
+
 /obj/vv_edit_var(vname, vval)
 	if(vname == NAMEOF(src, obj_flags))
 		if ((obj_flags & DANGEROUS_POSSESSION) && !(vval & DANGEROUS_POSSESSION))
