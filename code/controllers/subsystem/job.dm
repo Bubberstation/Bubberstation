@@ -722,6 +722,12 @@ SUBSYSTEM_DEF(job)
 			job_debug("RJCT: Player unable to be rejected due to being selected by dynamic, Player: [player], Ruleset: [ruleset]")
 			return FALSE
 
+	// BUBBER EDIT ADDITION BEGIN - STORYTELLER
+	if(SSgamemode.is_pending_antag(player.mind))
+		job_debug("RJCT: Player unable to be rejected due to being selected by the storyteller, Player: [player]")
+		return FALSE
+	// BUBBER EDIT ADDITION END - STORYTELLER
+
 	job_debug("RJCT: Player rejected, Player: [player]")
 	unassigned -= player
 	if(!run_divide_occupation_pure)
