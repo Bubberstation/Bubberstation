@@ -8,7 +8,6 @@
 		TRAIT_LITERATE,
 		TRAIT_MUTANT_COLORS,
 		TRAIT_FAST_METABOLISM,
-		TRAIT_HARD_SOLES,
 		TRAIT_NIGHT_VISION,
 	)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
@@ -38,13 +37,6 @@
 		SPECIES_PERK_ICON = "face-smile-beam",
 		SPECIES_PERK_NAME = "Peanut Butter Affinity",
 		SPECIES_PERK_DESC = "Vulpkanin LOVE peanutbutter, and get quite excited when eating it.",
-	))
-
-	to_add += list(list(
-		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-		SPECIES_PERK_ICON = "shoe-prints",
-		SPECIES_PERK_NAME = "Hardened Soles",
-		SPECIES_PERK_DESC = "Vulpkanin have feet that can withstand more than most species.",
 	))
 
 	to_add += list(list(
