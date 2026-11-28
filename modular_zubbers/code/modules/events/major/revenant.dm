@@ -5,7 +5,7 @@
 	typepath = /datum/round_event/ghost_role/revenant
 	weight = 7
 	min_players = 20
-	track = EVENT_TRACK_MAJOR
+	track = EVENT_TRACK_MODERATE
 	tags = list(TAG_DESTRUCTIVE, TAG_SPOOKY)
 	max_occurrences = 1
 	category = EVENT_CATEGORY_ENTITIES
