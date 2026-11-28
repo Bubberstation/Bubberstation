@@ -300,6 +300,10 @@ GLOBAL_LIST_INIT(heretic_path_datums, init_heretic_path_datums())
 		// Don't add the knowledge if it's obtainable later in the path
 		if(is_path_in_list(potential_type, draft_ineligible))
 			continue
+		// BUBBER EDIT ADDITION START
+		if(potential_type::exclusive_route && potential_type::exclusive_route != route)
+			continue
+		// BUBBER EDIT ADDITION END
 		if(!potential_type::is_shop_only)
 			elligible_knowledge[potential_type::drafting_tier] += potential_type
 		shop_knowledge[potential_type::drafting_tier] += potential_type
