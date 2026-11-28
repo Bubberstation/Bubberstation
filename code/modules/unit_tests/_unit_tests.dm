@@ -225,6 +225,7 @@
 #include "job_icons.dm"
 #include "json_savefile_importing.dm"
 #include "keybinding_init.dm"
+#include "keybindings.dm"
 #include "kinetic_crusher.dm"
 #include "knockoff_component.dm"
 #include "language_key_conflicts.dm"

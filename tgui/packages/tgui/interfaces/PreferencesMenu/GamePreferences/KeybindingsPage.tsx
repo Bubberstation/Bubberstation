@@ -458,8 +458,12 @@ export class KeybindingsPage extends Component<any, KeybindingsPageState> {
 
     this.setState({
       selectedKeybindings: Object.fromEntries(
+        // BUBBER EDIT BEGIN
         Object.entries(data.keybindings).map(([keybind, hotkeys]) => {
-          return [keybind, hotkeys.filter((value) => value !== 'Unbound')];
+          return [
+            keybind,
+            (hotkeys || []).filter((value) => value !== 'Unbound'),
+          ]; // BUBBER EDIT END
         }),
       ),
     });
