@@ -141,6 +141,10 @@
 	item_path = /obj/item/clothing/mask/gas/nightlight
 //	ckeywhitelist = list("farsightednightlight", "raxraus", "1ceres", "marcoalbaredaa", "itzshift_yt", "drifter7371", "AvianAviator", "Katty Kat", "Investigator77", "Dalao Azure", "Socialistion", "ChillyLobster", "Sylvara", "AmZee", "Tf4", "rb303", "Kay_Nite", "whataboutism", "taac", "Halkyon", "Lupo_di_rosa", "Merek2", "lowpowermia", "RyeanBread", "Jesterz7", "Saund_Minah", "Ruediger4")
 
+/datum/loadout_item/mask/gas/hecu2
+	name = "M40 Gas Mask"
+	item_path = /obj/item/clothing/mask/gas/hecu2
+
 /datum/loadout_item/mask/gas/fir22
 	name = "'Kimball' Rebreather"
 	item_path = /obj/item/clothing/mask/gas/nightlight/fir22
