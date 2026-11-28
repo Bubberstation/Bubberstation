@@ -176,6 +176,6 @@
 	icon = 'modular_zubbers/icons/customization/tails.dmi'
 
 /datum/sprite_accessory/tails/mammal/experiment
-	name = "Expie Tail"
+	name = "Expie"
 	icon_state = "experiment"
 	icon = 'modular_zubbers/icons/customization/tails.dmi'
