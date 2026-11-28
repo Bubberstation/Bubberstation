@@ -201,61 +201,65 @@
 
 	return modified_path
 
-/**
- * For seeing if we can actually move between 2 given turfs while accounting for our access and the requester's pass_flags
- *
- * Assumes destinantion turf is non-dense - check and shortcircuit in code invoking this proc to avoid overhead.
- * Makes some other assumptions, such as assuming that unless declared, non dense objects will not block movement.
- * It's fragile, but this is VERY much the most expensive part of pathing, so it'd better be fast
- *
- * Arguments:
- * * destination_turf - Where are we going from where we are?
- * * pass_info - Holds all the info about what this path attempt can go through
-*/
 /turf/proc/LinkBlockedWithAccess(turf/destination_turf, datum/can_pass_info/pass_info)
-	if(destination_turf.x != x && destination_turf.y != y) //diagonal
-		var/in_dir = get_dir(destination_turf,src) // eg. northwest (1+8) = 9 (00001001)
-		var/first_step_direction_a = in_dir & 3 // eg. north   (1+8)&3 (0000 0011) = 1 (0000 0001)
-		var/first_step_direction_b = in_dir & 12 // eg. west   (1+8)&12 (0000 1100) = 8 (0000 1000)
+	if (destination_turf.x != x && destination_turf.y != y)
+		return _DiagonalBlocked(destination_turf, pass_info)
+	return _CardinalBlocked(src, destination_turf, pass_info)
 
-		for(var/first_step_direction in list(first_step_direction_a,first_step_direction_b))
-			var/turf/midstep_turf = get_step(destination_turf,first_step_direction)
-			var/way_blocked = midstep_turf.density || LinkBlockedWithAccess(midstep_turf, pass_info) || midstep_turf.LinkBlockedWithAccess(destination_turf, pass_info)
-			if(!way_blocked)
-				return FALSE
+/turf/proc/_DiagonalBlocked(turf/destination_turf, datum/can_pass_info/pass_info)
+	var/in_dir = get_dir(destination_turf, src)
+
+	var/leg_a = in_dir & 5
+	var/leg_b = in_dir & 10
+
+	for (var/leg_dir in list(leg_a, leg_b))
+		var/turf/midstep = get_step(destination_turf, leg_dir)
+
+		if (_CardinalBlocked(src, midstep, pass_info) == 0 \
+		&&  _CardinalBlocked(midstep, destination_turf, pass_info) == 0)
+			return FALSE
+
+	return TRUE
+
+
+/turf/proc/_CardinalBlocked(turf/from_turf, turf/to_turf, datum/can_pass_info/pass_info)
+	var/step_dir = get_dir(from_turf, to_turf)
+
+	if (to_turf.density)
 		return TRUE
-	var/actual_dir = get_dir(src, destination_turf)
 
-	/// These are generally cheaper than looping contents so they go first
-	switch(destination_turf.pathing_pass_method)
-		// This is already assumed to be true
-		//if(TURF_PATHING_PASS_DENSITY)
-		//	if(destination_turf.density)
-		//		return TRUE
-		if(TURF_PATHING_PASS_PROC)
-			if(!destination_turf.CanAStarPass(actual_dir, pass_info))
+	switch (to_turf.pathing_pass_method)
+		if (TURF_PATHING_PASS_PROC)
+			if (!to_turf.CanAStarPass(step_dir, pass_info))
 				return TRUE
-		if(TURF_PATHING_PASS_NO)
+		if (TURF_PATHING_PASS_NO)
 			return TRUE
 
-	var/static/list/directional_blocker_cache = typecacheof(list(/obj/structure/window, /obj/machinery/door/window, /obj/structure/railing, /obj/machinery/door/firedoor/border_only))
-	// Source border object checks
-	for(var/obj/border in src)
-		if(!directional_blocker_cache[border.type])
+	var/static/list/directional_blockers = typecacheof(
+		list(
+			/obj/structure/window,
+			/obj/machinery/door/window,
+			/obj/structure/railing,
+			/obj/machinery/door/firedoor/border_only
+		)
+	)
+
+	for (var/obj/border in from_turf)
+		if (!directional_blockers[border.type])
 			continue
-		if(!border.density && border.can_astar_pass == CANASTARPASS_DENSITY)
+		if (!border.density && border.can_astar_pass == CANASTARPASS_DENSITY)
 			continue
-		if(!border.CanAStarPass(actual_dir, pass_info))
+		if (!border.CanAStarPass(step_dir, pass_info))
 			return TRUE
 
-	// Destination blockers check
-	var/reverse_dir = get_dir(destination_turf, src)
-	for(var/obj/iter_object in destination_turf)
-		// This is an optimization because of the massive call count of this code
-		if(!iter_object.density && iter_object.can_astar_pass == CANASTARPASS_DENSITY)
+	var/arrive_dir = get_dir(to_turf, from_turf)
+
+	for (var/obj/obj in to_turf)
+		if (!obj.density && obj.can_astar_pass == CANASTARPASS_DENSITY)
 			continue
-		if(!iter_object.CanAStarPass(reverse_dir, pass_info))
+		if (!obj.CanAStarPass(arrive_dir, pass_info))
 			return TRUE
+
 	return FALSE
 
 // Could easily be a struct if/when we get that
