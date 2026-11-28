@@ -427,3 +427,12 @@
 
 /obj/item/clothing/suit/armor/vest/hop
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/suits/armor_teshari.dmi'
+
+/obj/item/clothing/suit/armor/durability/watermelon
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
+
+/obj/item/clothing/suit/armor/durability/holymelon
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
+
+/obj/item/clothing/suit/armor/durability/barrelmelon
+	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
