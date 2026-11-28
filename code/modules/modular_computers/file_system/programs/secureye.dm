@@ -146,7 +146,7 @@
 				playsound(computer, SFX_TERMINAL_TYPE, 25, FALSE)
 
 			var/obj/machinery/camera/selected_camera = locate(params["camera"]) in SScameras.cameras
-			if(selected_camera)
+			if(selected_camera && length(selected_camera.network & network))
 				camera_ref = WEAKREF(selected_camera)
 			else
 				camera_ref = null
