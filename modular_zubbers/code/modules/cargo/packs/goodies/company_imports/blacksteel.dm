@@ -5,10 +5,6 @@
 	item_type = /obj/item/knife/hunting
 	cost = PAYCHECK_CREW * 2
 
-/datum/supply_pack/company_import/blacksteel/blade/survival_knife
-	item_type = /obj/item/knife/combat/survival
-	cost = PAYCHECK_CREW * 2
-
 /datum/supply_pack/company_import/blacksteel/blade/bowie_knife
 	item_type = /obj/item/storage/belt/bowie_sheath
 	cost = PAYCHECK_COMMAND * 3

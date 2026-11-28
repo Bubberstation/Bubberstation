@@ -121,7 +121,7 @@
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/gloves/frontier_colonist
-	name = "Frontier Gloves"
+	name = "Light Frontier Gloves"
 	item_path = /obj/item/clothing/gloves/frontier_colonist/loadout
 
 /datum/loadout_item/gloves/cat
