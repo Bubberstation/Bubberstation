@@ -174,3 +174,8 @@
 	name = "Eastern Dragon"
 	icon_state = "easternd"
 	icon = 'modular_zubbers/icons/customization/tails.dmi'
+
+/datum/sprite_accessory/tails/mammal/experiment
+	name = "Expie"
+	icon_state = "experiment"
+	icon = 'modular_zubbers/icons/customization/tails.dmi'
