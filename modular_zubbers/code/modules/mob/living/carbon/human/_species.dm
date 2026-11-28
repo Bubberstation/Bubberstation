@@ -2,11 +2,11 @@
 	var/sort_bottom = FALSE
 //Whether or not a given species is sorted to the bottom of the list. We mainly want to do this for species that are used only for ghostroles, and template species.
 
-/// Called once the target is made into a bloodsucker. Used for removing conflicting species organs mostly
-/datum/species/proc/on_bloodsucker_gain(mob/living/carbon/human/target)
+/// Called once the target is made into a vampire. Used for removing conflicting species organs mostly
+/datum/species/proc/on_vampire_gain(mob/living/carbon/human/target)
 	return null
 
-/datum/species/proc/on_bloodsucker_loss(mob/living/carbon/human/target)
+/datum/species/proc/on_vampire_loss(mob/living/carbon/human/target)
 	return null
 
 /datum/species/proc/create_pref_brain_perks()
@@ -38,7 +38,7 @@
 	return to_add
 
 
-/// Replaces a couple organs to normal variants to not cause issues. Not super happy with this, alternative is disallowing vampiric races from being bloodsuckers
+/// Replaces a couple organs to normal variants to not cause issues. Not super happy with this, alternative is disallowing vampiric races from being vampires
 /datum/species/proc/humanize_organs(mob/living/carbon/human/target, organs = list())
 	if(!organs || !length(organs))
 		organs = list(

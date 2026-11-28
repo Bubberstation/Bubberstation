@@ -489,6 +489,12 @@
 		to_chat(user, span_warning("The spell had no effect!"))
 		return ..()
 
+	// BUBBER EDIT ADDITION BEGIN - VAMPIRES
+	if(IS_VAMPIRE(target))
+		effect_vampire(target, user)
+		return ..()
+	// BUBBER EDIT ADDITION END
+
 	to_chat(user, span_cult_italic("In a brilliant flash of red, [target] falls to the ground!"))
 	target.Paralyze(16 SECONDS * effect_coef)
 	target.flash_act(1, TRUE)

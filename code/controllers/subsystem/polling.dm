@@ -93,6 +93,10 @@ SUBSYSTEM_DEF(polling)
 		//if(!candidate_mob.client.prefs.read_preference(/datum/preference/toggle/ghost_roles)) - BUBBER EDIT ORIGINAL
 		if(ghost_role_poll && !candidate_mob.client.prefs.read_preference(/datum/preference/toggle/ghost_roles))
 			continue
+		// BUBBER EDIT ADDITION BEGIN - VAMPIRES
+		if(isobserver(candidate_mob) && HAS_TRAIT(candidate_mob, TRAIT_NO_OBSERVE))
+			continue
+		// BUBBER EDIT ADDITION END
 		// Opt-out for admins whom are currently adminned.
 		if((!candidate_mob.client.prefs.read_preference(/datum/preference/toggle/ghost_roles_as_admin)) && candidate_mob.client.holder)
 			continue

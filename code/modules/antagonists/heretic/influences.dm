@@ -160,6 +160,12 @@
 	if(IS_HERETIC(user) || !ishuman(user))
 		return
 
+	// BUBBER EDIT ADDITION BEGIN - VAMPIRES
+	var/datum/antagonist/vampire/vampire_datum = IS_VAMPIRE(user)
+	if(istype(vampire_datum?.my_clan, /datum/vampire_clan/malkavian)) // yeah yeah the time knife all malks have seen it
+		return
+	// BUBBER EDIT ADDITION END
+
 	. += span_userdanger("Your mind burns as you stare at the tear!")
 	user.adjust_organ_loss(ORGAN_SLOT_BRAIN, 10, 190)
 	user.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus)

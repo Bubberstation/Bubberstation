@@ -1,6 +1,6 @@
 /datum/language/vampiric
 	name = "Enochian"
-	desc = "Rumored to be created by the Dark Father, Caine himself as a way to talk to his Childer, the truth, like many things in unlife is uncertain. Spoken by creatures of the night."
+	desc = "The language of Enoch, the first city of man. It was preserved past the great flood by the antediluvians, and is now learned intuitively by Fledglings as they pass from death into immortality."
 	key = "L"//Capital L, lowercase l is for ashies.
 	space_chance = 40
 	default_priority = 90
@@ -17,6 +17,6 @@
 		"t'","k'","t'","k'","th'","tz'"
 		)
 
-	icon_state = "bloodsucker"
-	icon = 'modular_zubbers/icons/misc/language.dmi'
+	icon_state = "vampire"
+	icon = 'modular_zubbers/icons/obj/antags/vampire/vampiric.dmi'
 	secret = TRUE

@@ -2,6 +2,7 @@
 	skillchips = list(/obj/item/skillchip/xenoarch_magnifier)
 
 /datum/job/curator
+	description = "Read and write books and hand them to people, stock bookshelves, report on station news, and hunt vampires."
 	required_languages = null
 	akula_outfit = /datum/outfit/akula
 	alt_titles = list(
@@ -19,8 +20,11 @@
 
 // second fallback just in case the map is missing both the curator display case and codex gigas
 /datum/job/curator/after_spawn(mob/living/spawned, client/player_client)
-	mind_traits += (TRAIT_BLOODSUCKER_HUNTER)
 	. = ..()
+	if(spawned.mind)
+		ADD_TRAIT(spawned.mind, TRAIT_OCCULTIST, JOB_TRAIT)
+		spawned.mind.teach_crafting_recipe(/datum/crafting_recipe/hardened_stake)
+		spawned.mind.teach_crafting_recipe(/datum/crafting_recipe/silver_stake)
 	var/list/points_of_interest = SSpoints_of_interest.get_other_pois()
 	var/obj/item/book/kindred/book_to_spawn
 	for(var/poi in points_of_interest)
