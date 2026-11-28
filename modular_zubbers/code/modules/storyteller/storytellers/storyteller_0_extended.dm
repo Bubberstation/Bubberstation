@@ -1,3 +1,4 @@
+// we still keep this one around because its kind of special
 /datum/storyteller/extended
 	name = "Extended (No Event/Antag Rolls)"
 	desc = "Extended is the absence of a Storyteller. It will not spawn a single event of any sort, or run any Antagonists. Best for rounds where the population is so low that not even peaceful storytellers are low enough."

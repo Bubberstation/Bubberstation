@@ -88,7 +88,7 @@
 			var/list/name_list = list()
 			for(var/storyteller_type in storytellers)
 				var/datum/storyteller/storyboy = storytellers[storyteller_type]
-				name_list[storyboy.name] = storyboy.type
+				name_list[storyboy.name] = storyteller_type
 			var/new_storyteller_name = input(usr, "Choose new storyteller (circumvents voted one):", "Storyteller")  as null|anything in name_list
 			if(!new_storyteller_name)
 				return

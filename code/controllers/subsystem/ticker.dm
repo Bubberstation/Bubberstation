@@ -138,7 +138,7 @@ SUBSYSTEM_DEF(ticker)
 		// BUBBERSTATION EDIT START
 			var/storyteller = CONFIG_GET(string/default_storyteller)
 			if(storyteller)
-				SSgamemode.set_storyteller(text2path(storyteller), TRUE)
+				SSgamemode.set_storyteller(storyteller, TRUE)
 			else
 				SSvote.initiate_vote(/datum/vote/storyteller, "Storyteller Vote", forced = TRUE)
 		// BUBBERSTATION EDIT END
